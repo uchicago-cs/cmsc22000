@@ -1,0 +1,7 @@
+[about]
+    Name = "Syllabus"
+    URL = "syllabus/"
+
+[posts]
+    Name = "Course Calendar"
+    URL = "calendar/"

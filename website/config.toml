@@ -5,3 +5,5 @@ theme = "hyde-y"
 
 [params]
 topline = "Introduction to Software Development"
+sidebar = "left"
+googleAnalytics = "UA-27880910-4"
