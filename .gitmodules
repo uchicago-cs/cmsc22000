@@ -1,0 +1,3 @@
+[submodule "website/themes/hyde-y"]
+	path = website/themes/hyde-y
+	url = https://github.com/enten/hyde-y.git
