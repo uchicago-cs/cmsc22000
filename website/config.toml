@@ -1,0 +1,7 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "CS 220"
+theme = "hyde-y"
+
+[params]
+topline = "Introduction to Software Development"
