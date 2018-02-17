@@ -20,7 +20,13 @@ In this course, students will learn how to...
 * ... use tools that support the software development process (e.g., build systems, testing frameworks, debuggers, etc.)
 * ... develop software collaboratively through (a) the use of tools, systems, and best practices available to facilitate that collaboration (e.g., version control systems, code reviews, task tracking, etc.), and (b) exercising collaborative soft skills (communication, giving/accepting feedback, etc.) 
 
-**Prerequisites**: CMSC 15200 or CMSC 16200. In Spring 2018, students will have to apply to participate in this class, and only students taking CMSC 15200 or CMSC 16200 in Winter 2018 will be considered (*absolutely no exceptions will be made*)
+### Prerequisites
+
+Students must have taken CMSC 15200 or CMSC 16200. 
+
+In Spring 2018, students will have to apply to participate in this class, and only students taking CMSC 15200 or CMSC 16200 in Winter 2018 will be considered (*absolutely no exceptions will be made*)
+
+Please note that CMSC 15400 is *not* a prerequisite for this class. We strongly encourage students taking CMSC 22000 to defer CMSC 15400 until Fall 2018, instead of taking CMSC 22000 and CMSC 15400 concurrently.
 
 
 Course Organization
