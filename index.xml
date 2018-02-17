@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CS 220</title>
-    <link>http://example.org/</link>
+    <link>http://uchicago-cs.github.io/cmsc22000/</link>
     <description>Recent content on CS 220</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://uchicago-cs.github.io/cmsc22000/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
