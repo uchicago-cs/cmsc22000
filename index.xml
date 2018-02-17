@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CS 220</title>
+    <title>CMSC 22000 - Introduction to Software Development on CS 220</title>
     <link>https://uchicago-cs.github.io/cmsc22000/</link>
-    <description>Recent content on CS 220</description>
+    <description>Recent content in CMSC 22000 - Introduction to Software Development on CS 220</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 17 Feb 2018 08:47:20 -0600</lastBuildDate>
     
 	<atom:link href="https://uchicago-cs.github.io/cmsc22000/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Course Calendar</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/calendar/</link>
+      <pubDate>Sat, 17 Feb 2018 08:50:04 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/calendar/</guid>
+      <description>NOTE: This calendar is tentative and subject to change.
+  The course is divided into two phases:
+ Lecture Phase: During the first three weeks of the quarter, the lecture sessions will involve lectures by the instructor on core concepts regarding the software development process. Project Phase: Starting in week 4, the focus of the class will shift towards the development of the course project, with team meetings on Monday, lectures on Wednesdays, and a guest lecture on Fridays.</description>
+    </item>
+    
+    <item>
+      <title>Syllabus</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/syllabus/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/syllabus/</guid>
+      <description>NOTE: This syllabus is tentative and subject to change.
+  Course Description Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://uchicago-cs.github.io/cmsc22000/description/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/description/</guid>
+      <description>Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://uchicago-cs.github.io/cmsc22000/summary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/summary/</guid>
+      <description>Foobazzzz</description>
+    </item>
     
   </channel>
 </rss>
