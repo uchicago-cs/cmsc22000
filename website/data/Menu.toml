@@ -1,7 +1,11 @@
-[about]
+[00-syllabus]
     Name = "Syllabus"
     URL = "syllabus/"
 
-[posts]
+[10-calendar]
     Name = "Course Calendar"
     URL = "calendar/"
+
+[20-faq]
+    Name = "FAQs"
+    URL = "faq/"
