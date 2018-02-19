@@ -12,6 +12,20 @@
     
     
     <item>
+      <title>FAQs</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/faq/</link>
+      <pubDate>Mon, 19 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/faq/</guid>
+      <description>Does CMSC 22000 fulfill any CS major requirements?
+Yes, it can be counted as an elective in the CS major.
+Can CMSC 22000 be used as a replacement for CMSC 15400?
+No, CMSC 15400 is still required in the CS major. However, you are allowed to take CMSC 22000 between CMSC 15200 / 16200 and CMSC 15400.
+Can I take CMSC 22000 concurrently with CMSC 15400?
+This is technically possible, but strongly discouraged.</description>
+    </item>
+    
+    <item>
       <title>Course Calendar</title>
       <link>https://uchicago-cs.github.io/cmsc22000/calendar/</link>
       <pubDate>Sat, 17 Feb 2018 08:50:04 -0600</pubDate>
