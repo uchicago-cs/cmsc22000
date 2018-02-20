@@ -45,7 +45,7 @@ During the first three weeks of the quarter, the lecture sessions will involve l
 * **Friday**: Guest lecture from industry speaker
 
 
-Course Calendar
+Course Contents
 ---------------
 
 Please see the [Course Calendar]({{< relref "calendar.md" >}}) page.
@@ -64,6 +64,13 @@ Teams will collaborate (within their team and between teams) using tools like Gi
 
 {{% note %}}
 The course project is still under development, but we anticipate that it will revolve around implementing a series of new data structures in [Redis](https://redis.io/), (an open source, in-memory data structure store), a series of APIs to interact with those new data structures, and applications that use those APIs.
+
+Please note that the goal of the project isn't to learn about Redis specifically. The goal of the project is for students to apply the concepts they learn in class by developing new features in an existing codebase. Redis was chosen because:
+
+- It is implemented in C, which means that students coming out of CS 152 / 162 will be able to engage with the Redis codebase without having to learn an additional language.
+- Redis is a "data structure server", and one of the way of extending Redis is by implementing additional data structures, which will reinforce the data structure concepts that students learned in CS 152 / 162.
+
+We do not expect any of the students' work to be contributed back to Redis (nor will we measure students' performance based on that), although that would definitely be an ideal outcome.
 {{% /note %}}
 
 
@@ -79,8 +86,13 @@ The exact grading structure for this class is still under development, but we ex
 - The performance of each team as a whole.
 {{% /note %}}
 
-Books
------
+
+Optional Reading
+----------------
+
+{{% note %}}
+Note: This reading list is still very preliminary, and is not representative of what we expect the final reading list to look like. We expect to add a lot more resources covering most of the topics in the class.
+{{% /note %}}
 
 This course does *not* have a required textbook. We will provide links to a number of online resources and *optional* books that expand on the topics covered in the lectures.
 
@@ -90,9 +102,6 @@ The following reading list expands on many of the concepts covered in the course
 * [The Pragmatic Programmer](https://en.wikipedia.org/wiki/The_Pragmatic_Programmer), Andrew Hunt, David Thomas. Addison-Wesley Professional, 1999.
 * [The Effective Engineer](https://www.effectiveengineer.com/book), Edmond Lau, Effective Bookshelf, 2015
 
-{{% note %}}
-Note: This reading list is likely to grow.
-{{% /note %}}
 
 
 
