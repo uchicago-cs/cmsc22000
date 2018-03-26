@@ -10,7 +10,7 @@ In Spring 2018, registration for this class will be by **application only**. Onl
 Course Staff
 ------------
 
-**Instructor**: Borja Sotomayor ([borja@cs.uchicago.edu](mailto:borja@cs.uchicago.edu)). *Office*: Eckhart 120-B. *Office Hours*: TBD
+**Instructor**: Borja Sotomayor ([borja@cs.uchicago.edu](mailto:borja@cs.uchicago.edu)). *Office*: Eckhart 120-B. *Office Hours*: MWF 10:30-11:30
 
 Course Description
 ------------------
