@@ -37,6 +37,16 @@ This is technically possible, but strongly discouraged.</description>
     </item>
     
     <item>
+      <title>Additional Resources</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/resources/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/resources/</guid>
+      <description>This page contains pointers to additional resources and readings that complement what we see in the lectures. While this class does not have a required textbook, most of the Software Engineering content draws heavily from Ian Sommerville&amp;rsquo;s book, Software Engineering.
+Software Engineering Books  Software Engineering (10th Ed.), Ian Sommerville Pearson, 2015. Clean Code: A Handbook of Agile Software Craftsmanship, Robert C. Martin, Prentice Hall, 2008. Clean Architecture: A Craftsman&amp;rsquo;s Guide to Software Structure and Design, Robert C.</description>
+    </item>
+    
+    <item>
       <title>Syllabus</title>
       <link>https://uchicago-cs.github.io/cmsc22000/syllabus/</link>
       <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
