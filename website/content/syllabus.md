@@ -87,23 +87,12 @@ The exact grading structure for this class is still under development, but we ex
 {{% /note %}}
 
 
-Optional Reading
-----------------
+Books
+-----
 
-{{% note %}}
-Note: This reading list is still subject to change.
-{{% /note %}}
+While this class does not have a required textbook, most of the Software Engineering content draws heavily from Ian Sommerville's book, [Software Engineering](http://iansommerville.com/software-engineering-book/). Please see [Additional Resources]({{< relref "resources.md" >}}) for a number of other books and online resources covering much of the material in this class.
 
-This course does *not* have a required textbook. We will provide links to a number of online resources and *optional* books that expand on the topics covered in the lectures.
 
-The following reading list expands on many of the concepts covered in the course. You should *not* feel obligated to purchase any of them (in fact, you may want to wait until the end of the quarter to decide which of these books, if any, you'd like to read).
-
-* [Software Engineering (10th Ed.)](http://iansommerville.com/software-engineering-book/), Ian Sommerville Pearson, 2015.
-* [Clean Code: a A Handbook of Agile Software Craftsmanship](https://books.google.com/books/about/Clean_Code.html?id=dwSfGQAACAAJ), Robert C. Martin, Prentice Hall, 2008.
-* [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://books.google.com/books/about/Clean_Architecture.html?id=uGE1DwAAQBAJ), Robert C. Martin, Prentice Hall, 2017.
-* [Debugging Teams: Better Productivity through Collaboration](http://shop.oreilly.com/product/0636920042372.do), Brian Fitzpatrick, Ben Collins-Sussman. O'Reilly Media, 2015.
-* [The Pragmatic Programmer](https://en.wikipedia.org/wiki/The_Pragmatic_Programmer), Andrew Hunt, David Thomas. Addison-Wesley Professional, 1999.
-* [The Effective Engineer](https://www.effectiveengineer.com/book), Edmond Lau, Effective Bookshelf, 2015
 
 
 
