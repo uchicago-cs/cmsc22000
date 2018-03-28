@@ -6,6 +6,10 @@
     Name = "Course Calendar"
     URL = "calendar/"
 
-[20-faq]
+[20-labs]
+    Name = "Labs"
+    URL = "labs/"
+
+[30-faq]
     Name = "FAQs"
     URL = "faq/"
