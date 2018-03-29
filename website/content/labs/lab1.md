@@ -12,7 +12,7 @@ In some of your previous CS courses, you became familiar with using Subversion (
 
 Like SVN, Git is a *version control system* that maintains files in a *repository* that contains not just files, but also a record of all the changes made to those files. Git tracks every version of a file or directory using *commits*. When you have made changes to one or more files, you can logically group those changes into a "commit" that gets added to your repository. You can think of commits as “checkpoints” in your work, representing the work you’ve done since the previous checkpoint. This mechanism makes it possible to look at and even revert to older versions of a file by going back to your code as it was when you “checkpointed” it with a commit.
 
-You will each have a personal Git repository that is hosted on a central server run by the CS department (the software running on that server is [GitLab](https://about.gitlab.com/), so we will often refer to it as "the GitLab server"). You may have also heard of [GitHub](https://github.com/), a web-based hosting service for Git repositories. We will be using GitHub later in the quarter for the course project, but will be using GitLab for the labs, since it will be easier for us to access your work there (since it is tied to CNetID authentication, etc.). We will also be browsing some GitHub repositories in this lab, but you will not need a GitHub account just yet.
+You will each have a personal Git repository that is hosted on a central server run by the CS department (the software running on that server is [GitLab](https://about.gitlab.com/), so we will often refer to it as "the GitLab server"). You may have also heard of [GitHub](https://github.com/), a web-based hosting service for Git repositories. We will be using GitHub later in the quarter for the course project, but will be using GitLab for the labs, since it will be easier for us to access your work there (since it is tied to CNetID authentication, etc.). We will also be browsing some Git repositories hosted on GitHub, but you will not need a GitHub account just yet.
 
 ## Initializing your repository
 
@@ -31,7 +31,7 @@ Log into https://mit.cs.uchicago.edu/. Under "Your projects", you should see an 
 
 * On the GitLab project page (the one that says "The repository for this project is empty") there is pull-down list with "SSH" selected. Make sure to change this to "HTTPS".
 
-Now, from inside your CMSC 22000 directory, run the instructions for "Git global setup" and for "Existing folder". If any commands asks you to enter a username and password, just enter your CNetID and password. Don't worry about what each individual command does; we will explain them in the rest of the lab. However, if you encounter any error messages, please make sure to let us know.
+Now, from inside your CMSC 22000 directory, run the instructions for "Git global setup" and for "Existing folder". If any commands asks you to enter a username and password, just enter your CNetID and password. Don't worry about what each individual command does; we will be seeing what most of these commands do in this lab. However, if you encounter any error messages, please make sure to let us know.
 
 You can verify that your repository was correctly set up by going back to https://mit.cs.uchicago.edu/. If you go to your repository page, you should now see it contains a `test.txt` file. If you click on it, you can see its contents.
 
@@ -107,7 +107,7 @@ This command should output something like this:
 
 Notice that there are two types of files listed here:
 
-* `Changes not staged for commit`: This is a list of files that Git knows about and have been modified since your last commit, but which have not been added to a commit (with `git add`). Note that we *did* use `git add` previously with `test.txt` (which is why Git is "tracking" that file), but we have not run `git add` since our last commit, which means the change we made to `test.txt` are not currently going to be included in any commit. Remember: committing is a two-step process (you `git add` the files that will be part of the commit, and then you create the commit).
+* `Changes not staged for commit`: This is a list of files that Git knows about and have been modified since your last commit, but which have not been added to a commit (with `git add`). Note that we *did* use `git add` previously with `test.txt` (which is why Git is "tracking" that file), but we have not run `git add` since our last commit, which means the change we made to `test.txt` is not currently going to be included in any commit. Remember: committing is a two-step process (you `git add` the files that will be part of the commit, and then you create the commit).
 
 * `Untracked files`: This is a list of files that Git has found in the same directory as your repository, but which Git isn't keeping track of.
 
@@ -120,8 +120,6 @@ So, let's go ahead and add `README.md`:
     git add README.md
 
 And re-run `git status`. You should see something like this:
-
-If you re-ran git status you would see something like this:
 
     On branch master
     Your branch is up-to-date with 'origin/master'.
@@ -321,9 +319,9 @@ Now, `git status` will show the following:
 
 	    modified:   test.txt
 
-Go ahead and run `git commit`. The commit will nwo include only `README.md`.  
+Go ahead and run `git commit`. The commit will now include only `README.md`.  
 
-## Looking at the commits log
+## Looking at the commit log
 
 Once you have made multiple commits, you can see these commits, their dates, commit messages, author, etc. by typing `git log`. This command will open a scrollable interface (using the up/down arrow keys) that you can get out of by hitting q. As we saw earlier, you can also see the history of commits through GitLab's web interface, but it is also useful to be able to access the commit log directly from the terminal, without having to open a browser.
 
@@ -341,7 +339,7 @@ This will show you the changes that were included in that commit. The output of 
 
 ## Exercises
 
-If you've completed all the steps described above, congratulations, you've already earned 40 points (out of 100) in this lab! Make sure you remember to `git push` so the grader can verify you completed all the above tasks. If you're still working on the above tasks, please note that they will be graded as follows:
+If you've completed all the steps described above, congratulations, you've already earned 40 points (out of 100) in this lab! Make sure you remember to `git push` so the grader can verify you completed all the above tasks. If you're still working on the above tasks, don't worry: nothing is due at the end of this lab. Please note that the above tasks will be graded as follows:
 
 * **Task 1**: 10 points for the `Updated test.txt` commit
 * **Task 2**: 5 points for the `Lab 1 updates` commit
@@ -351,7 +349,7 @@ If you've completed all the steps described above, congratulations, you've alrea
 
 Before next week's lab, you must also complete the following tasks. Some of them can be done just with what you have learned in today's lab, but most of them will require that you find the exact Git command (or series of Git commands) on your own. This is a very useful skill to develop: most software developers never take a course on Git or read a full book on Git before starting to use it; they learn the basics (like you did in this lab), and then rely on online documentation to fill the gaps.
 
-So, for the following tasks, you are allowed to obtain the answers in any way you want **EXCEPT** by asking someone else to tell you the answer (this means you cannot ask classmates, roommates, friends, parents, etc.). Please note that you are welcome to take the answer verbatim from a website, online reference, online forum, etc. as long as you provide *attribution* (i.e., you need to tell us where you found the answer). Of course, you must also follow the instructions you find in those references to complete the task you've been given.
+So, for the following tasks, you are allowed to obtain the answers in any way you want **EXCEPT** by asking someone (other than a CS 220 instructor or TA) to help you. This means you cannot ask for hints, solutions, pointers to documentation, etc. from *anyone* (classmates, roommates, friends, parents, etc.). Please note that you are welcome to take the answer verbatim from a website, online reference, online forum, etc. as long as you provide *attribution* (i.e., you need to tell us where you found the answer). Of course, you must also follow the instructions you find in those references to complete the task you've been given.
 
 Pro tip: Sometimes, just Googling for "how do I..." will yield the answer or, at least, some solid leads.
 
@@ -374,28 +372,32 @@ Create a commit for this change with commit message `Addeing Task 8` (yes, exact
 
 Wait! What an embarassing typo! Find out how you can edit the commit message of an existing commit (i.e., the solution is not to create a new commit; you have to find out how to edit the commit message of the commit you just created). Update the commit message to be "Adding Task 7". 
 
-Edit `tasks.txt` to explain how you updated the commit message (feel free to simply copy-paste the command you ran and its output). Make sure to explain how you found out the answer to this questions! (including citing any relevant sources). When you're done editing `tasks.txt`, make sure to add, commit and push your changes with.
-
-#### Task 11
-
-(5 points) Having to enter your username and password every time you run `git push` is becoming a bit annoying. Find out how you can tell Git to save your username and password securely, so you don't have to enter it every time you run `git push` or `git pull`.
-
+Edit `tasks.txt` to explain how you updated the commit message (feel free to simply copy-paste the command you ran and its output). Make sure to explain how you found out the answer to this questions! (including citing any relevant sources). When you're done editing `tasks.txt`, make sure to add, commit and push your changes.
 
 #### Task 8
 
-(5 points) Take a look at the following project on GitHub: https://github.com/junegunn/fzf. All you need to know about this project is that it provides a very handy tool called `fzf` that is run from the terminal, and which can take some number of command-line arguments. Clone this repository on your machine, and find the exact commit where the authors of this project added a `--no-mouse` option to the `fzf` command. You should be able to find this out using only Git commands (you do not need to build the project, run it, etc.). Include the commit SHA and commit message in `tasks.txt`, and explain how you located that commit.
+(5 points) Having to enter your username and password every time you run `git push` is becoming a bit annoying. Find out how you can tell Git to save your username and password securely, so you don't have to enter it every time you run `git push` or `git pull`. Explain what steps you took in `tasks.txt` (copy-pasting the command(s) you ran and their output is also enough)
+
 
 #### Task 9
 
-(5 point) Edit `README.md` and add any content to the file. Figure out how you can get Git to tell you the changes you've made to the file relative to the latest commit. Note that this is different from using `git show`, as we have not yet committed these changes. Once you have figured this out, and updated `tasks.txt` accordingly, undo these changes using `git checkout`.
+(5 points) Take a look at the following project on GitHub: https://github.com/junegunn/fzf. All you need to know about this project is that it provides a very handy tool called `fzf` that is run from the terminal, and which can take some number of command-line arguments. 
+
+Notice how the GitHub web interface has a number of similarities with the GitLab web interface: you can explore the files in the repository, past commits, etc. You should be able to figure out how to clone this repository on your machine. Then, find the exact commit where the authors of this project added a `--no-mouse` option to the `fzf` command (hint: commit messages will usually mention when a new feature is added, and this project is no exception). Take into account that you should be able to find this out using only Git commands (you do not need to build the project, run it, etc.). Include the commit SHA and commit message in `tasks.txt`, and explain how you located that commit.
 
 #### Task 10
 
-(5 points) Create a file called `mistake.txt` with any content. Add, commit, and push it to your repository. 
-
-Actually, adding that file was a mistake (duh!). Figure out how to remove that file from your repository, while keeping a record of the fact that the file existed at some point. In other words, we are not asking you to *undo* the commit that created the file. We're asking you to create a commit that will remove the file. Explain `tasks.txt` how you did this.
+(5 point) Edit `README.md` and add any content to the file. Figure out how you can get Git to tell you the changes you've made to the file relative to the latest commit. Note that this is different from using `git show`, as we have not yet committed these changes. Once you have figured this out, and updated `tasks.txt` accordingly, undo these changes using `git checkout`.
 
 #### Task 11
+
+(5 points) Create a file called `mistake.txt` with any content. Add, commit, and push it to your repository. 
+
+Actually, adding that file was a mistake (duh!). Figure out how to remove that file from your repository, while keeping a record of the fact that the file existed at some point. In other words, we are not asking you to *undo* the commit that created the file. We're asking you to create a commit that will remove the file. Explain in `tasks.txt` how you did this.
+
+Note: The next task asks you to do something similar, and this task can technically be accomplished using the same (more general) mechanism in Task 12. For this task, you should find a command that specifically allows you to remove files.
+
+#### Task 12
 
 (10 points) Edit `README.md` to add the text `This is a mistake`. Add and commit (but do not push) this change. Edit the file again to add the test `This is also a mistake`. Add and commit (but do not push) this change.
 
@@ -403,6 +405,12 @@ Now, let's say we want to remove those two changes. We could, of course, just ed
 
 Note: You may encounter instructions online on how to "undo" a commit (in the sense of completely removing it from the commit log). This is not what we're asking you to do: you must find a command that specifically takes one or more commits, and undoes them by creating a new commit (thus preserving the record of those original commits).
 
-#### Task 12
+#### Task 13
 
-(15 points)
+(15 points) The CS 220 elves are busily working on an extra-special task that we will reveal soon. Stay tuned!
+
+
+### Submitting your lab
+
+We will soon be providing instructions on how to submit your labs but, for now, it is enough for you to make sure you have pushed all the files we've asked you to create and commit (specially `tasks.txt`)
+
