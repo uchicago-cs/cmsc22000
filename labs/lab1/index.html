@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Lab 1: Git  &middot; CS 220</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="Lab 1: Git  &middot; CS 220 ">
+<meta property="og:site_name" content="CS 220"/>
+<meta property="og:url" content="https://uchicago-cs.github.io/cmsc22000/labs/lab1/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2018-01-28T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-01-28T00:00:00Z" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Lab 1: Git" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://uchicago-cs.github.io/cmsc22000/labs/lab1/" />
+<meta name="twitter:domain" content="https://uchicago-cs.github.io/cmsc22000/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Lab 1: Git",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-01-28",
+    "description": "",
+    "wordCount": 4579
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://uchicago-cs.github.io/cmsc22000/labs/lab1/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
+<link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+  
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+
+
+  <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+
+  
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-27880910-4', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper has-sidebar">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://uchicago-cs.github.io/cmsc22000/">
+  CS 220
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  Introduction to Software Development
+
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+
+  
+<a href="https://uchicago-cs.github.io/cmsc22000/syllabus/">Syllabus</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/resources/">Additional Resources</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/faq/">FAQs</a>
+
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>Lab 1: Git
+</h1>
+
+</header>
+
+  <div class="container content">
+  
+
+<aside class="admonition warning">
+	<div class="admonition-icon">
+
+	</div>
+
+	<div class="admonition-content"><p><strong>NOTE</strong>: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)</p>
+</div>
+</aside>
+
+
+<p>In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or <em>version control</em>) of your projects and assignments, and to submit your work for grading. In this class, we will be using Git, a more widespread version control system that is more commonly used in a variety of software projects.</p>
+
+<p>Like SVN, Git is a <em>version control system</em> that maintains files in a <em>repository</em> that contains not just files, but also a record of all the changes made to those files. Git tracks every version of a file or directory using <em>commits</em>. When you have made changes to one or more files, you can logically group those changes into a &ldquo;commit&rdquo; that gets added to your repository. You can think of commits as “checkpoints” in your work, representing the work you’ve done since the previous checkpoint. This mechanism makes it possible to look at and even revert to older versions of a file by going back to your code as it was when you “checkpointed” it with a commit.</p>
+
+<p>You will each have a personal Git repository that is hosted on a central server run by the CS department (the software running on that server is <a href="https://about.gitlab.com/">GitLab</a>, so we will often refer to it as &ldquo;the GitLab server&rdquo;). You may have also heard of <a href="https://github.com/">GitHub</a>, a web-based hosting service for Git repositories. We will be using GitHub later in the quarter for the course project, but will be using GitLab for the labs, since it will be easier for us to access your work there (since it is tied to CNetID authentication, etc.). We will also be browsing some Git repositories hosted on GitHub, but you will not need a GitHub account just yet.</p>
+
+<h2 id="initializing-your-repository">Initializing your repository</h2>
+
+<p>You will start by initializing your repository. Like SVN, your repository is hosted in the GitLab server, but you can create a local copy in your home directory (we will refer to this as your <em>local repository</em>).</p>
+
+<p>Log into <a href="https://mit.cs.uchicago.edu/">https://mit.cs.uchicago.edu/</a>. Under &ldquo;Your projects&rdquo;, you should see an entry for CMSC 22000. Click on it. This will take you to a page where you can browse your repository through GitLab&rsquo;s web interface. However, you haven&rsquo;t initialized your repository yet, so that page will say &ldquo;The repository for this project is empty&rdquo;. In this case, websites like GitLab and GitHub will provide you with the instructions to initialize your repository. You are going to follow those instructions, but first need to do the following:</p>
+
+<ul>
+<li>Create a directory in your home directory for CMSC 22000. The name and location of this directory is not important, so if you already have a preferred directory structure, you&rsquo;re welcome to use it. Otherwise, we suggest you simply do this:</li>
+</ul>
+
+<pre><code>  mkdir cs220
+  cd cs220
+</code></pre>
+
+<ul>
+<li><p>Inside that folder, create a file called <code>test.txt</code> with your full name.</p></li>
+
+<li><p>On the GitLab project page (the one that says &ldquo;The repository for this project is empty&rdquo;) there is pull-down list with &ldquo;SSH&rdquo; selected. Make sure to change this to &ldquo;HTTPS&rdquo;.</p></li>
+</ul>
+
+<p>Now, from inside your CMSC 22000 directory, run the instructions for &ldquo;Git global setup&rdquo; and for &ldquo;Existing folder&rdquo;. If any commands asks you to enter a username and password, just enter your CNetID and password. Don&rsquo;t worry about what each individual command does; we will be seeing what most of these commands do in this lab. However, if you encounter any error messages, please make sure to let us know.</p>
+
+<p>You can verify that your repository was correctly set up by going back to <a href="https://mit.cs.uchicago.edu/">https://mit.cs.uchicago.edu/</a>. If you go to your repository page, you should now see it contains a <code>test.txt</code> file. If you click on it, you can see its contents.</p>
+
+<h2 id="creating-a-commit">Creating a commit</h2>
+
+<p>If you make changes to your repository, the way to store those changes (and the updated versions of the modified files) is by creating a <em>commit</em>. So, let&rsquo;s start by making some changes:</p>
+
+<ul>
+<li>Edit <code>test.txt</code> to also include your CNetID</li>
+<li>Add a new file called <code>README.md</code>. This file should contain a single line with the text <code>Hello, world!</code></li>
+</ul>
+
+<p>Creating a commit is a two-step process. First, you have to indicate what files you want to include in your commit. Let’s say we want to create a commit that only includes the updated <code>test.txt</code> file. We can specify this operation explicitly using the <code>git add</code> command from the terminal:</p>
+
+<pre><code>git add test.txt
+</code></pre>
+
+<p>This command will not print any output if it is successful.</p>
+
+<p>To create the commit, use the <code>git commit</code> command. This command will take all the files you added with <code>git add</code> and will bundle them into a commit:</p>
+
+<pre><code>git commit -m &quot;Updated test.txt&quot;
+</code></pre>
+
+<p>The text after the <code>-m</code> is a short message that describes the changes you have made since your last commit. Common examples of commit messages might be &ldquo;Finished lab 1&rdquo; or “Implemented insert function for data struct”.</p>
+
+<aside class="admonition warning">
+	<div class="admonition-icon">
+
+	</div>
+
+	<div class="admonition-content"><p>If you forget the <code>-m</code> parameter, Git will think that you forgot to specify a commit message. It will graciously open up a default editor so that you can enter such a message. This can be useful if you want to enter a longer commit message (including multi-line messages). We will experiment with this later.</p>
+</div>
+</aside>
+
+
+<p>Once you run the above command, you will see something like the following output:</p>
+
+<pre><code>[master 3e39c15] Updated test.txt
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+
+<p>You’ve created a commit, but you’re not done yet: you haven’t uploaded it to the server yet. Forgetting this step is actually a very common pitfall, so don’t forget to upload your changes. You must use the <code>git push</code> command for your changes to actually be uploaded to the Git server. <em>If you don’t, the graders will not be able to see your code</em>. Simply run the following command from the Linux command-line:</p>
+
+<pre><code>git push
+</code></pre>
+
+<p>You will be asked for your CNetID and password; once you enter them, you should see something like this output:</p>
+
+<pre><code>Writing objects: 100% (3/3), 274 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
+   4885f1c..3e39c15  master -&gt; master
+</code></pre>
+
+<p>You can ignore most of those messages. The important thing is to not see any warnings or error messages.</p>
+
+<p>You can verify that our Git server correctly received your commit by going to <a href="https://mit.cs.uchicago.edu/">https://mit.cs.uchicago.edu/</a>. The <code>test.txt</code> file should now show the updated content (your name with your CNetID)</p>
+
+<p>In general, if you’re concerned about whether the graders are seeing the right version of your code, you can just go to <a href="https://mit.cs.uchicago.edu/">https://mit.cs.uchicago.edu/</a>. Whatever is shown on that page is what the graders will see. If you wrote some code, and it doesn’t show up in the above URL, make sure you didn’t forget to add your files, create a commit, and push the most recent commit to the server.</p>
+
+<h2 id="git-add-revisited-and-git-status">git add revisited and git status</h2>
+
+<p>Let&rsquo;s make a further change to <code>test.txt</code>: Add a line with the text <code>CMSC 22000 - Introduction to Software Development</code>.</p>
+
+<p>So, at this point, we have a file we have already committed (<code>test.txt</code>) but where the <em>local</em> version is now out of sync with the version in the GitLab server. Furthermore, earlier we created a <code>README.md</code> file. Is it a part of our repository? You can use the following command to ask Git for a summary of the files it is tracking:</p>
+
+<pre><code>git status
+</code></pre>
+
+<p>This command should output something like this:</p>
+
+<pre><code>On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   test.txt
+
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+    README.md
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+
+<p>Notice that there are two types of files listed here:</p>
+
+<ul>
+<li><p><code>Changes not staged for commit</code>: This is a list of files that Git knows about and have been modified since your last commit, but which have not been added to a commit (with <code>git add</code>). Note that we <em>did</em> use <code>git add</code> previously with <code>test.txt</code> (which is why Git is &ldquo;tracking&rdquo; that file), but we have not run <code>git add</code> since our last commit, which means the change we made to <code>test.txt</code> is not currently going to be included in any commit. Remember: committing is a two-step process (you <code>git add</code> the files that will be part of the commit, and then you create the commit).</p></li>
+
+<li><p><code>Untracked files</code>: This is a list of files that Git has found in the same directory as your repository, but which Git isn&rsquo;t keeping track of.</p></li>
+</ul>
+
+<aside class="admonition warning">
+	<div class="admonition-icon">
+
+	</div>
+
+	<div class="admonition-content"><p>You may see some automatically generated files in your Untracked files section. Files that start with a pound sign (#) or end with a tilde should <em>not</em> be added to your repository. Files that end with a tilde are backup files created by some editors that are intended to help you restore your files if your computer crashes. In general, files that are automatically generated should not be committed to your repository. Other people should be able to generate their own versions, if necessary.</p>
+</div>
+</aside>
+
+
+<p>So, let&rsquo;s go ahead and add <code>README.md</code>:</p>
+
+<pre><code>git add README.md
+</code></pre>
+
+<p>And re-run <code>git status</code>. You should see something like this:</p>
+
+<pre><code>On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+    new file:   README.md
+
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   test.txt
+</code></pre>
+
+<p>Notice how there is now a new category of files: <code>Changes to be committed</code>. Adding <code>README.md</code> not only added the file to your repository, it also staged it into the next commit (which, remember, won’t happen until you actually run <code>git commit</code>).</p>
+
+<p>If we now add <code>test.txt</code>:</p>
+
+<pre><code>git add test.txt
+</code></pre>
+
+<p>The output of <code>git status</code> should now look like this:</p>
+
+<pre><code>On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+    new file:   README.md
+    modified:   test.txt
+</code></pre>
+
+<p>Now, we are going to create a commit with these changes. Notice how we are not going to use the <code>-m</code> parameter to <code>git commit</code>:</p>
+
+<pre><code>git commit
+</code></pre>
+
+<p>When you omit <code>-m</code>, Git will open a terminal text editor where you can write your commit message, including multiline commit messages. By default, the CS machines will use Vim for this; if you want to change your default command-line editor, add a line like this:</p>
+
+<pre><code>EDITOR=emacs
+</code></pre>
+
+<p>At the end of the <code>.bashrc</code> file in your home directory.</p>
+
+<p>Once Git opens your editor of choice, you will see something like this:</p>
+
+<pre><code># Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#       new file:   README.md
+#       modified:   test.txt
+#
+</code></pre>
+
+<p>Now, type in the following commit message:</p>
+
+<pre><code>Lab 1 updates:
+
+- Added README.md
+- Updated test.txt file
+</code></pre>
+
+<p>Then, just save the file and exit (using the appropriate commands in your editor of choice). This will complete the commit, and you will see a message like this:</p>
+
+<pre><code>[master 9119c6f] Lab 1 updates
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+ create mode 100644 README.md
+</code></pre>
+
+<p>Now, edit both files and add an extra line to each of them with the text <code>Git is pretty cool</code>. Running <code>git status</code> should now show the following:</p>
+
+<pre><code>On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use &quot;git push&quot; to publish your local commits)
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   README.md
+    modified:   test.txt
+</code></pre>
+
+<p>If we want to create a commit with these changes, we could simply run <code>git add</code> twice (once for each file) but, fortunately, we can also do this:</p>
+
+<pre><code>git add -u
+</code></pre>
+
+<p>This will add every file that Git is tracking, and will ignore untracked files. There are a few other shortcuts for adding multiple files, like <code>git add .</code> and <code>git add --all</code>, but we suggest you avoid them, since they can result in adding files you did not intend to add to your repository.</p>
+
+<p>So, if you run <code>git add -u</code> and create a commit:</p>
+
+<pre><code>git commit -m &quot;A few more changes&quot;
+</code></pre>
+
+<p><code>git status</code> will now show this:</p>
+
+<pre><code>On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use &quot;git push&quot; to publish your local commits)
+nothing to commit, working directory clean
+</code></pre>
+
+<p>The message <code>Your branch is ahead of 'origin/master' by 2 commits.</code> is telling you that your local repository contains two commits that have not yet been uploaded to the GitLab server. In fact, if you go to <a href="https://mit.cs.uchicago.edu/">https://mit.cs.uchicago.edu/</a> you&rsquo;ll see that the two commits we just created are nowhere to be seen. As helpfully pointed out by the above output, all we need to do is run <code>git push</code>, which should show something like this:</p>
+
+<pre><code>Counting objects: 8, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (8/8), 730 bytes | 0 bytes/s, done.
+Total 8 (delta 1), reused 0 (delta 0)
+To https://mit.cs.uchicago.edu/cmsc22000-spr-18/borja.git
+   3e39c15..53462fb  master -&gt; master
+</code></pre>
+
+<p>Go to <a href="https://mit.cs.uchicago.edu">https://mit.cs.uchicago.edu</a>. Do you see the updates in your repository? Click on &ldquo;Commits&rdquo; (above the file listing in your repository). If you click on the individual commits, you will be able to see the exact changes that were included in each commit.</p>
+
+<p>Now, <code>git status</code> will look like this:</p>
+
+<pre><code>On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working directory clean
+</code></pre>
+
+<p>If you see <code>nothing to commit, working directory clean</code>, that means that there are no changes in your local repository since the last commit you created (and, additionally, the above output also tells us that all our commits have also been uploaded to the GitLab server)</p>
+
+<h2 id="working-from-multiple-locations">Working from multiple locations</h2>
+
+<p>So far, you have a local repository in your CS home directory, which you have been uploading to the GitLab server using the <code>git push</code> command. However, if you work from multiple locations (e.g., on a CS machine but also from your laptop), you will need to be able to create a local repository in those locations too. You can do this by running the <code>git clone</code> command (don&rsquo;t run this command just yet):</p>
+
+<pre><code>git clone https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
+</code></pre>
+
+<p>This will create a local repository that &ldquo;clones&rdquo; the contents of the repository in the GitLab server. If you have a laptop with you (and have access to Git on that laptop), try running <code>git clone</code> there. If not, try creating a clone in a different directory on the CS machine you are on. For example:</p>
+
+<pre><code>mkdir /tmp/$USER/cs220
+cd /tmp/$USER/cs220
+git clone https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
+</code></pre>
+
+<p>Make sure to replace <code>username</code> with your CNetID!</p>
+
+<p>Now, in the local repository in your home directory, add a line to <code>test.txt</code> with the text <code>One more change!</code>. Create a commit for that change and push it to GitLab (you should know how to do this by now, but make sure to ask for help if you&rsquo;re unsure of how to proceed).</p>
+
+<p>Next, in the <em>second</em> local repository (the one you just created either on your laptop or on a separate location in the CS machine), check if that change appears in the <code>test.txt</code>. It will not, because you have not yet downloaded the latest commits from the repository. You can do this by running this:</p>
+
+<pre><code>git pull
+</code></pre>
+
+<p>This should output something like this:</p>
+
+<pre><code>remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From https://mit.cs.uchicago.edu/cmsc22000-spr-18/borja
+   53462fb..0c29617  master     -&gt; origin/master
+Updating 53462fb..0c29617
+Fast-forward
+ test.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+</code></pre>
+
+<p>If you have multiple local repositories (e.g., one on a CS machine and one on your laptop), it is very important that you remember to run <code>git pull</code> before you start working, and that you <code>git push</code> any changes you make. Otherwise, your local repositories (and the repository on the GitLab server) may <em>diverge</em> leading to a messy situation called a <em>merge conflict</em> (we will be exploring these in a future Git lab). This will be specially important once you start using Git for its intended purpose: to collaborate with multiple developers, where each developer will have their own local repository, and it will become easier for some developers&rsquo; code to diverge from others&rsquo;.</p>
+
+<h2 id="discarding-changes-and-unstaging">Discarding changes and unstaging</h2>
+
+<p>One of the benefits of using a version control system is that it is very easy to inspect the history of changes to a given file, as well as to undo changes we did not intend to make. For example, edit <code>test.txt</code> to remove all its contents. <code>git status</code> will tell us this:</p>
+
+<pre><code>On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   test.txt
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+
+<p>If we want to discard the changes we made to <code>test.txt</code>, all we have to do is follow the helpful advice provided by the above output:</p>
+
+<pre><code>git checkout -- test.txt
+</code></pre>
+
+<p>If you open <code>test.txt</code>, you&rsquo;ll see that its contents have been magically restored!</p>
+
+<p>Now, edit <code>test.txt</code> and <code>README.md</code> to add an additional line with the text <code>Hopefully our last change...</code>. Run <code>git add -u</code> but don&rsquo;t commit it just yet. <code>git status</code> will show this:</p>
+
+<pre><code>On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+    modified:   README.md
+    modified:   test.txt
+</code></pre>
+
+<p>Now, let&rsquo;s say we realized we want to commit the changes to <code>README.md</code>, but not to <code>test.txt</code>. However, we&rsquo;ve already told git that we want to include <code>test.txt</code> in the commit. Fortunately, we can &ldquo;un-include&rdquo; it (or &ldquo;unstage&rdquo; it, in Git lingo) by running this:</p>
+
+<pre><code>git reset HEAD test.txt
+</code></pre>
+
+<p>Now, <code>git status</code> will show the following:</p>
+
+<pre><code>On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+    modified:   README.md
+
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   test.txt
+</code></pre>
+
+<p>Go ahead and run <code>git commit</code>. The commit will now include only <code>README.md</code>.</p>
+
+<h2 id="looking-at-the-commit-log">Looking at the commit log</h2>
+
+<p>Once you have made multiple commits, you can see these commits, their dates, commit messages, author, etc. by typing <code>git log</code>. This command will open a scrollable interface (using the up/down arrow keys) that you can get out of by hitting q. As we saw earlier, you can also see the history of commits through GitLab&rsquo;s web interface, but it is also useful to be able to access the commit log directly from the terminal, without having to open a browser.</p>
+
+<p>Each commit will have a <em>commit hash</em> (usually referred to as the <em>commit SHA</em>) that looks something like this:</p>
+
+<pre><code>9119c6ffcebc2e3540d587180236aaf1222ee63c
+</code></pre>
+
+<p>This is a unique identifier that we can use to refer to that commit elsewhere. For example, choose any commit from the commit log and run the following:</p>
+
+<pre><code>git show COMMIT_SHA
+</code></pre>
+
+<p>Make sure to replace <code>COMMIT_SHA</code> with a commit SHA that appears in your commit log.</p>
+
+<p>This will show you the changes that were included in that commit. The output of <code>git show</code> can be a bit hard to parse at first but the most important thing to take into account is that any line starting with a <code>+</code> denotes a line that was added, and any line starting with a <code>-</code> denotes a line that was removed.</p>
+
+<h2 id="exercises">Exercises</h2>
+
+<p>If you&rsquo;ve completed all the steps described above, congratulations, you&rsquo;ve already earned 40 points (out of 100) in this lab! Make sure you remember to <code>git push</code> so the grader can verify you completed all the above tasks. If you&rsquo;re still working on the above tasks, don&rsquo;t worry: nothing is due at the end of this lab. Please note that the above tasks will be graded as follows:</p>
+
+<ul>
+<li><strong>Task 1</strong>: 10 points for the <code>Updated test.txt</code> commit</li>
+<li><strong>Task 2</strong>: 5 points for the <code>Lab 1 updates</code> commit</li>
+<li><strong>Task 3</strong>: 5 points for the <code>A few more changes</code> commit</li>
+<li><strong>Task 4</strong>: 10 points for the commit for testing that git pull works correctly</li>
+<li><strong>Task 5</strong>: 10 points for the commit with <code>README.md</code> (after unstaging <code>test.txt</code></li>
+</ul>
+
+<p>Before next week&rsquo;s lab, you must also complete the following tasks. Some of them can be done just with what you have learned in today&rsquo;s lab, but most of them will require that you find the exact Git command (or series of Git commands) on your own. This is a very useful skill to develop: most software developers never take a course on Git or read a full book on Git before starting to use it; they learn the basics (like you did in this lab), and then rely on online documentation to fill the gaps.</p>
+
+<p>So, for the following tasks, you are allowed to obtain the answers in any way you want <strong>EXCEPT</strong> by asking someone (other than a CS 220 instructor or TA) to help you. This means you cannot ask for hints, solutions, pointers to documentation, etc. from <em>anyone</em> (classmates, roommates, friends, parents, etc.). Please note that you are welcome to take the answer verbatim from a website, online reference, online forum, etc. as long as you provide <em>attribution</em> (i.e., you need to tell us where you found the answer). Of course, you must also follow the instructions you find in those references to complete the task you&rsquo;ve been given.</p>
+
+<p>Pro tip: Sometimes, just Googling for &ldquo;how do I&hellip;&rdquo; will yield the answer or, at least, some solid leads.</p>
+
+<h4 id="task-6">Task 6</h4>
+
+<p>(10 points) Create a directory <code>lab1</code> in your repository containing a file called <code>README.md</code> containing your name and CNetID. Add, commit, and push that file.</p>
+
+<p>Create a file called <code>tasks.txt</code> in your <code>lab1</code> directory. Most of the following tasks will require that you add something to this file, so we can verify that you completed a task correctly. Don&rsquo;t add the file just yet.</p>
+
+<p>Note: In all subsequent tasks, you should work only with the files inside the <code>lab1</code> directory.</p>
+
+<h4 id="task-7">Task 7</h4>
+
+<p>(5 points) Add the following in <code>tasks.txt</code>:</p>
+
+<pre><code>Task 7
+------
+</code></pre>
+
+<p>Create a commit for this change with commit message <code>Addeing Task 8</code> (yes, exactly that commit message) but make sure you <em>don&rsquo;t push it</em>.</p>
+
+<p>Wait! What an embarassing typo! Find out how you can edit the commit message of an existing commit (i.e., the solution is not to create a new commit; you have to find out how to edit the commit message of the commit you just created). Update the commit message to be &ldquo;Adding Task 7&rdquo;.</p>
+
+<p>Edit <code>tasks.txt</code> to explain how you updated the commit message (feel free to simply copy-paste the command you ran and its output). Make sure to explain how you found out the answer to this questions! (including citing any relevant sources). When you&rsquo;re done editing <code>tasks.txt</code>, make sure to add, commit and push your changes.</p>
+
+<h4 id="task-8">Task 8</h4>
+
+<p>(5 points) Having to enter your username and password every time you run <code>git push</code> is becoming a bit annoying. Find out how you can tell Git to save your username and password securely, so you don&rsquo;t have to enter it every time you run <code>git push</code> or <code>git pull</code>. Explain what steps you took in <code>tasks.txt</code> (copy-pasting the command(s) you ran and their output is also enough)</p>
+
+<h4 id="task-9">Task 9</h4>
+
+<p>(5 points) Take a look at the following project on GitHub: <a href="https://github.com/junegunn/fzf">https://github.com/junegunn/fzf</a>. All you need to know about this project is that it provides a very handy tool called <code>fzf</code> that is run from the terminal, and which can take some number of command-line arguments.</p>
+
+<p>Notice how the GitHub web interface has a number of similarities with the GitLab web interface: you can explore the files in the repository, past commits, etc. You should be able to figure out how to clone this repository on your machine. Then, find the exact commit where the authors of this project added a <code>--no-mouse</code> option to the <code>fzf</code> command (hint: commit messages will usually mention when a new feature is added, and this project is no exception). Take into account that you should be able to find this out using only Git commands (you do not need to build the project, run it, etc.). Include the commit SHA and commit message in <code>tasks.txt</code>, and explain how you located that commit.</p>
+
+<h4 id="task-10">Task 10</h4>
+
+<p>(5 point) Edit <code>README.md</code> and add any content to the file. Figure out how you can get Git to tell you the changes you&rsquo;ve made to the file relative to the latest commit. Note that this is different from using <code>git show</code>, as we have not yet committed these changes. Once you have figured this out, and updated <code>tasks.txt</code> accordingly, undo these changes using <code>git checkout</code>.</p>
+
+<h4 id="task-11">Task 11</h4>
+
+<p>(5 points) Create a file called <code>mistake.txt</code> with any content. Add, commit, and push it to your repository.</p>
+
+<p>Actually, adding that file was a mistake (duh!). Figure out how to remove that file from your repository, while keeping a record of the fact that the file existed at some point. In other words, we are not asking you to <em>undo</em> the commit that created the file. We&rsquo;re asking you to create a commit that will remove the file. Explain in <code>tasks.txt</code> how you did this.</p>
+
+<p>Note: The next task asks you to do something similar, and this task can technically be accomplished using the same (more general) mechanism in Task 12. For this task, you should find a command that specifically allows you to remove files.</p>
+
+<h4 id="task-12">Task 12</h4>
+
+<p>(10 points) Edit <code>README.md</code> to add the text <code>This is a mistake</code>. Add and commit (but do not push) this change. Edit the file again to add the test <code>This is also a mistake</code>. Add and commit (but do not push) this change.</p>
+
+<p>Now, let&rsquo;s say we want to remove those two changes. We could, of course, just edit the file again, remove those lines, and add/commit the updated file (the commit could have a message like <code>Reverting changes from commits A and B</code>). However, if those two commits contained a large number of changes, removing those changes manually could get really messy. Fortunately, Git provides a command that will take one or more commits, and create a new commit with the opposite changes from those commits (effectively undoing those commits)</p>
+
+<p>Note: You may encounter instructions online on how to &ldquo;undo&rdquo; a commit (in the sense of completely removing it from the commit log). This is not what we&rsquo;re asking you to do: you must find a command that specifically takes one or more commits, and undoes them by creating a new commit (thus preserving the record of those original commits).</p>
+
+<h4 id="task-13">Task 13</h4>
+
+<p>(15 points) The CS 220 elves are busily working on an extra-special task that we will reveal soon. Stay tuned!</p>
+
+<h3 id="submitting-your-lab">Submitting your lab</h3>
+
+<p>We will soon be providing instructions on how to submit your labs but, for now, it is enough for you to make sure you have pushed all the files we&rsquo;ve asked you to create and commit (specially <code>tasks.txt</code>)</p>
+
+</div>
+
+
+  
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+
+</div>
+
+</footer>
+
+    </main>
+    
+
+
+
+    
+  </body>
+</html>
+

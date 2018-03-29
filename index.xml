@@ -57,6 +57,16 @@ Software Engineering Books  Software Engineering (10th Ed.), Ian Sommerville Pea
     </item>
     
     <item>
+      <title>Lab 1: Git</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</guid>
+      <description>NOTE: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)
+  In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading. In this class, we will be using Git, a more widespread version control system that is more commonly used in a variety of software projects.</description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://uchicago-cs.github.io/cmsc22000/description/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
