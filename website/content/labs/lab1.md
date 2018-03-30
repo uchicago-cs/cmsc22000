@@ -407,7 +407,23 @@ Note: You may encounter instructions online on how to "undo" a commit (in the se
 
 #### Task 13
 
-(15 points) The CS 220 elves are busily working on an extra-special task that we will reveal soon. Stay tuned!
+(15 points) In many software projects, it's not uncommon for bugs to go unnoticed for a long time, until someone happens to run the software in a way that makes the bug apparent. At that point, it's often your responsibility to find the commit that introduced the bad behavior. On the flipside, it's also common to want to find the commit that introduced new good behavior, for example, in issue discussions (e.g. "This request is redundant because that new behavior was already introduced in commit c4b17f9..."). Git provides an extremely powerful command for doing exactly this! (we will cryptically refer to this command as "command X") In this task, you must find this command and then use it to track down where a bug was fixed in an existing repository.
+
+bcal (found here https://github.com/jarun/bcal) is a nifty little utility for doing byte arithmetic and unit conversions (e.g. "how much is 5MB in MiB?" "what’s 5KB*1GB?"). In the old days of bcal, it had a bug in its parser that would cause the following expression to fail to evaluate:
+
+    $ ./bcal "5*5*5mb"
+
+Clone the bcal repository into a new directory (for example, `~/bcal`), and use command X to find the exact commit that fixed this behavior. You can run the bcal command like so:
+
+    $ make
+    $ ./bcal "5*5*5mb"
+
+In `tasks.txt`, add a few sentences explaining how you found desired commit, and a line with the commit SHA (the hash identifier of the commit) as well as its text. There is one and only one right answer to this task, and there is one and only one git command that we will consider correct. We will only give you the following hints:
+
+* Command X is not any of the commands we have shown in this lab, nor any of the commands you were asked to find in previous tasks. In particular, you cannot solve this task just by using `git log` to inspect the commit log of the bcal project.
+* Command X has to be run multiple times (with different options/parameters) to solve this task.
+
+You will be graded partially on discovering the identity of command X, and partially on using command X to find the commit where the bcal bug was fixed.
 
 
 ### Submitting your lab
