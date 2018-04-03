@@ -4,6 +4,8 @@ date: 2018-01-28
 publishdate: 2018-01-28
 ---
 
+**Due:** Thursday, April 5th, 4pm
+
 {{% warning %}}
 **NOTE**: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)
 {{% /warning %}}
@@ -428,5 +430,8 @@ You will be graded partially on discovering the identity of command X, and parti
 
 ### Submitting your lab
 
-We will soon be providing instructions on how to submit your labs but, for now, it is enough for you to make sure you have pushed all the files we've asked you to create and commit (specially `tasks.txt`)
+Before submitting, make sure you've committed and pushed your changes to the `tasks.txt` file (remember you can run `git status` to check this). Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
+
+    chisubmit student assignment register lab1
+    chisubmit student assignment submit lab1
 
