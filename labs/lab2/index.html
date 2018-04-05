@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-28",
     "description": "",
-    "wordCount": 1621
+    "wordCount": 1620
   }
 </script>
 
@@ -246,7 +246,7 @@ upstream    https://mit.cs.uchicago.edu/cmsc22000-spr-18/cmsc22000-spr-18.git (p
 <p>In this task, you must do the following:</p>
 
 <ul>
-<li>(15 points) Add <code>segment.c</code> / <code>segment.h</code> files with the declaration and implementation of a new Segment data type. Make sure to include new init/free functions. You will also need to update the Makefile to make sure this new file is compiled and included in the libgeometry library. Just update the <code>SRCS</code> variable in the Makefile to include your new <code>segment.c</code> file.</li>
+<li>(15 points) Add <code>segment.c</code> / <code>segment.h</code> files with the declaration and implementation of a new Segment data type. Make sure to include new/init/free functions. You will also need to update the Makefile to make sure this new file is compiled and included in the libgeometry library. Just update the <code>SRCS</code> variable in the Makefile to include your new <code>segment.c</code> file.</li>
 <li>(10 points) Take segment_intersect (and associated helper functions) out of <code>point.c</code> / <code>point.h</code> and make it a part of the Segment datatype. Take into account that this will involve changing the parameters of the function, since it now has to operate on Segments, not on Points.</li>
 <li>(10 points) Update the Polygon implementation so it uses this updated segment_intersect function. At this point, you should be able to build the entire library by running <code>make</code></li>
 <li>(15 points) Uh oh, the libgeometry library may build correctly, but not the tests! (try this by running <code>make tests</code>) This is because they still depend on the old version of the <code>segment_intersect</code> function. In the <code>test_point.c</code> file, update the intersection tests to make sure they use the new version of the file (you don’t need to know exactly how these tests work, and you can keep these tests inside the <code>test_point.c</code>; in a future lab, we will see a cleaner way of updating the tests). Once you have fixed this, you should be able to run <code>make tests</code> followed by <code>tests/test-libgeometry</code>.</li>
