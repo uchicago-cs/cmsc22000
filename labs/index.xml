@@ -32,5 +32,16 @@ chisubmit init  When asked for your username and password, just enter your CNetI
   In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading.</description>
     </item>
     
+    <item>
+      <title>Lab 2: Software Design</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</guid>
+      <description>Due: Thursday, April 12th, 4pm
+In this lab, you will carry out some basic software design tasks. Before we get to those tasks, we need you to perform an additional (ungraded but necessary) Git-related task so you can fetch the files necessary for this lab.
+Task 0: Pulling from upstream In the previous lab, you set up your local repo, which is set up by default to pull/push from/to a repository in our GitLab server.</description>
+    </item>
+    
   </channel>
 </rss>
