@@ -5,6 +5,7 @@
 #ifndef INCLUDE_POINT_H_
 #define INCLUDE_POINT_H_
 
+#include <stdbool.h>
 #include "common.h"
 
 /* A point in two-dimensional space */

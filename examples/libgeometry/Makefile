@@ -1,20 +1,26 @@
 # Makefile based on template at https://gist.github.com/xuhdev/1873316
 
-CC = gcc 
+CC = gcc
+AR = ar 
 CFLAGS = -fPIC -Wall -Wextra -O2 -g -I./include/
 LDFLAGS = -shared
 RM = rm -f
-TARGET_LIB = libgeometry.so
+DYNAMIC_LIB = libgeometry.so
+STATIC_LIB = libgeometry.a
+LIBS = ${DYNAMIC_LIB} ${STATIC_LIB}
 LDLIBS = -lm
 
 SRCS = src/point.c src/polygon.c
 OBJS = $(SRCS:.c=.o)
 
 .PHONY: all
-all: ${TARGET_LIB}
+all: ${LIBS}
 
-$(TARGET_LIB): $(OBJS)
-	$(CC) ${LDFLAGS} -o $@ $^ $(LDLIBS)
+$(DYNAMIC_LIB): $(OBJS)
+	$(CC) -shared -o $@ $^ $(LDLIBS)
+
+$(STATIC_LIB): $(OBJS)
+	$(AR) -r -o $@ $^
 
 $(SRCS:.c=.d):%.d:%.c
 	$(CC) $(CFLAGS) -MM $< >$@
@@ -23,9 +29,17 @@ include $(SRCS:.c=.d)
 
 .PHONY: clean tests
 clean:
-	-${RM} ${TARGET_LIB} ${OBJS} $(SRCS:.c=.d)
+	-${RM} ${LIBS} ${OBJS} $(SRCS:.c=.d)
 	make -C ./tests clean
+	make -C ./samples clean
 	
+tests: ${LIBS}
+	make -C ./tests
+
+samples: ${LIBS}
+	make -C ./samples
+
+
 tests: ${TARGET_LIB}
 	make -C ./tests
 	
