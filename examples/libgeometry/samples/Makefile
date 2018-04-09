@@ -9,17 +9,17 @@ LDLIBS = -lgeometry
 
 SRCS = polygon.c
 OBJS = $(SRCS:.c=.o)
-BINS = polygon-dynamic polygon-static
+BINS = polygon-sample polygon-sample-static
 
 .PHONY: all
 all: ${BINS}
 
 polygon.o: polygon.c
 
-polygon-dynamic: polygon.o
+polygon-sample: polygon.o
 	$(CC) $(DYN_LDFLAGS) $^ -o$@ $(LDLIBS) 
 
-polygon-static: polygon.o
+polygon-sample-static: polygon.o
 	$(CC) $(STC_LDFLAGS) $^ -o$@ -l:libgeometry.a -lm
 
 

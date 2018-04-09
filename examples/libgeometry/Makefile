@@ -38,8 +38,3 @@ tests: ${LIBS}
 
 samples: ${LIBS}
 	make -C ./samples
-
-
-tests: ${TARGET_LIB}
-	make -C ./tests
-	
