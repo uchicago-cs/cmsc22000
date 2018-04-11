@@ -23,9 +23,9 @@ $(STATIC_LIB): $(OBJS)
 	$(AR) -r -o $@ $^
 
 $(SRCS:.c=.d):%.d:%.c
-	$(CC) $(CFLAGS) -MM $< >$@
+	$(CC) $(CFLAGS) -MM $< -MT $(patsubst %.d,%.o,$@) > $@
 
-include $(SRCS:.c=.d)
+-include $(SRCS:.c=.d)
 
 .PHONY: clean tests
 clean:
