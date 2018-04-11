@@ -16,7 +16,7 @@ The course is divided into two phases:
 
 ### Guest Lectures
 
-#### April 14
+#### April 13
 
 **Speakers**:
 
@@ -24,6 +24,12 @@ The course is divided into two phases:
  * [Ben Collins-Sussman](https://www.red-bean.com/sussman/) (SB'94) - Engineering Site Lead, [Google](http://google.com) Chicago
 
 **Topic**: Working in Teams
+
+### April 27
+
+**Speaker**: [Matt Trahan](https://www.linkedin.com/in/matt-trahan-b274253/), Director Of Software Development, [Narrative Science](https://narrativescience.com/)
+
+**Topic**: Case Study: The Software Process at Narrative Science 
 
 #### May 4
 
