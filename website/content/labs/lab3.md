@@ -236,7 +236,7 @@ In task 3, you defined separate, explicit rules for each object file in the proj
 - There are three different patterns for substituting text:
   - In a prerequisite, you can do substitution like so: `%.o:%.c`. This means: “take a file and substitute the extension `.o` for the extension `.c`”.
   - In a variable, you can do substitution like so: `FOO = $(BAR:.txt=.pdf)`. This means: “take the `BAR` variable, substitute the `.txt` extension for `.pdf` in all files in `BAR`, and then save the result in `FOO`.”
- - Inside a rule, you can use the `patsubst` function like so: `gcc $(patsubst %.o,%.d,$@)`. This means: “take the name of the current rule, substitute the extension `.d` for `.o`, and pass that file to gcc".
+ - Inside a rule, you can use the `patsubst` function like so: `gcc $(patsubst %.o,%.d,$@)`. This means: “take the name of the current rule, substitute the extension `.o` for `.d`, and pass that file to gcc".
 
 Finally, rules can have variable names: if you want to parameterize a rule so that it works for any files in a list of files, you could for example name a rule `$(SRCS)`.
 
