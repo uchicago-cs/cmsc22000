@@ -18,6 +18,12 @@ That said, by the end of this lab you should be able to understand almost everyt
 
 {{% /warning %}}
 
+Finally, for your reference, you may find the following resources helpful:
+
+- The GNU `make` documentation, available in full [here](https://www.gnu.org/software/make/manual/html_node/index.html); and
+- The `make` and `gcc` man pages, available in your terminal through `man make`
+  and `man gcc`.
+
 
 ## Task 0: Pulling from upstream
 
