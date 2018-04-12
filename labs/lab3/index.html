@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-28",
     "description": "",
-    "wordCount": 2762
+    "wordCount": 2763
   }
 </script>
 
@@ -385,7 +385,7 @@ options.</li>
 
 <p>To compile a file <code>hello.c</code> into an object file <code>hello.o</code>:</p>
 
-<pre><code>gcc -Wall -Wextra -O2 -g -fPIC -o hello.o hello.c
+<pre><code>gcc -Wall -Wextra -O2 -g -fPIC -c -o hello.o hello.c
 </code></pre>
 
 <p>Note the presence of the new <code>gcc</code> flag <code>-fPIC</code>. This flag tells <code>gcc</code> to enable position-independent code. Position-independence is beyond the scope of this lab, but it’s necessary for building shared libraries. Accordingly, you’ll need to add <code>-fPIC</code> to your <code>CFLAGS</code>.</p>
