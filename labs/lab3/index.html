@@ -221,7 +221,7 @@ and <code>man gcc</code>.</li>
 
 <p>(15 points)</p>
 
-<p>In the <code>task1</code> directory, you&rsquo;ll see a simple program (<code>hello.c</code>) that prints &ldquo;Hello there&rdquo; to the screen and exits. As you&rsquo;ve done in previous courses, you can compile and run the program like so:</p>
+<p>In the <code>task1</code> directory, you&rsquo;ll see a simple program (<code>greet.c</code>) that prints &ldquo;Hello there&rdquo; to the screen and exits. As you&rsquo;ve done in previous courses, you can compile and run the program like so:</p>
 
 <pre><code>$ gcc -o greet greet.c
 $ ./greet
@@ -232,7 +232,7 @@ $ ./greet
 <pre><code>$ rm -f greet
 </code></pre>
 
-<p>Now, let&rsquo;s say you want to change your program so that instead of printing &ldquo;Hello there&rdquo;, it prints &ldquo;General Kenobi!&rdquo; You either have to hit the up arrow on your keyboard a million times, or remember <code>gcc -o hello hello.c</code>. And perhaps you want to enable optimizations, enable all the warnings, and enable debugging symbols (so you can use <code>gdb</code>):</p>
+<p>Now, let&rsquo;s say you want to change your program so that instead of printing &ldquo;Hello there&rdquo;, it prints &ldquo;General Kenobi!&rdquo; You either have to hit the up arrow on your keyboard a million times, or remember <code>gcc -o greet greet.c</code>. And perhaps you want to enable optimizations, enable all the warnings, and enable debugging symbols (so you can use <code>gdb</code>):</p>
 
 <pre><code>$ gcc -O2 -Wall -Wextra -g -o greet greet.c
 </code></pre>
