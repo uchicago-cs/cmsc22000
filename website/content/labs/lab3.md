@@ -43,7 +43,7 @@ This lab is organized into folders, one for each task. You'll be provided with t
 
 (15 points)
 
-In the `task1` directory, you'll see a simple program (`hello.c`) that prints "Hello there" to the screen and exits. As you've done in previous courses, you can compile and run the program like so:
+In the `task1` directory, you'll see a simple program (`greet.c`) that prints "Hello there" to the screen and exits. As you've done in previous courses, you can compile and run the program like so:
 
 ```
 $ gcc -o greet greet.c
@@ -56,7 +56,7 @@ And when you're done, you can always remove the executable (also called the bina
 $ rm -f greet
 ```
 
-Now, let's say you want to change your program so that instead of printing "Hello there", it prints "General Kenobi!" You either have to hit the up arrow on your keyboard a million times, or remember `gcc -o hello hello.c`. And perhaps you want to enable optimizations, enable all the warnings, and enable debugging symbols (so you can use `gdb`):
+Now, let's say you want to change your program so that instead of printing "Hello there", it prints "General Kenobi!" You either have to hit the up arrow on your keyboard a million times, or remember `gcc -o greet greet.c`. And perhaps you want to enable optimizations, enable all the warnings, and enable debugging symbols (so you can use `gdb`):
 
 ```
 $ gcc -O2 -Wall -Wextra -g -o greet greet.c
@@ -209,7 +209,7 @@ First things first: we’re no longer building a binary called `hello`, we’re 
 To compile a file `hello.c` into an object file `hello.o`:
 
 ```
-gcc -Wall -Wextra -O2 -g -fPIC -o hello.o hello.c
+gcc -Wall -Wextra -O2 -g -fPIC -c -o hello.o hello.c
 ```
 
 Note the presence of the new `gcc` flag `-fPIC`. This flag tells `gcc` to enable position-independent code. Position-independence is beyond the scope of this lab, but it’s necessary for building shared libraries. Accordingly, you’ll need to add `-fPIC` to your `CFLAGS`.
