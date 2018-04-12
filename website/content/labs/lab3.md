@@ -123,6 +123,8 @@ Our Makefile doesn't have a `greet` rule and, yet, because there is a `greet.c` 
 
     make greet.o
 
+`make` will generate an object file from `greet.c` (but won't generate an executable).
+
 The problem here is that if we have a rule called `clean`, we can’t ever create a file called `clean.c` in the current directory, or `make` will get confused as to whether it’s supposed to use our rule or apply an implicit rule. Poor design, sure, but it can be mitigated by adding the following to your `Makefile`:
 
 ```
@@ -226,12 +228,26 @@ Add a rule to your `Makefile` for `obi_wan.o` and `grievous.o`, specifying how t
 
 (15 points)
 
+In task 3, you defined separate, explicit rules for each object file in the project. This has a number of disadvantages: you repeat a lot of code, and if you want to, say, change the name of a variable or update the structure of the compilation command, you have to make those changes in multiple places. To combat this problem, `make` includes many built-in variables and functions to aid in writing concise, elegant `Makefile`s. Here are some of the more useful variables and functions:
+
+- `$@` is the name of the current rule
+- `$^` is the names of all the prerequisites, separated by spaces
+- `$<` is the name of the first prerequisite
+- There are three different patterns for substituting text:
+  - In a prerequisite, you can do substitution like so: `%.o:%.c`. This means: “take a file and substitute the extension `.o` for the extension `.c`”.
+  - In a variable, you can do substitution like so: `FOO = $(BAR:.txt=.pdf)`. This means: “take the `BAR` variable, substitute the `.txt` extension for `.pdf` in all files in `BAR`, and then save the result in `FOO`.”
+ - Inside a rule, you can use the `patsubst` function like so: `gcc $(patsubst %.d,%.o,$@)`. This means: “take the name of the current rule, substitute the extension `.d` for `.o`, and pass that file to gcc".
+
+Finally, rules can have variable names: if you want to parameterize a rule so that it works for any files in a list of files, you could for example name a rule `$(SRCS)`.
+
+Given this information, take your `Makefile` from task 3, copy it to the task 4 directory, and modularize it: you should have no hardcoded rules or values, except for flags/filenames/etc that only apply to one specific rule. Note that there are possibly many correct ways to do this. You should make a commit at this point.
+
 
 ## Task 5: Linking with your library
 
 (20 points)
 
-At this point, you have a Makefile that produces a `libstarwars.so` library. For this final task, you must write, inside the `task5` directory, a C file that uses that library, and a Makefile that correctly builds and runs your program. We have not explicitly explained some of the steps that will be required to do this, but you may use the `Makefile` from the `samples/` directory in [libgeometry](https://github.com/uchicago-cs/cmsc22000/tree/master/examples/libgeometry) as a guide. However, it is not enough for you to copy-paste parts of that `Makefile`: your `Makefile` for this task must be annotated with comments (comments in Makefiles begin with `#`). These comments must explain what each rule does, and you must explain any detail of feature that was not explicitly explained earlier in the lab.
+At this point, you have a Makefile that produces a `libstarwars.so` library. For this final task, you must write, inside the `task5` directory, a C file that uses that library, and a Makefile that correctly builds and runs your program. We have not explicitly explained some of the steps that will be required to do this, but you may use the `Makefile` from the `samples/` directory in [libgeometry](https://github.com/uchicago-cs/cmsc22000/tree/master/examples/libgeometry) as a guide. However, it is not enough for you to copy-paste parts of that `Makefile`: your `Makefile` for this task must be annotated with comments (comments in Makefiles begin with `#`). These comments must explain what each rule does, and you must explain any detail or feature that was not explicitly explained earlier in the lab.
 
 You must also include a `readme.txt` file with instructions on how to build and run your program. Remember that, by default, programs running on a Linux system will look for shared libraries in specific locations, so you must tell us how we must run your program so that it can correctly find the `libstarwars.so` library when it runs.
 
