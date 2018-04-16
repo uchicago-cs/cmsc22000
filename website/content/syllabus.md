@@ -58,36 +58,24 @@ Course Project
 
 The course project revolves around taking an existing software project, and developing new features for that project, including applications that will use those new features. The scope and complexity of this project will require that the entire class work together towards developing those features. 
 
-More specifically, the entire class will be working on the same codebase, using a single Git repository. The class will be divided into teams of 4-5 students, with an undergraduate TA acting as a "senior developer" in each of these teams (TAs will be 3rd/4th year undergraduate students with prior industry experience via internships) Teams will be arranged by the instructor/TAs (they will not be self-selecting).
+More specifically, the entire class will be working on the same codebase. The class will be divided into teams of 4-5 students, with an undergraduate TA acting as a "senior developer" in each of these teams (TAs will be 3rd/4th year undergraduate students with prior industry experience via internships) Teams will be arranged by the instructor/TAs (they will not be self-selecting).
 
 Starting on Week 4, teams meet at least once a week on Monday, but may elect to meet more often (e.g., for a daily or almost-daily standup meeting). At their weekly meeting, each team must come up with specific tasks to complete within the next 1-2 weeks, with each task assigned to specific people in the team. When a student claims responsibility for a task, they agree to have their performance on that task factor into their course grade. 
 
 Teams will collaborate (within their team and between teams) using tools like GitHub, Slack, etc.
 
-{{% note %}}
-The course project is still under development, but we anticipate that it will revolve around implementing a series of new data structures in [Redis](https://redis.io/), (an open source, in-memory data structure store), a series of APIs to interact with those new data structures, and applications that use those APIs.
-
-Please note that the goal of the project isn't to learn about Redis specifically. The goal of the project is for students to apply the concepts they learn in class by developing new features in an existing codebase. Redis was chosen because:
-
-- It is implemented in C, which means that students coming out of CS 152 / 162 will be able to engage with the Redis codebase without having to learn an additional language.
-- Redis is a "data structure server", and one of the way of extending Redis is by implementing additional data structures, which will reinforce the data structure concepts that students learned in CS 152 / 162.
-
-We do not expect any of the students' work to be contributed back to Redis (nor will we measure students' performance based on that), although that would definitely be an ideal outcome.
-{{% /note %}}
-
+More details on the project can be found on the [Project]({{< relref "project.md" >}}) 
 
 Grading
 -------
 
-{{% note %}}
-The exact grading structure for this class is still under development, but we expect it to be based on the following factors:
+Grading is based on the following:
 
-- Graded labs.
-- Individual performance on the course project, as measured by the specific tasks that each student claims responsibility for.
-- Peer reviews from the team's "senior developer" and from other team members.
-- The performance of each team as a whole.
-{{% /note %}}
-
+* 30% Labs (each lab weighed equally)
+* 70% Project. The project grade is divided into the following (see the the [project]({{< relref "project.md" >}}) page for more details):
+  * 50% invidividual evaluation
+  * 40% team evaluation
+  * 10% final presentation
 
 Books
 -----
