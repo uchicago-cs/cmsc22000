@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Tags  &middot; CS 220</title>
+  <title>How to submit your labs  &middot; CS 220</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -17,19 +17,47 @@
 <meta name="keywords" content="">
 
 
-<meta property="og:title" content="Tags  &middot; CS 220 ">
+<meta property="og:title" content="How to submit your labs  &middot; CS 220 ">
 <meta property="og:site_name" content="CS 220"/>
-<meta property="og:url" content="https://uchicago-cs.github.io/cmsc22000/tags/" />
+<meta property="og:url" content="https://uchicago-cs.github.io/cmsc22000/labs/submit/" />
 <meta property="og:locale" content="en-us">
 
 
-<meta property="og:type" content="website" />
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2018-01-28T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-01-28T00:00:00Z" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="How to submit your labs" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://uchicago-cs.github.io/cmsc22000/labs/submit/" />
+<meta name="twitter:domain" content="https://uchicago-cs.github.io/cmsc22000/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "How to submit your labs",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-01-28",
+    "description": "",
+    "wordCount": 249
+  }
+</script>
 
 
 
-<link href="https://uchicago-cs.github.io/cmsc22000/tags/index.xml" rel="alternate" type="application/rss+xml" title="Tags" />
-
-<link rel="canonical" href="https://uchicago-cs.github.io/cmsc22000/tags/" />
+<link rel="canonical" href="https://uchicago-cs.github.io/cmsc22000/labs/submit/" />
 
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
@@ -139,16 +167,37 @@
 </header>
 
 
-<article id="main-content" class="container main_content terms">
-  <header class="container">
-    <h1>Tags
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>How to submit your labs
 </h1>
 
-  </header>
-  <ul class="container content">
+</header>
+
+  <div class="container content">
+  <p>You will be submitting your labs using a tool called <code>chisubmit</code> that is available on the CS machines. Before using this tool, you first need to enable it inside your local repository. Just go into your local repository directory, and run the following:</p>
+
+<pre><code>chisubmit init
+</code></pre>
+
+<p>When asked for your username and password, just enter your CNetID and password. If there are no errors, you will now be able to run chisubmit from inside that directory.</p>
+
+<p>To submit a lab, it will typically be enough for you to push all your files to the GitLab server and then run the following from the directory where you ran <code>chisubmit init</code>:</p>
+
+<pre><code>chisubmit student assignment register labX
+chisubmit student assignment submit labX
+</code></pre>
+
+<p>(where <code>X</code> is the lab number)</p>
+
+<p>All labs will be due at <strong>4pm</strong> on the day of the next lab. You get two free 24-hour extensions to use throughout the quarter. You do not need to ask permission to use these extensions, or notify us that ou are using them: the <code>chisubmit</code> system will handle this automatically.</p>
+
+<p>For more details on using chisubmit, please see the documentation available here: <a href="http://chi.cs.uchicago.edu/chisubmit/students.html">http://chi.cs.uchicago.edu/chisubmit/students.html</a> Please note that everything before &ldquo;Submitting an assignment&rdquo; does not apply to you. However, if you do ever need to submit with an extension, please make sure you&rsquo;ve read and understood how chisubmit handles this situation (in particular, you want to avoid being in a situation where you make a submission and, before re-submitting, the graders start grading your prior submission).</p>
+
+</div>
+
+
   
-  
-  </ul>
 </article>
       <footer id="main-footer" class="container main_footer">
   

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Lab 2: Software Design  &middot; CS 220</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="Lab 2: Software Design  &middot; CS 220 ">
+<meta property="og:site_name" content="CS 220"/>
+<meta property="og:url" content="https://uchicago-cs.github.io/cmsc22000/labs/lab2/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2018-01-28T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-01-28T00:00:00Z" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Lab 2: Software Design" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://uchicago-cs.github.io/cmsc22000/labs/lab2/" />
+<meta name="twitter:domain" content="https://uchicago-cs.github.io/cmsc22000/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Lab 2: Software Design",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-01-28",
+    "description": "",
+    "wordCount": 1620
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://uchicago-cs.github.io/cmsc22000/labs/lab2/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
+<link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.38.2" />
+
+  
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+
+
+  <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+
+  
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-27880910-4', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper has-sidebar">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://uchicago-cs.github.io/cmsc22000/">
+  CS 220
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  Introduction to Software Development
+
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+
+  
+<a href="https://uchicago-cs.github.io/cmsc22000/syllabus/">Syllabus</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/resources/">Additional Resources</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/faq/">FAQs</a>
+
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>Lab 2: Software Design
+</h1>
+
+</header>
+
+  <div class="container content">
+  
+
+<p><strong>Due:</strong> Thursday, April 12th, 4pm</p>
+
+<p>In this lab, you will carry out some basic software design tasks. Before we get to those tasks, we need you to perform an additional (ungraded but necessary) Git-related task so you can fetch the files necessary for this lab.</p>
+
+<h2 id="task-0-pulling-from-upstream">Task 0: Pulling from upstream</h2>
+
+<p>In the previous lab, you set up your local repo, which is set up by default to pull/push from/to a repository in our GitLab server. The repository on your machine is called a <em>local repository</em> while the one on the GitLab server is a <em>remote repository</em>. You can actually see the remote repositories associated with your local repository by running this:</p>
+
+<pre><code>git remote -v
+</code></pre>
+
+<p>This should show something like this:</p>
+
+<pre><code>origin  https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git (fetch)
+origin  https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git (push)
+</code></pre>
+
+<p>This actually means you have one remote repository called origin (with the same URL for pulling/fetching and pushing)</p>
+
+<p>In Git, you can actually associate your local repository with multiple remote repositories. This may seem odd, but it is very useful! In particular, we have a repository on the GitLab server where we store the files we want to distribute to you for the labs: <a href="https://mit.cs.uchicago.edu/cmsc22000-spr-18/cmsc22000-spr-18">https://mit.cs.uchicago.edu/cmsc22000-spr-18/cmsc22000-spr-18</a></p>
+
+<p>If you visit that page, you’ll see it contains a “lab2” folder. These are the files we want you to use in the lab. However, instead of cloning our repository somewhere else and copying those files into your repository, you can simply add this repository as an additional remote repository:</p>
+
+<pre><code>git remote add upstream https://mit.cs.uchicago.edu/cmsc22000-spr-18/cmsc22000-spr-18.git
+</code></pre>
+
+<p>We’ve called this additional remote repository “upstream”. You can verify it was added by running <code>git remote -v</code>, which should show the following:</p>
+
+<pre><code>origin  https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git (fetch)
+origin  https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git (push)
+upstream    https://mit.cs.uchicago.edu/cmsc22000-spr-18/cmsc22000-spr-18.git (fetch)
+upstream    https://mit.cs.uchicago.edu/cmsc22000-spr-18/cmsc22000-spr-18.git (push)
+</code></pre>
+
+<p>Now, to incorporate the files from the upstream repository into our repository, we just need to run the following:</p>
+
+<pre><code>git pull upstream master
+</code></pre>
+
+<p>This command is just like the <code>git pull</code> you’ve run previously, except we’re saying “pull from the <code>upstream</code> repository’s master branch”. Once you run this command, your default editor will open up and will ask you to edit a commit, and will include the following text by default:</p>
+
+<pre><code>Merge branch 'master' of https://mit.cs.uchicago.edu/cmsc22000-spr-18/cmsc22000-spr-18
+
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+</code></pre>
+
+<p>Just save the commit without making any modifications, and exit the editor. Your repository will now have a <code>lab2</code> directory! This is a copy of the files in the upstream repository, and the changes you make will be saved to your repository, not to the upstream repository (in theory, it would be possible for you to push changes to the upstream repository, but you don’t actually have sufficient privileges to push to that repository)</p>
+
+<p>Before you continue with the lab, make sure to push your changes to your repository on GitLab:</p>
+
+<pre><code>git push
+</code></pre>
+
+<h2 id="task-1-refactoring-libgeometry">Task 1: Refactoring libgeometry</h2>
+
+<p>When we discussed the libgeometry library in class, we pointed out (ha!) that our Point datatype had the following function associated with it:</p>
+
+<pre><code>bool segment_intersect(point_t *p1, point_t *q1, point_t *p2, point_t *q2)
+</code></pre>
+
+<p>While this function operates on points, what it really does is operate on line segments (i.e., a finite-length line in two-dimensional space, delimited by two points). That said, placing the <code>segment_intersect</code> function inside <code>point.c</code> / <code>point.h</code> is arguably a valid design choice: if segment intersection is the only operation for which we have to work with segments, it would be potentially wasteful to spend the time to define a Segment datatype only to compute segment intersections.</p>
+
+<p>However, as we continue to develop libgeometry, we realize that we need to perform segment operations in a variety of other places. So, it now makes sense to refactor our code to add a Segment datatype.</p>
+
+<p>In this task, you must do the following:</p>
+
+<ul>
+<li>(15 points) Add <code>segment.c</code> / <code>segment.h</code> files with the declaration and implementation of a new Segment data type. Make sure to include new/init/free functions. You will also need to update the Makefile to make sure this new file is compiled and included in the libgeometry library. Just update the <code>SRCS</code> variable in the Makefile to include your new <code>segment.c</code> file.</li>
+<li>(10 points) Take segment_intersect (and associated helper functions) out of <code>point.c</code> / <code>point.h</code> and make it a part of the Segment datatype. Take into account that this will involve changing the parameters of the function, since it now has to operate on Segments, not on Points.</li>
+<li>(10 points) Update the Polygon implementation so it uses this updated segment_intersect function. At this point, you should be able to build the entire library by running <code>make</code></li>
+<li>(15 points) Uh oh, the libgeometry library may build correctly, but not the tests! (try this by running <code>make tests</code>) This is because they still depend on the old version of the <code>segment_intersect</code> function. In the <code>test_point.c</code> file, update the intersection tests to make sure they use the new version of the file (you don’t need to know exactly how these tests work, and you can keep these tests inside the <code>test_point.c</code>; in a future lab, we will see a cleaner way of updating the tests). Once you have fixed this, you should be able to run <code>make tests</code> followed by <code>tests/test-libgeometry</code>.</li>
+</ul>
+
+<h2 id="task-2-designing-a-chat-application">Task 2: Designing a chat application</h2>
+
+<p>In this task, you will prepare a class diagram for an application based on a series of requirements (similar to what we did in class with the Library Management System). We will not be picky about individual details, and will care more about your overall design and your justification for certain design decisions.</p>
+
+<p>You must submit your class diagram as a PDF file called <code>design.pdf</code> inside the <code>lab2</code> directory. This PDF must contain a digitally produced diagram, not a scanned handwritten one. There are many tools available to prepare UML class diagrams, but we recommend using <a href="https://draw.io/">draw.io</a>, a free online diagram editor with extensive support for UML. That said, we also suggest that you first sketch out your diagram on paper and pencil, and only prepare your final polished version once you’re happy with your design.</p>
+
+<p>The requirements for the application are the following:</p>
+
+<blockquote>
+<p>We are going to write a simple chat server that provides a small subset of the functionality offered by Slack and similar chat systems. In this chat server, users will be able to log in with a username and password. We will always refer to users by their username (e.g., “borja”) but users also provide a full name (e.g., “Borja Sotomayor”) when they register for an account.</p>
+
+<p>The server can support multiple channels, where users can chat with each other. When a user sends a message to a channel, it is relayed to everyone in that channel. Users can also send messages directly to each other without having to be in the same channel (unlike Slack, we will not support sending direct messages to more than one user at once)</p>
+
+<p>Anyone can create a new channel, and channels can be public or private. Anyone can join a public channel, but you can only join a private channel if you are added to that channel by someone who is already in the private channel.</p>
+
+<p>The server stores all the messages that are sent to a channel or between two users. There is one exception: when a user messages another user directly, they may choose to have an OTR (Off The Record) conversation. Messages sent as part of that conversation are not stored anywhere.</p>
+
+<p>Finally, users must have the ability to mark certain messages as “favorites”. For example, someone may post some important information in a channel, and it can be useful to “favorite” that message and access it through your list of favorites, instead of having to scroll back in a channel until you find that message. Users can favorite at most 100 messages; if that limit is reached, the message that was marked as a favorite the earliest is removed to make room for the new message.</p>
+</blockquote>
+
+<p>For the following sub-tasks, write your answers (except the class diagram) in a file called <code>tasks.txt</code> inside the <code>lab2</code> directory.</p>
+
+<ul>
+<li>(20 points) Produce a class diagram that captures the requirements described above. If you need a clarification on any of these requirements, please ask during the lab or on Piazza (we will prepare a pinned post with these clarifications so everyone has access to them)</li>
+<li>For the following, you must write the sequence of function calls that would happen in each scenario. You must specify what instances of each datatype exist prior to the scenario (e.g., “<code>u1</code> of type User”), and refer to those instances in the function calls (e.g., <code>send_message(u1, …)</code>). You are welcome to prepare a UML sequence diagram if you want, but writing your answer in text form (as a sequence of function calls) is perfectly fine.
+
+<ul>
+<li>(5 points) There is an existing channel #foobar with users A, B, and C in it. User A sends a message “Hello, everyone!” to the channel.</li>
+<li>(5 points) User A sends a direct message “How are you?” to User B.</li>
+<li>(5 points) User A sends a direct message “Hey, can you keep a secret?” to User B in OTR mode.</li>
+</ul></li>
+<li>(5 points) What data structure would you use to keep track of the messages that a user has favorited? Why?</li>
+</ul>
+
+<h3 id="submitting-your-lab">Submitting your lab</h3>
+
+<p>Before submitting, make sure you&rsquo;ve added, committed and pushed all your work in the <code>lab2</code> directory (remember you can run <code>git status</code> to check this). Make sure you&rsquo;ve set up the <code>chisubmit</code> tool as described in <a href="/cmsc22000/labs/submit/">How to submit your labs</a>, and then run the following:</p>
+
+<pre><code>chisubmit student assignment register lab2
+chisubmit student assignment submit lab2
+</code></pre>
+
+</div>
+
+
+  
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+
+</div>
+
+</footer>
+
+    </main>
+    
+
+
+
+    
+  </body>
+</html>
+

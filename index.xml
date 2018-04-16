@@ -1,14 +1,129 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CS 220</title>
+    <title>CMSC 22000 - Introduction to Software Development on CS 220</title>
     <link>https://uchicago-cs.github.io/cmsc22000/</link>
-    <description>Recent content on CS 220</description>
+    <description>Recent content in CMSC 22000 - Introduction to Software Development on CS 220</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 17 Feb 2018 08:47:20 -0600</lastBuildDate>
     
 	<atom:link href="https://uchicago-cs.github.io/cmsc22000/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>FAQs</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/faq/</link>
+      <pubDate>Mon, 19 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/faq/</guid>
+      <description>Does CMSC 22000 fulfill any CS major requirements?
+Yes, it can be counted as an elective in the CS major.
+Can CMSC 22000 be used as a replacement for CMSC 15400?
+No, CMSC 15400 is still required in the CS major. However, you are allowed to take CMSC 22000 between CMSC 15200 / 16200 and CMSC 15400.
+Can I take CMSC 22000 concurrently with CMSC 15400?
+This is technically possible, but strongly discouraged.</description>
+    </item>
+    
+    <item>
+      <title>Course Calendar</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/calendar/</link>
+      <pubDate>Sat, 17 Feb 2018 08:50:04 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/calendar/</guid>
+      <description>NOTE: This calendar is tentative and subject to change.
+  The course is divided into two phases:
+ Lecture Phase: During the first three weeks of the quarter, the lecture sessions will involve lectures by the instructor on core concepts regarding the software development process. Project Phase: Starting in week 4, the focus of the class will shift towards the development of the course project, with team meetings on Monday, lectures on Wednesdays, and a guest lecture on Fridays.</description>
+    </item>
+    
+    <item>
+      <title>Additional Resources</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/resources/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/resources/</guid>
+      <description>This page contains pointers to additional resources and readings that complement what we see in the lectures. While this class does not have a required textbook, most of the Software Engineering content draws heavily from Ian Sommerville&amp;rsquo;s book, Software Engineering.
+Software Engineering Books  Software Engineering (10th Ed.), Ian Sommerville Pearson, 2015. Clean Code: A Handbook of Agile Software Craftsmanship, Robert C. Martin, Prentice Hall, 2008. Clean Architecture: A Craftsman&amp;rsquo;s Guide to Software Structure and Design, Robert C.</description>
+    </item>
+    
+    <item>
+      <title>Project</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/project/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/project/</guid>
+      <description>In this project, you will be divided into six teams of five students, and will work collaboratively (both within your team and between teams) to create a complex software system that will involve not just designing and implementing a number of components, but also extending an existing software system. You will be using several tools to support the collaborative aspects of this project and, indeed, your collaborative skills will be as important as your coding skills to be successful in this project.</description>
+    </item>
+    
+    <item>
+      <title>Syllabus</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/syllabus/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/syllabus/</guid>
+      <description>NOTE: This syllabus is tentative and subject to change.
+  Course Description Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.</description>
+    </item>
+    
+    <item>
+      <title>How to submit your labs</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/submit/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/submit/</guid>
+      <description>You will be submitting your labs using a tool called chisubmit that is available on the CS machines. Before using this tool, you first need to enable it inside your local repository. Just go into your local repository directory, and run the following:
+chisubmit init  When asked for your username and password, just enter your CNetID and password. If there are no errors, you will now be able to run chisubmit from inside that directory.</description>
+    </item>
+    
+    <item>
+      <title>Lab 1: Git</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</guid>
+      <description>Due: Thursday, April 5th, 4pm
+ NOTE: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)
+  In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading.</description>
+    </item>
+    
+    <item>
+      <title>Lab 2: Software Design</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</guid>
+      <description>Due: Thursday, April 12th, 4pm
+In this lab, you will carry out some basic software design tasks. Before we get to those tasks, we need you to perform an additional (ungraded but necessary) Git-related task so you can fetch the files necessary for this lab.
+Task 0: Pulling from upstream In the previous lab, you set up your local repo, which is set up by default to pull/push from/to a repository in our GitLab server.</description>
+    </item>
+    
+    <item>
+      <title>Lab 3: Make</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</guid>
+      <description>Due: Thursday, April 19th, 4pm
+In the class project, you will be working with a large C project called Redis that is composed of hundreds and hundreds of C files. How do these files become the program called redis? In this lab, we’ll explore the ways a program can be “built”&amp;ndash;that is, the way that source code is turned into binary code so that a computer can execute it. In some cases, “building” may refer to compiling a single file, but usually it refers to the whole process of linking and creating a project: which can include linking, compiling, and running tests.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://uchicago-cs.github.io/cmsc22000/description/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/description/</guid>
+      <description>Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://uchicago-cs.github.io/cmsc22000/summary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/summary/</guid>
+      <description>Foobazzzz</description>
+    </item>
     
   </channel>
 </rss>

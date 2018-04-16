@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Labs on CS 220</title>
+    <link>https://uchicago-cs.github.io/cmsc22000/labs/</link>
+    <description>Recent content in Labs on CS 220</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://uchicago-cs.github.io/cmsc22000/labs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to submit your labs</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/submit/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/submit/</guid>
+      <description>You will be submitting your labs using a tool called chisubmit that is available on the CS machines. Before using this tool, you first need to enable it inside your local repository. Just go into your local repository directory, and run the following:
+chisubmit init  When asked for your username and password, just enter your CNetID and password. If there are no errors, you will now be able to run chisubmit from inside that directory.</description>
+    </item>
+    
+    <item>
+      <title>Lab 1: Git</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</guid>
+      <description>Due: Thursday, April 5th, 4pm
+ NOTE: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)
+  In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading.</description>
+    </item>
+    
+    <item>
+      <title>Lab 2: Software Design</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</guid>
+      <description>Due: Thursday, April 12th, 4pm
+In this lab, you will carry out some basic software design tasks. Before we get to those tasks, we need you to perform an additional (ungraded but necessary) Git-related task so you can fetch the files necessary for this lab.
+Task 0: Pulling from upstream In the previous lab, you set up your local repo, which is set up by default to pull/push from/to a repository in our GitLab server.</description>
+    </item>
+    
+    <item>
+      <title>Lab 3: Make</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</guid>
+      <description>Due: Thursday, April 19th, 4pm
+In the class project, you will be working with a large C project called Redis that is composed of hundreds and hundreds of C files. How do these files become the program called redis? In this lab, we’ll explore the ways a program can be “built”&amp;ndash;that is, the way that source code is turned into binary code so that a computer can execute it. In some cases, “building” may refer to compiling a single file, but usually it refers to the whole process of linking and creating a project: which can include linking, compiling, and running tests.</description>
+    </item>
+    
+  </channel>
+</rss>
