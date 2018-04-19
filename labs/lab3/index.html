@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-28",
     "description": "",
-    "wordCount": 2763
+    "wordCount": 2945
   }
 </script>
 
@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.38.2" />
+<meta name="generator" content="Hugo 0.36.1" />
 
   
 <!--[if lt IE 9]>
@@ -420,7 +420,25 @@ options.</li>
 </ul></li>
 </ul>
 
-<p>Finally, rules can have variable names: if you want to parameterize a rule so that it works for any files in a list of files, you could for example name a rule <code>$(SRCS)</code>.</p>
+<p>Finally, rules can have variable names: if you want to parameterize a rule so that it works for any files in a list of files, you could name a rule <code>$(SRCS)</code>. Consider the following rule:</p>
+
+<pre><code>$(OBJS): %.o:%.c
+  $(CC) $(CFLAGS) -c -o $@ $(patsubst %.o, %.c, $@)
+</code></pre>
+
+<p>There&rsquo;s a lot going on here, so let&rsquo;s unpack it all. Naming the rule <code>$(OBJS)</code>
+means that any filename in <code>$(OBJS)</code> will match this rule. That is, if <code>$(OBJS)</code>
+is <code>OBJS = src/obi_wan.o src/grievous.o</code>, and we call <code>make src/grievous.o</code>, it
+will run this command. Next, since the rule name is a parameter, it&rsquo;s not really
+clear what <code>$@</code> represents. In the case of a parameterized rule, <code>$@</code> is the
+value of the parameter that triggered the rule. So if we call <code>make
+src/grievous.o</code>, then <code>$@</code> will be <code>src/grievous.o</code>. Similarly, if we call <code>make
+src/obi_wan.o</code>, then <code>$@</code> will be <code>src/obi_wan.o</code>. Finally, the <code>%.o:%.c</code> part
+marks all <code>.c</code> files corresponding to the <code>.o</code> files in <code>OBJS</code> as prerequisites.
+Marking a <code>.c</code> file as a prerequisite means that when you run any rule that
+depends on that file, <code>make</code> will first check if that file has been changed
+since the last time was run, and if it was changed, will run any other
+prerequisites first (to ensure your whole project is up-to-date).</p>
 
 <p>Given this information, take your <code>Makefile</code> from task 3, copy it to the task 4 directory, and modularize it: you should have no hardcoded rules or values, except for flags/filenames/etc that only apply to one specific rule. Note that there are possibly many correct ways to do this. You should make a commit at this point.</p>
 

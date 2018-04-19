@@ -53,5 +53,17 @@ Task 0: Pulling from upstream In the previous lab, you set up your local repo, w
 In the class project, you will be working with a large C project called Redis that is composed of hundreds and hundreds of C files. How do these files become the program called redis? In this lab, we’ll explore the ways a program can be “built”&amp;ndash;that is, the way that source code is turned into binary code so that a computer can execute it. In some cases, “building” may refer to compiling a single file, but usually it refers to the whole process of linking and creating a project: which can include linking, compiling, and running tests.</description>
     </item>
     
+    <item>
+      <title>Lab 4: Debugging</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab4/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab4/</guid>
+      <description>Due: Thursday, April 26th, 4pm
+In this lab, you will get some practice debugging a few programs and, in particular, will resolve some of the errors we described in class. In some of the tasks, you will also become more familiar with GDB, a popular debugger.
+Task 0: Pulling from upstream (0 points)
+You should already have the &amp;ldquo;upstream&amp;rdquo; remote set up in your repository. If you do, simply run</description>
+    </item>
+    
   </channel>
 </rss>

@@ -108,6 +108,18 @@ In the class project, you will be working with a large C project called Redis th
     </item>
     
     <item>
+      <title>Lab 4: Debugging</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab4/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab4/</guid>
+      <description>Due: Thursday, April 26th, 4pm
+In this lab, you will get some practice debugging a few programs and, in particular, will resolve some of the errors we described in class. In some of the tasks, you will also become more familiar with GDB, a popular debugger.
+Task 0: Pulling from upstream (0 points)
+You should already have the &amp;ldquo;upstream&amp;rdquo; remote set up in your repository. If you do, simply run</description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://uchicago-cs.github.io/cmsc22000/description/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
