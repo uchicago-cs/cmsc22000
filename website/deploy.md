@@ -12,8 +12,7 @@ Make sure to initialize the submodules:
 
 Then, run the following inside `website/`:
 
-echo "public" >> .gitignore
-git worktree add -B gh-pages public origin/gh-pages
+    git worktree add -B gh-pages public origin/gh-pages
 
 After making a change to the website, simply run this:
 
