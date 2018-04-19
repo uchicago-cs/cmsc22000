@@ -238,7 +238,26 @@ In task 3, you defined separate, explicit rules for each object file in the proj
   - In a variable, you can do substitution like so: `FOO = $(BAR:.txt=.pdf)`. This means: “take the `BAR` variable, substitute the `.txt` extension for `.pdf` in all files in `BAR`, and then save the result in `FOO`.”
  - Inside a rule, you can use the `patsubst` function like so: `gcc $(patsubst %.o,%.d,$@)`. This means: “take the name of the current rule, substitute the extension `.o` for `.d`, and pass that file to gcc".
 
-Finally, rules can have variable names: if you want to parameterize a rule so that it works for any files in a list of files, you could for example name a rule `$(SRCS)`.
+ Finally, rules can have variable names: if you want to parameterize a rule so that it works for any files in a list of files, you could name a rule `$(SRCS)`. Consider the following rule:
+
+```
+$(OBJS): %.o:%.c
+  $(CC) $(CFLAGS) -c -o $@ $(patsubst %.o, %.c, $@)
+```
+
+There's a lot going on here, so let's unpack it all. Naming the rule `$(OBJS)`
+means that any filename in `$(OBJS)` will match this rule. That is, if `$(OBJS)`
+is `OBJS = src/obi_wan.o src/grievous.o`, and we call `make src/grievous.o`, it
+will run this command. Next, since the rule name is a parameter, it's not really
+clear what `$@` represents. In the case of a parameterized rule, `$@` is the
+value of the parameter that triggered the rule. So if we call `make
+src/grievous.o`, then `$@` will be `src/grievous.o`. Similarly, if we call `make
+src/obi_wan.o`, then `$@` will be `src/obi_wan.o`. Finally, the `%.o:%.c` part
+marks all `.c` files corresponding to the `.o` files in `OBJS` as prerequisites.
+Marking a `.c` file as a prerequisite means that when you run any rule that
+depends on that file, `make` will first check if that file has been changed
+since the last time was run, and if it was changed, will run any other
+prerequisites first (to ensure your whole project is up-to-date).
 
 Given this information, take your `Makefile` from task 3, copy it to the task 4 directory, and modularize it: you should have no hardcoded rules or values, except for flags/filenames/etc that only apply to one specific rule. Note that there are possibly many correct ways to do this. You should make a commit at this point.
 
