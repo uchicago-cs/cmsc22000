@@ -10,6 +10,11 @@
 
   display: block;
 }
+
+pre code {
+  padding: 0px;
+}
+
 .note #exclamation-icon,
 .warning #exclamation-icon {
 
