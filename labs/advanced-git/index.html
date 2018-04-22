@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Optional Lab: Advanced Git  &middot; CS 220</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="Optional Lab: Advanced Git  &middot; CS 220 ">
+<meta property="og:site_name" content="CS 220"/>
+<meta property="og:url" content="https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2018-01-27T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-01-27T00:00:00Z" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Optional Lab: Advanced Git" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/" />
+<meta name="twitter:domain" content="https://uchicago-cs.github.io/cmsc22000/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Optional Lab: Advanced Git",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-01-27",
+    "description": "",
+    "wordCount": 3734
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
+<link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.39" />
+
+  
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+
+
+  <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+
+  
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-27880910-4', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper has-sidebar">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://uchicago-cs.github.io/cmsc22000/">
+  CS 220
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  Introduction to Software Development
+
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+
+  
+<a href="https://uchicago-cs.github.io/cmsc22000/syllabus/">Syllabus</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/resources/">Additional Resources</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/faq/">FAQs</a>
+
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>Optional Lab: Advanced Git
+</h1>
+
+</header>
+
+  <div class="container content">
+  
+
+<p>In the 150s/160s, as well as in the CS 220 labs, you have used version control systems
+(like Subversion and Git) essentially as a mechanism to store your code and to make it easily accessible to the
+course staff. However, in real software projects, version control systems are
+one of the most important tools that allow teams to collaborate on a shared
+code base.</p>
+
+<p>In this lab, we will explore features of Git that are more directly related to collaborative
+software development, and which you will need to use during the course project. While most of
+the concepts we will explore are not specific to any one Git platform, we will be using
+GitHub exclusively throughout the lab, as that is the platform you will
+be using for the course project.</p>
+
+<p>This lab will not be graded, but you must work through it before you can start working on the project.
+In particular, it includes one task which we will be checking; if you do not complete it
+by the end of fifth week, we may nag you about it.</p>
+
+<h1 id="working-collaboratively-with-git">Working collaboratively with Git</h1>
+
+<p>Suppose you are working with a classmate on a homework assignment that requires
+producing a single file called <code>hw1.c</code> that includes the implementation of some
+functions. If the file is located in a shared filesystem (like the CS filesystem
+where the same home directories appear on all the CS machines), the two of you could
+edit it at the same time, but you&rsquo;d have to be careful not to overwrite
+each other&rsquo;s work.</p>
+
+<p>For example, suppose you both open the file and it contains the following:</p>
+
+<pre><code>int foo()
+{
+    // Write your code here
+}
+</code></pre>
+
+<p>You decide to work on function <code>bar()</code> and your partner decides to work on function
+<code>baz()</code>. So, you end up with this file:</p>
+
+<pre><code>int foo()
+{
+    // Write your code here
+}
+
+int bar()
+{
+    // ...
+}
+</code></pre>
+
+<p>And your partner ends up with this:</p>
+
+<pre><code>int foo()
+{
+    // Write your code here
+}
+
+int baz()
+{
+    // ...
+}
+</code></pre>
+
+<p>If you save the file, and then your partner saves it after you, their version of
+the file will overwrite yours, so all your work on <code>bar()</code> will be overwritten.</p>
+
+<p>Ideally, we would like to end up with a consolidated version of the file that looks
+like this:</p>
+
+<pre><code>int foo()
+{
+    // Write your code here
+}
+
+int bar()
+{
+    // ...
+}
+
+int baz()
+{
+    // ...
+}
+</code></pre>
+
+<p>Of course, instead of using a shared filesystem, you could instead decide
+that only one person can edit the file at a time, but that would involve
+a lot of overhead in coordinating each other&rsquo;s work.</p>
+
+<p>Consider this other scenario: let&rsquo;s say that the <code>foo()</code> function involves
+implementing two sub-tasks, which you divide amongst yourselves, and you each replace
+the <code>// Write your code here</code> with your code (for the sake of simplicity, let&rsquo;s assume
+that each sub-task is implemented with a single <code>printf</code>). Your code might look
+like this:</p>
+
+<pre><code>int foo()
+{
+    printf(&quot;Implemented task 1\n&quot;);
+}
+</code></pre>
+
+<p>And your partner&rsquo;s code might look like this:</p>
+
+<pre><code>int foo()
+{
+    printf(&quot;Implemented task 2\n&quot;);
+}
+</code></pre>
+
+<p>This actually represents a <em>conflict</em> in your code: you each have divergent replacements
+for the <code>// Write your code here</code> line, and it is not clear which version is
+the correct one. In fact, while there may be cases where we simply want to use
+one version over another, in this case we would like to <em>merge</em> these two versions
+together to produce something like this:</p>
+
+<pre><code>int foo()
+{
+    printf(&quot;Implemented task 1\n&quot;);
+    printf(&quot;Implemented task 2\n&quot;);
+}
+</code></pre>
+
+<p>Notice how, earlier, there was no conflict when implementing <code>bar()</code> and <code>baz()</code> because
+you were adding code to <code>hw1.c</code>, instead of replacing existing code with different versions.</p>
+
+<p>Version control systems like Git are very useful when dealing with scenarios like
+the ones above. They will allow two (or more) developers to work concurrently on
+the same code and, whenever possible, will automatically merge together changes
+that do not conflict. When a conflict does arise, Git provides a specific
+mechanism to resolve that conflict.</p>
+
+<p>In the remainder of the lab, we will explore the following concepts:</p>
+
+<ul>
+<li>Forking: Creating a copy of a repository that you can work on independently
+from the original repository.</li>
+<li>Branches: A mechanism for creating an independent commit history that can
+be manipulated by itself.</li>
+<li>Pull requests: A mechanism for requesting that certain changes (usually
+those on a branch) be merged into a repository.</li>
+</ul>
+
+<p>To explore these concepts, we have created the following repository on GitHub
+which contains only a single file in it:</p>
+
+<p><a href="https://github.com/uchicago-cs/cmsc22000-dummy-repo">https://github.com/uchicago-cs/cmsc22000-dummy-repo</a></p>
+
+<h1 id="forking-a-repository">Forking a repository</h1>
+
+<p>Let&rsquo;s say we want to make some changes to the <code>cmsc22000-dummy-repo</code> repository.
+You could clone that repository and make some commits in it, but you would be
+unable to push those commits to the repository: you are not a developer
+in the <code>cmsc22000-dummy-repo</code> repository, and thus don&rsquo;t have push privileges
+on it.</p>
+
+<p>This is a very common scenario: there are millions of repositories on GitHub and
+the owners of those repositories don&rsquo;t want just anybody pushing changes
+to those repositories. However, let&rsquo;s say you find a bug in a GitHub repository,
+and know how to fix it. You would ideally like to contribute a fix back to
+that repository, but you would be unable to push that fix to the repository.</p>
+
+<p>So, a common first step in this case is to <em>fork</em> the repository. This creates
+a copy of the repository under your account, on which you <em>will</em> have push
+privileges. So, let&rsquo;s start by forking the <code>cmsc22000-dummy-repo</code> repository:
+go to <a href="https://github.com/uchicago-cs/cmsc22000-dummy-repo">https://github.com/uchicago-cs/cmsc22000-dummy-repo</a> and click on the Fork
+button in the top-right of the page:</p>
+
+<p><img src="/cmsc22000/img/git-lab-fork.png" alt="fork" /></p>
+
+<p>If you are prompted to specify &ldquo;Where should we fork this repository?&rdquo;, make sure
+you select our GitHub user account.</p>
+
+<p>Your forked repo will now live here:</p>
+
+<p><a href="https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo">https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo</a></p>
+
+<p>Where <code>GITHUB_USERNAME</code> should be replaced by your GitHub username.</p>
+
+<p>Now, clone this repo on your computer:</p>
+
+<pre><code>git clone https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo.git
+</code></pre>
+
+<p>Please note that there is also a &ldquo;Clone or download&rdquo; button on your repo&rsquo;s page
+that you can click to obtain the URL to pass along to <code>git clone</code>.</p>
+
+<p>Next, <code>cd</code> into <code>cmsc22000-dummy-repo</code>. We will be making some changes inside the
+repository. However, before we continue, we will reiterate an important point:
+any changes you make in <code>cmsc22000-dummy-repo</code> will <em>not</em> be pushed
+to the original <code>cmsc22000-dummy-repo</code> repository (the one in <a href="https://github.com/uchicago-cs/cmsc22000-dummy-repo">https://github.com/uchicago-cs/cmsc22000-dummy-repo</a>).
+Instead, they will be pushed to your <em>fork</em> of that repository, which lives
+inside your GitHub account (<a href="https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo">https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo</a>).
+Later on, we will see how you would be able to contribute changes back
+to the original repository.</p>
+
+<h1 id="branches">Branches</h1>
+
+<p>So far, the commits in your lab repository have created a linear sequence of
+changes like this:</p>
+
+<p><img src="/cmsc22000/img/git-lab-branches.png" alt="branches" /></p>
+
+<p>You may have heard us talk informally about &ldquo;branches&rdquo; or seen that term
+in a variety of places (the GitLab/GitHub web interfaces, online
+documentation). So what <em>is</em> a branch? A branch, loosely, is an <strong>independent commit history</strong> than
+can be manipulated in its own right. Every git repository has, at least, one branch:
+the <code>master</code> branch and, so far, you have been working only with that branch (and, thus,
+with a single linear history of commits).</p>
+
+<p>However, Git (and most version control systems) allow you to create <em>multiple</em>
+branches. These branches are not completely independent of each other as, ordinarily,
+a branch must be &ldquo;branched off&rdquo; from an existing commit. So, for example, we
+could have the following:</p>
+
+<p><img src="/cmsc22000/img/git-lab-branches-2.png" alt="branches2" /></p>
+
+<p>Here, besides the <code>master</code> branch, we have an additional <code>task3</code> branch which
+could be used to work specifically on Task 3 of a lab. This separate
+branch allows us to work on Task 3 independently from the other tasks; this
+may seem over-complicated, but suppose you were working on the lab with
+a classmate: branches would allow you to work indepedently without having
+to step on each other&rsquo;s toes. This is similar to the first example we showed
+above (where two developers could be working on separate functions, <code>bar()</code>
+and <code>baz()</code>).</p>
+
+<p>Let&rsquo;s create a new branch in your <code>cmsc22000-dummy-repo</code> repository. The branch
+will be called <code>add-author</code> and you can create it by running this:</p>
+
+<pre><code>git checkout -b add-author
+</code></pre>
+
+<p>If you run <code>git branch</code>, you can see the list of branches in the repository,
+with the current branch highlighted with an asterisk:</p>
+
+<pre><code>* add-author
+  master
+</code></pre>
+
+<p>The <em>current branch</em> of a local repository is the branch where any new commits
+will be added to. Remember, a single branch is a linear sequence of commits
+and, when we have multiple branches (as shown in the diagram above), a commit
+could be placed after the last commit, or <em>head</em>, of any branch. The head of
+the current branch is referred to as the <code>HEAD</code> (in all caps) of the repository.</p>
+
+<p>You can switch the current branch by using the <code>git checkout</code> command. For example:</p>
+
+<pre><code>$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+$ git branch
+  add-author
+* master
+$ git checkout add-author 
+Switched to branch 'add-author'
+$ git branch
+* add-author
+  master
+</code></pre>
+
+<p>Now, let&rsquo;s add a commit to the <code>add-author</code> branch. Simply edit the <code>echo.c</code>
+file and replace <code>[AUTHOR GOES HERE]</code> with your name. You can commit the change
+but, if you try to push it, you will get an error message like this:</p>
+
+<pre><code>$ git push
+fatal: The current branch add-author has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin add-author
+</code></pre>
+
+<p><strong>This means the push has not been completed</strong>. The reason for this is that
+we haven&rsquo;t told Git where to push this new branch (it will not assume that
+it has to be pushed to the GitHub repository). Fortunately, you can resolve
+this issue simply by running the verbatim command provided in the error message:</p>
+
+<pre><code>$ git push --set-upstream origin add-author
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 292 bytes | 292.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:borjasotomayor/cmsc22000-dummy-repo.git
+ * [new branch]      add-author -&gt; add-author
+Branch 'add-author' set up to track remote branch 'add-author' from 'origin'.
+</code></pre>
+
+<p>If you now go to <a href="https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo">https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo</a>, and click
+on the &ldquo;Branch&rdquo; pull-down list, you will see <code>add-author</code> in the list of branches
+(you will also see some additional branches besides the <code>master</code> branch; we will
+see these soon).</p>
+
+<h1 id="merging">Merging</h1>
+
+<p>The <code>master</code> branch is, by convention, the &ldquo;stable&rdquo; branch of the repository,
+in the sense that it should only contain stable (not broken) code. So,
+it is very common to create separate branches to implement specific tasks,
+features, etc. and to then <em>merge</em> them back to the <code>master</code> branch once
+that work is finished. This keeps the <code>master</code> branch much cleaner, as
+it only contains the &ldquo;final&rdquo; version of our code at any point, instead
+of lots of commits that may represent work in progress.</p>
+
+<p>When we merge a branch with another branch, we basically take all the changes
+done in all the commits in the origin branch, and add them to the destination branch.
+This is done by creating a new commit, called a <em>merge commit</em>, to merge together
+the heads of the two branches. For example, in this diagram, commit <code>854bff54</code> merges
+<code>task3</code> into <code>master</code>:</p>
+
+<p><img src="/cmsc22000/img/git-lab-branches-3.png" alt="branches3" /></p>
+
+<p>Our repository actually has two other branches: <code>change_author1</code> and
+<code>change_author2</code>. Go to <a href="https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo">https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo</a>
+and browse those branches. Remember you can use the &ldquo;Branches&rdquo; pull-down list
+to switch between branches on GitHub; once you&rsquo;re on a specific branch, you can
+click on &ldquo;commits&rdquo; to see the list of commits for that branch specifically. You
+should be able to see a commit that updates <code>[AUTHOR GOES HERE]</code> in <code>echo.c</code>
+to <code>Created by John Doe</code>.</p>
+
+<p>You should also explore these branches from the command-line using <code>git checkout</code>.</p>
+
+<p>Now, let&rsquo;s say we want to merge the changes from <code>change_author1</code> into the <code>master</code> branch.
+We first need to switch to the <code>master</code> branch:</p>
+
+<pre><code>git checkout master
+</code></pre>
+
+<p>Then, we use <code>git merge</code> to specify that we want to merge <code>change_author1</code> into
+the current branch (<code>master</code>):</p>
+
+<pre><code>git merge change_author1
+</code></pre>
+
+<p>If you get an error saying <code>change_author1 - not something we can merge</code>, make sure you&rsquo;ve
+switched to the <code>change_author1</code> branch at least once using <code>git checkout</code>. Otherwise,
+Git will not have a local copy of the <code>change_author1</code> branch to make the merge.</p>
+
+<p>If the merge works, you should see the following:</p>
+
+<pre><code>Updating 92a20af..e44f03a
+Fast-forward
+ echo.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+
+<p>You should open <code>echo.c</code> to verify that the merge was completed successfully.</p>
+
+<p>However, if you run <code>git log</code>, you won&rsquo;t see any special &ldquo;merge commit&rdquo; in the log history:</p>
+
+<pre><code>commit e44f03a501fc380ef84e53bb8c0f8e978bc8ffed
+Author: Isha Mehrotra &lt;imehrotra@cs.uchicago.edu&gt;
+Date:   Fri Mar 23 18:52:31 2018 -0400
+
+    updated author to John Doe
+
+commit 92a20afcbfdd4ac7e174b47afc9a53bfeaf9b300
+Author: Isha Mehrotra &lt;imehrotra@cs.uchicago.edu&gt;
+Date:   Fri Mar 23 18:48:56 2018 -0400
+
+    wrote echo.c program
+</code></pre>
+
+<p>The reason for this is that this was a fairly trivial merge which could be <em>fast-forwarded</em>,
+because the commit in <code>change_author1</code> (<code>updated author to John Doe</code>)
+descends directly from the <code>wrote echo.c program</code> commit in <code>master</code>,
+so we can simply take that commit and add it to <code>master</code>.</p>
+
+<p>Things get a bit trickier if we want to merge the <code>add-author</code> branch we created. That branch
+was also branched off the original <code>wrote echo.c program</code> commit in <code>master</code>, but now <code>master</code>
+has a new commit (<code>updated author to John Doe</code>). This means that <code>master</code> and <code>add-author</code>
+have <em>diverged</em>, and a fast-forward commit will not be possible.</p>
+
+<p>So, let&rsquo;s try merging in <code>add-author</code>:</p>
+
+<pre><code>$ git merge add-author 
+Auto-merging echo.c
+CONFLICT (content): Merge conflict in echo.c
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+
+<p>Git has detected a merge conflict! The <code>master</code> branch contains a change for the
+<code>[AUTHOR GOES HERE]</code> line in <code>echo.c</code>, but so does the <code>add_author</code> branch. A
+merge conflict is basically Git telling us &ldquo;I see two conflicting changes on these
+two branches, and I don&rsquo;t know how to resolve them automatically; you need to tell me
+how to do it&rdquo;.</p>
+
+<p>Merge conflicts will also be shown on <code>git status</code>:</p>
+
+<pre><code>$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use &quot;git push&quot; to publish your local commits)
+
+You have unmerged paths.
+  (fix conflicts and run &quot;git commit&quot;)
+  (use &quot;git merge --abort&quot; to abort the merge)
+
+Unmerged paths:
+  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+
+    both modified:   echo.c
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+
+<p>If you open <code>echo.c</code>, you will see something like this:</p>
+
+<pre><code>/* echo.c - echo user input */
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+/* Created by John Doe */
+=======
+/* YOUR NAME */
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; add-author
+/* Last updated: 3/23/18 */
+</code></pre>
+
+<p>(where <code>YOUR NAME</code> will be the name you entered when you created the <code>add-author</code> branch)</p>
+
+<p>In general, any time you see something like this:</p>
+
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; branch1
+
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch2
+</code></pre>
+
+<p>This is Git telling you &ldquo;this is the version of the code in branch <code>branch1</code> and
+the version of the code in <code>branch2</code>; tell me which one to use&rdquo;. In this case, the
+current branch (<code>HEAD</code>) contains this line:</p>
+
+<pre><code>/* Created by John Doe */
+</code></pre>
+
+<p>And the branch you&rsquo;re trying to merge, <code>add-author</code>, contains this:</p>
+
+<pre><code>/* YOUR NAME */
+</code></pre>
+
+<p>In this case, we simply want to choose one version over another, so you should replace this:</p>
+
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+/* Created by John Doe */
+=======
+/* YOUR NAME */
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; add-author
+</code></pre>
+
+<p>with this:</p>
+
+<pre><code>/* YOUR NAME */
+</code></pre>
+
+<p>i.e., the top of echo.c should look like this:</p>
+
+<pre><code>/* echo.c - echo user input */
+/* YOUR NAME */
+/* Last updated: 3/23/18 */
+</code></pre>
+
+<p>Now, we need to tell Git that we&rsquo;ve resolved the merge conflict. We do this by using <code>git add</code>:</p>
+
+<pre><code>git add echo.c
+</code></pre>
+
+<p>Note how now <code>git status</code> recognizes that the merge conflict has been resolved, but has yet
+to be committed:</p>
+
+<pre><code>$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use &quot;git push&quot; to publish your local commits)
+
+All conflicts fixed but you are still merging.
+  (use &quot;git commit&quot; to conclude merge)
+
+Changes to be committed:
+
+    modified:   echo.c
+</code></pre>
+
+<p>So, all we need to do is to run this:</p>
+
+<pre><code>git commit
+</code></pre>
+
+<p>This will open up an editor with a default commit message like <code>Merge branch 'add-author'</code>. Simply
+save that commit message, and the merge will be completed and you will see something like this:</p>
+
+<pre><code>[master 9f74d3f] Merge branch 'add-author'
+</code></pre>
+
+<p>That is the <em>merge commit</em> for this merge; if you run <code>git log</code>, you will see that the commit
+history now includes the commit from <code>add-author</code>, as well as the merge commit. Notice how
+includes a line telling us which two commits were merged:</p>
+
+<pre><code>commit 9f74d3fc4c3b84bf80c0a4adc9ac7a862b382289
+Merge: e44f03a a6f8642
+Author: Borja Sotomayor &lt;borja@cs.uchicago.edu&gt;
+Date:   Sun Apr 22 12:37:40 2018 -0500
+
+    Merge branch 'add-author'
+
+commit a6f8642bed35e2778f97f27b55e1aab8697afe61
+Author: Borja Sotomayor &lt;borja@cs.uchicago.edu&gt;
+Date:   Sun Apr 22 11:57:48 2018 -0500
+
+    Added author
+
+commit e44f03a501fc380ef84e53bb8c0f8e978bc8ffed
+Author: Isha Mehrotra &lt;imehrotra@cs.uchicago.edu&gt;
+Date:   Fri Mar 23 18:52:31 2018 -0400
+
+    updated author to John Doe
+
+commit 92a20afcbfdd4ac7e174b47afc9a53bfeaf9b300
+Author: Isha Mehrotra &lt;imehrotra@cs.uchicago.edu&gt;
+Date:   Fri Mar 23 18:48:56 2018 -0400
+
+    wrote echo.c program
+</code></pre>
+
+<p>Before continuing with the rest of the lab, make sure to push all these commits by
+running <code>git push</code>.</p>
+
+<h1 id="pull-requests">Pull requests</h1>
+
+<p>So far, we&rsquo;ve made some changes to a fork of the following repository:</p>
+
+<p><a href="https://github.com/uchicago-cs/cmsc22000-dummy-repo">https://github.com/uchicago-cs/cmsc22000-dummy-repo</a></p>
+
+<p>Remember that we don&rsquo;t have push access on that repository, but we do have
+push access on our fork. In fact, a common reason for creating a fork of
+a repository is so we can make some changes to that fork, and then contribute
+our changes back to the original repository.</p>
+
+<p>The way we do this is by doing a <em>pull request</em>. In other words, we submit a request
+to the original repository to pull our changes. You are going to create a pull request
+with the changes you made in your fork. To do this, go to your forked repository on GitHub:</p>
+
+<p><a href="https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo">https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo</a></p>
+
+<p>You will see a &ldquo;New pull request&rdquo; button above the file listing. Click it. The next
+page will summarize the commits you are going to include in the pull request. If
+you see anything that looks amiss, please ask on Piazza. Otherwise, click on the
+green &ldquo;Create pull request&rdquo; button. You will now be able to specify a title and
+a summary for the pull request. For example, in this case, the title could be &ldquo;Adding author
+to echo.c&rdquo; and the summary could be &ldquo;I am the author of this file&rdquo;. Finally, click
+&ldquo;Create pull request&rdquo; again, and this will create the pull request. You can verify
+that your pull request was submitted to the original repository here:</p>
+
+<p><a href="https://github.com/uchicago-cs/cmsc22000-dummy-repo/pulls">https://github.com/uchicago-cs/cmsc22000-dummy-repo/pulls</a></p>
+
+<p>Now, once we receive your pull request, we will actually deny it (you&rsquo;re not the author of echo.c!),
+but you will have a chance to submit a successful pull request in the next section.</p>
+
+<h1 id="code-reviews-with-pull-requests">Code reviews with pull requests</h1>
+
+<p>In the example we have seen so far, you forked a repository so you could make
+changes to it and submit those changes back to the original repository. This
+is a very common collaboration pattern, specially in open source software.
+If you spot a bug in your favorite software project, and their code is hosted
+on GitHub, you can create a fork of that repository, create a bugfix, and
+submit it back to the original repository using a pull request.</p>
+
+<p>In the class project, however, you will not need to create a fork of your
+team&rsquo;s repository, because you <em>do</em> have push access in that repository,
+but with an important restriction: you are allowed to create additional
+branches and push to them, but you are <em>not</em> allowed to push to the <code>master</code>
+branch (in this case, we say that <code>master</code> is a <em>protected branch</em>).
+Only the senior developers (i.e., the instructor and the TAs)
+are allowed to push to <code>master</code>, which means that all changes to the <code>master</code>
+branch by a junior developer (i.e., you) must be reviewed and approved by a senior developer.</p>
+
+<p>This is another common collaboration pattern, which allows a team to work
+in the same repository (without having to create multiple forks), but making
+it less likely that broken code will enter the <code>master</code> branch.</p>
+
+<p>We are going to follow this pattern to add yourself to the <code>AUTHORS.md</code> file
+of your team repository. First, clone your team&rsquo;s repository like so:</p>
+
+<pre><code>$ git clone https://github.com/cmsc22000-project-2018/YOURTEAM.git
+</code></pre>
+
+<p>(replacing <code>YOURTEAM</code> with your actual team name, one of <code>redis-tries</code>,
+<code>spellcheck</code>, <code>fulltext</code>, <code>support-tools</code>, <code>api</code>, or <code>autocomplete</code>. You should
+all have your team assignments by now - if not, check your email)</p>
+
+<p>Now, from inside the repository, you will create a branch to make your
+change to <code>AUTHORS.md</code>. But don&rsquo;t do it yet! Before you do this, let&rsquo;s
+take a minute to talk about naming conventions.</p>
+
+<p>If everyone named their branch something like <code>authors</code> or <code>add-authors</code>, we&rsquo;d
+have 5 branches with the same name. In large collaborative projects, it&rsquo;s common
+to prefix branch names with your own first name, to avoid collisions like this.
+We will adopt this convention in this class. If your name is Ike, you should
+name your branch <code>ike/add-to-authors</code> or <code>ike/authors</code> or similar. It doesn&rsquo;t
+really matter what the name of the branch is, so long as it starts with <code>ike/</code>.</p>
+
+<p>So, go ahead and create a new branch and check it out:</p>
+
+<pre><code>$ git branch YOURNAME/add-to-authors
+
+$ git checkout YOURNAME/add-to-authors
+</code></pre>
+
+<p>Then, edit the AUTHORS.md file to add your name. Make a commit and push the
+new branch:</p>
+
+<pre><code>$ git push origin YOURNAME/add-to-authors
+</code></pre>
+
+<p>To initiate a pull request, head to your team&rsquo;s GitHub page. You can find a list
+of all the team pages <a href="https://github.com/cmsc22000-project-2018">here</a>. You
+should see a big green button that says &ldquo;Compare &amp; pull request&rdquo;. After you click
+it, you will be presented with a page like the one you were shown when creating
+the pull request for the <code>cmsc22000-dummy-repo</code> repository. However, besides
+entering a title and summary, you will also specify the following:</p>
+
+<ul>
+<li>Under &ldquo;Reviewers&rdquo;, select another student on your team, and your senior developer.</li>
+<li>Under &ldquo;Projects&rdquo;, select &ldquo;Project Board&rdquo; (we will discuss Project Boards in class)</li>
+<li>Under &ldquo;Milestone&rdquo;, select &ldquo;Project Kick-off&rdquo;</li>
+</ul>
+
+<p>Click &ldquo;Create pull request&rdquo;. You&rsquo;ve marked your code for review!</p>
+
+<p>Note: if someone specifies you as a reviewer for this pull request, simply go ahead
+and mark the pull request as reviewed. For the project, you won&rsquo;t arbitrarily get
+selected by teammates to review code; you will have to agree to review someone&rsquo;s code
+before it is assigned to you.</p>
+
+</div>
+
+
+  
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+
+</div>
+
+</footer>
+
+    </main>
+    
+
+
+
+    
+  </body>
+</html>
+
