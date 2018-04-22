@@ -4,7 +4,7 @@ date: 2018-01-27
 publishdate: 2018-01-27
 ---
 
-Up to this point (in the 150s/160s or in the CS 220 labs), you have used version control systems 
+In the 150s/160s, as well as in the CS 220 labs, you have used version control systems 
 (like Subversion and Git) essentially as a mechanism to store your code and to make it easily accessible to the
 course staff. However, in real software projects, version control systems are
 one of the most important tools that allow teams to collaborate on a shared
@@ -143,7 +143,7 @@ https://github.com/uchicago-cs/cmsc22000-dummy-repo
 
 Let's say we want to make some changes to the `cmsc22000-dummy-repo` repository.
 You could clone that repository and make some commits in it, but you would be
-unable to push those commits to the repository: you are not a developers
+unable to push those commits to the repository: you are not a developer
 in the `cmsc22000-dummy-repo` repository, and thus don't have push privileges
 on it.
 
@@ -189,16 +189,14 @@ to the original repository.
 
 # Branches
 
-So far, the commits in your repository have created a linear sequence of
+So far, the commits in your lab repository have created a linear sequence of
 changes like this:
 
 ![branches](/cmsc22000/img/git-lab-branches.png)
 
 You may have heard us talk informally about "branches" or seen that term
 in a variety of places (the GitLab/GitHub web interfaces, online
-documentation).
-
-So what *is* a branch? A branch, loosely, is an **independent commit history** than
+documentation). So what *is* a branch? A branch, loosely, is an **independent commit history** than
 can be manipulated in its own right. Every git repository has, at least, one branch:
 the `master` branch and, so far, you have been working only with that branch (and, thus,
 with a single linear history of commits).
@@ -493,34 +491,64 @@ includes a line telling us which two commits were merged:
 
         wrote echo.c program
 
+Before continuing with the rest of the lab, make sure to push all these commits by
+running `git push`.
+
 # Pull requests
 
+So far, we've made some changes to a fork of the following repository:
 
+https://github.com/uchicago-cs/cmsc22000-dummy-repo
 
+Remember that we don't have push access on that repository, but we do have
+push access on our fork. In fact, a common reason for creating a fork of
+a repository is so we can make some changes to that fork, and then contribute
+our changes back to the original repository.
 
+The way we do this is by doing a *pull request*. In other words, we submit a request
+to the original repository to pull our changes. You are going to create a pull request
+with the changes you made in your fork. To do this, go to your forked repository on GitHub:
 
+https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo
 
+You will see a "New pull request" button above the file listing. Click it. The next
+page will summarize the commits you are going to include in the pull request. If
+you see anything that looks amiss, please ask on Piazza. Otherwise, click on the
+green "Create pull request" button. You will now be able to specify a title and
+a summary for the pull request. For example, in this case, the title could be "Adding author
+to echo.c" and the summary could be "I am the author of this file". Finally, click
+"Create pull request" again, and this will create the pull request. You can verify
+that your pull request was submitted to the original repository here:
 
+https://github.com/uchicago-cs/cmsc22000-dummy-repo/pulls
 
+Now, once we receive your pull request, we will actually deny it (you're not the author of echo.c!),
+but you will have a chance to submit a successful pull request in the next section.
 
+# Code reviews with pull requests
 
+In the example we have seen so far, you forked a repository so you could make
+changes to it and submit those changes back to the original repository. This
+is a very common collaboration pattern, specially in open source software.
+If you spot a bug in your favorite software project, and their code is hosted
+on GitHub, you can create a fork of that repository, create a bugfix, and
+submit it back to the original repository using a pull request.
 
+In the class project, however, you will not need to create a fork of your
+team's repository, because you *do* have push access in that repository,
+but with an important restriction: you are allowed to create additional
+branches and push to them, but you are *not* allowed to push to the `master`
+branch (in this case, we say that `master` is a *protected branch*). 
+Only the senior developers (i.e., the instructor and the TAs)
+are allowed to push to `master`, which means that all changes to the `master` 
+branch by a junior developer (i.e., you) must be reviewed and approved by a senior developer.
 
+This is another common collaboration pattern, which allows a team to work
+in the same repository (without having to create multiple forks), but making
+it less likely that broken code will enter the `master` branch.
 
-
-
-
-
-
-
-
-We will get to merging soon. For now, we will
-
-Branches are, unsurprisingly, created using
-the `git branch` command.
-
-Let's set up a branch in your team's repository for adding yourself to
-`AUTHORS.md`. Clone your team's repository like so:
+We are going to follow this pattern to add yourself to the `AUTHORS.md` file
+of your team repository. First, clone your team's repository like so:
 
 ```
 $ git clone https://github.com/cmsc22000-project-2018/YOURTEAM.git
@@ -528,12 +556,11 @@ $ git clone https://github.com/cmsc22000-project-2018/YOURTEAM.git
 
 (replacing `YOURTEAM` with your actual team name, one of `redis-tries`,
 `spellcheck`, `fulltext`, `support-tools`, `api`, or `autocomplete`. You should
-all have your team assignments by now - if not, check your email.)
+all have your team assignments by now - if not, check your email)
 
-Now, from inside the repository, you can run `git branch BRANCHNAME` to create a
-new branch, replacing `BRANCHNAME` with your desired branch name. But don't do
-it yet! Before you do this, let's take a minute to talk about naming
-conventions.
+Now, from inside the repository, you will create a branch to make your
+change to `AUTHORS.md`. But don't do it yet! Before you do this, let's 
+take a minute to talk about naming conventions.
 
 If everyone named their branch something like `authors` or `add-authors`, we'd
 have 5 branches with the same name. In large collaborative projects, it's common
@@ -542,76 +569,36 @@ We will adopt this convention in this class. If your name is Ike, you should
 name your branch `ike/add-to-authors` or `ike/authors` or similar. It doesn't
 really matter what the name of the branch is, so long as it starts with `ike/`.
 
-Let's also take a minute to discuss exactly what `git branch` does. After you
-run `git branch YOURNAME/BRANCHNAME`, `git` creates a new branch called
-`YOURNAME/BRANCHNAME`. You can then **check out** this branch using
+So, go ahead and create a new branch and check it out:
 
 ```
-$ git checkout YOURNAME/BRANCHNAME`.
+$ git branch YOURNAME/add-to-authors
+
+$ git checkout YOURNAME/add-to-authors
 ```
 
-Ok, that wasn't super helpful - what does `git checkout` do? Now we're to the
-interesting stuff. Let's say we have a given repository state (which just means
-a particular arrangement of files) on the `master` branch, and another state on
-the `YOURNAME/BRANCHNAME` branch. *Checking out* either branch will
-intelligently swap out one repository state for the other. You won't lose any
-files this way - they're still tracked by git.
-
-That's all quite opaque, so let's see it in action. Inside your team's repo,
-run:
+Then, edit the AUTHORS.md file to add your name. Make a commit and push the
+new branch:
 
 ```
-$ git branch YOURNAME/BRANCHNAME
-
-$ git checkout YOURNAME/BRANCHNAME
+$ git push origin YOURNAME/add-to-authors
 ```
-
-Then, edit the AUTHORS.md file to add your name. Make a commit, but **don't**
-push. Once you commit, if you run `git status`, you'll see that you have a
-*clean* repository state. Now, run `git checkout master`. If you open up
-`AUTHORS.md`, you'll see your name is not there! Why? Because, as you can see
-from `git log`, the commit you just made **doesn't live on the `master`
-branch**. Run
-```
-$ git checkout YOURNAME/BRANCHNAME
-```
-and you'll see that `AUTHORS.md` has the change you made once again.
-
-This is the key concept to branching: isolating changes from each other. Why is
-this important? It allows us to maintain the `master` branch as the *canonical*
-version of our code - that is, code on `master` should always build correctly
-and work as intended. When we want to make changes, we do so on a different
-branch (colloquially called a *feature branch*), so that our changes are
-isolated from the `master` branch until the feature is complete.
-
-Now that your development phase is complete, you should run:
-```
-$ git push origin YOURNAME/BRANCHNAME
-```
-
-# Review phase: pull requests & code review
-We will be implementing a process of code review in this class very similar to
-what we saw in class today. Before merging any feature branch, we will require
-review by:
-
-1. Someone else on your team; and
-2. Your senior developer (Mark or Lydia)
 
 To initiate a pull request, head to your team's GitHub page. You can find a list
 of all the team pages [here](https://github.com/cmsc22000-project-2018). You
-should see a big green button that says "Compare & pull request". Click it.
-You'll be taken to a screen that asks you to give a title to your pull request,
-and summarize the changes you made. Under "Reviewers", select another student on
-your team, and your senior developer. Click "Create pull request". You've marked
-your code for review!
+should see a big green button that says "Compare & pull request". After you click
+it, you will be presented with a page like the one you were shown when creating
+the pull request for the `cmsc22000-dummy-repo` repository. However, besides
+entering a title and summary, you will also specify the following:
 
-Ok, so what's actually going on here? When you create a pull request, you
-signify to the maintainers of the repository that the feature on your branch is
-complete, and is ready to be **merged** into the `master` branch. A **merge**
-takes two branches, combines the changes made on both branches, and creates a
-new commit that is the successor of *both* of the most recent commits on the two
-branches. Your senior developers will do all merging throughout this project -
-they are the guardians of the `master` branch, as it were.
+* Under "Reviewers", select another student on your team, and your senior developer. 
+* Under "Projects", select "Project Board" (we will discuss Project Boards in class)
+* Under "Milestone", select "Project Kick-off"
 
-# Summary
-Borja? Halp?
+Click "Create pull request". You've marked your code for review!
+
+Note: if someone specifies you as a reviewer for this pull request, simply go ahead
+and mark the pull request as reviewed. For the project, you won't arbitrarily get
+selected by teammates to review code; you will have to agree to review someone's code
+before it is assigned to you.
+
