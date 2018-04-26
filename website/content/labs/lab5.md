@@ -147,7 +147,7 @@ Test(segment, no_intersection_parallel)
 
 In this task, you will implement a new `circle_t` data structure for representing circles in `libgeometry`. For the purposes of this lab, circles will be represented by a center and radius. The center will be represented by a `point_t`, and the radius by a `double`.
 
-You should create three new files: `include/circle.h`, `include/circle.c`, and `tests/test_circle.c`. You will need to update both the root-level `Makefile` and the `Makefile` in the `tests` directory to ensure the new files are compiled. Make a commit with the new files as well as the changes to the `Makefile`s, with the message “Starting lab 5 task 2”.
+You should create three new files: `include/circle.h`, `src/circle.c`, and `tests/test_circle.c`. You will need to update both the root-level `Makefile` and the `Makefile` in the `tests` directory to ensure the new files are compiled. Make a commit with the new files as well as the changes to the `Makefile`s, with the message “Starting lab 5 task 2”.
 
 Now, use TDD to develop `new`, `init`, and `free` functions for circles.
 
