@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Lab 5: Testing  &middot; CS 220</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="Lab 5: Testing  &middot; CS 220 ">
+<meta property="og:site_name" content="CS 220"/>
+<meta property="og:url" content="https://uchicago-cs.github.io/cmsc22000/labs/lab5/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2018-01-26T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-01-26T00:00:00Z" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Lab 5: Testing" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://uchicago-cs.github.io/cmsc22000/labs/lab5/" />
+<meta name="twitter:domain" content="https://uchicago-cs.github.io/cmsc22000/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Lab 5: Testing",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-01-26",
+    "description": "",
+    "wordCount": 2343
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://uchicago-cs.github.io/cmsc22000/labs/lab5/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
+<link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.40.1" />
+
+  
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+
+
+  <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+
+  
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-27880910-4', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper has-sidebar">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://uchicago-cs.github.io/cmsc22000/">
+  CS 220
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  Introduction to Software Development
+
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+
+  
+<a href="https://uchicago-cs.github.io/cmsc22000/syllabus/">Syllabus</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/resources/">Additional Resources</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/faq/">FAQs</a>
+
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>Lab 5: Testing
+</h1>
+
+</header>
+
+  <div class="container content">
+  
+
+<p><strong>Due:</strong> Thursday, May 3rd, 4pm</p>
+
+<p>By this point in your CS studies, you’ve probably experienced the following at least once:</p>
+
+<ol>
+<li>Your programming assignment is almost done, and everything works so far.</li>
+<li>Start working on the last task of the assignment.</li>
+<li>Make some minor changes.</li>
+<li>Run program.</li>
+<li>Everything stops working. The first task, the last task, and everything in between.</li>
+<li>Spend several hours debugging your code.</li>
+<li>Narrow down the issue to a silly mistake in the first task that only made things
+fail once the last task was implemented.</li>
+<li>Ponder all the fun stuff you could&rsquo;ve done if you had come to that realization sooner.</li>
+</ol>
+
+<p>It would&rsquo;ve been nice if, once we implemented that last task, there was some mechanism to check whether our changes had broken other parts of the code which we assumed to be working correctly. This is one of the things that we can do by writing <em>tests</em> for our code. Besides reassuring us that our code does what it is supposed to do, it can also make debugging a much more painless experience, by quickly narrowing down our search for the part of our code that is failing.</p>
+
+<p>Generally speaking, there are two kinds of tests: <em>unit tests</em> and <em>integration tests</em>. In this lab we will focus on <em>unit tests</em>, which check the correctness of a single component or module, typically by testing individual functions within that component. For example, suppose your chat system from <a href="/cmsc22000/labs/lab2/">Lab 2</a> included an <code>is_user_in_channel()</code> function. Given a channel with users A, B, and C, we could write a test that calls the function with user A and checks whether the return value indicates that A is in the channel (similarly, we could call the function with user X, and check whether the return value indicates that the user is <em>not</em> in the channel). This would be a unit test: we are testing whether an individual function (within the &ldquo;channel&rdquo; component/module of our system) works correctly.</p>
+
+<p><em>Integration tests</em>, on the other hand, check the correctness of multiple components at once, or of an entire system. For example, a test that sets up a mock chat server and two users, has them log on, and send a message to each other would be an integration test. While we are testing a concrete action (sending a message), we are doing so by running the complete system, which involves a lot more moving pieces than just sending a message. The combined assurances of good unit tests and good integration tests give us confidence that the software we write is correct.</p>
+
+<p>By the end of this lab, you’ll have experience writing unit tests, as well as an appreciation for their importance. You’ll be writing tests for existing code, as well as using the practice of <em>Test-Driven Development</em> to develop new code.</p>
+
+<h1 id="task-0-setup">Task 0: Setup</h1>
+
+<p>This lab will use the <code>libgeometry</code> library. We’re going to import your <code>libgeometry</code> code from lab 2, so that we can write tests for the <code>segment</code> code that you refactored back in lab 2. If you didn’t finish lab 2 completely, now would be a good time to go back and make sure it’s squared away before starting here. To import your lab 2 code:</p>
+
+<pre><code class="language-sh">$ cp -r lab2/libgeometry lab5
+$ git add lab5
+$ git commit -m &quot;Starting lab 5&quot;
+</code></pre>
+
+<aside class="admonition warning">
+	<div class="admonition-icon">
+
+	</div>
+
+	<div class="admonition-content"><p><strong>Note</strong>: This lab contains two primary tasks, both of which will be completed in the same directory - there won’t be <code>task1</code> and <code>task2</code> directories this time around. Everything should happen in the <code>lab5</code> directory.</p>
+</div>
+</aside>
+
+
+<h1 id="task-0-5-a-bit-about-criterion">Task 0.5: A bit about <code>criterion</code></h1>
+
+<p>The <code>libgeometry</code> library already includes several unit tests, which use a testing framework called <a href="https://github.com/Snaipe/Criterion">Criterion</a>. This framework is already installed on the CS machines. Let’s learn a little bit about this testing framework before we get to the actual tasks for this lab. Consider the following sample tests:</p>
+
+<pre><code class="language-c">Test(foo, add)
+{
+    int x, y;
+
+    x = 4;
+    y = 5;
+
+    cr_assert_eq(x + y, 9, “4 + 5 should be 9!”);
+    cr_assert_eq(x + y, y + x, “Addition should be commutative!”);
+}
+
+Test(foo, subtract)
+{
+    int x, y;
+
+    x = 2;
+    y = 10;
+
+    cr_assert_eq(y - x, 8, “10 - 2 should be 8!”);
+    cr_assert_eq(x - y, -8, “2 - 10 should be -8!”);
+}
+</code></pre>
+
+<p>Let’s unpack what’s going on here. First of all, <code>Test</code> is actually a <a href="https://en.wikipedia.org/wiki/C_preprocessor">macro</a>, not a function. We’re not defining two functions both called <code>Test</code>, we’re calling the <code>Test</code> macro twice (this will actually result in two functions being generated, one for each test; the <code>Test</code> macro just provides a more convenient syntax to define the functions that Criterion expects).</p>
+
+<p><code>Test</code> takes two arguments (strictly speaking it actually supports many more, but for our purposes we’ll only need these two): a <em>suite name</em> and a <em>test name</em>. The suite name is just the name of the relevant context: if you take a look at <code>test_point.c</code> and <code>test_polygon.c</code>, you’ll see that the suite names are just <code>point</code> and <code>polygon</code>. The test name should just be a short identifier of what the test is testing.</p>
+
+<p>Now let’s discuss the meat of these tests. Each test makes two <em>assertions</em> and exits. An assertion tests the validity of a given statement, and panics (causes the test to fail) if the statement is invalid. The way we make an assertion in <code>criterion</code> is by calling any one of a number of functions prefixed by <code>cr_assert</code> (you can find a full reference <a href="https://criterion.readthedocs.io/en/master/assert.html#assertions-ref">here</a>). These tests use <code>cr_assert_eq</code>, which takes 3 arguments. It checks whether the first argument is equal to the second, and if not, causes the test to fail and prints out the error message given in the third argument (for those of you who took 151, this is very similar to Racket’s <code>check-expect</code> function).</p>
+
+<p>The tests are compiled into their own executable. So, if you run this:</p>
+
+<pre><code class="language-sh">$ make tests
+</code></pre>
+
+<p>This will result in the generation of a new executable called <code>tests/test-libgeometry</code> which will run all the tests we specified inside the <code>tests/</code> directory. Try running this executable; it should produce the following output:</p>
+
+<pre><code class="language-sh">$ tests/test-libgeometry 
+[====] Synthesis: Tested: 24 | Passing: 24 | Failing: 0 | Crashing: 0 
+</code></pre>
+
+<p>Note: you can use the <code>--verbose</code> option to get more detailed output from Criterion.</p>
+
+<p>If you look at the code inside <code>tests/</code>, you&rsquo;ll see that the bulk of the code is in the <code>test_point.c</code> and <code>test_polygon.c</code> files, and that these files focus exclusively on defining tests. We don&rsquo;t need to write any code to run the tests themselves, check the results of the tests, print the output shown by <code>tests/test-libgeometry</code>, etc. because this is all handled for us by the Criterion framework.</p>
+
+<p>Notice, however, how the <code>tests/</code> directory also contains a <code>main.c</code> file with a <code>main()</code> function. This is not strictly necessary, as Criterion will provide a default <code>main()</code> function if we do not do so, but providing our own <code>main()</code> function can allow us to customize the behaviour of Criterion. If you&rsquo;re curious, you can read more about this in <a href="http://criterion.readthedocs.io/en/master/internal.html?highlight=criterion_run_all_tests#providing-your-own-main">this page</a> of the Criterion documentation.</p>
+
+<p>Before continuing, take a moment to look at the <code>Makefile</code> contained inside the <code>tests/</code> directory, as this is the Makefile that builds the <code>tests/test-libgeometry</code> executable. If there is anything in that Makefile that you do not understand, please make sure to ask us.</p>
+
+<h1 id="task-1-testing-existing-code">Task 1: Testing existing code</h1>
+
+<p>Remember that, in Lab 2, we asked you to refactor some of the code in <code>point.c</code> to a new <code>segment.c</code> module. At the time, many of you asked some variation on this question: &ldquo;If I&rsquo;m implementing this code as part of a library, how can I <em>run</em> the segment code I just wrote?&ldquo;. One answer to that question is that you could&rsquo;ve written a separate program that links with libgeometry, and calls the segment functions to see whether they work (and, with what you know about Makefiles, it should be possible for you to do that). However, what we really want to do is write tests for this new segment datatype, similar to the ones that already exist for the point and polygon datatypes. In Lab 2 we asked you to simply modify the calls to <code>segment_intersect</code> in <code>test_point.c</code>, which was a temporary solution before we learned how tests work. Now, we will write proper tests for the segment datatype.</p>
+
+<p>Create a new file in the <code>tests/</code> directory called <code>test_segment.c</code>. You’ll need a few <code>#include</code> statements to get started:</p>
+
+<pre><code class="language-c">#include &lt;criterion/criterion.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdbool.h&gt;
+#include &quot;point.h&quot;
+#include &quot;segment.h&quot;
+</code></pre>
+
+<aside class="admonition warning">
+	<div class="admonition-icon">
+
+	</div>
+
+	<div class="admonition-content"><p><strong>Warning</strong>: From now on, you must do all of your work over <code>ssh</code>, or in CSIL, or using the <a href="https://howto.cs.uchicago.edu/vm:index">department’s virtual machine</a>. Each of those environments have the <code>criterion</code> library properly set up and ready to go. While it is possible to install <code>criterion</code> on an unsupported machine, we may not be able to provide support for that setup.</p>
+</div>
+</aside>
+
+
+<p>You will also need to modify the <code>Makefile</code> in the <code>tests/</code> directory to add your new file.</p>
+
+<aside class="admonition warning">
+	<div class="admonition-icon">
+
+	</div>
+
+	<div class="admonition-content"><p><strong>Caution</strong>: There are <em>two</em> <code>Makefile</code>s in this project! There’s the root-level <code>Makefile</code> for building the library, but then there’s also a <code>Makefile</code> in the <code>tests</code> directory specifically for building test files. You should only modify the latter.</p>
+</div>
+</aside>
+
+
+<p>It’s time to write your first tests! In your <code>test_segment.c</code> file, do the following:</p>
+
+<ul>
+<li>Write at least one test case for each of <code>segment_new</code>, <code>segment_init</code>, <code>segment_free</code>.  You may find it helpful to look at similar tests in <code>test_point.c</code> and <code>test_polygon.c</code>.</li>
+<li>We already had some tests for <code>segment_intersect</code> in <code>test_point.c</code>. <em>Refactor</em> them into <code>test_segment.c</code>, and make sure they&rsquo;re in the correct test suite!</li>
+<li>Write test cases for <code>on_segment</code> and <code>orientation</code>. Remember that, in Lab 2, you had the option of moving these functions to <code>segment.c</code>, or to keep them in <code>point.c</code> (and exposing them through <code>point.h</code>). If you moved them to <code>segment.c</code>, add the tests to <code>test_segment.c</code>; otherwise, add them to <code>test_point.c</code>. For these test cases, remember that you should have as much <em>coverage</em> as possible: your test cases should cover as many outcomes (and as many flows of execution through the individual function) as possible.</li>
+</ul>
+
+<p>For each of the tests (except the <code>segment_intersect</code> ones refactored from <code>test_point.c</code>), the test must include a header comment explaining the test. For example:</p>
+
+<pre><code class="language-c">/* Checks that two parallel segments do not intersect */
+Test(segment, no_intersection_parallel)
+{
+    check_intersect(2,  2, 4, 2,
+                    2, 10, 4, 10,
+                    false);
+}
+</code></pre>
+
+<h1 id="task-2-test-driven-development">Task 2: Test-Driven Development</h1>
+
+<p><em>Test-Driven Development</em> (or <em>TDD</em> for short) is a method of programming that uses tests to guide implementation. The goal of TDD is to make it easier to create clean, correct code on the first try and reduce debugging cycles. The key innovation of TDD is that it puts tests <em>before</em> code in the development cycle. A TDD development cycle looks something like this:</p>
+
+<ol>
+<li>Write tests that cover all behavior of the interface you’re implementing</li>
+<li>Write skeleton functions (i.e. functions that have the correct type signature but return dummy values, and don’t contain any logic) so that your program compiles</li>
+<li>All of your tests fail because nothing is implemented yet</li>
+<li>Inspect the first failing test. Implement the things it tests for.</li>
+<li>Does the test pass? Great! Go back to step 4 for the next failing test. If the test doesn’t pass, debug what you implemented.</li>
+</ol>
+
+<p>In this task, you will implement a new <code>circle_t</code> data structure for representing circles in <code>libgeometry</code>. For the purposes of this lab, circles will be represented by a center and radius. The center will be represented by a <code>point_t</code>, and the radius by a <code>double</code>.</p>
+
+<p>You should create three new files: <code>include/circle.h</code>, <code>include/circle.c</code>, and <code>tests/test_circle.c</code>. You will need to update both the root-level <code>Makefile</code> and the <code>Makefile</code> in the <code>tests</code> directory to ensure the new files are compiled. Make a commit with the new files as well as the changes to the <code>Makefile</code>s, with the message “Starting lab 5 task 2”.</p>
+
+<p>Now, use TDD to develop <code>new</code>, <code>init</code>, and <code>free</code> functions for circles.</p>
+
+<aside class="admonition warning">
+	<div class="admonition-icon">
+
+	</div>
+
+	<div class="admonition-content"><p><strong>Note:</strong> To ensure that you are following TDD, we will be inspecting your commit history to check that you actually wrote your tests first. At minimum, we require the following workflow:</p>
+
+<ol>
+<li>Write your tests in <code>tests/test_circle.c</code></li>
+<li>Write a struct definition in <code>include/circle.h</code></li>
+<li>Write skeleton functions in <code>src/circle.c</code>, and put their headers in <code>include/circle.h</code></li>
+<li><strong>Make a commit</strong> indicating that you’ve written tests, and are about to start implementation</li>
+<li>Write your implementations</li>
+<li><strong>Make a commit</strong> indicating that you’ve finished implementation and that your tests pass.</li>
+</ol>
+
+<p>By all means, please make more commits as you write individual tests and implement individual functions. This is just the <em>minimum</em> we require to tell whether or not you implemented tests first.</p>
+</div>
+</aside>
+
+
+<p>Next, let’s use TDD to implement a few slightly more complex functions that compute things about circles:</p>
+
+<ul>
+<li><code>circle_diameter</code>, <code>circle_circumference</code>, and <code>circle_area</code>. Each of these functions should take a pointer to a <code>circle_t</code> struct as input, and return a <code>double</code>. The logic should be self-explanatory.</li>
+<li><code>circle_overlap</code>: Takes pointers to two <code>circle_t</code> structs as input, and returns one of the following values:
+
+<ul>
+<li><code>0</code>: The circles do not overlap in any way.</li>
+<li><code>1</code>: The circles overlap at a singular point (you do not need to compute this point)</li>
+<li><code>2</code>: The circles overlap, and the area of overlap is non-zero (you do not need to compute this area). Note that this also includes a circle being wholly contained inside another circle.</li>
+</ul></li>
+</ul>
+
+<p>You are allowed to consult online sources to find the exact formula for determining whether two circles overlap (this is often referred to the <em>intersection</em> of two circles). As usual, you must cite these sources.</p>
+
+<p>When writing the tests for the first three functions, you may find the function <code>cr_assert_float_eq</code> helpful. As you know, floating-point arithmetic on computers is not 100% accurate; <code>cr_assert_float_eq</code> allows you to check that the first value you supply to it is within some range of the second value. For example:</p>
+
+<pre><code class="language-c">circle_t *c = circle_new(point_new(0, 0), 5)
+cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, “Circle area wasn’t correct!”);
+</code></pre>
+
+<p>This checks whether or not our <code>circle_area</code> function is within 10<sup>-4</sup> (0.0001) of the expected value.</p>
+
+<p>As above, you should use the TDD workflow when implementing these new functions.</p>
+
+<p>Finally, as before, you should include header comments in all the tests you write.</p>
+
+</div>
+
+
+  
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+
+</div>
+
+</footer>
+
+    </main>
+    
+
+
+
+    
+  </body>
+</html>
+
