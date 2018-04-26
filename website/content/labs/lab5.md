@@ -2,37 +2,37 @@
 title: "Lab 5: Testing"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: true
 ---
 
 **Due:** Thursday, May 3rd, 4pm
 
-By this point in your CS careers, you’re probably all familiar with this kind of `C` development workflow:
+By this point in your CS studies, you’ve probably experienced the following at least once:
 
-1. Write a bunch of code
-2. Hope it works
-3. Run `gcc`
-4. `gcc` is **a n g r y**
-5. Fix compile errors
-6. Run program
-7. It segfaults, awesome
-8. Fix segfault
-9. Now my tree has all kinds of incorrect values but I don’t know how they got there, and I don’t know what part of my code is wrong
-10. Rip all hair out
-11. Go live in the woods
-12. Finally at peace
+1. Your programming assignment is almost done, and everything works so far.
+2. Start working on the last task of the assignment.
+3. Make some minor changes.
+4. Run program.
+5. Everything stops working. The first task, the last task, and everything in between.
+6. Spend several hours debugging your code.
+7. Narrow down the issue to a silly mistake in the first task that only made things
+   fail once the last task was implemented.
+8. Ponder all the fun stuff you could've done if you had come to that realization sooner.
 
-This lab is all about **testing**, a practice that aims to un-suckify the above workflow. Generally speaking, there are two kinds of tests: **unit** and **integration**. **Unit tests** check the correctness of one specific function: for example, in your system design lab, a test that checks the correctness of the `is_user_in_channel()` function would be a unit test. **Integration tests** check the correctness of an entire system: for example, a test that sets up a mock chat server and two users, has them log on, and send a message to each other would be an integration test. The combined assurances of good unit tests and good integration tests give us confidence that the software we write is correct.
+It would've been nice if, once we implemented that last task, there was some mechanism to check whether our changes had broken other parts of the code which we assumed to be working correctly. This is one of the things that we can do by writing *tests* for our code. Besides reassuring us that our code does what it is supposed to do, it can also make debugging a much more painless experience, by quickly narrowing down our search for the part of our code that is failing.
 
-By the end of this lab, you’ll have experience writing unit tests, as well as an appreciation for their importance. You’ll be writing tests for existing code, as well as using the practice of **Test-Driven Development** to develop new code.
+Generally speaking, there are two kinds of tests: *unit tests* and *integration tests*. In this lab we will focus on *unit tests*, which check the correctness of a single component or module, typically by testing individual functions within that component. For example, supposer your chat system from [Lab 2]({{< relref "lab2.md" >}}) included an `is_user_in_channel()` function. Given a channel with users A, B, and C, we could write a test that calls the function with user A and checks whether the return value indicates that A is in the channel (similarly, we could call the function with user X, and check whether the return value indicates that the user is *not* in the channel). This would be a unit test: we are testing whether an individual function (within the "channel" component/module of our system) works correctly.
+
+*Integration tests*, on the other hand, check the correctness of multiple components at once, or of an entire system. For example, a test that sets up a mock chat server and two users, has them log on, and send a message to each other would be an integration test. While we are testing a concrete action (sending a message), we are doing so by running the complete system, which involves a lot more moving pieces than just sending a message. The combined assurances of good unit tests and good integration tests give us confidence that the software we write is correct.
+
+By the end of this lab, you’ll have experience writing unit tests, as well as an appreciation for their importance. You’ll be writing tests for existing code, as well as using the practice of *Test-Driven Development* to develop new code.
 
 # Task 0: Setup
 This lab will use the `libgeometry` library. We’re going to import your `libgeometry` code from lab 2, so that we can write tests for the `segment` code that you refactored back in lab 2. If you didn’t finish lab 2 completely, now would be a good time to go back and make sure it’s squared away before starting here. To import your lab 2 code:
 
 ```sh
-$ cp lab2/libgeometry lab5
+$ cp -r lab2/libgeometry lab5
 $ git add lab5
-$ git commit -m “Starting lab 5”
+$ git commit -m "Starting lab 5"
 ```
 
 {{% warning %}}
@@ -40,7 +40,8 @@ $ git commit -m “Starting lab 5”
 {{% /warning %}}
 
 # Task 0.5: A bit about `criterion`
-Let’s learn a little bit about how our testing framework of choice (`criterion`) works. Consider the following sample tests:
+
+The `libgeometry` library already includes several unit tests, which use a testing framework called [Criterion](https://github.com/Snaipe/Criterion). This framework is already installed on the CS machines. Let’s learn a little bit about this testing framework before we get to the actual tasks for this lab. Consider the following sample tests:
 
 ```c
 Test(foo, add)
@@ -66,14 +67,38 @@ Test(foo, subtract)
 }
 ```
 
-Let’s unpack what’s going on here. First of all, `Test` is actually a *macro*, not a function. We’re not defining two functions both called `Test`, we’re calling the `Test` macro twice. `Test` takes two arguments (strictly speaking it actually supports many more, but for our purposes we’ll only need these two): a **suite name** and a **test name**. The **suite name** is just the name of the relevant context: if you take a look at `test_point.c` and `test_polygon.c`, you’ll see that the suite names are just `point` and `polygon`. The **test name** should just be a short identifier of what the test is testing.
+Let’s unpack what’s going on here. First of all, `Test` is actually a [macro](https://en.wikipedia.org/wiki/C_preprocessor), not a function. We’re not defining two functions both called `Test`, we’re calling the `Test` macro twice (this will actually result in two functions being generated, one for each test; the `Test` macro just provides a more convenient syntax to define the functions that Criterion expects).
 
-Now let’s discuss the meat of these tests. Each test makes two **assertions** and exits. An **assertion** tests the validity of a given statement, and panics (causes the test to fail) if the statement is invalid. The way we make an assertion in `criterion` is by calling any one of a number of functions prefixed by `cr_assert` (you can find a full reference [here](https://criterion.readthedocs.io/en/master/assert.html#assertions-ref)). These tests use `cr_assert_eq`, which takes 3 arguments. It checks whether the first argument is equal to the second, and if not, causes the test to fail and prints out the error message given in the third argument (for those of you who took 151, this is very similar to Racket’s `check-expect` function).
+`Test` takes two arguments (strictly speaking it actually supports many more, but for our purposes we’ll only need these two): a *suite name* and a *test name*. The suite name is just the name of the relevant context: if you take a look at `test_point.c` and `test_polygon.c`, you’ll see that the suite names are just `point` and `polygon`. The test name should just be a short identifier of what the test is testing.
+
+Now let’s discuss the meat of these tests. Each test makes two *assertions* and exits. An assertion tests the validity of a given statement, and panics (causes the test to fail) if the statement is invalid. The way we make an assertion in `criterion` is by calling any one of a number of functions prefixed by `cr_assert` (you can find a full reference [here](https://criterion.readthedocs.io/en/master/assert.html#assertions-ref)). These tests use `cr_assert_eq`, which takes 3 arguments. It checks whether the first argument is equal to the second, and if not, causes the test to fail and prints out the error message given in the third argument (for those of you who took 151, this is very similar to Racket’s `check-expect` function).
+
+The tests are compiled into their own executable. So, if you run this:
+
+```sh
+$ make tests
+```
+
+This will result in the generation of a new executable called `tests/test-libgeometry` which will run all the tests we specified inside the `tests/` directory. Try running this executable; it should produce the following output:
+
+```sh
+$ tests/test-libgeometry 
+[====] Synthesis: Tested: 24 | Passing: 24 | Failing: 0 | Crashing: 0 
+```
+
+Note: you can use the `--verbose` option to get more detailed output from Criterion.
+
+If you look at the code inside `tests/`, you'll see that the bulk of the code is in the `test_point.c` and `test_polygon.c` files, and that these files focus exclusively on defining tests. We don't need to write any code to run the tests themselves, check the results of the tests, print the output shown by `tests/test-libgeometry`, etc. because this is all handled for us by the Criterion framework.
+
+Notice, however, how the `tests/` directory also contains a `main.c` file with a `main()` function. This is not strictly necessary, as Criterion will provide a default `main()` function if we do not do so, but providing our own `main()` function can allow us to customize the behaviour of Criterion. If you're curious, you can read more about this in [this page](http://criterion.readthedocs.io/en/master/internal.html?highlight=criterion_run_all_tests#providing-your-own-main) of the Criterion documentation.
+
+Before continuing, take a moment to look at the `Makefile` contained inside the `tests/` directory, as this is the Makefile that builds the `tests/test-libgeometry` executable. If there is anything in that Makefile that you do not understand, please make sure to ask us.
 
 # Task 1: Testing existing code
-In this task, you’re going to write tests for the code you wrote in lab 2. You might be wondering: “when we were working on lab 2, didn’t we have to debug test failures? Why are we writing new tests?” Take a look inside the `tests` folder, and you’ll notice there are only two test files: `test_point.c` and `test_polygon.c`. Inside of `test_polygon.c`, there are numerous tests that indirectly call `segment_intersect`, but it would be nice to test that code directly to catch errors as early as possible (known as a **unit test**). The reason lab 2 was difficult to debug was because there were no **unit tests** for the `segment` code, making it hard to isolate exactly what was going wrong.
 
-Create a new file in the `tests` directory called `test_segment.c`. You’ll need a few `#include` statements to get started:
+Remember that, in Lab 2, we asked you to refactor some of the code in `point.c` to a new `segment.c` module. At the time, many of you asked some variation on this question: "If I'm implementing this code as part of a library, how can I *run* the segment code I just wrote?". One answer to that question is that you could've written a separate program that links with libgeometry, and calls the segment functions to see whether they work (and, with what you know about Makefiles, it should be possible for you to do that). However, what we really want to do is write tests for this new segment datatype, similar to the ones that already exist for the point and polygon datatypes. In Lab 2 we asked you to simply modify the calls to `segment_intersect` in `test_point.c`, which was a temporary solution before we learned how tests work. Now, we will write proper tests for the segment datatype.
+
+Create a new file in the `tests/` directory called `test_segment.c`. You’ll need a few `#include` statements to get started:
 
 ```c
 #include <criterion/criterion.h>
@@ -84,27 +109,35 @@ Create a new file in the `tests` directory called `test_segment.c`. You’ll nee
 ```
 
 {{% warning %}}
-**Warning**: From now on, you must do all of your work over `ssh`, or in CSIL, or using the [department’s virtual machine](https://piazza.com/class/jf8q65bhmcg6gh?cid=34). Each of those environments have the `criterion` library properly set up and ready to go. While it is possible to install `criterion` on an unsupported machine, we cannot make any guarantees about it, which would defeat the purpose of testing.
+**Warning**: From now on, you must do all of your work over `ssh`, or in CSIL, or using the [department’s virtual machine](https://howto.cs.uchicago.edu/vm:index). Each of those environments have the `criterion` library properly set up and ready to go. While it is possible to install `criterion` on an unsupported machine, we may not be able to provide support for that setup.
 {{% /warning %}}
 
-You will also need to modify the `Makefile` in the `tests` directory to add your new file.
+You will also need to modify the `Makefile` in the `tests/` directory to add your new file.
 
 {{% warning %}}
 **Caution**: There are *two* `Makefile`s in this project! There’s the root-level `Makefile` for building the library, but then there’s also a `Makefile` in the `tests` directory specifically for building test files. You should only modify the latter.
 {{% /warning %}}
 
-It’s time to write your first tests! In your `test_segment.c` file, write tests for each function in `segment.c` (that is, `segment_new`, `segment_init`, `segment_free`, `on_segment`, `orientation`, and `segment_intersect`). The former three of those functions should only need one test case, while the latter three will need multiple tests to be **covered** completely (in code with conditional branches, **coverage** is simply the notion that you should have a test case for each branch in the function). You may find it helpful to look at the other test files that are already present (`test_point.c` and `test_polygon.c`).
+It’s time to write your first tests! In your `test_segment.c` file, do the following:
 
-In addition to these tests, you should also submit a `task1.txt` file explaining each of the tests you created. For each test you write, include a summary of what the test checks for, as well as what behavior the test proves correct. For the `foo` examples above, I might write something like:
+* Write at least one test case for each of `segment_new`, `segment_init`, `segment_free`.  You may find it helpful to look at similar tests in `test_point.c` and `test_polygon.c`.
+* We already had some tests for `segment_intersect` in `test_point.c`. *Refactor* them into `test_segment.c`, and make sure they're in the correct test suite!
+* Write test cases for `on_segment` and `orientation`. Remember that, in Lab 2, you had the option of moving these functions to `segment.c`, or to keep them in `point.c` (and exposing them through `point.h`). If you moved them to `segment.c`, add the tests to `test_segment.c`; otherwise, add them to `test_point.c`. For these test cases, remember that you should have as much *coverage* as possible: your test cases should cover as many outcomes (and as many flows of execution through the individual function) as possible.
 
-> The `add` and `subtract` tests check that arithmetic logic in `C` works
-> correctly. Each of the tests check that a simple arithmetic operation produces
-> the correct result, and the `add` test additionally (no pun intended) checks
-> that addition is commutative. If these tests pass, we can confidently use the
-> `+` and `-` operators in our `C` code.
+For each of the tests (except the `segment_intersect` ones refactored from `test_point.c`), the test must include a header comment explaining the test. For example:
+
+```c
+/* Checks that two parallel segments do not intersect */
+Test(segment, no_intersection_parallel)
+{
+    check_intersect(2,  2, 4, 2,
+                    2, 10, 4, 10,
+                    false);
+}
+```
 
 # Task 2: Test-Driven Development
-**Test-Driven Development** (or **TDD** for short) is a method of programming that uses tests to guide implementation. The goal of TDD is to make it easier to create clean, correct code on the first try and reduce debugging cycles. The key innovation of TDD is that it puts tests *before* code in the development cycle. A TDD development cycle looks something like this:
+*Test-Driven Development* (or *TDD* for short) is a method of programming that uses tests to guide implementation. The goal of TDD is to make it easier to create clean, correct code on the first try and reduce debugging cycles. The key innovation of TDD is that it puts tests *before* code in the development cycle. A TDD development cycle looks something like this:
 
 1. Write tests that cover all behavior of the interface you’re implementing
 2. Write skeleton functions (i.e. functions that have the correct type signature but return dummy values, and don’t contain any logic) so that your program compiles
@@ -132,17 +165,25 @@ By all means, please make more commits as you write individual tests and impleme
 
 {{% /warning %}}
 
-Next, let’s implement a few slightly more complex functions that compute things about circles: `circle_diameter`, `circle_circumference`, and `circle_area`. Each of these functions should take a pointer to a `circle_t` struct as input, and return a `double`. The logic should be self-explanatory. When writing tests, you may find the function `cr_assert_float_eq` helpful. As you know, floating-point arithmetic on computers is not 100% accurate; `cr_assert_float_eq` allows you to check that the first value you supply to it is within some range of the second value. For example:
+Next, let’s use TDD to implement a few slightly more complex functions that compute things about circles: 
+
+* `circle_diameter`, `circle_circumference`, and `circle_area`. Each of these functions should take a pointer to a `circle_t` struct as input, and return a `double`. The logic should be self-explanatory. 
+* `circle_overlap`: Takes pointers to two `circle_t` structs as input, and returns one of the following values:
+  * `0`: The circles do not overlap in any way.
+  * `1`: The circles overlap at a singular point (you do not need to compute this point)
+  * `2`: The circles overlap, and the area of overlap is non-zero (you do not need to compute this area). Note that this also includes a circle being wholly contained inside another circle.
+
+You are allowed to consult online sources to find the exact formula for determining whether two circles overlap (this is often referred to the *intersection* of two circles). As usual, you must cite these sources.
+
+When writing the tests for the first three functions, you may find the function `cr_assert_float_eq` helpful. As you know, floating-point arithmetic on computers is not 100% accurate; `cr_assert_float_eq` allows you to check that the first value you supply to it is within some range of the second value. For example:
 
 ```c
 circle_t *c = circle_new(point_new(0, 0), 5)
 cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, “Circle area wasn’t correct!”);
 ```
 
-This checks whether or not our `circle_area` function is within 10^-4 (0.0001) of the expected value.
+This checks whether or not our `circle_area` function is within 10<sup>-4</sup> (0.0001) of the expected value.
 
 As above, you should use the TDD workflow when implementing these new functions.
 
-Finally, you should add a `task2.txt` file that explains each test in the same manner as task 1.
-
-Congratulations, you are now done with lab 5!
+Finally, as before, you should include header comments in all the tests you write.
