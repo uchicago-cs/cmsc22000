@@ -141,6 +141,16 @@ By this point in your CS studies, you’ve probably experienced the following at
     </item>
     
     <item>
+      <title>Lab 6: Continuous Integration</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab6/</link>
+      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab6/</guid>
+      <description>Due: Thursday, May 10th, 4pm
+Continuous Integration, or CI, is the practice of frequently merging developers’ work into a mainline branch in a version control system like Git. CI almost always involves running an extensive set of test cases every time such a merge happens, or even every time new code is committed to the repository (not just on the mainline branch, but also on other branches). Thus many version control systems facilitate CI by providing mechanisms to trigger certain actions when code is pushed to a repository.</description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://uchicago-cs.github.io/cmsc22000/description/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
