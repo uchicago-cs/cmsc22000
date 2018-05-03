@@ -55,7 +55,11 @@ Each job has a number of options you can specify. Let’s explore some of these 
         only: 
           - master
 
-This file defines a single job called `hello:build` that builds the simple “Hello, world!” program in `lab6/hello/`. The options we’ve specified in the job are the following:
+This file defines a single job called `hello:build` that builds the simple “Hello, world!” program in `lab6/hello/`. 
+
+Be careful with the colon after `hello:build`! That is the colon that goes after the name of the job (and is not part of the job name itself).
+
+The options we’ve specified in the job are the following:
 
 `stage` defines the job stage. The possible stages are `build`, `test`, and `deploy`. These are the stages that are part of the software development process! We have already covered building and testing in previous labs, and we will cover deployment next week. Using `stage` lets you group jobs into different stages, and jobs that are part of the same stage are executed in parallel. If `stage` isn’t specified, it is set to `test` by default.
 
