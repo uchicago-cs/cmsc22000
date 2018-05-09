@@ -25,6 +25,12 @@ The course is divided into two phases:
 
 **Topic**: Working in Teams
 
+### April 20
+
+**Speaker**: Francesca Slade, Software Engineer, [Google](https://www.google.com/)
+
+**Topic**: Code Reviews at Google
+
 ### April 27
 
 **Speaker**: [Matt Trahan](https://www.linkedin.com/in/matt-trahan-b274253/), Director Of Software Development, [Narrative Science](https://narrativescience.com/)
@@ -35,11 +41,17 @@ The course is divided into two phases:
 
 **Speaker**: [Jenny Farver](https://twitter.com/jennyFarver) - CTO, [Popular Pays](https://www.popularpays.com/)
 
-**Topic**: Working with non-Engineers
+**Topic**: Product Development (and working with non-engineers)
 
 #### May 11
 
 **Speaker**: [Q McCallum](http://qethanm.cc/), Independent Consultant
+
+**Topic**: Professional Software Development: It's More Than Just Code
+
+#### May 18
+
+**Speaker**: TBD
 
 **Topic**: TBD
 
