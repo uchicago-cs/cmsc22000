@@ -16,17 +16,28 @@ In this lab, you will deploy an application to [Heroku](https://www.heroku.com/)
 # Task 0: Setup
 [0 Points]
 
-In this lab, we'll be working with the small [Flask](http://flask.pocoo.org/) web application we demonstrated in class. Don't worry: while the app is implemented in Python, no Python knowledge is necessary for this lab. First, you'll make a **fork** of the app. We covered forking in the [Advanced Git Lab]({{< relref "advanced-git.md" >}}), so you may want to review that lab if you're not 100% clear on what a fork is. In a nutshell, a fork is a new copy of a project under your own username. Forking a repository allows you to freely experiment with changes without affecting the original project (unless you choose to contribute back to the original project and the owners accept your contribution). Forking and then submitting pull requests across a fork is a very common practice in open source software development.
+You should already have the “upstream” remote set up in your repository. If you do, simply run
+
+    $ git pull upstream master
+
+to get the files for this lab. If you don’t have the “upstream” remote set up, follow task 0 from [Lab 2]({{< relref "lab2.md" >}}).
+
+Once you've pulled from upstream, there should be a `lab7` directory in your local repository with a `tasks.txt` file. In this lab, you will just have to copy-paste a few URLs that we will use to verify that you've done the work in this lab.
+
+Next, in this lab we'll be working with the small [Flask](http://flask.pocoo.org/) web application we demonstrated in class. Don't worry: while the app is implemented in Python, no Python knowledge is necessary for this lab. First, you'll make a **fork** of the app. We covered forking in the [Advanced Git Lab]({{< relref "advanced-git.md" >}}), so you may want to review that lab if you're not 100% clear on what a fork is. In a nutshell, a fork is a new copy of a project under your own username. Forking a repository allows you to freely experiment with changes without affecting the original project (unless you choose to contribute back to the original project and the owners accept your contribution). Forking and then submitting pull requests across a fork is a very common practice in open source software development.
 
 You can fork the `cs220-helloapp` repository by going [here](https://github.com/uchicago-cs/cs220-helloapp) and clicking "Fork" in the upper right hand corner.
 
-Once the fork has completed, you can clone it and begin your work.
+Once the fork has completed, you can clone it and begin your work. Remember to do this *outside* of your individual GitLab repository! (i.e., do _not_ run the following command in the same directory that contains your `lab1`, `lab2`, etc. directories, or inside the `lab7` directory). 
 
 ```
 $ git clone https://github.com/[yourusername]/cs220-helloapp.git
 
 ```
 
+Edit your `tasks.txt` file and include the URL of your forked `cs220-helloapp` repository on GitHub. 
+
+Careful! Remember that your `tasks.txt` is in your personal repository on GitLab (with all your other lab files). You will _only_ be using that repository to edit your `tasks.txt` file. The rest of your work will happen on the forked `cs220-helloapp` repository you just created.
 
 # Task 1: Create a Heroku App
 [20 points]
@@ -42,6 +53,8 @@ Once you've created your account, you're ready to create a Heroku app.
 3. Under "app-name" title your app "[cnetID]-cs220-lab7". This means that the url for your app will be "https://[cnetID]-cs220-lab7.herokuapp.com"
 
 You've created your app! But navigate to "https://[cnetID]-cs220-lab7.herokuapp.com". As you can see, there's nothing there. In the coming tasks we will get the helloapp up and running on this URL.
+
+Before continuing, edit your `tasks.txt` file and include the URL of your app on Heroku. 
 
 # Task 2: Deploy using Heroku CLI
 [20 points]
@@ -179,4 +192,11 @@ Now, we're going to make a change that doesn't make the tests fail, to verify th
 ```
 
 Now, commit your changes and push to GitHub. Once the CI tests pass, your updated app should be available on Heroku, and you will be done with this lab! If your updated app doesn't deploy, check the "Activity" tab on your Heroku app dashboard, and see what the issue is: if it seems like it deployed correctly, you may simply need to wait a few minutes to see the website updated.
+
+### Submitting your lab
+
+Before submitting, make sure you've committed your changes to the `lab7/tasks.txt` file (remember you can run `git status` to check this). Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
+
+    chisubmit student assignment register lab7
+    chisubmit student assignment submit lab7
 
