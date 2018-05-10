@@ -151,6 +151,17 @@ Continuous Integration, or CI, is the practice of frequently merging developersâ
     </item>
     
     <item>
+      <title>Lab 7: Deployment</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab7/</link>
+      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab7/</guid>
+      <description>Due: Thursday, May 17th, 4pm
+Last week, you learned about Continuous Integration, which deals with how application code makes it to the master branch. But how do our applications make it to the real world, where other people can use them?
+Deployment refers to the processes by which software systems are made available for use (a related term, delivery, refers to making software available specifically to end-users). The exact deployment pipeline can vary from one project to another.</description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://uchicago-cs.github.io/cmsc22000/description/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
