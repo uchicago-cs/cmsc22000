@@ -4,7 +4,7 @@ date: 2018-01-26
 publishdate: 2018-01-26
 ---
 
-**Due:** Thursday, May 170th, 4pm
+**Due:** Thursday, May 17th, 4pm
 
 Last week, you learned about Continuous Integration, which deals with how application code makes it to the master branch. But how do our applications make it to the *real world*, where other people can use them? 
 
