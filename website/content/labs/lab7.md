@@ -159,6 +159,15 @@ As you'll notice, you're still able to deploy your app. But it's now returning t
 
 Is there a way we could prevent this, without manually checking every time? It would be nice if we could just deploy automatically from our GitHub repo, and only after CI tests pass.
 
+Before continuing, make sure that you also push to your GitHub repository:
+
+```
+$ git push
+```
+
+That way, we can check that you've followed the steps described in this task.
+
+
 # Task 3: Create .travis.yml for cs220-helloapp
 [40 points]
 
