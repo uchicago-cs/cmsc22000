@@ -51,7 +51,7 @@ However, it can be helpful to learn the basics of how to use Docker, and you can
 
 Completing this task requires running the VM on your own machine (not on a CSIL machine), so this task is optional and ungraded, but strongly recommended, specially if you’ve already installed the UChicago CS VM.
 
-Once you’ve started the UChicago CS VM, open a terminal. We will first need to install Redis and Docker on the virtual machine. You can install Redis by running the following commands (these instructions are based on the official Redis [installation documentation](https://redis.io/download):
+Once you’ve started the UChicago CS VM, open a terminal. We will first need to install Redis and Docker on the virtual machine. You can install Redis by running the following commands (these instructions are based on the official Redis [installation documentation](https://redis.io/download)):
 
     $ wget http://download.redis.io/redis-stable.tar.gz
     $ tar xzf redis-stable.tar.gz 
@@ -61,12 +61,12 @@ Once you’ve started the UChicago CS VM, open a terminal. We will first need to
 
 Notice how that last command is run with "sudo". This basically instructs the operating system to run the command ("make install") with root privileges. You will be asked to enter your password which, on the CS VM, is "uccs" by default. The reason we need to run this command with "sudo" is because it involves installing the Redis libraries and binaries in system-wide locations, which require root privileges to modify.
 
-Next, before installing Docker, we need to make a few minor changes to Ubuntu’s configuration. Click on the Ubuntu icon on the top-left of the screen, and type "Software" in the "Seach your computer" field. One of the applications that will appear is "Software & Updates". Click on it. Then, click on the "Updates" tab and, under "Install updates from:" make sure the following are selected:
+Next, before installing Docker, we need to make a few minor changes to Ubuntu’s configuration. Click on the Ubuntu icon on the top-left of the screen, and type "Software" in the "Search your computer" field. One of the applications that will appear is "Software & Updates". Click on it. Then, click on the "Updates" tab and make sure the following are selected under "Install updates from:":
 
 * Important security updates
 * Recommended updates
 
-Now, go back to the terminal and run the following commands (these are based on the official Docker [installation documentation](https://docs.docker.com/install/linux/docker-ce/ubuntu/):
+Now, go back to the terminal and run the following commands (these are based on the official Docker [installation documentation](https://docs.docker.com/install/linux/docker-ce/ubuntu/)):
 
     $ sudo apt-get update
     $ sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
@@ -116,7 +116,9 @@ You can now try running a few Redis commands from the Redis CLI:
     1) "name"
     2) "email"
 
+{{% warning %}}
 Caveat: We’re running Redis inside a Docker container to demonstrate how Docker works, and because that will be the only way of running Redis on Travis. However, if you plan to use Redis on your VM (e.g., when testing your project), you should just run "redis-server" directly on the VM.
+{{% /warning %}}
 
 On a separate terminal, you can also try running a few Docker commands:
 
@@ -129,7 +131,7 @@ On a separate terminal, you can also try running a few Docker commands:
 ## Task 2: Git Submodules
 [20 points]
 
-Your `cs220-redis-example` has two directories:
+Your `cs220-redis-example` repository has two directories:
 
 * `module/` - This directory contains a Redis module that adds a few extra commands. We will be using just one of them: EXAMPLE.HGETSET, which does an HGET operation followed by an HSET operation. In other words, it gets the value of a key in a hash table (which will be returned by the command), and then sets the value of that key to a new value. Note: this example module is the same example module provided by Redis.
 * `tests/` - This directory contains a simple program that uses the hiredis library to connect to a Redis server to test the HGETSET operation.
@@ -138,9 +140,9 @@ However, to compile the module we need some files included in the Redis Module S
 
 We could, of course, just clone those repositories and copy them into our repository. This is usually a bad idea, because it makes it harder to track updates in the original code. For example, if hiredis releases a new version, we would have to manually copy over their updated version into our repository.
 
-In general, the problem we’re facing is that there is some code produced by a "third party" that we would like to include in our project. In Git this is typically handled by using submodules, which effectively allow us to include "third party repositories" in our own repository (in other version control systems, this is sometimes referred to as "vendor branches").
+In general, the problem we’re facing is that there is some code produced by a "third party" that we would like to include in our project. In Git this is typically handled by using *submodules*, which effectively allow us to include "third party repositories" in our own repository (in other version control systems, this is sometimes referred to as "vendor branches").
 
-We can add submodules by using the git submodule command:
+We can add submodules by using the `git submodule` command:
 
     $ git submodule add https://github.com/RedisLabs/RedisModulesSDK.git
     Cloning into '/tmp/cs220-redis-example/RedisModulesSDK'...
@@ -181,9 +183,9 @@ If you go to your repo on the GitHub website (https://github.com/[yourusername]/
 
 Now, it will be possible for you to build hiredis, as well as the module and the tests:
 
-$ make -C hiredis/
-$ make -C module/
-$ make -C tests/
+    $ make -C hiredis/
+    $ make -C module/
+    $ make -C tests/
 
 However, you can't run any of this just yet. We need a Redis server for that!
 
@@ -201,6 +203,8 @@ If you forgot to use the `--recursive` option, you can also do this after the re
 
 
 ## Task 3: Using Docker in a Travis build
+
+[30 points]
 
 Testing the module requires running Redis, so we will need to set up our Travis build to run a Redis server while testing our module. We will do this by telling Travis to use a Docker container with Redis installed in it, and to run our module in that container.
 
@@ -241,7 +245,7 @@ You should now be able to run the test program:
 {{% /warning %}}
 
 
-Go ahead and add a `.travis.yml` file to your repository with the following contents:
+Add a `.travis.yml` file to your repository with the following contents:
 
     language: c
 
@@ -260,6 +264,8 @@ Go ahead and add a `.travis.yml` file to your repository with the following cont
      - make -C tests/
      - ./tests/test-hgetset
 
+Go ahead and commit and push this file. The Travis build may take a few minutes; just read ahead before checking the status of your build.
+
 There are a few differences with the Travis files we've seen previously:
 
 * The `sudo: required` option tells Travis that we need the ability to run `sudo` (this affects how Travis will launch our build)
@@ -268,7 +274,7 @@ There are a few differences with the Travis files we've seen previously:
 
 Other than that, the `script` portion should be pretty self-explanatory: we build hiredis and the tests, and we run the sample program.
 
-Go ahead and commit and push the `.travis.yml` file. The build on Travis may take a few minutes, as it will need to download the necessary container images before it can build and run our code. If the build succeeds, you should be able to see this towards the end of the build's output:
+The build on Travis may take a few minutes, as it will need to download the necessary container images before it can build and run our code. If the build succeeds, you should be able to see this towards the end of the build's output:
 
     $ ./tests/test-hgetset 
     PING: PONG
@@ -299,13 +305,17 @@ Heroku already provides support for creating pipelines, and ours will have three
 
 ## Task 1: Create a Pipeline
 
+[0 points]
+
 In this task, you’ll create a new Heroku Pipeline, with your `cnetid-cs220-lab7` application as the staging application. Note that a common convention is for staging applications to have `-staging` as a suffix, but it won't be necessary for you to rename your app in this lab.
 
 To create the pipeline, log into Heroku, and select the app you created in Lab 7. Under the deploy tab, select "Choose a pipeline" and then "Create new pipeline". Name your pipeline `CNETID-pipeline` (where `CNETID` should be replaced with your CNetID). You will also be asked to specify "Choose a stage to add this app to". Make sure that "staging" is selected. Finally, click on "Create pipeline".
 
-You will now be shown the pipeline's configuration (you will also be able to access this page through your dashboard, which will now include a `CNETID-pipeline` pipeline). Notice how there is no production application in your pipeline. In the real world, this would mean that your end users don’t see anything!!!
+You will now be shown the pipeline's configuration (you will also be able to access this page through your dashboard, which will now include a `CNETID-pipeline` pipeline). Notice how there is no production application in your pipeline. In the real world, this would mean that your end users don’t see anything!
 
 ##  Task 2: Add a production application
+
+[10 points]
 
 In this task, you’ll add a production application to your pipeline. Unlike the app in staging, your production app won't be associated with any specific repo. Instead, once your staging application is good to go, you can *promote* it to be the production application. That means the production application will just take the staging app, make a copy of it, and run that copy as the production app. This means that, if you make changes to the staging app, those changes whon't appear in production until you explicitly promote the staging app to production again. 
 
@@ -315,6 +325,8 @@ To add a production application, all you have to do is go to your pipeline and, 
 
 
 ## Task 3: Promoting from staging to production
+
+[20 points]
 
 First, let's make a change to our HelloApp: it's time to upgrade to HelloApp 2.0!
  
@@ -329,6 +341,8 @@ Changes from staging are *not* automatically deployed to production. This is int
 So, let's go ahead and promote our staging application to production. You can do this simply by pressing the "Promote to production..." button in the staging app of your pipeline. Once you do this, your staging app (CNETID-cs220-lab7.herokuapp.com) and your production app (CNETID-cs220-prod.herokuapp.com) should look exactly the same.
 
 ## Task 4: Create Review Apps - Helloapp 3.0
+
+[20 points]
 
 Currently, in order to make changes to staging, you have to directly modify the master branch of your repo. Can you imagine why this is a bad idea?
 
@@ -359,7 +373,7 @@ The build should succeed, so the pull request app should automatically deploy. I
 
 Now, you can check `[cnetid]-cs220-lab7-pr-1.herokuapp.com` and see your pull request app! 
 
-If everything checks out, merge your PR. This should push the changes to staging, since you set up automatic deploys for your app last time (please note that it may take a few minutes for this to happen). Once this succeeds, you can promote your final app to production. 
+If everything checks out, merge your PR. This should push the changes to staging, since you set up automatic deploys for your app last time (please note that it may take a few minutes for this to happen). Once this succeeds, go ahead and promote your final app to production. 
 
 ### Submitting your lab
 
