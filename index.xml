@@ -162,6 +162,17 @@ Deployment refers to the processes by which software systems are made available 
     </item>
     
     <item>
+      <title>Lab 8: More CI and Deployment</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab8/</link>
+      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab8/</guid>
+      <description>Due: Thursday, May 24th, 4pm
+In this lab, we will continue to explore concepts related to Continuous Integration and Deployment. The lab is divided into two main parts: one where we will see how we can use Docker containers as part of a CI build, and one where we will expand the deployment pipeline we saw in our previous lab.
+Part I: Using Containers in CI It is often necessary for a CI build to use a specific software environment to run a series of tests.</description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://uchicago-cs.github.io/cmsc22000/description/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
