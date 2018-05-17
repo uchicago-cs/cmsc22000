@@ -17,7 +17,7 @@ Most CI systems allow you to install software before the CI jobs are run. For ex
 
 An alternative approach is to use _containers_, a sort of lightweight virtual machine that provides a specific software environment we need. Unlike virtual machines, containers are typically used to package a specific piece of software, instead of providing a full OS environment (although this is also possible with containers)
 
-For example, a Redis container would include a Redis server and, by default, running the container would immediately start that Redis server, instead of taking us to a UNIX shell where we have to run the Redis serve ourselves. So, if we wanted to run Redis during a CI build, all we would need to do is download a Redis _container image_, and run that container during the CI build. A popular container manager is Docker, which we will be using in this lab. Make sure to read their [What is a Container](https://www.docker.com/what-container) page, which provides a more in-depth explanation of what a container is, and how it compares to virtual machines.
+For example, a Redis container would include a Redis server and, by default, running the container would immediately start that Redis server, instead of taking us to a UNIX shell where we have to run the Redis server ourselves. So, if we wanted to run Redis during a CI build, all we would need to do is download a Redis _container image_, and run that container during the CI build. A popular container manager is Docker, which we will be using in this lab. Make sure to read their [What is a Container](https://www.docker.com/what-container) page, which provides a more in-depth explanation of what a container is, and how it compares to virtual machines.
 
 ## Task 0: Setup
 [0 Points]
@@ -38,7 +38,9 @@ Once the fork has completed, you can clone it and begin your work. Remember to d
 
 Edit your tasks.txt file and include the URL of your forked cs220-redis-example repository on GitHub.
 
+{{% warning %}}
 Careful! Remember that your tasks.txt is in your personal repository on GitLab (with all your other lab files). You will only be using that repository to edit your tasks.txt file. The rest of your work will happen on the forked cs220-redis-example repository you just created.
+{{% /warning %}}
 
 ## Task 1: Running Docker in the CS VM [Optional]
 [0 Points]
@@ -157,7 +159,7 @@ We can add submodules by using the git submodule command:
 
 You’ll notice that two new directories have appeared in your repository, containing the files that are in the original RedisModulesSDK and hiredis repositories.
 
-Before we continue, we need to commit these submodules. If you run git status, you’ll see that GIt is aware that we’ve added two submodules (they are tracked in a special file called `.gitsubmodules`) but they have not yet been committed:
+Before we continue, we need to commit these submodules. If you run `git status`, you’ll see that Git is aware that we’ve added two submodules (they are tracked in a special file called `.gitmodules`) but they have not yet been committed:
 
     $ git status
     On branch master
@@ -305,7 +307,9 @@ You will now be shown the pipeline's configuration (you will also be able to acc
 
 ##  Task 2: Add a production application
 
-In this task, you’ll add a production application to your pipeline. Unlike the app in staging, your production app won't be associated with any specific repo. Instead, once your staging application is good to go, you can *promote* it to be the production application. That means the production application will just take whatever is in the staging app, and will run that in production. Later in the lab you may see Heroku messages that talk about "slugs"; in Heroku parlance, a "slug" is a pre-compiled version of your app that is ready to run. So, when we promote to production, we don't actually rebuild the application; we just take the "slug" that is in staging, and copy it to production.
+In this task, you’ll add a production application to your pipeline. Unlike the app in staging, your production app won't be associated with any specific repo. Instead, once your staging application is good to go, you can *promote* it to be the production application. That means the production application will just take the staging app, make a copy of it, and run that copy as the production app. This means that, if you make changes to the staging app, those changes whon't appear in production until you explicitly promote the staging app to production again. 
+
+Later in the lab you may see Heroku messages that talk about "slugs"; in Heroku parlance, a "slug" is a pre-compiled version of your app that is ready to run. So, when we promote to production, we don't actually rebuild the application; we just take the "slug" that is in staging, and copy it to production.
 
 To add a production application, all you have to do is go to your pipeline and, under "Production", click on "Add app" and then "Create new app". Name the application `CNETID-cs220-prod` (where `CNETID` should be replaced with your CNetID). Notice how, if you try to access your app on Heroku (just go to http://CNETID-cs220-prod.herokuapp.com/), you'll just see a placeholder page, not HelloApp. That's because we haven't promoted our staging app to production yet.
 
@@ -320,7 +324,7 @@ First, let's make a change to our HelloApp: it's time to upgrade to HelloApp 2.0
 
 Now, notice that if you navigate to your staging website (CNETID-cs220-lab7.herokuapp.com) you’ll see your change. But if you navigate to your production website (CNETID-cs220-prod.herokuapp.com), you'll still see a placeholder page. Why is this? 
 
-Changes from staging are *not* automatically deployed to production. This is intentional: we often don’t want things to automatically deploy to production, since we might risk breaking the public-facing version of our app. Pushing code that is broken is known as "breaking the build", and you absolutely don't want that to propagate to production (by the way, if you know anyone who has done a software development internship or works in software development, ask them if they've ever "broken the build"; We guarantee you'll hear some entertaning stories) By having a pipeline, we can ensure that users continuously see our production, without mistakes, and we only update it when we’re absolutely sure. 
+Changes from staging are *not* automatically deployed to production. This is intentional: we often don’t want things to automatically deploy to production, since we might risk breaking the public-facing version of our app. Pushing code that is broken is known as "breaking the build", and you absolutely don't want that to propagate to production (by the way, if you know anyone who has done a software development internship or works in software development, ask them if they've ever "broken the build"; we guarantee you'll hear some entertaning stories). By having a pipeline, we can ensure that users continuously see our production, without mistakes, and we only update it when we’re absolutely sure. 
 
 So, let's go ahead and promote our staging application to production. You can do this simply by pressing the "Promote to production..." button in the staging app of your pipeline. Once you do this, your staging app (CNETID-cs220-lab7.herokuapp.com) and your production app (CNETID-cs220-prod.herokuapp.com) should look exactly the same.
 
