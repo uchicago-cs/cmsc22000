@@ -183,10 +183,15 @@ $ make -C hiredis/
 $ make -C module/
 $ make -C tests/
 
+However, you can't run any of this just yet. We need a Redis server for that!
+
 {{% warning %}}
-TODO: Warning about cloning a repo with submodules.
+Cloning a repository does not automatically clone the submodules in that repository, instead showing them as empty directories. If you clone your repository somewhere else, you need to clone it like this:
 
     git clone --recursive REPO_URL
+
+If you forgot to use the `--recursive` option, you can also do this after the repository has been cloned:
+
     git submodule update --init --recursive
 
 {{% /warning %}}
@@ -195,19 +200,35 @@ TODO: Warning about cloning a repo with submodules.
 
 ## Task 3: Using Docker in a Travis build
 
-TODO: The commands below are valid, but this task still needs to be fleshed out.
+Testing the module requires running Redis, so we will need to set up our Travis build to run a Redis server while testing our module. We will do this by telling Travis to use a Docker container with Redis installed in it, and to run our module in that container.
 
-Testing this module requires running Redis and, specifically, with this new module.
+Our container is specified using the `Dockerfile` file. You do not need to understand everything in that file, except that we use the `FROM redis` command to tell Docker that our container should simply use the standard Redis container that is available on the Docker Hub. Then, all we need to do is install our module in it, and make sure that we start Redis with the `--loadmodule` option to load our module.
 
-If you setup Docker on the VM, you can run this:
+{{% warning %}}
+If you've set up Docker on your VM, you can also test the module on the VM, essentially running the same commands that Travis will be running. Start by cloning your repository inside the VM:
 
     $ git clone --recursive https://github.com/[yourusername]/cs220-redis-example
+
+Then, go into the repository directory:
+
     $ cd cs220-redis-example
+
+And use this command to build a container image with Redis *and* our module:
+
     $ sudo docker build -t redis-example . 
+
+This may take a while, as Docker has to download a number of other container images to build ours.
+
+Finally, you can run the container like this:
+
     $ sudo docker run -d -p 6379:6379 redis-example
-    $ sudo docker container list
 
+In a separate terminal, build hiredis and the tests:
 
+    $ make -C hiredis/
+    $ make -C tests/
+
+You should now be able to run the test program:
 
     $ ./tests/test-hgetset 
     PING: PONG
@@ -215,8 +236,10 @@ If you setup Docker on the VM, you can run this:
     HGETSET: Random J. Redisuser
     HGET: Alan T. Foobar
 
+{{% /warning %}}
 
-Otherwise, add this .travis.yml file to the repo:
+
+Go ahead and add a `.travis.yml` file to your repository with the following contents:
 
     language: c
 
@@ -234,6 +257,24 @@ Otherwise, add this .travis.yml file to the repo:
      - make -C hiredis/
      - make -C tests/
      - ./tests/test-hgetset
+
+There are a few differences with the Travis files we've seen previously:
+
+* The `sudo: required` option tells Travis that we need the ability to run `sudo` (this affects how Travis will launch our build)
+* The `services` option tells Travis that we will need access to Docker's tools, which includes the ability to build and run our own containers.
+* The `before_install` option includes the Docker commands we need to run our container. Notice how they're the same as the ones you can run insider your VM. We've also included `docker container list` to double-check that our container is running.
+
+Other than that, the `script` portion should be pretty self-explanatory: we build hiredis and the tests, and we run the sample program.
+
+Go ahead and commit and push the `.travis.yml` file. The build on Travis may take a few minutes, as it will need to download the necessary container images before it can build and run our code. If the build succeeds, you should be able to see this towards the end of the build's output:
+
+    $ ./tests/test-hgetset 
+    PING: PONG
+    HSET: (null)
+    HGETSET: Random J. Redisuser
+    HGET: Alan T. Foobar
+
+If the build fails or you do not see this output, make sure to ask for help.
 
 
 # Part II: A complete deployment pipeline
