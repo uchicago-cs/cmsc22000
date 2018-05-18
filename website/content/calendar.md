@@ -51,9 +51,9 @@ The course is divided into two phases:
 
 #### May 18
 
-**Speaker**: TBD
+**Speaker**: [Chelsea Troy](https://chelseatroy.com/), Software Engineer, [Ascent](https://www.ascentregtech.com/)
 
-**Topic**: TBD
+**Topic**: Deploying Software
 
 #### May 25
 
