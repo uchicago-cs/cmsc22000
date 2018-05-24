@@ -196,7 +196,9 @@ $ git submodule add https://github.com/rxi/log.c lab9/tictactoe/lib/log.c
 # Task 5: Up and running with `log.c`
 [40 points]
 
-Your task is simple: read the code and figure out what it does, and then add logging statements at the appropriate log levels throughout the code. You can `#include "log.c/log.h"` (again - confusing library name) to get those functions, and you can check out the `log.c` [GitHub page](https://github.com/rxi/log.c) for documentation. 
+Your task is simple: read the code and figure out what it does, and then add logging statements at the appropriate log levels throughout the code. You can `#include "log.c/src/log.h"` (again - confusing library name) to get those functions, and you can check out the `log.c` [GitHub page](https://github.com/rxi/log.c) for documentation.
+
+Take into account that you will also need to modify the `Makefile` to also compile the `log.c` file (inside `lib/log.c/src/`) and to search for include files inside the `lib/` directory (remember that this can be done using the `-I` parameter to `gcc`, which you can specify in the `CFLAGS` variable in the `Makefile`). 
 
 To select the log level, we have already added a `-v` parameter to the program that allows you to control the "verbosity" of the program. This is a common command-line convention, where `-v` means "be verbose", `-vv` means "be very verbose", `-vvv` means "be super verbose", etc. Inside the `main()` function, the `verbosity` variable will contain the number of `v`s that were specified in the command-line. You can use this to set the log level appropriately. For example, `-v` could correspond to `INFO`, `-vv` to `DEBUG`, and `-vvv` to `TRACE`. This allows us to easily control the amount of output (and the level of detail) of our program.
 
