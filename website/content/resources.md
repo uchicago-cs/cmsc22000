@@ -12,7 +12,7 @@ Software Engineering Books
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://books.google.com/books/about/Clean_Code.html?id=dwSfGQAACAAJ), Robert C. Martin, Prentice Hall, 2008.
 * [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://books.google.com/books/about/Clean_Architecture.html?id=uGE1DwAAQBAJ), Robert C. Martin, Prentice Hall, 2017.
 * [The Pragmatic Programmer](https://en.wikipedia.org/wiki/The_Pragmatic_Programmer), Andrew Hunt, David Thomas. Addison-Wesley Professional, 1999.
-
+* [Continuous Delivery](https://books.google.com/books/about/Continuous_Delivery.html?id=6ADDuzere-YC&hl=en), Jez Humble, David Farley. Pearson Education, 2010.
 
 Software Engineering Articles
 -----------------------------

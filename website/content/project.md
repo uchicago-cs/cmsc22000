@@ -73,64 +73,90 @@ The **full text search** tool must allow a user to open a text file, to specify 
 
 ## Project Evaluation
 
+{{% note %}}
+This is the grading scheme used in Spring 2018, which is likely to change in Spring 2019. See additional note below.
+{{% /note %}}
+
 Unlike a traditional programming assignment or project, the exact final outcome of the project is not known in advance. Of course, we do have high-level goals and requirements (which have been described above) and, while those requirements will help us measure whether the project is “done”, they are not a strict rubric. As we saw in class, this is one of the strengths (and challenges) of agile software development: you can re-evaluate requirements and make design changes quickly, but there is no detailed requirements document that you can use to check whether you’ve contractually fulfilled your obligations to a customer.
 
-As such, the primary mechanism to evaluate your work will be via the tasks (in the Scrum sense of the work) that you complete. At each sprint review, the team as a whole decides what tasks must be completed by the next sprint review, and individual developers will claim tasks, and you will be evaluated, as a team and individually, on the outcome of those tasks. For the purposes of evaluation, the following rules will apply.
-
-### Claiming Tasks
-**The Most Important Rule To Remember**: *If you claim a task, you are agreeing to be evaluated on the outcome of that task*. 
-
-Tasks are not assigned by a manager: the tasks are decided as a team, and individual developers claim them. You should claim tasks willingly, and knowing that you are going to be evaluated on your work on that task.
-
-### Task Scoring
-Tasks are categorized by difficulty: Trivial, Easy, Medium, Hard, Challenging. Your Senior Developer will determine the difficulty of each task (either at the sprint review, or shortly afterwards). Trivial tasks are worth 1 point, Easy tasks are worth 2 points, etc. 
-
-Your Senior Developer may reclassify the difficulty of a task if it turns out to be more challenging than expected. They will never reclassify a task so it will be worth less points than you originally signed up for.
-
-You get the points for a task if it passes a code review, and is merged into the master branch.
-
-### Code Reviews
-Once a developer finishes their work on a task, it must undergo a review by another developer and then by the Senior Developer.
-If the Senior Developer signs off on a task without requesting any changes, you get full points for the task. However, if the Senior Developer requests changes, the following penalties will apply:
-
-* -5% if the Senior Developer signs off on your task after those changes have been completed (this penalty will be only 2% if the changes are only style-related)
-* -15% if you go through more than one round of changes requested by the Senior Developer. 
-
-Take into account that you can go through as many rounds of changes as you want with the other developer that reviews your code (so it is in your best interest to get as much out of that review before you ask your Senior Developer to review your task)
-
-### Individual Sprint Score
-Your individual score at the end of a sprint is the sum of the points of the tasks you completed, divided by the total possible points of the tasks you claimed responsibility for. 
-
-For example, if you claimed two Easy tasks and a Medium task, your total possible score is 2 + 2 + 3 = 7. If you completed the Easy tasks with a -5% adjustment and the Medium task with a -15% adjustment, the sum of the points is 1.9 + 1.9 + 2.55 = 6.35. So, your individual score would be 6.35 / 7 = 90.7%
-
-**Backlog exception**: It is normal, and even expected, that some tasks will remain undone by the end of the sprint (and will simply be placed back in the backlog). These tasks will not factor into your individual score unless you complete less than 80% of the points assigned to you. The first time this happens, you will only receive a warning. The second time this happens, you will receive a 10% penalty in that sprint. If it happens a third time, you will no longer benefit from the backlog exception.
-
-Another way of thinking about this is that, in a given sprint, you have the flexibility to return 20% of your points to the backlog without being penalized for it.
-
-### Team Sprint Score
-Your team score at the end of a sprint is the sum of the points of all the tasks that were completed by the team, divided by the total possible points of all the tasks that were not returned to the backlog.
+As such, the primary mechanism to evaluate your work will be via the tasks (in the Scrum sense of the work) that you complete, as well as your pull requests to the `master` branch of your repository (which will be reviewed by a senior developer). 
 
 
-### Lazy Developer Penalty
-If a team completes 100 points of work in a sprint, it will be rare for the work to be divided exactly evenly (20 points per developer). However, we also want to avoid situations where three developers do most of the work, while the rest just work through some trivial tasks. So, in a given sprint, each developer must complete at least (T / N) * 0.8 points of work, where T is the total number of points earned by the team in that sprint, and N is the number of developers.
+Determining your individual score on the project is done in three steps:
 
-The first time a developer falls under this threshold, they will receive a warning. The second time this happens, they will get a 10% penalty in their individual score. After that, the penalty rises to 20%.
+1. Adding up your issue points
 
-A more positive way of framing this penalty is that, if a developer is really busy with other work during a given sprint, it gives them the flexibility to take on less work in that sprint without being penalized for it. However, it is expected that the developer would make their team aware of this when the tasks for a given sprint are being assigned.
+2. Adding up your pull request points
+
+3. Normalizing your total score
+
+### Step 1: Issue Points
+
+You will keep track of your tasks using GitHub issues. You must make sure that any effort you put into the project is properly documented via a GitHub issue; otherwise, we will not be aware of this work and it won't be considered when determining your individual score!
+
+Once you complete an issue, you will self-report the amount of effort it required:
+
+- Short: Less than one hour
+- Medium: Between one hour and three hours
+- Long: Between three hours and five hours
+
+Your senior developer may ask you to justify why you assigned a specific effort to a task, if it is not clear from the description (and follow-up comments) of the issue.
+
+Each issue is worth a fixed number of points:
+
+- Short: 1 point
+- Medium: 3 points
+- Long: 5 points
+
+We further apply a multiplier based on the issue's sprint:
+
+- Sprint 1: ×1
+- Sprint 2: ×2
+- Sprint 3: ×3
+- Sprint 4: ×3
+ 
+
+Finally, if three or more people worked on an issue, we apply a reduction to that issue’s points:
+
+- 3 people: -20%
+- 4 people: -40%
+- 5 people: -60%
+- 6+ people: -80%
+
+So, for example, a long issue (5 points) in Sprint 4 (multiply by 3) is worth 15 points but, if it was done between three people, then each person gets 12 points (80% of 15)
+ 
+
+We will refer to your total issue points as *IP*.
+
+ 
+### Step 2: Pull Request Points
+
+You get 15 points for each successful pull request to master, with the following limitations:
+
+- If three or more people are assignees on a pull request (i.e., if three or more people contributed code to the pull request), the points for that individual pull request are reduced in the same way as with tasks.
+- The total amount of pull request points is capped at *IP*.
+
+Your pull request points are re-computed any time your IP changes. This means that, if you completed a pull request to master, but your IP is just 6 points, you would only get 6 additional points from that pull request. However, as soon as you completed more issues, you would be able to “unlock” the remaining 9 points you earned from that pull request.
+
+ 
+### Step 3: Normalizing your Score
+
+An individual’s total score is the sum of their issue points and their pull request points. We normalize this score by assigning the lower quartile a score of 80, and a standard deviation a score of 10 points (e.g., someone who is one standard deviation above the lower quartile would get 90 points). 
+
+{{% note %}}
+If you are reading this page because you are considering taking the class in Spring 2019, please note that we will likely alter the grading scheme to avoid having to normalize scores. In Spring 2018, when the class was first taught, we painted ourselves into a corner that required using normalization to produce scores; for the record, we have a strong dislike of curving/normalization and prefer grading schemes that don't depend on whether you fall above/below a certain percentile. 
+
+In particular, it is likely that issues will be graded on a simple scale ("check minus", "check", "check plus"), with your score determined by a combination of your issues and your pull requests.
+{{% /note %}}
 
 
 ### Total Score
-Your total project score will be divided into three parts:
-* The average of your individual scores in each sprint accounts for 50% of your project score.
-* Your team’s score accounts for 40% of your project score.
-* The remaining 10% will be determined by a final presentation that your team will give during Finals Week. Details about these presentations will be posted at a later time.
 
-### Adjustments to Evaluation Scheme
+The project is worth 70% of your final grade. These 70 points are divided as follows:
 
-Since this is the first time we offer this class, we may need to adjust this evaluation scheme. We reserve the right to adjust the evaluation scheme in the following ways:
-
-* At the end of Sprint 2, we may change the evaluation scheme partially or fully, but all the work done in Sprints 1 and 2 will be evaluated using the original evaluation scheme.
-* We may change the evaluation scheme entirely and retroactively at any time but only if it does not reduce anyone’s scores.
+* 40: Your individual score
+* 20: Your team score (this will be the average of the individual scores in a team)
+* 10: Final presentation during Finals Week.
 
 
 
