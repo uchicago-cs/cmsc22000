@@ -31,9 +31,8 @@ This is technically possible, but strongly discouraged.</description>
       <pubDate>Sat, 17 Feb 2018 08:50:04 -0600</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/calendar/</guid>
-      <description>NOTE: This calendar is tentative and subject to change.
-  The course is divided into two phases:
- Lecture Phase: During the first three weeks of the quarter, the lecture sessions will involve lectures by the instructor on core concepts regarding the software development process. Project Phase: Starting in week 4, the focus of the class will shift towards the development of the course project, with team meetings on Monday, lectures on Wednesdays, and a guest lecture on Fridays.</description>
+      <description>The course is divided into two phases:
+ Lecture Phase: During the first three weeks of the quarter, the lecture sessions will involve lectures by the instructor on core concepts regarding the software development process. Project Phase: Starting in week 4, the focus of the class will shift towards the development of the course project, with team meetings on Monday, lectures on Wednesdays, and a guest lecture on Fridays.   Guest Lectures April 13 Speakers:</description>
     </item>
     
     <item>
@@ -61,8 +60,7 @@ Software Engineering Books  Software Engineering (10th Ed.), Ian Sommerville Pea
       <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/syllabus/</guid>
-      <description>NOTE: This syllabus is tentative and subject to change.
-  Course Description Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.</description>
+      <description>Course Description Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.</description>
     </item>
     
     <item>

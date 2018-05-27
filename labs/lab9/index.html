@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-26",
     "description": "",
-    "wordCount": 2771
+    "wordCount": 2718
   }
 </script>
 
@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.40.3" />
+<meta name="generator" content="Hugo 0.41" />
 
   
 <!--[if lt IE 9]>
@@ -404,9 +404,7 @@ $ git commit -m&quot;Updated Doxyfile&quot;
 
 <p>[40 points]</p>
 
-<p>Your task is simple: read the code and figure out what it does, and then add logging statements at the appropriate log levels throughout the code. You can <code>#include &quot;log.c/src/log.h&quot;</code> (again - confusing library name) to get those functions, and you can check out the <code>log.c</code> <a href="https://github.com/rxi/log.c">GitHub page</a> for documentation.</p>
-
-<p>Take into account that you will also need to modify the <code>Makefile</code> to also compile the <code>log.c</code> file (inside <code>lib/log.c/src/</code>) and to search for include files inside the <code>lib/</code> directory (remember that this can be done using the <code>-I</code> parameter to <code>gcc</code>, which you can specify in the <code>CFLAGS</code> variable in the <code>Makefile</code>).</p>
+<p>Your task is simple: read the code and figure out what it does, and then add logging statements at the appropriate log levels throughout the code. You can <code>#include &quot;log.c/log.h&quot;</code> (again - confusing library name) to get those functions, and you can check out the <code>log.c</code> <a href="https://github.com/rxi/log.c">GitHub page</a> for documentation.</p>
 
 <p>To select the log level, we have already added a <code>-v</code> parameter to the program that allows you to control the &ldquo;verbosity&rdquo; of the program. This is a common command-line convention, where <code>-v</code> means &ldquo;be verbose&rdquo;, <code>-vv</code> means &ldquo;be very verbose&rdquo;, <code>-vvv</code> means &ldquo;be super verbose&rdquo;, etc. Inside the <code>main()</code> function, the <code>verbosity</code> variable will contain the number of <code>v</code>s that were specified in the command-line. You can use this to set the log level appropriately. For example, <code>-v</code> could correspond to <code>INFO</code>, <code>-vv</code> to <code>DEBUG</code>, and <code>-vvv</code> to <code>TRACE</code>. This allows us to easily control the amount of output (and the level of detail) of our program.</p>
 
