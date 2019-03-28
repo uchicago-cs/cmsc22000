@@ -8,53 +8,194 @@ The course is divided into two phases:
 - *Lecture Phase*: During the first three weeks of the quarter, the lecture sessions will involve lectures by the instructor on core concepts regarding the software development process. 
 - *Project Phase*: Starting in week 4, the focus of the class will shift towards the development of the course project, with team meetings on Monday, lectures on Wednesdays, and a guest lecture on Fridays.
 
-{{< calendar >}}
+<table>
+    <thead>
+            <th style="width:10%"></td>
+            <th style="width:10%">Week</td>
+            <th style="width:10%">Date</td>
+            <th style="width:10%">Day</td>
+            <th>Lecture</td>
+            <th>Lab</td>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="9" style="vertical-align:middle">Lecture<br>Phase</td>
+            <td rowspan="3">1</td>
+            <td>April 1</td>
+            <td>M</td>
+            <td>Introduction</td>
+            <td rowspan="3" style="vertical-align:middle">Git</td>
+        </tr>
+        <tr>
+            <td>April 3</td>
+            <td>W</td>
+            <td>The Software Development Process</td>
+        </tr>
+        <tr>
+            <td>April 5</td>
+            <td>F</td>
+            <td>The Software Development Process</td>
+        </tr>
+        <tr>
+            <td rowspan="3">2</td>
+            <td>April 8</td>
+            <td>M</td>
+            <td>Software Design</td>
+            <td rowspan="3" style="vertical-align:middle">Software Design</td>
+        </tr>
+        <tr>
+            <td>April 10</td>
+            <td>W</td>
+            <td>Software Design</td>
+        </tr>
+        <tr>
+            <td>April 12</td>
+            <td>F</td>
+            <td>Software Design</td>
+        </tr>
+        <tr>
+            <td rowspan="3">3</td>
+            <td>April 15</td>
+            <td>M</td>
+            <td>Implementation: Linking, Libraries, etc.</td>
+            <td rowspan="3" style="vertical-align:middle">Building Software</td>
+        </tr>
+        <tr>
+            <td>April 17</td>
+            <td>W</td>
+            <td>Implementation: Build Systems</td>
+        </tr>
+        <tr>
+            <td>April 19</td>
+            <td>F</td>
+            <td>Guest Lecture</td>
+        </tr>
+        <tr>
+            <td rowspan="21" style="vertical-align:middle">Project<br>Phase</td>
+            <td rowspan="3">4</td>
+            <td>April 22</td>
+            <td>M</td>
+            <td>Project kick-off</td>
+            <td rowspan="3" style="vertical-align:middle">Debugging</td>
+        </tr>
+        <tr>
+            <td>April 24</td>
+            <td>W</td>
+            <td>Debugging</td>
+        </tr>
+        <tr>
+            <td>April 26</td>
+            <td>F</td>
+            <td>Guest Lecture</td>
+        </tr>
+        <tr>
+            <td rowspan="3">5</td>
+            <td>April 29</td>
+            <td>M</td>
+            <td>Project all-hands meeting</td>
+            <td rowspan="3" style="vertical-align:middle">Testing</td>
+        </tr>
+        <tr>
+            <td>May 1</td>
+            <td>W</td>
+            <td>Testing</td>
+        </tr>
+        <tr style='height:19px;'>
+            <td>May 3</td>
+            <td>F</td>
+            <td>Guest Lecture</td>
+        </tr>
+        <tr>
+            <td rowspan="3">6</td>
+            <td>May 6</td>
+            <td>M</td>
+            <td>Project all-hands meeting</td>
+            <td rowspan="3" style="vertical-align:middle">Continuous<br>Integration</td>
+        </tr>
+        <tr>
+            <td>May 8</td>
+            <td>W</td>
+            <td>Testing / Continuous Integration</td>
+        </tr>
+        <tr>
+            <td>May 10</td>
+            <td>F</td>
+            <td>Guest Lecture</td>
+        </tr>
+        <tr>
+            <td rowspan="3">7</td>
+            <td>May 13</td>
+            <td>M</td>
+            <td>Project all-hands meeting</td>
+            <td rowspan="3" style="vertical-align:middle">Deployment</td>
+        </tr>
+        <tr>
+            <td>May 15</td>
+            <td>W</td>
+            <td>Deployment</td>
+        </tr>
+        <tr>
+            <td>May 17</td>
+            <td>F</td>
+            <td>Guest Lecture</td>
+        </tr>
+        <tr>
+            <td rowspan="3">8</td>
+            <td>May 20</td>
+            <td>M</td>
+            <td>Project all-hands meeting</td>
+            <td rowspan="3" style="vertical-align:middle">More CI<br>and Deployment</td>
+        </tr>
+        <tr>
+            <td>May 22</td>
+            <td>W</td>
+            <td>Deployment</td>
+        </tr>
+        <tr>
+            <td>May 24</td>
+            <td>F</td>
+            <td>Guest Lecture</td>
+        </tr>
+        <tr>
+            <td rowspan="3">9</td>
+            <td>May 27</td>
+            <td>M</td>
+            <td>No class - Memorial Day</td>
+            <td rowspan="3" style="vertical-align:middle">Logging +<br>Documentation</td>
+        </tr>
+        <tr>
+            <td>May 29</td>
+            <td>W</td>
+            <td>Software Evolution / Maintenance</td>
+        </tr>
+        <tr>
+            <td>May 31</td>
+            <td>F</td>
+            <td>Guest Lecture</td>
+        </tr>
+        <tr>
+            <td rowspan="3">10</td>
+            <td>June 3</td>
+            <td>M</td>
+            <td>Project all-hands meeting</td>
+            <td rowspan="3" style="vertical-align:middle">No Lab<br>(Reading Period)</td>
+        </tr>
+        <tr>
+            <td>June 5</td>
+            <td>W</td>
+            <td>Wrap-up</td>
+        </tr>
+        <tr>
+            <td>June 7</td>
+            <td>F</td>
+            <td>No class - Reading Period</td>
+        </tr>
+    </tbody>
+</table>
+
 
 ### Guest Lectures
 
-#### April 13
-
-**Speakers**:
-
- * [Brian Fitzpatrick](https://twitter.com/therealfitz) - Founder and CTO, [Tock](https://www.exploretock.com/)
- * [Ben Collins-Sussman](https://www.red-bean.com/sussman/) (SB'94) - Engineering Site Lead, [Google](http://google.com) Chicago
-
-**Topic**: Working in Teams
-
-### April 20
-
-**Speaker**: Francesca Slade, Software Engineer, [Google](https://www.google.com/)
-
-**Topic**: Code Reviews at Google
-
-### April 27
-
-**Speaker**: [Matt Trahan](https://www.linkedin.com/in/matt-trahan-b274253/), Director Of Software Development, [Narrative Science](https://narrativescience.com/)
-
-**Topic**: Case Study: The Software Process at Narrative Science 
-
-#### May 4
-
-**Speaker**: [Jenny Farver](https://twitter.com/jennyFarver) - CTO, [Popular Pays](https://www.popularpays.com/)
-
-**Topic**: Product Development (and working with non-engineers)
-
-#### May 11
-
-**Speaker**: [Q McCallum](http://qethanm.cc/), Independent Consultant
-
-**Topic**: Professional Software Development: It's More Than Just Code
-
-#### May 18
-
-**Speaker**: [Chelsea Troy](https://chelseatroy.com/), Software Engineer, [Ascent](https://www.ascentregtech.com/)
-
-**Topic**: Deploying Software
-
-#### May 25
-
-**Speaker**: [Rachana Ananthakrishnan](https://www.linkedin.com/in/rachanananthakrishnan/), Head of Products, [Globus](https://www.globus.org/) 
-
-**Topic**: Case Study: The Software Process in Globus
+We are still working on our calendar of guest lectures. Please check back soon!
 
 
