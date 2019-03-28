@@ -68,7 +68,7 @@ The course is divided into two phases:
         <tr>
             <td>April 19</td>
             <td>F</td>
-            <td>Guest Lecture</td>
+            <td>Discussion: Design Exercise</td>
         </tr>
         <tr>
             <td rowspan="21" style="vertical-align:middle">Project<br>Phase</td>
