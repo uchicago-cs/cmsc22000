@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on CS 220</title>
+    <link>https://uchicago-cs.github.io/cmsc22000/projects/</link>
+    <description>Recent content in Projects on CS 220</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Feb 2018 08:47:20 -0600</lastBuildDate>
+    
+	<atom:link href="https://uchicago-cs.github.io/cmsc22000/projects/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Project - Spring 2018</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/projects/2018/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/projects/2018/</guid>
+      <description>In this project, you will be divided into six teams of five students, and will work collaboratively (both within your team and between teams) to create a complex software system that will involve not just designing and implementing a number of components, but also extending an existing software system. You will be using several tools to support the collaborative aspects of this project and, indeed, your collaborative skills will be as important as your coding skills to be successful in this project.</description>
+    </item>
+    
+  </channel>
+</rss>

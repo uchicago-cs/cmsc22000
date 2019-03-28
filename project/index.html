@@ -25,8 +25,8 @@
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2018-02-17T08:47:20-06:00" />
-<meta property="og:article:modified_time" content="2018-02-17T08:47:20-06:00" />
+<meta property="og:article:published_time" content="0001-01-01T00:00:00Z" />
+<meta property="og:article:modified_time" content="0001-01-01T00:00:00Z" />
 
   
 
@@ -49,9 +49,9 @@
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
-    "datePublished": "2018-02-17",
+    "datePublished": "0001-01-01",
     "description": "",
-    "wordCount": 2038
+    "wordCount": 131
   }
 </script>
 
@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.54.0" />
 
   
 <!--[if lt IE 9]>
@@ -175,194 +175,9 @@
 </header>
 
   <div class="container content">
-  
+  <p>In the course project, you will be divided into six teams of five students, and will work collaboratively (both within your team and between teams) to create a complex software system that will involve designing and implementing a number of components. You will be using several tools to support the collaborative aspects of this project and, indeed, your collaborative skills will be as important as your coding skills to be successful in this project.</p>
 
-<p>In this project, you will be divided into six teams of five students, and will work collaboratively (both within your team and between teams) to create a complex software system that will involve not just designing and implementing a number of components, but also extending an existing software system. You will be using several tools to support the collaborative aspects of this project and, indeed, your collaborative skills will be as important as your coding skills to be successful in this project.</p>
-
-<p>The project will revolve around extending the <a href="https://redis.io/">Redis</a> data store, and developing a number of applications around our extended version of Redis. Redis is often described as a “data structure server”. What does this mean? When you write software, you often need to use data structures like linked lists, hash tables, etc., and in many cases you can simply use a data structure library (e.g., simclist, utlist, uthash, etc. in C) or the data structures included in the standard library of your language of choice (e.g., the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Hashtable.html">Hashtable</a> class in Java, the <a href="https://docs.python.org/3.6/library/queue.html">queue</a> module in Python, etc.). When you use these data structures, they are created and manipulated in the memory of the computer where you are running your program.</p>
-
-<p>With Redis, these data structures live in a server that you access through the network. This may seem wasteful (why incur the cost of accessing the data structure via the network when you could just access it directly on your computer?) but this architecture has several distinct advantages:</p>
-
-<ul>
-<li>Multiple computers could share a data structure stored in the server.</li>
-<li>Redis provides well-tested, highly-optimized implementation of the data structures.</li>
-<li>Redis handles a number of other aspects, such as reliability, availability, etc.</li>
-</ul>
-
-<p>Redis supports many data structures you are already familiar with, like lists and hash tables, but does not support prefix trees and suffix trees (which are typically implemented using a special tree data structure called a trie). In this project, you will be adding support for these data structures, and will develop three command-line applications that use these data structures:</p>
-
-<ul>
-<li>Autocomplete: A tool which, as you type, will either automatically complete words or, when pressing the tab key, will suggest all possible completions for a given prefix.</li>
-<li>Spell checker: A tool which, given a text, will search for misspelled words and will suggest alternative spellings.</li>
-<li>Large text search: A tool which, given a text of arbitrary size, can efficiently find occurrences of a word (or one of several words) in that text.</li>
-</ul>
-
-<p>Redis provides a remote API that applications can use to create and access data structures and, while there exist a number of C libraries that facilitate interacting with that API, they are fairly low-level. So, we will also implement a library that provides a higher-level API to interact with the tries in Redis.</p>
-
-<p>Finally, we will also implement a series of support tools and libraries to facilitate the work of all the teams. At the very least, we will produce a tool to interactively experiment with tries (through the higher-level API), although we may end up producing other tools.</p>
-
-<h2 id="project-organization-and-timeline">Project Organization and Timeline</h2>
-
-<p>The project will follow an agile process that resembles (but does not exactly follow) <a href="https://en.wikipedia.org/wiki/Scrum_(software_development)">Scrum</a>.</p>
-
-<p>Students in the class will be divided into six teams:</p>
-
-<ul>
-<li>Tries: Responsible for adding support for tries in Redis</li>
-<li>API: Responsible for creating the higher-level API</li>
-<li>Support Tools: Responsible for implementing support tools</li>
-<li>Autocomplete team: Responsible for implementing the autocomplete tool</li>
-<li>Spell Checker team: Responsible for implementing the spell checker tool</li>
-<li>Full Text Search team: Responsible for implementing the full text search tool</li>
-</ul>
-
-<p>You will be placed into different teams based on a survey you will be asked to fill out. In each team, a TA will act as Senior Developer</p>
-
-<p>The project will span seven weeks (Weeks 4 - 10), with a final review and team presentations taking place during Finals Week. The seven weeks of the project will be divided into a project kick-off and four sprints, with sprint reviews happening on Mondays.</p>
-
-<ul>
-<li>Week 4: Project kick-off. This week will be primarily used for you to familiarize yourself with project and the exact work your team will do.</li>
-<li>Week 5: Sprint 1</li>
-<li>Week 6: Sprint 2. A basic prototype should ideally be done by the end of this sprint.</li>
-<li>Weeks 7-8: Sprint 3</li>
-<li>Weeks 9-10: Sprint 4</li>
-</ul>
-
-<h2 id="application-requirements">Application Requirements</h2>
-
-<p>The project will be driven largely by the requirements of the three applications we will be developing. All three applications have the following requirements in common:</p>
-
-<ul>
-<li>The application must use tries in Redis.</li>
-<li>The application must be a command-line tool.</li>
-<li>The tool must work both interactively and in batch mode (this is described below in more detail). The default is for each tool to run in interactive mode, with command-line parameters controlling whether it instead will run in batch mode.</li>
-</ul>
-
-<p>The autocomplete and spellcheck tools specifically require that a collection of words (typically “all” the words in the English language) are pre-loaded into the Redis server. However, these tools must also allow these words to be loaded from scratch when the tool starts running (this will be necessary for testing purposes)</p>
-
-<p>The <strong>autocomplete</strong> tool must allow a user to type text interactively. As the user types, the following can happen:</p>
-
-<ul>
-<li>If the user enters a word prefix that can only be completed in one way (e.g., “if a user types “alibii”, the only possible completion is “alibiing”), the tool must automatically complete the word.</li>
-<li>If a user enters a prefix and presses the Tab key, the tool must show all the possible completions of that prefix (if there are more than 10 possible completions, the tool should indicate in some way that there are “too many” possibilities). It there are 10 or lest completions, it must allow the user to easily select one (or to keep typing).</li>
-</ul>
-
-<p>The tool must also work in batch mode: it must be able to take a file containing a list of prefixes and, for each prefix, provide the number of completions for that prefix. It must also be possible to produce all the possible completions for each prefix, up to a configurable maximum.</p>
-
-<p>The <strong>spell checker</strong> tool must allow a user to open a text file, and to interactively correct any misspelled words. The spell checker must highlight in some way one misspelled word at a time, and suggest possible corrections to the user (the user can accept one of the corrections, leave the word as-is, or provide an alternate spelling). The spell checker must save the file with the corrections (or save it to an alternate file, if specified by the user)</p>
-
-<p>When run in batch mode, the spell checker can operate in one of two ways:
-* It will take a text file and will replace all misspelled words with the best possible replacement.
-* It will take a text file containing a list of words, and will produce a list of all the misspelled words with the suggested corrections for each word.</p>
-
-<p>The <strong>full text search</strong> tool must allow a user to open a text file, to specify a word or words, and to interactively navigate the text file, skipping from matched word to matched word. When run in batch mode, this tool must take a text file and count the occurrences of a word (or words) specified as command-line parameters. It must also be able to produce (either on standard output or in another file) all the lines containing the specified word(s) with zero or more lines before/after the line with the word(s) (where this number of lines must be configurable)</p>
-
-<h2 id="project-evaluation">Project Evaluation</h2>
-
-<aside class="admonition note">
-	<div class="admonition-icon">
-
-	</div>
-
-	<div class="admonition-content"><p>This is the grading scheme used in Spring 2018, which is likely to change in Spring 2019. See additional note below.</p>
-</div>
-</aside>
-
-
-<p>Unlike a traditional programming assignment or project, the exact final outcome of the project is not known in advance. Of course, we do have high-level goals and requirements (which have been described above) and, while those requirements will help us measure whether the project is “done”, they are not a strict rubric. As we saw in class, this is one of the strengths (and challenges) of agile software development: you can re-evaluate requirements and make design changes quickly, but there is no detailed requirements document that you can use to check whether you’ve contractually fulfilled your obligations to a customer.</p>
-
-<p>As such, the primary mechanism to evaluate your work will be via the tasks (in the Scrum sense of the work) that you complete, as well as your pull requests to the <code>master</code> branch of your repository (which will be reviewed by a senior developer).</p>
-
-<p>Determining your individual score on the project is done in three steps:</p>
-
-<ol>
-<li><p>Adding up your issue points</p></li>
-
-<li><p>Adding up your pull request points</p></li>
-
-<li><p>Normalizing your total score</p></li>
-</ol>
-
-<h3 id="step-1-issue-points">Step 1: Issue Points</h3>
-
-<p>You will keep track of your tasks using GitHub issues. You must make sure that any effort you put into the project is properly documented via a GitHub issue; otherwise, we will not be aware of this work and it won&rsquo;t be considered when determining your individual score!</p>
-
-<p>Once you complete an issue, you will self-report the amount of effort it required:</p>
-
-<ul>
-<li>Short: Less than one hour</li>
-<li>Medium: Between one hour and three hours</li>
-<li>Long: Between three hours and five hours</li>
-</ul>
-
-<p>Your senior developer may ask you to justify why you assigned a specific effort to a task, if it is not clear from the description (and follow-up comments) of the issue.</p>
-
-<p>Each issue is worth a fixed number of points:</p>
-
-<ul>
-<li>Short: 1 point</li>
-<li>Medium: 3 points</li>
-<li>Long: 5 points</li>
-</ul>
-
-<p>We further apply a multiplier based on the issue&rsquo;s sprint:</p>
-
-<ul>
-<li>Sprint 1: ×1</li>
-<li>Sprint 2: ×2</li>
-<li>Sprint 3: ×3</li>
-<li>Sprint 4: ×3</li>
-</ul>
-
-<p>Finally, if three or more people worked on an issue, we apply a reduction to that issue’s points:</p>
-
-<ul>
-<li>3 people: -20%</li>
-<li>4 people: -40%</li>
-<li>5 people: -60%</li>
-<li>6+ people: -80%</li>
-</ul>
-
-<p>So, for example, a long issue (5 points) in Sprint 4 (multiply by 3) is worth 15 points but, if it was done between three people, then each person gets 12 points (80% of 15)</p>
-
-<p>We will refer to your total issue points as <em>IP</em>.</p>
-
-<h3 id="step-2-pull-request-points">Step 2: Pull Request Points</h3>
-
-<p>You get 15 points for each successful pull request to master, with the following limitations:</p>
-
-<ul>
-<li>If three or more people are assignees on a pull request (i.e., if three or more people contributed code to the pull request), the points for that individual pull request are reduced in the same way as with tasks.</li>
-<li>The total amount of pull request points is capped at <em>IP</em>.</li>
-</ul>
-
-<p>Your pull request points are re-computed any time your IP changes. This means that, if you completed a pull request to master, but your IP is just 6 points, you would only get 6 additional points from that pull request. However, as soon as you completed more issues, you would be able to “unlock” the remaining 9 points you earned from that pull request.</p>
-
-<h3 id="step-3-normalizing-your-score">Step 3: Normalizing your Score</h3>
-
-<p>An individual’s total score is the sum of their issue points and their pull request points. We normalize this score by assigning the lower quartile a score of 80, and a standard deviation a score of 10 points (e.g., someone who is one standard deviation above the lower quartile would get 90 points).</p>
-
-<aside class="admonition note">
-	<div class="admonition-icon">
-
-	</div>
-
-	<div class="admonition-content"><p>If you are reading this page because you are considering taking the class in Spring 2019, please note that we will likely alter the grading scheme to avoid having to normalize scores. In Spring 2018, when the class was first taught, we painted ourselves into a corner that required using normalization to produce scores; for the record, we have a strong dislike of curving/normalization and prefer grading schemes that don&rsquo;t depend on whether you fall above/below a certain percentile.</p>
-
-<p>In particular, it is likely that issues will be graded on a simple scale (&ldquo;check minus&rdquo;, &ldquo;check&rdquo;, &ldquo;check plus&rdquo;), with your score determined by a combination of your issues and your pull requests.</p>
-</div>
-</aside>
-
-
-<h3 id="total-score">Total Score</h3>
-
-<p>The project is worth 70% of your final grade. These 70 points are divided as follows:</p>
-
-<ul>
-<li>40: Your individual score</li>
-<li>20: Your team score (this will be the average of the individual scores in a team)</li>
-<li>10: Final presentation during Finals Week.</li>
-</ul>
+<p>Details on this year&rsquo;s project will be posted at the start of the Project Phase of the class. For reference, you can see <a href="/cmsc22000/projects/2018/">last year&rsquo;s project</a>. However, please note that this year&rsquo;s project will be completely different, and will a substantially different grading scheme (most notably, we will not be using a normalized grading scheme requiring curving)</p>
 
 </div>
 
