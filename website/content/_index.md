@@ -6,7 +6,12 @@ date: 2018-02-17T08:47:20-06:00
 Course Staff
 ------------
 
-**Instructor**: Borja Sotomayor ([borja@cs.uchicago.edu](mailto:borja@cs.uchicago.edu)). *Office*: Eckhart 120-B. *Office Hours*: MWF 10:30-11:30
+ * **Instructor**: [Borja Sotomayor](http://people.cs.uchicago.edu/~borja/)
+   * *Office*: Crerar 209
+   * *Office Hours*: MWF 2:30-3:30
+ * **TAs**
+   * Mark Cohen (Office Hours TBD)
+   * Lydia Filipe (Office Hours TBD)
 
 Course Description
 ------------------
