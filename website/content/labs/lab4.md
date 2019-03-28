@@ -2,6 +2,7 @@
 title: "Lab 4: Debugging"
 date: 2018-01-28
 publishdate: 2018-01-28
+draft: true
 ---
 
 **Due:** Thursday, April 26th, 4pm

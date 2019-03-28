@@ -2,6 +2,7 @@
 title: "Lab 1: Git"
 date: 2018-01-28
 publishdate: 2018-01-28
+draft: true
 ---
 
 **Due:** Thursday, April 5th, 4pm

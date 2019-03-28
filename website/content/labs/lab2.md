@@ -2,6 +2,7 @@
 title: "Lab 2: Software Design"
 date: 2018-01-28
 publishdate: 2018-01-28
+draft: true
 ---
 
 **Due:** Thursday, April 12th, 4pm

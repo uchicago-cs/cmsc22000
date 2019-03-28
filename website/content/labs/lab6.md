@@ -2,6 +2,7 @@
 title: "Lab 6: Continuous Integration"
 date: 2018-01-26
 publishdate: 2018-01-26
+draft: true
 ---
 
 **Due:** Thursday, May 10th, 4pm

@@ -2,6 +2,7 @@
 title: "Lab 5: Testing"
 date: 2018-01-26
 publishdate: 2018-01-26
+draft: true
 ---
 
 **Due:** Thursday, May 3rd, 4pm

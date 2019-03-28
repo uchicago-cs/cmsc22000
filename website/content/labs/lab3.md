@@ -2,6 +2,7 @@
 title: "Lab 3: Make"
 date: 2018-01-28
 publishdate: 2018-01-28
+draft: true
 ---
 
 **Due:** Thursday, April 19th, 4pm

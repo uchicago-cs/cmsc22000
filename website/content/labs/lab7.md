@@ -2,6 +2,7 @@
 title: "Lab 7: Deployment"
 date: 2018-01-26
 publishdate: 2018-01-26
+draft: true
 ---
 
 **Due:** Thursday, May 17th, 4pm

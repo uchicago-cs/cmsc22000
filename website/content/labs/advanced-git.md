@@ -2,6 +2,7 @@
 title: "Optional Lab: Advanced Git"
 date: 2018-01-27
 publishdate: 2018-01-27
+draft: true
 ---
 
 In the 150s/160s, as well as in the CS 220 labs, you have used version control systems 
