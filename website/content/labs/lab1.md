@@ -5,7 +5,7 @@ publishdate: 2018-01-28
 draft: true
 ---
 
-**Due:** Thursday, April 5th, 4pm
+**Due:** Thursday, April 11th, 2:30pm
 
 {{% warning %}}
 **NOTE**: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)
