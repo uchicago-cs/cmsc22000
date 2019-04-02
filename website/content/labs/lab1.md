@@ -2,7 +2,7 @@
 title: "Lab 1: Git"
 date: 2018-01-28
 publishdate: 2018-01-28
-draft: true
+draft: false
 ---
 
 **Due:** Thursday, April 11th, 2:30pm
@@ -78,6 +78,11 @@ You will be asked for your CNetID and password; once you enter them, you should 
        4885f1c..3e39c15  master -> master
 
 You can ignore most of those messages. The important thing is to not see any warnings or error messages.
+
+{{% warning %}}
+When you push for the first time, you may get a message saying that `push.default is unset`, and suggesting two possible commands to remedy the situation. While the rest of the lab will work fine if you don't run either of these commands, you should run the command to use "simple" (this will prevent the warning from appearing every time you push
+{{% /warning %}}
+
 
 You can verify that our Git server correctly received your commit by going to https://mit.cs.uchicago.edu/. The `test.txt` file should now show the updated content (your name with your CNetID)
 
@@ -159,9 +164,9 @@ Now, we are going to create a commit with these changes. Notice how we are not g
 
 When you omit `-m`, Git will open a terminal text editor where you can write your commit message, including multiline commit messages. By default, the CS machines will use Vim for this; if you want to change your default command-line editor, add a line like this:
 
-    EDITOR=emacs
+    EDITOR=myfavoriteeditor
 
-At the end of the `.bashrc` file in your home directory.
+At the end of the `.bashrc` file in your home directory (make sure you replace `myfavoriteeditor` with the command for your favorite command-line editor: `vi`, `emacs`, `nano`, `mcedit`, etc.)
 
 Once Git opens your editor of choice, you will see something like this:
 
@@ -251,6 +256,8 @@ This will create a local repository that "clones" the contents of the repository
 
 Make sure to replace `username` with your CNetID!
 
+Take into account that, when you run `git clone`, the repository is not cloned *into* the current directory. Instead, a *new* directory (with the same name as the repository) will be created in the current directory, and you will need to `cd` into it to use Git commands for that repository.
+
 Now, in the local repository in your home directory, add a line to `test.txt` with the text `One more change!`. Create a commit for that change and push it to GitLab (you should know how to do this by now, but make sure to ask for help if you're unsure of how to proceed).
 
 Next, in the *second* local repository (the one you just created either on your laptop or on a separate location in the CS machine), check if that change appears in the `test.txt`. It will not, because you have not yet downloaded the latest commits from the repository. You can do this by running this:
@@ -336,9 +343,15 @@ This is a unique identifier that we can use to refer to that commit elsewhere. F
 
     git show COMMIT_SHA
 
-Make sure to replace `COMMIT_SHA` with a commit SHA that appears in your commit log.
+Make sure to replace `COMMIT_SHA` with a commit SHA that appears in your commit log.  
 
 This will show you the changes that were included in that commit. The output of `git show` can be a bit hard to parse at first but the most important thing to take into account is that any line starting with a `+` denotes a line that was added, and any line starting with a `-` denotes a line that was removed.
+
+Pro tip: in any place where you have to refer to a commit SHA, you can just write the first few characters of the commit SHA. For example, for commit `9119c6ffcebc2e3540d587180236aaf1222ee63c` we could write just this:
+
+    git show 9119c6f
+
+Git will only complain if there is more than one commit that starts with that same prefix.
 
 ## Exercises
 
@@ -373,7 +386,7 @@ Note: In all subsequent tasks, you should work only with the files inside the `l
 
 Create a commit for this change with commit message `Addeing Task 8` (yes, exactly that commit message) but make sure you *don't push it*.
 
-Wait! What an embarassing typo! Find out how you can edit the commit message of an existing commit (i.e., the solution is not to create a new commit; you have to find out how to edit the commit message of the commit you just created). Update the commit message to be "Adding Task 7". 
+Wait! What an embarrassing typo! Find out how you can edit the commit message of an existing commit (i.e., the solution is not to create a new commit; you have to find out how to edit the commit message of the commit you just created). Update the commit message to be "Adding Task 7". 
 
 Edit `tasks.txt` to explain how you updated the commit message (feel free to simply copy-paste the command you ran and its output). Make sure to explain how you found out the answer to this questions! (including citing any relevant sources). When you're done editing `tasks.txt`, make sure to add, commit and push your changes.
 
@@ -386,11 +399,18 @@ Edit `tasks.txt` to explain how you updated the commit message (feel free to sim
 
 (5 points) Take a look at the following project on GitHub: https://github.com/junegunn/fzf. All you need to know about this project is that it provides a very handy tool called `fzf` that is run from the terminal, and which can take some number of command-line arguments. 
 
-Notice how the GitHub web interface has a number of similarities with the GitLab web interface: you can explore the files in the repository, past commits, etc. You should be able to figure out how to clone this repository on your machine. Then, find the exact commit where the authors of this project added a `--no-mouse` option to the `fzf` command (hint: commit messages will usually mention when a new feature is added, and this project is no exception). Take into account that you should be able to find this out using only Git commands (you do not need to build the project, run it, etc.). Include the commit SHA and commit message in `tasks.txt`, and explain how you located that commit.
+Notice how the GitHub web interface has a number of similarities with the GitLab web interface: you can explore the files in the repository, past commits, etc. You should be able to figure out how to clone this repository on your machine. Then, find the exact commit where the authors of this project added a `--no-mouse` option to the `fzf` command (hint: commit messages will usually mention when a new feature is added, and this project is no exception). 
+
+Take into account that, while you should be able to find this out using only Git commands, you may need to find out a convenient way of exploring the commit log (instead of just scrolling endlessly until you find some mention of the `--no-mouse` option). Include the commit SHA and commit message in `tasks.txt`, and explain how you located that commit.
+
+{{% warning %}}
+You should ignore any Git instructions provided in the `fzf` documentation (specially in their `README` file). These will lead you down the wrong path.
+{{% /warning %}}
+
 
 #### Task 10
 
-(5 point) Edit `README.md` and add any content to the file. Figure out how you can get Git to tell you the changes you've made to the file relative to the latest commit. Note that this is different from using `git show`, as we have not yet committed these changes. Once you have figured this out, and updated `tasks.txt` accordingly, undo these changes using `git checkout`.
+(5 point) Edit `README.md` (in your repository, not in the `fzf` repository you just cloned) and add any content to the file. Figure out how you can get Git to tell you the changes you've made to the file relative to the latest commit. Note that this is different from using `git show`, as we have not yet committed these changes. Once you have figured this out, and updated `tasks.txt` accordingly, undo these changes using `git checkout`.
 
 #### Task 11
 
