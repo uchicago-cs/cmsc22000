@@ -80,7 +80,7 @@ You will be asked for your CNetID and password; once you enter them, you should 
 You can ignore most of those messages. The important thing is to not see any warnings or error messages.
 
 {{% warning %}}
-When you push for the first time, you may get a message saying that `push.default is unset`, and suggesting two possible commands to remedy the situation. While the rest of the lab will work fine if you don't run either of these commands, you should run the command to use "simple" (this will prevent the warning from appearing every time you push
+When you push for the first time, you may get a message saying that `push.default is unset`, and suggesting two possible commands to remedy the situation. While the rest of the lab will work fine if you don't run either of these commands, you should run the command to use "simple" (this will prevent the warning from appearing every time you push)
 {{% /warning %}}
 
 
