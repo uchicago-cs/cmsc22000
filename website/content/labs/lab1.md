@@ -294,6 +294,22 @@ One of the benefits of using a version control system is that it is very easy to
 
     no changes added to commit (use "git add" and/or "git commit -a")
 
+And you can view the changes using `git diff`:
+
+    diff --git a/test.txt b/test.txt
+    index 46aa972..e69de29 100644
+    --- a/test.txt
+    +++ b/test.txt
+    @@ -1,5 +0,0 @@
+    -Your Name
+    -yourcnetid
+    -CMSC 22000 - Introduction to Software Development
+    -Git is pretty cool
+    -One more change!
+
+The minus signs indicate lines that were deleted. Had we added any lines (or
+modified lines), we would see some plus signs as well.
+
 If we want to discard the changes we made to `test.txt`, all we have to do is follow the helpful advice provided by the above output:
 
     git checkout -- test.txt
