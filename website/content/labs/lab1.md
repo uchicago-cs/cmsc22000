@@ -162,7 +162,7 @@ Now, we are going to create a commit with these changes. Notice how we are not g
 
     git commit
 
-When you omit `-m`, Git will open a terminal text editor where you can write your commit message, including multiline commit messages. By default, the CS machines will use Vim for this; if you want to change your default command-line editor, add a line like this:
+When you omit `-m`, Git will open a terminal text editor where you can write your commit message, including multiline commit messages. By default, the CS machines will use Vim for this (if you are not a Vim user, you can quit by typing `:wq`). If you want to change your default command-line editor, add a line like this:
 
     EDITOR=myfavoriteeditor
 
