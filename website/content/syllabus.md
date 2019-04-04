@@ -96,7 +96,12 @@ Books
 While this class does not have a required textbook, most of the Software Engineering content draws heavily from Ian Sommerville's book, [Software Engineering](http://iansommerville.com/software-engineering-book/). Please see [Additional Resources]({{< relref "resources.md" >}}) for a number of other books and online resources covering much of the material in this class.
 
 
+Diversity Statement
+-------------------
 
+The University of Chicago is committed to diversity and rigorous inquiry that arises from multiple perspectives. We concur with that commitment and also believe that we have the highest quality interactions and can creatively solve more problems when we recognize and share our diversity. We thus expect to maintain a productive learning environment based upon open communication, mutual respect, and non-discrimination. We view the diversity that students bring to this class as a resource, strength and benefit. It is our intent to present materials and activities that are respectful of diversity: gender, sexuality, disability, socioeconomic status, ethnicity, race, religious background, and immigration status. Any suggestions as to how to further such a positive and open environment in the class will be appreciated and given serious consideration.
+
+If you have a preferred name different from what appears on the class roster, or preferred gender pronouns you would like us to use, please let us know.
 
 
 
