@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-28",
     "description": "",
-    "wordCount": 4952
+    "wordCount": 5270
   }
 </script>
 
@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.54.0" />
 
   
 <!--[if lt IE 9]>
@@ -177,7 +177,7 @@
   <div class="container content">
   
 
-<p><strong>Due:</strong> Thursday, April 5th, 4pm</p>
+<p><strong>Due:</strong> Thursday, April 11th, 2:30pm</p>
 
 <aside class="admonition warning">
 	<div class="admonition-icon">
@@ -273,6 +273,16 @@ To https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
 
 <p>You can ignore most of those messages. The important thing is to not see any warnings or error messages.</p>
 
+<aside class="admonition warning">
+	<div class="admonition-icon">
+
+	</div>
+
+	<div class="admonition-content"><p>When you push for the first time, you may get a message saying that <code>push.default is unset</code>, and suggesting two possible commands to remedy the situation. While the rest of the lab will work fine if you don&rsquo;t run either of these commands, you should run the command to use &ldquo;simple&rdquo; (this will prevent the warning from appearing every time you push)</p>
+</div>
+</aside>
+
+
 <p>You can verify that our Git server correctly received your commit by going to <a href="https://mit.cs.uchicago.edu/">https://mit.cs.uchicago.edu/</a>. The <code>test.txt</code> file should now show the updated content (your name with your CNetID)</p>
 
 <p>In general, if you’re concerned about whether the graders are seeing the right version of your code, you can just go to <a href="https://mit.cs.uchicago.edu/">https://mit.cs.uchicago.edu/</a>. Whatever is shown on that page is what the graders will see. If you wrote some code, and it doesn’t show up in the above URL, make sure you didn’t forget to add your files, create a commit, and push the most recent commit to the server.</p>
@@ -366,12 +376,12 @@ Changes to be committed:
 <pre><code>git commit
 </code></pre>
 
-<p>When you omit <code>-m</code>, Git will open a terminal text editor where you can write your commit message, including multiline commit messages. By default, the CS machines will use Vim for this; if you want to change your default command-line editor, add a line like this:</p>
+<p>When you omit <code>-m</code>, Git will open a terminal text editor where you can write your commit message, including multiline commit messages. By default, the CS machines will use Vim for this (if you are not a Vim user, you can quit by typing <code>:wq</code>). If you want to change your default command-line editor, add a line like this:</p>
 
-<pre><code>EDITOR=emacs
+<pre><code>EDITOR=myfavoriteeditor
 </code></pre>
 
-<p>At the end of the <code>.bashrc</code> file in your home directory.</p>
+<p>At the end of the <code>.bashrc</code> file in your home directory (make sure you replace <code>myfavoriteeditor</code> with the command for your favorite command-line editor: <code>vi</code>, <code>emacs</code>, <code>nano</code>, <code>mcedit</code>, etc.)</p>
 
 <p>Once Git opens your editor of choice, you will see something like this:</p>
 
@@ -472,6 +482,8 @@ git clone https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
 
 <p>Make sure to replace <code>username</code> with your CNetID!</p>
 
+<p>Take into account that, when you run <code>git clone</code>, the repository is not cloned <em>into</em> the current directory. Instead, a <em>new</em> directory (with the same name as the repository) will be created in the current directory, and you will need to <code>cd</code> into it to use Git commands for that repository.</p>
+
 <p>Now, in the local repository in your home directory, add a line to <code>test.txt</code> with the text <code>One more change!</code>. Create a commit for that change and push it to GitLab (you should know how to do this by now, but make sure to ask for help if you&rsquo;re unsure of how to proceed).</p>
 
 <p>Next, in the <em>second</em> local repository (the one you just created either on your laptop or on a separate location in the CS machine), check if that change appears in the <code>test.txt</code>. It will not, because you have not yet downloaded the latest commits from the repository. You can do this by running this:</p>
@@ -509,6 +521,23 @@ Changes not staged for commit:
 
 no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
 </code></pre>
+
+<p>And you can view the changes using <code>git diff</code>:</p>
+
+<pre><code>diff --git a/test.txt b/test.txt
+index 46aa972..e69de29 100644
+--- a/test.txt
++++ b/test.txt
+@@ -1,5 +0,0 @@
+-Your Name
+-yourcnetid
+-CMSC 22000 - Introduction to Software Development
+-Git is pretty cool
+-One more change!
+</code></pre>
+
+<p>The minus signs indicate lines that were deleted. Had we added any lines (or
+modified lines), we would see some plus signs as well.</p>
 
 <p>If we want to discard the changes we made to <code>test.txt</code>, all we have to do is follow the helpful advice provided by the above output:</p>
 
@@ -569,6 +598,13 @@ Changes not staged for commit:
 
 <p>This will show you the changes that were included in that commit. The output of <code>git show</code> can be a bit hard to parse at first but the most important thing to take into account is that any line starting with a <code>+</code> denotes a line that was added, and any line starting with a <code>-</code> denotes a line that was removed.</p>
 
+<p>Pro tip: in any place where you have to refer to a commit SHA, you can just write the first few characters of the commit SHA. For example, for commit <code>9119c6ffcebc2e3540d587180236aaf1222ee63c</code> we could write just this:</p>
+
+<pre><code>git show 9119c6f
+</code></pre>
+
+<p>Git will only complain if there is more than one commit that starts with that same prefix.</p>
+
 <h2 id="exercises">Exercises</h2>
 
 <p>If you&rsquo;ve completed all the steps described above, congratulations, you&rsquo;ve already earned 40 points (out of 100) in this lab! Make sure you remember to <code>git push</code> so the grader can verify you completed all the above tasks. If you&rsquo;re still working on the above tasks, don&rsquo;t worry: nothing is due at the end of this lab. Please note that the above tasks will be graded as follows:</p>
@@ -605,7 +641,7 @@ Changes not staged for commit:
 
 <p>Create a commit for this change with commit message <code>Addeing Task 8</code> (yes, exactly that commit message) but make sure you <em>don&rsquo;t push it</em>.</p>
 
-<p>Wait! What an embarassing typo! Find out how you can edit the commit message of an existing commit (i.e., the solution is not to create a new commit; you have to find out how to edit the commit message of the commit you just created). Update the commit message to be &ldquo;Adding Task 7&rdquo;.</p>
+<p>Wait! What an embarrassing typo! Find out how you can edit the commit message of an existing commit (i.e., the solution is not to create a new commit; you have to find out how to edit the commit message of the commit you just created). Update the commit message to be &ldquo;Adding Task 7&rdquo;.</p>
 
 <p>Edit <code>tasks.txt</code> to explain how you updated the commit message (feel free to simply copy-paste the command you ran and its output). Make sure to explain how you found out the answer to this questions! (including citing any relevant sources). When you&rsquo;re done editing <code>tasks.txt</code>, make sure to add, commit and push your changes.</p>
 
@@ -617,11 +653,23 @@ Changes not staged for commit:
 
 <p>(5 points) Take a look at the following project on GitHub: <a href="https://github.com/junegunn/fzf">https://github.com/junegunn/fzf</a>. All you need to know about this project is that it provides a very handy tool called <code>fzf</code> that is run from the terminal, and which can take some number of command-line arguments.</p>
 
-<p>Notice how the GitHub web interface has a number of similarities with the GitLab web interface: you can explore the files in the repository, past commits, etc. You should be able to figure out how to clone this repository on your machine. Then, find the exact commit where the authors of this project added a <code>--no-mouse</code> option to the <code>fzf</code> command (hint: commit messages will usually mention when a new feature is added, and this project is no exception). Take into account that you should be able to find this out using only Git commands (you do not need to build the project, run it, etc.). Include the commit SHA and commit message in <code>tasks.txt</code>, and explain how you located that commit.</p>
+<p>Notice how the GitHub web interface has a number of similarities with the GitLab web interface: you can explore the files in the repository, past commits, etc. You should be able to figure out how to clone this repository on your machine. Then, find the exact commit where the authors of this project added a <code>--no-mouse</code> option to the <code>fzf</code> command (hint: commit messages will usually mention when a new feature is added, and this project is no exception).</p>
+
+<p>Take into account that, while you should be able to find this out using only Git commands, you may need to find out a convenient way of exploring the commit log (instead of just scrolling endlessly until you find some mention of the <code>--no-mouse</code> option). Include the commit SHA and commit message in <code>tasks.txt</code>, and explain how you located that commit.</p>
+
+<aside class="admonition warning">
+	<div class="admonition-icon">
+
+	</div>
+
+	<div class="admonition-content"><p>You should ignore any Git instructions provided in the <code>fzf</code> documentation (specially in their <code>README</code> file). These will lead you down the wrong path.</p>
+</div>
+</aside>
+
 
 <h4 id="task-10">Task 10</h4>
 
-<p>(5 point) Edit <code>README.md</code> and add any content to the file. Figure out how you can get Git to tell you the changes you&rsquo;ve made to the file relative to the latest commit. Note that this is different from using <code>git show</code>, as we have not yet committed these changes. Once you have figured this out, and updated <code>tasks.txt</code> accordingly, undo these changes using <code>git checkout</code>.</p>
+<p>(5 point) Edit <code>README.md</code> (in your repository, not in the <code>fzf</code> repository you just cloned) and add any content to the file. Figure out how you can get Git to tell you the changes you&rsquo;ve made to the file relative to the latest commit. Note that this is different from using <code>git show</code>, as we have not yet committed these changes. Once you have figured this out, and updated <code>tasks.txt</code> accordingly, undo these changes using <code>git checkout</code>.</p>
 
 <h4 id="task-11">Task 11</h4>
 
