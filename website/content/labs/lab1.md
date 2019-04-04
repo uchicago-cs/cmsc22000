@@ -74,7 +74,7 @@ You will be asked for your CNetID and password; once you enter them, you should 
 
     Writing objects: 100% (3/3), 274 bytes | 0 bytes/s, done.
     Total 3 (delta 0), reused 0 (delta 0)
-    To https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
+    To https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
        4885f1c..3e39c15  master -> master
 
 You can ignore most of those messages. The important thing is to not see any warnings or error messages.
@@ -229,7 +229,7 @@ The message `Your branch is ahead of 'origin/master' by 2 commits.` is telling y
     Compressing objects: 100% (6/6), done.
     Writing objects: 100% (8/8), 730 bytes | 0 bytes/s, done.
     Total 8 (delta 1), reused 0 (delta 0)
-    To https://mit.cs.uchicago.edu/cmsc22000-spr-18/borja.git
+    To https://mit.cs.uchicago.edu/cmsc22000-spr-19/borja.git
        3e39c15..53462fb  master -> master
 
 Go to https://mit.cs.uchicago.edu. Do you see the updates in your repository? Click on "Commits" (above the file listing in your repository). If you click on the individual commits, you will be able to see the exact changes that were included in each commit.
@@ -246,13 +246,13 @@ If you see `nothing to commit, working directory clean`, that means that there a
 
 So far, you have a local repository in your CS home directory, which you have been uploading to the GitLab server using the `git push` command. However, if you work from multiple locations (e.g., on a CS machine but also from your laptop), you will need to be able to create a local repository in those locations too. You can do this by running the `git clone` command (don't run this command just yet):
 
-    git clone https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
+    git clone https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
 
 This will create a local repository that "clones" the contents of the repository in the GitLab server. If you have a laptop with you (and have access to Git on that laptop), try running `git clone` there. If not, try creating a clone in a different directory on the CS machine you are on. For example:
 
     mkdir /tmp/$USER/cs220
     cd /tmp/$USER/cs220
-    git clone https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
+    git clone https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
 
 Make sure to replace `username` with your CNetID!
 
@@ -270,7 +270,7 @@ This should output something like this:
     remote: Compressing objects: 100% (3/3), done.
     remote: Total 3 (delta 1), reused 0 (delta 0)
     Unpacking objects: 100% (3/3), done.
-    From https://mit.cs.uchicago.edu/cmsc22000-spr-18/borja
+    From https://mit.cs.uchicago.edu/cmsc22000-spr-19/borja
        53462fb..0c29617  master     -> origin/master
     Updating 53462fb..0c29617
     Fast-forward
