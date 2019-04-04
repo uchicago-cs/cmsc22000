@@ -18,6 +18,6 @@ To submit a lab, it will typically be enough for you to push all your files to t
 
 (where `X` is the lab number)
 
-All labs will be due at **4pm** on the day of the next lab. You get two free 24-hour extensions to use throughout the quarter. You do not need to ask permission to use these extensions, or notify us that ou are using them: the `chisubmit` system will handle this automatically.
+All labs will be due at **2:30pm** on the day of the next lab. You get two free 24-hour extensions to use throughout the quarter. You do not need to ask permission to use these extensions, or notify us that you are using them: the `chisubmit` system will handle this automatically.
 
 For more details on using chisubmit, please see the documentation available here: http://chi.cs.uchicago.edu/chisubmit/students.html Please note that everything before "Submitting an assignment" does not apply to you. However, if you do ever need to submit with an extension, please make sure you've read and understood how chisubmit handles this situation (in particular, you want to avoid being in a situation where you make a submission and, before re-submitting, the graders start grading your prior submission).
