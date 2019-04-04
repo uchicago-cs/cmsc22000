@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-28",
     "description": "",
-    "wordCount": 5270
+    "wordCount": 5207
   }
 </script>
 
@@ -267,7 +267,7 @@
 
 <pre><code>Writing objects: 100% (3/3), 274 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
-To https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
+To https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
    4885f1c..3e39c15  master -&gt; master
 </code></pre>
 
@@ -378,7 +378,7 @@ Changes to be committed:
 
 <p>When you omit <code>-m</code>, Git will open a terminal text editor where you can write your commit message, including multiline commit messages. By default, the CS machines will use Vim for this (if you are not a Vim user, you can quit by typing <code>:wq</code>). If you want to change your default command-line editor, add a line like this:</p>
 
-<pre><code>EDITOR=myfavoriteeditor
+<pre><code>export EDITOR=myfavoriteeditor
 </code></pre>
 
 <p>At the end of the <code>.bashrc</code> file in your home directory (make sure you replace <code>myfavoriteeditor</code> with the command for your favorite command-line editor: <code>vi</code>, <code>emacs</code>, <code>nano</code>, <code>mcedit</code>, etc.)</p>
@@ -451,7 +451,7 @@ Delta compression using up to 8 threads.
 Compressing objects: 100% (6/6), done.
 Writing objects: 100% (8/8), 730 bytes | 0 bytes/s, done.
 Total 8 (delta 1), reused 0 (delta 0)
-To https://mit.cs.uchicago.edu/cmsc22000-spr-18/borja.git
+To https://mit.cs.uchicago.edu/cmsc22000-spr-19/borja.git
    3e39c15..53462fb  master -&gt; master
 </code></pre>
 
@@ -470,14 +470,14 @@ nothing to commit, working directory clean
 
 <p>So far, you have a local repository in your CS home directory, which you have been uploading to the GitLab server using the <code>git push</code> command. However, if you work from multiple locations (e.g., on a CS machine but also from your laptop), you will need to be able to create a local repository in those locations too. You can do this by running the <code>git clone</code> command (don&rsquo;t run this command just yet):</p>
 
-<pre><code>git clone https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
+<pre><code>git clone https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
 </code></pre>
 
 <p>This will create a local repository that &ldquo;clones&rdquo; the contents of the repository in the GitLab server. If you have a laptop with you (and have access to Git on that laptop), try running <code>git clone</code> there. If not, try creating a clone in a different directory on the CS machine you are on. For example:</p>
 
-<pre><code>mkdir /tmp/$USER/cs220
+<pre><code>mkdir -p /tmp/$USER/cs220
 cd /tmp/$USER/cs220
-git clone https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
+git clone https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
 </code></pre>
 
 <p>Make sure to replace <code>username</code> with your CNetID!</p>
@@ -497,7 +497,7 @@ git clone https://mit.cs.uchicago.edu/cmsc22000-spr-18/username.git
 remote: Compressing objects: 100% (3/3), done.
 remote: Total 3 (delta 1), reused 0 (delta 0)
 Unpacking objects: 100% (3/3), done.
-From https://mit.cs.uchicago.edu/cmsc22000-spr-18/borja
+From https://mit.cs.uchicago.edu/cmsc22000-spr-19/borja
    53462fb..0c29617  master     -&gt; origin/master
 Updating 53462fb..0c29617
 Fast-forward
@@ -521,23 +521,6 @@ Changes not staged for commit:
 
 no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
 </code></pre>
-
-<p>And you can view the changes using <code>git diff</code>:</p>
-
-<pre><code>diff --git a/test.txt b/test.txt
-index 46aa972..e69de29 100644
---- a/test.txt
-+++ b/test.txt
-@@ -1,5 +0,0 @@
--Your Name
--yourcnetid
--CMSC 22000 - Introduction to Software Development
--Git is pretty cool
--One more change!
-</code></pre>
-
-<p>The minus signs indicate lines that were deleted. Had we added any lines (or
-modified lines), we would see some plus signs as well.</p>
 
 <p>If we want to discard the changes we made to <code>test.txt</code>, all we have to do is follow the helpful advice provided by the above output:</p>
 
