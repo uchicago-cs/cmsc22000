@@ -250,7 +250,7 @@ So far, you have a local repository in your CS home directory, which you have be
 
 This will create a local repository that "clones" the contents of the repository in the GitLab server. If you have a laptop with you (and have access to Git on that laptop), try running `git clone` there. If not, try creating a clone in a different directory on the CS machine you are on. For example:
 
-    mkdir /tmp/$USER/cs220
+    mkdir -p /tmp/$USER/cs220
     cd /tmp/$USER/cs220
     git clone https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
 
