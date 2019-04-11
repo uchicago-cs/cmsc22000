@@ -28,8 +28,17 @@ chisubmit init  When asked for your username and password, just enter your CNetI
       
       <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</guid>
       <description>Due: Thursday, April 11th, 2:30pm
- NOTE: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)
-  In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading.</description>
+ **NOTE**: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)   In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading.</description>
+    </item>
+    
+    <item>
+      <title>Lab 2: Software Design</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</guid>
+      <description>Due: Thursday, April 18th, 2:30pm
+In this lab, you will carry out some basic software design tasks individually, and will also start working with your project team on a design warmup exercise. The individual portion of this lab will be shorter than in other labs, because we expect you to spend part of your time working on the design warmup exercise. In fact, we encourage you to spend most of the lab session working on the team exercise.</description>
     </item>
     
   </channel>

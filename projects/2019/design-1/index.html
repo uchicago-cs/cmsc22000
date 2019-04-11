@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Design Exercise: Boardmaster 3000  &middot; CS 220</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="Design Exercise: Boardmaster 3000  &middot; CS 220 ">
+<meta property="og:site_name" content="CS 220"/>
+<meta property="og:url" content="https://uchicago-cs.github.io/cmsc22000/projects/2019/design-1/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="0001-01-01T00:00:00Z" />
+<meta property="og:article:modified_time" content="0001-01-01T00:00:00Z" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Design Exercise: Boardmaster 3000" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://uchicago-cs.github.io/cmsc22000/projects/2019/design-1/" />
+<meta name="twitter:domain" content="https://uchicago-cs.github.io/cmsc22000/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Design Exercise: Boardmaster 3000",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "0001-01-01",
+    "description": "",
+    "wordCount":  1386 
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://uchicago-cs.github.io/cmsc22000/projects/2019/design-1/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
+<link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.55.0" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="/cmsc22000/css/style.css">
+
+
+  <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+
+  
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-27880910-4', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper has-sidebar">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://uchicago-cs.github.io/cmsc22000/">
+  CS 220
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  Introduction to Software Development
+
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+
+  
+<a href="https://uchicago-cs.github.io/cmsc22000/syllabus/">Syllabus</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/resources/">Additional Resources</a>
+
+<a href="https://uchicago-cs.github.io/cmsc22000/faq/">FAQs</a>
+
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>Design Exercise: Boardmaster 3000
+</h1>
+
+</header>
+
+  <div class="container content">
+  
+
+<p>You have recently joined a software company that is developing an exciting new game: The Boardmaster 3000! This game will allow users to play a variety of two-player board games, all of which can be played on a square <a href="https://en.wikipedia.org/wiki/Chessboard">chessboard</a> (like <a href="https://en.wikipedia.org/wiki/Chess">chess</a>, <a href="https://en.wikipedia.org/wiki/Draughts">checkers</a>, and some <a href="https://en.wikipedia.org/wiki/List_of_chess_variants">variants of chess</a>) However, we are following an incremental software development model, so we are going to start by supporting only chess. This will give us a chance to get some initial feedback on the Boardmaster 3000 before we move on to supporting other games.</p>
+
+<p>What’s that you say? There’s a lot of chess games out there already? Ah, but the Boardmaster 3000 will feature a state-of-the-art multiplatform VR interface with AI adversaries powered by sophisticated Deep Learning algorithms! Also, you can bet on games using our own cryptocurrency, Boardcoin!</p>
+
+<p>Very exciting stuff… which is in the hands of other teams in the company. Your team will be focusing on a different task: loading/saving games from/to disk, and providing an API for manipulating the state of the game.</p>
+
+<h2 id="the-cbf-format">The CBF Format</h2>
+
+<p>The Boardmaster 3000 will need to be able to save games to disk (e.g., if we want to stop playing, and then resume the game at a later time), and then load those saved games from disk (additionally, a user may want to load a famous chess match). We will be using a simple file format called CBF (ChessBoard File), where the chessboard is represented with text characters. For example, this chessboard:</p>
+
+<p><img src="/cmsc22000/img/chess.png" alt="Chess game" title="Chess game. Source: https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6" /></p>
+
+<p>Would be represented like this:</p>
+
+<pre><code>R_BK_B_R
+PP_NQ_P_
+__P_PNbP
+________
+___p_b__
+_____n__
+ppp__ppp
+r__q_rk_
+</code></pre>
+
+<p>Each line represents a row of the chessboard. Empty spots are represented by an underscore character, black pieces are represented with uppercase letters, and white pieces are represented with lowercase letters:</p>
+
+<ul>
+<li><code>p</code>/<code>P</code>: Pawn</li>
+<li><code>r</code>/<code>R</code>: Rook</li>
+<li><code>b</code>/<code>B</code>: Bishop</li>
+<li><code>n</code>/<code>N</code>: Knight</li>
+<li><code>q</code>/<code>Q</code>: Queen</li>
+<li><code>k</code>/<code>K</code>: King</li>
+</ul>
+
+<h2 id="chess-rules">Chess rules</h2>
+
+<p>Our first version of the Boardmaster 3000 will only have to support a subset of the rules of chess. In particular, we will only support the moves specified in the “Basic moves” section of the <a href="https://en.wikipedia.org/wiki/Rules_of_chess">Rules of chess</a> Wikipedia article. This means we do not yet support castling, <em>en passant</em>, or pawn promotion.</p>
+
+<h2 id="your-task">Your task</h2>
+
+<p>Broadly speaking, you will be responsible for designing modules for loading, manipulating, and saving the state of a single game. While this may not seem terribly exciting in isolation, your modules will be used by a lot of other teams in the Boardmaster 3000 project. For example, when our advanced Chess AI, fondly nicknamed “The Chessinator 3000”, needs to know whether a piece in position (x<sub>0</sub>, y<sub>0</sub>) can move to position (x<sub>1</sub>, y<sub>1</sub>), it will be calling your code.</p>
+
+<p>Take into account that you are only going to be <em>designing</em> these modules. So, you will be focusing only on specifying the <em>interface</em> of those modules, and not their implementation (with one exception: you will have to provide a specification of any internal data structures you expect to use)</p>
+
+<p>Your modules must provide at least the following functionality:</p>
+
+<ul>
+<li>Loading a game from disk</li>
+<li>Saving a game to disk</li>
+<li>Determining the following about the state of the game:
+
+<ul>
+<li>What piece (if any) is in position <em>x, y</em>?</li>
+<li>What are the possible moves for the piece in position <em>x, y</em>?</li>
+<li>Can piece in position (x<sub>0</sub>, y<sub>0</sub>) move to position (x<sub>1</sub>, y<sub>1</sub>)?</li>
+<li>What piece (if any) will the piece in position (x<sub>0</sub>, y<sub>0</sub>) take if it moves to position (x<sub>1</sub>, y<sub>1</sub>)</li>
+<li>Can the piece in position _x, y _be taken by some other piece in one move?</li>
+<li>What pieces have been taken by a given player?</li>
+</ul></li>
+<li>Changing the state of the game:
+
+<ul>
+<li>Move piece in position (x<sub>0</sub>, y<sub>0</sub>) to position (x<sub>1</sub>, y<sub>1</sub>), unless it is an illegal move.</li>
+</ul></li>
+</ul>
+
+<p>Hint: A big part of this design will be to figure out how to represent the state of the game using C structs.</p>
+
+<h2 id="deliverables">Deliverables</h2>
+
+<p>Instead of preparing a formal document, you will be specifying your design in C code. For each module you design, you must provide a header file and a C file. The header file should contain all the functions that are provided by that module, and the C file should contain empty implementations of those functions. Each function in the header file must include code comments explaining the purpose of the function.</p>
+
+<p>For example:</p>
+
+<pre><code>math.h:
+
+    /* This function adds two numbers */
+    int add(int x, int y);
+
+math.c:
+
+    /* See math.h*/
+    int add(int x, int y)
+    {
+		/* TODO */
+		Return 0;
+    }
+
+</code></pre>
+
+<p>You must also provide struct definitions for any data structures you expect to use in your modules. You must use code comments to provide a description of the struct, as well as any non-obvious fields.</p>
+
+<p>You may assume that you have the ability to use standard data structures like linked lists, hash tables, etc. If you need to use such a type, you can include a forward declaration in lieu of an actual data structure (i.e., you do not need to design a linked list module or find an existing one).</p>
+
+<p>For example:</p>
+
+<pre><code>printer.h:
+
+    /* Forward declaration */
+    typedef struct list list_t;
+
+    /* This struct represent a single print job. A print
+       job includes some text that needs to be printed out */
+    typedef struct printjob
+    {
+        int identifier;
+        char *text;
+    } printjob_t;
+
+    /* 
+    typedef struct printer
+    {
+        char *name;
+
+        /* Duplex printing: true if printer can do two-sided printing */
+        bool duplex; 
+
+        /* Print job that is currently being printed (NULL if none) */
+        printjob_t *current_job;
+
+        /* List of printjob_t structs. Represents the jobs that
+           are waiting to be printed */
+        list_t *jobs;
+    } printer_t;
+</code></pre>
+
+<p>We encourage you to follow this <a href="https://uchicago-cs.github.io/cmsc23300/style_guide.html">style guide</a> when writing your code, but will not be grading you based on style at this point. However, we will expect you to follow a style guide in the project (similar to the one we link to), so familiarizing yourself with a style guide will be good practice.</p>
+
+<p>Please note that your code <em>must</em> compile correctly. This will ensure that you are properly specifying your structs and functions. We will be talking about building projects with multiple modules during third week but, in the interim, you can compile your code like this:</p>
+
+<pre><code>gcc file1.c file2.c file3.c main.c -o bm300
+</code></pre>
+
+<p>Do not name your modules <code>file1.c</code>, <code>file2.c</code>, etc. Instead replace those filenames with those of your C modules. Please note that, for your code to compile correctly, you must include a <code>main.c</code> file with an empty <code>main()</code> function (your <code>main()</code> function does not need to call any of your functions, etc.). You are welcome to provide a <code>Makefile</code>, but are not required to do so.</p>
+
+<p>Finally, you must include a <code>README</code> file with a summary of each module, and any other general notes on your design.</p>
+
+<p>Note: Once the design exercise is done, all the teams will be able to see each other’s designs (along with the comments we will provide, except for their exact score). This will allow you to see how other teams approached the same design problem, which can be very useful in honing your own design skills. However, this also means you have to make sure your code and documentation will be easy to read and understand by others.</p>
+
+<h2 id="submission-instructions">Submission Instructions</h2>
+
+<p>We will be creating team repositories on our GitLab server (the name of the repository will be the CNetIDs of everyone on the team, separated by hyphens). One of you should initialize the repository,  in the same way you did in Lab #1, and the rest of you should clone the repository once it has been initialized.</p>
+
+<p>You must upload all your work for this exercise to your team repository. <em>Do not use your individual repository!</em> Since we have not yet seen certain advanced Git features, including how to deal with &ldquo;merge conflicts&rdquo;, we suggest that, for the time being, you only have one person pulling/pushing from/to the repository at any given time.</p>
+
+<p>Once you are ready to submit, run <code>chisubmit init</code> in the root of your team repository. You will be prompted to choose between your individual registration or your team registration; make sure you choose the latter. Once you have done so, you just need to run this:</p>
+
+<pre><code>chisubmit student assignment submit design-1
+</code></pre>
+
+<p>(you do not need to run the <code>assignment register</code> command, like the labs, because we will be registering the teams ourselves on chisubmit)</p>
+
+</div>
+
+
+  
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+
+</div>
+
+</footer>
+
+    </main>
+    
+
+
+    
+  </body>
+</html>
+

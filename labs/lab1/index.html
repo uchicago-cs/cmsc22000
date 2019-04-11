@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-28",
     "description": "",
-    "wordCount": 5207
+    "wordCount":  5207 
   }
 </script>
 
@@ -62,17 +62,16 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.54.0" />
+<meta name="generator" content="Hugo 0.55.0" />
 
-  
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+<link rel="stylesheet" href="/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="/cmsc22000/css/style.css">
 
 
   <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
@@ -140,7 +139,7 @@
 
 
 
-
+ 
 
 
 
@@ -180,14 +179,14 @@
 <p><strong>Due:</strong> Thursday, April 11th, 2:30pm</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p><strong>NOTE</strong>: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)</p>
+    <div class="admonition-content">
+**NOTE**: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)
 </div>
 </aside>
-
 
 <p>In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or <em>version control</em>) of your projects and assignments, and to submit your work for grading. In this class, we will be using Git, a more widespread version control system that is more commonly used in a variety of software projects.</p>
 
@@ -243,14 +242,14 @@
 <p>The text after the <code>-m</code> is a short message that describes the changes you have made since your last commit. Common examples of commit messages might be &ldquo;Finished lab 1&rdquo; or “Implemented insert function for data struct”.</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p>If you forget the <code>-m</code> parameter, Git will think that you forgot to specify a commit message. It will graciously open up a default editor so that you can enter such a message. This can be useful if you want to enter a longer commit message (including multi-line messages). We will experiment with this later.</p>
+    <div class="admonition-content">
+If you forget the `-m` parameter, Git will think that you forgot to specify a commit message. It will graciously open up a default editor so that you can enter such a message. This can be useful if you want to enter a longer commit message (including multi-line messages). We will experiment with this later.
 </div>
 </aside>
-
 
 <p>Once you run the above command, you will see something like the following output:</p>
 
@@ -274,14 +273,14 @@ To https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
 <p>You can ignore most of those messages. The important thing is to not see any warnings or error messages.</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p>When you push for the first time, you may get a message saying that <code>push.default is unset</code>, and suggesting two possible commands to remedy the situation. While the rest of the lab will work fine if you don&rsquo;t run either of these commands, you should run the command to use &ldquo;simple&rdquo; (this will prevent the warning from appearing every time you push)</p>
+    <div class="admonition-content">
+When you push for the first time, you may get a message saying that `push.default is unset`, and suggesting two possible commands to remedy the situation. While the rest of the lab will work fine if you don't run either of these commands, you should run the command to use "simple" (this will prevent the warning from appearing every time you push)
 </div>
 </aside>
-
 
 <p>You can verify that our Git server correctly received your commit by going to <a href="https://mit.cs.uchicago.edu/">https://mit.cs.uchicago.edu/</a>. The <code>test.txt</code> file should now show the updated content (your name with your CNetID)</p>
 
@@ -323,14 +322,14 @@ no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&q
 </ul>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p>You may see some automatically generated files in your Untracked files section. Files that start with a pound sign (#) or end with a tilde should <em>not</em> be added to your repository. Files that end with a tilde are backup files created by some editors that are intended to help you restore your files if your computer crashes. In general, files that are automatically generated should not be committed to your repository. Other people should be able to generate their own versions, if necessary.</p>
+    <div class="admonition-content">
+You may see some automatically generated files in your Untracked files section. Files that start with a pound sign (#) or end with a tilde should *not* be added to your repository. Files that end with a tilde are backup files created by some editors that are intended to help you restore your files if your computer crashes. In general, files that are automatically generated should not be committed to your repository. Other people should be able to generate their own versions, if necessary.
 </div>
 </aside>
-
 
 <p>So, let&rsquo;s go ahead and add <code>README.md</code>:</p>
 
@@ -641,14 +640,14 @@ Changes not staged for commit:
 <p>Take into account that, while you should be able to find this out using only Git commands, you may need to find out a convenient way of exploring the commit log (instead of just scrolling endlessly until you find some mention of the <code>--no-mouse</code> option). Include the commit SHA and commit message in <code>tasks.txt</code>, and explain how you located that commit.</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p>You should ignore any Git instructions provided in the <code>fzf</code> documentation (specially in their <code>README</code> file). These will lead you down the wrong path.</p>
+    <div class="admonition-content">
+You should ignore any Git instructions provided in the `fzf` documentation (specially in their `README` file). These will lead you down the wrong path.
 </div>
 </aside>
-
 
 <h4 id="task-10">Task 10</h4>
 
@@ -733,7 +732,6 @@ chisubmit student assignment submit lab1
 
     </main>
     
-
 
 
     
