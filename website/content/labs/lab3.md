@@ -2,21 +2,22 @@
 title: "Lab 3: Make"
 date: 2018-01-28
 publishdate: 2018-01-28
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, April 19th, 4pm
+**Due:** Thursday, April 25th, 2:30pm
 
-In the class project, you will be working with a large C project called [Redis](https://redis.io/) that is composed of hundreds and hundreds of C files. How do these files become the program called `redis`? In this lab, we’ll explore the ways a program can be “built”--that is, the way that  source code is turned into binary code so that a computer can execute it.  In some cases, “building” may refer to compiling a single file, but usually it refers to the whole process of linking and creating a project: which can include linking, compiling, and running tests. We’ll look at testing in later labs, and for this lab we’ll focus on the “make” command as a way to compile and build projects. 
+In the class project, you will likely produce dozens of C files that will ultimately produce a single executable. When dealing with multiple source files, specially when there are dependencies between them, it is common to use a *build system* instead of manually compiling and linking all the files. in this lab, we’ll explore the ways a program can be “built”--that is, the way that source code is turned into binary code so that a computer can execute it. In some cases, “building” may refer to compiling a single file, but usually it refers to the whole process of linking and creating a project: which can include linking, compiling, and running tests. We’ll look at testing in later labs, and for this lab we’ll focus on the `make` command as a way to compile and build projects. 
 
 {{% warning %}}
-**Note:** For some of these tasks, you may be tempted to look at the Makefiles included with libgeometry, and copy-paste parts of them into your Makefiles. There are two important reasons not to do this:
+{{% md %}}
+**NOTE**: For some of these tasks, you may be tempted to look at the Makefiles included with libgeometry, and copy-paste parts of them into your Makefiles. There are two important reasons not to do this:
 
 1. It is important that you understand what you're doing in each of the tasks in this lab. If you get stuck and you're not sure how to proceed, ask us (either during the lab session or on Piazza). If you just copy-paste from one of our Makefiles, you won't understand how those parts of the Makefile work.
 2. The tasks in this lab actually ask you to modify a Makefile in ways that are different from how the libgeometry Makefile is written. If you just copy-paste from our Makefile, it is almost certain we will be able to tell that you did so. 
 
 That said, by the end of this lab you should be able to understand almost everything that is contained in the libgeometry Makefiles. However, it is important that you perform all the intermediate tasks before you get to that point.
-
+{{% /md %}}
 {{% /warning %}}
 
 Finally, for your reference, you may find the following resources helpful:
@@ -95,6 +96,7 @@ World!
 ```
 
 {{% warning %}}
+{{% md %}}
 **Beware the curse of the tabs and the missing separators!** 
 
 If you get an error message like this:
@@ -108,6 +110,7 @@ This means there may have been an issue when copy-pasting from this page to the 
 If that is the case, you can tell `make` to use spaces instead of tabs by adding the following at the top of your Makefile:
 
     .RECIPEPREFIX +=
+{{% /md %}}
 {{% /warning %}}
 
 First, notice how `make hello` prints both the command that is run by that rule, as well as the result of running that command. Next, notice how since the `world` rule depends on the `hello` rule, the `hello` rule is executed first when we run `make world`. It’s important to note that the topmost rule in a file (that is, the rule defined the earliest in the file) is the **default rule**, which means that it will be executed when calling `make` with no arguments. In the case above, `make` and `make hello` will produce identical output. 
@@ -239,26 +242,24 @@ In task 3, you defined separate, explicit rules for each object file in the proj
   - In a variable, you can do substitution like so: `FOO = $(BAR:.txt=.pdf)`. This means: “take the `BAR` variable, substitute the `.txt` extension for `.pdf` in all files in `BAR`, and then save the result in `FOO`.”
  - Inside a rule, you can use the `patsubst` function like so: `gcc $(patsubst %.o,%.d,$@)`. This means: “take the name of the current rule, substitute the extension `.o` for `.d`, and pass that file to gcc".
 
- Finally, rules can have variable names: if you want to parameterize a rule so that it works for any files in a list of files, you could name a rule `$(SRCS)`. Consider the following rule:
+{{% note %}}
+{{% md %}}
+`.d` files (aka, "dependency files"), which you will encounter in libgeometry and in other projects, are special files that list out all the header files that the project depends on. This is because by default, `make` does not track changes to .h files, while it does track changes to .c files. So, we use a special flag in gcc (the `-MM` flag which you can read more about in `man gcc`) which compiles a list of header files that the code depends on. `make` can then use that `.d` file to figure out when a header file has been modified and recompile the code accordingly.
+
+Please note that you do not need to worry about `.d` files in this lab.
+{{% /md %}}
+{{% /note %}}
+
+
+
+Finally, rules can have variable names: if you want to parameterize a rule so that it works for any files in a list of files, you could name a rule `$(SRCS)`. Consider the following rule:
 
 ```
 $(OBJS): %.o:%.c
   $(CC) $(CFLAGS) -c -o $@ $(patsubst %.o, %.c, $@)
 ```
 
-There's a lot going on here, so let's unpack it all. Naming the rule `$(OBJS)`
-means that any filename in `$(OBJS)` will match this rule. That is, if `$(OBJS)`
-is `OBJS = src/obi_wan.o src/grievous.o`, and we call `make src/grievous.o`, it
-will run this command. Next, since the rule name is a parameter, it's not really
-clear what `$@` represents. In the case of a parameterized rule, `$@` is the
-value of the parameter that triggered the rule. So if we call `make
-src/grievous.o`, then `$@` will be `src/grievous.o`. Similarly, if we call `make
-src/obi_wan.o`, then `$@` will be `src/obi_wan.o`. Finally, the `%.o:%.c` part
-marks all `.c` files corresponding to the `.o` files in `OBJS` as prerequisites.
-Marking a `.c` file as a prerequisite means that when you run any rule that
-depends on that file, `make` will first check if that file has been changed
-since the last time was run, and if it was changed, will run any other
-prerequisites first (to ensure your whole project is up-to-date).
+There's a lot going on here, so let's unpack it all. Naming the rule `$(OBJS)` means that any filename in `$(OBJS)` will match this rule. That is, if `$(OBJS)` is `OBJS = src/obi_wan.o src/grievous.o`, and we call `make src/grievous.o`, it will run this command. Next, since the rule name is a parameter, it's not really clear what `$@` represents. In the case of a parameterized rule, `$@` is the value of the parameter that triggered the rule. So if we call `make src/grievous.o`, then `$@` will be `src/grievous.o`. Similarly, if we call `make src/obi_wan.o`, then `$@` will be `src/obi_wan.o`. Finally, the `%.o:%.c` part marks all `.c` files corresponding to the `.o` files in `OBJS` as prerequisites. Marking a `.c` file as a prerequisite means that when you run any rule that depends on that file, `make` will first check if that file has been changed since the last time was run, and if it was changed, will run any other prerequisites first (to ensure your whole project is up-to-date).
 
 Given this information, take your `Makefile` from task 3, copy it to the task 4 directory, and modularize it: you should have no hardcoded rules or values, except for flags/filenames/etc that only apply to one specific rule. Note that there are possibly many correct ways to do this. You should make a commit at this point.
 
@@ -267,7 +268,7 @@ Given this information, take your `Makefile` from task 3, copy it to the task 4 
 
 (20 points)
 
-At this point, you have a Makefile that produces a `libstarwars.so` library. For this final task, you must write, inside the `task5` directory, a C file that uses that library, and a Makefile that correctly builds and runs your program. We have not explicitly explained some of the steps that will be required to do this, but you may use the `Makefile` from the `samples/` directory in [libgeometry](https://github.com/uchicago-cs/cmsc22000/tree/master/examples/libgeometry) as a guide. However, it is not enough for you to copy-paste parts of that `Makefile`: your `Makefile` for this task must be annotated with comments (comments in Makefiles begin with `#`). These comments must explain what each rule does, and you must explain any detail or feature that was not explicitly explained earlier in the lab.
+At this point, you have a Makefile that produces a `libstarwars.so` library. For this final task, you must create a `task5` directory, and write a C file in it that uses the `libstarwars.so` library, and a Makefile that correctly builds and runs your program. We have not explicitly explained some of the steps that will be required to do this, but you may use the `Makefile` from the `samples/` directory in [libgeometry](https://github.com/uchicago-cs/cmsc22000/tree/master/examples/libgeometry) as a guide. However, it is not enough for you to copy-paste parts of that `Makefile`: your `Makefile` for this task must be annotated with comments (comments in Makefiles begin with `#`). These comments must explain what each rule does, and you must explain any detail or feature that was not explicitly explained earlier in the lab.
 
 You must also include a `readme.txt` file with instructions on how to build and run your program. Remember that, by default, programs running on a Linux system will look for shared libraries in specific locations, so you must tell us how we must run your program so that it can correctly find the `libstarwars.so` library when it runs.
 
