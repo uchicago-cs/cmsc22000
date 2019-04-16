@@ -16,10 +16,10 @@ all: ${BINS}
 
 polygon.o: polygon.c
 
-polygon-sample: polygon.o
+polygon-sample: polygon.o ../libgeometry.so
 	$(CC) $(DYN_LDFLAGS) $^ -o$@ $(LDLIBS) 
 
-polygon-sample-static: polygon.o
+polygon-sample-static: polygon.o ../libgeometry.a
 	$(CC) $(STC_LDFLAGS) $^ -o$@ -l:libgeometry.a -lm
 
 
