@@ -27,7 +27,7 @@ $(SRCS:.c=.d):%.d:%.c
 
 -include $(SRCS:.c=.d)
 
-.PHONY: clean tests
+.PHONY: clean tests samples
 clean:
 	-${RM} ${LIBS} ${OBJS} $(SRCS:.c=.d)
 	make -C ./tests clean
