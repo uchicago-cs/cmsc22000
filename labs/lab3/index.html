@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-28",
     "description": "",
-    "wordCount": 2945
+    "wordCount":  3084 
   }
 </script>
 
@@ -62,17 +62,16 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.55.2" />
 
-  
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+<link rel="stylesheet" href="/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="/cmsc22000/css/style.css">
 
 
   <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
@@ -140,7 +139,7 @@
 
 
 
-
+ 
 
 
 
@@ -177,16 +176,17 @@
   <div class="container content">
   
 
-<p><strong>Due:</strong> Thursday, April 19th, 4pm</p>
+<p><strong>Due:</strong> Thursday, April 25th, 2:30pm</p>
 
-<p>In the class project, you will be working with a large C project called <a href="https://redis.io/">Redis</a> that is composed of hundreds and hundreds of C files. How do these files become the program called <code>redis</code>? In this lab, we’ll explore the ways a program can be “built”&ndash;that is, the way that  source code is turned into binary code so that a computer can execute it.  In some cases, “building” may refer to compiling a single file, but usually it refers to the whole process of linking and creating a project: which can include linking, compiling, and running tests. We’ll look at testing in later labs, and for this lab we’ll focus on the “make” command as a way to compile and build projects.</p>
+<p>In the class project, you will likely produce dozens of C files that will ultimately produce a single executable. When dealing with multiple source files, specially when there are dependencies between them, it is common to use a <em>build system</em> instead of manually compiling and linking all the files. in this lab, we’ll explore the ways a program can be “built”&ndash;that is, the way that source code is turned into binary code so that a computer can execute it. In some cases, “building” may refer to compiling a single file, but usually it refers to the whole process of linking and creating a project: which can include linking, compiling, and running tests. We’ll look at testing in later labs, and for this lab we’ll focus on the <code>make</code> command as a way to compile and build projects.</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p><strong>Note:</strong> For some of these tasks, you may be tempted to look at the Makefiles included with libgeometry, and copy-paste parts of them into your Makefiles. There are two important reasons not to do this:</p>
+    <div class="admonition-content">
+<p><strong>NOTE</strong>: For some of these tasks, you may be tempted to look at the Makefiles included with libgeometry, and copy-paste parts of them into your Makefiles. There are two important reasons not to do this:</p>
 
 <ol>
 <li>It is important that you understand what you&rsquo;re doing in each of the tasks in this lab. If you get stuck and you&rsquo;re not sure how to proceed, ask us (either during the lab session or on Piazza). If you just copy-paste from one of our Makefiles, you won&rsquo;t understand how those parts of the Makefile work.</li>
@@ -194,9 +194,10 @@
 </ol>
 
 <p>That said, by the end of this lab you should be able to understand almost everything that is contained in the libgeometry Makefiles. However, it is important that you perform all the intermediate tasks before you get to that point.</p>
+
+
 </div>
 </aside>
-
 
 <p>Finally, for your reference, you may find the following resources helpful:</p>
 
@@ -268,11 +269,12 @@ World!
 </code></pre>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p><strong>Beware the curse of the tabs and the missing separators!</strong></p>
+    <div class="admonition-content">
+<p><strong>Beware the curse of the tabs and the missing separators!</strong></p>
 
 <p>If you get an error message like this:</p>
 
@@ -285,9 +287,10 @@ World!
 
 <pre><code>.RECIPEPREFIX +=
 </code></pre>
+
+
 </div>
 </aside>
-
 
 <p>First, notice how <code>make hello</code> prints both the command that is run by that rule, as well as the result of running that command. Next, notice how since the <code>world</code> rule depends on the <code>hello</code> rule, the <code>hello</code> rule is executed first when we run <code>make world</code>. It’s important to note that the topmost rule in a file (that is, the rule defined the earliest in the file) is the <strong>default rule</strong>, which means that it will be executed when calling <code>make</code> with no arguments. In the case above, <code>make</code> and <code>make hello</code> will produce identical output.</p>
 
@@ -420,25 +423,27 @@ options.</li>
 </ul></li>
 </ul>
 
+<aside class="admonition note">
+    <div class="admonition-icon">
+
+    </div>
+
+    <div class="admonition-content">
+<p><code>.d</code> files (aka, &ldquo;dependency files&rdquo;), which you will encounter in libgeometry and in other projects, are special files that list out all the header files that the project depends on. This is because by default, <code>make</code> does not track changes to .h files, while it does track changes to .c files. So, we use a special flag in gcc (the <code>-MM</code> flag which you can read more about in <code>man gcc</code>) which compiles a list of header files that the code depends on. <code>make</code> can then use that <code>.d</code> file to figure out when a header file has been modified and recompile the code accordingly.</p>
+
+<p>Please note that you do not need to worry about <code>.d</code> files in this lab.</p>
+
+
+</div>
+</aside>
+
 <p>Finally, rules can have variable names: if you want to parameterize a rule so that it works for any files in a list of files, you could name a rule <code>$(SRCS)</code>. Consider the following rule:</p>
 
 <pre><code>$(OBJS): %.o:%.c
   $(CC) $(CFLAGS) -c -o $@ $(patsubst %.o, %.c, $@)
 </code></pre>
 
-<p>There&rsquo;s a lot going on here, so let&rsquo;s unpack it all. Naming the rule <code>$(OBJS)</code>
-means that any filename in <code>$(OBJS)</code> will match this rule. That is, if <code>$(OBJS)</code>
-is <code>OBJS = src/obi_wan.o src/grievous.o</code>, and we call <code>make src/grievous.o</code>, it
-will run this command. Next, since the rule name is a parameter, it&rsquo;s not really
-clear what <code>$@</code> represents. In the case of a parameterized rule, <code>$@</code> is the
-value of the parameter that triggered the rule. So if we call <code>make
-src/grievous.o</code>, then <code>$@</code> will be <code>src/grievous.o</code>. Similarly, if we call <code>make
-src/obi_wan.o</code>, then <code>$@</code> will be <code>src/obi_wan.o</code>. Finally, the <code>%.o:%.c</code> part
-marks all <code>.c</code> files corresponding to the <code>.o</code> files in <code>OBJS</code> as prerequisites.
-Marking a <code>.c</code> file as a prerequisite means that when you run any rule that
-depends on that file, <code>make</code> will first check if that file has been changed
-since the last time was run, and if it was changed, will run any other
-prerequisites first (to ensure your whole project is up-to-date).</p>
+<p>There&rsquo;s a lot going on here, so let&rsquo;s unpack it all. Naming the rule <code>$(OBJS)</code> means that any filename in <code>$(OBJS)</code> will match this rule. That is, if <code>$(OBJS)</code> is <code>OBJS = src/obi_wan.o src/grievous.o</code>, and we call <code>make src/grievous.o</code>, it will run this command. Next, since the rule name is a parameter, it&rsquo;s not really clear what <code>$@</code> represents. In the case of a parameterized rule, <code>$@</code> is the value of the parameter that triggered the rule. So if we call <code>make src/grievous.o</code>, then <code>$@</code> will be <code>src/grievous.o</code>. Similarly, if we call <code>make src/obi_wan.o</code>, then <code>$@</code> will be <code>src/obi_wan.o</code>. Finally, the <code>%.o:%.c</code> part marks all <code>.c</code> files corresponding to the <code>.o</code> files in <code>OBJS</code> as prerequisites. Marking a <code>.c</code> file as a prerequisite means that when you run any rule that depends on that file, <code>make</code> will first check if that file has been changed since the last time was run, and if it was changed, will run any other prerequisites first (to ensure your whole project is up-to-date).</p>
 
 <p>Given this information, take your <code>Makefile</code> from task 3, copy it to the task 4 directory, and modularize it: you should have no hardcoded rules or values, except for flags/filenames/etc that only apply to one specific rule. Note that there are possibly many correct ways to do this. You should make a commit at this point.</p>
 
@@ -446,7 +451,7 @@ prerequisites first (to ensure your whole project is up-to-date).</p>
 
 <p>(20 points)</p>
 
-<p>At this point, you have a Makefile that produces a <code>libstarwars.so</code> library. For this final task, you must write, inside the <code>task5</code> directory, a C file that uses that library, and a Makefile that correctly builds and runs your program. We have not explicitly explained some of the steps that will be required to do this, but you may use the <code>Makefile</code> from the <code>samples/</code> directory in <a href="https://github.com/uchicago-cs/cmsc22000/tree/master/examples/libgeometry">libgeometry</a> as a guide. However, it is not enough for you to copy-paste parts of that <code>Makefile</code>: your <code>Makefile</code> for this task must be annotated with comments (comments in Makefiles begin with <code>#</code>). These comments must explain what each rule does, and you must explain any detail or feature that was not explicitly explained earlier in the lab.</p>
+<p>At this point, you have a Makefile that produces a <code>libstarwars.so</code> library. For this final task, you must create a <code>task5</code> directory, and write a C file in it that uses the <code>libstarwars.so</code> library, and a Makefile that correctly builds and runs your program. We have not explicitly explained some of the steps that will be required to do this, but you may use the <code>Makefile</code> from the <code>samples/</code> directory in <a href="https://github.com/uchicago-cs/cmsc22000/tree/master/examples/libgeometry">libgeometry</a> as a guide. However, it is not enough for you to copy-paste parts of that <code>Makefile</code>: your <code>Makefile</code> for this task must be annotated with comments (comments in Makefiles begin with <code>#</code>). These comments must explain what each rule does, and you must explain any detail or feature that was not explicitly explained earlier in the lab.</p>
 
 <p>You must also include a <code>readme.txt</code> file with instructions on how to build and run your program. Remember that, by default, programs running on a Linux system will look for shared libraries in specific locations, so you must tell us how we must run your program so that it can correctly find the <code>libstarwars.so</code> library when it runs.</p>
 
@@ -489,7 +494,6 @@ chisubmit student assignment submit lab3
 
     </main>
     
-
 
 
     

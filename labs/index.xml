@@ -41,5 +41,15 @@ chisubmit init  When asked for your username and password, just enter your CNetI
 In this lab, you will carry out some basic software design tasks individually, and will also start working with your project team on a design warmup exercise. The individual portion of this lab will be shorter than in other labs, because we expect you to spend part of your time working on the design warmup exercise. In fact, we encourage you to spend most of the lab session working on the team exercise.</description>
     </item>
     
+    <item>
+      <title>Lab 3: Make</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</guid>
+      <description>Due: Thursday, April 25th, 2:30pm
+In the class project, you will likely produce dozens of C files that will ultimately produce a single executable. When dealing with multiple source files, specially when there are dependencies between them, it is common to use a build system instead of manually compiling and linking all the files. in this lab, we’ll explore the ways a program can be “built”&amp;ndash;that is, the way that source code is turned into binary code so that a computer can execute it.</description>
+    </item>
+    
   </channel>
 </rss>
