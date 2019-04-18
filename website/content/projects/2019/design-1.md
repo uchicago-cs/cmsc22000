@@ -157,7 +157,7 @@ You must upload all your work for this exercise to your team repository. *Do not
 Once you are ready to submit, run `chisubmit init` in the root of your team repository. You will be prompted to choose between your individual registration or your team registration; make sure you choose the latter. Once you have done so, you just need to run this:
 
 ```
-chisubmit student assignment submit design-1
+chisubmit student assignment submit design1
 ```
 (you do not need to run the `assignment register` command, like the labs, because we will be registering the teams ourselves on chisubmit)
 
