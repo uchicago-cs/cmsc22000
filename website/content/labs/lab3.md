@@ -26,6 +26,12 @@ Finally, for your reference, you may find the following resources helpful:
 - The `make` and `gcc` man pages, available in your terminal through `man make`
   and `man gcc`.
 
+## Project Team Exercise: Design Warm-up (Part II)
+
+Along with this week's lab, we are also assigning the second part of the design warm-up exercise, which you can find [here]({{< relref "../projects/2019/design-2.md" >}}). Before you start working on the lab, you may want to touch base with your team about this exercise, so you can come up with a plan for completing the team exercise in the coming days (however, since you already know each other and have started working together, you probably don't need to spend the entire lab session on this).
+
+Please note that the second part of the design exercise is due at the same time as this lab.
+
 
 ## Task 0: Pulling from upstream
 
