@@ -19,5 +19,14 @@
       <description>You have recently joined a software company that is developing an exciting new game: The Boardmaster 3000! This game will allow users to play a variety of two-player board games, all of which can be played on a square chessboard (like chess, checkers, and some variants of chess) However, we are following an incremental software development model, so we are going to start by supporting only chess. This will give us a chance to get some initial feedback on the Boardmaster 3000 before we move on to supporting other games.</description>
     </item>
     
+    <item>
+      <title>Design Exercise: Boardmaster 3000 (Part II)</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/projects/2019/design-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/projects/2019/design-2/</guid>
+      <description>Good news, everyone! The first version of the Boardmaster 3000 has been a resounding success! We got a lot of quality feedback from users, which included comments like “the VR interface is like nothing I’ve seen before”, “finally, a chess game that challenges both my intellect and my senses”, and “the AI is creepily lifelike, in a good way, I guess”. We know you were not involved in any of those aspects of the game, but your modules for loading, manipulating, and saving the state of a game were an indispensable building block that made the rest of the game possible.</description>
+    </item>
+    
   </channel>
 </rss>
