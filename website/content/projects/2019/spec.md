@@ -137,18 +137,14 @@ Unlike a traditional programming assignment or project, the exact final outcome 
 
 As such, your individual score on the project will be based on how well you perform certain tasks that you will do throughout the project (and which you would encounter in any real software project). More specifically, you will be evaluated based on the following:
 
-
-
 *   How well you document tasks/issues (and whether you complete the tasks you commit to doing in a given sprint).
 *   Whether you get pull requests to master approved
 *   How well you do code reviews (on pull requests where you are a reviewer) 
 *   How well you do your peer evaluations
 
-Note: no part of your score will be determined by your teammates. So, when you receive a code review or a peer evaluation, we will be evaluating the quality of that code review / peer evaluation. We will not be using that review/evaluation to determine your score.
+Note: no part of your score will be determined by your teammates. So, when you receive a code review or a peer evaluation, we will be evaluating the quality of the code review / peer evaluation itself; we will not be using that review/evaluation to determine your score. Please note that, in a peer evaluation, we will specifically be evaluating the person giving the feedback (by looking at the quality of the feedback they provide).
 
 Each of the above has a point value:
-
-
 
 *   Tasks/issues: 10 points
 *   Getting a pull request to master approved: 20 points
@@ -186,7 +182,7 @@ As you will find out throughout the project, estimating the time a task will req
 *   For tasks that you committed to doing, you are allowed to be late at most twice throughout the quarter (i.e., you will not be penalized for not completing the task by the end of the sprint). This is similar to how a task can be placed back on the Scrum backlog if it is not completed during a given sprint.
 *   For any task, if you realize that it will take longer than you anticipated, you are allowed to close the task and spawn smaller tasks in its place. The closed task will then not contribute to your individual score. \
 
-    Note: The rules are stricter for tasks you have committed to doing. You will need the senior developer’s approval to split such a task (we will likely approve most reasonable splits, but want to avoid anyone arbitrarily splitting a task into many microtasks just to rack up points), You will also not be allowed to split them after a certain point. In 1-week sprints, you cannot split tasks after Thursday. For 2-week sprints, you cannot split tasks after Monday of the second week of the sprint. When you split a task you committed to doing, you must commit to doing at least one of the subtasks; the remaining subtasks can go on the backlog (and you could commit to doing them in a subsequent sprint).
+    Note: The rules are stricter for tasks you have committed to doing. You will need the senior developer’s approval to split such a task (we will likely approve most reasonable splits, but want to avoid anyone arbitrarily splitting a task into many microtasks just to rack up points). You will also not be allowed to split them after a certain point. In 1-week sprints, you cannot split tasks after Thursday. For 2-week sprints, you cannot split tasks after Monday of the second week of the sprint. When you split a task you committed to doing, you must commit to doing at least one of the subtasks; the remaining subtasks can go on the backlog (and you could commit to doing them in a subsequent sprint).
 
 
 ## Requirements for graded work
@@ -351,7 +347,7 @@ Take into account that the final outcome of a pull request could be for that pul
 
 ### Code Reviews
 
-You are welcome to create pull requests that do not affect the master branch, and to use these as a mechanism to do code reviews. For example, suppose the Game State team has a “game-state” branch where they do most of their work, and you are working on a “room” branch, writing a module to model rooms. Once you’re done, you could do a pull request from “room” to “game-state” instead of directly merging the branch. This would allow you to request a code review from someone else on your team (and to have a record of that code review in the pull request).
+You are welcome to create pull requests that do not affect the master branch, and to use these as a mechanism to do code reviews. For example, suppose the Game State team has a “game-state” branch where they do most of their work, and you are working on a “room” branch, writing a module to model rooms. Once you’re done, you should do a pull request from “room” to “game-state” instead of directly merging the branch. This would allow you to request a code review from someone else on your team (and to have a record of that code review in the pull request).
 
 These non-master pull requests must meet the same requirements as a pull request to master, except they only require a single code review from someone on your team. Furthermore, it will be up to you whether to ultimately merge the pull request, but a senior developer may opt to not count the pull request towards your score if it is a trivial pull request (i.e., if it represents a trivial amount of effort, like adding someone’s name to a README). As with pull requests to master, we encourage you to touch base with your senior developer before creating your first pull requests.
 
