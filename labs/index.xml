@@ -51,5 +51,15 @@ In this lab, you will carry out some basic software design tasks individually, a
 In the class project, you will likely produce dozens of C files that will ultimately produce a single executable. When dealing with multiple source files, specially when there are dependencies between them, it is common to use a build system instead of manually compiling and linking all the files. in this lab, we’ll explore the ways a program can be “built”&amp;ndash;that is, the way that source code is turned into binary code so that a computer can execute it.</description>
     </item>
     
+    <item>
+      <title>Optional Lab: Advanced Git</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/</link>
+      <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/</guid>
+      <description>In the 150s/160s, as well as in the CS 220 labs, you have used version control systems (like Subversion and Git) essentially as a mechanism to store your code and to make it easily accessible to the course staff. However, in real software projects, version control systems are one of the most important tools that allow teams to collaborate on a shared code base.
+In this lab, we will explore features of Git that are more directly related to collaborative software development, and which you will need to use during the course project.</description>
+    </item>
+    
   </channel>
 </rss>

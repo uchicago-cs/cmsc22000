@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-27",
     "description": "",
-    "wordCount": 3734
+    "wordCount":  3708 
   }
 </script>
 
@@ -62,20 +62,21 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.55.3" />
 
-  
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+<link rel="stylesheet" href="/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="/cmsc22000/css/style.css">
 
 
   <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 
   
 	<script>
@@ -122,7 +123,7 @@
 
 <a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
 
-<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+<a href="https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/">Project</a>
 
 <a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
 
@@ -140,7 +141,7 @@
 
 
 
-
+ 
 
 
 
@@ -344,7 +345,7 @@ button in the top-right of the page:</p>
 <p><img src="/cmsc22000/img/git-lab-fork.png" alt="fork" /></p>
 
 <p>If you are prompted to specify &ldquo;Where should we fork this repository?&rdquo;, make sure
-you select our GitHub user account.</p>
+you select your GitHub user account.</p>
 
 <p>Your forked repo will now live here:</p>
 
@@ -666,7 +667,7 @@ save that commit message, and the merge will be completed and you will see somet
 </code></pre>
 
 <p>That is the <em>merge commit</em> for this merge; if you run <code>git log</code>, you will see that the commit
-history now includes the commit from <code>add-author</code>, as well as the merge commit. Notice how
+history now includes the commit from <code>add-author</code>, as well as the merge commit. Notice how it
 includes a line telling us which two commits were merged:</p>
 
 <pre><code>commit 9f74d3fc4c3b84bf80c0a4adc9ac7a862b382289
@@ -752,14 +753,10 @@ in the same repository (without having to create multiple forks), but making
 it less likely that broken code will enter the <code>master</code> branch.</p>
 
 <p>We are going to follow this pattern to add yourself to the <code>AUTHORS.md</code> file
-of your team repository. First, clone your team&rsquo;s repository like so:</p>
+of the project repository. First, clone the repository like so:</p>
 
-<pre><code>$ git clone https://github.com/cmsc22000-project-2018/YOURTEAM.git
+<pre><code>$ git clone https://github.com/uchicago-cs/chiventure.git
 </code></pre>
-
-<p>(replacing <code>YOURTEAM</code> with your actual team name, one of <code>redis-tries</code>,
-<code>spellcheck</code>, <code>fulltext</code>, <code>support-tools</code>, <code>api</code>, or <code>autocomplete</code>. You should
-all have your team assignments by now - if not, check your email)</p>
 
 <p>Now, from inside the repository, you will create a branch to make your
 change to <code>AUTHORS.md</code>. But don&rsquo;t do it yet! Before you do this, let&rsquo;s
@@ -768,34 +765,33 @@ take a minute to talk about naming conventions.</p>
 <p>If everyone named their branch something like <code>authors</code> or <code>add-authors</code>, we&rsquo;d
 have 5 branches with the same name. In large collaborative projects, it&rsquo;s common
 to prefix branch names with your own first name, to avoid collisions like this.
-We will adopt this convention in this class. If your name is Ike, you should
-name your branch <code>ike/add-to-authors</code> or <code>ike/authors</code> or similar. It doesn&rsquo;t
-really matter what the name of the branch is, so long as it starts with <code>ike/</code>.</p>
+We will adopt this convention in this class, except we will use CNetIDs instead
+of names. If your CNetID is <code>jdoe</code>, you should
+name your branch <code>jdoe/add-to-authors</code> or <code>jdoe/authors</code> or similar. It doesn&rsquo;t
+really matter what the name of the branch is, so long as it starts with <code>jdoe/</code>.</p>
 
 <p>So, go ahead and create a new branch and check it out:</p>
 
-<pre><code>$ git branch YOURNAME/add-to-authors
+<pre><code>$ git branch CNETID/add-to-authors
 
-$ git checkout YOURNAME/add-to-authors
+$ git checkout CNETID/add-to-authors
 </code></pre>
 
 <p>Then, edit the AUTHORS.md file to add your name. Make a commit and push the
 new branch:</p>
 
-<pre><code>$ git push origin YOURNAME/add-to-authors
+<pre><code>$ git push origin CNETID/add-to-authors
 </code></pre>
 
-<p>To initiate a pull request, head to your team&rsquo;s GitHub page. You can find a list
-of all the team pages <a href="https://github.com/cmsc22000-project-2018">here</a>. You
+<p>To initiate a pull request, head to the <a href="https://github.com/uchicago-cs/chiventure">chiventure repository on GitHub</a>. You
 should see a big green button that says &ldquo;Compare &amp; pull request&rdquo;. After you click
 it, you will be presented with a page like the one you were shown when creating
 the pull request for the <code>cmsc22000-dummy-repo</code> repository. However, besides
 entering a title and summary, you will also specify the following:</p>
 
 <ul>
-<li>Under &ldquo;Reviewers&rdquo;, select another student on your team, and your senior developer.</li>
-<li>Under &ldquo;Projects&rdquo;, select &ldquo;Project Board&rdquo; (we will discuss Project Boards in class)</li>
-<li>Under &ldquo;Milestone&rdquo;, select &ldquo;Project Kick-off&rdquo;</li>
+<li>Under &ldquo;Reviewers&rdquo;, select another student on your team, and your senior developer (note: your team&rsquo;s senior developer will be assigned once your team is assigned to work on a specific component).</li>
+<li>Under &ldquo;Milestone&rdquo;, select &ldquo;2019/Project Kick-off&rdquo;</li>
 </ul>
 
 <p>Click &ldquo;Create pull request&rdquo;. You&rsquo;ve marked your code for review!</p>
@@ -836,7 +832,6 @@ before it is assigned to you.</p>
 
     </main>
     
-
 
 
     
