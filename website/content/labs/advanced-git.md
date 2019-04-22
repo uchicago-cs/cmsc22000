@@ -2,7 +2,7 @@
 title: "Optional Lab: Advanced Git"
 date: 2018-01-27
 publishdate: 2018-01-27
-draft: true
+draft: false
 ---
 
 In the 150s/160s, as well as in the CS 220 labs, you have used version control systems 
@@ -163,7 +163,7 @@ button in the top-right of the page:
 ![fork](/cmsc22000/img/git-lab-fork.png)
 
 If you are prompted to specify "Where should we fork this repository?", make sure
-you select our GitHub user account.
+you select your GitHub user account.
 
 Your forked repo will now live here:
 
@@ -464,7 +464,7 @@ save that commit message, and the merge will be completed and you will see somet
     [master 9f74d3f] Merge branch 'add-author'
 
 That is the *merge commit* for this merge; if you run `git log`, you will see that the commit 
-history now includes the commit from `add-author`, as well as the merge commit. Notice how
+history now includes the commit from `add-author`, as well as the merge commit. Notice how it
 includes a line telling us which two commits were merged:
 
     commit 9f74d3fc4c3b84bf80c0a4adc9ac7a862b382289
@@ -549,15 +549,11 @@ in the same repository (without having to create multiple forks), but making
 it less likely that broken code will enter the `master` branch.
 
 We are going to follow this pattern to add yourself to the `AUTHORS.md` file
-of your team repository. First, clone your team's repository like so:
+of the project repository. First, clone the repository like so:
 
 ```
-$ git clone https://github.com/cmsc22000-project-2018/YOURTEAM.git
+$ git clone https://github.com/uchicago-cs/chiventure.git
 ```
-
-(replacing `YOURTEAM` with your actual team name, one of `redis-tries`,
-`spellcheck`, `fulltext`, `support-tools`, `api`, or `autocomplete`. You should
-all have your team assignments by now - if not, check your email)
 
 Now, from inside the repository, you will create a branch to make your
 change to `AUTHORS.md`. But don't do it yet! Before you do this, let's 
@@ -566,35 +562,34 @@ take a minute to talk about naming conventions.
 If everyone named their branch something like `authors` or `add-authors`, we'd
 have 5 branches with the same name. In large collaborative projects, it's common
 to prefix branch names with your own first name, to avoid collisions like this.
-We will adopt this convention in this class. If your name is Ike, you should
-name your branch `ike/add-to-authors` or `ike/authors` or similar. It doesn't
-really matter what the name of the branch is, so long as it starts with `ike/`.
+We will adopt this convention in this class, except we will use CNetIDs instead
+of names. If your CNetID is `jdoe`, you should
+name your branch `jdoe/add-to-authors` or `jdoe/authors` or similar. It doesn't
+really matter what the name of the branch is, so long as it starts with `jdoe/`.
 
 So, go ahead and create a new branch and check it out:
 
 ```
-$ git branch YOURNAME/add-to-authors
+$ git branch CNETID/add-to-authors
 
-$ git checkout YOURNAME/add-to-authors
+$ git checkout CNETID/add-to-authors
 ```
 
 Then, edit the AUTHORS.md file to add your name. Make a commit and push the
 new branch:
 
 ```
-$ git push origin YOURNAME/add-to-authors
+$ git push origin CNETID/add-to-authors
 ```
 
-To initiate a pull request, head to your team's GitHub page. You can find a list
-of all the team pages [here](https://github.com/cmsc22000-project-2018). You
+To initiate a pull request, head to the [chiventure repository on GitHub](https://github.com/uchicago-cs/chiventure). You
 should see a big green button that says "Compare & pull request". After you click
 it, you will be presented with a page like the one you were shown when creating
 the pull request for the `cmsc22000-dummy-repo` repository. However, besides
 entering a title and summary, you will also specify the following:
 
-* Under "Reviewers", select another student on your team, and your senior developer. 
-* Under "Projects", select "Project Board" (we will discuss Project Boards in class)
-* Under "Milestone", select "Project Kick-off"
+* Under "Reviewers", select another student on your team, and your senior developer (note: your team's senior developer will be assigned once your team is assigned to work on a specific component). 
+* Under "Milestone", select "2019/Project Kick-off"
 
 Click "Create pull request". You've marked your code for review!
 
