@@ -342,7 +342,7 @@ A pull request should contain a relatively self-contained piece of work.  In fac
 
 Like a task, a pull request should have a descriptive title, a descriptive summary, updates on the progress of the pull request (especially since changes may need to be done based on the code reviews), and a closing statement. The assignees for the pull request must be everyone who contributed to the code that is being merged. If a pull request is approved, all assignees and reviewers will receive the points for that pull request.
 
-Take into account that the final outcome of a pull request could be for that pull request to be denied. If this happens, it will not impact your score (but you will also not receive points for that pull request)
+Take into account that the final outcome of a pull request could be for that pull request to be denied. If this happens, it will not impact your score (but you will also not receive points for that pull request).
 
 
 ### Code Reviews
