@@ -23,8 +23,19 @@
   </url>
   
   <url>
+    <loc>https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/</loc>
+    <lastmod>2018-02-17T08:47:20-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://uchicago-cs.github.io/cmsc22000/projects/2018/</loc>
     <lastmod>2018-02-17T08:47:20-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://uchicago-cs.github.io/cmsc22000/projects/</loc>
+    <lastmod>2018-02-17T08:47:20-06:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -82,11 +93,6 @@
   
   <url>
     <loc>https://uchicago-cs.github.io/cmsc22000/project/</loc>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/projects/</loc>
-    <priority>0</priority>
   </url>
   
   <url>

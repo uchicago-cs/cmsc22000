@@ -6,9 +6,19 @@
     <description>Recent content in Projects on CS 220</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 17 Feb 2018 08:47:20 -0600</lastBuildDate>
     
 	<atom:link href="https://uchicago-cs.github.io/cmsc22000/projects/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Project</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/</guid>
+      <description>You wake up to find yourself in a strange hall. You have no idea how you got here. The last thing you remember is a blinding flash of light. You look at the tapestries lining the walls for any clues on your whereabouts. The tapestries depict valiant knights, fire-breathing wyverns, armies of goblins, and fearsome rulers sitting in their gilded thrones. Wherever you are, it must be in a different world from your own.</description>
+    </item>
     
     <item>
       <title>Design Exercise: Boardmaster 3000</title>
