@@ -2,12 +2,14 @@
 title: "Lab 4: Debugging"
 date: 2018-01-28
 publishdate: 2018-01-28
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, April 26th, 4pm
+**Due:** Thursday, May 2nd, 2:30pm
 
 In this lab, you will get some practice debugging a few programs and, in particular, will resolve some of the errors we described in class. In some of the tasks, you will also become more familiar with GDB, a popular debugger.
+
+As you work through this lab, you may want to refer to our [Debugging Guide](https://uchicago-cs.github.io/debugging-guide/), which covers (and expands on) many of the topics we covered in class.
 
 ## Task 0: Pulling from upstream
 
@@ -42,7 +44,9 @@ Compile each C file in the task 1 directory. In task1.txt answer the following q
 GDB, short for GNU Debugger, is a debugger for Unix-like systems and works for languages like C and C++. It essentially allows you to inspect and dissect your program as it is running, which is super helpful for finding errors.
 
 {{% warning %}}
-There is also a fairly new GUI for GDB called [gdbgui](https://gdbgui.com/) which allows you to work with GDB through a browser-based interface, allowing you to better visualize the state of your program while you're debugging it. While the lab instructions are written for the terminal-based gdb, we encourage you to learn about gdbgui on your own *after* you've completed these labs (many of the concepts and commands we explore in this lab will make it easier to understand gdbgui). In particular, you may want to try to debug some of the programs in this lab using gdbgui (note: gdbgui is installed on the CS machines)
+{{% md %}}
+There is also a fairly new GUI for GDB called [gdbgui](https://gdbgui.com/) which allows you to work with GDB through a browser-based interface, allowing you to better visualize the state of your program while you're debugging it. While the lab instructions are written for the terminal-based gdb, we encourage you to learn about `gdbgui` on your own *after* you've completed these labs (many of the concepts and commands we explore in this lab will make it easier to understand `gdbgui`). In particular, you may want to try to debug some of the programs in this lab using `gdbgui` (note: `gdbgui` is installed on the CS machines)
+{{% /md %}}
 {{% /warning %}}
 
 Compile your program with the following command:
@@ -53,7 +57,7 @@ Notice the use of the `-g` flag. This enables built-in debugging support. To sta
 
     gdb ./task2
 
-`gdb` starts the debugger, and ./task2 specifies the program we are debugging. Now that gdb is running you can start the program by typing `run`. The program will then run as normal but, if we want to be able to stop at certain points in the program, we need to set *breakpoints*. These could be done in one of the following ways using the command `break`:
+`gdb` starts the debugger, and `./task2` specifies the program we are debugging. Now that `gdb` is running, you can start the program by typing `run`. The program will then run as normal but, if we want to be able to stop at certain points in the program, we need to set *breakpoints*. These could be done in one of the following ways using the command `break`:
 
     break task2.c:line_number
     break function_name
@@ -84,11 +88,11 @@ There is also a useful command to keep track of when a variable changes. This co
 
 Now that you know these commands, let’s have some practice with them! Using gdb, answer the questions in `task2.txt` about `task2.c`.
 
-1. At what line(s) does the value of variable c change?
+1. At what line(s) does the value of variable `c` change?
 2. What does the code at line 12 do?
-3. What is the value pointed to by pointer p after line 42?
-4. Set a breakpoint at line 38. Over lines 38-41, three operations are performed on the variable a. What are these operations? (explain them, do not just copy/paste the code)
-5. What is the return value of the function num() in hex?
+3. What is the value pointed to by pointer `p` after line 42?
+4. Set a breakpoint at line 38. Over lines 38-41, three operations are performed on the variable `a`. What are these operations? (explain them, do not just copy/paste the code)
+5. What is the return value of the function `num()` in hexadecimal?
 
 ## Task 3: Runtime Error Debugging
 
@@ -98,9 +102,9 @@ Runtime errors make the program crash while it is running, and sometimes they ar
 
 `kill` will stop the current run of the program. You can then restart it by running `run` again. Frequently you’ll want to run a program until it segfaults, `kill` it (stop the program without exiting gdb), add breakpoints, and then run it again.
 
-`backtrace` will print out the call stack. What this means is that it will print the function being called as well as the function that called that, and the function that called that etc.
+`backtrace` will print out the call stack. What this means is that it will print the function being called as well as the function that called that, and the function that called that, etc.
 
-`frame n` (where n is the frame number from the backtrace) allows you to go to the function in that frame and see what line in that particular function caused the error.
+`frame n` (where `n` is the frame number from the backtrace) allows you to go to the function in that frame and see what line in that particular function caused the error.
 
 Compile `task3.c` and run it. You will segfault. Now it’s time to debug! There are three errors in this file. For each error, answer the following questions in `task3.txt`. It is a good idea to fix one error before moving onto the next.
 
