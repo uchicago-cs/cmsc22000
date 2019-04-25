@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-28",
     "description": "",
-    "wordCount": 1461
+    "wordCount":  1489 
   }
 </script>
 
@@ -62,20 +62,21 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.55.4" />
 
-  
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+<link rel="stylesheet" href="/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="/cmsc22000/css/style.css">
 
 
   <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 
   
 	<script>
@@ -122,7 +123,7 @@
 
 <a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
 
-<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+<a href="https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/">Project</a>
 
 <a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
 
@@ -140,7 +141,7 @@
 
 
 
-
+ 
 
 
 
@@ -177,9 +178,11 @@
   <div class="container content">
   
 
-<p><strong>Due:</strong> Thursday, April 26th, 4pm</p>
+<p><strong>Due:</strong> Thursday, May 2nd, 2:30pm</p>
 
 <p>In this lab, you will get some practice debugging a few programs and, in particular, will resolve some of the errors we described in class. In some of the tasks, you will also become more familiar with GDB, a popular debugger.</p>
+
+<p>As you work through this lab, you may want to refer to our <a href="https://uchicago-cs.github.io/debugging-guide/">Debugging Guide</a>, which covers (and expands on) many of the topics we covered in class.</p>
 
 <h2 id="task-0-pulling-from-upstream">Task 0: Pulling from upstream</h2>
 
@@ -214,14 +217,16 @@
 <p>GDB, short for GNU Debugger, is a debugger for Unix-like systems and works for languages like C and C++. It essentially allows you to inspect and dissect your program as it is running, which is super helpful for finding errors.</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p>There is also a fairly new GUI for GDB called <a href="https://gdbgui.com/">gdbgui</a> which allows you to work with GDB through a browser-based interface, allowing you to better visualize the state of your program while you&rsquo;re debugging it. While the lab instructions are written for the terminal-based gdb, we encourage you to learn about gdbgui on your own <em>after</em> you&rsquo;ve completed these labs (many of the concepts and commands we explore in this lab will make it easier to understand gdbgui). In particular, you may want to try to debug some of the programs in this lab using gdbgui (note: gdbgui is installed on the CS machines)</p>
+    <div class="admonition-content">
+<p>There is also a fairly new GUI for GDB called <a href="https://gdbgui.com/">gdbgui</a> which allows you to work with GDB through a browser-based interface, allowing you to better visualize the state of your program while you&rsquo;re debugging it. While the lab instructions are written for the terminal-based gdb, we encourage you to learn about <code>gdbgui</code> on your own <em>after</em> you&rsquo;ve completed these labs (many of the concepts and commands we explore in this lab will make it easier to understand <code>gdbgui</code>). In particular, you may want to try to debug some of the programs in this lab using <code>gdbgui</code> (note: <code>gdbgui</code> is installed on the CS machines)</p>
+
+
 </div>
 </aside>
-
 
 <p>Compile your program with the following command:</p>
 
@@ -233,7 +238,7 @@
 <pre><code>gdb ./task2
 </code></pre>
 
-<p><code>gdb</code> starts the debugger, and ./task2 specifies the program we are debugging. Now that gdb is running you can start the program by typing <code>run</code>. The program will then run as normal but, if we want to be able to stop at certain points in the program, we need to set <em>breakpoints</em>. These could be done in one of the following ways using the command <code>break</code>:</p>
+<p><code>gdb</code> starts the debugger, and <code>./task2</code> specifies the program we are debugging. Now that <code>gdb</code> is running, you can start the program by typing <code>run</code>. The program will then run as normal but, if we want to be able to stop at certain points in the program, we need to set <em>breakpoints</em>. These could be done in one of the following ways using the command <code>break</code>:</p>
 
 <pre><code>break task2.c:line_number
 break function_name
@@ -266,11 +271,11 @@ int foo() {
 <p>Now that you know these commands, let’s have some practice with them! Using gdb, answer the questions in <code>task2.txt</code> about <code>task2.c</code>.</p>
 
 <ol>
-<li>At what line(s) does the value of variable c change?</li>
+<li>At what line(s) does the value of variable <code>c</code> change?</li>
 <li>What does the code at line 12 do?</li>
-<li>What is the value pointed to by pointer p after line 42?</li>
-<li>Set a breakpoint at line 38. Over lines 38-41, three operations are performed on the variable a. What are these operations? (explain them, do not just copy/paste the code)</li>
-<li>What is the return value of the function num() in hex?</li>
+<li>What is the value pointed to by pointer <code>p</code> after line 42?</li>
+<li>Set a breakpoint at line 38. Over lines 38-41, three operations are performed on the variable <code>a</code>. What are these operations? (explain them, do not just copy/paste the code)</li>
+<li>What is the return value of the function <code>num()</code> in hexadecimal?</li>
 </ol>
 
 <h2 id="task-3-runtime-error-debugging">Task 3: Runtime Error Debugging</h2>
@@ -281,9 +286,9 @@ int foo() {
 
 <p><code>kill</code> will stop the current run of the program. You can then restart it by running <code>run</code> again. Frequently you’ll want to run a program until it segfaults, <code>kill</code> it (stop the program without exiting gdb), add breakpoints, and then run it again.</p>
 
-<p><code>backtrace</code> will print out the call stack. What this means is that it will print the function being called as well as the function that called that, and the function that called that etc.</p>
+<p><code>backtrace</code> will print out the call stack. What this means is that it will print the function being called as well as the function that called that, and the function that called that, etc.</p>
 
-<p><code>frame n</code> (where n is the frame number from the backtrace) allows you to go to the function in that frame and see what line in that particular function caused the error.</p>
+<p><code>frame n</code> (where <code>n</code> is the frame number from the backtrace) allows you to go to the function in that frame and see what line in that particular function caused the error.</p>
 
 <p>Compile <code>task3.c</code> and run it. You will segfault. Now it’s time to debug! There are three errors in this file. For each error, answer the following questions in <code>task3.txt</code>. It is a good idea to fix one error before moving onto the next.</p>
 
@@ -350,7 +355,6 @@ chisubmit student assignment submit lab4
 
     </main>
     
-
 
 
     
