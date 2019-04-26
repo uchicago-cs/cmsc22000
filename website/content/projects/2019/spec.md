@@ -118,11 +118,46 @@ The project will span seven weeks (Weeks 4 - 10), with a final review and team p
 *   Weeks 9-10: Sprint 4
 
 
-<!--
+
 ## Suggested initial goals
 
-TODO
--->
+To get you started, we suggest each team focus on the following set of initial goals, most of which won't require much communication with other teams at first (allowing you to focus on the requirements of your component before you have to start collaborating with other teams)
+
+### WDL
+
+We don't expect you to define a language completely from scratch, and suggest that you use [YAML](https://en.wikipedia.org/wiki/YAML) as the base format for the WDL. We have even provided some sample WDL files to get you started. However, you shouldn't regard these files as normative: they are a suggestion on what a WDL file would look like, but it is up to you to decide the exact format of the files. Furthermore, while YAML files can be parsed in C using the [libyaml](https://github.com/yaml/libyaml) library, we have provided a library called libobj that provides an abstraction over the low-level operations provided by libyaml.
+
+So, the WDL team could initially focus on this:
+
+- Writing a draft specification of the WDL language
+- Writing a module for loading WDL files. This module must do some basic validation of the file (ensuring it meets the specification of the WDL language)
+
+After this, you will find you will need to work more closely with the Game State team to figure out how to load the contents of the WDL file into the data structures provided by Game State.
+
+
+### Game State
+
+This team will be responsible for designing the data structures that will store the state of the game in memory, as well as module to manipulate those data structures. A good initial goal is to focus on *designing* these modules by writing the modules' header files without yet writing the implementation of the functions promised by the module's interface. This will get you thinking about what data structures to use, how they will relate to other data structures, what operations you want to allow on each data structure.
+
+
+### Action Management
+
+The Action Management is responsible for deciding what actions are possible, and how to model the conditions on an action as well as the effects of an action. Our sample WDL files provide examples of how these action conditions/effects could be specified in the WDL file, but that information will then have to be stored in memory in a general-purpose way that makes it easy to process actions during the game.
+
+As such, this team can initially focus on the following:
+
+- Writing a draft specification of what information is necessary to specify an action (you will then be able to use this to convey to the WDL team your exact requirements for specifying actions in the WDL file)
+- Designing, but not yet implementing, a module with the data structures that would allow you to model actions and their processing.
+
+
+### Checkpointing
+
+
+### CLI
+
+
+### UI
+
 
 # Project Evaluation
 
