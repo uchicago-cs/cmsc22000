@@ -154,7 +154,7 @@ As such, this team can initially focus on the following:
 
 This component will be responsible for saving and restoring game state data and, as such, the implementation of this component will be tightly coupled to the design decisions made by the Game State team and the Action Management team. However, there are two broad approaches we could follow: dumping the entire game state to a file, or dumping only a log of actions that have taken place since loading the WDL file. 
 
-So, to get started, it can be useful to start looking into how to save this kind of information into a binary file, possibly using existing file formats. Writing two sample programs, one that saves information from a mock game (not specifically tied to the WDL or Game State we will eventually use), and another that reads that information and prints it out, can be a good way to start figuring out the mechanics of checkpointing, which will make it easier to accommodate the requirements coming from WDL, Game State, and Action Management later on.
+So, to get started, it can be useful to start looking into how to save this kind of information into a binary file, possibly using existing [serialization](https://en.wikipedia.org/wiki/Serialization) formats. Writing two sample programs, one that saves information from a mock game (not specifically tied to the WDL or Game State we will eventually use), and another that reads that information and prints it out, can be a good way to start figuring out the mechanics of checkpointing, which will make it easier to accommodate the requirements coming from WDL, Game State, and Action Management later on.
 
 ### CLI
 
