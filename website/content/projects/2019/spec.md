@@ -127,7 +127,7 @@ To get you started, we suggest each team focus on the following set of initial g
 
 We don't expect you to define a language completely from scratch, and suggest that you use [YAML](https://en.wikipedia.org/wiki/YAML) as the base format for the WDL. We have even provided some sample WDL files to get you started. However, you shouldn't regard these files as normative: they are a suggestion on what a WDL file would look like, but it is up to you to decide the exact format of the files. Furthermore, while YAML files can be parsed in C using the [libyaml](https://github.com/yaml/libyaml) library, we have provided a library called libobj that provides an abstraction over the low-level operations provided by libyaml.
 
-So, the WDL team could initially focus on this:
+So, the WDL team can initially focus on this:
 
 - Writing a draft specification of the WDL language
 - Writing a module for loading WDL files. This module must do some basic validation of the file (ensuring it meets the specification of the WDL language)
@@ -137,12 +137,12 @@ After this, you will find you will need to work more closely with the Game State
 
 ### Game State
 
-This team will be responsible for designing the data structures that will store the state of the game in memory, as well as module to manipulate those data structures. A good initial goal is to focus on *designing* these modules by writing the modules' header files without yet writing the implementation of the functions promised by the module's interface. This will get you thinking about what data structures to use, how they will relate to other data structures, what operations you want to allow on each data structure.
+This team will be responsible for designing the data structures that will store the state of the game in memory, as well as a module to manipulate those data structures. A good initial goal is to focus on *designing* these modules by writing the modules' header files without yet writing the implementation of the functions promised by the module's interface. This will get you thinking about what data structures to use, how they will relate to other data structures, what operations you want to allow on each data structure.
 
 
 ### Action Management
 
-The Action Management is responsible for deciding what actions are possible, and how to model the conditions on an action as well as the effects of an action. Our sample WDL files provide examples of how these action conditions/effects could be specified in the WDL file, but that information will then have to be stored in memory in a general-purpose way that makes it easy to process actions during the game.
+The Action Management team is responsible for deciding what actions are possible, and how to model the conditions on an action as well as the effects of an action. Our sample WDL files provide examples of how these action conditions/effects could be specified in the WDL file, but that information will then have to be stored in memory in a general-purpose way that makes it easy to process actions during the game.
 
 As such, this team can initially focus on the following:
 
@@ -152,12 +152,28 @@ As such, this team can initially focus on the following:
 
 ### Checkpointing
 
+This component will be responsible for saving and restoring game state data and, as such, the implementation of this component will be tightly coupled to the design decisions made by the Game State team and the Action Management team. However, there are two broad approaches we could follow: dumping the entire game state to a file, or dumping only a log of actions that have taken place since loading the WDL file. 
+
+So, to get started, it can be useful to start looking into how to save this kind of information into a binary file, possibly using existing file formats. Writing two sample programs, one that saves information from a mock game (not specifically tied to the WDL or Game State we will eventually use), and another that reads that information and prints it out, can be a good way to start figuring out the mechanics of checkpointing, which will make it easier to accommodate the requirements coming from WDL, Game State, and Action Management later on.
 
 ### CLI
 
+In this component, you will be essentially implementing a [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) interpreter (REPL stands for Read-Evaluate-Print Loop) that will get progressively more complex as you start using the interfaces provided by other components. However, to get started, you should try building a simple REPL interpreter that can parse a few basic actions, such as:
+
+- Actions with no parameters: `LOOK`
+- Actions with one parameter: `TAKE orb`
+- Actions with two parameters (and a preposition): `GIVE talisman TO wizard`
+
+This can be divided into two distinct tasks: writing the REPL interface itself, and the command parsing. For each of them, we encourage you to look into libraries that can facilitate these tasks.
 
 ### UI
 
+This component can go in a lot of different directions, including displaying graphics, playing sounds, etc. To get started we suggest you start by looking into how to do the following:
+
+- Building a [Text User Interface](https://en.wikipedia.org/wiki/Text-based_user_interface) that can split the screen in two: an upper portion that could be used to display graphics or a game map, and a lower portion for the CLI.
+- Writing a basic map visualizer that uses text characters to render rooms and connections between them (this can be done independently of the above task, but will eventually have to be integrated with it)
+
+Furthermore, any time you spend researching libraries for building text user interfaces, displaying graphics, playing sounds, etc. will be time well spent.
 
 # Project Evaluation
 
