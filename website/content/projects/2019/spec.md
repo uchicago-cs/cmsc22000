@@ -130,9 +130,9 @@ We don't expect you to define a language completely from scratch, and suggest th
 So, the WDL team can initially focus on this:
 
 - Writing a draft specification of the WDL language
-- Writing a module for loading WDL files. This module must do some basic validation of the file (ensuring it meets the specification of the WDL language)
+- Writing a module for loading WDL files into [libobj](https://github.com/uchicago-cs/chiventure/tree/master/src/libobj) data structures. This module must do some basic validation of the file (ensuring it meets the specification of the WDL language)
 
-After this, you will find you will need to work more closely with the Game State team to figure out how to load the contents of the WDL file into the data structures provided by Game State.
+After this, you will find you will need to work more closely with the Game State team to figure out how to load the contents of the WDL file into the data structures provided by Game State (even then, loading the WDL file into libobj data structures will be a good intermediate step)
 
 
 ### Game State
