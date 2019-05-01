@@ -2,10 +2,10 @@
 title: "Lab 5: Testing"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, May 3rd, 4pm
+**Due:** Thursday, May 9th, 2:30pm
 
 By this point in your CS studies, you’ve probably experienced the following at least once:
 
@@ -21,24 +21,13 @@ By this point in your CS studies, you’ve probably experienced the following at
 
 It would've been nice if, once we implemented that last task, there was some mechanism to check whether our changes had broken other parts of the code which we assumed to be working correctly. This is one of the things that we can do by writing *tests* for our code. Besides reassuring us that our code does what it is supposed to do, it can also make debugging a much more painless experience, by quickly narrowing down our search for the part of our code that is failing.
 
-Generally speaking, there are two kinds of tests: *unit tests* and *integration tests*. In this lab we will focus on *unit tests*, which check the correctness of a single component or module, typically by testing individual functions within that component. For example, suppose your chat system from [Lab 2]({{< relref "lab2.md" >}}) included an `is_user_in_channel()` function. Given a channel with users A, B, and C, we could write a test that calls the function with user A and checks whether the return value indicates that A is in the channel (similarly, we could call the function with user X, and check whether the return value indicates that the user is *not* in the channel). This would be a unit test: we are testing whether an individual function (within the "channel" component/module of our system) works correctly.
-
-*Integration tests*, on the other hand, check the correctness of multiple components at once, or of an entire system. For example, a test that sets up a mock chat server and two users, has them log on, and send a message to each other would be an integration test. While we are testing a concrete action (sending a message), we are doing so by running the complete system, which involves a lot more moving pieces than just sending a message. The combined assurances of good unit tests and good integration tests give us confidence that the software we write is correct.
+Generally speaking, there are two kinds of tests: *unit tests* and *integration tests*. In this lab we will focus on *unit tests*, which check the correctness of a single component or module, typically by testing individual functions within that component. *Integration tests*, on the other hand, check the correctness of multiple components at once, or of an entire system.
 
 By the end of this lab, you’ll have experience writing unit tests, as well as an appreciation for their importance. You’ll be writing tests for existing code, as well as using the practice of *Test-Driven Development* to develop new code.
 
 # Task 0: Setup
-This lab will use the `libgeometry` library. We’re going to import your `libgeometry` code from lab 2, so that we can write tests for the `segment` code that you refactored back in lab 2. If you didn’t finish lab 2 completely, now would be a good time to go back and make sure it’s squared away before starting here. To import your lab 2 code:
 
-```sh
-$ cp -r lab2/libgeometry lab5
-$ git add lab5
-$ git commit -m "Starting lab 5"
-```
-
-{{% warning %}}
-**Note**: This lab contains two primary tasks, both of which will be completed in the same directory - there won’t be `task1` and `task2` directories this time around. Everything should happen in the `lab5` directory.
-{{% /warning %}}
+This lab will involve making changes to the `libgeometry` library, which should already be in your repository. In particular, one of the things you will do is write tests for the `segment` code that you refactored back in lab 2. If you didn’t finish lab 2 completely, now would be a good time to go back and make sure it’s squared away before starting here.
 
 # Task 0.5: A bit about `criterion`
 
@@ -72,7 +61,7 @@ Let’s unpack what’s going on here. First of all, `Test` is actually a [macro
 
 `Test` takes two arguments (strictly speaking it actually supports many more, but for our purposes we’ll only need these two): a *suite name* and a *test name*. The suite name is just the name of the relevant context: if you take a look at `test_point.c` and `test_polygon.c`, you’ll see that the suite names are just `point` and `polygon`. The test name should just be a short identifier of what the test is testing.
 
-Now let’s discuss the meat of these tests. Each test makes two *assertions* and exits. An assertion tests the validity of a given statement, and panics (causes the test to fail) if the statement is invalid. The way we make an assertion in `criterion` is by calling any one of a number of functions prefixed by `cr_assert` (you can find a full reference [here](https://criterion.readthedocs.io/en/master/assert.html#assertions-ref)). These tests use `cr_assert_eq`, which takes 3 arguments. It checks whether the first argument is equal to the second, and if not, causes the test to fail and prints out the error message given in the third argument (for those of you who took 151, this is very similar to Racket’s `check-expect` function).
+Now let’s discuss the meat of these tests. Each test makes two *assertions* and exits. An assertion tests the validity of a given statement, and panics (causes the test to fail) if the statement is invalid. The way we make an assertion in `criterion` is by calling any one of a number of functions prefixed by `cr_assert` (you can find a full reference [here](https://criterion.readthedocs.io/en/master/assert.html#assertions-ref)). These tests use `cr_assert_eq`, which takes 3 arguments. It checks whether the first argument is equal to the second, and if not, causes the test to fail and prints out the error message given in the third argument (for those of you who took CS 151, this is very similar to Racket’s `check-expect` function).
 
 The tests are compiled into their own executable. So, if you run this:
 
@@ -99,7 +88,7 @@ Before continuing, take a moment to look at the `Makefile` contained inside the 
 
 Remember that, in Lab 2, we asked you to refactor some of the code in `point.c` to a new `segment.c` module. At the time, many of you asked some variation on this question: "If I'm implementing this code as part of a library, how can I *run* the segment code I just wrote?". One answer to that question is that you could've written a separate program that links with libgeometry, and calls the segment functions to see whether they work (and, with what you know about Makefiles, it should be possible for you to do that). However, what we really want to do is write tests for this new segment datatype, similar to the ones that already exist for the point and polygon datatypes. In Lab 2 we asked you to simply modify the calls to `segment_intersect` in `test_point.c`, which was a temporary solution before we learned how tests work. Now, we will write proper tests for the segment datatype.
 
-Create a new file in the `tests/` directory called `test_segment.c`. You’ll need a few `#include` statements to get started:
+Create a new file in the `libgeometry/tests/` directory called `test_segment.c`. You’ll need a few `#include` statements to get started:
 
 ```c
 #include <criterion/criterion.h>
@@ -110,13 +99,17 @@ Create a new file in the `tests/` directory called `test_segment.c`. You’ll ne
 ```
 
 {{% warning %}}
+{{% md %}}
 **Warning**: From now on, you must do all of your work over `ssh`, or in CSIL, or using the [department’s virtual machine](https://howto.cs.uchicago.edu/vm:index). Each of those environments have the `criterion` library properly set up and ready to go. While it is possible to install `criterion` on an unsupported machine, we may not be able to provide support for that setup.
+{{% /md %}}
 {{% /warning %}}
 
 You will also need to modify the `Makefile` in the `tests/` directory to add your new file.
 
 {{% warning %}}
+{{% md %}}
 **Caution**: There are *two* `Makefile`s in this project! There’s the root-level `Makefile` for building the library, but then there’s also a `Makefile` in the `tests` directory specifically for building test files. You should only modify the latter.
+{{% /md %}}
 {{% /warning %}}
 
 It’s time to write your first tests! In your `test_segment.c` file, do the following:
@@ -153,7 +146,8 @@ You should create three new files: `include/circle.h`, `src/circle.c`, and `test
 Now, use TDD to develop `new`, `init`, and `free` functions for circles.
 
 {{% warning %}}
-**Note:** To ensure that you are following TDD, we will be inspecting your commit history to check that you actually wrote your tests first. At minimum, we require the following workflow:
+{{% md %}}
+**Note:** To ensure that you are following TDD, we will be inspecting your commit history to check that you actually wrote your tests first. At a minimum, we require the following workflow:
 
 1. Write your tests in `tests/test_circle.c`
 2. Write a struct definition in `include/circle.h`
@@ -163,7 +157,7 @@ Now, use TDD to develop `new`, `init`, and `free` functions for circles.
 6. **Make a commit** indicating that you’ve finished implementation and that your tests pass.
 
 By all means, please make more commits as you write individual tests and implement individual functions. This is just the *minimum* we require to tell whether or not you implemented tests first.
-
+{{% /md %}}
 {{% /warning %}}
 
 Next, let’s use TDD to implement a few slightly more complex functions that compute things about circles: 
@@ -188,3 +182,10 @@ This checks whether or not our `circle_area` function is within 10<sup>-4</sup> 
 As above, you should use the TDD workflow when implementing these new functions.
 
 Finally, as before, you should include header comments in all the tests you write.
+
+# Submitting your lab
+
+Before submitting, make sure you've added, committed and pushed all your work in the `libgeometry` directory (remember you can run `git status` to check this). Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
+
+    chisubmit student assignment register lab5
+    chisubmit student assignment submit lab5
