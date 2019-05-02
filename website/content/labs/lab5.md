@@ -100,7 +100,7 @@ Create a new file in the `libgeometry/tests/` directory called `test_segment.c`.
 
 {{% warning %}}
 {{% md %}}
-**Warning**: From now on, you must do all of your work over `ssh`, or in CSIL, or using the [department’s virtual machine](https://howto.cs.uchicago.edu/vm:index). Each of those environments have the `criterion` library properly set up and ready to go. While it is possible to install `criterion` on an unsupported machine, we may not be able to provide support for that setup.
+**Warning**: From now on, you must do all of your work using the [department’s virtual machine](https://howto.cs.uchicago.edu/vm:index) (we recommend doing so in [Headless VM](https://howto.cs.uchicago.edu/vm:headless) mode), or by working in CSIL or [SSH'ing into a CS machine](https://howto.cs.uchicago.edu/remote_access). Each of those environments have the `criterion` library properly set up and ready to go. While it is possible to install `criterion` on an unsupported machine, we may not be able to provide support for that setup.
 {{% /md %}}
 {{% /warning %}}
 
@@ -108,7 +108,7 @@ You will also need to modify the `Makefile` in the `tests/` directory to add you
 
 {{% warning %}}
 {{% md %}}
-**Caution**: There are *two* `Makefile`s in this project! There’s the root-level `Makefile` for building the library, but then there’s also a `Makefile` in the `tests` directory specifically for building test files. You should only modify the latter.
+**Caution**: There are *three* `Makefile`s in this project! There’s the root-level `Makefile` for building the library, a `Makefile` in the `samples` directory to build the sample programs, and a `Makefile` in the `tests` directory specifically for building test files. You should only modify this last `Makefile`.
 {{% /md %}}
 {{% /warning %}}
 
