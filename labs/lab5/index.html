@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-26",
     "description": "",
-    "wordCount": 2343
+    "wordCount":  2200 
   }
 </script>
 
@@ -62,20 +62,21 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.55.4" />
 
-  
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+<link rel="stylesheet" href="/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="/cmsc22000/css/style.css">
 
 
   <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 
   
 	<script>
@@ -122,7 +123,7 @@
 
 <a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
 
-<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+<a href="https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/">Project</a>
 
 <a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
 
@@ -140,7 +141,7 @@
 
 
 
-
+ 
 
 
 
@@ -177,7 +178,7 @@
   <div class="container content">
   
 
-<p><strong>Due:</strong> Thursday, May 3rd, 4pm</p>
+<p><strong>Due:</strong> Thursday, May 9th, 2:30pm</p>
 
 <p>By this point in your CS studies, you’ve probably experienced the following at least once:</p>
 
@@ -195,30 +196,13 @@ fail once the last task was implemented.</li>
 
 <p>It would&rsquo;ve been nice if, once we implemented that last task, there was some mechanism to check whether our changes had broken other parts of the code which we assumed to be working correctly. This is one of the things that we can do by writing <em>tests</em> for our code. Besides reassuring us that our code does what it is supposed to do, it can also make debugging a much more painless experience, by quickly narrowing down our search for the part of our code that is failing.</p>
 
-<p>Generally speaking, there are two kinds of tests: <em>unit tests</em> and <em>integration tests</em>. In this lab we will focus on <em>unit tests</em>, which check the correctness of a single component or module, typically by testing individual functions within that component. For example, suppose your chat system from <a href="/cmsc22000/labs/lab2/">Lab 2</a> included an <code>is_user_in_channel()</code> function. Given a channel with users A, B, and C, we could write a test that calls the function with user A and checks whether the return value indicates that A is in the channel (similarly, we could call the function with user X, and check whether the return value indicates that the user is <em>not</em> in the channel). This would be a unit test: we are testing whether an individual function (within the &ldquo;channel&rdquo; component/module of our system) works correctly.</p>
-
-<p><em>Integration tests</em>, on the other hand, check the correctness of multiple components at once, or of an entire system. For example, a test that sets up a mock chat server and two users, has them log on, and send a message to each other would be an integration test. While we are testing a concrete action (sending a message), we are doing so by running the complete system, which involves a lot more moving pieces than just sending a message. The combined assurances of good unit tests and good integration tests give us confidence that the software we write is correct.</p>
+<p>Generally speaking, there are two kinds of tests: <em>unit tests</em> and <em>integration tests</em>. In this lab we will focus on <em>unit tests</em>, which check the correctness of a single component or module, typically by testing individual functions within that component. <em>Integration tests</em>, on the other hand, check the correctness of multiple components at once, or of an entire system.</p>
 
 <p>By the end of this lab, you’ll have experience writing unit tests, as well as an appreciation for their importance. You’ll be writing tests for existing code, as well as using the practice of <em>Test-Driven Development</em> to develop new code.</p>
 
 <h1 id="task-0-setup">Task 0: Setup</h1>
 
-<p>This lab will use the <code>libgeometry</code> library. We’re going to import your <code>libgeometry</code> code from lab 2, so that we can write tests for the <code>segment</code> code that you refactored back in lab 2. If you didn’t finish lab 2 completely, now would be a good time to go back and make sure it’s squared away before starting here. To import your lab 2 code:</p>
-
-<pre><code class="language-sh">$ cp -r lab2/libgeometry lab5
-$ git add lab5
-$ git commit -m &quot;Starting lab 5&quot;
-</code></pre>
-
-<aside class="admonition warning">
-	<div class="admonition-icon">
-
-	</div>
-
-	<div class="admonition-content"><p><strong>Note</strong>: This lab contains two primary tasks, both of which will be completed in the same directory - there won’t be <code>task1</code> and <code>task2</code> directories this time around. Everything should happen in the <code>lab5</code> directory.</p>
-</div>
-</aside>
-
+<p>This lab will involve making changes to the <code>libgeometry</code> library, which should already be in your repository. In particular, one of the things you will do is write tests for the <code>segment</code> code that you refactored back in lab 2. If you didn’t finish lab 2 completely, now would be a good time to go back and make sure it’s squared away before starting here.</p>
 
 <h1 id="task-0-5-a-bit-about-criterion">Task 0.5: A bit about <code>criterion</code></h1>
 
@@ -251,7 +235,7 @@ Test(foo, subtract)
 
 <p><code>Test</code> takes two arguments (strictly speaking it actually supports many more, but for our purposes we’ll only need these two): a <em>suite name</em> and a <em>test name</em>. The suite name is just the name of the relevant context: if you take a look at <code>test_point.c</code> and <code>test_polygon.c</code>, you’ll see that the suite names are just <code>point</code> and <code>polygon</code>. The test name should just be a short identifier of what the test is testing.</p>
 
-<p>Now let’s discuss the meat of these tests. Each test makes two <em>assertions</em> and exits. An assertion tests the validity of a given statement, and panics (causes the test to fail) if the statement is invalid. The way we make an assertion in <code>criterion</code> is by calling any one of a number of functions prefixed by <code>cr_assert</code> (you can find a full reference <a href="https://criterion.readthedocs.io/en/master/assert.html#assertions-ref">here</a>). These tests use <code>cr_assert_eq</code>, which takes 3 arguments. It checks whether the first argument is equal to the second, and if not, causes the test to fail and prints out the error message given in the third argument (for those of you who took 151, this is very similar to Racket’s <code>check-expect</code> function).</p>
+<p>Now let’s discuss the meat of these tests. Each test makes two <em>assertions</em> and exits. An assertion tests the validity of a given statement, and panics (causes the test to fail) if the statement is invalid. The way we make an assertion in <code>criterion</code> is by calling any one of a number of functions prefixed by <code>cr_assert</code> (you can find a full reference <a href="https://criterion.readthedocs.io/en/master/assert.html#assertions-ref">here</a>). These tests use <code>cr_assert_eq</code>, which takes 3 arguments. It checks whether the first argument is equal to the second, and if not, causes the test to fail and prints out the error message given in the third argument (for those of you who took CS 151, this is very similar to Racket’s <code>check-expect</code> function).</p>
 
 <p>The tests are compiled into their own executable. So, if you run this:</p>
 
@@ -276,7 +260,7 @@ Test(foo, subtract)
 
 <p>Remember that, in Lab 2, we asked you to refactor some of the code in <code>point.c</code> to a new <code>segment.c</code> module. At the time, many of you asked some variation on this question: &ldquo;If I&rsquo;m implementing this code as part of a library, how can I <em>run</em> the segment code I just wrote?&ldquo;. One answer to that question is that you could&rsquo;ve written a separate program that links with libgeometry, and calls the segment functions to see whether they work (and, with what you know about Makefiles, it should be possible for you to do that). However, what we really want to do is write tests for this new segment datatype, similar to the ones that already exist for the point and polygon datatypes. In Lab 2 we asked you to simply modify the calls to <code>segment_intersect</code> in <code>test_point.c</code>, which was a temporary solution before we learned how tests work. Now, we will write proper tests for the segment datatype.</p>
 
-<p>Create a new file in the <code>tests/</code> directory called <code>test_segment.c</code>. You’ll need a few <code>#include</code> statements to get started:</p>
+<p>Create a new file in the <code>libgeometry/tests/</code> directory called <code>test_segment.c</code>. You’ll need a few <code>#include</code> statements to get started:</p>
 
 <pre><code class="language-c">#include &lt;criterion/criterion.h&gt;
 #include &lt;stdlib.h&gt;
@@ -286,26 +270,30 @@ Test(foo, subtract)
 </code></pre>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p><strong>Warning</strong>: From now on, you must do all of your work over <code>ssh</code>, or in CSIL, or using the <a href="https://howto.cs.uchicago.edu/vm:index">department’s virtual machine</a>. Each of those environments have the <code>criterion</code> library properly set up and ready to go. While it is possible to install <code>criterion</code> on an unsupported machine, we may not be able to provide support for that setup.</p>
+    <div class="admonition-content">
+<p><strong>Warning</strong>: From now on, you must do all of your work using the <a href="https://howto.cs.uchicago.edu/vm:index">department’s virtual machine</a> (we recommend doing so in <a href="https://howto.cs.uchicago.edu/vm:headless">Headless VM</a> mode), or by working in CSIL or <a href="https://howto.cs.uchicago.edu/remote_access">SSH&rsquo;ing into a CS machine</a>. Each of those environments have the <code>criterion</code> library properly set up and ready to go. While it is possible to install <code>criterion</code> on an unsupported machine, we may not be able to provide support for that setup.</p>
+
+
 </div>
 </aside>
-
 
 <p>You will also need to modify the <code>Makefile</code> in the <code>tests/</code> directory to add your new file.</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p><strong>Caution</strong>: There are <em>two</em> <code>Makefile</code>s in this project! There’s the root-level <code>Makefile</code> for building the library, but then there’s also a <code>Makefile</code> in the <code>tests</code> directory specifically for building test files. You should only modify the latter.</p>
+    <div class="admonition-content">
+<p><strong>Caution</strong>: There are <em>three</em> <code>Makefile</code>s in this project! There’s the root-level <code>Makefile</code> for building the library, a <code>Makefile</code> in the <code>samples</code> directory to build the sample programs, and a <code>Makefile</code> in the <code>tests</code> directory specifically for building test files. You should only modify this last <code>Makefile</code>.</p>
+
+
 </div>
 </aside>
-
 
 <p>It’s time to write your first tests! In your <code>test_segment.c</code> file, do the following:</p>
 
@@ -345,11 +333,12 @@ Test(segment, no_intersection_parallel)
 <p>Now, use TDD to develop <code>new</code>, <code>init</code>, and <code>free</code> functions for circles.</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p><strong>Note:</strong> To ensure that you are following TDD, we will be inspecting your commit history to check that you actually wrote your tests first. At minimum, we require the following workflow:</p>
+    <div class="admonition-content">
+<p><strong>Note:</strong> To ensure that you are following TDD, we will be inspecting your commit history to check that you actually wrote your tests first. At a minimum, we require the following workflow:</p>
 
 <ol>
 <li>Write your tests in <code>tests/test_circle.c</code></li>
@@ -361,9 +350,10 @@ Test(segment, no_intersection_parallel)
 </ol>
 
 <p>By all means, please make more commits as you write individual tests and implement individual functions. This is just the <em>minimum</em> we require to tell whether or not you implemented tests first.</p>
+
+
 </div>
 </aside>
-
 
 <p>Next, let’s use TDD to implement a few slightly more complex functions that compute things about circles:</p>
 
@@ -391,6 +381,14 @@ cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, “Circle area wasn’t c
 <p>As above, you should use the TDD workflow when implementing these new functions.</p>
 
 <p>Finally, as before, you should include header comments in all the tests you write.</p>
+
+<h1 id="submitting-your-lab">Submitting your lab</h1>
+
+<p>Before submitting, make sure you&rsquo;ve added, committed and pushed all your work in the <code>libgeometry</code> directory (remember you can run <code>git status</code> to check this). Make sure you&rsquo;ve set up the <code>chisubmit</code> tool as described in <a href="/cmsc22000/labs/submit/">How to submit your labs</a>, and then run the following:</p>
+
+<pre><code>chisubmit student assignment register lab5
+chisubmit student assignment submit lab5
+</code></pre>
 
 </div>
 
@@ -423,7 +421,6 @@ cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, “Circle area wasn’t c
 
     </main>
     
-
 
 
     
