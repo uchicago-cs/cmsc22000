@@ -2,10 +2,10 @@
 title: "Lab 6: Continuous Integration"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, May 10th, 4pm
+**Due:** Thursday, May 16th, 2:30pm
 
 Continuous Integration, or CI, is the practice of frequently merging developers’ work into a mainline branch in a version control system like Git. CI almost always involves running an extensive set of test cases every time such a merge happens, or even every time new code is committed to the repository (not just on the mainline branch, but also on other branches). Thus many version control systems facilitate CI by providing mechanisms to trigger certain actions when code is pushed to a repository.
 
@@ -16,9 +16,13 @@ In this lab, we are going to explore the CI features of GitLab, and then you wil
 
 You should already have the “upstream” remote set up in your repository. If you do, simply run
 
-    $ git pull upstream master
+```
+$ git pull upstream master
+```
 
 to get the files for this lab. If you don’t have the “upstream” remote set up, follow task 0 from [Lab 2]({{< relref "lab2.md" >}}).
+
+You should now have a `labs/lab6/` directory. You will do some of your work in that directory, but you will also be setting up `libgeometry` to use CI (it is ok if you have not finished all the tasks from the previous lab).
 
 
 # Task 1: Building your code with CI
@@ -27,7 +31,7 @@ In most CI systems, we will want to specify a series of actions that need to hap
 
 When we push new commits to the repository, this may result in some or all of these jobs being run. GitLab refers to these jobs as a *pipeline*, although you will often hear these jobs referred to as  “a build”. This is potentially confusing because, strictly speaking, “building” refers just to building/making your code but, in the context of CI, “a build” usually refers to “all the jobs that are run when you push any new commits to the repository”. The term “pipeline”, although unique to GitLab, is more representative of what happens when you push new commits: a pipeline of jobs is run.
 
-On GitLab, the jobs in a pipeline are specified in a text file named `.gitlab-ci.yml` which is placed in the root of your repository. So even though your repository has several labX subdirectories, the `.gitlab-ci.yml` file will go in the root of the repository, not inside any of your lab directories.
+On GitLab, the jobs in a pipeline are specified in a text file named `.gitlab-ci.yml` which is placed in the root of your repository. So even though your repository has several `labs/labN/` subdirectories, the `.gitlab-ci.yml` file will go in the root of the repository, not inside any of your lab directories.
 
 (Aside: the `.gitlab-ci.yml` is a YAML file. YAML is a text-based file format that is commonly used for configuration files. We’ll be showing the syntax you need in this lab, but if you are curious there is a ton of documentation out there on it. Fun fact, it’s short for “YAML Ain't Markup Language”)
 
@@ -52,7 +56,7 @@ Each job has a number of options you can specify. Let’s explore some of these 
     hello:build:
         stage: build
         script:
-          - make -C lab6/hello/ clean all
+          - make -C labs/lab6/hello/ clean all
         only: 
           - master
 
@@ -81,11 +85,11 @@ Now, do the following:
 
 * [0 points] Commit the `.gitlab-ci.yml` to your repository and push it.
 
-* [5 points] Go to your repository on the GitLab server (i.e., https://mit.cs.uchicago.edu/cmsc22000-spr-18/CNETID, where CNETID should be replaced by your CNetID). On the left sidebar, click on “Pipelines”. This will show you the pipelines that have been run in your repository. You should see a “passed” pipeline (if you do not, please ask for help). Click on either “passed” or the pipeline number. This will take you to a page with more details about the pipeline. Copy the URL of that page and paste it in the `tasks.txt` file in `lab6/`. This page shows more details about the jobs that ran in that pipeline. In this case, we have only one job: `hello:build`. If you click on it, you’ll be able to see the terminal output from the job (which was run on a special server known as the build server)
+* [5 points] Go to your repository on the GitLab server (i.e., https://mit.cs.uchicago.edu/cmsc22000-spr-19/CNETID, where CNETID should be replaced by your CNetID). On the left sidebar, click on “Pipelines”. This will show you the pipelines that have been run in your repository. You should see a “passed” pipeline (if you do not, please ask for help). Click on either “passed” or the pipeline number. This will take you to a page with more details about the pipeline. Copy the URL of that page and paste it in the `tasks.txt` file in `labs/lab6/`. This page shows more details about the jobs that ran in that pipeline. In this case, we have only one job: `hello:build`. If you click on it, you’ll be able to see the terminal output from the job (which was run on a special server known as the build server)
 
 * [5 points] Make a change to the `hello.c` file that will make it not build. Commit and push this change to the repository. This will result in a failed pipeline in the “Pipelines” page; copy-paste the URL of the failed pipeline into the `tasks.txt` file. Before moving on to the next task, undo the change and verify that pushing the code results in a “passed” pipeline.
 
-* [15 points] Add a job called `libgeometry:build` to build the libgeometry library contained in `lab6/libgeometry`. Push your updated `.gitlab-ci.yml` file, and copy-paste the URL of the resulting “passed” pipeline into the `tasks.txt` file. Notice how this pipeline now has two jobs in it.
+* [15 points] Add a job called `libgeometry:build` to build the libgeometry library contained in `libgeometry/`. Push your updated `.gitlab-ci.yml` file, and copy-paste the URL of the resulting “passed” pipeline into the `tasks.txt` file. Notice how this pipeline now has two jobs in it.
 
 Note: Before committing your `.gitlab-ci.yml` file, you can check that the format of the file is correct by going to https://mit.cs.uchicago.edu/ci/lint. This will allow you to copy-paste your `.gitlab-ci.yml` file and check it for syntax errors.
 
@@ -100,7 +104,7 @@ So, let’s add a job to the `.gitlab-ci.yml` file to run the tests:
     hello:test:
         stage: test
         script:
-          - make -C lab6/hello clean tests
+          - make -C labs/lab6/hello clean tests
         only: 
           - master
 
@@ -113,6 +117,7 @@ Now, do the following:
 * [25 points] Add a `libgeometry:test` job to the `.gitlab-ci.yml` file to build and run the tests. This job should be in the `test` stage, even though it involves building code (in this case, building the tests). Furthermore, your `script` option will now have more than one entry: one for building the tests, and one or more to run them. Once you’re done, copy-paste the URL of the “passed” pipeline to the tasks.txt file.
 
 Careful: *Figuring out the commands for running the libgeometry tests is non-trivial!* Here are two hints: 
+
 * You should first figure out the exact commands you need to run from the root of your repository to successfully run the tests. **DO NOT** figure out the commands by pushing a new commit (and triggering a new pipeline) for every command you try to run. If you figure out the commands from the root of your repository, you should be able to then simply copy/paste those commands into your GitLab CI file.
 * Remember that, if you run `tests/test-libgeometry` from inside the `libgeometry` directory, it will work. So, you can take two approaches: either make sure you’re inside the libgeometry directory before running the tests, or tell the tests where they should look for the libgeometry library (this can be done using an environment variable called `LD_LIBRARY_PATH`) 
 
@@ -129,13 +134,13 @@ For example, we can tell GitLab to keep the `hello` binary after the `hello:buil
     hello:build:
         stage: build
         script:
-          - make -C lab6/hello clean all
+          - make -C labs/lab6/hello clean all
         only: 
           - master
         artifacts:
           expire_in: 1 hour
           paths:
-            - lab6/hello/hello
+            - labs/lab6/hello/hello
 
 Notice how we specify that we want to artifact to expire in one hour, since we’re only going to use it in the subsequent `hello:test` job.
 
@@ -144,7 +149,7 @@ To make sure the `hello:test` job receives that artifact, we need to define a de
     hello:test:
         stage: test
         script:
-          - lab6/hello/hello
+          - labs/lab6/hello/hello
         only: 
           - master
         dependencies:
@@ -167,6 +172,8 @@ In this final task, you will take what you've learned about CI on GitLab, and se
 * Create a repository under your personal GitHub account called `cs220-lab6`.
 * Add the `hello/` files to the repository.
 * Setup Travis CI on your repository to build the `hello` binary and run the `hello` program.
+
+Note: Doing this will involve writing a `.travis.yml` file similar to the `.gitlab-ci.yml` you wrote in the previous tasks. However, take into account that Travis CI and Gitlab CI are two completely different systems and, while they may involve similar concepts (builds, stages, etc.), you cannot simply use a `.gitlab-ci.yml` file in Travis CI. Hint: We use Travis CI in the chiventure repository, and we encourage you to look at the `.travis.yml` file in the root of the repository. You can also see the result of the latest CI build (as well as all past builds) here: https://travis-ci.org/uchicago-cs/chiventure
 
 In the `tasks.txt` file, you must provide the following:
 
