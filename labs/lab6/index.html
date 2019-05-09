@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-26",
     "description": "",
-    "wordCount": 2327
+    "wordCount":  2466 
   }
 </script>
 
@@ -62,20 +62,21 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.55.5" />
 
-  
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+<link rel="stylesheet" href="/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="/cmsc22000/css/style.css">
 
 
   <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 
   
 	<script>
@@ -122,7 +123,7 @@
 
 <a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
 
-<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+<a href="https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/">Project</a>
 
 <a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
 
@@ -140,7 +141,7 @@
 
 
 
-
+ 
 
 
 
@@ -177,7 +178,7 @@
   <div class="container content">
   
 
-<p><strong>Due:</strong> Thursday, May 10th, 4pm</p>
+<p><strong>Due:</strong> Thursday, May 16th, 2:30pm</p>
 
 <p>Continuous Integration, or CI, is the practice of frequently merging developers’ work into a mainline branch in a version control system like Git. CI almost always involves running an extensive set of test cases every time such a merge happens, or even every time new code is committed to the repository (not just on the mainline branch, but also on other branches). Thus many version control systems facilitate CI by providing mechanisms to trigger certain actions when code is pushed to a repository.</p>
 
@@ -194,13 +195,15 @@
 
 <p>to get the files for this lab. If you don’t have the “upstream” remote set up, follow task 0 from <a href="/cmsc22000/labs/lab2/">Lab 2</a>.</p>
 
+<p>You should now have a <code>labs/lab6/</code> directory. You will do some of your work in that directory, but you will also be setting up <code>libgeometry</code> to use CI (it is ok if you have not finished all the tasks from the previous lab).</p>
+
 <h1 id="task-1-building-your-code-with-ci">Task 1: Building your code with CI</h1>
 
 <p>In most CI systems, we will want to specify a series of actions that need to happen automatically whenever any commits are pushed to the repository. For example, we may need to build the code in our repository, and run some tests. These actions are typically referred to as <em>jobs</em>, and you can often specify dependencies between jobs (e.g., the tests can be configured to run only if a project is built correctly). A CI system will keep a record of all the jobs it runs, and will typically notify you if a job fails.</p>
 
 <p>When we push new commits to the repository, this may result in some or all of these jobs being run. GitLab refers to these jobs as a <em>pipeline</em>, although you will often hear these jobs referred to as  “a build”. This is potentially confusing because, strictly speaking, “building” refers just to building/making your code but, in the context of CI, “a build” usually refers to “all the jobs that are run when you push any new commits to the repository”. The term “pipeline”, although unique to GitLab, is more representative of what happens when you push new commits: a pipeline of jobs is run.</p>
 
-<p>On GitLab, the jobs in a pipeline are specified in a text file named <code>.gitlab-ci.yml</code> which is placed in the root of your repository. So even though your repository has several labX subdirectories, the <code>.gitlab-ci.yml</code> file will go in the root of the repository, not inside any of your lab directories.</p>
+<p>On GitLab, the jobs in a pipeline are specified in a text file named <code>.gitlab-ci.yml</code> which is placed in the root of your repository. So even though your repository has several <code>labs/labN/</code> subdirectories, the <code>.gitlab-ci.yml</code> file will go in the root of the repository, not inside any of your lab directories.</p>
 
 <p>(Aside: the <code>.gitlab-ci.yml</code> is a YAML file. YAML is a text-based file format that is commonly used for configuration files. We’ll be showing the syntax you need in this lab, but if you are curious there is a ton of documentation out there on it. Fun fact, it’s short for “YAML Ain&rsquo;t Markup Language”)</p>
 
@@ -226,7 +229,7 @@ job2:
 <pre><code>hello:build:
     stage: build
     script:
-      - make -C lab6/hello/ clean all
+      - make -C labs/lab6/hello/ clean all
     only: 
       - master
 </code></pre>
@@ -258,11 +261,11 @@ job2:
 <ul>
 <li><p>[0 points] Commit the <code>.gitlab-ci.yml</code> to your repository and push it.</p></li>
 
-<li><p>[5 points] Go to your repository on the GitLab server (i.e., <a href="https://mit.cs.uchicago.edu/cmsc22000-spr-18/CNETID">https://mit.cs.uchicago.edu/cmsc22000-spr-18/CNETID</a>, where CNETID should be replaced by your CNetID). On the left sidebar, click on “Pipelines”. This will show you the pipelines that have been run in your repository. You should see a “passed” pipeline (if you do not, please ask for help). Click on either “passed” or the pipeline number. This will take you to a page with more details about the pipeline. Copy the URL of that page and paste it in the <code>tasks.txt</code> file in <code>lab6/</code>. This page shows more details about the jobs that ran in that pipeline. In this case, we have only one job: <code>hello:build</code>. If you click on it, you’ll be able to see the terminal output from the job (which was run on a special server known as the build server)</p></li>
+<li><p>[5 points] Go to your repository on the GitLab server (i.e., <a href="https://mit.cs.uchicago.edu/cmsc22000-spr-19/CNETID">https://mit.cs.uchicago.edu/cmsc22000-spr-19/CNETID</a>, where CNETID should be replaced by your CNetID). On the left sidebar, click on “Pipelines”. This will show you the pipelines that have been run in your repository. You should see a “passed” pipeline (if you do not, please ask for help). Click on either “passed” or the pipeline number. This will take you to a page with more details about the pipeline. Copy the URL of that page and paste it in the <code>tasks.txt</code> file in <code>labs/lab6/</code>. This page shows more details about the jobs that ran in that pipeline. In this case, we have only one job: <code>hello:build</code>. If you click on it, you’ll be able to see the terminal output from the job (which was run on a special server known as the build server)</p></li>
 
 <li><p>[5 points] Make a change to the <code>hello.c</code> file that will make it not build. Commit and push this change to the repository. This will result in a failed pipeline in the “Pipelines” page; copy-paste the URL of the failed pipeline into the <code>tasks.txt</code> file. Before moving on to the next task, undo the change and verify that pushing the code results in a “passed” pipeline.</p></li>
 
-<li><p>[15 points] Add a job called <code>libgeometry:build</code> to build the libgeometry library contained in <code>lab6/libgeometry</code>. Push your updated <code>.gitlab-ci.yml</code> file, and copy-paste the URL of the resulting “passed” pipeline into the <code>tasks.txt</code> file. Notice how this pipeline now has two jobs in it.</p></li>
+<li><p>[15 points] Add a job called <code>libgeometry:build</code> to build the libgeometry library contained in <code>libgeometry/</code>. Push your updated <code>.gitlab-ci.yml</code> file, and copy-paste the URL of the resulting “passed” pipeline into the <code>tasks.txt</code> file. Notice how this pipeline now has two jobs in it.</p></li>
 </ul>
 
 <p>Note: Before committing your <code>.gitlab-ci.yml</code> file, you can check that the format of the file is correct by going to <a href="https://mit.cs.uchicago.edu/ci/lint">https://mit.cs.uchicago.edu/ci/lint</a>. This will allow you to copy-paste your <code>.gitlab-ci.yml</code> file and check it for syntax errors.</p>
@@ -276,7 +279,7 @@ job2:
 <pre><code>hello:test:
     stage: test
     script:
-      - make -C lab6/hello clean tests
+      - make -C labs/lab6/hello clean tests
     only: 
       - master
 </code></pre>
@@ -291,9 +294,12 @@ job2:
 <li>[25 points] Add a <code>libgeometry:test</code> job to the <code>.gitlab-ci.yml</code> file to build and run the tests. This job should be in the <code>test</code> stage, even though it involves building code (in this case, building the tests). Furthermore, your <code>script</code> option will now have more than one entry: one for building the tests, and one or more to run them. Once you’re done, copy-paste the URL of the “passed” pipeline to the tasks.txt file.</li>
 </ul>
 
-<p>Careful: <em>Figuring out the commands for running the libgeometry tests is non-trivial!</em> Here are two hints:
-* You should first figure out the exact commands you need to run from the root of your repository to successfully run the tests. <strong>DO NOT</strong> figure out the commands by pushing a new commit (and triggering a new pipeline) for every command you try to run. If you figure out the commands from the root of your repository, you should be able to then simply copy/paste those commands into your GitLab CI file.
-* Remember that, if you run <code>tests/test-libgeometry</code> from inside the <code>libgeometry</code> directory, it will work. So, you can take two approaches: either make sure you’re inside the libgeometry directory before running the tests, or tell the tests where they should look for the libgeometry library (this can be done using an environment variable called <code>LD_LIBRARY_PATH</code>)</p>
+<p>Careful: <em>Figuring out the commands for running the libgeometry tests is non-trivial!</em> Here are two hints:</p>
+
+<ul>
+<li>You should first figure out the exact commands you need to run from the root of your repository to successfully run the tests. <strong>DO NOT</strong> figure out the commands by pushing a new commit (and triggering a new pipeline) for every command you try to run. If you figure out the commands from the root of your repository, you should be able to then simply copy/paste those commands into your GitLab CI file.</li>
+<li>Remember that, if you run <code>tests/test-libgeometry</code> from inside the <code>libgeometry</code> directory, it will work. So, you can take two approaches: either make sure you’re inside the libgeometry directory before running the tests, or tell the tests where they should look for the libgeometry library (this can be done using an environment variable called <code>LD_LIBRARY_PATH</code>)</li>
+</ul>
 
 <h1 id="task-3-artifacts-and-dependencies">Task 3: Artifacts and dependencies</h1>
 
@@ -306,13 +312,13 @@ job2:
 <pre><code>hello:build:
     stage: build
     script:
-      - make -C lab6/hello clean all
+      - make -C labs/lab6/hello clean all
     only: 
       - master
     artifacts:
       expire_in: 1 hour
       paths:
-        - lab6/hello/hello
+        - labs/lab6/hello/hello
 </code></pre>
 
 <p>Notice how we specify that we want to artifact to expire in one hour, since we’re only going to use it in the subsequent <code>hello:test</code> job.</p>
@@ -322,7 +328,7 @@ job2:
 <pre><code>hello:test:
     stage: test
     script:
-      - lab6/hello/hello
+      - labs/lab6/hello/hello
     only: 
       - master
     dependencies:
@@ -349,6 +355,8 @@ job2:
 <li>Add the <code>hello/</code> files to the repository.</li>
 <li>Setup Travis CI on your repository to build the <code>hello</code> binary and run the <code>hello</code> program.</li>
 </ul>
+
+<p>Note: Doing this will involve writing a <code>.travis.yml</code> file similar to the <code>.gitlab-ci.yml</code> you wrote in the previous tasks. However, take into account that Travis CI and Gitlab CI are two completely different systems and, while they may involve similar concepts (builds, stages, etc.), you cannot simply use a <code>.gitlab-ci.yml</code> file in Travis CI. Hint: We use Travis CI in the chiventure repository, and we encourage you to look at the <code>.travis.yml</code> file in the root of the repository. You can also see the result of the latest CI build (as well as all past builds) here: <a href="https://travis-ci.org/uchicago-cs/chiventure">https://travis-ci.org/uchicago-cs/chiventure</a></p>
 
 <p>In the <code>tasks.txt</code> file, you must provide the following:</p>
 
@@ -390,7 +398,6 @@ job2:
 
     </main>
     
-
 
 
     

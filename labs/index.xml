@@ -83,5 +83,15 @@ By this point in your CS studies, you’ve probably experienced the following at
  Your programming assignment is almost done, and everything works so far. Start working on the last task of the assignment. Make some minor changes. Run program. Everything stops working. The first task, the last task, and everything in between. Spend several hours debugging your code. Narrow down the issue to a silly mistake in the first task that only made things fail once the last task was implemented.</description>
     </item>
     
+    <item>
+      <title>Lab 6: Continuous Integration</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab6/</link>
+      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab6/</guid>
+      <description>Due: Thursday, May 16th, 2:30pm
+Continuous Integration, or CI, is the practice of frequently merging developers’ work into a mainline branch in a version control system like Git. CI almost always involves running an extensive set of test cases every time such a merge happens, or even every time new code is committed to the repository (not just on the mainline branch, but also on other branches). Thus many version control systems facilitate CI by providing mechanisms to trigger certain actions when code is pushed to a repository.</description>
+    </item>
+    
   </channel>
 </rss>
