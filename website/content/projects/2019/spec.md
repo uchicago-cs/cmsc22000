@@ -418,7 +418,7 @@ At the end of Sprint 4, you should think about the following:
 
 Based on this, you should prepare prompts for specific feedback, which can range from organizational/teamwork aspects (e.g., wanting to improve how you communicate with the rest of the team) to technical aspects (e.g., wanting to improve your understanding of some programming concepts), as well as from concrete to high-level. You are also welcome to provide additional prompts that don't originate from the above questions. Once you have your prompt(s), you should convey them to the students who will be providing you with feedback (you can communicate this directly to them, via Slack, e-mail, etc.; you do not need to include the instructor or TAs in this communication)
 
-For example, you could provide prompts like the following (the first two are examples or relatively high-level prompts, while the latter three are more specific):
+For example, you could provide prompts like the following (the first two are examples of relatively high-level prompts, while the latter three are more specific):
 
 1. I feel like I'm using Slack and GitHub effectively, but I wonder if there are any ways in which I could be using them more effectively.
 2. I always procrastinate on my tasks until the 1-2 days before they are due, and I'd like to make more steady progress throughout the sprint. Do you have any suggestions on how I could do this?
