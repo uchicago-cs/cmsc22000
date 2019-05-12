@@ -3,6 +3,7 @@ title: "Project"
 date: 2018-02-17T08:47:20-06:00
 ---
 
+{{% toc %}}
 
 ```
 You wake up to find yourself in a strange hall. You have no idea how you got here. The last thing you remember is a blinding flash of light. You look at the tapestries lining the walls for any clues on your whereabouts. The tapestries depict valiant knights, fire-breathing wyverns, armies of goblins, and fearsome rulers sitting in their gilded thrones. Wherever you are, it must be in a different world from your own. 
