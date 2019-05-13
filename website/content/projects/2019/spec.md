@@ -404,54 +404,9 @@ You are welcome to create pull requests that do not affect the master branch, an
 These non-master pull requests must meet the same requirements as a pull request to master, except they only require a single code review from someone on your team. Furthermore, it will be up to you whether to ultimately merge the pull request, but a senior developer may opt to not count the pull request towards your score if it is a trivial pull request (i.e., if it represents a trivial amount of effort, like adding someone’s name to a README). As with pull requests to master, we encourage you to touch base with your senior developer before creating your first pull requests.
 
 
-### Peer feedback
+### Peer evaluations
 
-At several points throughout the project, each student will provide feedback to two other students in their same team. This is similar to a peer evaluation/review (which are fairly common in large software projects), except the feedback you provide will have no effect on the recipient's grade (whereas in a real project, these evaluations/reviews could affect whether you get a raise, a promotion, etc.). Instead, we will be assessing the feedback you provide to others.
-
-At the end of Sprints 2, 3, and 4, you will be assigned two peers who will be providing you with feedback (you will know each other's identities). Before they provide you with feedback, you must think about what you would like to receive feedback on. At the end of Sprints 2 and 3, you should think about the following: 
-
-> *What is something I'd like to improve or do better in the next sprint?*
-
-At the end of Sprint 4, you should think about the following:
-
-> *What is something I'd like to improve or do better the next time I work in a complex software project and/or the next time I work in a team?*
-
-Based on this, you should prepare prompts for specific feedback, which can range from organizational/teamwork aspects (e.g., wanting to improve how you communicate with the rest of the team) to technical aspects (e.g., wanting to improve your understanding of some programming concepts), as well as from concrete to high-level. You are also welcome to provide additional prompts that don't originate from the above questions. Once you have your prompt(s), you should convey them to the students who will be providing you with feedback (you can communicate this directly to them, via Slack, e-mail, etc.; you do not need to include the instructor or TAs in this communication)
-
-For example, you could provide prompts like the following (the first two are examples of relatively high-level prompts, while the latter three are more specific):
-
-1. I feel like I'm using Slack and GitHub effectively, but I wonder if there are any ways in which I could be using them more effectively.
-2. I always procrastinate on my tasks until the 1-2 days before they are due, and I'd like to make more steady progress throughout the sprint. Do you have any suggestions on how I could do this?
-3. Sometimes I feel like I go off and work on one of my tasks, and when I touch base with everyone else after a few days, some of the work I've done turns out to be headed in the wrong direction, and it seems like that could've been avoided if I had known what everyone else was doing. How could I make sure I stay informed of everyone else's progress?
-4. I feel like I sometimes derail conversations by getting too lost in the weeds when talking about my work, even though I may have a valuable point to make. How could I avoid doing this?
-5. I know we create tasks at the start of each sprint, and I know which ones I'm going to be working on but, if I'm working with other people on the task, sometimes I'm not sure what exactly I should be working on. How can I make sure this doesn't happen?
- 
-After you convey these prompts to the students who will be giving you feedback, they must convey that feedback to you. Please give your feedback givers at least one day to think about your prompts; after that, we encourage you to meet in person (ideally with both the feedback givers at the same time) to discuss your feedback (if meeting in person is hard to arrange, they can also convey their feedback over Slack, e-mail, etc.)
-
-In the end, you must write a brief report (at least 3-4 paragraphs, and ideally no more than 700 words) for each of the two pieces of feedback you provide (each to a separate student). This report must include the following:
-
-- The prompts you were given
-- How the feedback was conveyed. If you met in person, please specify when, for how long, and whether it was a one-on-one meeting, or whether the other feedback giver was there.
-- A summary of the feedback you conveyed.
-- If there was any follow-up (e.g., if the feedback recipient acted on some of your feedback, and told you the outcome), make sure to mention it in your report.
-
-You must write up each report in a text or Markdown file in your individual repository. The name of the file must be the following:
-
-    feedback/sprintN/CNETID.txt
-
-or
-
-    feedback/sprintN/CNETID.md
-
-
-Where `N` should be replaced by the sprint that preceded the feedback (2, 3, or 4), and `CNETID` should be replaced by the CNetID of the feedback recipient.
-
-To submit your feedback, run the following:
-
-    chisubmit student assignment register feedback-sprintN
-    chisubmit student assignment submit feedback-sprintN
-
-Where `N` should be replaced as described above.
+Peer evaluations will happen at the end of Sprints 2, 3, and 4. In each peer evaluation, each student will have to evaluate two team members. Details on how peer evaluations will be carried out will be posted before the first peer evaluation. 
 
 
 ## Class-wide bonus points
