@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-02-17",
     "description": "",
-    "wordCount":  5285 
+    "wordCount":  6127 
   }
 </script>
 
@@ -177,6 +177,41 @@
 
   <div class="container content">
   
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="#text-adventure-games">Text Adventure Games</a></li>
+<li><a href="#project-organization-and-timeline">Project Organization and Timeline</a>
+<ul>
+<li><a href="#suggested-initial-goals">Suggested initial goals</a>
+<ul>
+<li><a href="#wdl">WDL</a></li>
+<li><a href="#game-state">Game State</a></li>
+<li><a href="#action-management">Action Management</a></li>
+<li><a href="#checkpointing">Checkpointing</a></li>
+<li><a href="#cli">CLI</a></li>
+<li><a href="#ui">UI</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#project-evaluation">Project Evaluation</a>
+<ul>
+<li><a href="#requirements-for-graded-work">Requirements for graded work</a>
+<ul>
+<li><a href="#tasks-issues">Tasks/Issues</a>
+<ul>
+<li><a href="#a-descriptive-title">A descriptive title</a></li>
+<li><a href="#a-descriptive-summary">A descriptive summary</a></li>
+<li><a href="#updates-on-the-progress-of-the-task">Updates on the progress of the task</a></li>
+<li><a href="#a-closing-statement">A closing statement</a></li>
+</ul></li>
+<li><a href="#pull-requests-to-master">Pull Requests to master</a></li>
+<li><a href="#code-reviews">Code Reviews</a></li>
+<li><a href="#peer-evaluations">Peer evaluations</a></li>
+</ul></li>
+<li><a href="#class-wide-bonus-points">Class-wide bonus points</a></li>
+</ul></li>
+</ul>
+</nav>
 
 <pre><code>You wake up to find yourself in a strange hall. You have no idea how you got here. The last thing you remember is a blinding flash of light. You look at the tapestries lining the walls for any clues on your whereabouts. The tapestries depict valiant knights, fire-breathing wyverns, armies of goblins, and fearsome rulers sitting in their gilded thrones. Wherever you are, it must be in a different world from your own. 
 
@@ -584,7 +619,62 @@ int main()
 
 <h3 id="peer-evaluations">Peer evaluations</h3>
 
-<p>Peer evaluations will happen at the end of Sprints 2, 3, and 4. In each peer evaluation, each student will have to evaluate two team members. Details on how peer evaluations will be carried out will be posted before the first peer evaluation.</p>
+<p>At several points throughout the project, each student will provide feedback to two other students in their same team. This is similar to a peer evaluation/review (which are fairly common in large software projects), except the feedback you provide will have no effect on the recipient&rsquo;s grade (whereas in a real project, these evaluations/reviews could affect whether you get a raise, a promotion, etc.). Instead, we will be assessing the feedback you provide to others.</p>
+
+<p>At the end of Sprints 2, 3, and 4, you will be assigned two peers who will be providing you with feedback (you will know each other&rsquo;s identities). Before they provide you with feedback, you must think about what you would like to receive feedback on. At the end of Sprints 2 and 3, you should think about the following:</p>
+
+<blockquote>
+<p><em>What is something I&rsquo;d like to improve or do better in the next sprint?</em></p>
+</blockquote>
+
+<p>At the end of Sprint 4, you should think about the following:</p>
+
+<blockquote>
+<p><em>What is something I&rsquo;d like to improve or do better the next time I work in a complex software project and/or the next time I work in a team?</em></p>
+</blockquote>
+
+<p>Based on this, you should prepare prompts for specific feedback, which can range from organizational/teamwork aspects (e.g., wanting to improve how you communicate with the rest of the team) to technical aspects (e.g., wanting to improve your understanding of some programming concepts), as well as from concrete to high-level. You are also welcome to provide additional prompts that don&rsquo;t originate from the above questions. Once you have your prompt(s), you should convey them to the students who will be providing you with feedback (you can communicate this directly to them, via Slack, e-mail, etc.; you do not need to include the instructor or TAs in this communication)</p>
+
+<p>For example, you could provide prompts like the following (the first two are examples of relatively high-level prompts, while the latter three are more specific):</p>
+
+<ol>
+<li>I feel like I&rsquo;m using Slack and GitHub effectively, but I wonder if there are any ways in which I could be using them more effectively.</li>
+<li>I always procrastinate on my tasks until the 1-2 days before they are due, and I&rsquo;d like to make more steady progress throughout the sprint. Do you have any suggestions on how I could do this?</li>
+<li>Sometimes I feel like I go off and work on one of my tasks, and when I touch base with everyone else after a few days, some of the work I&rsquo;ve done turns out to be headed in the wrong direction, and it seems like that could&rsquo;ve been avoided if I had known what everyone else was doing. How could I make sure I stay informed of everyone else&rsquo;s progress?</li>
+<li>I feel like I sometimes derail conversations by getting too lost in the weeds when talking about my work, even though I may have a valuable point to make. Do you also feel like I&rsquo;m doing this? If so, what other ways do you think I could make this point instead of the way I&rsquo;m doing it now?</li>
+<li>I know we create tasks at the start of each sprint, and I know which ones I&rsquo;m going to be working on but, if I&rsquo;m working with other people on the task, sometimes I&rsquo;m not sure what exactly I should be working on. How can I make sure this doesn&rsquo;t happen?</li>
+</ol>
+
+<p>After you convey these prompts to the students who will be giving you feedback, they must convey that feedback to you. Please give your feedback givers at least one day to think about your prompts; after that, we encourage you to meet in person (ideally with both the feedback givers at the same time) to discuss your feedback (if meeting in person is hard to arrange, they can also convey their feedback over Slack, e-mail, etc.)</p>
+
+<p>In the end, you must write a brief report (at least 3-4 paragraphs, and ideally no more than 700 words) for each of the two pieces of feedback you provide (each to a separate student). This report must include the following:</p>
+
+<ul>
+<li>The prompts you were given</li>
+<li>How the feedback was conveyed. If you met in person, please specify when, for how long, and whether it was a one-on-one meeting, or whether the other feedback giver was there.</li>
+<li>A summary of the feedback you conveyed.</li>
+<li>If there was any follow-up (e.g., if the feedback recipient acted on some of your feedback, and told you the outcome), make sure to mention it in your report.</li>
+</ul>
+
+<p>You must write up each report in a text or Markdown file in your individual repository. The name of the file must be the following:</p>
+
+<pre><code>feedback/sprintN/CNETID.txt
+</code></pre>
+
+<p>or</p>
+
+<pre><code>feedback/sprintN/CNETID.md
+</code></pre>
+
+<p>Where <code>N</code> should be replaced by the sprint that preceded the feedback (2, 3, or 4), and <code>CNETID</code> should be replaced by the CNetID of the feedback recipient.</p>
+
+<p>To submit your feedback, run the following:</p>
+
+<pre><code>chisubmit student assignment register feedback-sprintN
+chisubmit student assignment submit feedback-sprintN
+</code></pre>
+
+<p>Where <code>N</code> should be replaced as described above.</p>
 
 <h2 id="class-wide-bonus-points">Class-wide bonus points</h2>
 
