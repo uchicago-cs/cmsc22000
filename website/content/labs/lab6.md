@@ -183,6 +183,11 @@ In the `tasks.txt` file, you must provide the following:
 * List any resources you consulted (other than the official documentation from GitHub or Travis CI)
 
 
+# Submitting your lab
 
+Before submitting, make sure you've added, committed and pushed all your work (remember you can run `git status` to check this). Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
+
+    chisubmit student assignment register lab6
+    chisubmit student assignment submit lab6
 
 
