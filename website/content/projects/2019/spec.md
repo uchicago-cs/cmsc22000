@@ -192,20 +192,20 @@ As such, your individual score on the project will be based on how well you perf
 *   How well you document tasks/issues (and whether you complete the tasks you commit to doing in a given sprint).
 *   Whether you get pull requests to master approved
 *   How well you do code reviews (on pull requests where you are a reviewer) 
-*   How well you do your peer evaluations
+*   How well you do provide feedback to your peers
 
-Note: no part of your score will be determined by your teammates. So, when you receive a code review or a peer evaluation, we will be evaluating the quality of the code review / peer evaluation itself; we will not be using that review/evaluation to determine your score. Please note that, in a peer evaluation, we will specifically be evaluating the person giving the feedback (by looking at the quality of the feedback they provide).
+Note: no part of your score will be determined by your teammates. So, when you receive a code review or peer feedback, we will be evaluating the quality of the code review / peer feedback itself; we will not be using that review/feedback to determine your score. Please note that, in peer feedback, we will specifically be evaluating the person giving the feedback (by looking at the quality of the feedback they provide).
 
 Each of the above has a point value:
 
 *   Tasks/issues: 10 points
 *   Getting a pull request to master approved: 20 points
 *   Code reviews: 15 points
-*   Peer evaluation: 15 points
+*   Peer feedback: 15 points
 
 Every time you do one of the above, you will be graded on a simple “check minus”, “check”, or “check plus” scale, and you will accrue 70%, 85%, or 100%, respectively, of the point value of the work you completed.
 
-For example, suppose you have completed 3 tasks (graded “check”, “check”, and “check plus”) gotten a pull request to master approved (graded “check”) and done one peer evaluation (graded “check plus”). You will have accrued the following number of points:
+For example, suppose you have completed 3 tasks (graded “check”, “check”, and “check plus”) gotten a pull request to master approved (graded “check”) and done one peer feedback (graded “check plus”). You will have accrued the following number of points:
 
 $$ (0.8\cdot 10) + (0.8\cdot 10) + (1.0\cdot 10) + (0.8\cdot 20) + (1.0\cdot 15) = 8+8+10+16+15 =57 $$
 
