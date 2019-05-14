@@ -404,7 +404,7 @@ You are welcome to create pull requests that do not affect the master branch, an
 These non-master pull requests must meet the same requirements as a pull request to master, except they only require a single code review from someone on your team. Furthermore, it will be up to you whether to ultimately merge the pull request, but a senior developer may opt to not count the pull request towards your score if it is a trivial pull request (i.e., if it represents a trivial amount of effort, like adding someone’s name to a README). As with pull requests to master, we encourage you to touch base with your senior developer before creating your first pull requests.
 
 
-### Peer evaluations
+### Peer feedback
 
 At several points throughout the project, each student will provide feedback to two other students in their same team. This is similar to a peer evaluation/review (which are fairly common in large software projects), except the feedback you provide will have no effect on the recipient's grade (whereas in a real project, these evaluations/reviews could affect whether you get a raise, a promotion, etc.). Instead, we will be assessing the feedback you provide to others.
 
