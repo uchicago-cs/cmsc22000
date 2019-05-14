@@ -2,10 +2,10 @@
 title: "Lab 7: Deployment"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, May 17th, 4pm
+**Due:** Thursday, May 23rd, 2:30pm
 
 Last week, you learned about Continuous Integration, which deals with how application code makes it to the master branch. But how do our applications make it to the *real world*, where other people can use them?
 
@@ -23,20 +23,20 @@ You should already have the “upstream” remote set up in your repository. If 
 
 to get the files for this lab. If you don’t have the “upstream” remote set up, follow task 0 from [Lab 2]({{< relref "lab2.md" >}}).
 
-Once you've pulled from upstream, there should be a `lab7` directory in your local repository with a `tasks.txt` file. In this lab, you will just have to copy-paste a few URLs that we will use to verify that you've done the work in this lab.
+Once you've pulled from upstream, there should be a `labs/lab7` directory in your local repository with a `tasks.txt` file. In this lab, you will just have to copy-paste a few URLs that we will use to verify that you've done the work in this lab.
 
 Next, in this lab we'll be working with the small [Flask](http://flask.pocoo.org/) web application we demonstrated in class. Don't worry: while the app is implemented in Python, no Python knowledge is necessary for this lab. First, you'll make a **fork** of the app. We covered forking in the [Advanced Git Lab]({{< relref "advanced-git.md" >}}), so you may want to review that lab if you're not 100% clear on what a fork is. In a nutshell, a fork is a new copy of a project under your own username. Forking a repository allows you to freely experiment with changes without affecting the original project (unless you choose to contribute back to the original project and the owners accept your contribution). Forking and then submitting pull requests across a fork is a very common practice in open source software development.
 
-You can fork the `cs220-helloapp` repository by going [here](https://github.com/uchicago-cs/cs220-helloapp) and clicking "Fork" in the upper right hand corner.
+You can fork the `cs220-helloapp-2019` repository by going [here](https://github.com/uchicago-cs/cs220-helloapp-2019) and clicking "Fork" in the upper right hand corner.
 
-Once the fork has completed, you can clone it and begin your work. Remember to do this *outside* of your individual GitLab repository! (i.e., do _not_ run the following command in the same directory that contains your `lab1`, `lab2`, etc. directories, or inside the `lab7` directory). 
-
-```
-$ git clone https://github.com/[yourusername]/cs220-helloapp.git
+Once the fork has completed, you can clone it and begin your work. Remember to do this *outside* of your individual GitLab repository! (i.e., do _not_ run the following command in the same directory that contains your `labs/`, `libgeometry/`, etc. directories, or inside the `labs/lab7` directory). 
 
 ```
+$ git clone https://github.com/[yourusername]/cs220-helloapp-2019.git
 
-Edit your `tasks.txt` file and include the URL of your forked `cs220-helloapp` repository on GitHub. 
+```
+
+Edit your `tasks.txt` file and include the URL of your forked `cs220-helloapp-2019` repository on GitHub. 
 
 Careful! Remember that your `tasks.txt` is in your personal repository on GitLab (with all your other lab files). You will _only_ be using that repository to edit your `tasks.txt` file. The rest of your work will happen on the forked `cs220-helloapp` repository you just created.
 
@@ -49,6 +49,7 @@ Heroku is a common service used to host web applications. For this task you'll s
 2. Sign up and mark your "role" as "student". You will need to confirm your account, and then create a password.
 
 Once you've created your account, you're ready to create a Heroku app.
+
 1. Go to your dashboard, https://dashboard.heroku.com/apps
 2. Click the big button that says "Create new app"
 3. Under "app-name" title your app "[cnetID]-cs220-lab7". This means that the url for your app will be "https://[cnetID]-cs220-lab7.herokuapp.com"
@@ -60,12 +61,12 @@ Before continuing, edit your `tasks.txt` file and include the URL of your app on
 # Task 2: Deploy using Heroku CLI
 [20 points]
 
-In class, we saw that we can deploy an app to Heroku simply by pushing to their Git repository. Your local `cs220-helloapp` repository is currently configured to push only to GitHub, so we need to set it up to also push to Heroku. We can do this using a command-line tool provided by Heroku.
+In class, we saw that we can deploy an app to Heroku simply by pushing to their Git repository. Your local `cs220-helloapp-2019` repository is currently configured to push only to GitHub, so we need to set it up to also push to Heroku. We can do this using a command-line tool provided by Heroku.
 
 First, you'll need to log into Heroku like this:
 
 ```
-$ cd cs220-helloapp
+$ cd cs220-helloapp-2019
 $ heroku login
 ```
 
@@ -99,7 +100,7 @@ This should produce an output like this:
 ```
 ====================================== test session starts =======================================
 platform linux -- Python 3.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
-rootdir: /var/tmp/borja/cs220-helloapp, inifile:
+rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
 plugins: metadata-1.7.0, json-0.4.0, html-1.17.0
 collected 2 items
 
@@ -113,7 +114,7 @@ Now, let's break our app. Edit the files `hello/templates/index.html` and replac
 ```
 ====================================== test session starts =======================================
 platform linux -- Python 3.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
-rootdir: /var/tmp/borja/cs220-helloapp, inifile:
+rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
 plugins: metadata-1.7.0, json-0.4.0, html-1.17.0
 collected 2 items
 
@@ -169,12 +170,12 @@ $ git push
 That way, we can check that you've followed the steps described in this task.
 
 
-# Task 3: Create .travis.yml for cs220-helloapp
+# Task 3: Create .travis.yml for cs220-helloapp-2019
 [40 points]
 
 As you remember from our [previous lab]({{< relref "lab6.md" >}}), we have a way to make sure our app passes all the tests every time we push.
 
-For this, you should create a `.travis.yml` file in your cs220-helloapp repo. With python, there's no need to build, so you should just define a test phase which runs the command `pytest` as its test script.
+For this, you should create a `.travis.yml` file in your `cs220-helloapp-2019` repo. With python, there's no need to build, so you should just define a test phase which runs the command `pytest` as its test script.
 
 In the last task, you made the tests fail. You should ensure the CI job fails when the tests are failing.
 
@@ -190,7 +191,9 @@ Then, you should be able to connect to GitHub using your GitHub account and repo
 Make the tests fail again and push to GitHub with a simple `git push`. The CI tests should fail and, if you navigate to your URL, you'll see that the broken version has not been deployed.
 
 {{% warning %}}
+{{% md %}}
 **Caution:** In the above `git push` step, *don't* push to Heroku as you did in previous tasks. What's happening here is that the Heroku service will now wait for tests to pass CI, and then automagically pull your code and deploy it. No need to manually push to Heroku.
+{{% /md %}}
 {{% /warning %}}
 
 Before continuing, fix the tests and make sure your CI tests are passing again.
