@@ -70,7 +70,20 @@ $ cd cs220-helloapp-2019
 $ heroku login
 ```
 
-Note: Techstaff has set up the `heroku` command on the CSIL machines and the `linux.cs` servers. You should perform these tasks in one of those environments.
+{{% warning %}}
+{{% md %}}
+Techstaff has set up the `heroku` command on the CSIL machines and the `linux.cs` servers.
+
+If you are running inside the CS VM, then you will need to install Flask and the `heroku` command by running the following:
+
+```
+$ sudo -H pip3 install flask
+$ sudo snap install --classic heroku
+```
+
+If you are using the Headless VM setup, take into account that the `heroku login` command will attempt to open a browser to log you into Heroku, which is not possible from headless mode. Instead, the command will print out a URL, which you will have to manually copy/paste into a browser in your computer.
+{{% /md %}}
+{{% /warning %}}
 
 The instructions for deploying using the CLI are located at https://dashboard.heroku.com/apps/[cnetID]-cs220-lab7/deploy/heroku-git. We already have a git repository, so we'll follow the instructions for *Existing Git Repository*.
 
@@ -184,7 +197,7 @@ Now, go back and fix the app so that they all pass. Before continuing, make sure
 # Task 4: Deploy using Github Integration with Travis CI
 [20 points]
 
-Wouldn't it be convenient if we could deploy continuously, as soon as tests pass? You might think "well, what if we had a deploy phase in our Travis CI"? This is possible (see https://docs.travis-ci.com/user/deployment/heroku/), but it turns out Heroku makes it *even easier* than that. On your Heroku app dashboard, select "GitHub - connect to GitHub" instead of "Heroku Git - Use Heroku CLI".
+Wouldn't it be convenient if we could deploy continuously, as soon as tests pass? You might think "well, what if we had a deploy phase in our Travis CI"? This is possible (see https://docs.travis-ci.com/user/deployment/heroku/), but it turns out Heroku makes it *even easier* than that. On your Heroku app dashboard, in the "Deploy" tab, select "GitHub - connect to GitHub" instead of "Heroku Git - Use Heroku CLI".
 
 Then, you should be able to connect to GitHub using your GitHub account and repo name. Once you connect the repo, you should see an option that says "Automatic deploys" with a checkbox "Wait for CI to pass before deploy".
 
