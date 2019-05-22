@@ -52,7 +52,7 @@ Careful! Remember that your `tasks.txt` is in your personal repository on GitLab
 
 Using Docker requires [root privileges](https://en.wikipedia.org/wiki/Superuser), which you do not have on the CSIL machines. Fortunately, as we’ll see later on, that won’t stop us from running Docker on Travis, but it does mean that you won’t get to use Docker yourself (you’ll simply be instructing Travis to use Docker)
 
-However, it can be helpful to learn the basics of how to use Docker, and you can do so using the [UChicago CS Virtual Machine](https://howto.cs.uchicago.edu/vm:index), where you do have the ability to run commands with root privileges.
+However, it can be helpful to learn the basics of how to use Docker, and you can do so using the [UChicago CS Virtual Machine](https://howto.cs.uchicago.edu/vm:index), where you do have the ability to run commands with root privileges. In particular, we encourage you to use the VM in [Headless Mode](https://howto.cs.uchicago.edu/vm:headless).
 
 Completing this task requires running the VM on your own machine (not on a CSIL machine), so this task is optional and ungraded, but strongly recommended, specially if you’ve already installed the UChicago CS VM.
 
