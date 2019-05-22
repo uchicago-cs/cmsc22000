@@ -66,15 +66,10 @@ Once you’ve started the UChicago CS VM, open a terminal. We will first need to
 
 Notice how that last command is run with `sudo`. This basically instructs the operating system to run the command (`make install`) with root privileges. You will be asked to enter your password which, on the CS VM, is `uccs` by default. The reason we need to run this command with `sudo` is because it involves installing the Redis libraries and binaries in system-wide locations, which require root privileges to modify.
 
-Next, before installing Docker, we need to make a few minor changes to Ubuntu’s configuration. Click on the Ubuntu icon on the top-left of the screen, and type "Software" in the "Search your computer" field. One of the applications that will appear is "Software & Updates". Click on it. Then, click on the "Updates" tab and make sure the following are selected under "Install updates from:":
-
-* Important security updates
-* Recommended updates
-
 Now, go back to the terminal and run the following commands (these are based on the official Docker [installation documentation](https://docs.docker.com/install/linux/docker-ce/ubuntu/)):
 
-    $ sudo apt-get update
-    $ sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    $ sudo apt update
+    $ sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg-agent
     $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     $ sudo apt-key fingerprint 0EBFCD88
     $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
@@ -132,9 +127,17 @@ On a separate terminal, you can also try running a few Docker commands:
 ## Task 2: Git Submodules
 [20 points]
 
-Your `cs220-redis-example` repository contains code that extends the Redis server with some additional commands. We will only be concerned with one of these commands: the `EXAMPLE.HGETSET` command. This commands operates on a hash table and takes two parameters: a key and a value. It will fetch the value currently associated with the given key, and will replace its value with the one provided as a parameter.
+Your `cs220-redis-example` repository contains code that extends the Redis server with some additional commands. We will only be concerned with one of these commands: the `EXAMPLE.HGETSET` command. This commands operates on a hash table and takes two parameters: a key and a value. It will fetch the value currently associated with the given key, and will replace its value with the one provided as a parameter. For example, notice how the example below fetches the current value of the `email` key, while also replacing it with a new value:
 
-TODO: Include and example
+    127.0.0.1:6379> HSET myhash name "Borja"
+    (integer) 1
+    127.0.0.1:6379> HSET myhash email "borja@cs.uchicago.edu"
+    (integer) 1
+    127.0.0.1:6379> EXAMPLE.HGETSET myhash email "borja@uchicago.edu"
+    "borja@cs.uchicago.edu"
+    127.0.0.1:6379> HGET myhash email
+    "borja@uchicago.edu"
+
 
 The repository has two directories:
 
@@ -255,9 +258,9 @@ You should now be able to run the test program:
 
 Add a `.travis.yml` file to your repository with the following contents:
 
-    language: c
+    dist: xenial
 
-    sudo: required
+    language: c
 
     services:
       - docker
@@ -272,11 +275,10 @@ Add a `.travis.yml` file to your repository with the following contents:
      - make -C tests/
      - ./tests/test-hgetset
 
-Go ahead and commit and push this file. The Travis build may take a few minutes; just read ahead before checking the status of your build.
+Before you push this file, make sure that your `cs220-redis-example` repository is activated on Travis (you can do this by going to your [Travis account page](https://travis-ci.org/account/)) Once you've done this, go ahead and commit and push this file. The Travis build may take a few minutes; just read ahead before checking the status of your build.
 
 There are a few differences with the Travis files we've seen previously:
 
-* The `sudo: required` option tells Travis that we need the ability to run `sudo` (this affects how Travis will launch our build)
 * The `services` option tells Travis that we will need access to Docker's tools, which includes the ability to build and run our own containers.
 * The `before_install` option includes the Docker commands we need to run our container. Notice how they're the same as the ones you can run insider your VM. We've also included `docker container list` to double-check that our container is running.
 
