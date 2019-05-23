@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-26",
     "description": "",
-    "wordCount": 3958
+    "wordCount":  4066 
   }
 </script>
 
@@ -62,20 +62,21 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.55.6" />
 
-  
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+<link rel="stylesheet" href="/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="/cmsc22000/css/style.css">
 
 
   <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 
   
 	<script>
@@ -122,7 +123,7 @@
 
 <a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
 
-<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+<a href="https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/">Project</a>
 
 <a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
 
@@ -140,7 +141,7 @@
 
 
 
-
+ 
 
 
 
@@ -177,17 +178,19 @@
   <div class="container content">
   
 
-<p><strong>Due:</strong> Thursday, May 24th, 4pm</p>
+<p><strong>Due:</strong> Thursday, May 30th, 2:30pm</p>
 
 <p>In this lab, we will continue to explore concepts related to Continuous Integration and Deployment. The lab is divided into two main parts: one where we will see how we can use Docker containers as part of a CI build, and one where we will expand the deployment pipeline we saw in our previous lab.</p>
 
 <h1 id="part-i-using-containers-in-ci">Part I: Using Containers in CI</h1>
 
-<p>It is often necessary for a CI build to use a specific software environment to run a series of tests. For example, we may need some libraries installed before we can run the tests or, in the case of the class project, we may need a Redis server that we can run some of our tests on.</p>
+<p>It is often necessary for a CI build to use a specific software environment to build code and to run tests. This may be as simple as needing some set of libraries installed before we can build and run your code, or as complex as running some sort of server that our code and tests need to run.</p>
 
-<p>Most CI systems allow you to install software before the CI jobs are run. For example, Travis includes an explicit <a href="https://docs.travis-ci.com/user/customizing-the-build#The-Build-Lifecycle">install step</a>. However, installing and configuring a complex piece of software like Redis through this mechanism can be cumbersome.</p>
+<p>In this lab, we are going to work through an example that requires a running <a href="https://redis.io/">Redis</a>, a popular data structure store. In a nutshell, Redis is a server that can store a variety of data structures (including lists, hash tables, etc.), and which allows you to manipulate those data structures via an API and a CLI. The API is typically accessed remotely (i.e., the Redis server runs on one machine, and client software running on a different machine accesses the API through a network), which means that testing client software that relies on Redis requires running a Redis server too.</p>
 
-<p>An alternative approach is to use <em>containers</em>, a sort of lightweight virtual machine that provides a specific software environment we need. Unlike virtual machines, containers are typically used to package a specific piece of software, instead of providing a full OS environment (although this is also possible with containers)</p>
+<p>Most CI systems allow you to install software before the CI jobs are run. For example, Travis includes an explicit <a href="https://docs.travis-ci.com/user/customizing-the-build#The-Build-Lifecycle">install step</a>. However, installing and configuring a complex piece of software like Redis through this mechanism can be cumbersome. It can also take a fair amount of time, even if the installation is automated, so it can pay off to simply have a software environment that is ready to go with all the software we need.</p>
+
+<p>One way of doing this is by using <em>containers</em>, a sort of lightweight virtual machine that provides a specific software environment we need. Unlike virtual machines, containers are typically used to package a specific piece of software, instead of providing a full OS environment (although this is also possible with containers)</p>
 
 <p>For example, a Redis container would include a Redis server and, by default, running the container would immediately start that Redis server, instead of taking us to a UNIX shell where we have to run the Redis server ourselves. So, if we wanted to run Redis during a CI build, all we would need to do is download a Redis <em>container image</em>, and run that container during the CI build. A popular container manager is Docker, which we will be using in this lab. Make sure to read their <a href="https://www.docker.com/what-container">What is a Container</a> page, which provides a more in-depth explanation of what a container is, and how it compares to virtual machines.</p>
 
@@ -214,14 +217,16 @@
 <p>Edit your tasks.txt file and include the URL of your forked cs220-redis-example repository on GitHub.</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p>Careful! Remember that your tasks.txt is in your personal repository on GitLab (with all your other lab files). You will only be using that repository to edit your tasks.txt file. The rest of your work will happen on the forked cs220-redis-example repository you just created.</p>
+    <div class="admonition-content">
+<p>Careful! Remember that your <code>tasks.txt</code> is in your personal repository on GitLab (with all your other lab files). You will only be using that repository to edit your <code>tasks.txt</code> file. The rest of your work will happen on the forked cs220-redis-example repository you just created.</p>
+
+
 </div>
 </aside>
-
 
 <h2 id="task-1-running-docker-in-the-cs-vm-optional">Task 1: Running Docker in the CS VM [Optional]</h2>
 
@@ -229,7 +234,7 @@
 
 <p>Using Docker requires <a href="https://en.wikipedia.org/wiki/Superuser">root privileges</a>, which you do not have on the CSIL machines. Fortunately, as we’ll see later on, that won’t stop us from running Docker on Travis, but it does mean that you won’t get to use Docker yourself (you’ll simply be instructing Travis to use Docker)</p>
 
-<p>However, it can be helpful to learn the basics of how to use Docker, and you can do so using the <a href="https://howto.cs.uchicago.edu/vm:index">UChicago CS Virtual Machine</a>, where you do have the ability to run commands with root privileges.</p>
+<p>However, it can be helpful to learn the basics of how to use Docker, and you can do so using the <a href="https://howto.cs.uchicago.edu/vm:index">UChicago CS Virtual Machine</a>, where you do have the ability to run commands with root privileges. In particular, we encourage you to use the VM in <a href="https://howto.cs.uchicago.edu/vm:headless">Headless Mode</a>.</p>
 
 <p>Completing this task requires running the VM on your own machine (not on a CSIL machine), so this task is optional and ungraded, but strongly recommended, specially if you’ve already installed the UChicago CS VM.</p>
 
@@ -242,19 +247,12 @@ $ make
 $ sudo make install
 </code></pre>
 
-<p>Notice how that last command is run with &ldquo;sudo&rdquo;. This basically instructs the operating system to run the command (&ldquo;make install&rdquo;) with root privileges. You will be asked to enter your password which, on the CS VM, is &ldquo;uccs&rdquo; by default. The reason we need to run this command with &ldquo;sudo&rdquo; is because it involves installing the Redis libraries and binaries in system-wide locations, which require root privileges to modify.</p>
-
-<p>Next, before installing Docker, we need to make a few minor changes to Ubuntu’s configuration. Click on the Ubuntu icon on the top-left of the screen, and type &ldquo;Software&rdquo; in the &ldquo;Search your computer&rdquo; field. One of the applications that will appear is &ldquo;Software &amp; Updates&rdquo;. Click on it. Then, click on the &ldquo;Updates&rdquo; tab and make sure the following are selected under &ldquo;Install updates from:&rdquo;:</p>
-
-<ul>
-<li>Important security updates</li>
-<li>Recommended updates</li>
-</ul>
+<p>Notice how that last command is run with <code>sudo</code>. This basically instructs the operating system to run the command (<code>make install</code>) with root privileges. You will be asked to enter your password which, on the CS VM, is <code>uccs</code> by default. The reason we need to run this command with <code>sudo</code> is because it involves installing the Redis libraries and binaries in system-wide locations, which require root privileges to modify.</p>
 
 <p>Now, go back to the terminal and run the following commands (these are based on the official Docker <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">installation documentation</a>):</p>
 
-<pre><code>$ sudo apt-get update
-$ sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+<pre><code>$ sudo apt update
+$ sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg-agent
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 $ sudo apt-key fingerprint 0EBFCD88
 $ sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;
@@ -289,7 +287,7 @@ $ sudo apt-get install -y docker-ce
 <pre><code>127.0.0.1:6379&gt;
 </code></pre>
 
-<p>This means that the Redis CLI tool running on your VM has successfully connected to the Redis server running inside the Docker container. However, notice how we’re not running Redis directly on the VM (we installed Redis so we could use the &ldquo;redis-cli&rdquo; tool, but we never ran the &ldquo;redis-server&rdquo; command on the VM).</p>
+<p>This means that the Redis CLI tool running on your VM has successfully connected to the Redis server running inside the Docker container. However, notice how we’re not running Redis directly on the VM (we installed Redis so we could use the <code>redis-cli</code> tool, but we never ran the <code>redis-server</code> command on the VM).</p>
 
 <p>You can now try running a few Redis commands from the Redis CLI:</p>
 
@@ -308,16 +306,6 @@ OK
 2) &quot;email&quot;
 </code></pre>
 
-<aside class="admonition warning">
-	<div class="admonition-icon">
-
-	</div>
-
-	<div class="admonition-content"><p>Caveat: We’re running Redis inside a Docker container to demonstrate how Docker works, and because that will be the only way of running Redis on Travis. However, if you plan to use Redis on your VM (e.g., when testing your project), you should just run &ldquo;redis-server&rdquo; directly on the VM.</p>
-</div>
-</aside>
-
-
 <p>On a separate terminal, you can also try running a few Docker commands:</p>
 
 <ul>
@@ -331,14 +319,26 @@ OK
 
 <p>[20 points]</p>
 
-<p>Your <code>cs220-redis-example</code> repository has two directories:</p>
+<p>Your <code>cs220-redis-example</code> repository contains code that extends the Redis server with some additional commands. We will only be concerned with one of these commands: the <code>EXAMPLE.HGETSET</code> command. This commands operates on a hash table and takes two parameters: a key and a value. It will fetch the value currently associated with the given key, and will replace its value with the one provided as a parameter. For example, notice how the example below fetches the current value of the <code>email</code> key, while also replacing it with a new value:</p>
+
+<pre><code>127.0.0.1:6379&gt; HSET myhash name &quot;Borja&quot;
+(integer) 1
+127.0.0.1:6379&gt; HSET myhash email &quot;borja@cs.uchicago.edu&quot;
+(integer) 1
+127.0.0.1:6379&gt; EXAMPLE.HGETSET myhash email &quot;borja@uchicago.edu&quot;
+&quot;borja@cs.uchicago.edu&quot;
+127.0.0.1:6379&gt; HGET myhash email
+&quot;borja@uchicago.edu&quot;
+</code></pre>
+
+<p>The repository has two directories:</p>
 
 <ul>
-<li><code>module/</code> - This directory contains a Redis module that adds a few extra commands. We will be using just one of them: EXAMPLE.HGETSET, which does an HGET operation followed by an HSET operation. In other words, it gets the value of a key in a hash table (which will be returned by the command), and then sets the value of that key to a new value. Note: this example module is the same example module provided by Redis.</li>
-<li><code>tests/</code> - This directory contains a simple program that uses the hiredis library to connect to a Redis server to test the HGETSET operation.</li>
+<li><code>module/</code> - This directory contains the module that implements the new commands (Note: in Redis, the term &ldquo;module&rdquo; has a specific meaning, and it refers to an installable component that extends Redis).</li>
+<li><code>tests/</code> - This directory contains a simple program that uses the hiredis library to connect to a Redis server to test the <code>HGETSET</code> operation.</li>
 </ul>
 
-<p>However, to compile the module we need some files included in the Redis Module SDK (Software Development Kit) available in the following repo: <a href="https://github.com/RedisLabs/RedisModulesSDK">https://github.com/RedisLabs/RedisModulesSDK</a>. To compile the example program, we also need hiredis, which is available in this repository: <a href="https://github.com/redis/hiredis">https://github.com/redis/hiredis</a></p>
+<p>To compile the module code, we will need some files included in the Redis Module SDK (Software Development Kit) available in the following repo: <a href="https://github.com/RedisLabs/RedisModulesSDK">https://github.com/RedisLabs/RedisModulesSDK</a>. To compile the testing program, we also need hiredis, which is available in this repository: <a href="https://github.com/redis/hiredis">https://github.com/redis/hiredis</a>.</p>
 
 <p>We could, of course, just clone those repositories and copy them into our repository. This is usually a bad idea, because it makes it harder to track updates in the original code. For example, if hiredis releases a new version, we would have to manually copy over their updated version into our repository.</p>
 
@@ -396,11 +396,12 @@ $ make -C tests/
 <p>However, you can&rsquo;t run any of this just yet. We need a Redis server for that!</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p>Cloning a repository does not automatically clone the submodules in that repository, instead showing them as empty directories. If you clone your repository somewhere else, you need to clone it like this:</p>
+    <div class="admonition-content">
+<p>Cloning a repository does not automatically clone the submodules in that repository, instead showing them as empty directories. If you clone your repository somewhere else, you need to clone it like this:</p>
 
 <pre><code>git clone --recursive REPO_URL
 </code></pre>
@@ -409,9 +410,10 @@ $ make -C tests/
 
 <pre><code>git submodule update --init --recursive
 </code></pre>
+
+
 </div>
 </aside>
-
 
 <h2 id="task-3-using-docker-in-a-travis-build">Task 3: Using Docker in a Travis build</h2>
 
@@ -422,11 +424,12 @@ $ make -C tests/
 <p>Our container is specified using the <code>Dockerfile</code> file. You do not need to understand everything in that file, except that we use the <code>FROM redis</code> command to tell Docker that our container should simply use the standard Redis container that is available on the Docker Hub. Then, all we need to do is install our module in it, and make sure that we start Redis with the <code>--loadmodule</code> option to load our module.</p>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p>If you&rsquo;ve set up Docker on your VM, you can also test the module on the VM, essentially running the same commands that Travis will be running. Start by cloning your repository inside the VM:</p>
+    <div class="admonition-content">
+<p>If you&rsquo;ve set up Docker on your VM, you can also test the module on the VM, essentially running the same commands that Travis will be running. Start by cloning your repository inside the VM:</p>
 
 <pre><code>$ git clone --recursive https://github.com/[yourusername]/cs220-redis-example
 </code></pre>
@@ -462,15 +465,16 @@ HSET: (null)
 HGETSET: Random J. Redisuser
 HGET: Alan T. Foobar
 </code></pre>
+
+
 </div>
 </aside>
 
-
 <p>Add a <code>.travis.yml</code> file to your repository with the following contents:</p>
 
-<pre><code>language: c
+<pre><code>dist: xenial
 
-sudo: required
+language: c
 
 services:
   - docker
@@ -486,12 +490,11 @@ script:
  - ./tests/test-hgetset
 </code></pre>
 
-<p>Go ahead and commit and push this file. The Travis build may take a few minutes; just read ahead before checking the status of your build.</p>
+<p>Before you push this file, make sure that your <code>cs220-redis-example</code> repository is activated on Travis (you can do this by going to your <a href="https://travis-ci.org/account/">Travis account page</a>) Once you&rsquo;ve done this, go ahead and commit and push this file. The Travis build may take a few minutes; just read ahead before checking the status of your build.</p>
 
 <p>There are a few differences with the Travis files we&rsquo;ve seen previously:</p>
 
 <ul>
-<li>The <code>sudo: required</code> option tells Travis that we need the ability to run <code>sudo</code> (this affects how Travis will launch our build)</li>
 <li>The <code>services</code> option tells Travis that we will need access to Docker&rsquo;s tools, which includes the ability to build and run our own containers.</li>
 <li>The <code>before_install</code> option includes the Docker commands we need to run our container. Notice how they&rsquo;re the same as the ones you can run insider your VM. We&rsquo;ve also included <code>docker container list</code> to double-check that our container is running.</li>
 </ul>
@@ -659,7 +662,6 @@ chisubmit student assignment submit lab8
 
     </main>
     
-
 
 
     
