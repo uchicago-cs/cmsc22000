@@ -70,8 +70,9 @@ Grading is based on the following:
 * 30% Labs (each lab weighed equally)
 * 70% Project, divided into:
   * 5% Team Design Exercise
-  * 40% Individual Evaluation
+  * 35% Individual Evaluation
   * 15% Team Evaluation
+  * 5% Peer Feedback
   * 10% Final Presentation
 
 See the the [Project]({{< relref "project.md" >}}) page for more details on how the project scores are determined.

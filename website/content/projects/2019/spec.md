@@ -181,8 +181,9 @@ Furthermore, any time you spend researching libraries for building text user int
 The project is worth 70% of your final grade, and these 70 points are divided as follows:
 
 *   5: Team Design Exercise
-*   40: Your individual score on the project
+*   35: Your individual score on the project
 *   15: Your team score (the average of all the individual scores on a team)
+*   5: Peer feedback
 *   10: Final presentation during Finals Week.
 
 Unlike a traditional programming assignment or project, the exact final outcome of the project is not known in advance. Of course, we do have high-level goals and requirements (which have been described above) and, while those requirements will help us measure whether the project is “done”, they are not a strict rubric. As we saw in class, this is one of the strengths (and challenges) of agile software development: you can re-evaluate requirements and make design changes quickly, but there is no detailed requirements document that you can use to check whether you’ve contractually fulfilled your obligations to a customer.
@@ -192,7 +193,6 @@ As such, your individual score on the project will be based on how well you perf
 *   How well you document tasks/issues (and whether you complete the tasks you commit to doing in a given sprint).
 *   Whether you get pull requests to master approved
 *   How well you do code reviews (on pull requests where you are a reviewer) 
-*   How well you do provide feedback to your peers
 
 Note: no part of your score will be determined by your teammates. So, when you receive a code review or peer feedback, we will be evaluating the quality of the code review / peer feedback itself; we will not be using that review/feedback to determine your score. Please note that, in peer feedback, we will specifically be evaluating the person giving the feedback (by looking at the quality of the feedback they provide).
 
@@ -201,11 +201,10 @@ Each of the above has a point value:
 *   Tasks/issues: 10 points
 *   Getting a pull request to master approved: 20 points
 *   Code reviews: 15 points
-*   Peer feedback: 15 points
 
 Every time you do one of the above, you will be graded on a simple “check minus”, “check”, or “check plus” scale, and you will accrue 70%, 85%, or 100%, respectively, of the point value of the work you completed.
 
-For example, suppose you have completed 3 tasks (graded “check”, “check”, and “check plus”) gotten a pull request to master approved (graded “check”) and done one peer feedback (graded “check plus”). You will have accrued the following number of points:
+For example, suppose you have completed 3 tasks (graded “check”, “check”, and “check plus”) gotten a pull request to master approved (graded “check”) and done one code review (graded “check plus”). You will have accrued the following number of points:
 
 $$ (0.8\cdot 10) + (0.8\cdot 10) + (1.0\cdot 10) + (0.8\cdot 20) + (1.0\cdot 15) = 8+8+10+16+15 =57 $$
 
@@ -225,7 +224,7 @@ The number of points you accrue can be affected in two ways:
 * **Not completing a task you committed to doing.** At the start of each sprint, you will take ownership of certain tasks, and will be committing to doing them by the end of the sprint. If you do not complete a task by the end of the sprint, we will deduct 2 points from your score for that task. So, if your task receives a “check”, but it was late, you will accrue 6.5 points instead of 8.5. Please note that there is some flexibility regarding late tasks (see below). Also, take into account that this penalty does not apply to tasks beyond the ones you committed to doing (e.g., if you commit to doing two tasks, finish them earlier than expected, and there are other tasks you could claim, you could do them to potentially increase your score)
 * **Too many cooks in the kitchen.** In some occasions, two or more people may agree to share responsibility for completing a task or for shepherding a pull request to master. This is normal and, when a task or pull request is shared by two or more students, then all of those students will accrue the points for that task (e.g., if two students collaborate on a task that receives a “check minus”, each student accrues 7 points out of a possible 10 points).
 
-    However, when a task is shared by four or more students, the task will be worth 7 points (instead of 10) and pull requests to master that are shared by four or more students will be worth 15 points (instead of 20). For example, if four students collaborate on a task, and the task receives a “check”, then all the students will accrue 5.95 points out of a possible 7 points (7·0.85 = 5.95).
+    However, when a task is shared by four or more students, the task will be worth 7 points (instead of 10). For example, if four students collaborate on a task, and the task receives a “check”, then all the students will accrue 5.95 points out of a possible 7 points (7·0.85 = 5.95).
 
 As you will find out throughout the project, estimating the time a task will require can be challenging. You could commit to doing a task thinking it will only take 2-3 hours, and then find that it is actually a 10-15 hour task. So, you are allowed to do the following:
 
