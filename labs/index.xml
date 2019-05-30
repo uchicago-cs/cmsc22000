@@ -115,5 +115,16 @@ In this lab, we will continue to explore concepts related to Continuous Integrat
 Part I: Using Containers in CI It is often necessary for a CI build to use a specific software environment to build code and to run tests.</description>
     </item>
     
+    <item>
+      <title>Lab 9: Documentation and Logging</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab9/</link>
+      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab9/</guid>
+      <description>Due: Thursday, June 4th, 2:30pm
+This lab will be divided into two distinct parts: one focused on documentation, and another focused on logging. In the first one, you will automatically generate documentation for libgeometry and, in the second one, we will provide you with a program that simulates playing Tic-Tac-Toe under several different strategies, and you will add logging code to better track the progress of the simulation.
+Part I: Documentation As we saw in class, there are many different ways of producing documentation, from adding a simple README file to your project, to writing more comprehensive documentation.</description>
+    </item>
+    
   </channel>
 </rss>

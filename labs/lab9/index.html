@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-26",
     "description": "",
-    "wordCount": 2771
+    "wordCount":  2935 
   }
 </script>
 
@@ -62,20 +62,21 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.55.6" />
 
-  
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/style.css">
+<link rel="stylesheet" href="/cmsc22000/css/font-awesome.min.css">
+<link rel="stylesheet" href="/cmsc22000/css/style.css">
 
 
   <link rel="stylesheet" href="https://uchicago-cs.github.io/cmsc22000/css/custom.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 
   
 	<script>
@@ -122,7 +123,7 @@
 
 <a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
 
-<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
+<a href="https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/">Project</a>
 
 <a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
 
@@ -140,7 +141,7 @@
 
 
 
-
+ 
 
 
 
@@ -177,7 +178,7 @@
   <div class="container content">
   
 
-<p><strong>Due:</strong> Thursday, May 31st, 4pm</p>
+<p><strong>Due:</strong> Thursday, June 4th, 2:30pm</p>
 
 <p>This lab will be divided into two distinct parts: one focused on documentation, and another focused on logging. In the first one, you will automatically generate documentation for libgeometry and, in the second one, we will provide you with a program that simulates playing Tic-Tac-Toe under several different strategies, and you will add logging code to better track the progress of the simulation.</p>
 
@@ -191,7 +192,7 @@
 <li>The CS 220 website (where you are reading this lab) is written in a markup language called <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>, which is also used in many other platforms, including GitHub. You can see the source code for the CS 220 website here: <a href="https://github.com/uchicago-cs/cmsc22000/tree/master/website/content">https://github.com/uchicago-cs/cmsc22000/tree/master/website/content</a>. You can see the source code for this lab here: <a href="https://raw.githubusercontent.com/uchicago-cs/cmsc22000/master/website/content/labs/lab9.md">https://raw.githubusercontent.com/uchicago-cs/cmsc22000/master/website/content/labs/lab9.md</a> The CS 220 website itself is produced using a tool called <a href="https://gohugo.io/">Hugo</a> which is not specifically designed for producing documentation (it is a more general-purpose tool for producing websites).</li>
 </ul>
 
-<p>In this lab, we will focus on tools that produce documentation automatically from code. Sphinx can actually be used for this purpose, but only with Python code. We will instead use a tool called <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a>, which generates documentation from source code in a variety of languages.</p>
+<p>In this lab, we will focus on tools that produce documentation automatically from code. Sphinx can actually be used for this purpose, but only with Python code. We will instead use a tool called <a href="http://www.doxygen.nl/">Doxygen</a>, which generates documentation from source code in a variety of languages.</p>
 
 <p>While tools like Doxygen can generate documentation based on any code (as long as they support the language it&rsquo;s written in), they are specially useful when we annotate the code wth comments that Doxygen can parse and then include in the generated documentation. In this lab, we will do this with the libgeometry code.</p>
 
@@ -206,7 +207,12 @@
 
 <p>to get the files for this lab. If you don&rsquo;t have the &ldquo;upstream&rdquo; remote set up, follow task 0 from <a href="/cmsc22000/labs/lab2/">Lab 2</a>.</p>
 
-<p>The <code>lab9</code> directory contains a <code>libgeometry</code> directory with an updated version of <code>libgeometry</code> that has been documented in a way that allows Doxygen to automatically produce documentation based on it.</p>
+<p>The <code>labs/lab9</code> directory contains a <code>libgeometry</code> directory with an updated version of <code>libgeometry</code> that has been documented in a way that allows Doxygen to automatically produce documentation based on it. Please note that this version is distinct from the one in the root of your repository. You should do your work for this week&rsquo;s lab in the <code>labs/lab9/libgeometry/</code> directory, not in the top-level <code>libgeometry</code> directory.</p>
+
+<p>If you are running through the lab on the VM, you will need to install Doxygen. You can do so by running this:</p>
+
+<pre><code>$ sudo apt install doxygen
+</code></pre>
 
 <h2 id="task-1-creating-the-doxygen-configuration-file">Task 1: Creating the Doxygen configuration file</h2>
 
@@ -236,7 +242,7 @@ $ doxygen -g
 <pre><code>$ doxygen
 </code></pre>
 
-<p>This will create an <code>html</code> directory. If you open the index.html file in that directory using a browser, you will see it contains documentation for &ldquo;My Project&rdquo; (or rather, it contains no documentation for that project). We need to edit the <code>Doxyfile</code> to tell Doxygen where to look for our code. We will do this in the next task; before continuing make sure you add the <code>Doxyfile</code> to Git:</p>
+<p>This will create an <code>html</code> directory. If you open the index.html file in that directory using a browser, you will see it contains documentation for &ldquo;My Project&rdquo; (or rather, it contains <em>no</em> documentation for that project). We need to edit the <code>Doxyfile</code> to tell Doxygen where to look for our code. We will do this in the next task; before continuing make sure you add the <code>Doxyfile</code> to Git:</p>
 
 <pre><code>$ git add Doxyfile
 $ git commit -m&quot;Added basic Doxyfile&quot;
@@ -263,8 +269,7 @@ RECURSIVE              = YES
 <li><code>RECURSIVE</code> specifies that we want Doxygen to go into subdirectories when searching for files to generate documentation from.</li>
 </ul>
 
-<p>This is only the tip of the iceberg, and there are a ton of other ways you can specify how the file is generated. A list of all the tags can be found here.
-<a href="https://www.stack.nl/~dimitri/doxygen/manual/config.html">https://www.stack.nl/~dimitri/doxygen/manual/config.html</a></p>
+<p>This is only the tip of the iceberg, and there are a ton of other ways you can specify how the file is generated. A list of all the tags can be found in the <a href="http://www.doxygen.nl/manual/config.html">Doxygen documentation</a></p>
 
 <p>Go ahead and re-run doxygen:</p>
 
@@ -307,7 +312,7 @@ $ git commit -m&quot;Updated Doxyfile&quot;
  */
 </code></pre>
 
-<p>It looks just like a regular C comment, but that second <code>*</code> at the start of the comment is deliberate: that is how Doxygen knows that it needs to parse the comment in search of commands. Note that there are other ways to format comments (take a look at <a href="https://www.stack.nl/~dimitri/doxygen/manual/docblocks.html#cppblock">https://www.stack.nl/~dimitri/doxygen/manual/docblocks.html#cppblock</a> if you&rsquo;re curious).</p>
+<p>It looks just like a regular C comment, but that second <code>*</code> at the start of the comment is deliberate: that is how Doxygen knows that it needs to parse the comment in search of commands. Note that there are other ways to format comments (take a look at <a href="http://www.doxygen.nl/manual/docblocks.html#cppblock">http://www.doxygen.nl/manual/docblocks.html#cppblock</a> if you&rsquo;re curious).</p>
 
 <p>If we are documenting a function, we would place the comment block immediately above the function, with commands that provide information about that function. For example:</p>
 
@@ -327,7 +332,7 @@ $ git commit -m&quot;Updated Doxyfile&quot;
 <li><code>\typedef</code>, for typedefs</li>
 </ul>
 
-<p>You can find examples of most of the above throughout the provided libgeometry code. A full list of special commands can be found at <a href="https://www.stack.nl/~dimitri/doxygen/manual/commands.html">https://www.stack.nl/~dimitri/doxygen/manual/commands.html</a>. Doxygen supports multiple languages, so not all of these will necessarily apply to C.</p>
+<p>You can find examples of most of the above throughout the provided libgeometry code. A full list of special commands can be found at <a href="http://www.doxygen.nl/manual/commands.html">http://www.doxygen.nl/manual/commands.html</a>. Doxygen supports multiple languages, so not all of these will necessarily apply to C.</p>
 
 <p>Another style of comment is the inline comment, which is commonly used when documenting the variables in a struct. For example:</p>
 
@@ -339,7 +344,7 @@ $ git commit -m&quot;Updated Doxyfile&quot;
 
 <p>In this comment we don&rsquo;t use a command, and simply provide a description of the variable that is being documented.</p>
 
-<p>In this task, you will document your <code>segment_t</code> and <code>circle_t</code> types from previous labs. Your <code>lab5</code> directory should contain your most recent work on libgeometry. Simply copy any code related to <code>segment_t</code> and <code>circle_t</code> into your <code>lab9/libgeometry</code> directory. Please note that the version provided in <code>lab9</code> does not include any of the intersection-related code in <code>point.c</code> or <code>point.h</code>. Depending on how you refactored your code earlier in the quarter, you may need to also copy some of your code into <code>point.c</code> or <code>point.h</code>. Please note that it is ok if you do not copy over any of the tests you wrote.</p>
+<p>In this task, you will document your <code>segment_t</code> and <code>circle_t</code> types from previous labs. Simply copy any code related to <code>segment_t</code> and <code>circle_t</code> from the top-level <code>libgeometry/</code> directory into your <code>labs/lab9/libgeometry</code> directory. Please note that the version provided in <code>labs/lab9/</code> does not include any of the intersection-related code in <code>point.c</code> or <code>point.h</code>. Depending on how you refactored your code earlier in the quarter, you may need to also copy some of your code into <code>point.c</code> or <code>point.h</code>. Please note that it is ok if you do not copy over any of the tests you wrote.</p>
 
 <p>Next, you should add Doxygen-style comment blocks in your <code>segment.h</code> and <code>circle.h</code> files. Each struct comment should include a brief description of the struct, and each function comment should include the following:</p>
 
@@ -358,15 +363,17 @@ $ git commit -m&quot;Updated Doxyfile&quot;
 
 <p>And it will generate the documentation in html! To see it, go to the html directory it generated and click on index.html. The Classes tab should now include your segment and circle types. Make sure that all your functions appear there!</p>
 
-<p>Before continuing, make sure to add and commit the additional segment/circle files you added.</p>
+<p>Before continuing, make sure to add and commit the additional segment/circle files you added. Do not add or commit the automatically-generated <code>docs/html/</code> and <code>docs/latex/</code> directories! In fact, we have already included a <code>.gitignore</code> file
+that will prevent you from doing this but, in general, it&rsquo;s useful to remember that automatically-generated files should
+not be committed to a source code repository.</p>
 
 <h1 id="part-ii-logging">Part II: Logging</h1>
 
-<p>Over the course of the projects, many of you have come across the desire to pepper your code with <code>printf</code> statements to see a &ldquo;trace&rdquo; of your program running. This is a great instinct; in this part of the lab, we&rsquo;re going to refine that notion with more powerful tooling to create a more elegant solution.</p>
+<p>Over the course of the project, many of you have come across the desire to pepper your code with <code>printf</code> statements to see a &ldquo;trace&rdquo; of your program running. This is a <a href="https://uchicago-cs.github.io/debugging-guide/#printf-debugging">valuable debugging technique</a>, but it can also result in your program&rsquo;s output getting bogged down in debugging statements (which you then need to manually comment out before releasing your software). In this part of the lab, we&rsquo;re going to explore a more methodical way of printing messages that inform you of the state of your program.</p>
 
 <h2 id="what-is-logging">What is logging?</h2>
 
-<p>Logging is, in essence, nothing more than controlled <code>printf</code>s, separated into <em>log levels</em>. Many of you have independently discovered this concept in the form of normal/quiet/verbose modes for your programs. A typical logging library will provide several standard log levels:</p>
+<p>Logging is, in essence, nothing more than controlled <code>printf</code>s, separated into <em>log levels</em>. A typical logging library will provide several standard log levels:</p>
 
 <ul>
 <li><code>FATAL</code>: reserved for errors that crash the program or otherwise signify completely incorrect behavior;</li>
@@ -379,7 +386,7 @@ $ git commit -m&quot;Updated Doxyfile&quot;
 
 <p>The order of these log levels is relevant: in the above list, each log level provides more detailed information than the log level before it. A typical logging library will allow you to <em>set</em> the log level, which means it will only print all the log messages at <em>or above</em> the specified log level. So, setting the log level to <code>INFO</code> will print out all the log messages at the <code>FATAL</code>, <code>ERROR</code>, <code>WARN</code>, and <code>INFO</code> levels. When debugging the program, you would set the log level to a deeper level, like <code>DEBUG</code> or <code>TRACE</code> to print more information during the execution of your program.</p>
 
-<p>In this lab, we will use <a href="https://github.com/rxi/log.c">this</a> log library which provides all of the above functionality (and a little more). In particular, we will take a program to simulate Tic-Tac-Toe games and add logging so we can see the progress of the simulation. The program is in the <code>lab9/tictactoe</code> directory. Before continuing, take a moment to read the README file in that directory. Make sure you can build the program, and run it as described in the README file.</p>
+<p>In this lab, we will use <a href="https://github.com/rxi/log.c">this</a> log library which provides all of the above functionality (and a little more). In particular, we will take a program to simulate Tic-Tac-Toe games and add logging so we can see the progress of the simulation. The program is in the <code>labs/lab9/tictactoe</code> directory. Before continuing, take a moment to read the README file in that directory. Make sure you can build the program, and run it as described in the README file.</p>
 
 <h1 id="task-4-setup">Task 4: Setup</h1>
 
@@ -391,14 +398,16 @@ $ git commit -m&quot;Updated Doxyfile&quot;
 </code></pre>
 
 <aside class="admonition warning">
-	<div class="admonition-icon">
+    <div class="admonition-icon">
 
-	</div>
+    </div>
 
-	<div class="admonition-content"><p><strong>Caution</strong>: the above command creates a <em>folder</em> called <code>log.c</code>, <em>not</em> a file. The name of the whole library is <code>log.c</code>, which is really confusing because it sounds like a filename.</p>
+    <div class="admonition-content">
+<p><strong>Caution</strong>: the above command creates a <em>folder</em> called <code>log.c</code>, <em>not</em> a file. The name of the whole library is <code>log.c</code>, which is really confusing because it sounds like a filename.</p>
+
+
 </div>
 </aside>
-
 
 <h1 id="task-5-up-and-running-with-log-c">Task 5: Up and running with <code>log.c</code></h1>
 
@@ -413,7 +422,7 @@ $ git commit -m&quot;Updated Doxyfile&quot;
 <p>As you write log statements, you should have in mind three use cases:</p>
 
 <ol>
-<li>A user running your program: if no <code>-v</code> option is specified, the user shouldn&rsquo;t see anything except fatal errors. Ensure that running your program this way does not print anything except the result summary, or any fatal errors that occur. Note: you do not need to alter the <code>printf</code> statements that print the summary. Those are part of the normal output of the program, and not something we would print using a logging library.</li>
+<li>A user running your program: if no <code>-v</code> option is specified, the user shouldn&rsquo;t see anything except fatal errors. Ensure that running your program this way does not print anything except the result summary, or any fatal errors that occur. Note: you do not need to alter the <code>printf</code> statements that print the summary. Those are part of the normal output of the program, and not something we would print using a logging library. You also do not need to remove or modify the calls to <code>assert</code> throughout the program (while these will produce a fatal error, we don&rsquo;t need to add an additional logging statement because <code>assert</code> will already print a helpful message if the assertion fails)</li>
 <li>A developer working on your program (yourself): while developing new features, you likely want to see a rough trace of the structure of your program, without overwhelming yourself with output. There isn&rsquo;t really a clear brightline here on what belongs at the <code>WARN</code> through <code>DEBUG</code> log levels - use your best judgement.</li>
 <li>A developer debugging your program (yourself): note that debugging is a distinct case from normal development. When debugging, it&rsquo;s helpful to get as much output as possible, to be able to inspect the output more clearly. The <code>TRACE</code> log level should thus contain the pretty-printed contents of all important data structures and variables whenever they are modified. Take into account that we already provide a function that pretty-prints a tic-tac-toe board, but which does not use a logging library to do so. You are welcome to modify this function so that it uses log functions.</li>
 </ol>
@@ -463,7 +472,6 @@ chisubmit student assignment submit lab9
 
     </main>
     
-
 
 
     
