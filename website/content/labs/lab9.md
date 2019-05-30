@@ -2,10 +2,10 @@
 title: "Lab 9: Documentation and Logging"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, May 31st, 4pm
+**Due:** Thursday, June 4th, 2:30pm
 
 This lab will be divided into two distinct parts: one focused on documentation, and another focused on logging. In the first one, you will automatically generate documentation for libgeometry and, in the second one, we will provide you with a program that simulates playing Tic-Tac-Toe under several different strategies, and you will add logging code to better track the progress of the simulation.
 
@@ -17,7 +17,7 @@ As we saw in class, there are many different ways of producing documentation, fr
 https://github.com/uchicago-cs/chiwebsite/tree/master/chisubmit (note: when looking at individual files, you will need to click "Raw" to see the original reStructuredText source)
 * The CS 220 website (where you are reading this lab) is written in a markup language called [Markdown](https://en.wikipedia.org/wiki/Markdown), which is also used in many other platforms, including GitHub. You can see the source code for the CS 220 website here: https://github.com/uchicago-cs/cmsc22000/tree/master/website/content. You can see the source code for this lab here: https://raw.githubusercontent.com/uchicago-cs/cmsc22000/master/website/content/labs/lab9.md The CS 220 website itself is produced using a tool called [Hugo](https://gohugo.io/) which is not specifically designed for producing documentation (it is a more general-purpose tool for producing websites).
 
-In this lab, we will focus on tools that produce documentation automatically from code. Sphinx can actually be used for this purpose, but only with Python code. We will instead use a tool called [Doxygen](http://www.stack.nl/~dimitri/doxygen/), which generates documentation from source code in a variety of languages. 
+In this lab, we will focus on tools that produce documentation automatically from code. Sphinx can actually be used for this purpose, but only with Python code. We will instead use a tool called [Doxygen](http://www.doxygen.nl/), which generates documentation from source code in a variety of languages. 
 
 While tools like Doxygen can generate documentation based on any code (as long as they support the language it's written in), they are specially useful when we annotate the code wth comments that Doxygen can parse and then include in the generated documentation. In this lab, we will do this with the libgeometry code.
 
@@ -30,7 +30,11 @@ You should already have the "upstream" remote set up in your repository. If you 
 
 to get the files for this lab. If you don't have the "upstream" remote set up, follow task 0 from [Lab 2]({{< relref "lab2.md" >}}).
 
-The `lab9` directory contains a `libgeometry` directory with an updated version of `libgeometry` that has been documented in a way that allows Doxygen to automatically produce documentation based on it.
+The `labs/lab9` directory contains a `libgeometry` directory with an updated version of `libgeometry` that has been documented in a way that allows Doxygen to automatically produce documentation based on it. Please note that this version is distinct from the one in the root of your repository. You should do your work for this week's lab in the `labs/lab9/libgeometry/` directory, not in the top-level `libgeometry` directory.
+
+If you are running through the lab on the VM, you will need to install Doxygen. You can do so by running this:
+
+    $ sudo apt install doxygen
 
 ## Task 1: Creating the Doxygen configuration file
 
@@ -56,7 +60,7 @@ Try running Doxygen inside the `docs` directory (by default, it will read its co
 
 	$ doxygen
 
-This will create an `html` directory. If you open the index.html file in that directory using a browser, you will see it contains documentation for "My Project" (or rather, it contains no documentation for that project). We need to edit the `Doxyfile` to tell Doxygen where to look for our code. We will do this in the next task; before continuing make sure you add the `Doxyfile` to Git:
+This will create an `html` directory. If you open the index.html file in that directory using a browser, you will see it contains documentation for "My Project" (or rather, it contains *no* documentation for that project). We need to edit the `Doxyfile` to tell Doxygen where to look for our code. We will do this in the next task; before continuing make sure you add the `Doxyfile` to Git:
 
 	$ git add Doxyfile
 	$ git commit -m"Added basic Doxyfile"
@@ -78,12 +82,12 @@ These tags do the following:
 * `FILE_PATTERNS` specifies the files that Doxygen should try to document automatically. Since libgeometry is a C project, we only want to look at files with a `.c` or a `.h` extension.
 * `RECURSIVE` specifies that we want Doxygen to go into subdirectories when searching for files to generate documentation from.
 
-This is only the tip of the iceberg, and there are a ton of other ways you can specify how the file is generated. A list of all the tags can be found here.
-https://www.stack.nl/~dimitri/doxygen/manual/config.html 
+This is only the tip of the iceberg, and there are a ton of other ways you can specify how the file is generated. A list of all the tags can be found in the [Doxygen documentation](http://www.doxygen.nl/manual/config.html)
 
 Go ahead and re-run doxygen:
 
 	$ doxygen
+
 And re-load the `index.html` file inside the `html` directory. You will now see a "Classes" tab you can click on. This will show you the structs (or classes, in object oriented parlance) in your code. You should see two types: `point_t` and `polygon_t`. If you click on polygon_t you'll see that page contains abundant documentation about the `polygon_t` struct, its fields, and the functions associated with it. It even shows a helpful diagram showing how `polygon_t` relates to our other types; in particular, it shows that `polygon_t` has a field called `points` that relies on the `point_t` type. We can even click on `point_t` type to see the documentation for that type.
 
 If you take a look at `point.h` and `polygon.h`, you'll see that the code comments in the structs and functions seem to follow a very specific format. For example:
@@ -116,7 +120,7 @@ To document a piece of code in a way that Doxygen can parse it, we need to add a
      * \command3 ...
      */
 
-It looks just like a regular C comment, but that second `*` at the start of the comment is deliberate: that is how Doxygen knows that it needs to parse the comment in search of commands. Note that there are other ways to format comments (take a look at https://www.stack.nl/~dimitri/doxygen/manual/docblocks.html#cppblock if you're curious).
+It looks just like a regular C comment, but that second `*` at the start of the comment is deliberate: that is how Doxygen knows that it needs to parse the comment in search of commands. Note that there are other ways to format comments (take a look at http://www.doxygen.nl/manual/docblocks.html#cppblock if you're curious).
 
 If we are documenting a function, we would place the comment block immediately above the function, with commands that provide information about that function. For example:
 
@@ -133,7 +137,7 @@ Some other useful commands include the following:
 * `\enum`, used for enums
 * `\typedef`, for typedefs
 
-You can find examples of most of the above throughout the provided libgeometry code. A full list of special commands can be found at https://www.stack.nl/~dimitri/doxygen/manual/commands.html. Doxygen supports multiple languages, so not all of these will necessarily apply to C.
+You can find examples of most of the above throughout the provided libgeometry code. A full list of special commands can be found at http://www.doxygen.nl/manual/commands.html. Doxygen supports multiple languages, so not all of these will necessarily apply to C.
 
 Another style of comment is the inline comment, which is commonly used when documenting the variables in a struct. For example:
 
@@ -144,7 +148,7 @@ Another style of comment is the inline comment, which is commonly used when docu
 
 In this comment we don't use a command, and simply provide a description of the variable that is being documented.
 
-In this task, you will document your `segment_t` and `circle_t` types from previous labs. Your `lab5` directory should contain your most recent work on libgeometry. Simply copy any code related to `segment_t` and `circle_t` into your `lab9/libgeometry` directory. Please note that the version provided in `lab9` does not include any of the intersection-related code in `point.c` or `point.h`. Depending on how you refactored your code earlier in the quarter, you may need to also copy some of your code into `point.c` or `point.h`. Please note that it is ok if you do not copy over any of the tests you wrote.
+In this task, you will document your `segment_t` and `circle_t` types from previous labs. Simply copy any code related to `segment_t` and `circle_t` from the top-level `libgeometry/` directory into your `labs/lab9/libgeometry` directory. Please note that the version provided in `labs/lab9/` does not include any of the intersection-related code in `point.c` or `point.h`. Depending on how you refactored your code earlier in the quarter, you may need to also copy some of your code into `point.c` or `point.h`. Please note that it is ok if you do not copy over any of the tests you wrote.
 
 Next, you should add Doxygen-style comment blocks in your `segment.h` and `circle.h` files. Each struct comment should include a brief description of the struct, and each function comment should include the following:
 
@@ -160,15 +164,17 @@ Now to generate the documentation, run:
 
 And it will generate the documentation in html! To see it, go to the html directory it generated and click on index.html. The Classes tab should now include your segment and circle types. Make sure that all your functions appear there!
 
-Before continuing, make sure to add and commit the additional segment/circle files you added.
+Before continuing, make sure to add and commit the additional segment/circle files you added. Do not add or commit the automatically-generated `docs/html/` and `docs/latex/` directories! In fact, we have already included a `.gitignore` file
+that will prevent you from doing this but, in general, it's useful to remember that automatically-generated files should
+not be committed to a source code repository.
 
 # Part II: Logging
 
-Over the course of the projects, many of you have come across the desire to pepper your code with `printf` statements to see a "trace" of your program running. This is a great instinct; in this part of the lab, we're going to refine that notion with more powerful tooling to create a more elegant solution.
+Over the course of the project, many of you have come across the desire to pepper your code with `printf` statements to see a "trace" of your program running. This is a [valuable debugging technique](https://uchicago-cs.github.io/debugging-guide/#printf-debugging), but it can also result in your program's output getting bogged down in debugging statements (which you then need to manually comment out before releasing your software). In this part of the lab, we're going to explore a more methodical way of printing messages that inform you of the state of your program.
 
 ## What is logging?
 
-Logging is, in essence, nothing more than controlled `printf`s, separated into *log levels*. Many of you have independently discovered this concept in the form of normal/quiet/verbose modes for your programs. A typical logging library will provide several standard log levels:
+Logging is, in essence, nothing more than controlled `printf`s, separated into *log levels*. A typical logging library will provide several standard log levels:
 
 - `FATAL`: reserved for errors that crash the program or otherwise signify completely incorrect behavior;
 - `ERROR`: for other non-fatal errors;
@@ -179,7 +185,7 @@ Logging is, in essence, nothing more than controlled `printf`s, separated into *
 
 The order of these log levels is relevant: in the above list, each log level provides more detailed information than the log level before it. A typical logging library will allow you to *set* the log level, which means it will only print all the log messages at *or above* the specified log level. So, setting the log level to `INFO` will print out all the log messages at the `FATAL`, `ERROR`, `WARN`, and `INFO` levels. When debugging the program, you would set the log level to a deeper level, like `DEBUG` or `TRACE` to print more information during the execution of your program.
 
-In this lab, we will use [this](https://github.com/rxi/log.c) log library which provides all of the above functionality (and a little more). In particular, we will take a program to simulate Tic-Tac-Toe games and add logging so we can see the progress of the simulation. The program is in the `lab9/tictactoe` directory. Before continuing, take a moment to read the README file in that directory. Make sure you can build the program, and run it as described in the README file.
+In this lab, we will use [this](https://github.com/rxi/log.c) log library which provides all of the above functionality (and a little more). In particular, we will take a program to simulate Tic-Tac-Toe games and add logging so we can see the progress of the simulation. The program is in the `labs/lab9/tictactoe` directory. Before continuing, take a moment to read the README file in that directory. Make sure you can build the program, and run it as described in the README file.
 
 # Task 4: Setup
 [10 points]
@@ -191,7 +197,9 @@ $ git submodule add https://github.com/rxi/log.c lab9/tictactoe/lib/log.c
 ```
 
 {{% warning %}}
+{{% md %}}
 **Caution**: the above command creates a *folder* called `log.c`, *not* a file. The name of the whole library is `log.c`, which is really confusing because it sounds like a filename.
+{{% /md %}}
 {{% /warning %}}
 
 # Task 5: Up and running with `log.c`
@@ -205,7 +213,7 @@ To select the log level, we have already added a `-v` parameter to the program t
 
 As you write log statements, you should have in mind three use cases:
 
-1. A user running your program: if no `-v` option is specified, the user shouldn't see anything except fatal errors. Ensure that running your program this way does not print anything except the result summary, or any fatal errors that occur. Note: you do not need to alter the `printf` statements that print the summary. Those are part of the normal output of the program, and not something we would print using a logging library.
+1. A user running your program: if no `-v` option is specified, the user shouldn't see anything except fatal errors. Ensure that running your program this way does not print anything except the result summary, or any fatal errors that occur. Note: you do not need to alter the `printf` statements that print the summary. Those are part of the normal output of the program, and not something we would print using a logging library. You also do not need to remove or modify the calls to `assert` throughout the program (while these will produce a fatal error, we don't need to add an additional logging statement because `assert` will already print a helpful message if the assertion fails)
 2. A developer working on your program (yourself): while developing new features, you likely want to see a rough trace of the structure of your program, without overwhelming yourself with output. There isn't really a clear brightline here on what belongs at the `WARN` through `DEBUG` log levels - use your best judgement.
 3. A developer debugging your program (yourself): note that debugging is a distinct case from normal development. When debugging, it's helpful to get as much output as possible, to be able to inspect the output more clearly. The `TRACE` log level should thus contain the pretty-printed contents of all important data structures and variables whenever they are modified. Take into account that we already provide a function that pretty-prints a tic-tac-toe board, but which does not use a logging library to do so. You are welcome to modify this function so that it uses log functions.
 
