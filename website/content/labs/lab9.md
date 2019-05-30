@@ -32,6 +32,10 @@ to get the files for this lab. If you don't have the "upstream" remote set up, f
 
 The `labs/lab9` directory contains a `libgeometry` directory with an updated version of `libgeometry` that has been documented in a way that allows Doxygen to automatically produce documentation based on it. Please note that this version is distinct from the one in the root of your repository. You should do your work for this week's lab in the `labs/lab9/libgeometry/` directory, not in the top-level `libgeometry` directory.
 
+If you are running through the lab on the VM, you will need to install Doxygen. You can do so by running this:
+
+    $ sudo apt install doxygen
+
 ## Task 1: Creating the Doxygen configuration file
 
 [10 points]
@@ -160,7 +164,9 @@ Now to generate the documentation, run:
 
 And it will generate the documentation in html! To see it, go to the html directory it generated and click on index.html. The Classes tab should now include your segment and circle types. Make sure that all your functions appear there!
 
-Before continuing, make sure to add and commit the additional segment/circle files you added. Do not add or commit the automatically-generated `docs/html/` and `docs/latex/` directories!
+Before continuing, make sure to add and commit the additional segment/circle files you added. Do not add or commit the automatically-generated `docs/html/` and `docs/latex/` directories! In fact, we have already included a `.gitignore` file
+that will prevent you from doing this but, in general, it's useful to remember that automatically-generated files should
+not be committed to a source code repository.
 
 # Part II: Logging
 
