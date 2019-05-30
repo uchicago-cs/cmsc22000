@@ -405,13 +405,13 @@ These non-master pull requests must meet the same requirements as a pull request
 
 ### Peer feedback
 
-At several points throughout the project, each student will provide feedback to two other students in their same team. This is similar to a peer evaluation/review (which are fairly common in large software projects), except the feedback you provide will have no effect on the recipient's grade (whereas in a real project, these evaluations/reviews could affect whether you get a raise, a promotion, etc.). Instead, we will be assessing the feedback you provide to others.
+Twice throughout the project, each student will provide feedback to two other students in their same team. This is similar to a peer evaluation/review (which are fairly common in large software projects), except the feedback you provide will have no effect on the recipient's grade (whereas in a real project, these evaluations/reviews could affect whether you get a raise, a promotion, etc.). Instead, we will be assessing the feedback you provide to others.
 
-At the end of Sprints 2, 3, and 4, you will be assigned two peers who will be providing you with feedback (you will know each other's identities). Before they provide you with feedback, you must think about what you would like to receive feedback on. At the end of Sprints 2 and 3, you should think about the following: 
+At the end of Sprints 2 and 3, you will be assigned two peers who will be providing you with feedback (you will know each other's identities). Before they provide you with feedback, you must think about what you would like to receive feedback on. At the end of Sprint 2, you should think about the following: 
 
-> *What is something I'd like to improve or do better in the next sprint?*
+> *What is something I'd like to improve or do better in the next sprints?*
 
-At the end of Sprint 4, you should think about the following:
+After Sprint 3 (i.e., during the final Sprint 4), you should think about the following:
 
 > *What is something I'd like to improve or do better the next time I work in a complex software project and/or the next time I work in a team?*
 
@@ -432,7 +432,7 @@ In the end, you must write a brief report (at least 3-4 paragraphs, and ideally 
 - The prompts you were given
 - How the feedback was conveyed. If you met in person, please specify when, for how long, and whether it was a one-on-one meeting, or whether the other feedback giver was there.
 - A summary of the feedback you conveyed.
-- If there was any follow-up (e.g., if the feedback recipient acted on some of your feedback, and told you the outcome), make sure to mention it in your report.
+- For the second round of peer feedbacks, mention whether there was any follow-up on the feedback you provided in the first round of feedback (e.g., if the feedback recipient acted on some of your feedback, and told you the outcome).
 
 You must write up each report in a text or Markdown file in your individual repository. The name of the file must be the following:
 
@@ -443,7 +443,7 @@ or
     feedback/sprintN/CNETID.md
 
 
-Where `N` should be replaced by the sprint that preceded the feedback (2, 3, or 4), and `CNETID` should be replaced by the CNetID of the feedback recipient.
+Where `N` should be replaced by the sprint that preceded the feedback (2 or 3), and `CNETID` should be replaced by the CNetID of the feedback recipient.
 
 To submit your feedback, run the following:
 
@@ -473,6 +473,4 @@ The user must be able to do this without chiventure crashing or producing any ru
 
 You will have three tries to unlock these bonus points, and you must notify us when you want us to arrange for a user to test chiventure. If the test succeeds on the first try, the entire class will receive two bonus points. On the second try, you will receive 1.5 bonus points. On the third try, you will receive one point.
 
-
-<!-- Docs to Markdown version 1.0β17 -->
 
