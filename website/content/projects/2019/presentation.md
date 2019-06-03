@@ -32,6 +32,8 @@ You do not need to dress formally for the presentations. Casual clothing is more
 
 The presentation will be worth 10 points of your final grade. 6 of these points will be determined by the instructor and TAs, and the remaining 4 points will be determined by a panel of guest judges. Both the instructor/TAs and the guest judges will score your presentation (on a scale of 0 to 5) on two aspects: Clarity/structure (weighed 75%) and Q&A (weighed 25%).
 
+Both the instructor/TAs and guest judges will use the following rubric, with discretion to add/subtract half a point.
+
 ### Clarity and structure
 
 - 5 points: Flawless demo and presentation. No issues during the demo, and presentation was clear throughout.
