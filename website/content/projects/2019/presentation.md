@@ -12,7 +12,7 @@ You must explain, at a high-level, the design of your component, and any non-tri
 
 ### Demo
 
-You must do a live demo of chiventure that specifically highlights the work your team was responsible for.
+You must do a live demo of chiventure that specifically highlights the work your team was responsible for. You must do this demo from the version of the code that is in `master`.
 
 ### Reflections
 
@@ -50,13 +50,12 @@ Both the instructor/TAs and guest judges will use the following rubric, with dis
 - 1 point: The team was stumped on all questions.
 - 0 points: The team did not answer any of the questions they were asked.
 
- 
 
 ## Presentation and demo tips
 
 - If you're unsure whether your laptop will work with the projector, get to the room before 1:30pm and do a quick test (I have verified that no one is using it before us)
 - You should make sure to present from a single laptop, and you should run through the demo on that laptop a couple times before the actual presentation.
-- You should declare the master branch to be frozen at some point before the presentations (and after you have run through a successful demo with the code in that branch). We suggest aiming to freeze the master branch at least 24 hours before the presentation, and only allowing changes that do not affect your code (e.g., documentation changes, READMEs, etc.) or, at most, very small hotfixes.
+- You should declare the `master` branch to be frozen at some point before the presentations (and after you have run through a successful demo with the code in that branch). We suggest aiming to freeze the `master` branch at least 24 hours before the presentation, and only allowing changes that do not affect your code (e.g., documentation changes, READMEs, etc.) or, at most, very small hotfixes.
 - Always have a contingency plan. Sometimes demos don't work and, while that is not ideal, you will not cause a bad impression if you bow out gracefully. Either give up on the demo immediately or, if the laptop is at least projecting, then have screenshots prepared to share with everyone. 
 - When you have a limited amount of time, don't improvise your demo. Think about what you will show exactly, and stick to your script. If something fails, don't try to fix it on the spot. Move on with the rest of the demo and, if that is not possible, give up on the demo gracefully.
 
