@@ -109,6 +109,11 @@
   </url>
   
   <url>
+    <loc>https://uchicago-cs.github.io/cmsc22000/projects/2019/presentation/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://uchicago-cs.github.io/cmsc22000/summary/</loc>
     <priority>0</priority>
   </url>
