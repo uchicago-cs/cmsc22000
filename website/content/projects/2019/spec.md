@@ -452,6 +452,10 @@ To submit your feedback, run the following:
 
 Where `N` should be replaced as described above.
 
+### Final Presentation
+
+Details on the requirements for the final presentation can be found on [this page]({{< relref "presentation.md" >}}).
+
 
 ## Class-wide bonus points
 
