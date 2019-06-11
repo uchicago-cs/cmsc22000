@@ -30,17 +30,25 @@ You do not need to dress formally for the presentations. Casual clothing is more
 
 ## Scoring
 
-The presentation will be worth 10 points of your final grade. 6 of these points will be determined by the instructor and TAs, and the remaining 4 points will be determined by a panel of guest judges. Both the instructor/TAs and the guest judges will score your presentation (on a scale of 0 to 5) on two aspects: Clarity/structure (weighed 75%) and Q&A (weighed 25%).
+The presentation will be worth 10 points of your final grade. 6 of these points will be determined by the instructor and TAs, and the remaining 4 points will be determined by a panel of guest judges. The  instructor/TAs will score your presentation (on a scale of 0 to 5) on three aspects: Clarity/structure (weighed 40%), demo (weighed 35%) and Q&A (weighed 25%). The guest judges will score your presentation only on clarity/structure (75%) and Q&A (25%).
 
 Both the instructor/TAs and guest judges will use the following rubric, with discretion to add/subtract half a point.
 
 ### Clarity and structure
 
-- 5 points: Flawless demo and presentation. No issues during the demo, and presentation was clear throughout.
+- 5 points: Flawless presentation.
 - 4 points: Overall well structured. Only a few minor hiccups and/or aspects that were not entirely clear.
-- 2.5 points: Needs improvement. Demo worked but with major issues and/or the presentation was poorly structured with multiple aspects that were not clear.
-- 1 point: Poorly structured. Demo effectively doesn't work and/or presentation does not substantially address the contents we requested.
+- 2.5 points: Needs improvement. Presentation was poorly structured with multiple aspects that were not clear.
+- 1 point: Poorly structured. Presentation does not substantially address the content we requested.
 - 0: No presentation was delivered.
+
+### Demo (instructor/TAs only)
+
+- 5 points: Flawless demo that highlights the team's work.
+- 4 points: Smooth demo with only a few small hiccups.
+- 2.5 points: Needs improvement. Demo worked but with major issues.
+- 1 point: Very incomplete demo. Demo hints at the work the team did, but doesn't directly showcase their work.
+- 0: No demo was done.
 
 ### Q&A
 
