@@ -39,7 +39,7 @@ Both the instructor/TAs and guest judges will use the following rubric, with dis
 - 5 points: Flawless presentation.
 - 4 points: Overall well structured. Only a few minor hiccups and/or aspects that were not entirely clear.
 - 2.5 points: Needs improvement. Presentation was poorly structured with multiple aspects that were not clear.
-- 1 point: Poorly structured. Presentation does not substantially address the contents we requested.
+- 1 point: Poorly structured. Presentation does not substantially address the content we requested.
 - 0: No presentation was delivered.
 
 ### Demo (instructor/TAs only)
