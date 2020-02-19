@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CMSC 22000 - Introduction to Software Development on CS 220</title>
@@ -31,8 +31,8 @@ This is technically possible, but strongly discouraged.</description>
       <pubDate>Sat, 17 Feb 2018 08:50:04 -0600</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/calendar/</guid>
-      <description>The course is divided into two phases:
- Lecture Phase: During the first three weeks of the quarter, the lecture sessions will involve lectures by the instructor on core concepts regarding the software development process. Project Phase: Starting in week 4, the focus of the class will shift towards the development of the course project, with team meetings on Monday, lectures on Wednesdays, and a guest lecture on Fridays.     Week Date Day Lecture Lab    Lecture</description>
+      <description>NOTE: This is the Spring 2019 calendar. It has not yet been updated for Spring 2020  The course is divided into two phases:
+ Lecture Phase: During the first three weeks of the quarter, the lecture sessions will involve lectures by the instructor on core concepts regarding the software development process. Project Phase: Starting in week 4, the focus of the class will shift towards the development of the course project, with team meetings on Monday, lectures on Wednesdays, and a guest lecture on Fridays.</description>
     </item>
     
     <item>
@@ -51,7 +51,7 @@ Software Engineering Books  Software Engineering (10th Ed.), Ian Sommerville Pea
       <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/</guid>
-      <description>You wake up to find yourself in a strange hall. You have no idea how you got here. The last thing you remember is a blinding flash of light. You look at the tapestries lining the walls for any clues on your whereabouts. The tapestries depict valiant knights, fire-breathing wyverns, armies of goblins, and fearsome rulers sitting in their gilded thrones. Wherever you are, it must be in a different world from your own.</description>
+      <description>Text Adventure Games Project Organization and Timeline  Suggested initial goals  WDL Game State Action Management Checkpointing CLI UI     Project Evaluation  Requirements for graded work  Tasks/Issues Pull Requests to master Code Reviews Peer feedback Final Presentation   Class-wide bonus points     You wake up to find yourself in a strange hall. You have no idea how you got here.</description>
     </item>
     
     <item>
@@ -61,121 +61,6 @@ Software Engineering Books  Software Engineering (10th Ed.), Ian Sommerville Pea
       
       <guid>https://uchicago-cs.github.io/cmsc22000/syllabus/</guid>
       <description>Course Description Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.</description>
-    </item>
-    
-    <item>
-      <title>How to submit your labs</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/submit/</link>
-      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/submit/</guid>
-      <description>You will be submitting your labs using a tool called chisubmit that is available on the CS machines. Before using this tool, you first need to enable it inside your local repository. Just go into your local repository directory, and run the following:
-chisubmit init  When asked for your username and password, just enter your CNetID and password. If there are no errors, you will now be able to run chisubmit from inside that directory.</description>
-    </item>
-    
-    <item>
-      <title>Lab 1: Git</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</link>
-      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</guid>
-      <description>Due: Thursday, April 11th, 2:30pm
- **NOTE**: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)   In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading.</description>
-    </item>
-    
-    <item>
-      <title>Lab 2: Software Design</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</link>
-      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</guid>
-      <description>Due: Thursday, April 18th, 2:30pm
-In this lab, you will carry out some basic software design tasks individually, and will also start working with your project team on a design warmup exercise. The individual portion of this lab will be shorter than in other labs, because we expect you to spend part of your time working on the design warmup exercise. In fact, we encourage you to spend most of the lab session working on the team exercise.</description>
-    </item>
-    
-    <item>
-      <title>Lab 3: Make</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</link>
-      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</guid>
-      <description>Due: Thursday, April 25th, 2:30pm
-In the class project, you will likely produce dozens of C files that will ultimately produce a single executable. When dealing with multiple source files, specially when there are dependencies between them, it is common to use a build system instead of manually compiling and linking all the files. in this lab, we’ll explore the ways a program can be “built”&amp;ndash;that is, the way that source code is turned into binary code so that a computer can execute it.</description>
-    </item>
-    
-    <item>
-      <title>Lab 4: Debugging</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab4/</link>
-      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab4/</guid>
-      <description>Due: Thursday, May 2nd, 2:30pm
-In this lab, you will get some practice debugging a few programs and, in particular, will resolve some of the errors we described in class. In some of the tasks, you will also become more familiar with GDB, a popular debugger.
-As you work through this lab, you may want to refer to our Debugging Guide, which covers (and expands on) many of the topics we covered in class.</description>
-    </item>
-    
-    <item>
-      <title>Optional Lab: Advanced Git</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/</link>
-      <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/</guid>
-      <description>In the 150s/160s, as well as in the CS 220 labs, you have used version control systems (like Subversion and Git) essentially as a mechanism to store your code and to make it easily accessible to the course staff. However, in real software projects, version control systems are one of the most important tools that allow teams to collaborate on a shared code base.
-In this lab, we will explore features of Git that are more directly related to collaborative software development, and which you will need to use during the course project.</description>
-    </item>
-    
-    <item>
-      <title>Lab 5: Testing</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab5/</link>
-      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab5/</guid>
-      <description>Due: Thursday, May 9th, 2:30pm
-By this point in your CS studies, you’ve probably experienced the following at least once:
- Your programming assignment is almost done, and everything works so far. Start working on the last task of the assignment. Make some minor changes. Run program. Everything stops working. The first task, the last task, and everything in between. Spend several hours debugging your code. Narrow down the issue to a silly mistake in the first task that only made things fail once the last task was implemented.</description>
-    </item>
-    
-    <item>
-      <title>Lab 6: Continuous Integration</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab6/</link>
-      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab6/</guid>
-      <description>Due: Thursday, May 16th, 2:30pm
-Continuous Integration, or CI, is the practice of frequently merging developers’ work into a mainline branch in a version control system like Git. CI almost always involves running an extensive set of test cases every time such a merge happens, or even every time new code is committed to the repository (not just on the mainline branch, but also on other branches). Thus many version control systems facilitate CI by providing mechanisms to trigger certain actions when code is pushed to a repository.</description>
-    </item>
-    
-    <item>
-      <title>Lab 7: Deployment</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab7/</link>
-      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab7/</guid>
-      <description>Due: Thursday, May 23rd, 2:30pm
-Last week, you learned about Continuous Integration, which deals with how application code makes it to the master branch. But how do our applications make it to the real world, where other people can use them?
-Deployment refers to the processes by which software systems are made available for use (a related term, delivery, refers to making software available specifically to end-users). The exact deployment pipeline can vary from one project to another.</description>
-    </item>
-    
-    <item>
-      <title>Lab 8: More CI and Deployment</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab8/</link>
-      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab8/</guid>
-      <description>Due: Thursday, May 30th, 2:30pm
-In this lab, we will continue to explore concepts related to Continuous Integration and Deployment. The lab is divided into two main parts: one where we will see how we can use Docker containers as part of a CI build, and one where we will expand the deployment pipeline we saw in our previous lab.
-Part I: Using Containers in CI It is often necessary for a CI build to use a specific software environment to build code and to run tests.</description>
-    </item>
-    
-    <item>
-      <title>Lab 9: Documentation and Logging</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab9/</link>
-      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab9/</guid>
-      <description>Due: Thursday, June 4th, 2:30pm
-This lab will be divided into two distinct parts: one focused on documentation, and another focused on logging. In the first one, you will automatically generate documentation for libgeometry and, in the second one, we will provide you with a program that simulates playing Tic-Tac-Toe under several different strategies, and you will add logging code to better track the progress of the simulation.
-Part I: Documentation As we saw in class, there are many different ways of producing documentation, from adding a simple README file to your project, to writing more comprehensive documentation.</description>
     </item>
     
     <item>
@@ -230,7 +115,7 @@ Presentation Contents Each presentation must be divided into three portions: a h
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/project/</guid>
-      <description>In the course project, you will be divided into six teams of five students, and will work collaboratively (both within your team and between teams) to create a complex software system that will involve designing and implementing a number of components. You will be using several tools to support the collaborative aspects of this project and, indeed, your collaborative skills will be as important as your coding skills to be successful in this project.</description>
+      <description>In the course project, you will be divided into teams of five students, and will work collaboratively (both within your team and between teams) to create a complex software system that will involve designing and implementing a number of components. You will be using several tools to support the collaborative aspects of this project and, indeed, your collaborative skills will be as important as your coding skills to be successful in this project.</description>
     </item>
     
   </channel>

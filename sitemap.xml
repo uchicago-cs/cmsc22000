@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -35,7 +35,6 @@
   <url>
     <loc>https://uchicago-cs.github.io/cmsc22000/projects/</loc>
     <lastmod>2018-02-17T08:47:20-06:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -44,63 +43,8 @@
   </url>
   
   <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/submit/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab4/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://uchicago-cs.github.io/cmsc22000/labs/</loc>
     <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/</loc>
-    <lastmod>2018-01-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab5/</loc>
-    <lastmod>2018-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab6/</loc>
-    <lastmod>2018-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab7/</loc>
-    <lastmod>2018-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab8/</loc>
-    <lastmod>2018-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab9/</loc>
-    <lastmod>2018-01-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -120,7 +64,6 @@
   
   <url>
     <loc>https://uchicago-cs.github.io/cmsc22000/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -137,7 +80,6 @@
   
   <url>
     <loc>https://uchicago-cs.github.io/cmsc22000/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>
