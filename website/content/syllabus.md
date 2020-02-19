@@ -21,7 +21,7 @@ In this course, students will learn how to...
 
 Students must have taken CMSC 15200 or CMSC 16200. 
 
-In Spring 2019, students will have to apply to participate in this class, and only students taking CMSC 15200 or CMSC 16200 in Winter 2019 will be considered (*absolutely no exceptions will be made*).
+In Spring 2020, students will have to apply to participate in this class, and only students taking CMSC 15200 or CMSC 16200 in Winter 2020, or who took CMSC 15200 in Spring 2019, will be considered (*absolutely no exceptions will be made*).
 
 Please note that CMSC 15400 is *not* a prerequisite for this class. We strongly encourage students taking CMSC 22000 to defer CMSC 15400 until the Fall, instead of taking CMSC 22000 and CMSC 15400 concurrently.
 
@@ -29,9 +29,9 @@ Please note that CMSC 15400 is *not* a prerequisite for this class. We strongly 
 Course Organization
 -------------------
 
-The class meets three times a week for lectures (MWF 1:30pm - 2:20pm in Ryerson 276), and once a week for a lab (Thursdays, 3:30pm-5pm in CSIL 3+4).
+The class meets three times a week for lectures (MWF 2:30pm - 3:20pm in Rosenwald 011). Additionally, we have time reserved on Mondays 4:30pm-5:50pm for project teams meetings (this is listed as a "lab" on the Registrar's site, but this time will be used as an actual lab only in the first weeks of the quarter).
 
-A large part of the class will revolve around the development of a software project where students will be able to apply many of the concepts covered in the lectures (this project is described in more detail in the "Course Project" section below). In this project, the entire class will work on the same code (through public GitHub repositories visible to the entire class). Students will be divided into teams of 4-5 students, and each team will work on a specific aspect of the project. In each team, an undergraduate TA (in their 3rd or 4th year) will act as the senior developer in the team. Students will be assessed both on their performance as a team, as well as on their performance on individual tasks assigned to them in their teams.
+A large part of the class will revolve around the development of a software project where students will be able to apply many of the concepts covered in the lectures (this project is described in more detail in the "Course Project" section below). In this project, the entire class will work on the same code (through public GitHub repositories visible to the entire class). Students will be divided into teams of 4-5 students, and each team will work on a specific aspect of the project. In each team, a TA will act as the senior developer in the team. Students will be assessed both on their performance as a team, as well as on their performance on individual tasks assigned to them in their teams.
 
 Labs will supplement the material covered in lectures, and will allow students to learn and practice skills that will be necessary in the course project. At the lab, students will be assigned self-contained exercises that have to be done individually and due before the next lab.
 
@@ -41,7 +41,7 @@ During the first three weeks of the quarter, the lecture sessions will involve l
 * **Wednesdays**: Traditional lecture
 * **Friday**: Guest lecture from outside speaker
 
-Additionally, each team will have a weekly 30-minute meeting with the instructor and the team's senior developer outside of class hours.
+Additionally, each team will have a weekly 30-minute meeting with the instructor and the team's senior developer during lab hours.
 
 Course Contents
 ---------------
@@ -54,7 +54,7 @@ Course Project
 
 The course project revolves around developing a complex software system. The scope and complexity of this project will require that the entire class work together towards developing a fully-featured software product. 
 
-More specifically, the entire class will be working on the same codebase. The class will be divided into teams of 4-5 students, with an undergraduate TA acting as a "senior developer" in each of these teams (TAs will be 3rd/4th year undergraduate students with prior industry experience via internships) Teams will be arranged by the instructor/TAs (they will not be self-selecting).
+More specifically, the entire class will be working on the same codebase. The class will be divided into teams of 4-5 students, with an undergraduate TA acting as a "senior developer" in each of these teams (TAs will be students who have previously taken CMSC 22000 and/or who have prior industry experience via internships) Teams will be arranged by the instructor/TAs (they will not be self-selecting).
 
 During Weeks 2-3, the teams will work on a warmup exercise on software design. A design exercise will be assigned in Week 2 (due Week 3), and a follow-up exercise will be assigned in Week 3 (due Week 4). Teams will get feedback on their first exercise before the second one is due, and there will be a lecture in Week 3 dedicated to discussing the design exercise.
 
@@ -89,7 +89,8 @@ Grades are not curved in this class or, at least, not in the traditional sense. 
 * 70-75: C+
 * < 70: Dealt on a case-by-case basis
 
-We curve only to the extent that we may (and often do) lower the boundaries for one or more letter grades, depending on the distribution of the raw scores. That said, since this is a relatively new class, we do not yet have a good handle on whether the above grade boundaries are adequate, so we may need to raise some of the boundaries as well. It is our goal to not have to raise any of the boundaries but, if we do, we will let students know no later than Week 9 (we will not raise any of the boundaries in response to the final distribution of scores in the class).
+We curve only to the extent that we may (and often do) lower the boundaries for one or more letter grades, depending on the distribution of the raw scores. 
+
 
 Books
 -----

@@ -7,3 +7,11 @@ theme = "hyde-y"
 topline = "Introduction to Software Development"
 sidebar = "left"
 googleAnalytics = "UA-27880910-4"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.tableOfContents]
+endLevel = 3
+ordered = false
+startLevel = 1

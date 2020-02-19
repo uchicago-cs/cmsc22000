@@ -2,7 +2,7 @@
 title: "Lab 8: More CI and Deployment"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: false
+draft: true
 ---
 
 **Due:** Thursday, May 30th, 2:30pm

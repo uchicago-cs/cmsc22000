@@ -3,6 +3,12 @@ title: "Course Calendar"
 date: 2018-02-17T08:50:04-06:00
 ---
 
+<div class="admonition-content">
+<p>
+<b>NOTE</b>: This is the Spring 2019 calendar. It has not yet been updated for Spring 2020
+</p>
+</div>
+
 The course is divided into two phases: 
 
 - *Lecture Phase*: During the first three weeks of the quarter, the lecture sessions will involve lectures by the instructor on core concepts regarding the software development process. 

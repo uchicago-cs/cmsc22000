@@ -2,7 +2,7 @@
 title: "Lab 9: Documentation and Logging"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: false
+draft: true
 ---
 
 **Due:** Thursday, June 4th, 2:30pm

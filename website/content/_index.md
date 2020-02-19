@@ -8,10 +8,9 @@ Course Staff
 
  * **Instructor**: [Borja Sotomayor](http://people.cs.uchicago.edu/~borja/)
    * *Office*: Crerar 209
-   * *Office Hours*: MWF 2:30-3:30
+   * *Office Hours*: TBD
  * **TAs**
-   * Mark Cohen (Office Hours TBD)
-   * Lydia Filipe (Office Hours TBD)
+   * TBD
 
 Course Description
 ------------------

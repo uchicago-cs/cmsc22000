@@ -2,7 +2,7 @@
 title: "How to submit your labs"
 date: 2018-01-28
 publishdate: 2018-01-28
-draft: false
+draft: true
 ---
 
 You will be submitting your labs using a tool called `chisubmit` that is available on the CS machines. Before using this tool, you first need to enable it inside your local repository. Just go into your local repository directory, and run the following:

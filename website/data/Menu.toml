@@ -8,7 +8,7 @@
 
 [15-project]
     Name = "Project"
-    URL = "projects/2019/spec/"
+    URL = "project/"
 
 [20-labs]
     Name = "Labs"

@@ -2,7 +2,7 @@
 title: "Lab 2: Software Design"
 date: 2018-01-28
 publishdate: 2018-01-28
-draft: false
+draft: true
 ---
 
 **Due:** Thursday, April 18th, 2:30pm
@@ -80,7 +80,7 @@ In this task, you must do the following:
 
 You can find the specification of the team exercise [here]({{< relref "../projects/2019/design-1.md" >}})
 
-Please note that this exercise is not part of your Lab #2 grade. Instead, it will be part of your Project grade for the class (see the [syllabus]({{< relref "../syllabus.md" >}}) for more details) You should nonetheless use the lab time to get to know your team, and to start discussing the team exercise.
+Please note that this exercise is not part of your Lab #2 grade. Instead, it will be part of your Project grade for the class (see the [syllabus]({{< relref "syllabus.md" >}}) for more details) You should nonetheless use the lab time to get to know your team, and to start discussing the team exercise.
 
 
 ## Submitting your lab
