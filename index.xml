@@ -31,8 +31,7 @@ This is technically possible, but strongly discouraged.</description>
       <pubDate>Sat, 17 Feb 2018 08:50:04 -0600</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/calendar/</guid>
-      <description>NOTE: This is the Spring 2019 calendar. It has not yet been updated for Spring 2020  The course is divided into two phases:
- Lecture Phase: During the first three weeks of the quarter, the lecture sessions will involve lectures by the instructor on core concepts regarding the software development process. Project Phase: Starting in week 4, the focus of the class will shift towards the development of the course project, with team meetings on Monday, lectures on Wednesdays, and a guest lecture on Fridays.</description>
+      <description>td {vertical-align:middle};    Week Date Day Zoom Meetings Pre-recorded Lecture(s) Lab Assignment Project    1 April 6 M Introduction to CS 220 The Software Development Process Git    April 10 F Discussion/Q&amp;amp;A: Software Development Process   2 April 13 M Introduction to Software Design Software Design Software Design Design Warm-up #1   April 17 F Discussion/Q&amp;amp;A: Software Design   3 April 20 M Project kick-off Implementation: Linking, Libraries, etc.</description>
     </item>
     
     <item>
