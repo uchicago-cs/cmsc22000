@@ -7,10 +7,11 @@ Course Staff
 ------------
 
  * **Instructor**: [Borja Sotomayor](http://people.cs.uchicago.edu/~borja/)
-   * *Office*: Crerar 209
-   * *Office Hours*: TBD
  * **TAs**
-   * TBD
+   * Fırat Çiftçi
+   * Elizabeth Coble
+   * Maxine King
+   * Dawson Whitehead
 
 Course Description
 ------------------
