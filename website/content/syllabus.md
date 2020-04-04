@@ -63,7 +63,8 @@ Grading
 
 Grading is based on the following:
 
-* 30% Labs (each lab weighed equally)
+* 25% Labs (each lab weighed equally)
+* 5% Participation (see Spring 2020 below)
 * 70% Project, divided into:
   * 5% Team Design Exercise
   * 35% Individual Evaluation
@@ -101,5 +102,60 @@ The University of Chicago is committed to diversity and rigorous inquiry that ar
 
 If you have a preferred name different from what appears on the class roster, or preferred gender pronouns you would like us to use, please let us know.
 
+Spring 2020
+-----------
 
+There are a few aspects of the class that will be a bit unique in Spring 2020:
 
+### Participation Score
+
+5 points (out of 100) of your final grade will be allocated to attendance in Zoom sessions and watching pre-recorded lectures (students who are unable to join Zoom sessions will have an alternate mechanism for earning participation points). The intent of the participation points is that any student who attends most of the Zoom sessions and watches most of the pre-recorded lectures will effortlessly earn the full 5 points. The points are allocated as follows:
+
+- 2 points for attending Zoom sessions. If you attend at least 75% of the Zoom sessions, you get the full 2 points. Please note that it is enough to attend the session and be present for all or nearly all of it. If you attend less than 75% of the Zoom sessions, you get a number of points proportional to the number of Zoom sessions you attended.
+  
+  Students who are prevented from joining the Zoom sessions (due to their timezone, Internet access, or some other personal difficulty) can earn these points by, instead, suggesting questions for the discussion/Q&A sessions (which will revolve around the content provided in pre-recorded lectures). While any student will be able to submit questions, the students who are unable to participate in Zoom sessions can earn the 2 points by submitting two questions before a Zoom discussion session (similarly, they get the full 2 points if they submit questions for at least 75% of the Zoom sessions)
+  
+- 3 points for viewing pre-recorded lectures. The pre-recorded lectures will include very simple quizzes that should be trivial to pass if you pay attention to the videos. If your total score on the quizzes is above 75%, you get the full 3 points; below 75% you get a proportional score.
+
+### Zoom Guidelines
+
+*Note: The following is based on text provided by Prof. Stuart Kurtz*
+
+We will be using Zoom in this class. We expect your interactions via Zoom to be consistent with an in-person class experience. Respect the people you're working with. Enter the Zoom meetings muted if possible (unfortunately, it will not be possible if you're calling in), and unmute to speak. Raise your hand if you'd like to speak. [There's a "Raise Hand" button on the participant page.] If your background is unusually noisy, use the chat channel instead of unmuting. You may show video, but you're not required to, and you may turn off video sharing at any time.
+
+Note that you can set your name in your Zoom profile, so you don't have to go with whatever was assigned. We encourage you to include your pronouns in your name (if so, please include them after your last name). If you set a name that can't be easily matched to the name on record with the University, please let us know.
+
+Our Zoom class meetings will be recorded and saved to the cloud to allow students in this class to review the discussion, and especially to allow students who can't participate the opportunity to benefit from class. It is not our intention that these recordings will be available to anyone but class participants, nor that they will be available after the quarter, but we don't have control over what others will do. If you have FERPA concerns, please mask yourself accordingly, e.g., by turning off video and using an alias.
+
+### Recording Policy
+
+*The following is the verbatim policy adopted by the university. Please make sure you understand it and abide by it.*
+
+As the University temporarily transitions to a remote teaching and learning environment, instructors
+and students have asked for guidance on the recording of course sessions. Instructors have the
+discretion to record course sessions, except when recording is required to meet the needs of students
+granted an accommodation by the Office of Student Disability Services. Recordings and transcripts will
+be made available to students in the relevant course, the instructor, and other necessary University
+officials. Recordings in which students are personally identifiable will be managed in accordance with
+the Family Educational Rights and Privacy Act (FERPA).
+
+This time-limited policy has been implemented to effectively deliver a remote education while
+safeguarding privacy and protecting rights in courses and instructional materials. Below is an
+acknowledgment for students designed to govern the use of any recordings and provide instructors and
+students with guidance on the use of instructional materials.
+By attending course sessions, students acknowledge that:
+
+1. They will not: (i) record, share, or disseminate University of Chicago course sessions, videos,
+transcripts, audio, or chats; (ii) retain such materials after the end of the course; or (iii) use such
+materials for any purpose other than in connection with participation in the course.
+
+2. They will not share links to University of Chicago course sessions with any persons not
+authorized to be in the course session. Sharing course materials with persons authorized to be
+in the relevant course is permitted. Syllabi, handouts, slides, and other documents may be
+shared at the discretion of the instructor.
+
+3. Course recordings, content, and materials may be covered by copyrights held by the University,
+the instructor, or third parties. Any unauthorized use of such recordings or course materials may
+violate such copyrights.
+
+4. Any violation of this policy will be referred to the Area Dean of Students. 
