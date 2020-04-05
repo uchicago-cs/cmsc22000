@@ -35,7 +35,7 @@ Additionally, we have time reserved on Mondays 4:30pm-5:50pm for project teams m
 
 A large part of the class will revolve around the development of a software project where students will be able to apply many of the concepts covered in the lectures (this project is described in more detail in the "Course Project" section below). In this project, the entire class will work on the same code (through public GitHub repositories visible to the entire class). Students will be divided into teams of 4-5 students, and each team will work on a specific aspect of the project. In each team, a TA will act as the senior developer in the team. Students will be assessed both on their performance as a team, as well as on their performance on individual tasks assigned to them in their teams.
 
-Labs will supplement the material covered in lectures, and will allow students to learn and practice skills that will be necessary in the course project. Please note that there is no actual lab session; instead, these are self-guided labs to do in your own time, and with a number of exercises that have to be done individually before a given deadline.
+Lab assignments will supplement the material covered in lectures, and will allow students to learn and practice skills that will be necessary in the course project. Please note that there is no actual lab session; instead, these are self-guided labs to do in your own time, and with a number of exercises that have to be done individually before a given deadline.
 
 During the first two weeks of the quarter, the class will focus on covering core concepts regarding the software development process. Starting in week 3, the focus of the class will shift towards the development of the course project, with Mondays used for a project all-hands meeting, and each team having a 30-minute meeting with the team's senior developer during lab hours.
 
@@ -54,7 +54,7 @@ More specifically, the entire class will be working on the same codebase. The cl
 
 During Weeks 2-3, the teams will work on a warmup exercise on software design. A design exercise will be assigned in Week 2 (due Week 3), and a follow-up exercise will be assigned in Week 3 (due Week 4). Teams will get feedback on their first exercise before the second one is due, and there will be a Zoom session in Week 3 dedicated to discussing the design exercise.
 
-Starting in Week 3, project planning will follow a Scrum-like process, with weeks 3-9 of the quarter being divided into several sprints. Starting on Week 3, all teams have an all-hands meeting during Monday class hours, and each team will have an additional team meeting during lab time. Teams will keep track of their tasks through GitHub issues, with grading primarily based on their performance on these tasks.
+Starting in Week 3, project planning will follow a Scrum-like process, with weeks 3-9 of the quarter being divided into several sprints. Starting on Week 3, all teams have an all-hands meeting during Monday class hours, and each team will have an additional team meeting during the lab section of the class. Teams will keep track of their tasks through GitHub issues, with grading primarily based on their performance on these tasks.
 
 More details on the project can be found on the [Project]({{< relref "project.md" >}}) page.
 
@@ -63,7 +63,7 @@ Grading
 
 Grading is based on the following:
 
-* 25% Labs (each lab weighed equally)
+* 25% Lab Assignments (each lab weighed equally)
 * 5% Participation (see Spring 2020 below)
 * 70% Project, divided into:
   * 5% Team Design Exercise
