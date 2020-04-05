@@ -8,9 +8,8 @@ This page contains pointers to additional resources and readings that complement
 
 Software Engineering Books
 --------------------------
-* [Software Engineering (10th Ed.)](http://iansommerville.com/software-engineering-book/), Ian Sommerville Pearson, 2015.
-* [Clean Code: A Handbook of Agile Software Craftsmanship](https://books.google.com/books/about/Clean_Code.html?id=dwSfGQAACAAJ), Robert C. Martin, Prentice Hall, 2008.
-* [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://books.google.com/books/about/Clean_Architecture.html?id=uGE1DwAAQBAJ), Robert C. Martin, Prentice Hall, 2017.
+* [A Philosophy of Software Design](https://www.amazon.com/gp/product/1732102201/), John Ousterhout. Yaknyam Press, 2018
+* [Software Engineering (10th Ed.)](http://iansommerville.com/software-engineering-book/), Ian Sommerville. Pearson, 2015.
 * [The Pragmatic Programmer](https://en.wikipedia.org/wiki/The_Pragmatic_Programmer), Andrew Hunt, David Thomas. Addison-Wesley Professional, 1999.
 * [Continuous Delivery](https://books.google.com/books/about/Continuous_Delivery.html?id=6ADDuzere-YC&hl=en), Jez Humble, David Farley. Pearson Education, 2010.
 
