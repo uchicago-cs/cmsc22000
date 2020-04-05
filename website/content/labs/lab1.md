@@ -2,26 +2,30 @@
 title: "Lab 1: Git"
 date: 2018-01-28
 publishdate: 2018-01-28
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, April 11th, 2:30pm
+**Due:** Wednesday, April 15th, 8pm
 
 {{% warning %}}
 **NOTE**: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)
 {{% /warning %}}
 
-In some of your previous CS courses, you became familiar with using Subversion (SVN) to handle revision control (or *version control*) of your projects and assignments, and to submit your work for grading. In this class, we will be using Git, a more widespread version control system that is more commonly used in a variety of software projects.
+In some of your previous CS courses, you may have become familiar with using Subversion (SVN) to handle revision control (or *version control*) of your projects and assignments, and to submit your work for grading. In this class, we will be using Git, a more widespread version control system that is more commonly used in a variety of software projects.
 
 Like SVN, Git is a *version control system* that maintains files in a *repository* that contains not just files, but also a record of all the changes made to those files. Git tracks every version of a file or directory using *commits*. When you have made changes to one or more files, you can logically group those changes into a "commit" that gets added to your repository. You can think of commits as “checkpoints” in your work, representing the work you’ve done since the previous checkpoint. This mechanism makes it possible to look at and even revert to older versions of a file by going back to your code as it was when you “checkpointed” it with a commit.
 
-You will each have a personal Git repository that is hosted on a central server run by the CS department (the software running on that server is [GitLab](https://about.gitlab.com/), so we will often refer to it as "the GitLab server"). You may have also heard of [GitHub](https://github.com/), a web-based hosting service for Git repositories. We will be using GitHub later in the quarter for the course project, but will be using GitLab for the labs, since it will be easier for us to access your work there (since it is tied to CNetID authentication, etc.). We will also be browsing some Git repositories hosted on GitHub, but you will not need a GitHub account just yet.
+For each lab assignment, a Git repository will be created for you on [GitHub](https://github.com/), a web-based hosting service for Git repositories. However, before that repository can be created for you, you need to have a GitHub account. If you do not yet have one, you can get an account here: https://github.com/join. Once you create your account, you may want to get the [Student Developer Pack](https://education.github.com/pack), which will give you access to a lot of other features (please note that having the Student Developer Pack is not necessary for CS 220; it's just a nice benefit you get as a student) 
+
+## Creating your lab repository
+
+For each lab assignment, we will provide you with an *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-labN-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub (a GitHub "organization" is basically a way to group together related repositories). For example, if your GitHub username is `jrandom`, your repository will be called `2020-lab1-jrandom`. This repository will be private, and can only be viewed by you and the CS 220 course staff.
 
 ## Initializing your repository
 
-You will start by initializing your repository. Like SVN, your repository is hosted in the GitLab server, but you can create a local copy in your home directory (we will refer to this as your *local repository*).
+You will start by initializing your repository. Like SVN, your repository is hosted on GitHub, but you can create a local copy in your home directory (we will refer to this as your *local repository*).
 
-Log into https://mit.cs.uchicago.edu/. Under "Your projects", you should see an entry for CMSC 22000. Click on it. This will take you to a page where you can browse your repository through GitLab's web interface. However, you haven't initialized your repository yet, so that page will say "The repository for this project is empty". In this case, websites like GitLab and GitHub will provide you with the instructions to initialize your repository. You are going to follow those instructions, but first need to do the following:
+Log into https://github.com/. Your lab repository, `cmsc22000-labs/2020-labN-GITHUB_USERNAME` should appear under "Repositories". This will take you to a page where you can browse your repository through GitHub's web interface. However, you haven't initialized your repository yet, so GitHub will provide you with the instructions to initialize your repository. You are going to follow those instructions, but first need to do the following:
 
 * Create a directory in your home directory for CMSC 22000. The name and location of this directory is not important, so if you already have a preferred directory structure, you're welcome to use it. Otherwise, we suggest you simply do this:
 
@@ -30,30 +34,30 @@ Log into https://mit.cs.uchicago.edu/. Under "Your projects", you should see an 
   cd cs220
   ```
 
-* Inside that folder, create a file called `test.txt` with your full name.
+* Inside that folder, create a file called `README.md` with your full name.
 
-* On the GitLab project page (the one that says "The repository for this project is empty") there is pull-down list with "SSH" selected. Make sure to change this to "HTTPS".
+* On your repository's GitHub page, right under "Quick setup — if you’ve done this kind of thing before" there is a URL field with two buttons: HTTPS and SSH. Make sure to change this to "HTTPS".
 
-Now, from inside your CMSC 22000 directory, run the instructions for "Git global setup" and for "Existing folder". If any commands asks you to enter a username and password, just enter your CNetID and password. Don't worry about what each individual command does; we will be seeing what most of these commands do in this lab. However, if you encounter any error messages, please make sure to let us know.
+Now, from inside your CMSC 22000 directory, run the commands that appear under "...or create a new repository on the command line" *except* the first one (the one that starts with `echo`. If any commands asks you to enter a username and password, just enter your GitHub username and password. Don't worry about what each individual command does; we will be seeing what most of these commands do in this lab. However, if you encounter any error messages, please make sure to let us know.
 
-You can verify that your repository was correctly set up by going back to https://mit.cs.uchicago.edu/. If you go to your repository page, you should now see it contains a `test.txt` file. If you click on it, you can see its contents.
+You can verify that your repository was correctly set up by going back to your repository's page on GitHub, you should now see it contains a `README.md` file. If you click on it, you can see its contents.
 
 ## Creating a commit
 
 If you make changes to your repository, the way to store those changes (and the updated versions of the modified files) is by creating a *commit*. So, let's start by making some changes:
 
-* Edit `test.txt` to also include your CNetID
-* Add a new file called `README.md`. This file should contain a single line with the text `Hello, world!`
+* Edit `README.md` to also include your CNetID
+* Add a new file called `test.txt`. This file should contain a single line with the text `Hello, world!`
 
 Creating a commit is a two-step process. First, you have to indicate what files you want to include in your commit. Let’s say we want to create a commit that only includes the updated `test.txt` file. We can specify this operation explicitly using the `git add` command from the terminal:
 
-    git add test.txt
+    git add README.md
 
 This command will not print any output if it is successful.
 
 To create the commit, use the `git commit` command. This command will take all the files you added with `git add` and will bundle them into a commit:
 
-    git commit -m "Updated test.txt"
+    git commit -m "Updated README.md"
 
 The text after the `-m` is a short message that describes the changes you have made since your last commit. Common examples of commit messages might be "Finished lab 1" or “Implemented insert function for data struct”.
 
@@ -63,18 +67,18 @@ If you forget the `-m` parameter, Git will think that you forgot to specify a co
 
 Once you run the above command, you will see something like the following output:
 
-    [master 3e39c15] Updated test.txt
+    [master 3e39c15] Updated README.md
      1 file changed, 1 insertion(+), 1 deletion(-)
 
 You’ve created a commit, but you’re not done yet: you haven’t uploaded it to the server yet. Forgetting this step is actually a very common pitfall, so don’t forget to upload your changes. You must use the `git push` command for your changes to actually be uploaded to the Git server. *If you don’t, the graders will not be able to see your code*. Simply run the following command from the Linux command-line:
 
     git push
 
-You will be asked for your CNetID and password; once you enter them, you should see something like this output:
+You will be asked for your GitHub username and password; once you enter them, you should see something like this output:
 
     Writing objects: 100% (3/3), 274 bytes | 0 bytes/s, done.
     Total 3 (delta 0), reused 0 (delta 0)
-    To https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
+    To https://github.com/cmsc22000-labs/2020-lab1-borjasotomayor.git
        4885f1c..3e39c15  master -> master
 
 You can ignore most of those messages. The important thing is to not see any warnings or error messages.
@@ -84,15 +88,15 @@ When you push for the first time, you may get a message saying that `push.defaul
 {{% /warning %}}
 
 
-You can verify that our Git server correctly received your commit by going to https://mit.cs.uchicago.edu/. The `test.txt` file should now show the updated content (your name with your CNetID)
+You can verify that our Git server correctly received your commit by going to your repository on GitHub. The `README.md` file should now show the updated content (your name with your CNetID)
 
-In general, if you’re concerned about whether the graders are seeing the right version of your code, you can just go to https://mit.cs.uchicago.edu/. Whatever is shown on that page is what the graders will see. If you wrote some code, and it doesn’t show up in the above URL, make sure you didn’t forget to add your files, create a commit, and push the most recent commit to the server.
+In general, if you’re concerned about whether the graders are seeing the right version of your code, you can just go to GitHub. Whatever is shown on your repository's page is what the graders will see. If you wrote some code, and it doesn’t show up on GitHub, make sure you didn’t forget to add your files, create a commit, and push the most recent commit to the server.
 
 ## git add revisited and git status
 
-Let's make a further change to `test.txt`: Add a line with the text `CMSC 22000 - Introduction to Software Development`. 
+Let's make a further change to `README.md`: Add a line with the text `CMSC 22000 - Introduction to Software Development`. 
 
-So, at this point, we have a file we have already committed (`test.txt`) but where the *local* version is now out of sync with the version in the GitLab server. Furthermore, earlier we created a `README.md` file. Is it a part of our repository? You can use the following command to ask Git for a summary of the files it is tracking:
+So, at this point, we have a file we have already committed (`README.md`) but where the *local* version is now out of sync with the version in the GitLab server. Furthermore, earlier we created a `test.txt` file. Is it a part of our repository? You can use the following command to ask Git for a summary of the files it is tracking:
 
     git status
 
@@ -104,12 +108,12 @@ This command should output something like this:
       (use "git add <file>..." to update what will be committed)
       (use "git checkout -- <file>..." to discard changes in working directory)
 
-	    modified:   test.txt
+	    modified:   README.md
 
     Untracked files:
       (use "git add <file>..." to include in what will be committed)
 
-	    README.md
+	    test.txt
 
     no changes added to commit (use "git add" and/or "git commit -a")
 
