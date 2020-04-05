@@ -11,5 +11,24 @@
 	<atom:link href="https://uchicago-cs.github.io/cmsc22000/labs/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>How to submit your labs</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/submit/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/submit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lab 1: Git</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</guid>
+      <description>Due: Wednesday, April 15th, 8pm
+ NOTE: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)  In some of your previous CS courses, you may have become familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading.</description>
+    </item>
+    
   </channel>
 </rss>

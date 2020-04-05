@@ -41,7 +41,7 @@ This is technically possible, but strongly discouraged.</description>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/resources/</guid>
       <description>This page contains pointers to additional resources and readings that complement what we see in the lectures. While this class does not have a required textbook, most of the Software Engineering content draws heavily from Ian Sommerville&amp;rsquo;s book, Software Engineering.
-Software Engineering Books  Software Engineering (10th Ed.), Ian Sommerville Pearson, 2015. Clean Code: A Handbook of Agile Software Craftsmanship, Robert C. Martin, Prentice Hall, 2008. Clean Architecture: A Craftsman&amp;rsquo;s Guide to Software Structure and Design, Robert C.</description>
+Software Engineering Books  A Philosophy of Software Design, John Ousterhout. Yaknyam Press, 2018 Software Engineering (10th Ed.), Ian Sommerville. Pearson, 2015. The Pragmatic Programmer, Andrew Hunt, David Thomas. Addison-Wesley Professional, 1999.</description>
     </item>
     
     <item>
@@ -60,6 +60,25 @@ Software Engineering Books  Software Engineering (10th Ed.), Ian Sommerville Pea
       
       <guid>https://uchicago-cs.github.io/cmsc22000/syllabus/</guid>
       <description>Course Description Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.</description>
+    </item>
+    
+    <item>
+      <title>How to submit your labs</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/submit/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/submit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lab 1: Git</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab1/</guid>
+      <description>Due: Wednesday, April 15th, 8pm
+ NOTE: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)  In some of your previous CS courses, you may have become familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading.</description>
     </item>
     
     <item>
