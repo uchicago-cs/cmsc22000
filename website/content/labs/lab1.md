@@ -21,6 +21,15 @@ For each lab assignment, a Git repository will be created for you on [GitHub](ht
 
 For each lab assignment, we will provide you with an *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-labN-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub (a GitHub "organization" is basically a way to group together related repositories). For example, if your GitHub username is `jrandom`, your repository will be called `2020-lab1-jrandom`. This repository will be private, and can only be viewed by you and the CS 220 course staff.
 
+## Where should you do this lab?
+
+For this lab, we will specifically need you to work on a CS machine, which means you will have to connect remotely to CS environment. You can do this in one of two ways:
+
+- Using SSH, which will allow you to open a command-line terminal on a CS machine. The CS techstaff provides [detailed instructions](https://howto.cs.uchicago.edu/remote_access) on how to do this.
+- Connecting to a [Virtual Desktop](https://howto.cs.uchicago.edu/techstaff:vdesk). This will show you, on your computer, effectively the exact same desktop you would see if you physically logged into a CSIL machine. However, this option may not work well for low-bandwidth Internet connections. 
+
+In future labs, there will be more flexibility on where you can do your work, including working locally on your own computer.
+
 ## Initializing your repository
 
 You will start by initializing your repository. Like SVN, your repository is hosted on GitHub, but you can create a local copy in your home directory (we will refer to this as your *local repository*).
@@ -96,7 +105,7 @@ In general, if you’re concerned about whether the graders are seeing the right
 
 Let's make a further change to `README.md`: Add a line with the text `CMSC 22000 - Introduction to Software Development`. 
 
-So, at this point, we have a file we have already committed (`README.md`) but where the *local* version is now out of sync with the version in the GitLab server. Furthermore, earlier we created a `test.txt` file. Is it a part of our repository? You can use the following command to ask Git for a summary of the files it is tracking:
+So, at this point, we have a file we have already committed (`README.md`) but where the *local* version is now out of sync with the version on GitHub. Furthermore, earlier we created a `test.txt` file. Is it a part of our repository? You can use the following command to ask Git for a summary of the files it is tracking:
 
     git status
 
@@ -119,7 +128,7 @@ This command should output something like this:
 
 Notice that there are two types of files listed here:
 
-* `Changes not staged for commit`: This is a list of files that Git knows about and have been modified since your last commit, but which have not been added to a commit (with `git add`). Note that we *did* use `git add` previously with `test.txt` (which is why Git is "tracking" that file), but we have not run `git add` since our last commit, which means the change we made to `test.txt` is not currently going to be included in any commit. Remember: committing is a two-step process (you `git add` the files that will be part of the commit, and then you create the commit).
+* `Changes not staged for commit`: This is a list of files that Git knows about and have been modified since your last commit, but which have not been added to a commit (with `git add`). Note that we *did* use `git add` previously with `README.md` (which is why Git is "tracking" that file), but we have not run `git add` since our last commit, which means the change we made to `README.md` is not currently going to be included in any commit. Remember: committing is a two-step process (you `git add` the files that will be part of the commit, and then you create the commit).
 
 * `Untracked files`: This is a list of files that Git has found in the same directory as your repository, but which Git isn't keeping track of.
 
@@ -188,14 +197,14 @@ Now, type in the following commit message:
 
     Lab 1 updates:
 
-    - Added README.md
-    - Updated test.txt file
+    - Added test.txt
+    - Updated README.md file
 
 Then, just save the file and exit (using the appropriate commands in your editor of choice). This will complete the commit, and you will see a message like this:
 
     [master 9119c6f] Lab 1 updates
      2 files changed, 3 insertions(+), 1 deletion(-)
-     create mode 100644 README.md
+     create mode 100644 test.txt
 
 Now, edit both files and add an extra line to each of them with the text `Git is pretty cool`. Running `git status` should now show the following:
 
@@ -226,17 +235,17 @@ So, if you run `git add -u` and create a commit:
       (use "git push" to publish your local commits)
     nothing to commit, working directory clean
 
-The message `Your branch is ahead of 'origin/master' by 2 commits.` is telling you that your local repository contains two commits that have not yet been uploaded to the GitLab server. In fact, if you go to https://mit.cs.uchicago.edu/ you'll see that the two commits we just created are nowhere to be seen. As helpfully pointed out by the above output, all we need to do is run `git push`, which should show something like this:
+The message `Your branch is ahead of 'origin/master' by 2 commits.` is telling you that your local repository contains two commits that have not yet been uploaded to GitHub. In fact, if you go to your repository on the GitHub website, you'll see that the two commits we just created are nowhere to be seen. As helpfully pointed out by the above output, all we need to do is run `git push`, which should show something like this:
 
     Counting objects: 8, done.
     Delta compression using up to 8 threads.
     Compressing objects: 100% (6/6), done.
     Writing objects: 100% (8/8), 730 bytes | 0 bytes/s, done.
     Total 8 (delta 1), reused 0 (delta 0)
-    To https://mit.cs.uchicago.edu/cmsc22000-spr-19/borja.git
+    To https://github.com/cmsc22000-labs/2020-lab1-username.git
        3e39c15..53462fb  master -> master
 
-Go to https://mit.cs.uchicago.edu. Do you see the updates in your repository? Click on "Commits" (above the file listing in your repository). If you click on the individual commits, you will be able to see the exact changes that were included in each commit.
+Now go to GitHub. Do you see the updates in your repository? Click on "Commits" (above the file listing in your repository). If you click on the individual commits, you will be able to see the exact changes that were included in each commit.
 
 Now, `git status` will look like this:
 
@@ -244,27 +253,27 @@ Now, `git status` will look like this:
     Your branch is up-to-date with 'origin/master'.
     nothing to commit, working directory clean
 
-If you see `nothing to commit, working directory clean`, that means that there are no changes in your local repository since the last commit you created (and, additionally, the above output also tells us that all our commits have also been uploaded to the GitLab server)
+If you see `nothing to commit, working directory clean`, that means that there are no changes in your local repository since the last commit you created (and, additionally, the above output also tells us that all our commits have also been uploaded to GitHub)
 
 ## Working from multiple locations
 
-So far, you have a local repository in your CS home directory, which you have been uploading to the GitLab server using the `git push` command. However, if you work from multiple locations (e.g., on a CS machine but also from your laptop), you will need to be able to create a local repository in those locations too. You can do this by running the `git clone` command (don't run this command just yet):
+So far, you have a local repository in your CS home directory, which you have been uploading to GitHub using the `git push` command. However, if you work from multiple locations (e.g., on a CS machine but also from your laptop), you will need to be able to create a local repository in those locations too. You can do this by running the `git clone` command (don't run this command just yet):
 
-    git clone https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
+    git clone https://github.com/cmsc22000-labs/2020-lab1-username.git
 
-This will create a local repository that "clones" the contents of the repository in the GitLab server. If you have a laptop with you (and have access to Git on that laptop), try running `git clone` there. If not, try creating a clone in a different directory on the CS machine you are on. For example:
+This will create a local repository that "clones" the version of the repository that is currently stored on GitHub. Let's do this in a different directory on the machine you are on. For example:
 
     mkdir -p /tmp/$USER/cs220
     cd /tmp/$USER/cs220
-    git clone https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git
+    git clone https://github.com/cmsc22000-labs/2020-lab1-username.git
 
-Make sure to replace `username` with your CNetID!
+Make sure to replace `username` with your GitHub username!
 
 Take into account that, when you run `git clone`, the repository is not cloned *into* the current directory. Instead, a *new* directory (with the same name as the repository) will be created in the current directory, and you will need to `cd` into it to use Git commands for that repository.
 
-Now, in the local repository in your home directory, add a line to `test.txt` with the text `One more change!`. Create a commit for that change and push it to GitLab (you should know how to do this by now, but make sure to ask for help if you're unsure of how to proceed).
+Now, in the local repository in your home directory, add a line to `test.txt` with the text `One more change!`. Create a commit for that change and push it to GitHub (you should know how to do this by now, but make sure to ask for help if you're unsure of how to proceed).
 
-Next, in the *second* local repository (the one you just created either on your laptop or on a separate location in the CS machine), check if that change appears in the `test.txt`. It will not, because you have not yet downloaded the latest commits from the repository. You can do this by running this:
+Next, in the *second* local repository (the one you just created either on a separate location in the machine you're working on), check if that change appears in the `test.txt` file. It will not, because you have not yet downloaded the latest commits from the repository. You can do this by running this:
 
     git pull
 
@@ -274,14 +283,14 @@ This should output something like this:
     remote: Compressing objects: 100% (3/3), done.
     remote: Total 3 (delta 1), reused 0 (delta 0)
     Unpacking objects: 100% (3/3), done.
-    From https://mit.cs.uchicago.edu/cmsc22000-spr-19/borja
+    From https://github.com/cmsc22000-labs/2020-lab1-username.git
        53462fb..0c29617  master     -> origin/master
     Updating 53462fb..0c29617
     Fast-forward
      test.txt | 3 ++-
      1 file changed, 2 insertions(+), 1 deletion(-)
 
-If you have multiple local repositories (e.g., one on a CS machine and one on your laptop), it is very important that you remember to run `git pull` before you start working, and that you `git push` any changes you make. Otherwise, your local repositories (and the repository on the GitLab server) may *diverge* leading to a messy situation called a *merge conflict* (we will be exploring these in a future Git lab). This will be specially important once you start using Git for its intended purpose: to collaborate with multiple developers, where each developer will have their own local repository, and it will become easier for some developers' code to diverge from others'.
+If you have multiple local repositories (e.g., one on a CS machine and one on your laptop), it is very important that you remember to run `git pull` before you start working, and that you `git push` any changes you make. Otherwise, your local repositories (and the repository on GitHub) may *diverge* leading to a messy situation called a *merge conflict* (we will be exploring these in a future Git lab). This will be specially important once you start using Git for its intended purpose: to collaborate with multiple developers, where each developer will have their own local repository, and it will become easier for some developers' code to diverge from others'.
 
 
 ## Discarding changes and unstaging
@@ -337,7 +346,7 @@ Go ahead and run `git commit`. The commit will now include only `README.md`.
 
 ## Looking at the commit log
 
-Once you have made multiple commits, you can see these commits, their dates, commit messages, author, etc. by typing `git log`. This command will open a scrollable interface (using the up/down arrow keys) that you can get out of by hitting q. As we saw earlier, you can also see the history of commits through GitLab's web interface, but it is also useful to be able to access the commit log directly from the terminal, without having to open a browser.
+Once you have made multiple commits, you can see these commits, their dates, commit messages, author, etc. by typing `git log`. This command will open a scrollable interface (using the up/down arrow keys) that you can get out of by pressing the `q` key. As we saw earlier, you can also see the history of commits through on GitHub's web interface, but it is also useful to be able to access the commit log directly from the terminal, without having to open a browser.
 
 Each commit will have a *commit hash* (usually referred to as the *commit SHA*) that looks something like this:
 
@@ -359,15 +368,15 @@ Git will only complain if there is more than one commit that starts with that sa
 
 ## Exercises
 
-If you've completed all the steps described above, congratulations, you've already earned 40 points (out of 100) in this lab! Make sure you remember to `git push` so the grader can verify you completed all the above tasks. If you're still working on the above tasks, don't worry: nothing is due at the end of this lab. Please note that the above tasks will be graded as follows:
+If you've completed all the steps described above, congratulations, you've already earned 40 points (out of 100) in this lab! Make sure you remember to `git push` so the grader can verify you completed all the above tasks. Please note that the above tasks will be graded as follows:
 
 * **Task 1**: 10 points for the `Updated test.txt` commit
 * **Task 2**: 5 points for the `Lab 1 updates` commit
 * **Task 3**: 5 points for the `A few more changes` commit
 * **Task 4**: 10 points for the commit for testing that git pull works correctly
-* **Task 5**: 10 points for the commit with `README.md` (after unstaging `test.txt`
+* **Task 5**: 10 points for the commit with `README.md` (after unstaging `test.txt`)
 
-Before next week's lab, you must also complete the following tasks. Some of them can be done just with what you have learned in today's lab, but most of them will require that you find the exact Git command (or series of Git commands) on your own. This is a very useful skill to develop: most software developers never take a course on Git or read a full book on Git before starting to use it; they learn the basics (like you did in this lab), and then rely on online documentation to fill the gaps.
+Before this lab's deadline, you must also complete the tasks below. Some of them can be done just with what you have learned in this lab, but most of them will require that you find the exact Git command (or series of Git commands) on your own. This is a very useful skill to develop: most software developers never take a course on Git or read a full book on Git before starting to use it; they learn the basics (like you did in this lab), and then rely on online documentation to fill the gaps.
 
 So, for the following tasks, you are allowed to obtain the answers in any way you want **EXCEPT** by asking someone (other than a CS 220 instructor or TA) to help you. This means you cannot ask for hints, solutions, pointers to documentation, etc. from *anyone* (classmates, roommates, friends, parents, etc.). Please note that you are welcome to take the answer verbatim from a website, online reference, online forum, etc. as long as you provide *attribution* (i.e., you need to tell us where you found the answer). Of course, you must also follow the instructions you find in those references to complete the task you've been given.
 
@@ -403,7 +412,7 @@ Edit `tasks.txt` to explain how you updated the commit message (feel free to sim
 
 (5 points) Take a look at the following project on GitHub: https://github.com/junegunn/fzf. All you need to know about this project is that it provides a very handy tool called `fzf` that is run from the terminal, and which can take some number of command-line arguments. 
 
-Notice how the GitHub web interface has a number of similarities with the GitLab web interface: you can explore the files in the repository, past commits, etc. You should be able to figure out how to clone this repository on your machine. Then, find the exact commit where the authors of this project added a `--no-mouse` option to the `fzf` command (hint: commit messages will usually mention when a new feature is added, and this project is no exception). 
+Clone this repository on your machine, but make sure you clone it in a directory *outside* the local repository you've been using so far in this lab. Then, find the exact commit where the authors of this project added a `--no-mouse` option to the `fzf` command (hint: commit messages will usually mention when a new feature is added, and this project is no exception). 
 
 Take into account that, while you should be able to find this out using only Git commands, you may need to find out a convenient way of exploring the commit log (instead of just scrolling endlessly until you find some mention of the `--no-mouse` option). Include the commit SHA and commit message in `tasks.txt`, and explain how you located that commit.
 
@@ -440,12 +449,12 @@ bcal (found here https://github.com/jarun/bcal) is a nifty little utility for do
 
     $ ./bcal "5*5*5mb"
 
-Clone the bcal repository into a new directory (for example, `~/bcal`), and use command X to find the exact commit that fixed this behavior. You can run the bcal command like so:
+Clone the bcal repository into a new directory, and use command X to find the exact commit that fixed this behavior. You can run the bcal command like so:
 
     $ make
     $ ./bcal "5*5*5mb"
 
-In `tasks.txt`, add a few sentences explaining how you found desired commit, and a line with the commit SHA (the hash identifier of the commit) as well as its text. There is one and only one right answer to this task, and there is one and only one git command that we will consider correct. We will only give you the following hints:
+In `tasks.txt`, add a few sentences explaining how you found the desired commit, and a line with the commit SHA (the hash identifier of the commit) as well as its text. There is one and only one right answer to this task, and there is one and only one git command that we will consider correct. We will only give you the following hints:
 
 * Command X is not any of the commands we have shown in this lab, nor any of the commands you were asked to find in previous tasks. In particular, you cannot solve this task just by using `git log` to inspect the commit log of the bcal project.
 * Command X has to be run multiple times (with different options/parameters) to solve this task.
@@ -455,8 +464,7 @@ You will be graded partially on discovering the identity of command X, and parti
 
 ### Submitting your lab
 
-Before submitting, make sure you've committed and pushed your changes to the `tasks.txt` file (remember you can run `git status` to check this). Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
+Before submitting, make sure you've committed and pushed your changes to the `tasks.txt` file (remember you can run `git status` to check this). 
 
-    chisubmit student assignment register lab1
-    chisubmit student assignment submit lab1
+TODO: Gradescope instructions
 
