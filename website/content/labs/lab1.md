@@ -389,7 +389,7 @@ Pro tip: Sometimes, just Googling for "how do I..." will yield the answer or, at
 
 #### Task 6
 
-(5 points) Create a directory `lab1` in your repository containing a file called `README.md` containing your name and CNetID. Add, commit, and push that file.
+(10 points) Create a directory `lab1` in your repository containing a file called `README.md` containing your name and CNetID. Add, commit, and push that file.
 
 Create a file called `tasks.txt` in your `lab1` directory. Most of the following tasks will require that you add something to this file, so we can verify that you completed a task correctly. Don't add the file just yet.
 
@@ -410,17 +410,11 @@ Edit `tasks.txt` to explain how you updated the commit message (feel free to sim
 
 #### Task 8
 
-(5 points) At this point, you're probably getting tired of always having to enter your GitHub password whenever you run certain Git commands. Figure out a way to not have to enter your password every time, and edit the `tasks.txt` file to explain what you did.
+(5 points) At this point, you're probably getting tired of always having to enter your GitHub password whenever you run certain Git commands. Figure out a way to not have to enter your password every time, and edit the `tasks.txt` file to explain what you did (copy-pasting the command(s) you ran and their output is also enough)
 
 Hint: There is basically a way to tell Git to remember your password. That is the simplest way to accomplish this, but there's also a (slightly more complicated) way involving "SSH keys". Unless you already know about SSH keys, you may want to skip that mechanism for now, and revisit it at a later time.
 
-
 #### Task 9
-
-(5 points) Having to enter your username and password every time you run `git push` is becoming a bit annoying. Find out how you can tell Git to save your username and password securely, so you don't have to enter it every time you run `git push` or `git pull`. Explain what steps you took in `tasks.txt` (copy-pasting the command(s) you ran and their output is also enough)
-
-
-#### Task 10
 
 (5 points) Take a look at the following project on GitHub: https://github.com/junegunn/fzf. All you need to know about this project is that it provides a very handy tool called `fzf` that is run from the terminal, and which can take some number of command-line arguments. 
 
@@ -433,11 +427,11 @@ You should ignore any Git instructions provided in the `fzf` documentation (spec
 {{% /warning %}}
 
 
-#### Task 11
+#### Task 10
 
 (5 point) Edit `README.md` (in your repository, not in the `fzf` repository you just cloned) and add any content to the file. Figure out how you can get Git to tell you the changes you've made to the file relative to the latest commit. Note that this is different from using `git show`, as we have not yet committed these changes. Once you have figured this out, and updated `tasks.txt` accordingly, undo these changes using `git checkout`.
 
-#### Task 12
+#### Task 11
 
 (5 points) Create a file called `mistake.txt` with any content. Add, commit, and push it to your repository. 
 
@@ -445,7 +439,7 @@ Actually, adding that file was a mistake (duh!). Figure out how to remove that f
 
 Note: The next task asks you to do something similar, and this task can technically be accomplished using the same (more general) mechanism in Task 12. For this task, you should find a command that specifically allows you to remove files.
 
-#### Task 13
+#### Task 12
 
 (10 points) Edit `README.md` to add the text `This is a mistake`. Add and commit (but do not push) this change. Edit the file again to add the test `This is also a mistake`. Add and commit (but do not push) this change.
 
@@ -453,7 +447,7 @@ Now, let's say we want to remove those two changes. We could, of course, just ed
 
 Note: You may encounter instructions online on how to "undo" a commit (in the sense of completely removing it from the commit log). This is not what we're asking you to do: you must find a command that specifically takes one or more commits, and undoes them by creating a new commit (thus preserving the record of those original commits).
 
-#### Task 14
+#### Task 13
 
 (15 points) In many software projects, it's not uncommon for bugs to go unnoticed for a long time, until someone happens to run the software in a way that makes the bug apparent. At that point, it's often your responsibility to find the commit that introduced the bad behavior. On the flipside, it's also common to want to find the commit that introduced new good behavior, for example, in issue discussions (e.g. "This request is redundant because that new behavior was already introduced in commit c4b17f9..."). Git provides an extremely powerful command for doing exactly this! (we will cryptically refer to this command as "command X") In this task, you must find this command and then use it to track down where a bug was fixed in an existing repository.
 
