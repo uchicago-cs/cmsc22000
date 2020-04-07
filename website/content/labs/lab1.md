@@ -277,7 +277,7 @@ Take into account that, when you run `git clone`, the repository is not cloned *
 
 Now, in the local repository in your home directory, add a line to `test.txt` with the text `One more change!`. Create a commit for that change and push it to GitHub (you should know how to do this by now, but make sure to ask for help if you're unsure of how to proceed).
 
-Next, in the *second* local repository (the one you just created either on a separate location in the machine you're working on), check if that change appears in the `test.txt` file. It will not, because you have not yet downloaded the latest commits from the repository. You can do this by running this:
+Next, in the *second* local repository (the one you just created in a separate location in the machine you're working on), check if that change appears in the `test.txt` file. It will not, because you have not yet downloaded the latest commits from the repository. You can do this by running this:
 
     git pull
 
