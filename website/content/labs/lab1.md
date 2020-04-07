@@ -478,4 +478,4 @@ You will be graded partially on discovering the identity of command X, and parti
 
 Before submitting, make sure you've committed and pushed your changes to the `tasks.txt` file (remember you can run `git status` to check this). 
 
-TODO: Gradescope instructions
+Your work will be submitted through Gradescope; additional instructions will be posted closer to the lab deadline.
