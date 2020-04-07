@@ -47,7 +47,11 @@ Log into https://github.com/. Your lab repository, `cmsc22000-labs/2020-labN-GIT
 
 * On your repository's GitHub page, right under "Quick setup — if you’ve done this kind of thing before" there is a URL field with two buttons: HTTPS and SSH. Make sure to change this to "HTTPS".
 
-Now, from inside your CMSC 22000 directory, run the commands that appear under "...or create a new repository on the command line" *except* the first one (the one that starts with `echo`. If any commands asks you to enter a username and password, just enter your GitHub username and password. Don't worry about what each individual command does; we will be seeing what most of these commands do in this lab. However, if you encounter any error messages, please make sure to let us know.
+Now, from inside your CMSC 22000 directory, run the commands that appear under "...or create a new repository on the command line" *except* the first one (the one that starts with `echo`. 
+
+*Note: If any commands asks you to enter a username and password, just enter your GitHub username and password* (do not enter your CNetID and password)
+ 
+Don't worry about what each individual command does; we will be seeing what most of these commands do in this lab. However, if you encounter any error messages, please make sure to let us know.
 
 You can verify that your repository was correctly set up by going back to your repository's page on GitHub, you should now see it contains a `README.md` file. If you click on it, you can see its contents.
 
