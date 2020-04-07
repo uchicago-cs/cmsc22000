@@ -47,7 +47,7 @@ Log into https://github.com/. Your lab repository, `cmsc22000-labs/2020-labN-GIT
 
 * On your repository's GitHub page, right under "Quick setup — if you’ve done this kind of thing before" there is a URL field with two buttons: HTTPS and SSH. Make sure to change this to "HTTPS".
 
-Now, from inside your CMSC 22000 directory, run the commands that appear under "...or create a new repository on the command line" *except* the first one (the one that starts with `echo`. 
+Now, from inside your CMSC 22000 directory, run the commands that appear under "...or create a new repository on the command line" *except* the first one (the one that starts with `echo`). 
 
 *Note: If any commands asks you to enter a username and password, just enter your GitHub username and password* (do not enter your CNetID and password)
  
@@ -471,4 +471,3 @@ You will be graded partially on discovering the identity of command X, and parti
 Before submitting, make sure you've committed and pushed your changes to the `tasks.txt` file (remember you can run `git status` to check this). 
 
 TODO: Gradescope instructions
-
