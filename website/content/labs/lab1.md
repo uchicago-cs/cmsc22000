@@ -399,7 +399,7 @@ Note: In all subsequent tasks, you should work only with the files inside the `l
 
 #### Task 7
 
-(5 points) Add the following in `tasks.txt`:
+(10 points) Add the following in `tasks.txt`:
 
     Task 7
     ------
