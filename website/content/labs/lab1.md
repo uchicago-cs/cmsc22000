@@ -275,7 +275,7 @@ Make sure to replace `username` with your GitHub username!
 
 Take into account that, when you run `git clone`, the repository is not cloned *into* the current directory. Instead, a *new* directory (with the same name as the repository) will be created in the current directory, and you will need to `cd` into it to use Git commands for that repository.
 
-Now, in the local repository in your home directory, add a line to `test.txt` with the text `One more change!`. Create a commit for that change and push it to GitHub (you should know how to do this by now, but make sure to ask for help if you're unsure of how to proceed).
+Now, in the local repository in your home directory, add a line to `test.txt` with the text `One more change!`. Create a commit for that change and push it to GitHub (you should know how to do this by now, but make sure to  [ask for help]({{< relref "help.md" >}}) if you're unsure of how to proceed).
 
 Next, in the *second* local repository (the one you just created in a separate location in the machine you're working on), check if that change appears in the `test.txt` file. It will not, because you have not yet downloaded the latest commits from the repository. You can do this by running this:
 
@@ -382,7 +382,9 @@ If you've completed all the steps described above, congratulations, you've alrea
 
 Before this lab's deadline, you must also complete the tasks below. Some of them can be done just with what you have learned in this lab, but most of them will require that you find the exact Git command (or series of Git commands) on your own. This is a very useful skill to develop: most software developers never take a course on Git or read a full book on Git before starting to use it; they learn the basics (like you did in this lab), and then rely on online documentation to fill the gaps.
 
-So, for the following tasks, you are allowed to obtain the answers in any way you want **EXCEPT** by asking someone (other than a CS 220 instructor or TA) to help you. This means you cannot ask for hints, solutions, pointers to documentation, etc. from *anyone* (classmates, roommates, friends, parents, etc.). Please note that you are welcome to take the answer verbatim from a website, online reference, online forum, etc. as long as you provide *attribution* (i.e., you need to tell us where you found the answer). Of course, you must also follow the instructions you find in those references to complete the task you've been given.
+So, for the following tasks, you are allowed to obtain the answers in any way you want **EXCEPT** by asking someone (other than a CS 220 instructor or TA) to help you. This means you cannot ask for hints, solutions, pointers to documentation, etc. from *anyone* (classmates, roommates, friends, parents, etc.). There is one exception, though: if someone asks a question on the `#course-labs` channel on Slack, you are allowed to help them out there, as long as you don't provide them with the answer (however, you are allowed to provide them with links to resources they may find useful to figure out the task). See our [Getting Help]({{< relref "help.md" >}}) page for more details on the `#course-labs` channel.
+
+Please note that you are welcome to take the answer verbatim from a website, online reference, online forum, etc. as long as you provide *attribution* (i.e., you need to tell us where you found the answer). Of course, you must also follow the instructions you find in those references to complete the task you've been given.
 
 Pro tip: Sometimes, just Googling for "how do I..." will yield the answer or, at least, some solid leads.
 
