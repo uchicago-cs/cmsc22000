@@ -12,12 +12,14 @@
     
     
     <item>
-      <title>How to submit your labs</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/labs/submit/</link>
+      <title>Getting help on the lab assignments</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/help/</link>
       <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://uchicago-cs.github.io/cmsc22000/labs/submit/</guid>
-      <description></description>
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/help/</guid>
+      <description>If you have any questions or get stuck on the lab assignments, there are two ways of getting help:
+Slack We have a #course-labs channel on our Slack workspace that can be used to ask questions about the lab assignments. However, to keep that channel tidy we ask that you follow a couple of conventions in this channel.
+The most important convention is that there should be one &amp;ldquo;thread&amp;rdquo; per question.</description>
     </item>
     
     <item>
