@@ -37,6 +37,8 @@ And selecting the "resolved" emoji (note: this is an alias for the "heavy_check_
 
 ![Resolved reaction](/cmsc22000/img/question-6.png "Resolved reaction")
 
+Note: An instructor or TA may also use the resolved emoji if they feel like the question has been resolved but, if it hasn't, you should feel free to remove the reaction, and post a reply on the thread to clarify that you still need assistance with that question.
+
 You can read more about Slack threads [here](https://slack.com/help/articles/115000769927-Use-threads-to-organize-discussions-).
 
 ### Zoom Office Hours
