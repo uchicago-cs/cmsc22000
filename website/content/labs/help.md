@@ -43,4 +43,8 @@ You can read more about Slack threads [here](https://slack.com/help/articles/115
 
 ### Zoom Office Hours
 
-We will also be holding office hours over Zoom to provide one-on-one assistance with lab assignments. We will post details on these soon. 
+You can also obtain one-on-one help via Zoom during scheduled office hours. To "attend" office hours, you must go into the `#course-office-hours` channel on Slack whenever office hours are in session (the times for office hours will be posted in a pinned message on that channel). Once you're in the channel, post a message with a brief description of your issue, and a Zoom meeting ID (this can be your personal meeting ID, or one created specifically for office hours). The instructor or TA running office hours will go through these messages, and visit each meeting to provide one-on-one help.
+
+Note: If you are uncomfortable sharing a meeting ID on the channel, simply specify that you would like the instructor/TA to send you a private message once they're reading to see you, so you can then share a meeting ID with them privately.
+
+When an instructor or TA joins your meeting, please share your screen with them if your question is going to involve looking at code or debugging of any sort (if you prefer, you can also share a single window, such as your code editor or a terminal). This is similar to how you would show an instructor/TA your laptop during normal office hours. During office hours, you may be asked to grant control to the instructor/TA over your screen. This can sometimes allow us to help you more interactively (similar to how an instructor/TA would type on your laptop in normal office hours), but please let us know if you would prefer not to do this.
