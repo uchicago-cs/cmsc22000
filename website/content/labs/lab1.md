@@ -374,7 +374,7 @@ Git will only complain if there is more than one commit that starts with that sa
 
 If you've completed all the steps described above, congratulations, you've already earned 40 points (out of 100) in this lab! Make sure you remember to `git push` so the grader can verify you completed all the above tasks. Please note that the above tasks will be graded as follows:
 
-* **Task 1**: 10 points for the `Updated test.txt` commit
+* **Task 1**: 10 points for the `Updated README.md` commit
 * **Task 2**: 5 points for the `Lab 1 updates` commit
 * **Task 3**: 5 points for the `A few more changes` commit
 * **Task 4**: 10 points for the commit for testing that git pull works correctly
