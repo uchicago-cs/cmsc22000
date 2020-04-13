@@ -88,6 +88,9 @@ Grades are not curved in this class or, at least, not in the traditional sense. 
 
 We curve only to the extent that we may lower the boundaries for one or more letter grades, depending on the distribution of the raw scores. 
 
+### Lab Assignment Regrades
+
+We sometimes make mistakes, and are happy to review any grading decision on the lab assignments that you feel is unfair or unjustified. However, it is also your responsibility to make these requests in a timely manner. Requests for regrades must be submitted no later than **one week** after a graded lab assignment is returned to you. After that time, we will not consider any requests for regrades, *regardless of whether the regrade request is reasonable and justified*.
 
 Books
 -----
@@ -116,6 +119,10 @@ There are a few aspects of the class that will be a bit unique in Spring 2020:
   Students who are prevented from joining the Zoom sessions (due to their timezone, Internet access, or some other personal difficulty) can earn these points by, instead, suggesting questions for the discussion/Q&A sessions (which will revolve around the content provided in pre-recorded lectures). While any student will be able to submit questions, the students who are unable to participate in Zoom sessions can earn the 2 points by submitting two questions before a Zoom discussion session (similarly, they get the full 2 points if they submit questions for at least 75% of the Zoom sessions)
   
 - 3 points for viewing pre-recorded lectures. The pre-recorded lectures will include very simple quizzes that should be trivial to pass if you pay attention to the videos. If your total score on the quizzes is above 75%, you get the full 3 points; below 75% you get a proportional score.
+
+### Late submission of lab assignments
+
+To add some flexibility to your coursework this quarter, we have setup Gradescope to accept lab submissions up to 48 hours after their deadline. We will not penalize your first two late submissions but, after that, any late submission will have a 20 point penalty (out of 100). Submissions will not be accepted 48 hours after the deadline, but we will make exceptions for students who are facing any additional personal difficulties (if so, please notify the instructor before the deadline, if possible)
 
 ### Zoom Guidelines
 
