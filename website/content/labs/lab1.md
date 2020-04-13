@@ -474,4 +474,6 @@ You will be graded partially on discovering the identity of command X, and parti
 
 Before submitting, make sure you've committed and pushed your changes to the `tasks.txt` file (remember you can run `git status` to check this). 
 
-Your work will be submitted through Gradescope; additional instructions will be posted closer to the lab deadline.
+Additionally, to make it easier for the graders to check your answers to Tasks 7-13, you will be copy-pasting your answers to those tasks (i.e., whatever you wrote for those tasks in the `tasks.txt` file) on [Gradescope](https://gradescope.com/). If you have never used Gradescope before, it is a web-based assignment submission and grading system. You can access Lab #1 either by logging into [Gradescope](https://gradescope.com/) or via Canvas.
+
+Once in Gradescope, simply select assignment "Lab #1: Git", and fill in the answers for Tasks 7-12. Please note that you will not be able to enter any answers for Tasks 1-6 on Gradescope, since those will be based on the graders' inspection of your GitHub repository (but we still need to include those tasks on Gradescope so we can grade them as part of this lab).
