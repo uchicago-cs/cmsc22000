@@ -2,64 +2,49 @@
 title: "Lab 2: Software Design"
 date: 2018-01-28
 publishdate: 2018-01-28
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, April 18th, 2:30pm
+**Due:** Wednesday, April 22nd, 8pm
 
-In this lab, you will carry out some basic software design tasks individually, and will also start working with your project team on a design warmup exercise. The individual portion of this lab will be shorter than in other labs, because we expect you to spend part of your time working on the design warmup exercise. In fact, we encourage you to spend most of the lab session working on the team exercise.
+In this lab, you will carry out some basic software design tasks. This lab will be shorter than in other labs, because you will also be working on a design warmup exercise with your project team. Please note that, while the design warmup exercise is due at the same time as this lab, it will be part of your project score (it is not counted as an additional lab assignment).
 
-Before we get to the individual tasks, we need you to perform an additional (ungraded but necessary) Git-related task so you can fetch the files necessary for this lab.
+## Creating your lab repository
 
-## Task 0: Pulling from upstream
+In this lab, you will be using a different repository than the one you used in the previous lab (in general, GitHub will create a new repository for each assignment). Like the previous lab, we will provide you with an  *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-labN-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub. 
 
-In the previous lab, you set up your local repo, which is set up by default to pull/push from/to a repository in our GitLab server. The repository on your machine is called a *local repository* while the one on the GitLab server is a *remote repository*. You can actually see the remote repositories associated with your local repository by running this:
+One thing that will be different in this lab is that your lab repository will be seeded with some code. So, once you've signed up for the lab assignment on GitHub, you will just need to clone the repository to start working on it (you won't need to run `git init` or add any files to the repository before you start working on the lab.)
 
-    git remote -v
-
-This should show something like this:
-
-    origin	https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git (fetch)
-    origin	https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git (push)
-
-This actually means you have one remote repository called origin (with the same URL for pulling/fetching and pushing)
-
-In Git, you can actually associate your local repository with multiple remote repositories. This may seem odd, but it is very useful! In particular, we have a repository on the GitLab server where we store the files we want to distribute to you for the labs: https://mit.cs.uchicago.edu/cmsc22000-spr-19/cmsc22000-spr-19
-
-If you visit that page, you’ll see it contains a `libgeometry` folder. These are the files we want you to use in the lab. However, instead of cloning our repository somewhere else and copying those files into your repository, you can simply add this repository as an additional remote repository: 
-
-    git remote add upstream https://mit.cs.uchicago.edu/cmsc22000-spr-19/cmsc22000-spr-19.git
-
-We’ve called this additional remote repository “upstream”. You can verify it was added by running `git remote -v`, which should show the following:
-
-    origin	https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git (fetch)
-    origin	https://mit.cs.uchicago.edu/cmsc22000-spr-19/username.git (push)
-    upstream	https://mit.cs.uchicago.edu/cmsc22000-spr-19/cmsc22000-spr-19.git (fetch)
-    upstream	https://mit.cs.uchicago.edu/cmsc22000-spr-19/cmsc22000-spr-19.git (push)
-
-Now, to incorporate the files from the upstream repository into our repository, we just need to run the following:
-
-    git pull upstream master
-
-This command is just like the `git pull` you’ve run previously, except we’re saying “pull from the `upstream` repository’s master branch”. Once you run this command, your default editor will open up and will ask you to edit a commit, and will include the following text by default:
-
-    Merge branch 'master' of https://mit.cs.uchicago.edu/cmsc22000-spr-19/cmsc22000-spr-19
-
-    # Please enter a commit message to explain why this merge is necessary,
-    # especially if it merges an updated upstream into a topic branch.
-    #
-    # Lines starting with '#' will be ignored, and an empty message aborts
-    # the commit.
-
-Just save the commit without making any modifications, and exit the editor. Your repository will now have a `libgeometry` directory! This is a copy of the files in the upstream repository, and the changes you make will be saved to your repository, not to the upstream repository (in theory, it would be possible for you to push changes to the upstream repository, but you don’t actually have sufficient privileges to push to that repository)
-
-Before you continue with the lab, make sure to push your changes to your repository on GitLab:
-
-    git push
+Please note that there will be a separate invitation URL to create a shared repository that everyone in your team will have access to.
 
 ## Refactoring libgeometry
 
-When we discussed the libgeometry library in class, we pointed out (ha!) that the Point module provides the following function:
+Your repository contains a single directory `libgeometry` that contains the implementation of a simple library for manipulating basic geometric shapes. You can build the library just by running this:
+
+    $ make
+    
+And build some sample programs that use the library like this:
+
+    $ make samples
+    
+You can run the sample program like this:
+
+    $ samples/polygon-sample
+    The perimeter is 8.00
+    The area is 4.00
+
+You'll notice there is also a `polygon-sample-static` program as well; you can ignore it for now.
+
+When we get to *Implementation* in class, we'll discuss exactly how a "library" is built, and how it is linked with other programs. You will not need to understand how the code is built to complete this lab.
+
+The library currently provides two modules:
+
+- A Point module (`include/point.h' and `src/point.c`) that provides a number of operations on two-dimensional points
+- A Polygon module (`include/polygon.h' and `src/polygon.c`) that provides a number of operations on polygons, and which depends on the Point module.
+
+We encourage you to read through the above files, and ask questions if anything is unclear in that code.
+
+One thing to note is that the Point module provides the following function:
 
     bool segment_intersect(point_t *p1, point_t *q1, point_t *p2, point_t *q2)
 
@@ -76,17 +61,10 @@ In this task, you must do the following:
 
     In the `test_point.c` file, update the intersection tests to make sure they use the new version of the file (you don’t need to know exactly how these tests work, and you can keep these tests inside the `test_point.c`; in a future lab, we will see a cleaner way of updating the tests). Once you have fixed this, you should be able to run `make tests` followed by `tests/test-libgeometry`.
 
-## Project Team Exercise: Design Warm-up
-
-You can find the specification of the team exercise [here]({{< relref "../projects/2019/design-1.md" >}})
-
-Please note that this exercise is not part of your Lab #2 grade. Instead, it will be part of your Project grade for the class (see the [syllabus]({{< relref "syllabus.md" >}}) for more details) You should nonetheless use the lab time to get to know your team, and to start discussing the team exercise.
-
 
 ## Submitting your lab
 
-Before submitting, make sure you've added, committed and pushed all your work in the `lab2` directory (remember you can run `git status` to check this). Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
+Before submitting, make sure you've pushed all your code to GitHub. You will submit your code through GitHub but, unlike the previous lab, we need you to submit the code that is in your repository. When submitting through Gradescope, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). Please note that you can submit as many times as you want before the deadline.
 
-    chisubmit student assignment register lab2
-    chisubmit student assignment submit lab2
+Once you submit your files, an "autograder" will run. This won't actually be doing any grading, but it will try to build your code, to make sure you don't have any compiler errors, etc. If you do, make sure to fix them and re-submit again.
 
