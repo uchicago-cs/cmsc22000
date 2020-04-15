@@ -5,6 +5,8 @@ type: page
 
 **Due:** Wednesday, April 22nd, 8pm
 
+**NOTE:** The late submission policy for labs does not apply to this assignment. We will be discussing this design in class on Friday, April 24th, and need all submissions ready by then.
+
 You have recently joined a software company that is developing an exciting new game: The Boardmaster 3000! This game will allow users to play a variety of two-player board games, all of which can be played on a square [chessboard](https://en.wikipedia.org/wiki/Chessboard) (like [chess](https://en.wikipedia.org/wiki/Chess), [checkers](https://en.wikipedia.org/wiki/Draughts), and some [variants of chess](https://en.wikipedia.org/wiki/List_of_chess_variants)) However, we are following an incremental software development model, so we are going to start by supporting only chess. This will give us a chance to get some initial feedback on the Boardmaster 3000 before we move on to supporting other games.
 
 What’s that you say? There’s a lot of chess games out there already? Ah, but the Boardmaster 3000 will feature a state-of-the-art multiplatform VR interface with AI adversaries powered by sophisticated Deep Learning algorithms! Also, you can bet on games using our own cryptocurrency, Boardcoin!
@@ -158,7 +160,9 @@ If you join the wrong team, or mistakenly create a duplicate team, please notify
 
 ## Submission Instructions
 
-TODO (need to figure out group submission mechanics on Gradescope)
+Before submitting, make sure you've added, committed, and pushed all your code to GitHub. 
+
+You will submit your code through Gradescope. Please note that only one team member needs to make the submission (that team member will be given the option to specify who else is in their team). When submitting, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). If you upload your repository, make sure you select your `2020-design1-GITHUB_USERNAMES` repository, with "master" as the branch. Please note that you can submit as many times as you want before the deadline. 
 
 
 
