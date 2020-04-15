@@ -44,7 +44,7 @@ Each line represents a row of the chessboard. Empty spots are represented by an 
 
 ## Chess rules
 
-Our first version of the Boardmaster 3000 will only have to support a subset of the rules of chess. In particular, we will only support the moves specified in the “Basic moves” section of the [Rules of chess](https://en.wikipedia.org/wiki/Rules_of_chess) Wikipedia article. This means we do not yet support castling, _en passant_, or pawn promotion.
+Our first version of the Boardmaster 3000 will only have to support a subset of the rules of chess. In particular, we will only support the moves specified in the “Basic moves” section of the [Rules of chess](https://en.wikipedia.org/wiki/Rules_of_chess#Basic_moves) Wikipedia article. This means we do not yet support castling, _en passant_, or pawn promotion.
 
 
 ## Your task
@@ -148,7 +148,7 @@ Do not name your modules `file1.c`, `file2.c`, etc. Instead replace those filena
 
 Finally, you must include a `README` file with a summary of each module, and any other general notes on your design.
 
-Note: Once the design exercise is done, all the teams will be able to see each other’s designs (along with the comments we will provide, except for their exact score). This will allow you to see how other teams approached the same design problem, which can be very useful in honing your own design skills. However, this also means you have to make sure your code and documentation will be easy to read and understand by others.
+Note: Once the design exercise is done, all the teams will be able to see each other’s designs (along with the comments we will provide, except for their score). This will allow you to see how other teams approached the same design problem, which can be very useful in honing your own design skills. However, this also means you have to make sure your code and documentation will be easy to read and understand by others.
 
 ## Creating your shared team repository
 

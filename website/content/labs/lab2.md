@@ -19,7 +19,7 @@ Please note that there will be a separate invitation URL to create a shared repo
 
 ## Refactoring libgeometry
 
-Your repository contains a single directory `libgeometry` that contains the implementation of a simple library for manipulating basic geometric shapes. You can build the library just by running this:
+Your repository contains a single directory `libgeometry` that contains the implementation of a simple library for manipulating basic geometric shapes. You can build the library just by running this inside the `libgeometry` directory:
 
     $ make
     
@@ -64,7 +64,9 @@ In this task, you must do the following:
 
 ## Submitting your lab
 
-Before submitting, make sure you've pushed all your code to GitHub. You will submit your code through GitHub but, unlike the previous lab, we need you to submit the code that is in your repository. When submitting through Gradescope, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). Please note that you can submit as many times as you want before the deadline.
+Before submitting, make sure you've added, committed, and pushed all your code to GitHub. You will submit your code through Gradescope but, unlike the previous lab, we need you to submit the code that is in your repository (as opposed to filling in some text fields). 
+
+When submitting through Gradescope, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). If you upload your repository, make sure you select your `2020-lab2-GITHUB_USERNAME` repository, with "master" as the branch. Please note that you can submit as many times as you want before the deadline.
 
 Once you submit your files, an "autograder" will run. This won't actually be doing any grading, but it will try to build your code, to make sure you don't have any compiler errors, etc. If you do, make sure to fix them and re-submit again.
 
