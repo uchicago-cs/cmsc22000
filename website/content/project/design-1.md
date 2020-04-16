@@ -138,7 +138,7 @@ printer.h:
 ```
 
 
-We encourage you to follow this style guide (TODO: include link to developer guide) when writing your code, but will not be grading you based on style at this point. However, we will expect you to follow this style guide in the project, so familiarizing yourself with it will be good practice.
+We encourage you to follow [this style guide](https://uchicago-cs.github.io/dev-guide/style_guide.html) when writing your code, but will not be grading you based on style at this point. However, we will expect you to follow this style guide in the project, so familiarizing yourself with it will be good practice.
 
 Please note that your code _must_ compile correctly. This will ensure that you are properly specifying your structs and functions. We will be talking about building projects with multiple modules during third week but, in the interim, you can compile your code like this:
 
