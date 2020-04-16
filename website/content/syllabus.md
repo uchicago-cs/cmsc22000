@@ -56,7 +56,7 @@ During Weeks 2-3, the teams will work on a warmup exercise on software design. A
 
 Starting in Week 3, project planning will follow a Scrum-like process, with weeks 3-9 of the quarter being divided into several sprints. Starting on Week 3, all teams have an all-hands meeting during Monday class hours, and each team will have an additional team meeting during the lab section of the class. Teams will keep track of their tasks through GitHub issues, with grading primarily based on their performance on these tasks.
 
-More details on the project can be found on the [Project]({{< relref "project.md" >}}) page.
+More details on the project can be found on the [Project]({{< relref "project/" >}}) page.
 
 Grading
 -------
@@ -72,7 +72,7 @@ Grading is based on the following:
   * 5% Peer Feedback
   * 10% Final Presentation
 
-See the the [Project]({{< relref "project.md" >}}) page for more details on how the project scores are determined.
+See the the [Project]({{< relref "project/" >}}) page for more details on how the project scores are determined.
 
 Additionally, there are 2 points of extra credit that are unlocked by completing a final goal in the course project (this goal is such that it can only be reached if all teams have substantially completed and integrated their work for the project). If these extra points are unlocked, they are awarded to everyone in the class.
 
