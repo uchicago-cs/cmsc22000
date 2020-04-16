@@ -53,7 +53,22 @@
   </url>
   
   <url>
+    <loc>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</loc>
+    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://uchicago-cs.github.io/cmsc22000/labs/</loc>
+    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://uchicago-cs.github.io/cmsc22000/projects/2019/</loc>
+    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://uchicago-cs.github.io/cmsc22000/projects/2020/</loc>
     <lastmod>2018-01-28T00:00:00+00:00</lastmod>
   </url>
   
@@ -81,6 +96,10 @@
   
   <url>
     <loc>https://uchicago-cs.github.io/cmsc22000/projects/2019/design-2/</loc>
+  </url>
+  
+  <url>
+    <loc>https://uchicago-cs.github.io/cmsc22000/project/design-1/</loc>
   </url>
   
   <url>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Project (2019) on CS 220</title>
+    <link>https://uchicago-cs.github.io/cmsc22000/projects/2019/</link>
+    <description>Recent content in Project (2019) on CS 220</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://uchicago-cs.github.io/cmsc22000/projects/2019/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Project</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/</guid>
+      <description>Text Adventure Games Project Organization and Timeline  Suggested initial goals  WDL Game State Action Management Checkpointing CLI UI     Project Evaluation  Requirements for graded work  Tasks/Issues Pull Requests to master Code Reviews Peer feedback Final Presentation   Class-wide bonus points     You wake up to find yourself in a strange hall. You have no idea how you got here.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://uchicago-cs.github.io/cmsc22000/projects/2019/presentation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/projects/2019/presentation/</guid>
+      <description>Final Presentations The final component of this course will be a series of final presentations, where each team will present the work they have done throughout the quarter. The presentations will take place on Wednesday, June 12, from 1:30pm to 3:30pm, in Ryerson 277. Each team will have 15 minutes to present (with an additional 5 minutes for questions).
+Presentation Contents Each presentation must be divided into three portions: a high-level discussion of how you designed and implemented your component, a demo, and reflections.</description>
+    </item>
+    
+    <item>
+      <title>Design Exercise: Boardmaster 3000</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/projects/2019/design-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/projects/2019/design-1/</guid>
+      <description>You have recently joined a software company that is developing an exciting new game: The Boardmaster 3000! This game will allow users to play a variety of two-player board games, all of which can be played on a square chessboard (like chess, checkers, and some variants of chess) However, we are following an incremental software development model, so we are going to start by supporting only chess. This will give us a chance to get some initial feedback on the Boardmaster 3000 before we move on to supporting other games.</description>
+    </item>
+    
+    <item>
+      <title>Design Exercise: Boardmaster 3000 (Part II)</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/projects/2019/design-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/projects/2019/design-2/</guid>
+      <description>Good news, everyone! The first version of the Boardmaster 3000 has been a resounding success! We got a lot of quality feedback from users, which included comments like “the VR interface is like nothing I’ve seen before”, “finally, a chess game that challenges both my intellect and my senses”, and “the AI is creepily lifelike, in a good way, I guess”. We know you were not involved in any of those aspects of the game, but your modules for loading, manipulating, and saving the state of a game were an indispensable building block that made the rest of the game possible.</description>
+    </item>
+    
+  </channel>
+</rss>

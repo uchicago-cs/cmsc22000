@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Project on CS 220</title>
+    <link>https://uchicago-cs.github.io/cmsc22000/project/</link>
+    <description>Recent content in Project on CS 220</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://uchicago-cs.github.io/cmsc22000/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Design Warm-up #1: Boardmaster 3000</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/project/design-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/project/design-1/</guid>
+      <description>Due: Wednesday, April 22nd, 8pm
+NOTE: The late submission policy for labs does not apply to this assignment. We will be discussing this design in class on Friday, April 24th, and need all submissions ready by then.
+You have recently joined a software company that is developing an exciting new game: The Boardmaster 3000! This game will allow users to play a variety of two-player board games, all of which can be played on a square chessboard (like chess, checkers, and some variants of chess) However, we are following an incremental software development model, so we are going to start by supporting only chess.</description>
+    </item>
+    
+  </channel>
+</rss>

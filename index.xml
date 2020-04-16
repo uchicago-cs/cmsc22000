@@ -84,6 +84,16 @@ The most important convention is that there should be one &amp;ldquo;thread&amp;
     </item>
     
     <item>
+      <title>Lab 2: Software Design</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</guid>
+      <description>Due: Wednesday, April 22nd, 8pm
+In this lab, you will carry out some basic software design tasks. This lab will be shorter than in other labs, because you will also be working on a design warmup exercise with your project team. Please note that, while the design warmup exercise is due at the same time as this lab, it will be part of your project score (it is not counted as an additional lab assignment).</description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://uchicago-cs.github.io/cmsc22000/description/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -130,12 +140,14 @@ Presentation Contents Each presentation must be divided into three portions: a h
     </item>
     
     <item>
-      <title>Project</title>
-      <link>https://uchicago-cs.github.io/cmsc22000/project/</link>
+      <title>Design Warm-up #1: Boardmaster 3000</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/project/design-1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://uchicago-cs.github.io/cmsc22000/project/</guid>
-      <description>In the course project, you will be divided into teams of five students, and will work collaboratively (both within your team and between teams) to create a complex software system that will involve designing and implementing a number of components. You will be using several tools to support the collaborative aspects of this project and, indeed, your collaborative skills will be as important as your coding skills to be successful in this project.</description>
+      <guid>https://uchicago-cs.github.io/cmsc22000/project/design-1/</guid>
+      <description>Due: Wednesday, April 22nd, 8pm
+NOTE: The late submission policy for labs does not apply to this assignment. We will be discussing this design in class on Friday, April 24th, and need all submissions ready by then.
+You have recently joined a software company that is developing an exciting new game: The Boardmaster 3000! This game will allow users to play a variety of two-player board games, all of which can be played on a square chessboard (like chess, checkers, and some variants of chess) However, we are following an incremental software development model, so we are going to start by supporting only chess.</description>
     </item>
     
   </channel>

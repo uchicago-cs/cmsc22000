@@ -32,5 +32,15 @@ The most important convention is that there should be one &amp;ldquo;thread&amp;
  NOTE: This lab is based on a Linux and Git lab originally written by Anne Rogers for CMSC 12100 (and updated and edited by a variety of instructors and TAs throughout the years)  In some of your previous CS courses, you may have become familiar with using Subversion (SVN) to handle revision control (or version control) of your projects and assignments, and to submit your work for grading.</description>
     </item>
     
+    <item>
+      <title>Lab 2: Software Design</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab2/</guid>
+      <description>Due: Wednesday, April 22nd, 8pm
+In this lab, you will carry out some basic software design tasks. This lab will be shorter than in other labs, because you will also be working on a design warmup exercise with your project team. Please note that, while the design warmup exercise is due at the same time as this lab, it will be part of your project score (it is not counted as an additional lab assignment).</description>
+    </item>
+    
   </channel>
 </rss>
