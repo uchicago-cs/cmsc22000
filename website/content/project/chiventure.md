@@ -15,7 +15,6 @@ It is a time of adventure.
 It is the time of...
 ```
 
-
 [![chiventure](/cmsc22000/img/chiventure.jpg "chiventure")](https://www.youtube.com/watch?v=DGSXURPvRxY)
 
 
@@ -85,22 +84,22 @@ For example, here is a simple SCUMM script that describes a “room” in a game
     }
 ```
 
-
 Similarly, Zork (and several other games from that era) ran on the [Z-machine](https://en.wikipedia.org/wiki/Z-machine) game engine, with games written in a language called Z-code (the Z-machine is, strictly speaking, a virtual machine, but we can think of it as a game engine). While text adventure games are less common nowadays, the text adventure format still thrives in the [interactive fiction](https://en.wikipedia.org/wiki/Interactive_fiction) genre, which can be written in languages like [Inform](https://en.wikipedia.org/wiki/Inform) (which are relatively easy to use by authors without a technical background).
 
-# chiventure
+# chiventure architecture
 
-![Projects Components](/cmsc22000/img/components.png "Project Components")
+At the moment, the chiventure code is divided into the following components:
 
-The components are the following:
-
-*   **WDL**: Our game engine will have a “World Description Language” that provides the specification of a single game. This component is responsible for defining this language, and for parsing it.
+*   **WDL**: Games are specified in a language known as the World Description Language (WDL). This component is responsible for defining this language, and for parsing it. The current specification of the WDL can be found [here](https://github.com/uchicago-cs/chiventure/blob/master/docs/wdl.md).
 *   **Game State**: A game will have some state we need to keep track of: rooms, objects in rooms, players, non-player characters, etc. This component models this state, and provides interfaces for simple manipulations of the state of the game (e.g., placing an object in the player’s inventory)
-*   **Action Management**: During the game, a player will be able to perform actions (pushing, pulling, opening, closing, etc.) that will usually affect the state of the game in some way. The processing of these actions can be non-trivial; for example, picking up an object may only be possible if a certain condition is met (e.g., a magical orb can only be taken if you are in possession of a talisman) and may have additional effects (e.g., pushing a brick in a wall may unlock a door in a different room). This component is responsible for processing actions like “take the orb” (and checking whether it is possible to perform that action), and would use the Game State’s interface to actually change the state of the game.
-*   **Checkpointing**: As the state of the game changes, we will want to checkpoint the game so we can resume it at a later time (or, more informally, we need the ability to save games and load games). This component is responsible for defining a file format for saving the state of the game, and providing interfaces for saving/loading this state. 
-*   **CLI**: This component will be responsible for providing a command prompt, and parsing the commands entered by the user, and using the game state to validate some commands. For example, if a user types “push button”, the CLI would not call Action Management right away. Instead, it would need to check whether there is anything in the room that can be identified by “button”, whether it can be pushed, and may even have to ask the user to clarify what button (if there are multiple buttons in the room).
-*   **UI**: Besides the command-line interface, games may have additional UI elements, like visualizing a map of the game or displaying graphics associated with individual rooms. This component would be responsible for any non-CLI elements of the user interface.
+*   **Action Management**: During the game, a player is able to perform actions (pushing, pulling, opening, closing, etc.) that will usually affect the state of the game in some way. The processing of these actions can be non-trivial; for example, picking up an object may only be possible if a certain condition is met (e.g., a magical orb can only be taken if you are in possession of a talisman) and may have additional effects (e.g., pushing a brick in a wall may unlock a door in a different room). This component is responsible for processing actions like “take the orb” (and checking whether it is possible to perform that action).
+*   **CLI**: This component is responsible for providing a command prompt, and parsing the commands entered by the user, and using the game state to validate some commands. For example, if a user types “push button”, the CLI would not call Action Management right away. Instead, it would check whether there is anything in the room that can be identified by “button”, whether it can be pushed, and may even have to ask the user to clarify what button (if there are multiple buttons in the room).
+*   **UI**: This component is responsible for the non-CLI elements of the user interface, including the the display of a game map.
 
+There is an additional component that is currently mothballed, pending deeper changes to how WDL and Game State are implemented in chiventure:
 
+*   **Checkpointing**: As the state of the game changes, tha player may want to checkpoint the game so they can resume it at a later time (i.e., the player may want to save games and load games). This component is responsible for defining a file format for saving the state of the game, and providing interfaces for saving/loading this state. 
+
+Additional documentation on the implementation of chiventure can be found in the [docs/](https://github.com/uchicago-cs/chiventure/tree/master/docs) directory of the chiventure repository.
 
 
