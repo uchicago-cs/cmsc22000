@@ -1,7 +1,6 @@
 ---
 title: "Project"
 menu: main
-layout: single
 ---
 
 In the course project, you will be divided into teams of five students, and will work collaboratively (both within your team and between teams) to create a complex software system that will involve designing and implementing a number of components. You will be using several tools to support the collaborative aspects of this project and, indeed, your collaborative skills will be as important as your coding skills to be successful in this project.
@@ -10,6 +9,8 @@ In the project, you will continue to develop [last year's project]({{< ref "/pro
 
 The course project also involves two warm-up exercises that you will do with your teams, and which revolve around software design.
 
+
+[chiventure]({{< ref "/project/chiventure.md" >}})
 
 
 
