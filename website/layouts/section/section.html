@@ -4,10 +4,5 @@
     {{ partial "bloc/content/h1-title" . }}
   </header>
   {{.Content}}
-  {{ range .Data.Pages }}
-      <li>
-          <a href="{{.Permalink}}">{{.Title}}</a>
-      </li>
-  {{ end }}
 </section>
 {{ partial "foot" . }}
