@@ -2,22 +2,20 @@
 title: "Lab 3: Make"
 date: 2018-01-28
 publishdate: 2018-01-28
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, April 25th, 2:30pm
+**Due:** Thursday, April 29th, 8pm CDT
 
 In the class project, you will likely produce dozens of C files that will ultimately produce a single executable. When dealing with multiple source files, specially when there are dependencies between them, it is common to use a *build system* instead of manually compiling and linking all the files. in this lab, we’ll explore the ways a program can be “built”--that is, the way that source code is turned into binary code so that a computer can execute it. In some cases, “building” may refer to compiling a single file, but usually it refers to the whole process of linking and creating a project: which can include linking, compiling, and running tests. We’ll look at testing in later labs, and for this lab we’ll focus on the `make` command as a way to compile and build projects. 
 
 {{% warning %}}
-{{% md %}}
 **NOTE**: For some of these tasks, you may be tempted to look at the Makefiles included with libgeometry, and copy-paste parts of them into your Makefiles. There are two important reasons not to do this:
 
 1. It is important that you understand what you're doing in each of the tasks in this lab. If you get stuck and you're not sure how to proceed, ask us (either during the lab session or on Piazza). If you just copy-paste from one of our Makefiles, you won't understand how those parts of the Makefile work.
 2. The tasks in this lab actually ask you to modify a Makefile in ways that are different from how the libgeometry Makefile is written. If you just copy-paste from our Makefile, it is almost certain we will be able to tell that you did so. 
 
 That said, by the end of this lab you should be able to understand almost everything that is contained in the libgeometry Makefiles. However, it is important that you perform all the intermediate tasks before you get to that point.
-{{% /md %}}
 {{% /warning %}}
 
 Finally, for your reference, you may find the following resources helpful:
@@ -28,24 +26,11 @@ Finally, for your reference, you may find the following resources helpful:
 
 ## Project Team Exercise: Design Warm-up (Part II)
 
-Along with this week's lab, we are also assigning the second part of the design warm-up exercise, which you can find [here]({{< relref "../projects/2019/design-2.md" >}}). Before you start working on the lab, you may want to touch base with your team about this exercise, so you can come up with a plan for completing the team exercise in the coming days (however, since you already know each other and have started working together, you probably don't need to spend the entire lab session on this).
+Along with this week's lab, we are also assigning the second part of the design warm-up exercise, which you can find [here]({{< ref "/project/design-2.md" >}}). Please note that the second part of the design exercise is due at the same time as this lab.
 
-Please note that the second part of the design exercise is due at the same time as this lab.
+## Creating your lab repository
 
-
-## Task 0: Pulling from upstream
-
-(0 points)
-
-You should already have the "upstream" remote set up in your repository. If you do, simply run
-
-```
-$ git pull upstream master
-```
-
-to get the files for this lab. If you don't have the "upstream" remote set up, follow task 0 from [Lab 2]({{< relref "lab2.md" >}}).
-
-This lab is organized into folders, one for each task. You'll be provided with the source for a program or library in each task, and you'll write the `Makefile` for that task.
+Like previous labs, we will provide you with an  *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-lab3-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub. Like Lab #2, your repository will be seeded with some files for the lab, which will be contained in the `labs/lab3` directory.
 
 ## Task 1: A simple `Makefile`
 
@@ -278,11 +263,9 @@ At this point, you have a Makefile that produces a `libstarwars.so` library. For
 
 You must also include a `readme.txt` file with instructions on how to build and run your program. Remember that, by default, programs running on a Linux system will look for shared libraries in specific locations, so you must tell us how we must run your program so that it can correctly find the `libstarwars.so` library when it runs.
 
+## CMake
 
-### Submitting your lab
+## Submitting your lab
 
-Before submitting, make sure you've added, committed and pushed all your work in the `lab3` directory (remember you can run `git status` to check this). Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
 
-    chisubmit student assignment register lab3
-    chisubmit student assignment submit lab3
 
