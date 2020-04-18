@@ -20,7 +20,7 @@ It is the time of...
 
 The CMSC 22000 project revolves around implementing a _text adventure game engine_. This means that you won’t be implementing an individual game but, rather, a platform that allows game authors (with little or no knowledge of computer programming) to develop text adventure games.
 
-Not just that, you won't be implementing it from scratch but, rather, will work on existing code that was written in previous editions of CMSC 22000.
+Not just that, you won't be implementing it from scratch but, rather, will work on existing code that was written in previous offerings of CMSC 22000.
 
 
 # Text Adventure Games
@@ -86,6 +86,10 @@ For example, here is a simple SCUMM script that describes a “room” in a game
 
 Similarly, Zork (and several other games from that era) ran on the [Z-machine](https://en.wikipedia.org/wiki/Z-machine) game engine, with games written in a language called Z-code (the Z-machine is, strictly speaking, a virtual machine, but we can think of it as a game engine). While text adventure games are less common nowadays, the text adventure format still thrives in the [interactive fiction](https://en.wikipedia.org/wiki/Interactive_fiction) genre, which can be written in languages like [Inform](https://en.wikipedia.org/wiki/Inform) (which are relatively easy to use by authors without a technical background).
 
+If you'd like to learn more about text adventure games, specially as they relate to interactive fiction, we recommend checking out the [Interactive Fiction!](https://www.red-bean.com/sussman/if/) page by [Ben Collins-Sussman](https://www.red-bean.com/sussman/) (SB'94). This page also includes links to several games and interactive novels that you can play for free. If you'd like to get a feel for what a text adventure game feels like, we recommend checking out the interactive spy novel, [Spider and Web](https://en.wikipedia.org/wiki/Spider_and_Web). You can play the novel for free [here](https://eblong.com/zarf/zweb/tangle/).
+
+If you'd like to try out a graphic adventure game, many classic adventure games are available on Steam, including [The Secret of Monkey Island](https://store.steampowered.com/app/32360/The_Secret_of_Monkey_Island_Special_Edition/), [Indiana Jones and the Fate of Atlantis](https://store.steampowered.com/app/6010/Indiana_Jones_and_the_Fate_of_Atlantis/), and many others.
+
 # chiventure architecture
 
 At the moment, the chiventure code is divided into the following components:
@@ -98,7 +102,7 @@ At the moment, the chiventure code is divided into the following components:
 
 There is an additional component that is currently mothballed, pending deeper changes to how WDL and Game State are implemented in chiventure:
 
-*   **Checkpointing**: As the state of the game changes, tha player may want to checkpoint the game so they can resume it at a later time (i.e., the player may want to save games and load games). This component is responsible for defining a file format for saving the state of the game, and providing interfaces for saving/loading this state. 
+*   **Checkpointing**: As the state of the game changes, that player may want to checkpoint the game so they can resume it at a later time (i.e., the player may want to save games and load games). This component is responsible for defining a file format for saving the state of the game, and providing interfaces for saving/loading this state. 
 
 Additional documentation on the implementation of chiventure can be found in the [docs/](https://github.com/uchicago-cs/chiventure/tree/master/docs) directory of the chiventure repository.
 

@@ -43,7 +43,7 @@ As such, your individual score on the project will be based on how well you perf
 
 Note: no part of your score will be determined by your teammates' reviews/feedback. So, when you receive a code review or peer feedback, we will be evaluating the quality of the code review / peer feedback itself; we will not be using that review/feedback to determine your score. Please note that, in peer feedback, we will specifically be evaluating the person giving the feedback (by looking at the quality of the feedback they provide).
 
-Each of the above has a point value:
+Each of the above has a different weight:
 
 *   Adding tasks to the backlog: 5 points
 *   Tasks/issues: 10 points
@@ -249,18 +249,18 @@ On top of that, there is an additional `dev` (short for "development") branch th
 
 This means that, to get code into chiventure, you must make pull request to get code merged into the `dev` branch (and the instructor and TAs will decide when to merge that code into `master`).
 
-Because the `dev` branch should contain stable code, pull requests to master must be carefully reviewed before they are approved. If you want to merge code into `dev`, your code must be reviewed by (1) someone in your team and (2) your senior developer. When your code affects code owned by another team, you must have an additional reviewer from each team who's code is affected.
+Because the `dev` branch should contain stable code, pull requests to `dev` must be carefully reviewed before they are approved. If you want to merge code into `dev`, your code must be reviewed by (1) someone in your team and (2) your senior developer. When your code affects code owned by another team, you must have an additional reviewer from each team whose code is affected.
 
 A pull request should contain a relatively self-contained piece of work.  In fact, it is not uncommon for a task (or, at most, 2-3 tasks) to result in a pull request. We encourage you to touch base with your senior developer before creating your first pull requests, to determine whether the work you want to merge merits a pull request (or, similarly, whether it needs to be broken up into multiple pull requests).
 
 Like a task, a pull request should have a descriptive title, a descriptive summary, updates on the progress of the pull request (especially since changes may need to be done based on the code reviews), and a closing statement. The assignees for the pull request must be everyone who contributed to the code that is being merged. If a pull request is approved, all assignees and reviewers will receive the points for that pull request.
 
-Take into account that the final outcome of a pull request could be for that pull request to be denied. If this happens, it will not impact your score (but you will also not receive points for that pull request).
+Take into account that the final outcome of a pull request could be for that pull request to be denied. If this happens, it will not impact your score (the effect will be the same as if you had never made the pull request to begin with).
 
 
 ### Peer feedback
 
-Twice throughout the project, each student will provide feedback to two other students in their same team. This is similar to a peer evaluation/review (which are fairly common in large software projects), except the feedback you provide will have no effect on the recipient's grade (whereas in a real project, these evaluations/reviews could affect whether you get a raise, a promotion, etc.). Instead, we will be assessing the feedback you provide to others.
+Twice throughout the project, each student will provide feedback to two other students in their own team. This is similar to a peer evaluation/review (which are fairly common in large software projects), except the feedback you provide will have no effect on the recipient's grade (whereas in a real project, these evaluations/reviews could affect whether you get a raise, a promotion, etc.). Instead, we will be assessing the feedback you provide to others.
 
 At the end of Sprints 2 and 3, you will be assigned two peers who will be providing you with feedback (you will know each other's identities). Before they provide you with feedback, you must think about what you would like to receive feedback on. At the end of Sprint 2, you should think about the following: 
 

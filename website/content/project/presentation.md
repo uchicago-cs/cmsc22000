@@ -26,7 +26,7 @@ You must also discuss at least one thing that you would've done differently with
 
 ## Presentation Format
 
-We suggest you allocate roughly 5 minutes for each portion of the presentation. That said, it would be prudent to plan to speak for no more than 12-13 minutes, to give yourself some wiggle room. Please note that the design/implementation and demo portions can be interwoven together, as opposed to treating them and completely distinct portions.
+We suggest you allocate roughly 5 minutes for each portion of the presentation. That said, it would be prudent to plan to speak for no more than 12-13 minutes, to give yourself some wiggle room. Please note that the design/implementation and demo portions can be interwoven together, as opposed to treating them as completely distinct portions.
 
 Take into account that the demo/presentation itself doesn't have to be delivered by all team members. In fact, for a 15 minute presentation, you probably want no more than 2-3 people speaking in total (but as many of you should be at the presentation, in case there are any questions that need to be answered by a specific team member)
 
