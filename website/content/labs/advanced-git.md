@@ -520,6 +520,7 @@ branch (in this case, we say that `master` is a *protected branch*).
 Only the senior developers (i.e., the instructor and the TAs)
 are allowed to push to `master`, which means that all changes to the `master` 
 branch by a junior developer (i.e., you) must be reviewed and approved by a senior developer. 
+
 This is another common collaboration pattern, which allows a team to work
 in the same repository (without having to create multiple forks), but making
 it less likely that broken code will enter the `master` branch.
@@ -550,7 +551,9 @@ Using the commands we described earlier in this lab, you should now do the follo
 1. Create and check out a branch called ``CNETID/add-to-names`` (or similar, as long as
   it starts with your CNetID)
 2. Edit the `README.md` file to add your name, and create a commit with that change.
-3. Push your branch to GitHub
+3. Push your branch to GitHub. Git may helpfully provide you with a URL to create
+   a pull request; ignore this for now, although you're welcome to use that direct
+   URL in the future.
 
 Now, go to the repository on GitHub (https://github.com/cmsc22000-labs/2020-names). It
 should actually show that you've pushed a branch recently, and there will be a green 
