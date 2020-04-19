@@ -1,12 +1,14 @@
 ---
-title: "Design Exercise: Boardmaster 3000 (Part II)"
+title: "Design Warm-up #2: Boardmaster 3000 (Part II)"
 ---
+
+**Due:** Wednesday, April 29th, 8pm CDT
+
+**NOTE:** The late submission policy for labs does not apply to this assignment. We will be discussing this design in class on Friday, May 1st, and need all submissions ready by then.
 
 Good news, everyone! The first version of the Boardmaster 3000 has been a resounding success! We got a lot of quality feedback from users, which included comments like “the VR interface is like nothing I’ve seen before”, “finally, a chess game that challenges both my intellect _and_ my senses”, and “the AI is creepily lifelike, in a good way, I guess”. We know you were not involved in any of those aspects of the game, but your modules for loading, manipulating, and saving the state of a game were an indispensable building block that made the rest of the game possible.
 
 Encouraged by this early feedback on the first version of the game, we are going to add more features to the Boardmaster 3000:
-
-
 
 *   Support for two more games: checkers and Almost Chess
 *   Support for square chessboards larger than 8x8
@@ -130,16 +132,17 @@ Besides the C code that specifies your design, you should also answer the follow
 *   In hindsight, what (if anything) would you have done differently in your original design that would’ve made it easier to add support for these additional requirements?
 
 
+## Creating your shared team repository
+
+Like the previous design exercise, you will have to follow an *invitation URL* to create a repository. However, since the teams were already created in the previous design exercise, the invitation URL will show you all the existing teams, and all you need to do is select yours.
+
+If you join the wrong team, or mistakenly create a duplicate team, please notify an instructor/TA.
 
 ## Submission Instructions
 
-Like the first part of the exercise, you should make sure you do all your work in your team repository (not in your individual repository). Once you are ready to submit, run `chisubmit init` in the root of your team repository (note: if you already did this in the first exercise, you don't need to do it again) Once you have done so, you just need to run this:
+Before submitting, make sure you've added, committed, and pushed all your code to GitHub. 
 
-```
-chisubmit student assignment submit design2
-```
-
-(you do not need to run the `assignment register` command, like the labs, because we will be registering the teams ourselves on chisubmit)
+You will submit your code through Gradescope. Please note that only one team member needs to make the submission (that team member will be given the option to specify who else is in their team). When submitting, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). If you upload your repository, make sure you select your `2020-design2-GITHUB_USERNAMES` repository, with "master" as the branch. Please note that you can submit as many times as you want before the deadline. 
 
 
 

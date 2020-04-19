@@ -5,7 +5,7 @@ publishdate: 2018-01-28
 draft: false
 ---
 
-**Due:** Thursday, April 29th, 8pm CDT
+**Due:** Wednesday, April 29th, 8pm CDT
 
 In the class project, you will likely produce dozens of C files that will ultimately produce a single executable. When dealing with multiple source files, specially when there are dependencies between them, it is common to use a *build system* instead of manually compiling and linking all the files. in this lab, we’ll explore the ways a program can be “built”--that is, the way that source code is turned into binary code so that a computer can execute it. In some cases, “building” may refer to compiling a single file, but usually it refers to the whole process of linking and creating a project: which can include linking, compiling, and running tests. We’ll look at testing in later labs, and for this lab we’ll focus on the `make` command as a way to compile and build projects. 
 
@@ -30,7 +30,7 @@ Along with this week's lab, we are also assigning the second part of the design 
 
 ## Creating your lab repository
 
-Like previous labs, we will provide you with an  *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-lab3-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub. Like Lab #2, your repository will be seeded with some files for the lab, which will be contained in the `labs/lab3` directory.
+Like previous labs, we will provide you with an  *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-lab3-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub. Like Lab #2, your repository will be seeded with some files for the lab, which will be contained in four `task` directories inside the repository.
 
 ## Task 1: A simple `Makefile`
 
@@ -38,20 +38,20 @@ Like previous labs, we will provide you with an  *invitation URL* that will allo
 
 In the `task1` directory, you'll see a simple program (`greet.c`) that prints "Hello there" to the screen and exits. As you've done in previous courses, you can compile and run the program like so:
 
-```
+```shell script
 $ gcc -o greet greet.c
 $ ./greet
 ```
 
 And when you're done, you can always remove the executable (also called the binary) to prevent adding it to version control like so:
 
-```
+```shell script
 $ rm -f greet
 ```
 
 Now, let's say you want to change your program so that instead of printing "Hello there", it prints "General Kenobi!" You either have to hit the up arrow on your keyboard a million times, or remember `gcc -o greet greet.c`. And perhaps you want to enable optimizations, enable all the warnings, and enable debugging symbols (so you can use `gdb`):
 
-```
+```shell script
 $ gcc -O2 -Wall -Wextra -g -o greet greet.c
 ```
 
@@ -74,7 +74,7 @@ world: hello
 
 We can use this `Makefile` like so:
 
-```
+```shell script
 $ make hello
 echo "Hello"
 Hello
@@ -83,11 +83,9 @@ echo "Hello"
 Hello
 echo "World!"
 World!
-
 ```
 
 {{% warning %}}
-{{% md %}}
 **Beware the curse of the tabs and the missing separators!** 
 
 If you get an error message like this:
@@ -101,22 +99,27 @@ This means there may have been an issue when copy-pasting from this page to the 
 If that is the case, you can tell `make` to use spaces instead of tabs by adding the following at the top of your Makefile:
 
     .RECIPEPREFIX +=
-{{% /md %}}
 {{% /warning %}}
 
 First, notice how `make hello` prints both the command that is run by that rule, as well as the result of running that command. Next, notice how since the `world` rule depends on the `hello` rule, the `hello` rule is executed first when we run `make world`. It’s important to note that the topmost rule in a file (that is, the rule defined the earliest in the file) is the **default rule**, which means that it will be executed when calling `make` with no arguments. In the case above, `make` and `make hello` will produce identical output. 
 
 One more thing to note is that since `make` was designed to work with C, it also has a number of *implicit rules*. For example, run the following to delete the `greet` program we created earlier:
 
-    rm -f greet
+```shell script
+$ rm -f greet
+```
 
 Now, run this:
 
-    make greet
+```shell script
+$ make greet
+```
 
 Our Makefile doesn't have a `greet` rule and, yet, because there is a `greet.c` file, `make` interprets that as "I should generate a `greet` executable from `greet.c`". Similarly, if you run this:
 
-    make greet.o
+```shell script
+make greet.o
+```
 
 `make` will generate an object file from `greet.c` (but won't generate an executable).
 
@@ -126,17 +129,22 @@ The problem here is that if we have a rule called `clean`, we can’t ever creat
 .PHONY: rule1 rule2 ...etc
 ```
 
-Where rule1 and rule2 and so on are the names of the rules you’ve defined in your `Makefile`.
+Where `rule1` and `rule2` and so on are the names of the rules you’ve defined in your `Makefile`.
 
 For this task, create a file called `Makefile` in the `task1` directory with two rules:
 
-1. A rule called `all` (a common default rule name) that compiles the program using `gcc`; and
+1. A rule called `all` that compiles the program using `gcc`; and
 2. A rule called `clean` that removes the binary produced by `all`.
 
-You can run the rules in your `Makefile` by running `make all` (or, since `all` is the default rule, just running `make`) and `make clean`. Add your `Makefile` to git, commit it, and push.
+You can run the rules in your `Makefile` by running `make all` and `make clean`.
 
+The order in which you specify the rules is not significant *except* that the first rule in the file will be the *default* rule, meaning that it will be selected whenever you run `make` without any parameters. If you want to run any other rule, you have to specify the rule name when running `make` (e.g., `make clean`). So, it is common to call the default rule `all`, and to write in a way that will build our entire program.
 
+Once you're done, add your `Makefile` to git, commit it, and push.
 
+{{% warning %}}
+**NOTE**: Building produces a number of binary files, including object files, executables, and (as we'll see later in this lab) library files. These should *never* be added to your Git repository! You'll notice that there's actually a `.gitignore` file in the root of your repository with a list of files that Git should ignore (so you won't inadvertently add them to your repository). It is good practice to have such a file in any repository you create, to make sure you never add binary files to your repository.
+{{% /warning %}}
 
 ## Task 2: Let's generalize!
 
@@ -177,13 +185,13 @@ This task is split into two phases: the first will help you familiarize yourself
 
 In the task 3 directory, you’ll see a new program structure. We have two header files in the `include` directory, and three C files in the `src` directory. Basically, we have `obi_wan.c` and `obi_wan.h`, which define a function called `hello_there`, that prints `Hello there` to the screen. Similarly, we have `grievous.c` and `grievous.h`, which define `general_kenobi`, which prints `General Kenobi!` to the screen. `main.c` defines a `main` function that calls `hello_there` and `general_kenobi`. To compile these files together, recall from 152 / 162 that you have to pass them to `gcc` like so:
 
-```
+```shell script
 $ gcc -g -O2 -Wall -Wextra -g src/main.c src/obi_wan.c src/grievous.c -o hello
 ```
 
 There’s a problem with this: how does `gcc` know where to find the header files? For this we use the `-I` flag:
 
-```
+```shell script
 $ gcc -g -O2 -Wall -Wextra -g -I ./include/ src/main.c src/obi_wan.c src/grievous.c -o hello
 ```
 
@@ -193,7 +201,7 @@ Now on to phase 2. Due to overwhelming demand from your userbase, you’re going
 
 First, remove the `main.c` file - we don’t want `main` in a library. From inside the `task3` directory:
 
-```
+```shell script
 $ git rm src/main.c
 ```
 
@@ -203,7 +211,7 @@ First things first: we’re no longer building a binary called `hello`, we’re 
 
 To compile a file `hello.c` into an object file `hello.o`:
 
-```
+```shell script
 gcc -Wall -Wextra -O2 -g -fPIC -c -o hello.o hello.c
 ```
 
@@ -211,7 +219,7 @@ Note the presence of the new `gcc` flag `-fPIC`. This flag tells `gcc` to enable
 
 To build one or several object files into a shared library, we would do this:
 
-```
+```shell script
 gcc -shared -o libhello.so hello.o
 ```
 
@@ -234,11 +242,9 @@ In task 3, you defined separate, explicit rules for each object file in the proj
  - Inside a rule, you can use the `patsubst` function like so: `gcc $(patsubst %.o,%.d,$@)`. This means: “take the name of the current rule, substitute the extension `.o` for `.d`, and pass that file to gcc".
 
 {{% note %}}
-{{% md %}}
 `.d` files (aka, "dependency files"), which you will encounter in libgeometry and in other projects, are special files that list out all the header files that the project depends on. This is because by default, `make` does not track changes to .h files, while it does track changes to .c files. So, we use a special flag in gcc (the `-MM` flag which you can read more about in `man gcc`) which compiles a list of header files that the code depends on. `make` can then use that `.d` file to figure out when a header file has been modified and recompile the code accordingly.
 
 Please note that you do not need to worry about `.d` files in this lab.
-{{% /md %}}
 {{% /note %}}
 
 
@@ -265,7 +271,41 @@ You must also include a `readme.txt` file with instructions on how to build and 
 
 ## CMake
 
+While you have learned about Make in this lab, the course project uses a more advanced build system called [CMake](https://cmake.org/), which actually provides a layer of abstraction over Make. For example, this is was a simple CMake file for building a library looks like:
+
+```
+cmake_minimum_required(VERSION 3.5.1)
+project(libstarwars C)
+
+set(CMAKE_C_STANDARD 11)
+
+include_directories(include/)
+
+add_library(starwars SHARED
+            src/obi_wan.c
+            src/grievous.c)
+```
+
+You can try this CMake build file by saving it as `CMakeLists.txt` inside the `task4` directory. Then, run the following commands:
+
+```shell script
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+```
+
+This creates a separate `build` directory where all the build files (including intermediate object files) will be created. This keeps your directory structure cleaner by separating your source files from your build files. Running `cmake ..`
+actually generates a `Makefile`; running `make` will result in a `libstarwars.so`
+library being built inside the `build` directory.
+
+While it may seem odd that we went through several Make exercises, to then reveal we're not using Make in the course project, it's hard to understand how CMake works if you don't first understand how the underlying Make system works (not just that, there are lots of projects out there that use Make exclusively). We're not covering CMake in detail here because, as you can see above (and as you'll see in the course project), the CMake syntax is pretty intuitive.
+
 ## Submitting your lab
 
+Before submitting, make sure you've added, committed, and pushed all your code to GitHub. Like the previous lab, you will submit your code through Gradescope,
 
+When submitting through Gradescope, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). If you upload your repository, make sure you select your `2020-lab3-GITHUB_USERNAME` repository, with "master" as the branch. Please note that you can submit as many times as you want before the deadline.
+
+Once you submit your files, an "autograder" will run. This won't actually be doing any grading, but it will try to build your code, to make sure you don't have any compiler errors, etc. If you do, make sure to fix them and re-submit again.
 
