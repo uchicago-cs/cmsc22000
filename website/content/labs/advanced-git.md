@@ -519,11 +519,21 @@ branches and push to them, but you are *not* allowed to push to the `master`
 branch (in this case, we say that `master` is a *protected branch*). 
 Only the senior developers (i.e., the instructor and the TAs)
 are allowed to push to `master`, which means that all changes to the `master` 
-branch by a junior developer (i.e., you) must be reviewed and approved by a senior developer. 
+branch by a junior developer (i.e., you) must be reviewed and approved 
+by a senior developer. 
 
 This is another common collaboration pattern, which allows a team to work
 in the same repository (without having to create multiple forks), but making
 it less likely that broken code will enter the `master` branch.
+
+{{% note %}}
+In the course project, we will actually be using an additional branch called
+`dev` (the `dev`elopment branch) that will also be protected. You don't need to worry about it for
+the purposes of this lab, but just be aware that in the project you will
+only ever be making pull requests to `dev` (the senior developers will
+then decide when `dev` can be merged into `master`).
+{{% /note %}}
+
 
 To see how this style of pull request works, we're actually going to use a different 
 repository with a protected `master` branch:
@@ -561,7 +571,8 @@ should actually show that you've pushed a branch recently, and there will be a g
 If you don't see a "Compare & pull request" button, you can also click on the 
 "New pull request" button that appears next to the pull-down list of branches; you
 will then have to manually specify the branch you're merging before you can create
-the pull request.
+the pull request (the "base branch" would be `master` and the "compare branch" would be
+`CNETID/add-to-names`)
 
 After clicking "Compare & pull request", or after clicking "New pull request" and
 selecting the branch you want to merge, you will be able to specify a title and a 
