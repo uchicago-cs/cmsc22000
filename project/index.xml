@@ -6,9 +6,47 @@
     <description>Recent content in Project on CS 220</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 17 Feb 2018 08:47:20 -0600</lastBuildDate>
     
 	<atom:link href="https://uchicago-cs.github.io/cmsc22000/project/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Project Features</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/project/features/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/project/features/</guid>
+      <description>Each team will be assigned to work on a specific feature of chiventure. Each team will have a chance to express a preference, and we will aim to assign each team to a feature they have expressed very high interest in.
+Types of features Broadly speaking, there are two types of features you will be able to work on: those that involve improving and maintaining existing code in chiventure, and those that involve implementing new features.</description>
+    </item>
+    
+    <item>
+      <title>Project Policies</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/project/policies/</link>
+      <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/project/policies/</guid>
+      <description>Project Organization Project Timeline Project Evaluation  Requirements for graded work  Tasks/Issues Pull Requests Peer feedback Final Presentation   Class-wide bonus points   Team Composition and Mobility   Project Organization In this project, you will be divided into teams of five students, and will work collaboratively (both within your team and between teams) on a complex software system, chiventure, that will involve improving existing code as well as designing and implementing new functionality.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://uchicago-cs.github.io/cmsc22000/project/presentation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/project/presentation/</guid>
+      <description>Final Presentations  NOTE: These are the requirements for the 2019 edition of CMSC 22000. They have not yet been updated for 2020!  The final component of this course will be a series of final presentations, where each team will present the work they have done throughout the quarter. The presentations will take place on Wednesday, June 12, from 1:30pm to 3:30pm, in Ryerson 277. Each team will have 15 minutes to present (with an additional 5 minutes for questions).</description>
+    </item>
+    
+    <item>
+      <title>chiventure: a Text Adventure Game Engine</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/project/chiventure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/project/chiventure/</guid>
+      <description>You wake up to find yourself in a strange hall. You have no idea how you got here. The last thing you remember is a blinding flash of light. You look at the tapestries lining the walls for any clues on your whereabouts. The tapestries depict valiant knights, fire-breathing wyverns, armies of goblins, and fearsome rulers sitting in their gilded thrones. Wherever you are, it must be in a different world from your own.</description>
+    </item>
     
     <item>
       <title>Design Warm-up #1: Boardmaster 3000</title>
