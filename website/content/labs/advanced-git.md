@@ -2,7 +2,7 @@
 title: "Optional Lab: Advanced Git"
 date: 2018-01-27
 publishdate: 2018-01-27
-draft: true
+draft: false
 ---
 
 In the 150s/160s, as well as in the CS 220 labs, you have used version control systems 
@@ -19,7 +19,7 @@ be using for the course project.
 
 This lab will not be graded, but you must work through it before you can start working on the project.
 In particular, it includes one task which we will be checking; if you do not complete it
-by the end of fifth week, we may nag you about it.
+by the end of fourth week, we may nag you about it.
 
 # Working collaboratively with Git
 
@@ -138,14 +138,14 @@ In the remainder of the lab, we will explore the following concepts:
 To explore these concepts, we have created the following repository on GitHub
 which contains only a single file in it:
 
-https://github.com/uchicago-cs/cmsc22000-dummy-repo
+https://github.com/cmsc22000-labs/2020-advanced-git
 
 # Forking a repository
 
-Let's say we want to make some changes to the `cmsc22000-dummy-repo` repository.
+Let's say we want to make some changes to the `2020-advanced-git` repository.
 You could clone that repository and make some commits in it, but you would be
 unable to push those commits to the repository: you are not a developer
-in the `cmsc22000-dummy-repo` repository, and thus don't have push privileges
+in the `2020-advanced-git` repository, and thus don't have push privileges
 on it.
 
 This is a very common scenario: there are millions of repositories on GitHub and
@@ -156,8 +156,8 @@ that repository, but you would be unable to push that fix to the repository.
 
 So, a common first step in this case is to *fork* the repository. This creates
 a copy of the repository under your account, on which you *will* have push
-privileges. So, let's start by forking the `cmsc22000-dummy-repo` repository:
-go to https://github.com/uchicago-cs/cmsc22000-dummy-repo and click on the Fork
+privileges. So, let's start by forking the `2020-advanced-git` repository:
+go to https://github.com/cmsc22000-labs/2020-advanced-git and click on the Fork
 button in the top-right of the page:
 
 ![fork](/cmsc22000/img/git-lab-fork.png)
@@ -167,23 +167,23 @@ you select your GitHub user account.
 
 Your forked repo will now live here:
 
-https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo
+https://github.com/GITHUB_USERNAME/2020-advanced-git
 
 Where `GITHUB_USERNAME` should be replaced by your GitHub username.
 
 Now, clone this repo on your computer:
 
-    git clone https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo.git
+    git clone https://github.com/GITHUB_USERNAME/2020-advanced-git.git
 
 Please note that there is also a "Clone or download" button on your repo's page
 that you can click to obtain the URL to pass along to `git clone`.
 
-Next, `cd` into `cmsc22000-dummy-repo`. We will be making some changes inside the
+Next, `cd` into `2020-advanced-git`. We will be making some changes inside the
 repository. However, before we continue, we will reiterate an important point:
-any changes you make in `cmsc22000-dummy-repo` will *not* be pushed
-to the original `cmsc22000-dummy-repo` repository (the one in https://github.com/uchicago-cs/cmsc22000-dummy-repo).
+any changes you make in `2020-advanced-git` will *not* be pushed
+to the original `2020-advanced-git` repository (the one in https://github.com/cmsc22000-labs/2020-advanced-git).
 Instead, they will be pushed to your *fork* of that repository, which lives
-inside your GitHub account (https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo).
+inside your GitHub account (https://github.com/GITHUB_USERNAME/2020-advanced-git).
 Later on, we will see how you would be able to contribute changes back
 to the original repository.
 
@@ -218,7 +218,7 @@ to step on each other's toes. This is similar to the first example we showed
 above (where two developers could be working on separate functions, `bar()`
 and `baz()`).
 
-Let's create a new branch in your `cmsc22000-dummy-repo` repository. The branch
+Let's create a new branch in your `2020-advanced-git` repository. The branch
 will be called `add-author` and you can create it by running this:
 
     git checkout -b add-author
@@ -271,11 +271,11 @@ this issue simply by running the verbatim command provided in the error message:
     Writing objects: 100% (3/3), 292 bytes | 292.00 KiB/s, done.
     Total 3 (delta 1), reused 0 (delta 0)
     remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-    To github.com:borjasotomayor/cmsc22000-dummy-repo.git
+    To github.com:borjasotomayor/2020-advanced-git.git
      * [new branch]      add-author -> add-author
     Branch 'add-author' set up to track remote branch 'add-author' from 'origin'.
 
-If you now go to https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo, and click
+If you now go to https://github.com/GITHUB_USERNAME/2020-advanced-git, and click
 on the "Branch" pull-down list, you will see `add-author` in the list of branches
 (you will also see some additional branches besides the `master` branch; we will
 see these soon).
@@ -299,7 +299,7 @@ the heads of the two branches. For example, in this diagram, commit `854bff54` m
 ![branches3](/cmsc22000/img/git-lab-branches-3.png)
 
 Our repository actually has two other branches: `change_author1` and
-`change_author2`. Go to https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo
+`change_author2`. Go to https://github.com/GITHUB_USERNAME/2020-advanced-git
 and browse those branches. Remember you can use the "Branches" pull-down list
 to switch between branches on GitHub; once you're on a specific branch, you can
 click on "commits" to see the list of commits for that branch specifically. You
@@ -495,106 +495,99 @@ includes a line telling us which two commits were merged:
 Before continuing with the rest of the lab, make sure to push all these commits by
 running `git push`.
 
-# Pull requests
+# Code reviews with pull requests
 
 So far, we've made some changes to a fork of the following repository:
 
-https://github.com/uchicago-cs/cmsc22000-dummy-repo
+https://github.com/uchicago-cs/2020-advanced-git
 
 Remember that we don't have push access on that repository, but we do have
-push access on our fork. In fact, a common reason for creating a fork of
-a repository is so we can make some changes to that fork, and then contribute
-our changes back to the original repository.
+push access on our fork. Now that we've made some changes in our fork,
+we may want to ask the owner of the original repository to merge our changes
+into the repository we forked from.
 
-The way we do this is by doing a *pull request*. In other words, we submit a request
-to the original repository to pull our changes. You are going to create a pull request
-with the changes you made in your fork. To do this, go to your forked repository on GitHub:
-
-https://github.com/GITHUB_USERNAME/cmsc22000-dummy-repo
-
-You will see a "New pull request" button above the file listing. Click it. The next
-page will summarize the commits you are going to include in the pull request. If
-you see anything that looks amiss, please ask on Piazza. Otherwise, click on the
-green "Create pull request" button. You will now be able to specify a title and
-a summary for the pull request. For example, in this case, the title could be "Adding author
-to echo.c" and the summary could be "I am the author of this file". Finally, click
-"Create pull request" again, and this will create the pull request. You can verify
-that your pull request was submitted to the original repository here:
-
-https://github.com/uchicago-cs/cmsc22000-dummy-repo/pulls
-
-Now, once we receive your pull request, we will actually deny it (you're not the author of echo.c!),
-but you will have a chance to submit a successful pull request in the next section.
-
-# Code reviews with pull requests
-
-In the example we have seen so far, you forked a repository so you could make
-changes to it and submit those changes back to the original repository. This
-is a very common collaboration pattern, specially in open source software.
+This is a very common collaboration pattern, specially in open source software.
 If you spot a bug in your favorite software project, and their code is hosted
 on GitHub, you can create a fork of that repository, create a bugfix, and
-submit it back to the original repository using a pull request.
+submit it back to the original repository.
 
-In the class project, however, you will not need to create a fork of your
-team's repository, because you *do* have push access in that repository,
+The way we do this is by doing a *pull request*. 
+In the class project, however, you will not need to create a fork of the
+chiventure repository, because you *will* have push access in that repository,
 but with an important restriction: you are allowed to create additional
 branches and push to them, but you are *not* allowed to push to the `master`
 branch (in this case, we say that `master` is a *protected branch*). 
 Only the senior developers (i.e., the instructor and the TAs)
 are allowed to push to `master`, which means that all changes to the `master` 
-branch by a junior developer (i.e., you) must be reviewed and approved by a senior developer.
+branch by a junior developer (i.e., you) must be reviewed and approved 
+by a senior developer. 
 
 This is another common collaboration pattern, which allows a team to work
 in the same repository (without having to create multiple forks), but making
 it less likely that broken code will enter the `master` branch.
 
-We are going to follow this pattern to add yourself to the `AUTHORS.md` file
-of the project repository. First, clone the repository like so:
+{{% note %}}
+In the course project, we will actually be using an additional branch called
+`dev` (the `dev`elopment branch) that will also be protected. You don't need to worry about it for
+the purposes of this lab, but just be aware that in the project you will
+only ever be making pull requests to `dev` (the senior developers will
+then decide when `dev` can be merged into `master`).
+{{% /note %}}
 
-```
-$ git clone https://github.com/uchicago-cs/chiventure.git
-```
 
-Now, from inside the repository, you will create a branch to make your
-change to `AUTHORS.md`. But don't do it yet! Before you do this, let's 
+To see how this style of pull request works, we're actually going to use a different 
+repository with a protected `master` branch:
+
+    https://github.com/cmsc22000-labs/2020-names
+    
+Go ahead and clone this repository. This repository contains a single ``README.md`` file
+with a list of names. You will be creating a branch to add your name to 
+`README.md`. But don't do it yet! Before you do this, let's 
 take a minute to talk about naming conventions.
 
-If everyone named their branch something like `authors` or `add-authors`, we'd
-have 5 branches with the same name. In large collaborative projects, it's common
+If everyone named their branch something like `update-readme` or `add-name`, we'd
+have lots of branches with the same name. In large collaborative projects, it's common
 to prefix branch names with your own first name, to avoid collisions like this.
-We will adopt this convention in this class, except we will use CNetIDs instead
-of names. If your CNetID is `jdoe`, you should
-name your branch `jdoe/add-to-authors` or `jdoe/authors` or similar. It doesn't
+We will adopt a similar convention in this class, except we will use feature names. So,
+if you are working on adding sound support to chiventure, you branches would be called
+``sound/fix-alsa-bug``, ``sound/add-midi-support``, etc.
+
+For this sample repo, we'll just use your CNetID. So, if your CNetID is `jdoe`, you should
+name your branch `jdoe/add-to-names` or `jdoe/update-readme` or similar. It doesn't
 really matter what the name of the branch is, so long as it starts with `jdoe/`.
 
-So, go ahead and create a new branch and check it out:
+Using the commands we described earlier in this lab, you should now do the following:
 
-```
-$ git branch CNETID/add-to-authors
+1. Create and check out a branch called ``CNETID/add-to-names`` (or similar, as long as
+  it starts with your CNetID)
+2. Edit the `README.md` file to add your name, and create a commit with that change.
+3. Push your branch to GitHub. Git may helpfully provide you with a URL to create
+   a pull request; ignore this for now, although you're welcome to use that direct
+   URL in the future.
 
-$ git checkout CNETID/add-to-authors
-```
+Now, go to the repository on GitHub (https://github.com/cmsc22000-labs/2020-names). It
+should actually show that you've pushed a branch recently, and there will be a green 
+"Compare & pull request" button. Click on this button to create a pull request.
+If you don't see a "Compare & pull request" button, you can also click on the 
+"New pull request" button that appears next to the pull-down list of branches; you
+will then have to manually specify the branch you're merging before you can create
+the pull request (the "base branch" would be `master` and the "compare branch" would be
+`CNETID/add-to-names`)
 
-Then, edit the AUTHORS.md file to add your name. Make a commit and push the
-new branch:
+After clicking "Compare & pull request", or after clicking "New pull request" and
+selecting the branch you want to merge, you will be able to specify a title and a 
+summary for the pull request. 
+For example, in this case, the title could be "Adding my name to README" 
+and the summary could be "I am adding my name to the README as part of the Advanced
+Git Lab". 
 
-```
-$ git push origin CNETID/add-to-authors
-```
+As in a regular pull request, we're going to request that someone else review
+your pull request before it can be merged into `master`. To do this,
+select another student on your team under "Reviewers".
 
-To initiate a pull request, head to the [chiventure repository on GitHub](https://github.com/uchicago-cs/chiventure). You
-should see a big green button that says "Compare & pull request". After you click
-it, you will be presented with a page like the one you were shown when creating
-the pull request for the `cmsc22000-dummy-repo` repository. However, besides
-entering a title and summary, you will also specify the following:
-
-* Under "Reviewers", select another student on your team, and your senior developer (note: your team's senior developer will be assigned once your team is assigned to work on a specific component). 
-* Under "Milestone", select "2019/Project Kick-off"
-
-Click "Create pull request". You've marked your code for review!
+Finally, click "Create pull request". You've marked your code for review!
 
 Note: if someone specifies you as a reviewer for this pull request, simply go ahead
 and mark the pull request as reviewed. For the project, you won't arbitrarily get
 selected by teammates to review code; you will have to agree to review someone's code
 before it is assigned to you.
-
