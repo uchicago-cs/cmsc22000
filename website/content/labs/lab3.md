@@ -12,7 +12,7 @@ In the class project, you will likely produce dozens of C files that will ultima
 {{% warning %}}
 **NOTE**: For some of these tasks, you may be tempted to look at the Makefiles included with libgeometry, and copy-paste parts of them into your Makefiles. There are two important reasons not to do this:
 
-1. It is important that you understand what you're doing in each of the tasks in this lab. If you get stuck and you're not sure how to proceed, ask us (either during the lab session or on Piazza). If you just copy-paste from one of our Makefiles, you won't understand how those parts of the Makefile work.
+1. It is important that you understand what you're doing in each of the tasks in this lab. If you get stuck and you're not sure how to proceed, please make sure to ask for help. If you just copy-paste from one of our Makefiles, you won't understand how those parts of the Makefile work.
 2. The tasks in this lab actually ask you to modify a Makefile in ways that are different from how the libgeometry Makefile is written. If you just copy-paste from our Makefile, it is almost certain we will be able to tell that you did so. 
 
 That said, by the end of this lab you should be able to understand almost everything that is contained in the libgeometry Makefiles. However, it is important that you perform all the intermediate tasks before you get to that point.
