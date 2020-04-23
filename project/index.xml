@@ -59,5 +59,16 @@ NOTE: The late submission policy for labs does not apply to this assignment. We 
 You have recently joined a software company that is developing an exciting new game: The Boardmaster 3000! This game will allow users to play a variety of two-player board games, all of which can be played on a square chessboard (like chess, checkers, and some variants of chess) However, we are following an incremental software development model, so we are going to start by supporting only chess.</description>
     </item>
     
+    <item>
+      <title>Design Warm-up #2: Boardmaster 3000 (Part II)</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/project/design-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/project/design-2/</guid>
+      <description>Due: Wednesday, April 29th, 8pm CDT
+NOTE: The late submission policy for labs does not apply to this assignment. We will be discussing this design in class on Friday, May 1st, and need all submissions ready by then.
+Good news, everyone! The first version of the Boardmaster 3000 has been a resounding success! We got a lot of quality feedback from users, which included comments like “the VR interface is like nothing I’ve seen before”, “finally, a chess game that challenges both my intellect and my senses”, and “the AI is creepily lifelike, in a good way, I guess”.</description>
+    </item>
+    
   </channel>
 </rss>

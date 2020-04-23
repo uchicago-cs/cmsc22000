@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Design Exercise: Boardmaster 3000 (Part II)  &middot; CS 220</title>
+  <title>Design Warm-up #2: Boardmaster 3000 (Part II)  &middot; CS 220</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -17,9 +17,9 @@
 <meta name="keywords" content="">
 
 
-<meta property="og:title" content="Design Exercise: Boardmaster 3000 (Part II)  &middot; CS 220 ">
+<meta property="og:title" content="Design Warm-up #2: Boardmaster 3000 (Part II)  &middot; CS 220 ">
 <meta property="og:site_name" content="CS 220"/>
-<meta property="og:url" content="https://uchicago-cs.github.io/cmsc22000/projects/2019/design-2/" />
+<meta property="og:url" content="https://uchicago-cs.github.io/cmsc22000/project/design-2/" />
 <meta property="og:locale" content="en-us">
 
 
@@ -34,9 +34,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Design Exercise: Boardmaster 3000 (Part II)" />
+<meta name="twitter:title" content="Design Warm-up #2: Boardmaster 3000 (Part II)" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://uchicago-cs.github.io/cmsc22000/projects/2019/design-2/" />
+<meta name="twitter:url" content="https://uchicago-cs.github.io/cmsc22000/project/design-2/" />
 <meta name="twitter:domain" content="https://uchicago-cs.github.io/cmsc22000/">
   
 
@@ -44,20 +44,20 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Design Exercise: Boardmaster 3000 (Part II)",
+    "headline": "Design Warm-up #2: Boardmaster 3000 (Part II)",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
     "datePublished": "0001-01-01",
     "description": "",
-    "wordCount":  1180 
+    "wordCount":  1307 
   }
 </script>
 
 
 
-<link rel="canonical" href="https://uchicago-cs.github.io/cmsc22000/projects/2019/design-2/" />
+<link rel="canonical" href="https://uchicago-cs.github.io/cmsc22000/project/design-2/" />
 
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
@@ -170,13 +170,15 @@
 
 <article id="main-content" class="container main_content single">
   <header class="container hat">
-  <h1>Design Exercise: Boardmaster 3000 (Part II)
+  <h1>Design Warm-up #2: Boardmaster 3000 (Part II)
 </h1>
 
 </header>
 
   <div class="container content">
-  <p>Good news, everyone! The first version of the Boardmaster 3000 has been a resounding success! We got a lot of quality feedback from users, which included comments like “the VR interface is like nothing I’ve seen before”, “finally, a chess game that challenges both my intellect <em>and</em> my senses”, and “the AI is creepily lifelike, in a good way, I guess”. We know you were not involved in any of those aspects of the game, but your modules for loading, manipulating, and saving the state of a game were an indispensable building block that made the rest of the game possible.</p>
+  <p><strong>Due:</strong> Wednesday, April 29th, 8pm CDT</p>
+<p><strong>NOTE:</strong> The late submission policy for labs does not apply to this assignment. We will be discussing this design in class on Friday, May 1st, and need all submissions ready by then.</p>
+<p>Good news, everyone! The first version of the Boardmaster 3000 has been a resounding success! We got a lot of quality feedback from users, which included comments like “the VR interface is like nothing I’ve seen before”, “finally, a chess game that challenges both my intellect <em>and</em> my senses”, and “the AI is creepily lifelike, in a good way, I guess”. We know you were not involved in any of those aspects of the game, but your modules for loading, manipulating, and saving the state of a game were an indispensable building block that made the rest of the game possible.</p>
 <p>Encouraged by this early feedback on the first version of the game, we are going to add more features to the Boardmaster 3000:</p>
 <ul>
 <li>Support for two more games: checkers and Almost Chess</li>
@@ -259,16 +261,18 @@ c_c_c_c_c_
 <li>Moving a piece could result in the piece changing to a different type (e.g., pawn promotion in chess and crowning in checkers). While this could be treated as an implementation detail (if you make a move, this is just a different way in which the internal state of the game changes), your “move” function should supply this information in some way (otherwise, the user of your module will have to check the state of the piece after every move, to see whether it has changed)</li>
 <li>Since we expect to support more games in the future, you should avoid having a function for moving a chess piece and a function for moving a checkers piece. Otherwise, if we end up supporting 50 games, we’ll end up with 50 “move” functions! (and similarly with other functions in your interface)</li>
 </ul>
-<p>Like the previous exercise, remember that you should focus only on specifying the <em>interface</em> of your modules, and not their implementation. Make sure to review the <em>Deliverables</em> section of the <a href="/cmsc22000/projects/2019/design-1/">first design exercise</a>, as your updated design should follow the same guidelines described there.</p>
+<p>Like the previous exercise, remember that you should focus only on specifying the <em>interface</em> of your modules, and not their implementation. Make sure to review the <em>Deliverables</em> section of the <a href="/cmsc22000/project/design-1/">first design exercise</a>, as your updated design should follow the same guidelines described there.</p>
 <p>Besides the C code that specifies your design, you should also answer the following questions in your README file:</p>
 <ul>
 <li>In general, what major changes (if any) did you have to make to your design to accommodate the additional requirements?</li>
 <li>In hindsight, what (if anything) would you have done differently in your original design that would’ve made it easier to add support for these additional requirements?</li>
 </ul>
+<h2 id="creating-your-shared-team-repository">Creating your shared team repository</h2>
+<p>Like the previous design exercise, you will have to follow an <em>invitation URL</em> to create a repository. However, since the teams were already created in the previous design exercise, the invitation URL will show you all the existing teams, and all you need to do is select yours.</p>
+<p>If you join the wrong team, or mistakenly create a duplicate team, please notify an instructor/TA.</p>
 <h2 id="submission-instructions">Submission Instructions</h2>
-<p>Like the first part of the exercise, you should make sure you do all your work in your team repository (not in your individual repository). Once you are ready to submit, run <code>chisubmit init</code> in the root of your team repository (note: if you already did this in the first exercise, you don&rsquo;t need to do it again) Once you have done so, you just need to run this:</p>
-<pre><code>chisubmit student assignment submit design2
-</code></pre><p>(you do not need to run the <code>assignment register</code> command, like the labs, because we will be registering the teams ourselves on chisubmit)</p>
+<p>Before submitting, make sure you&rsquo;ve added, committed, and pushed all your code to GitHub.</p>
+<p>You will submit your code through Gradescope. Please note that only one team member needs to make the submission (that team member will be given the option to specify who else is in their team). When submitting, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). If you upload your repository, make sure you select your <code>2020-design2-GITHUB_USERNAMES</code> repository, with &ldquo;master&rdquo; as the branch. Please note that you can submit as many times as you want before the deadline.</p>
 
 </div>
 

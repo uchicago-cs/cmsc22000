@@ -113,6 +113,16 @@ In this lab, you will carry out some basic software design tasks. This lab will 
     </item>
     
     <item>
+      <title>Lab 3: Make</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab3/</guid>
+      <description>Due: Wednesday, April 29th, 8pm CDT
+In the class project, you will likely produce dozens of C files that will ultimately produce a single executable. When dealing with multiple source files, specially when there are dependencies between them, it is common to use a build system instead of manually compiling and linking all the files. in this lab, we’ll explore the ways a program can be “built”&amp;ndash;that is, the way that source code is turned into binary code so that a computer can execute it.</description>
+    </item>
+    
+    <item>
       <title>Optional Lab: Advanced Git</title>
       <link>https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/</link>
       <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
@@ -195,6 +205,17 @@ Presentation Contents Each presentation must be divided into three portions: a h
       <description>Due: Wednesday, April 22nd, 8pm
 NOTE: The late submission policy for labs does not apply to this assignment. We will be discussing this design in class on Friday, April 24th, and need all submissions ready by then.
 You have recently joined a software company that is developing an exciting new game: The Boardmaster 3000! This game will allow users to play a variety of two-player board games, all of which can be played on a square chessboard (like chess, checkers, and some variants of chess) However, we are following an incremental software development model, so we are going to start by supporting only chess.</description>
+    </item>
+    
+    <item>
+      <title>Design Warm-up #2: Boardmaster 3000 (Part II)</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/project/design-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/project/design-2/</guid>
+      <description>Due: Wednesday, April 29th, 8pm CDT
+NOTE: The late submission policy for labs does not apply to this assignment. We will be discussing this design in class on Friday, May 1st, and need all submissions ready by then.
+Good news, everyone! The first version of the Boardmaster 3000 has been a resounding success! We got a lot of quality feedback from users, which included comments like “the VR interface is like nothing I’ve seen before”, “finally, a chess game that challenges both my intellect and my senses”, and “the AI is creepily lifelike, in a good way, I guess”.</description>
     </item>
     
   </channel>
