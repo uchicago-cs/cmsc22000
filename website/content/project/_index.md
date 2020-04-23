@@ -14,6 +14,7 @@ The following pages provide more details on the requirements of the project:
 Additionally, the course project also involves two warm-up exercises that you will do with your teams, and which revolve around software design:
 
 * [Design Warm-up #1: Boardmaster 3000]({{< relref "design-1.md" >}})
+* [Design Warm-up #2: Boardmaster 3000 (Part II)]({{< relref "design-2.md" >}})
 
 
 
