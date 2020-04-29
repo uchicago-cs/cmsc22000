@@ -105,7 +105,22 @@ We will be using GitHub Issues to keep track of tasks in each sprint. At the tea
 * Updates on the progress of the task
 * A closing statement
 
-We describe these in more detail below:
+We describe each of these in more detail in the sections below.
+
+Additionally, when creating an issue, you must take care to fill in the following fields:
+
+* **Assignees**: Anyone who will be working on the issue must be added here.
+* **Labels**: You must select, at least, the label corresponding to your team (the team labels start with `x/`). *Do not* select labels for other teams, even if your work is related to that team. If someone from another team is contributing substantially to the issue, then they should be added as an Assignee.
+
+  You may also select any number of generic labels that describe the nature of the issue ("bug", "enhancement", etc.). *Do not* create new labels without first checking with an instructor/TA.
+* **Projects**: Make sure that the issue is part of the "CMSC 22000 Scrum Board".
+* **Milestone**: Select the sprint this issue is a part of.
+
+For example, this is what the labels, projects, and milestones field could look like:
+
+![GitHub Issue](/cmsc22000/img/issue.png "GitHub Issue") 
+
+
 
 #### A descriptive title
 
