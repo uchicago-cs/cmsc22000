@@ -27,7 +27,7 @@ By the end of this lab, you’ll have experience writing unit tests, as well as 
 
 ## Creating your lab repository
 
-Like previous labs, we will provide you with an  *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-lab4-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub. Your repository will be seeded with some files for the lab and, more specifically, will contain a `libgeometry` directory with an updated version of `libgeometry` with the refactored `segment` module we asked you to implement in Lab #2.
+Like previous labs, we will provide you with an  *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-lab5-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub. Your repository will be seeded with some files for the lab and, more specifically, will contain a `libgeometry` directory with an updated version of `libgeometry` with the refactored `segment` module we asked you to implement in Lab #2.
 
 # Task 0: A bit about `criterion`
 
@@ -114,7 +114,7 @@ It’s time to write your first tests! In your `test_segment.c` file, do the fol
 
 * Write at least one test case for each of `segment_new`, `segment_init`, `segment_free`.  You may find it helpful to look at similar tests in `test_point.c` and `test_polygon.c`.
 * We already had some tests for `segment_intersect` in `test_point.c`. *Refactor* them into `test_segment.c`, and make sure they're in the correct test suite!
-* Write test cases for `on_segment` and `orientation`. For these test cases, remember that you should have as much *coverage* as possible: your test cases should cover as many outcomes (and as many flows of execution through the individual function) as possible.
+* Write test cases for `on_segment` and `point_orientation` (previously known as `orientation`). For these test cases, remember that you should have as much *coverage* as possible: your test cases should cover as many outcomes (and as many flows of execution through the individual function) as possible.
 
   Note: Remember that, in Lab 2, you had the option of moving these functions to `segment.c`, or to keep them in `point.c` (and exposing them through `point.h`). In the code we've provided, `on_segment` has been moved to the segment module, and `orientation` has been kept in the point module (and both have been added to their respective module's header file). 
 
