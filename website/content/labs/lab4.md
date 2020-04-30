@@ -24,7 +24,7 @@ Please note that, while you will be modifying some of the files we give you, in 
 
 As mentioned in class, this kind of debugging is easier to do without using a debugger. How you debug this next file is up to you.
 
-Compile each C file in the task 1 directory; they will each produce a compiler/linker error (and/or warnings). For each C file, answer the following questions on Gradescope:
+Compile each C file in the task 1 directory (you can simply run `gcc <filename>.c -o <filename>`, e.g., `gcc task1a.c -o task1a`). They will each produce a compiler/linker error (and/or warnings). For each C file, answer the following questions on Gradescope:
 
 * What is causing the error/warning? Make sure to include the exact line that causes the error/warning (and remember that this might not be the same line number reported by the compiler! You must provide the number of the line that is *directly* responsible for the error).
 * How did you fix the error/warning?
@@ -61,9 +61,29 @@ Notice the use of the `-g` flag. This enables built-in debugging support. To sta
     break task2.c:line_number
     break function_name
 
-The first one sets a breakpoint at the provided line number, and the second sets it at the start of the provided function. You can set multiple breakpoints. To continue the program execution, you can type `continue`. If you type `run`, it will restart the execution of the program. To look at all the breakpoints you have, run `info breakpoints`, and you will see a numbered list of breakpoints. Run `delete` to delete all breakpoints. If you specify a number with delete, for example `delete 2`, the breakpoint corresponding to that number on the list will be deleted.
+The first one sets a breakpoint at the provided line number, and the second sets it at the start of the provided function. You can set multiple breakpoints. Notice that, to break right when the program starts, you can just set a breakpoint on the `main` function:
 
-It would be annoying to have to set a breakpoint for every line of code you want to look at, especially if they are consecutive. Two useful commands to know for this are `step` and `next`. These both will execute the next line of code. The main difference between the two is how they handle function calls. If you are in function `foo`, and `foo` calls `bar`, `step` allows you to go line-by-line through `bar` as well when it is called in `foo`, whereas `next` would execute `bar` without letting you step through it and execute the next line of `foo`. Look at the example below:
+    break main
+
+When you reach a breakpoint, execution of the program will pause at that breakpoint. If you want to continue running the program, then type `continue`. Careful: if you type `run`, it will restart the execution of the program from the beginning. 
+
+To look at all the breakpoints you have, run `info breakpoints`, and you will see a numbered list of breakpoints. Run `delete` to delete all breakpoints. If you specify a number with delete, for example `delete 2`, the breakpoint corresponding to that number on the list will be deleted.
+
+It would be annoying to have to set a breakpoint for every line of code you want to look at, especially if they are consecutive. A useful command for this is `next`. Let's say you reach a breakpoint (in this case, on line 35 of `task2.c`):
+    
+    Breakpoint 4, main () at task2.c:35
+    35	    *p += 5;
+    (gdb) 
+
+At this point, line 35 has not yet been run. If you type `next`, gdb will run line 35, and will advance to the *next* line:
+
+    Breakpoint 4, main () at task2.c:35
+    35	    *p += 5;
+    (gdb) next
+    36	    c = 8;
+    (gdb) 
+
+A similar command is `step` which, like `next`, will execute the next line of code, but will handle function calls differently. If you are in function `foo`, and `foo` calls `bar`, `step` allows you to go line-by-line through `bar` as well when it is called in `foo`, whereas `next` would execute `bar` without letting you step through it and execute the next line of `foo`. Look at the example below:
 
 
     int bar() {
@@ -85,6 +105,8 @@ As you are stepping through your program, you might want to be able to see the v
 
 There is also a useful command to keep track of when a variable changes. This command is `watch`. If you want to keep track of when the variable `x` changes, type `watch x`. Every time it is changed when you run your program or execute a line of code, the program will stop and print the old and new values.
 
+When you're done using gdb, you can exit by typing `quit` or by pressing Ctrl+D.
+
 Now that you know these commands, let’s have some practice with them! Using gdb, answer the following questions on Gradescope:
 
 1. At what line(s) does the value of variable `c` change?
@@ -105,17 +127,15 @@ Runtime errors make the program crash while it is running, and sometimes they ar
 
 `frame n` (where `n` is the frame number from the backtrace) allows you to go to the function in that frame and see what line in that particular function caused the error.
 
-Compile `task3.c` and run it. You will segfault. Now it’s time to debug! There are three errors in this file. For each error, answer the following questions in `task3.txt`. It is a good idea to fix one error before moving on to the next.
-
-For each error, answer the following question on Gradescope:
+Compile `task3.c` (don't forget to include the `-g` option! Otherwise you won't be able to debug it). Now run it; the program should segfault. Now it’s time to debug! There are three errors in this file. For each error, answer the following question on Gradescope:
 
 * Where was the segfault? Give the function, line number, and copy-paste the line of code itself. What was causing the segfault and how did you fix it?
 
-Make sure to also commit and push your fix for each segfault!
+It is a good idea to fix one error before moving on to the next. Make sure to also commit and push your fix for each segfault!
 
 You must also answer the following question for the entire task:
 
-* Describe the steps you took in gdb to narrow down the exact location of a segfault. You can also copy-paste the contents of one debugging session with gdb, with a brief note at the end explaining how that debugging session narrowed down the location of the error.
+* Describe the steps you took in gdb to narrow down the exact location of one of the segfaults. You can also copy-paste the contents of one debugging session with gdb, with a brief note at the end explaining how that debugging session narrowed down the location of the error.
 
 ## Task 4: Logic Error Debugging
 
@@ -123,7 +143,7 @@ You must also answer the following question for the entire task:
 
 Logic errors can happen even when your program compiles and runs, but may result in incorrect behavior. The commands we went through in the warmup can help you find logic errors by allowing actions such as stepping through the program line-by-line, printing variables, and seeing when variables are changed.
 
-Compile `task4.c`. As you can see from the print messages, the variables don’t have the expected values! Use gdb to find the five errors. For each error you find, answer the following questions on Gradescope:
+Compile `task4.c` and run it. As you can see from the print messages, the variables don’t have the expected values! Use gdb to find the five errors. For each error you find, answer the following questions on Gradescope:
 
 * Copy-paste the relevant lines of code, explain what is wrong with them, and then copy-paste the fixed code (with a brief explanation of how you fixed the code).
 
@@ -131,9 +151,7 @@ Please note that, while you might also be able to find the logic errors just by 
 
 ## Submitting your lab
 
-Before submitting, make sure you've added, committed, and pushed all your code to GitHub. Like the previous lab, you will submit your code through Gradescope,
-
-Please note that you will not be submitting your code through Gradescope. Instead, make sure that the questions posed above are answered on Gradescope. We still need you to push your code in case we need to look at any of your code (but we will not be grading the code itself).
+Please note that you will not be submitting your code through Gradescope. Instead, make sure that the questions posed above are answered on Gradescope. That said, we still need you to push your code in case we need to look at any of your code (but we will not be grading the code itself).
 
 
 
