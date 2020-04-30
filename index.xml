@@ -123,6 +123,17 @@ In the class project, you will likely produce dozens of C files that will ultima
     </item>
     
     <item>
+      <title>Lab 4: Debugging</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab4/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab4/</guid>
+      <description>Due: Thursday, May 6th, 8pm
+In this lab, you will get some practice debugging a few programs and, in particular, will resolve some of the errors we described in class. In some of the tasks, you will also become more familiar with GDB, a popular debugger.
+As you work through this lab, you may want to refer to our Debugging Guide, which covers (and expands on) many of the topics we covered in class.</description>
+    </item>
+    
+    <item>
       <title>Optional Lab: Advanced Git</title>
       <link>https://uchicago-cs.github.io/cmsc22000/labs/advanced-git/</link>
       <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
