@@ -82,6 +82,8 @@ At this point, line 35 has not yet been run. If you type `next`, gdb will run li
     (gdb) next
     36	    c = 8;
     (gdb) 
+    
+Please note that, if you want to run through the next lines, you don't have to keep typing `next`. After using `next` a first time, you can just hit the Enter key to keep running through the program line by line.
 
 A similar command is `step` which, like `next`, will execute the next line of code, but will handle function calls differently. If you are in function `foo`, and `foo` calls `bar`, `step` allows you to go line-by-line through `bar` as well when it is called in `foo`, whereas `next` would execute `bar` without letting you step through it and execute the next line of `foo`. Look at the example below:
 
