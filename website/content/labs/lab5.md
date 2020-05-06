@@ -171,8 +171,8 @@ You are allowed to consult online sources to find the exact formula for determin
 When writing the tests for the first three functions, you may find the function `cr_assert_float_eq` helpful. As you know, floating-point arithmetic on computers is not 100% accurate; `cr_assert_float_eq` allows you to check that the first value you supply to it is within some range of the second value. For example:
 
 ```c
-circle_t *c = circle_new(point_new(0, 0), 5)
-cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, “Circle area wasn’t correct!”);
+circle_t *c = circle_new(point_new(0, 0), 5);
+cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, "Circle area wasn’t correct!");
 ```
 
 This checks whether or not our `circle_area` function is within 10<sup>-4</sup> (0.0001) of the expected value.
