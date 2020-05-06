@@ -114,7 +114,7 @@ It’s time to write your first tests! In your `test_segment.c` file, do the fol
 
 * Write at least one test case for each of `segment_new`, `segment_init`, `segment_free`.  You may find it helpful to look at similar tests in `test_point.c` and `test_polygon.c`.
 * We already had some tests for `segment_intersect` in `test_point.c`. *Refactor* them into `test_segment.c`, and make sure they're in the correct test suite!
-* Write test cases for `on_segment` and `point_orientation` (previously known as `orientation`). For these test cases, remember that you should have as much *coverage* as possible: your test cases should cover as many outcomes (and as many flows of execution through the individual function) as possible.
+* Write test cases for `on_segment` and `point_orientation` (previously known as `orientation`). For these test cases, remember that you should have as much *coverage* as possible: your test cases should cover as many outcomes (and as many flows of execution through the individual function) as possible. You should be able to accomplish this by writing 3-4 tests for each function, but please note we won't be grading you on the number of tests your write, but on how much coverage they provide.
 
   Note: Remember that, in Lab 2, you had the option of moving these functions to `segment.c`, or to keep them in `point.c` (and exposing them through `point.h`). In the code we've provided, `on_segment` has been moved to the segment module, and `orientation` has been kept in the point module (and both have been added to their respective module's header file). 
 
@@ -141,12 +141,11 @@ Test(segment, no_intersection_parallel)
 
 In this task, you will implement a new `circle_t` data structure for representing circles in `libgeometry`. For the purposes of this lab, circles will be represented by a center and radius. The center will be represented by a `point_t`, and the radius by a `double`.
 
-You should create three new files: `include/circle.h`, `src/circle.c`, and `tests/test_circle.c`. You will need to update both the root-level `Makefile` and the `Makefile` in the `tests` directory to ensure the new files are compiled. Make a commit with the new files as well as the changes to the `Makefile`s, with the message “Starting lab 5 task 2”.
+You should create three new files: `include/circle.h`, `src/circle.c`, and `tests/test_circle.c`. You will need to update both the root-level `Makefile` and the `Makefile` in the `tests` directory to ensure the new files are compiled. Make a commit with the new files as well as the changes to the `Makefile`s, with the message “Starting lab 5 task 2”. *Don't forget to `git add` the new files; otherwise, they won't be included in the commit.*
 
 Now, use TDD to develop `new`, `init`, and `free` functions for circles.
 
 {{% warning %}}
-{{% md %}}
 **Note:** To ensure that you are following TDD, we will be inspecting your commit history to check that you actually wrote your tests first. At a minimum, we require the following workflow:
 
 1. Write your tests in `tests/test_circle.c`
@@ -157,7 +156,6 @@ Now, use TDD to develop `new`, `init`, and `free` functions for circles.
 6. **Make a commit** indicating that you’ve finished implementation and that your tests pass.
 
 By all means, please make more commits as you write individual tests and implement individual functions. This is just the *minimum* we require to tell whether or not you implemented tests first.
-{{% /md %}}
 {{% /warning %}}
 
 Next, let’s use TDD to implement a few slightly more complex functions that compute things about circles: 
@@ -179,14 +177,14 @@ cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, “Circle area wasn’t c
 
 This checks whether or not our `circle_area` function is within 10<sup>-4</sup> (0.0001) of the expected value.
 
-As above, you should use the TDD workflow when implementing these new functions.
+As above, you should use the TDD workflow when implementing these new functions: write the tests first, make a commit indicating you've written the tests, write the implementation, and then make a commit with that implementation.
 
 Finally, as before, you should include header comments in all the tests you write.
 
 ## Submitting your lab
 
-Before submitting, make sure you've added, committed, and pushed all your code to GitHub. Like the previous lab, you will submit your code through Gradescope,
+Before submitting, make sure you've added, committed, and pushed all your code to GitHub. *Don't forget to `git add` any new files.* 
 
-When submitting through Gradescope, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). If you upload your repository, make sure you select your `2020-lab5-GITHUB_USERNAME` repository, with "master" as the branch. Please note that you can submit as many times as you want before the deadline.
+Like the previous lab, you will submit your code through Gradescope. When submitting through Gradescope, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). If you upload your repository, make sure you select your `2020-lab5-GITHUB_USERNAME` repository, with "master" as the branch. Please note that you can submit as many times as you want before the deadline.
 
 Once you submit your files, an "autograder" will run. This won't actually be doing any grading, but it will try to build your code and run the tests, which can help you verify that your submission doesn't have any last-minute issues in it. If it does, make sure to fix them and re-submit again.
