@@ -5,7 +5,7 @@ publishdate: 2018-01-26
 draft: false
 ---
 
-**Due:** Thursday, May 13th, 8pm
+**Due:** Wednesday, May 13th, 8pm
 
 By this point in your CS studies, you’ve probably experienced the following at least once:
 
