@@ -73,5 +73,16 @@ As you work through this lab, you may want to refer to our Debugging Guide, whic
 In this lab, we will explore features of Git that are more directly related to collaborative software development, and which you will need to use during the course project.</description>
     </item>
     
+    <item>
+      <title>Lab 5: Testing</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab5/</link>
+      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab5/</guid>
+      <description>Due: Wednesday, May 13th, 8pm
+By this point in your CS studies, you’ve probably experienced the following at least once:
+ Your programming assignment is almost done, and everything works so far. Start working on the last task of the assignment. Make some minor changes. Run program. Everything stops working. The first task, the last task, and everything in between. Spend several hours debugging your code. Narrow down the issue to a silly mistake in the first task that only made things fail once the last task was implemented.</description>
+    </item>
+    
   </channel>
 </rss>
