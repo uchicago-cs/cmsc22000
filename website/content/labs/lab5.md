@@ -2,10 +2,10 @@
 title: "Lab 5: Testing"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, May 9th, 2:30pm
+**Due:** Wednesday, May 13th, 8pm
 
 By this point in your CS studies, you’ve probably experienced the following at least once:
 
@@ -25,11 +25,11 @@ Generally speaking, there are two kinds of tests: *unit tests* and *integration 
 
 By the end of this lab, you’ll have experience writing unit tests, as well as an appreciation for their importance. You’ll be writing tests for existing code, as well as using the practice of *Test-Driven Development* to develop new code.
 
-# Task 0: Setup
+## Creating your lab repository
 
-This lab will involve making changes to the `libgeometry` library, which should already be in your repository. In particular, one of the things you will do is write tests for the `segment` code that you refactored back in lab 2. If you didn’t finish lab 2 completely, now would be a good time to go back and make sure it’s squared away before starting here.
+Like previous labs, we will provide you with an  *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-lab5-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub. Your repository will be seeded with some files for the lab and, more specifically, will contain a `libgeometry` directory with an updated version of `libgeometry` with the refactored `segment` module we asked you to implement in Lab #2.
 
-# Task 0.5: A bit about `criterion`
+# Task 0: A bit about `criterion`
 
 The `libgeometry` library already includes several unit tests, which use a testing framework called [Criterion](https://github.com/Snaipe/Criterion). This framework is already installed on the CS machines. Let’s learn a little bit about this testing framework before we get to the actual tasks for this lab. Consider the following sample tests:
 
@@ -86,7 +86,7 @@ Before continuing, take a moment to look at the `Makefile` contained inside the 
 
 # Task 1: Testing existing code
 
-Remember that, in Lab 2, we asked you to refactor some of the code in `point.c` to a new `segment.c` module. At the time, many of you asked some variation on this question: "If I'm implementing this code as part of a library, how can I *run* the segment code I just wrote?". One answer to that question is that you could've written a separate program that links with libgeometry, and calls the segment functions to see whether they work (and, with what you know about Makefiles, it should be possible for you to do that). However, what we really want to do is write tests for this new segment datatype, similar to the ones that already exist for the point and polygon datatypes. In Lab 2 we asked you to simply modify the calls to `segment_intersect` in `test_point.c`, which was a temporary solution before we learned how tests work. Now, we will write proper tests for the segment datatype.
+Remember that, in Lab 2, we asked you to refactor some of the code in `point.c` to a new `segment.c` module. At the time, you may have asked yourself: "If I'm implementing this code as part of a library, how can I *run* the segment code I just wrote?". One answer to that question is that you could've written a separate program that links with libgeometry, and calls the segment functions to see whether they work (and, with what you know about Makefiles, it should be possible for you to do that). However, what we really want to do is write tests for this new segment datatype, similar to the ones that already exist for the point and polygon datatypes. In Lab 2 we asked you to simply modify the calls to `segment_intersect` in `test_point.c`, which was a temporary solution before we learned how tests work. Now, we will write proper tests for the segment datatype.
 
 Create a new file in the `libgeometry/tests/` directory called `test_segment.c`. You’ll need a few `#include` statements to get started:
 
@@ -99,9 +99,7 @@ Create a new file in the `libgeometry/tests/` directory called `test_segment.c`.
 ```
 
 {{% warning %}}
-{{% md %}}
-**Warning**: From now on, you must do all of your work using the [department’s virtual machine](https://howto.cs.uchicago.edu/vm:index) (we recommend doing so in [Headless VM](https://howto.cs.uchicago.edu/vm:headless) mode), or by working in CSIL or [SSH'ing into a CS machine](https://howto.cs.uchicago.edu/remote_access). Each of those environments have the `criterion` library properly set up and ready to go. While it is possible to install `criterion` on an unsupported machine, we may not be able to provide support for that setup.
-{{% /md %}}
+**Warning**: Because this lab depends on the `criterion` library, you should make sure to compile and test your work on a CS environment, which will has the `criterion` library properly set up and ready to go. You can find instructions on how to access a CS environment (including options that will allow you to work on your computer, and just compile/run your code in a CS environment) in our [developer guide](https://uchicago-cs.github.io/dev-guide/environment.html). While it is possible to install `criterion` on an unsupported machine, we may not be able to provide support for that setup.
 {{% /warning %}}
 
 You will also need to modify the `Makefile` in the `tests/` directory to add your new file.
@@ -116,7 +114,9 @@ It’s time to write your first tests! In your `test_segment.c` file, do the fol
 
 * Write at least one test case for each of `segment_new`, `segment_init`, `segment_free`.  You may find it helpful to look at similar tests in `test_point.c` and `test_polygon.c`.
 * We already had some tests for `segment_intersect` in `test_point.c`. *Refactor* them into `test_segment.c`, and make sure they're in the correct test suite!
-* Write test cases for `on_segment` and `orientation`. Remember that, in Lab 2, you had the option of moving these functions to `segment.c`, or to keep them in `point.c` (and exposing them through `point.h`). If you moved them to `segment.c`, add the tests to `test_segment.c`; otherwise, add them to `test_point.c`. For these test cases, remember that you should have as much *coverage* as possible: your test cases should cover as many outcomes (and as many flows of execution through the individual function) as possible.
+* Write test cases for `on_segment` and `point_orientation` (previously known as `orientation`). For these test cases, remember that you should have as much *coverage* as possible: your test cases should cover as many outcomes (and as many flows of execution through the individual function) as possible. You should be able to accomplish this by writing 3-4 tests for each function, but please note we won't be grading you on the number of tests your write, but on how much coverage they provide.
+
+  Note: Remember that, in Lab 2, you had the option of moving these functions to `segment.c`, or to keep them in `point.c` (and exposing them through `point.h`). In the code we've provided, `on_segment` has been moved to the segment module, and `orientation` has been kept in the point module (and both have been added to their respective module's header file). 
 
 For each of the tests (except the `segment_intersect` ones refactored from `test_point.c`), the test must include a header comment explaining the test. For example:
 
@@ -141,12 +141,11 @@ Test(segment, no_intersection_parallel)
 
 In this task, you will implement a new `circle_t` data structure for representing circles in `libgeometry`. For the purposes of this lab, circles will be represented by a center and radius. The center will be represented by a `point_t`, and the radius by a `double`.
 
-You should create three new files: `include/circle.h`, `src/circle.c`, and `tests/test_circle.c`. You will need to update both the root-level `Makefile` and the `Makefile` in the `tests` directory to ensure the new files are compiled. Make a commit with the new files as well as the changes to the `Makefile`s, with the message “Starting lab 5 task 2”.
+You should create three new files: `include/circle.h`, `src/circle.c`, and `tests/test_circle.c`. You will need to update both the root-level `Makefile` and the `Makefile` in the `tests` directory to ensure the new files are compiled. Make a commit with the new files as well as the changes to the `Makefile`s, with the message “Starting lab 5 task 2”. *Don't forget to `git add` the new files; otherwise, they won't be included in the commit.*
 
 Now, use TDD to develop `new`, `init`, and `free` functions for circles.
 
 {{% warning %}}
-{{% md %}}
 **Note:** To ensure that you are following TDD, we will be inspecting your commit history to check that you actually wrote your tests first. At a minimum, we require the following workflow:
 
 1. Write your tests in `tests/test_circle.c`
@@ -157,7 +156,6 @@ Now, use TDD to develop `new`, `init`, and `free` functions for circles.
 6. **Make a commit** indicating that you’ve finished implementation and that your tests pass.
 
 By all means, please make more commits as you write individual tests and implement individual functions. This is just the *minimum* we require to tell whether or not you implemented tests first.
-{{% /md %}}
 {{% /warning %}}
 
 Next, let’s use TDD to implement a few slightly more complex functions that compute things about circles: 
@@ -173,19 +171,20 @@ You are allowed to consult online sources to find the exact formula for determin
 When writing the tests for the first three functions, you may find the function `cr_assert_float_eq` helpful. As you know, floating-point arithmetic on computers is not 100% accurate; `cr_assert_float_eq` allows you to check that the first value you supply to it is within some range of the second value. For example:
 
 ```c
-circle_t *c = circle_new(point_new(0, 0), 5)
-cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, “Circle area wasn’t correct!”);
+circle_t *c = circle_new(point_new(0, 0), 5);
+cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, "Circle area wasn’t correct!");
 ```
 
 This checks whether or not our `circle_area` function is within 10<sup>-4</sup> (0.0001) of the expected value.
 
-As above, you should use the TDD workflow when implementing these new functions.
+As above, you should use the TDD workflow when implementing these new functions: write the tests first, make a commit indicating you've written the tests, write the implementation, and then make a commit with that implementation.
 
 Finally, as before, you should include header comments in all the tests you write.
 
-# Submitting your lab
+## Submitting your lab
 
-Before submitting, make sure you've added, committed and pushed all your work in the `libgeometry` directory (remember you can run `git status` to check this). Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
+Before submitting, make sure you've added, committed, and pushed all your code to GitHub. *Don't forget to `git add` any new files.* 
 
-    chisubmit student assignment register lab5
-    chisubmit student assignment submit lab5
+Like the previous lab, you will submit your code through Gradescope. When submitting through Gradescope, you will be given the option of manually uploading files, or of uploading a GitHub repository (we recommend the latter, as this ensures you are uploading exactly the files that are in your repository). If you upload your repository, make sure you select your `2020-lab5-GITHUB_USERNAME` repository, with "master" as the branch. Please note that you can submit as many times as you want before the deadline.
+
+Once you submit your files, an "autograder" will run. This won't actually be doing any grading, but it will try to build your code and run the tests, which can help you verify that your submission doesn't have any last-minute issues in it. If it does, make sure to fix them and re-submit again.
