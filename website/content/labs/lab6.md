@@ -28,8 +28,12 @@ On Travis, the jobs are specified in a text file named `.travis.yml` which is pl
 The `.travis.yml` is a YAML file. YAML is a text-based file format that is commonly used for configuration files. We’ll be showing the syntax you need in this lab, but if you are curious there is a ton of documentation out there on it. Fun fact, it’s short for “YAML Ain't Markup Language”)
 {{% /note %}}
 
-You can find a lot of details about the format of the `.travis.yml` in the Travis CI Documentation. We'll start by looking at a simple Travis CI file:
+We'll start by looking at a simple Travis CI file:
 
+    os: linux
+    
+    dist: xenial
+    
     language: c
     
     before_install:
@@ -48,7 +52,15 @@ You can find a lot of details about the format of the `.travis.yml` in the Travi
         - make tests
         - tests/test-libgeometry
 
-By default, a Travis CI file will specify a single job that is run whenever we push any code to our repository (later on we'll see how to specify multiple jobs). This job is divided into several *phases* that happen in sequence; Travis CI only supports a specific set of phases, and in this example we are only specifying what happens in four of them: `before_install`, `install`, `before_script`, and `script` (the `language` option is just a global option that tells Travis this is a C project, which will ensure that Travis builds our code in an environment with a C compiler)
+Save this as a `.travis.yml` file in the root of your repository; commit it, but don't push it just yet.
+
+By default, a Travis CI file will specify a single job that is run whenever we push any code to our repository (later on we'll see how to specify multiple jobs). In this file, we specify some options that will affect how the job is run:
+
+- `os: linux` specifies that the job should be run on a Linux environment.
+- `dist: xenial` specifies that it will specifically be run on an Ubuntu 16.04 ("Xenial") environment
+- `language: c` specifies that we are building a C project, so Travis knows to use an environment that includes a C compiler.
+
+The remaining options specify the *phases* of the job. A job is divided several *phases* that happen in sequence; Travis CI only supports a specific set of phases, and in this example we are only specifying what happens in four of them: `before_install`, `install`, `before_script`, and `script`.
 
 Here is what is happening in each of the phases:
 
@@ -57,8 +69,16 @@ Here is what is happening in each of the phases:
 - `before_script`: In this phase, we run any commands necessary before the actual build. In this case, since Travis runs all commands from the root of your repository, we need to `cd` into `libgeometry` before we can run `make`. We also run `make clean`, which is considered good practice in a build job, as it guarantees that your build starts from a clean slate (and can help you detect whether you’ve inadvertently committed object files or binary files that make your build work only when those files are already present)
 - `script`: This is the phase where we actually build our code and run the tests.
 
+{{% note %}}
+You can find more information about how to specify a Travis CI build in the [Travis CI Documentation](https://docs.travis-ci.com/), and a specification of their configuration file format in the [Travis CI Build Config Reference](https://config.travis-ci.com/). You don't need to refer to these resources right now, but may need to consult them later in the lab.
+{{% /note %}}
+
 Take into account that we could've also run all the commands inside the `script` phase: 
 
+    os: linux
+    
+    dist: xenial
+    
     language: c
     
     script: 
@@ -73,15 +93,13 @@ Take into account that we could've also run all the commands inside the `script`
 
 However, it is considered good practice to separate these commands into their appropriate phases. In more complex builds, it can be useful to know exactly what phase of the build failed.
 
-Now, do the following:
-
-Commit the `.gitlab-ci.yml` to your repository and push it. Now, go to the following URL:
+Go ahead and push the commit you created previously. GitHub (and Travis CI) will detect that your repository has a `.travis.yml` file, and will trigger a build (following the phases specified in the `.travis.yml` file). You can see the status of the build in the following URL:
 
       https://travis-ci.com/github/cmsc22000-labs/2020-lab6-GITHUB_USERNAME
       
-Where `GITHUB_USERNAME` should be replaced with your GitHub username. This page will show you the state of your build. You can also access this page by going here: https://travis-ci.com/github/cmsc22000-labs/ (and clicking on the entry corresponsing to your repository)
+Where `GITHUB_USERNAME` should be replaced with your GitHub username. You can also access this page by going here: https://travis-ci.com/github/cmsc22000-labs/ (and clicking on the entry corresponsing to your repository)
   
-Please note that it can sometimes take a few minutes for the build to start (this page will automatically update as your build progresses). After a while, the "Current" tab should show a successful build like this:
+Please note that it can sometimes take a few minutes for the build to start (the page will automatically update as your build progresses). After a while, the "Current" tab should show a successful build like this:
   
    ![build](/cmsc22000/img/build.png)
    
@@ -106,73 +124,95 @@ Now, do the following:
 * [10 points] Fix the change you made, and make another change that will make the tests fail. Commit that change; your build should eventually fail. Paste the URL of the failed build on Gradescope (under "Task 1: Failed build (tests)")
 
 
-# Task 2: Adding jobs
+# Task 2: Multiple jobs
 
-As we mentioned previously, CI typically involves running tests every time we push changes to the repository. This means that, besides building our code, we also want tests to run automatically. For the simple hello program, we’ve included a very simple test: we simply run the program (using the `tests` target in the Makefile). While this doesn’t guarantee that the program prints the correct output, it will at least verify that the program runs without errors.
+In the previous task we saw that Travis CI can build our code and run the tests, and alert us to any issues when doing so. However, our job was running specifically in an Ubuntu 16.04 environment. What if our code doesn't compile in other environments? CI systems can also help us with this, as they often provide mechanisms to easily build our code in multiple environments. For example, we may want to build our code in multiple Ubuntu versions, or using different compilers.
 
-So, let’s add a job to the `.gitlab-ci.yml` file to run the tests:
+In Travis CI, we have the ability to specify build options that will automatically generate additional jobs. For example, add the following to your `.travis.yml` file:
 
-    hello:test:
-        stage: test
-        script:
-          - make -C labs/lab6/hello clean tests
-        only: 
-          - master
+    compiler:
+      - gcc
+      - clang
+ 
+ This tells Travis CI that we want to run the build with two compilers: `gcc` and `clang`. If you commit and push this updated file, this will produce a build with two jobs:
+ 
+   ![compilers-build](/cmsc22000/img/compilers-build.png)
+ 
+ You can click on the individual jobs to see the full job log, showing the exact commands that were run in each job. You'll actually notice that the clang job seems to still be running gcc. Don't worry about this for now (we'll revisit this in Task 3)
+ 
+* [10 points] Take the URL of the build you just produced, and paste it into Gradescope (under "Task 2: Multiple compilers").
 
-Notice how the stage is `test`. This means that GitLab will not run this job unless all the jobs in the `build` stage succeed.
+Travis CI actually provides two mechanisms to specify multiple jobs:
 
-Now, do the following:
+**Using a "matrix expansion" option**. There are certain options in Travis, such as the `compiler` option that will automatically result in generating multiple jobs. Another such option is the `arch` option (for specifying the processor architecture our build will run on). For example, if we specified the following options:
+ 
+         arch:
+           - amd64
+           - arm64
+         
+         compiler:
+           - gcc
+           - clang
+       
+ The "build matrix" would include every combination of these options:
+   
+   - GCC on an AMD64 processor
+   - clang on an AMD64 processor
+   - GCC on an ARM64 processor
+   - clang on an ARM64 processor
+    
+Modify your `.travis.yml` file to include the `arch` and `compiler` options as shown above. Commit and push the updated file. Once the build completes, you should see four jobs in the build. By the way, the ARM64 processor architecture is commonly used in smartphones, which means that we have effortlessly verified that libgeometry will build and run correctly on most smartphones!
+    
+* [10 points] Take the URL of the build you just produced, and paste it into Gradescope (under "Task 2: Matrix expansion").
 
-* [5 points] Commit the updated `.gitlab-ci.yml` file, and copy-paste the URL of the resulting “passed” pipeline to the `tasks.txt` file. Notice how GitLab now shows a `hello:test` job that depends on the build jobs. If you click on the `hello:test` job and look at its terminal output, you will see the output of running `hello`.
-* [10 points] Edit `hello.c` to force it to crash (e.g., dereference a NULL pointer). This will still allow `hello.c` to compile, but will make the tests fail. Commit and push this change, and copy-paste the URL of the resulting “failed” pipeline to the `tasks.txt` file. Notice how the build jobs ran successfully, but the pipeline failed because one of the jobs (the `hello:test` job) failed. Before moving on to the next test, undo this change and make sure it results in a “passed” pipeline.
-* [25 points] Add a `libgeometry:test` job to the `.gitlab-ci.yml` file to build and run the tests. This job should be in the `test` stage, even though it involves building code (in this case, building the tests). Furthermore, your `script` option will now have more than one entry: one for building the tests, and one or more to run them. Once you’re done, copy-paste the URL of the “passed” pipeline to the tasks.txt file.
+**Listing individual configurations**: You can also just list the exact configurations you want to use using the `jobs` option. For example, this is how you would specify three jobs that compile your code in three different Ubuntu distributions (18.04 "Bionic", 16.04 "Xenial, and 14.04 "Trusty"), all with GCC:
 
-Careful: *Figuring out the commands for running the libgeometry tests is non-trivial!* Here are two hints: 
+    jobs:
+      include:
+      - os: linux
+        dist: bionic
+        compiler: gcc
+      - os: linux
+        dist: xenial
+        compiler: gcc
+      - os: linux
+        dist: trusty
+        compiler: gcc
 
-* You should first figure out the exact commands you need to run from the root of your repository to successfully run the tests. **DO NOT** figure out the commands by pushing a new commit (and triggering a new pipeline) for every command you try to run. If you figure out the commands from the root of your repository, you should be able to then simply copy/paste those commands into your GitLab CI file.
-* Remember that, if you run `tests/test-libgeometry` from inside the `libgeometry` directory, it will work. So, you can take two approaches: either make sure you’re inside the libgeometry directory before running the tests, or tell the tests where they should look for the libgeometry library (this can be done using an environment variable called `LD_LIBRARY_PATH`) 
+Remove the top-level `os`, `dist`, and `compiler` options from your `.travis.yml` file, and replace it with the above `jobs` option. Commit and push the file; once the build completes, you should see it has three jobs.
 
+As it turns out, the job that ran on Ubuntu 14.04 will fail. You do not need to fix it, but it's worth noting why it failed: the version of GCC shipped with that version of Ubuntu does not use, by default, the C99 version of the C standard (which later versions of GCC do use by default). To get the code to build on Ubuntu 14.04, we would have to explicitly pass the `-std=c99` option to GCC to make sure it compiles the code using the C99 version of the C standard.
 
+Now imagine that we were developing software that was still required to run on old Ubuntu 14.04 systems (which none of our developers are likely to be using to write and test their code). Using a CI system allows us to uncover these kind of issues early on, by easily testing our code in multiple systems (including old legacy systems) so we can uncover issues like these.
 
-# Task 3: Job matrices
-
-If you look at the terminal output of the `hello:test` and `libgeometry:test` jobs, you’ll notice that these jobs actually repeat the work from the build jobs: they build the `hello` binary and the `libgeometry.so` library from scratch. This seems wasteful, and we would ideally want to simply use the result of the build job in the subsequent test job. We can do this by using *artifacts* and *dependencies*.
-
-By default, all files produced by a job are deleted once the job ends. However, we can tell the CI system to store one or more files for future use. These are called the artifacts of the job, and they can be downloaded after a job runs, or can be passed from one job to another.
-
-For example, we can tell GitLab to keep the `hello` binary after the `hello:build` job runs:
-
-    hello:build:
-        stage: build
-        script:
-          - make -C labs/lab6/hello clean all
-        only: 
-          - master
-        artifacts:
-          expire_in: 1 hour
-          paths:
-            - labs/lab6/hello/hello
-
-Notice how we specify that we want to artifact to expire in one hour, since we’re only going to use it in the subsequent `hello:test` job.
-
-To make sure the `hello:test` job receives that artifact, we need to define a dependency between the jobs:
-
-    hello:test:
-        stage: test
-        script:
-          - labs/lab6/hello/hello
-        only: 
-          - master
-        dependencies:
-          - hello:build
-
-Now, do the following:
-
-* [5 points] Commit the updated `.gitlab-ci.yml` file, and copy-paste the URL of the resulting “passed” pipeline to the `tasks.txt` file. Notice how the `hello:test` task no longer builds the `hello` binary from scratch and, instead, downloads the artifact from the `hello:build` job. You should also be able to click on “Pipelines” -> “Jobs” and on a download icon next to the passed `hello:build` job to download the `hello` binary (you don’t need to do anything with it, just check you’re able to download it)
-* [20 points] Edit the `libgeometry:build` job so it will build both the libgeometry library and the tests. Next, edit the “libgeometry:tests” job so that it only runs the tests, using both the `libgeometry.so` file and the `tests/test-libgeometry` file from `libgeometry:build`. Copy-paste the URL of the resulting “passed” pipeline to the `tasks.txt` file.
+* [10 points] Take the URL of the build you just produced, and paste it into Gradescope (under "Task 2: Individual job configurations"). It's ok if the build contains the failed Ubuntu 14.04 job; you are not expected to fix it.
 
 
 
+# Task 3: More build configurations
+
+In the previous tasks, we've given you the exact configurations you had to use (and asked for the build URLs to make sure you actually worked through the instructions in the lab). In this task, it's time for you to figure out how to write certain build configurations on your own by reading the Travis CI documentation. More specifically, you will want to consult the [Travis CI User Documentation](https://docs.travis-ci.com/) and the [Travis CI Build Config Reference](https://config.travis-ci.com/). Travis CI also provides a [Config Explorer](https://config.travis-ci.com/explore) that can allow you to validate that your `.travis.yml` is correct before you commit/push it and trigger a build.
+
+* [10 points] In Task 2, we saw that using the `compiler` option resulted in the `clang` build still using GCC. There is something you will need to fix in your `Makefile` Hint: The Travis CI documentation includes language-specific documentation that explains what certain options, like the `compiler` option, do. You may want to look at that specifically.
+
+  Create a build with two jobs (one with GCC and one with clang), and make sure that the clang one is actually using clang (by looking at the output of the Make commands in the "Job log"). Take the URL of the build you just produced, and paste it into Gradescope (under "Task 3: GCC vs clang"). You must also explain what you did to ensure the clang job used clang.
+
+* [10 + 10 points] Using matrix expansion options *only*, generate a build with four configurations:
+
+  - GCC on Ubuntu 18.04
+  - clang on Ubuntu 18.04
+  - GCC on Mac OS X
+  - clang on Mac OS X
+  
+  You will get 10 points just for producing the build with the correct four jobs. To get the remaining 10 points, you will need to modify your `.travis.yml` file further to get the code to build correctly in a Mac OS X environment. 
+
+  Hint: as you'll discover fairly quickly, Mac OS X doesn't include the `apt` command used in Ubuntu systems, and which we rely on to install the Criterion library. Installing *dependencies* can be tricky when combining multiple different environment, so you may focus on the part of the Travis CI documentation that focuses on that.
+  
+   Take the URL of the build you just produced, and paste it into Gradescope (under "Task 3: Ubuntu and Mac OS X"). If you got the code to build in a Mac OS X environment, you must also explain how you accomplished this.
+   
+ * [10 points] It turns out that, in a Mac environment, running `gcc` just results in a call to clang. So, it seems a bit redundant to run the two Mac jobs in the previous build (which will both end up using clang). Figure out a way to *exclude* the Mac+GCC job from the build. Note: You will not get credit if you simply write out the three job configurations. You must instead continue to use matrix expansion, but figure out a way to exclude one specific configuration.
+
+   Take the URL of the build you just produced, and paste it into Gradescope (under "Task 3: Excluding a job"). 
 
 
 ## Submitting your lab
