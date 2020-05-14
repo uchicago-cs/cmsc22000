@@ -54,6 +54,10 @@ We'll start by looking at a simple Travis CI file:
 
 Save this as a `.travis.yml` file in the root of your repository; commit it, but don't push it just yet.
 
+{{% note %}}
+Files that start with a period, like `.travis.yml`, are hidden by default on a UNIX system. This means the file won't appear if you use `ls` from the terminal; you will need to include the `-a` option to be able to see it (i.e., `ls -a` instead of `ls`, and `ls -al` instead of `ls -l`). If you are using a graphical file browser, you may need to select a "Show Hidden Files" option somewhere to be able to see the file.
+{{% /note %}}
+
 By default, a Travis CI file will specify a single job that is run whenever we push any code to our repository (later on we'll see how to specify multiple jobs). In this file, we specify some options that will affect how the job is run:
 
 - `os: linux` specifies that the job should be run on a Linux environment.
@@ -97,11 +101,15 @@ Go ahead and push the commit you created previously. GitHub (and Travis CI) will
 
       https://travis-ci.com/github/cmsc22000-labs/2020-lab6-GITHUB_USERNAME
       
-Where `GITHUB_USERNAME` should be replaced with your GitHub username. You can also access this page by going here: https://travis-ci.com/github/cmsc22000-labs/ (and clicking on the entry corresponsing to your repository)
+Where `GITHUB_USERNAME` should be replaced with your GitHub username. If you see a message saying "We couldn't display the repository cmsc22000-labs/2020-lab6-GITHUB_USERNAME", you may need to follow the prompt to sign into Travis with your GitHub credentials (once you do, you should be able to see the build). You can also access the build by going here: https://travis-ci.com/github/cmsc22000-labs/ (and clicking on the entry corresponsing to your repository) 
   
 Please note that it can sometimes take a few minutes for the build to start (the page will automatically update as your build progresses). After a while, the "Current" tab should show a successful build like this:
   
-   ![build](/cmsc22000/img/build.png)
+   ![build](/cmsc22000/img/build.png)   
+   
+{{% note %}}
+If the build shows up as "errored", with errors that relate specifically to `git clone`, this just means that GitHub is limiting the number of requests from Travis. Wait a minute or two and try pressing the "Restart job" button.
+{{% /note %}}   
    
 The "#1" in the screenshot is the build number (this number may be different if you had to make multiple attempts to get a successful build). Click on the build number; this will take you to a page with a URL like this:
   
@@ -119,10 +127,11 @@ Now, do the following:
 
 * [10 points] Take the URL of the build you just produced, and paste it into Gradescope (under "Task 1: Successful build")
 
-* [10 points] Make a change to the libgeometry code that will prevent it from compiling. Commit that change; your build should eventually fail. Paste the URL of the failed build on Gradescope (under "Task 1: Failed build (compiling)")
+* [10 points] Make a change to the libgeometry code that will prevent it from compiling. Commit and push that change; your build should eventually fail. Paste the URL of the failed build on Gradescope (under "Task 1: Failed build (compiling)")
 
-* [10 points] Fix the change you made, and make another change that will make the tests fail. Commit that change; your build should eventually fail. Paste the URL of the failed build on Gradescope (under "Task 1: Failed build (tests)")
+* [10 points] Fix the change you made, and make another change that will make the tests fail. Commit and push that change; your build should eventually fail. Paste the URL of the failed build on Gradescope (under "Task 1: Failed build (tests)")
 
+Before moving on to the next task, make sure to fix the change you just made. Your build should succeed before moving on to the next tasks.
 
 # Task 2: Multiple jobs
 
@@ -161,7 +170,7 @@ Travis CI actually provides two mechanisms to specify multiple jobs:
    - GCC on an ARM64 processor
    - clang on an ARM64 processor
     
-Modify your `.travis.yml` file to include the `arch` and `compiler` options as shown above. Commit and push the updated file. Once the build completes, you should see four jobs in the build. By the way, the ARM64 processor architecture is commonly used in smartphones, which means that we have effortlessly verified that libgeometry will build and run correctly on most smartphones!
+Modify your `.travis.yml` file to also include the `arch` option as shown above (i.e., you should still keep the `compiler` option you added previously). Commit and push the updated file. Once the build completes, you should see four jobs in the build. By the way, the ARM64 processor architecture is commonly used in smartphones, which means that we have effortlessly verified that libgeometry will build and run correctly on most smartphones!
     
 * [10 points] Take the URL of the build you just produced, and paste it into Gradescope (under "Task 2: Matrix expansion").
 
@@ -179,7 +188,7 @@ Modify your `.travis.yml` file to include the `arch` and `compiler` options as s
         dist: trusty
         compiler: gcc
 
-Remove the top-level `os`, `dist`, and `compiler` options from your `.travis.yml` file, and replace it with the above `jobs` option. Commit and push the file; once the build completes, you should see it has three jobs.
+Remove the top-level `os`, `dist`, `compiler`, and `arch` options from your `.travis.yml` file, and replace it with the above `jobs` option. Commit and push the file; once the build completes, you should see it has three jobs.
 
 As it turns out, the job that ran on Ubuntu 14.04 will fail. You do not need to fix it, but it's worth noting why it failed: the version of GCC shipped with that version of Ubuntu does not use, by default, the C99 version of the C standard (which later versions of GCC do use by default). To get the code to build on Ubuntu 14.04, we would have to explicitly pass the `-std=c99` option to GCC to make sure it compiles the code using the C99 version of the C standard.
 
@@ -195,7 +204,9 @@ In the previous tasks, we've given you the exact configurations you had to use (
 
 * [10 points] In Task 2, we saw that using the `compiler` option resulted in the `clang` build still using GCC. There is something you will need to fix in your `Makefile` Hint: The Travis CI documentation includes language-specific documentation that explains what certain options, like the `compiler` option, do. You may want to look at that specifically.
 
-  Create a build with two jobs (one with GCC and one with clang), and make sure that the clang one is actually using clang (by looking at the output of the Make commands in the "Job log"). Take the URL of the build you just produced, and paste it into Gradescope (under "Task 3: GCC vs clang"). You must also explain what you did to ensure the clang job used clang.
+  Use the `compiler` option to create a build with two jobs (one with GCC and one with clang), and make sure that the clang one is actually using clang (by looking at the output of the Make commands in the "Job log"). Take the URL of the build you just produced, and paste it into Gradescope (under "Task 3: GCC vs clang"). You must also explain what you did to ensure the clang job used clang.
+  
+  Note: If you end up with more than two jobs, make sure you've removed any other option that would result in additional jobs being launched.
 
 * [10 + 10 points] Using matrix expansion options *only*, generate a build with four configurations:
 
