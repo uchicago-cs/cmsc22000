@@ -2,43 +2,22 @@
 title: "Lab 7: Deployment"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, May 23rd, 2:30pm
+**Due:** Wednesday, May 27th, 8pm
 
 Last week, you learned about Continuous Integration, which deals with how application code makes it to the master branch. But how do our applications make it to the *real world*, where other people can use them?
 
 Deployment refers to the processes by which software systems are made available for use (a related term, *delivery*, refers to making software available specifically to end-users). The exact deployment pipeline can vary from one project to another. For example, in a large financial company, deploying business management software might require system architects to come and physically upload software on the machines. On the other hand, if you're deploying a small web application, you just need a way to get your application from your computer to a server where other users can access it.
 
-In this lab, you will deploy an application to [Heroku](https://www.heroku.com/), one of the most popular services for hosting web apps. You can see what your app *should* look like at https://cs220-helloapp.herokuapp.com/
+In this lab, you will deploy an application to [Heroku](https://www.heroku.com/), one of the most popular services for hosting web apps. In this lab you'll be deploying HelloApp, the small [Flask](http://flask.pocoo.org/) web application we demonstrated in this week's lectures (you can see our deployed version here: ://cs220-helloapp.herokuapp.com/). Don't worry: while the app is implemented in Python, no Python knowledge is necessary for this lab.
 
 
-# Task 0: Setup
-[0 Points]
+## Creating your lab repository
 
-You should already have the “upstream” remote set up in your repository. If you do, simply run
+Like previous labs, we will provide you with an  *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-lab7-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub. Your repository will be seeded with some files for the lab and, more specifically, will contain the code for HelloApp.
 
-    $ git pull upstream master
-
-to get the files for this lab. If you don’t have the “upstream” remote set up, follow task 0 from [Lab 2]({{< relref "lab2.md" >}}).
-
-Once you've pulled from upstream, there should be a `labs/lab7` directory in your local repository with a `tasks.txt` file. In this lab, you will just have to copy-paste a few URLs that we will use to verify that you've done the work in this lab.
-
-Next, in this lab we'll be working with the small [Flask](http://flask.pocoo.org/) web application we demonstrated in class. Don't worry: while the app is implemented in Python, no Python knowledge is necessary for this lab. First, you'll make a **fork** of the app. We covered forking in the [Advanced Git Lab]({{< relref "advanced-git.md" >}}), so you may want to review that lab if you're not 100% clear on what a fork is. In a nutshell, a fork is a new copy of a project under your own username. Forking a repository allows you to freely experiment with changes without affecting the original project (unless you choose to contribute back to the original project and the owners accept your contribution). Forking and then submitting pull requests across a fork is a very common practice in open source software development.
-
-You can fork the `cs220-helloapp-2019` repository by going [here](https://github.com/uchicago-cs/cs220-helloapp-2019) and clicking "Fork" in the upper right hand corner.
-
-Once the fork has completed, you can clone it and begin your work. Remember to do this *outside* of your individual GitLab repository! (i.e., do _not_ run the following command in the same directory that contains your `labs/`, `libgeometry/`, etc. directories, or inside the `labs/lab7` directory). 
-
-```
-$ git clone https://github.com/[yourusername]/cs220-helloapp-2019.git
-
-```
-
-Edit your `tasks.txt` file and include the URL of your forked `cs220-helloapp-2019` repository on GitHub. 
-
-Careful! Remember that your `tasks.txt` is in your personal repository on GitLab (with all your other lab files). You will _only_ be using that repository to edit your `tasks.txt` file. The rest of your work will happen on the forked `cs220-helloapp` repository you just created.
 
 # Task 1: Create a Heroku App
 [20 points]
@@ -51,66 +30,74 @@ Heroku is a common service used to host web applications. For this task you'll s
 Once you've created your account, you're ready to create a Heroku app.
 
 1. Go to your dashboard, https://dashboard.heroku.com/apps
-2. Click the big button that says "Create new app"
-3. Under "app-name" title your app "[cnetID]-cs220-lab7". This means that the url for your app will be "https://[cnetID]-cs220-lab7.herokuapp.com"
+2. Click the button that says "New" and then click on "Create new app"
+3. Under "app-name" title your app `CNETID-cs220-lab7` (where `CNETID` should be replaced with your CNetID). This means that the url for your app will be `https://CNETID-cs220-lab7.herokuapp.com`
 
-You've created your app! But navigate to "https://[cnetID]-cs220-lab7.herokuapp.com". As you can see, there's nothing there. In the coming tasks we will get the helloapp up and running on this URL.
+You've created your app! But navigate to `https://CNETID-cs220-lab7.herokuapp.com`. As you can see, there's nothing there. In the coming tasks we will get  HelloApp up and running on this URL.
 
-Before continuing, edit your `tasks.txt` file and include the URL of your app on Heroku. 
+Before continuing, enter the URL of your Heroku app on Gradescope.
 
 # Task 2: Deploy using Heroku CLI
 [20 points]
 
-In class, we saw that we can deploy an app to Heroku simply by pushing to their Git repository. Your local `cs220-helloapp-2019` repository is currently configured to push only to GitHub, so we need to set it up to also push to Heroku. We can do this using a command-line tool provided by Heroku.
+In class, we saw that we can deploy an app to Heroku simply by pushing to their Git repository. Your local `2020-lab7-GITHUB_USERNAME` repository is currently configured to push only to GitHub, so we need to set it up to also push to Heroku. We can do this using a command-line tool provided by Heroku.
 
-First, you'll need to log into Heroku like this:
+First, you'll need to log into Heroku like this (make sure you run this command *inside* your `2020-lab7-GITHUB_USERNAME` directory):
 
-```
-$ cd cs220-helloapp-2019
+```sh
 $ heroku login
 ```
 
 {{% warning %}}
-{{% md %}}
-Techstaff has set up the `heroku` command on the CSIL machines and the `linux.cs` servers.
+The `heroku` command is available on the CSIL machines and the `linux.cs` servers.
 
 If you are running inside the CS VM, then you will need to install Flask and the `heroku` command by running the following:
 
-```
+```sh
 $ sudo -H pip3 install flask
 $ sudo snap install --classic heroku
 ```
 
 If you are using the Headless VM setup, take into account that the `heroku login` command will attempt to open a browser to log you into Heroku, which is not possible from headless mode. Instead, the command will print out a URL, which you will have to manually copy/paste into a browser in your computer.
-{{% /md %}}
 {{% /warning %}}
 
-The instructions for deploying using the CLI are located at https://dashboard.heroku.com/apps/[cnetID]-cs220-lab7/deploy/heroku-git. We already have a git repository, so we'll follow the instructions for *Existing Git Repository*.
+The instructions for deploying using the CLI are located at `https://dashboard.heroku.com/apps/CNETID-cs220-lab7/deploy/heroku-git` (under "Deploy using Heroku Git"). We already have a git repository, so we'll follow the instructions for *Existing Git Repository*.
 
-```
-heroku git:remote -a [your app name]
-
+```sh
+$ heroku git:remote -a CNETID-cs220-lab7
 ```
 
 So, we've set up Heroku for this app, but we haven't deployed it yet... Navigate to your app's webpage, and you'll see nothing is there.
 
 In order to deploy, you should use:
 
-```
+```sh
 $ git push heroku master
 ```
 
-The `heroku git:remote` command you ran above added the `heroku` remote to your local repository, and pushing to it means that Heroku's servers will receive your code for the first time.
+The `heroku git:remote` command you ran above added the `heroku` remote to your local repository, and pushing to it means that Heroku's servers will receive your code for the first time. The deployment will take about a minute or so and, once it's done, you should see a message like this:
+
+```sh
+remote: -----> Launching...
+remote:        Released v3
+remote:        https://CNETID-cs220-lab7.herokuapp.com/ deployed to Heroku
+remote: 
+remote: Verifying deploy... done.
+To https://git.heroku.com/CNETID-cs220-lab7.git
+ * [new branch]      master -> master
+```
+
+Go ahead and go to `https://CNETID-cs220-lab7.herokuapp.com/`. HelloApp should now be running correctly at that URL.
 
 The version you just deployed happens to be a correct version of the app. We actually have a few tests that will run some basic checks to make sure the app is behaving as intended. You can run this tests simply by running this:
 
-```
-pytest
+```sh
+$ pytest
 ```
 
 This should produce an output like this:
 
-```
+```sh
 ====================================== test session starts =======================================
 platform linux -- Python 3.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
 rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
@@ -122,9 +109,9 @@ tests/test_greeting.py ..                                                       
 ==================================== 2 passed in 0.02 seconds ====================================
 ```
 
-Now, let's break our app. Edit the files `hello/templates/index.html` and replace `Hello` with `Howdy`. If you re-run the tests, one test will pass, but another will fail:
+Now, let's break our app. Edit the file `hello/templates/index.html` and replace `Hello` with `Howdy`. If you re-run the tests, one test will pass, but another will fail:
 
-```
+```sh
 ====================================== test session starts =======================================
 platform linux -- Python 3.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
 rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
@@ -164,7 +151,7 @@ You don't need to understand everything that's going on here but, in a nutshell,
 
 It's a good thing we have the tests to tell us this but, unfortunately, nothing is preventing us from deploying this broken app. In fact, go ahead and deploy the broken code:
 
-```
+```sh
 $ git add hello/templates/index.html
 $ git commit -m "Broke the Internet!"
 $ git push heroku master
@@ -180,33 +167,31 @@ Before continuing, make sure that you also push to your GitHub repository:
 $ git push
 ```
 
-That way, we can check that you've followed the steps described in this task.
+That way, we can check that you've followed the steps described in this task. You do not need to enter anything into Gradescope for this task.
 
 
-# Task 3: Create .travis.yml for cs220-helloapp-2019
+# Task 3: Create .travis.yml for HelloApp
 [40 points]
 
-As you remember from our [previous lab]({{< relref "lab6.md" >}}), we have a way to make sure our app passes all the tests every time we push.
+As you may remember from our [previous lab]({{< relref "lab6.md" >}}), we have a way to make sure our app passes all the tests every time we push.
 
-For this, you should create a `.travis.yml` file in your `cs220-helloapp-2019` repo. With python, there's no need to build, so you should just define a test phase which runs the command `pytest` as its test script.
+For this, you should create a `.travis.yml` file in your `2020-lab7-GITHUB_USERNAME` repo. With Python, there's no need to build, so you should just define a single job that runs the command `pytest` as its test script.
 
-In the last task, you made the tests fail. You should ensure the CI job fails when the tests are failing.
+In the last task, you made the tests fail. You should ensure the CI job fails when the tests are failing. Take the URL of the failed build, and enter it in Gradescope.
 
-Now, go back and fix the app so that they all pass. Before continuing, make sure you push your fixed app to both GitHub and to Heroku.
+Now, go back and fix the app so that they all pass. Then, push your fixed app to both GitHub and to Heroku. Take the URL of the successful build, and enter it in Gradescope.
 
 # Task 4: Deploy using Github Integration with Travis CI
 [20 points]
 
-Wouldn't it be convenient if we could deploy continuously, as soon as tests pass? You might think "well, what if we had a deploy phase in our Travis CI"? This is possible (see https://docs.travis-ci.com/user/deployment/heroku/), but it turns out Heroku makes it *even easier* than that. On your Heroku app dashboard, in the "Deploy" tab, select "GitHub - connect to GitHub" instead of "Heroku Git - Use Heroku CLI".
+Wouldn't it be convenient if we could deploy continuously, as soon as tests pass? You might think "well, what if we had a deploy phase in our Travis CI"? This is possible (see https://docs.travis-ci.com/user/deployment/heroku/), but it turns out Heroku makes it *even easier* than that. On your Heroku app dashboard, in the "Deploy" tab, under "Deployment method", select "GitHub - connect to GitHub" instead of "Heroku Git - Use Heroku CLI".
 
-Then, you should be able to connect to GitHub using your GitHub account and repo name. Once you connect the repo, you should see an option that says "Automatic deploys" with a checkbox "Wait for CI to pass before deploy".
+Then, you should be able to connect to GitHub using your GitHub account and repo name. Once you connect the repo, you should see an option that says "Automatic deploys" with a checkbox "Wait for CI to pass before deploy". Make sure that checkbox is checked, and then click on "Enable Automatic Deploys"
 
 Make the tests fail again and push to GitHub with a simple `git push`. The CI tests should fail and, if you navigate to your URL, you'll see that the broken version has not been deployed.
 
 {{% warning %}}
-{{% md %}}
 **Caution:** In the above `git push` step, *don't* push to Heroku as you did in previous tasks. What's happening here is that the Heroku service will now wait for tests to pass CI, and then automagically pull your code and deploy it. No need to manually push to Heroku.
-{{% /md %}}
 {{% /warning %}}
 
 Before continuing, fix the tests and make sure your CI tests are passing again.
@@ -217,12 +202,11 @@ Now, we're going to make a change that doesn't make the tests fail, to verify th
     <label for="name">Name</label>
 ```
 
-Now, commit your changes and push to GitHub. Once the CI tests pass, your updated app should be available on Heroku, and you will be done with this lab! If your updated app doesn't deploy, check the "Activity" tab on your Heroku app dashboard, and see what the issue is: if it seems like it deployed correctly, you may simply need to wait a few minutes to see the website updated.
+Now, commit your changes and push to GitHub. Once the CI tests pass, your updated app should be available on Heroku shortly aftewards. On your app dashboard on Heroku, you can go to the "Activity" tab to see whether your latest commit has been deployed (this tab can also provide details on why an app wasn't deployed).
+
+For this task, you just need to make sure that you've pushed your code to GitHub as instructed above.
 
 ### Submitting your lab
 
-Before submitting, make sure you've committed your changes to the `lab7/tasks.txt` file (remember you can run `git status` to check this). Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
-
-    chisubmit student assignment register lab7
-    chisubmit student assignment submit lab7
+In this lab, you just need to enter a few URLs into Gradescope (make sure you've done so at the points instructed above). You should also make sure you've pushed your code to GitHub (but will not be submitting your code through Gradescope; we just need to check that you've made the commits we expected you to make).
 
