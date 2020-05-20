@@ -11,7 +11,7 @@ Last week, you learned about Continuous Integration, which deals with how applic
 
 Deployment refers to the processes by which software systems are made available for use (a related term, *delivery*, refers to making software available specifically to end-users). The exact deployment pipeline can vary from one project to another. For example, in a large financial company, deploying business management software might require system architects to come and physically upload software on the machines. On the other hand, if you're deploying a small web application, you just need a way to get your application from your computer to a server where other users can access it.
 
-In this lab, you will deploy an application to [Heroku](https://www.heroku.com/), one of the most popular services for hosting web apps. In this lab you'll be deploying HelloApp, the small [Flask](http://flask.pocoo.org/) web application we demonstrated in this week's lectures (you can see our deployed version here: ://cs220-helloapp.herokuapp.com/). Don't worry: while the app is implemented in Python, no Python knowledge is necessary for this lab.
+In this lab, you will deploy an application to [Heroku](https://www.heroku.com/), one of the most popular services for hosting web apps. More specifically, you'll be deploying HelloApp, the small [Flask](http://flask.pocoo.org/) web application we demonstrated in this week's lectures (you can see our deployed version here: ://cs220-helloapp.herokuapp.com/). Don't worry: while the app is implemented in Python, no Python knowledge is necessary for this lab.
 
 
 ## Creating your lab repository
@@ -175,9 +175,9 @@ That way, we can check that you've followed the steps described in this task. Yo
 
 As you may remember from our [previous lab]({{< relref "lab6.md" >}}), we have a way to make sure our app passes all the tests every time we push.
 
-For this, you should create a `.travis.yml` file in your `2020-lab7-GITHUB_USERNAME` repo. With Python, there's no need to build, so you should just define a single job that runs the command `pytest` as its test script.
+For this, you should create a `.travis.yml` file in your `2020-lab7-GITHUB_USERNAME` repo. With Python, there's no need to build, so you should just define a single job that runs the command `pytest` as its test script (in a Linux environment)
 
-In the last task, you made the tests fail. You should ensure the CI job fails when the tests are failing. Take the URL of the failed build, and enter it in Gradescope.
+In the last task, you made the tests fail. Commit and push your .travis.yml file and make sure the CI job fails specifically because the tests are failing (you will need to inspect the job log to see that `pytest` is failing in your CI build). Take the URL of the failed build, and enter it in Gradescope. 
 
 Now, go back and fix the app so that they all pass. Then, push your fixed app to both GitHub and to Heroku. Take the URL of the successful build, and enter it in Gradescope.
 
@@ -186,7 +186,9 @@ Now, go back and fix the app so that they all pass. Then, push your fixed app to
 
 Wouldn't it be convenient if we could deploy continuously, as soon as tests pass? You might think "well, what if we had a deploy phase in our Travis CI"? This is possible (see https://docs.travis-ci.com/user/deployment/heroku/), but it turns out Heroku makes it *even easier* than that. On your Heroku app dashboard, in the "Deploy" tab, under "Deployment method", select "GitHub - connect to GitHub" instead of "Heroku Git - Use Heroku CLI".
 
-Then, you should be able to connect to GitHub using your GitHub account and repo name. Once you connect the repo, you should see an option that says "Automatic deploys" with a checkbox "Wait for CI to pass before deploy". Make sure that checkbox is checked, and then click on "Enable Automatic Deploys"
+Then, you should be able to connect to your repo. To do this, you need to first select the `cmsc22000-labs` organization under "Search for a repository to connect to", and then enter your repository's name (`2020-lab7-GITHUB_USERNAME`) in the text field (make sure to click the "Search" button so Heroku will search for your repository). 
+
+Once you connect the repo, you should see an option that says "Automatic deploys" with a checkbox "Wait for CI to pass before deploy". Make sure that checkbox is checked, and then click on "Enable Automatic Deploys"
 
 Make the tests fail again and push to GitHub with a simple `git push`. The CI tests should fail and, if you navigate to your URL, you'll see that the broken version has not been deployed.
 
