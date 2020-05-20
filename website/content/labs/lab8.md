@@ -2,10 +2,10 @@
 title: "Lab 8: More CI and Deployment"
 date: 2018-01-26
 publishdate: 2018-01-26
-draft: true
+draft: false
 ---
 
-**Due:** Thursday, May 30th, 2:30pm
+**Due:** Wednesday, June 3rd, 8pm
 
 In this lab, we will continue to explore concepts related to Continuous Integration and Deployment. The lab is divided into two main parts: one where we will see how we can use Docker containers as part of a CI build, and one where we will expand the deployment pipeline we saw in our previous lab.
 
@@ -22,30 +22,9 @@ One way of doing this is by using _containers_, a sort of lightweight virtual ma
 
 For example, a Redis container would include a Redis server and, by default, running the container would immediately start that Redis server, instead of taking us to a UNIX shell where we have to run the Redis server ourselves. So, if we wanted to run Redis during a CI build, all we would need to do is download a Redis _container image_, and run that container during the CI build. A popular container manager is Docker, which we will be using in this lab. Make sure to read their [What is a Container](https://www.docker.com/what-container) page, which provides a more in-depth explanation of what a container is, and how it compares to virtual machines.
 
-## Task 0: Setup
-[0 Points]
+## Creating your lab repository
 
-You should already have the "upstream" remote set up in your repository. If you do, simply run
-
-    $ git pull upstream master
-
-to get the files for this lab. If you don’t have the "upstream" remote set up, follow task 0 from [Lab 2]({{< relref "lab2.md" >}}).
-
-Next, like we did in the previous lab, you will be forking an existing GitHub repository. We covered forking in the [Advanced Git Lab]({{< relref "advanced-git.md" >}}), so you may want to review that lab if you’re not 100% clear on what a fork is. 
-
-The repository we will be forking is this one: https://github.com/uchicago-cs/cs220-redis-example. Remember that you can fork it by clicking "Fork" in the upper right hand corner.
-
-Once the fork has completed, you can clone it and begin your work. Remember to do this outside of your individual GitLab repository! (i.e., do not run the following command in the same directory that contains your lab1, lab2, etc. directories, or inside the lab8 directory).
-
-    $ git clone https://github.com/[yourusername]/cs220-redis-example.git
-
-Edit your tasks.txt file and include the URL of your forked cs220-redis-example repository on GitHub.
-
-{{% warning %}}
-{{% md %}}
-Careful! Remember that your `tasks.txt` is in your personal repository on GitLab (with all your other lab files). You will only be using that repository to edit your `tasks.txt` file. The rest of your work will happen on the forked cs220-redis-example repository you just created.
-{{% /md %}}
-{{% /warning %}}
+Like previous labs, we will provide you with an  *invitation URL* that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called `2020-lab8-GITHUB_USERNAME` inside our `cmsc22000-labs` organization on GitHub. Your repository will be seeded with some files for the lab and, more specifically, will contain some code that requires a Redis server to run correctly.
 
 ## Task 1: Running Docker in the CS VM [Optional]
 [0 Points]
@@ -387,18 +366,5 @@ If everything checks out, merge your PR. This should push the changes to staging
 
 ### Submitting your lab
 
-Before submitting your lab, make sure you update your `lab8/tasks.txt` file with the URLs for the following:
-
-* Your forked `cs220-redis-example` repository on GitHub.
-* Your successful build of `cs220-redis-example` on Travis.
-* The pull request you created in your forked `cs220-helloapp` repository.
-* Your staging HelloApp
-* Your production HelloApp
-
-Don't forget to commit and push your changes to the `lab8/tasks.txt` file (remember you can run `git status` to check this). 
-
-Finally, Make sure you've set up the `chisubmit` tool as described in [How to submit your labs]({{< relref "submit.md" >}}), and then run the following:
-
-    chisubmit student assignment register lab8
-    chisubmit student assignment submit lab8
+In this lab, you just need to enter a few URLs into Gradescope (make sure you've done so at the points instructed above). You should also make sure you've pushed your code to GitHub (but will not be submitting your code through Gradescope; we just need to check that you've made the commits we expected you to make).
 
