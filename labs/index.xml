@@ -94,5 +94,16 @@ By this point in your CS studies, you’ve probably experienced the following at
 Continuous Integration, or CI, is the practice of frequently merging developers’ work into a mainline branch in a version control system like Git. CI almost always involves running an extensive set of test cases every time such a merge happens, or even every time new code is committed to the repository (not just on the mainline branch, but also on other branches). Thus many version control systems facilitate CI by providing mechanisms to trigger certain actions when code is pushed to a repository.</description>
     </item>
     
+    <item>
+      <title>Lab 7: Deployment</title>
+      <link>https://uchicago-cs.github.io/cmsc22000/labs/lab7/</link>
+      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://uchicago-cs.github.io/cmsc22000/labs/lab7/</guid>
+      <description>Due: Wednesday, May 27th, 8pm
+Last week, you learned about Continuous Integration, which deals with how application code makes it to the master branch. But how do our applications make it to the real world, where other people can use them?
+Deployment refers to the processes by which software systems are made available for use (a related term, delivery, refers to making software available specifically to end-users). The exact deployment pipeline can vary from one project to another.</description>
+    </item>
+    
   </channel>
 </rss>

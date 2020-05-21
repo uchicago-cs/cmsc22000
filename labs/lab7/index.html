@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-26",
     "description": "",
-    "wordCount":  1954 
+    "wordCount":  1897 
   }
 </script>
 
@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.70.0" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -123,7 +123,7 @@
 
 <a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
 
-<a href="https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/">Project</a>
+<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
 
 <a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
 
@@ -176,238 +176,134 @@
 </header>
 
   <div class="container content">
-  
-
-<p><strong>Due:</strong> Thursday, May 23rd, 2:30pm</p>
-
+  <p><strong>Due:</strong> Wednesday, May 27th, 8pm</p>
 <p>Last week, you learned about Continuous Integration, which deals with how application code makes it to the master branch. But how do our applications make it to the <em>real world</em>, where other people can use them?</p>
-
 <p>Deployment refers to the processes by which software systems are made available for use (a related term, <em>delivery</em>, refers to making software available specifically to end-users). The exact deployment pipeline can vary from one project to another. For example, in a large financial company, deploying business management software might require system architects to come and physically upload software on the machines. On the other hand, if you&rsquo;re deploying a small web application, you just need a way to get your application from your computer to a server where other users can access it.</p>
-
-<p>In this lab, you will deploy an application to <a href="https://www.heroku.com/">Heroku</a>, one of the most popular services for hosting web apps. You can see what your app <em>should</em> look like at <a href="https://cs220-helloapp.herokuapp.com/">https://cs220-helloapp.herokuapp.com/</a></p>
-
-<h1 id="task-0-setup">Task 0: Setup</h1>
-
-<p>[0 Points]</p>
-
-<p>You should already have the “upstream” remote set up in your repository. If you do, simply run</p>
-
-<pre><code>$ git pull upstream master
-</code></pre>
-
-<p>to get the files for this lab. If you don’t have the “upstream” remote set up, follow task 0 from <a href="/cmsc22000/labs/lab2/">Lab 2</a>.</p>
-
-<p>Once you&rsquo;ve pulled from upstream, there should be a <code>labs/lab7</code> directory in your local repository with a <code>tasks.txt</code> file. In this lab, you will just have to copy-paste a few URLs that we will use to verify that you&rsquo;ve done the work in this lab.</p>
-
-<p>Next, in this lab we&rsquo;ll be working with the small <a href="http://flask.pocoo.org/">Flask</a> web application we demonstrated in class. Don&rsquo;t worry: while the app is implemented in Python, no Python knowledge is necessary for this lab. First, you&rsquo;ll make a <strong>fork</strong> of the app. We covered forking in the <a href="/cmsc22000/labs/advanced-git/">Advanced Git Lab</a>, so you may want to review that lab if you&rsquo;re not 100% clear on what a fork is. In a nutshell, a fork is a new copy of a project under your own username. Forking a repository allows you to freely experiment with changes without affecting the original project (unless you choose to contribute back to the original project and the owners accept your contribution). Forking and then submitting pull requests across a fork is a very common practice in open source software development.</p>
-
-<p>You can fork the <code>cs220-helloapp-2019</code> repository by going <a href="https://github.com/uchicago-cs/cs220-helloapp-2019">here</a> and clicking &ldquo;Fork&rdquo; in the upper right hand corner.</p>
-
-<p>Once the fork has completed, you can clone it and begin your work. Remember to do this <em>outside</em> of your individual GitLab repository! (i.e., do <em>not</em> run the following command in the same directory that contains your <code>labs/</code>, <code>libgeometry/</code>, etc. directories, or inside the <code>labs/lab7</code> directory).</p>
-
-<pre><code>$ git clone https://github.com/[yourusername]/cs220-helloapp-2019.git
-
-</code></pre>
-
-<p>Edit your <code>tasks.txt</code> file and include the URL of your forked <code>cs220-helloapp-2019</code> repository on GitHub.</p>
-
-<p>Careful! Remember that your <code>tasks.txt</code> is in your personal repository on GitLab (with all your other lab files). You will <em>only</em> be using that repository to edit your <code>tasks.txt</code> file. The rest of your work will happen on the forked <code>cs220-helloapp</code> repository you just created.</p>
-
+<p>In this lab, you will deploy an application to <a href="https://www.heroku.com/">Heroku</a>, one of the most popular services for hosting web apps. More specifically, you&rsquo;ll be deploying HelloApp, the small <a href="http://flask.pocoo.org/">Flask</a> web application we demonstrated in this week&rsquo;s lectures (you can see our deployed version here: ://cs220-helloapp.herokuapp.com/). Don&rsquo;t worry: while the app is implemented in Python, no Python knowledge is necessary for this lab.</p>
+<h2 id="creating-your-lab-repository">Creating your lab repository</h2>
+<p>Like previous labs, we will provide you with an  <em>invitation URL</em> that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called <code>2020-lab7-GITHUB_USERNAME</code> inside our <code>cmsc22000-labs</code> organization on GitHub. Your repository will be seeded with some files for the lab and, more specifically, will contain the code for HelloApp.</p>
 <h1 id="task-1-create-a-heroku-app">Task 1: Create a Heroku App</h1>
-
 <p>[20 points]</p>
-
 <p>Heroku is a common service used to host web applications. For this task you&rsquo;ll sign up for a (free) account and use it to deploy an app with an Internet-reachable URL.</p>
-
 <ol>
 <li>Go to <a href="https://signup.heroku.com/login">https://signup.heroku.com/login</a></li>
 <li>Sign up and mark your &ldquo;role&rdquo; as &ldquo;student&rdquo;. You will need to confirm your account, and then create a password.</li>
 </ol>
-
 <p>Once you&rsquo;ve created your account, you&rsquo;re ready to create a Heroku app.</p>
-
 <ol>
 <li>Go to your dashboard, <a href="https://dashboard.heroku.com/apps">https://dashboard.heroku.com/apps</a></li>
-<li>Click the big button that says &ldquo;Create new app&rdquo;</li>
-<li>Under &ldquo;app-name&rdquo; title your app &ldquo;[cnetID]-cs220-lab7&rdquo;. This means that the url for your app will be &ldquo;https://[cnetID]-cs220-lab7.herokuapp.com&rdquo;</li>
+<li>Click the button that says &ldquo;New&rdquo; and then click on &ldquo;Create new app&rdquo;</li>
+<li>Under &ldquo;app-name&rdquo; title your app <code>CNETID-cs220-lab7</code> (where <code>CNETID</code> should be replaced with your CNetID). This means that the url for your app will be <code>https://CNETID-cs220-lab7.herokuapp.com</code></li>
 </ol>
-
-<p>You&rsquo;ve created your app! But navigate to &ldquo;https://[cnetID]-cs220-lab7.herokuapp.com&rdquo;. As you can see, there&rsquo;s nothing there. In the coming tasks we will get the helloapp up and running on this URL.</p>
-
-<p>Before continuing, edit your <code>tasks.txt</code> file and include the URL of your app on Heroku.</p>
-
+<p>You&rsquo;ve created your app! But navigate to <code>https://CNETID-cs220-lab7.herokuapp.com</code>. As you can see, there&rsquo;s nothing there. In the coming tasks we will get  HelloApp up and running on this URL.</p>
+<p>Before continuing, enter the URL of your Heroku app on Gradescope.</p>
 <h1 id="task-2-deploy-using-heroku-cli">Task 2: Deploy using Heroku CLI</h1>
-
 <p>[20 points]</p>
-
-<p>In class, we saw that we can deploy an app to Heroku simply by pushing to their Git repository. Your local <code>cs220-helloapp-2019</code> repository is currently configured to push only to GitHub, so we need to set it up to also push to Heroku. We can do this using a command-line tool provided by Heroku.</p>
-
-<p>First, you&rsquo;ll need to log into Heroku like this:</p>
-
-<pre><code>$ cd cs220-helloapp-2019
-$ heroku login
-</code></pre>
-
-<aside class="admonition warning">
-    <div class="admonition-icon">
-
-    </div>
-
-    <div class="admonition-content">
-<p>Techstaff has set up the <code>heroku</code> command on the CSIL machines and the <code>linux.cs</code> servers.</p>
-
+<p>In class, we saw that we can deploy an app to Heroku simply by pushing to their Git repository. Your local <code>2020-lab7-GITHUB_USERNAME</code> repository is currently configured to push only to GitHub, so we need to set it up to also push to Heroku. We can do this using a command-line tool provided by Heroku.</p>
+<p>First, you&rsquo;ll need to log into Heroku like this (make sure you run this command <em>inside</em> your <code>2020-lab7-GITHUB_USERNAME</code> directory):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ heroku login
+</code></pre></div><aside class="admonition warning">
+<div class="admonition-icon"></div>
+<div class="admonition-content"><p>The <code>heroku</code> command is available on the CSIL machines and the <code>linux.cs</code> servers.</p>
 <p>If you are running inside the CS VM, then you will need to install Flask and the <code>heroku</code> command by running the following:</p>
-
-<pre><code>$ sudo -H pip3 install flask
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo -H pip3 install flask
 $ sudo snap install --classic heroku
-</code></pre>
-
-<p>If you are using the Headless VM setup, take into account that the <code>heroku login</code> command will attempt to open a browser to log you into Heroku, which is not possible from headless mode. Instead, the command will print out a URL, which you will have to manually copy/paste into a browser in your computer.</p>
-
-
+</code></pre></div><p>If you are using the Headless VM setup, take into account that the <code>heroku login</code> command will attempt to open a browser to log you into Heroku, which is not possible from headless mode. Instead, the command will print out a URL, which you will have to manually copy/paste into a browser in your computer.</p>
 </div>
 </aside>
-
-<p>The instructions for deploying using the CLI are located at <a href="https://dashboard.heroku.com/apps/[cnetID]-cs220-lab7/deploy/heroku-git">https://dashboard.heroku.com/apps/[cnetID]-cs220-lab7/deploy/heroku-git</a>. We already have a git repository, so we&rsquo;ll follow the instructions for <em>Existing Git Repository</em>.</p>
-
-<pre><code>heroku git:remote -a [your app name]
-
-</code></pre>
-
-<p>So, we&rsquo;ve set up Heroku for this app, but we haven&rsquo;t deployed it yet&hellip; Navigate to your app&rsquo;s webpage, and you&rsquo;ll see nothing is there.</p>
-
+<p>The instructions for deploying using the CLI are located at <code>https://dashboard.heroku.com/apps/CNETID-cs220-lab7/deploy/heroku-git</code> (under &ldquo;Deploy using Heroku Git&rdquo;). We already have a git repository, so we&rsquo;ll follow the instructions for <em>Existing Git Repository</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ heroku git:remote -a CNETID-cs220-lab7
+</code></pre></div><p>So, we&rsquo;ve set up Heroku for this app, but we haven&rsquo;t deployed it yet&hellip; Navigate to your app&rsquo;s webpage, and you&rsquo;ll see nothing is there.</p>
 <p>In order to deploy, you should use:</p>
-
-<pre><code>$ git push heroku master
-</code></pre>
-
-<p>The <code>heroku git:remote</code> command you ran above added the <code>heroku</code> remote to your local repository, and pushing to it means that Heroku&rsquo;s servers will receive your code for the first time.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git push heroku master
+</code></pre></div><p>The <code>heroku git:remote</code> command you ran above added the <code>heroku</code> remote to your local repository, and pushing to it means that Heroku&rsquo;s servers will receive your code for the first time. The deployment will take about a minute or so and, once it&rsquo;s done, you should see a message like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">remote: -----&gt; Launching...
+remote:        Released v3
+remote:        https://CNETID-cs220-lab7.herokuapp.com/ deployed to Heroku
+remote: 
+remote: Verifying deploy... <span style="color:#66d9ef">done</span>.
+To https://git.heroku.com/CNETID-cs220-lab7.git
+ * <span style="color:#f92672">[</span>new branch<span style="color:#f92672">]</span>      master -&gt; master
+</code></pre></div><p>Go ahead and go to <code>https://CNETID-cs220-lab7.herokuapp.com/</code>. HelloApp should now be running correctly at that URL.</p>
 <p>The version you just deployed happens to be a correct version of the app. We actually have a few tests that will run some basic checks to make sure the app is behaving as intended. You can run this tests simply by running this:</p>
-
-<pre><code>pytest
-</code></pre>
-
-<p>This should produce an output like this:</p>
-
-<pre><code>====================================== test session starts =======================================
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pytest
+</code></pre></div><p>This should produce an output like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">======================================</span> test session starts <span style="color:#f92672">=======================================</span>
 platform linux -- Python 3.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
 rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
 plugins: metadata-1.7.0, json-0.4.0, html-1.17.0
-collected 2 items
+collected <span style="color:#ae81ff">2</span> items
 
-tests/test_greeting.py ..                                                                  [100%]
+tests/test_greeting.py ..                                                                  <span style="color:#f92672">[</span>100%<span style="color:#f92672">]</span>
 
-==================================== 2 passed in 0.02 seconds ====================================
-</code></pre>
-
-<p>Now, let&rsquo;s break our app. Edit the files <code>hello/templates/index.html</code> and replace <code>Hello</code> with <code>Howdy</code>. If you re-run the tests, one test will pass, but another will fail:</p>
-
-<pre><code>====================================== test session starts =======================================
+<span style="color:#f92672">====================================</span> <span style="color:#ae81ff">2</span> passed in 0.02 seconds <span style="color:#f92672">====================================</span>
+</code></pre></div><p>Now, let&rsquo;s break our app. Edit the file <code>hello/templates/index.html</code> and replace <code>Hello</code> with <code>Howdy</code>. If you re-run the tests, one test will pass, but another will fail:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">======================================</span> test session starts <span style="color:#f92672">=======================================</span>
 platform linux -- Python 3.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
 rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
 plugins: metadata-1.7.0, json-0.4.0, html-1.17.0
-collected 2 items
+collected <span style="color:#ae81ff">2</span> items
 
-tests/test_greeting.py .F                                                                  [100%]
+tests/test_greeting.py .F                                                                  <span style="color:#f92672">[</span>100%<span style="color:#f92672">]</span>
 
-============================================ FAILURES ============================================
+<span style="color:#f92672">============================================</span> FAILURES <span style="color:#f92672">============================================</span>
 _________________________________________ test_greeting __________________________________________
 
-client = &lt;FlaskClient &lt;Flask 'hello.main'&gt;&gt;
+client <span style="color:#f92672">=</span> &lt;FlaskClient &lt;Flask <span style="color:#e6db74">&#39;hello.main&#39;</span>&gt;&gt;
 
-    def test_greeting(client):
-        &quot;&quot;&quot;
-        Test that we get the correct greeting
-        if we submit the form.
-        &quot;&quot;&quot;
+    def test_greeting<span style="color:#f92672">(</span>client<span style="color:#f92672">)</span>:
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Test that we get the correct greeting
+</span><span style="color:#e6db74">        if we submit the form.
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
 
-        name = b&quot;Random J. Hacker&quot;
-        greeting = GREETING + b&quot;, &quot; + name + b&quot;!&quot;
+        name <span style="color:#f92672">=</span> b<span style="color:#e6db74">&#34;Random J. Hacker&#34;</span>
+        greeting <span style="color:#f92672">=</span> GREETING + b<span style="color:#e6db74">&#34;, &#34;</span> + name + b<span style="color:#e6db74">&#34;!&#34;</span>
 
-        rv = client.post(&quot;/&quot;, data={&quot;name&quot;: name})
+        rv <span style="color:#f92672">=</span> client.post<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span>, data<span style="color:#f92672">={</span><span style="color:#e6db74">&#34;name&#34;</span>: name<span style="color:#f92672">})</span>
 
-        # Test that the resulting page contains the app name
-        # and the correct greeting.
+        <span style="color:#75715e"># Test that the resulting page contains the app name</span>
+        <span style="color:#75715e"># and the correct greeting.</span>
         assert APPNAME in rv.data
 &gt;       assert greeting in rv.data
-E       assert b'Hello, Random J. Hacker!' in b'&lt;!doctype html&gt;\n&lt;title&gt;HelloApp&lt;/title&gt;\n&lt;link rel=&quot;stylesheet&quot; href=&quot;/static/style.css&quot;&gt;\n&lt;nav&gt;\n  &lt;h1&gt;HelloApp&lt;/h...h1&gt;\n\n  &lt;/header&gt;\n  \n\n&lt;p&gt;\n  Howdy, Random J. Hacker!\n&lt;/p&gt;\n&lt;p&gt;\n  &lt;a href=&quot;/&quot;&gt;Again!&lt;/a&gt;\n&lt;/p&gt;\n\n\n\n&lt;/section&gt;'
-E        +  where b'&lt;!doctype html&gt;\n&lt;title&gt;HelloApp&lt;/title&gt;\n&lt;link rel=&quot;stylesheet&quot; href=&quot;/static/style.css&quot;&gt;\n&lt;nav&gt;\n  &lt;h1&gt;HelloApp&lt;/h...h1&gt;\n\n  &lt;/header&gt;\n  \n\n&lt;p&gt;\n  Howdy, Random J. Hacker!\n&lt;/p&gt;\n&lt;p&gt;\n  &lt;a href=&quot;/&quot;&gt;Again!&lt;/a&gt;\n&lt;/p&gt;\n\n\n\n&lt;/section&gt;' = &lt;Response 294 bytes [200 OK]&gt;.data
+E       assert b<span style="color:#e6db74">&#39;Hello, Random J. Hacker!&#39;</span> in b<span style="color:#e6db74">&#39;&lt;!doctype html&gt;\n&lt;title&gt;HelloApp&lt;/title&gt;\n&lt;link rel=&#34;stylesheet&#34; href=&#34;/static/style.css&#34;&gt;\n&lt;nav&gt;\n  &lt;h1&gt;HelloApp&lt;/h...h1&gt;\n\n  &lt;/header&gt;\n  \n\n&lt;p&gt;\n  Howdy, Random J. Hacker!\n&lt;/p&gt;\n&lt;p&gt;\n  &lt;a href=&#34;/&#34;&gt;Again!&lt;/a&gt;\n&lt;/p&gt;\n\n\n\n&lt;/section&gt;&#39;</span>
+E        +  where b<span style="color:#e6db74">&#39;&lt;!doctype html&gt;\n&lt;title&gt;HelloApp&lt;/title&gt;\n&lt;link rel=&#34;stylesheet&#34; href=&#34;/static/style.css&#34;&gt;\n&lt;nav&gt;\n  &lt;h1&gt;HelloApp&lt;/h...h1&gt;\n\n  &lt;/header&gt;\n  \n\n&lt;p&gt;\n  Howdy, Random J. Hacker!\n&lt;/p&gt;\n&lt;p&gt;\n  &lt;a href=&#34;/&#34;&gt;Again!&lt;/a&gt;\n&lt;/p&gt;\n\n\n\n&lt;/section&gt;&#39;</span> <span style="color:#f92672">=</span> &lt;Response <span style="color:#ae81ff">294</span> bytes <span style="color:#f92672">[</span><span style="color:#ae81ff">200</span> OK<span style="color:#f92672">]</span>&gt;.data
 
 tests/test_greeting.py:33: AssertionError
-=============================== 1 failed, 1 passed in 0.03 seconds ===============================
-</code></pre>
-
-<p>You don&rsquo;t need to understand everything that&rsquo;s going on here but, in a nutshell, the tests verified that the index page of our application works correctly, but one of the tests fail because the greeting we&rsquo;re receiving is &ldquo;Howdy&rdquo; instead of &ldquo;Hello&rdquo;.</p>
-
+<span style="color:#f92672">===============================</span> <span style="color:#ae81ff">1</span> failed, <span style="color:#ae81ff">1</span> passed in 0.03 seconds <span style="color:#f92672">===============================</span>
+</code></pre></div><p>You don&rsquo;t need to understand everything that&rsquo;s going on here but, in a nutshell, the tests verified that the index page of our application works correctly, but one of the tests fail because the greeting we&rsquo;re receiving is &ldquo;Howdy&rdquo; instead of &ldquo;Hello&rdquo;.</p>
 <p>It&rsquo;s a good thing we have the tests to tell us this but, unfortunately, nothing is preventing us from deploying this broken app. In fact, go ahead and deploy the broken code:</p>
-
-<pre><code>$ git add hello/templates/index.html
-$ git commit -m &quot;Broke the Internet!&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git add hello/templates/index.html
+$ git commit -m <span style="color:#e6db74">&#34;Broke the Internet!&#34;</span>
 $ git push heroku master
-</code></pre>
-
-<p>As you&rsquo;ll notice, you&rsquo;re still able to deploy your app. But it&rsquo;s now returning the wrong greeting, and millions of users are upset because they were expecting a polite &ldquo;Hello&rdquo; from the app, and now they&rsquo;re getting a much more folksy &ldquo;Howdy&rdquo;, which seems to rub some of our users the wrong way.</p>
-
+</code></pre></div><p>As you&rsquo;ll notice, you&rsquo;re still able to deploy your app. But it&rsquo;s now returning the wrong greeting, and millions of users are upset because they were expecting a polite &ldquo;Hello&rdquo; from the app, and now they&rsquo;re getting a much more folksy &ldquo;Howdy&rdquo;, which seems to rub some of our users the wrong way.</p>
 <p>Is there a way we could prevent this, without manually checking every time? It would be nice if we could just deploy automatically from our GitHub repo, and only after CI tests pass.</p>
-
 <p>Before continuing, make sure that you also push to your GitHub repository:</p>
-
 <pre><code>$ git push
-</code></pre>
-
-<p>That way, we can check that you&rsquo;ve followed the steps described in this task.</p>
-
-<h1 id="task-3-create-travis-yml-for-cs220-helloapp-2019">Task 3: Create .travis.yml for cs220-helloapp-2019</h1>
-
+</code></pre><p>That way, we can check that you&rsquo;ve followed the steps described in this task. You do not need to enter anything into Gradescope for this task.</p>
+<h1 id="task-3-create-travisyml-for-helloapp">Task 3: Create .travis.yml for HelloApp</h1>
 <p>[40 points]</p>
-
-<p>As you remember from our <a href="/cmsc22000/labs/lab6/">previous lab</a>, we have a way to make sure our app passes all the tests every time we push.</p>
-
-<p>For this, you should create a <code>.travis.yml</code> file in your <code>cs220-helloapp-2019</code> repo. With python, there&rsquo;s no need to build, so you should just define a test phase which runs the command <code>pytest</code> as its test script.</p>
-
-<p>In the last task, you made the tests fail. You should ensure the CI job fails when the tests are failing.</p>
-
-<p>Now, go back and fix the app so that they all pass. Before continuing, make sure you push your fixed app to both GitHub and to Heroku.</p>
-
+<p>As you may remember from our <a href="/cmsc22000/labs/lab6/">previous lab</a>, we have a way to make sure our app passes all the tests every time we push.</p>
+<p>For this, you should create a <code>.travis.yml</code> file in your <code>2020-lab7-GITHUB_USERNAME</code> repo. With Python, there&rsquo;s no need to build, so you should just define a single job that runs the command <code>pytest</code> as its test script (in a Linux environment)</p>
+<p>In the last task, you made the tests fail. Commit and push your .travis.yml file and make sure the CI job fails specifically because the tests are failing (you will need to inspect the job log to see that <code>pytest</code> is failing in your CI build). Take the URL of the failed build, and enter it in Gradescope.</p>
+<p>Now, go back and fix the app so that they all pass. Then, push your fixed app to both GitHub and to Heroku. Take the URL of the successful build, and enter it in Gradescope.</p>
 <h1 id="task-4-deploy-using-github-integration-with-travis-ci">Task 4: Deploy using Github Integration with Travis CI</h1>
-
 <p>[20 points]</p>
-
-<p>Wouldn&rsquo;t it be convenient if we could deploy continuously, as soon as tests pass? You might think &ldquo;well, what if we had a deploy phase in our Travis CI&rdquo;? This is possible (see <a href="https://docs.travis-ci.com/user/deployment/heroku/">https://docs.travis-ci.com/user/deployment/heroku/</a>), but it turns out Heroku makes it <em>even easier</em> than that. On your Heroku app dashboard, in the &ldquo;Deploy&rdquo; tab, select &ldquo;GitHub - connect to GitHub&rdquo; instead of &ldquo;Heroku Git - Use Heroku CLI&rdquo;.</p>
-
-<p>Then, you should be able to connect to GitHub using your GitHub account and repo name. Once you connect the repo, you should see an option that says &ldquo;Automatic deploys&rdquo; with a checkbox &ldquo;Wait for CI to pass before deploy&rdquo;.</p>
-
+<p>Wouldn&rsquo;t it be convenient if we could deploy continuously, as soon as tests pass? You might think &ldquo;well, what if we had a deploy phase in our Travis CI&rdquo;? This is possible (see <a href="https://docs.travis-ci.com/user/deployment/heroku/),">https://docs.travis-ci.com/user/deployment/heroku/),</a> but it turns out Heroku makes it <em>even easier</em> than that. On your Heroku app dashboard, in the &ldquo;Deploy&rdquo; tab, under &ldquo;Deployment method&rdquo;, select &ldquo;GitHub - connect to GitHub&rdquo; instead of &ldquo;Heroku Git - Use Heroku CLI&rdquo;.</p>
+<p>Then, you should be able to connect to your repo. To do this, you need to first select the <code>cmsc22000-labs</code> organization under &ldquo;Search for a repository to connect to&rdquo;, and then enter your repository&rsquo;s name (<code>2020-lab7-GITHUB_USERNAME</code>) in the text field (make sure to click the &ldquo;Search&rdquo; button so Heroku will search for your repository).</p>
+<p>Once you connect the repo, you should see an option that says &ldquo;Automatic deploys&rdquo; with a checkbox &ldquo;Wait for CI to pass before deploy&rdquo;. Make sure that checkbox is checked, and then click on &ldquo;Enable Automatic Deploys&rdquo;</p>
 <p>Make the tests fail again and push to GitHub with a simple <code>git push</code>. The CI tests should fail and, if you navigate to your URL, you&rsquo;ll see that the broken version has not been deployed.</p>
-
 <aside class="admonition warning">
-    <div class="admonition-icon">
-
-    </div>
-
-    <div class="admonition-content">
-<p><strong>Caution:</strong> In the above <code>git push</code> step, <em>don&rsquo;t</em> push to Heroku as you did in previous tasks. What&rsquo;s happening here is that the Heroku service will now wait for tests to pass CI, and then automagically pull your code and deploy it. No need to manually push to Heroku.</p>
-
-
-</div>
+<div class="admonition-icon"></div>
+<div class="admonition-content"><strong>Caution:</strong> In the above <code>git push</code> step, <em>don&rsquo;t</em> push to Heroku as you did in previous tasks. What&rsquo;s happening here is that the Heroku service will now wait for tests to pass CI, and then automagically pull your code and deploy it. No need to manually push to Heroku.</div>
 </aside>
-
 <p>Before continuing, fix the tests and make sure your CI tests are passing again.</p>
-
 <p>Now, we&rsquo;re going to make a change that doesn&rsquo;t make the tests fail, to verify the change is correctly deployed just by pushing to GitHub. If you look at the app, you&rsquo;ll see that the main page shows the title &ldquo;What is your name?&rdquo; followed by a form with a field titled &ldquo;Name&rdquo;. That &ldquo;Name&rdquo; title seems a bit redundant, so we&rsquo;re going to remove it. Edit <code>hello/templates/index.html</code> and remove this line:</p>
-
 <pre><code>    &lt;label for=&quot;name&quot;&gt;Name&lt;/label&gt;
-</code></pre>
-
-<p>Now, commit your changes and push to GitHub. Once the CI tests pass, your updated app should be available on Heroku, and you will be done with this lab! If your updated app doesn&rsquo;t deploy, check the &ldquo;Activity&rdquo; tab on your Heroku app dashboard, and see what the issue is: if it seems like it deployed correctly, you may simply need to wait a few minutes to see the website updated.</p>
-
+</code></pre><p>Now, commit your changes and push to GitHub. Once the CI tests pass, your updated app should be available on Heroku shortly aftewards. On your app dashboard on Heroku, you can go to the &ldquo;Activity&rdquo; tab to see whether your latest commit has been deployed (this tab can also provide details on why an app wasn&rsquo;t deployed).</p>
+<p>For this task, you just need to make sure that you&rsquo;ve pushed your code to GitHub as instructed above.</p>
 <h3 id="submitting-your-lab">Submitting your lab</h3>
-
-<p>Before submitting, make sure you&rsquo;ve committed your changes to the <code>lab7/tasks.txt</code> file (remember you can run <code>git status</code> to check this). Make sure you&rsquo;ve set up the <code>chisubmit</code> tool as described in <a href="/cmsc22000/labs/submit/">How to submit your labs</a>, and then run the following:</p>
-
-<pre><code>chisubmit student assignment register lab7
-chisubmit student assignment submit lab7
-</code></pre>
+<p>In this lab, you just need to enter a few URLs into Gradescope (make sure you&rsquo;ve done so at the points instructed above). You should also make sure you&rsquo;ve pushed your code to GitHub (but will not be submitting your code through Gradescope; we just need to check that you&rsquo;ve made the commits we expected you to make).</p>
 
 </div>
 
