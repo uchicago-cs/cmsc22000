@@ -11,7 +11,7 @@ Last week, you learned about Continuous Integration, which deals with how applic
 
 Deployment refers to the processes by which software systems are made available for use (a related term, *delivery*, refers to making software available specifically to end-users). The exact deployment pipeline can vary from one project to another. For example, in a large financial company, deploying business management software might require system architects to come and physically upload software on the machines. On the other hand, if you're deploying a small web application, you just need a way to get your application from your computer to a server where other users can access it.
 
-In this lab, you will deploy an application to [Heroku](https://www.heroku.com/), one of the most popular services for hosting web apps. More specifically, you'll be deploying HelloApp, the small [Flask](http://flask.pocoo.org/) web application we demonstrated in this week's lectures (you can see our deployed version here: ://cs220-helloapp.herokuapp.com/). Don't worry: while the app is implemented in Python, no Python knowledge is necessary for this lab.
+In this lab, you will deploy an application to [Heroku](https://www.heroku.com/), one of the most popular services for hosting web apps. More specifically, you'll be deploying HelloApp, the small [Flask](http://flask.pocoo.org/) web application we demonstrated in this week's lectures (you can see our deployed version here: https://cs220-helloapp.herokuapp.com/). Don't worry: while the app is implemented in Python, no Python knowledge is necessary for this lab.
 
 
 ## Creating your lab repository
