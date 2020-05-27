@@ -308,9 +308,7 @@ We will provide submission instructions once we are closer to the peer feedback.
 
 ### Final Presentation
 
-Details on the requirements for the final presentation will be available closer to the end of the quarter. 
-
-We expect it will involve preparing a pre-recorded presentation, with requirements similar to [last year's presentation requirements]({{< relref "presentation.md" >}}).
+Requirements for the final presentation can be found [here]({{< relref "presentation.md" >}}).
 
 
 ## Class-wide bonus points
