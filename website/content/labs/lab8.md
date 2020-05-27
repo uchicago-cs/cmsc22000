@@ -83,11 +83,13 @@ Docker will first download the Redis container image from the [Docker Hub](https
 1:M 17 May 14:04:54.269 * Ready to accept connections
 ```
 
-Now, open another terminal and run this:
+Now, open another terminal in the VM and run this:
 
 ```shell
 redis-cli
 ```
+
+(if you are running the VM in Headless Mode, then you will need to SSH into it again to have a second terminal)
 
 This should open up a prompt like this:
 
@@ -255,6 +257,8 @@ Finally, you can run the container like this:
 ```shell
 $ sudo docker run -d -p 6379:6379 redis-example
 ```
+
+If you need to stop the container later on, simply press Ctrl+C.
 
 In a separate terminal, build hiredis and the tests:
 
