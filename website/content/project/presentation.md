@@ -54,9 +54,11 @@ Submission instructions will be posted closer to the deadline, but we expect you
 
 ## Q&A
 
-During the Q&A meeting, you will be asked some questions based on your presentation (this is meant to emulate the Q&A that typically happens after a live presentation). As many team members as possible should attend the Q&A meeting, sp
+During the Q&A meeting, you will be asked some questions based on your presentation (this is meant to emulate the Q&A that typically happens after a live presentation; the instructor and TAs will watch your presentation before the Q&A portion). We expect to spend 5-10 minutes per team.
 
-The instructor and TAs will watch your presentation before the Q&A portion.
+While the entire team does not have to be present at the Q&A meeting, as many team members as possible should plan to attend. Take into account that you may be asked questions that one or two specific people in your team are best suited to answer (because they were more involved in the part of your code that a question relates to).
+
+Teams in a non-North American timezone who are unable to send a few team members to the Q&A meeting should contact the instructor in advance to schedule an alternate time for their Q&A.
 
 ## Scoring
 
