@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-01-26",
     "description": "",
-    "wordCount":  4066 
+    "wordCount":  4188 
   }
 </script>
 
@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.71.1" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -123,7 +123,7 @@
 
 <a href="https://uchicago-cs.github.io/cmsc22000/calendar/">Course Calendar</a>
 
-<a href="https://uchicago-cs.github.io/cmsc22000/projects/2019/spec/">Project</a>
+<a href="https://uchicago-cs.github.io/cmsc22000/project/">Project</a>
 
 <a href="https://uchicago-cs.github.io/cmsc22000/labs/">Labs</a>
 
@@ -176,302 +176,166 @@
 </header>
 
   <div class="container content">
-  
-
-<p><strong>Due:</strong> Thursday, May 30th, 2:30pm</p>
-
+  <p><strong>Due:</strong> Wednesday, June 3rd, 8pm</p>
 <p>In this lab, we will continue to explore concepts related to Continuous Integration and Deployment. The lab is divided into two main parts: one where we will see how we can use Docker containers as part of a CI build, and one where we will expand the deployment pipeline we saw in our previous lab.</p>
-
 <h1 id="part-i-using-containers-in-ci">Part I: Using Containers in CI</h1>
-
 <p>It is often necessary for a CI build to use a specific software environment to build code and to run tests. This may be as simple as needing some set of libraries installed before we can build and run your code, or as complex as running some sort of server that our code and tests need to run.</p>
-
 <p>In this lab, we are going to work through an example that requires a running <a href="https://redis.io/">Redis</a>, a popular data structure store. In a nutshell, Redis is a server that can store a variety of data structures (including lists, hash tables, etc.), and which allows you to manipulate those data structures via an API and a CLI. The API is typically accessed remotely (i.e., the Redis server runs on one machine, and client software running on a different machine accesses the API through a network), which means that testing client software that relies on Redis requires running a Redis server too.</p>
-
-<p>Most CI systems allow you to install software before the CI jobs are run. For example, Travis includes an explicit <a href="https://docs.travis-ci.com/user/customizing-the-build#The-Build-Lifecycle">install step</a>. However, installing and configuring a complex piece of software like Redis through this mechanism can be cumbersome. It can also take a fair amount of time, even if the installation is automated, so it can pay off to simply have a software environment that is ready to go with all the software we need.</p>
-
+<p>Most CI systems allow you to install software before the CI jobs are run. For example, in the previous lab you saw how to install the Criterion testing library as part of a build (specifying the exact steps to do so under the <code>before_install</code> and <code>install</code> steps, or using the <code>addons</code> portion of the <code>.travis.yml</code> file). However, installing and configuring a complex piece of software like Redis through this mechanism can be cumbersome. It can also take a fair amount of time, even if the installation is automated, so it can pay off to simply have a software environment that is ready to go with all the software we need.</p>
 <p>One way of doing this is by using <em>containers</em>, a sort of lightweight virtual machine that provides a specific software environment we need. Unlike virtual machines, containers are typically used to package a specific piece of software, instead of providing a full OS environment (although this is also possible with containers)</p>
-
-<p>For example, a Redis container would include a Redis server and, by default, running the container would immediately start that Redis server, instead of taking us to a UNIX shell where we have to run the Redis server ourselves. So, if we wanted to run Redis during a CI build, all we would need to do is download a Redis <em>container image</em>, and run that container during the CI build. A popular container manager is Docker, which we will be using in this lab. Make sure to read their <a href="https://www.docker.com/what-container">What is a Container</a> page, which provides a more in-depth explanation of what a container is, and how it compares to virtual machines.</p>
-
-<h2 id="task-0-setup">Task 0: Setup</h2>
-
+<p>For example, a Redis container would include a Redis server and, by default, running the container would immediately start that Redis server, instead of taking us to a UNIX shell where we have to run the Redis server ourselves. So, if we wanted to run Redis during a CI build, all we would need to do is download a Redis <em>container image</em>, and run that container during the CI build. A popular container manager is <a href="https://www.docker.com/">Docker</a>, which we will be using in this lab. Make sure to read their <a href="https://www.docker.com/what-container">What is a Container</a> page, which provides a more in-depth explanation of what a container is, and how it compares to virtual machines.</p>
+<h2 id="creating-your-lab-repository">Creating your lab repository</h2>
+<p>Like previous labs, we will provide you with an  <em>invitation URL</em> that will allow you sign up for the lab assignment on GitHub, and which will result in the creation of a repository called <code>2020-lab8-GITHUB_USERNAME</code> inside our <code>cmsc22000-labs</code> organization on GitHub. Your repository will be seeded with some files for the lab and, more specifically, will contain some code that requires a Redis server to run correctly.</p>
+<h2 id="task-1-running-docker-in-the-cs-vm">Task 1: Running Docker in the CS VM</h2>
 <p>[0 Points]</p>
-
-<p>You should already have the &ldquo;upstream&rdquo; remote set up in your repository. If you do, simply run</p>
-
-<pre><code>$ git pull upstream master
-</code></pre>
-
-<p>to get the files for this lab. If you don’t have the &ldquo;upstream&rdquo; remote set up, follow task 0 from <a href="/cmsc22000/labs/lab2/">Lab 2</a>.</p>
-
-<p>Next, like we did in the previous lab, you will be forking an existing GitHub repository. We covered forking in the <a href="/cmsc22000/labs/advanced-git/">Advanced Git Lab</a>, so you may want to review that lab if you’re not 100% clear on what a fork is.</p>
-
-<p>The repository we will be forking is this one: <a href="https://github.com/uchicago-cs/cs220-redis-example">https://github.com/uchicago-cs/cs220-redis-example</a>. Remember that you can fork it by clicking &ldquo;Fork&rdquo; in the upper right hand corner.</p>
-
-<p>Once the fork has completed, you can clone it and begin your work. Remember to do this outside of your individual GitLab repository! (i.e., do not run the following command in the same directory that contains your lab1, lab2, etc. directories, or inside the lab8 directory).</p>
-
-<pre><code>$ git clone https://github.com/[yourusername]/cs220-redis-example.git
-</code></pre>
-
-<p>Edit your tasks.txt file and include the URL of your forked cs220-redis-example repository on GitHub.</p>
-
-<aside class="admonition warning">
-    <div class="admonition-icon">
-
-    </div>
-
-    <div class="admonition-content">
-<p>Careful! Remember that your <code>tasks.txt</code> is in your personal repository on GitLab (with all your other lab files). You will only be using that repository to edit your <code>tasks.txt</code> file. The rest of your work will happen on the forked cs220-redis-example repository you just created.</p>
-
-
-</div>
+<aside class="admonition note">
+<div class="admonition-icon"></div>
+<div class="admonition-content">This is an optional task, and you will be able to complete the lab even if you don&rsquo;t do this task. However, even if you do not perform the steps in this task, you should still read through the task, as it provides some additional details on how Redis works.</div>
 </aside>
-
-<h2 id="task-1-running-docker-in-the-cs-vm-optional">Task 1: Running Docker in the CS VM [Optional]</h2>
-
-<p>[0 Points]</p>
-
 <p>Using Docker requires <a href="https://en.wikipedia.org/wiki/Superuser">root privileges</a>, which you do not have on the CSIL machines. Fortunately, as we’ll see later on, that won’t stop us from running Docker on Travis, but it does mean that you won’t get to use Docker yourself (you’ll simply be instructing Travis to use Docker)</p>
-
 <p>However, it can be helpful to learn the basics of how to use Docker, and you can do so using the <a href="https://howto.cs.uchicago.edu/vm:index">UChicago CS Virtual Machine</a>, where you do have the ability to run commands with root privileges. In particular, we encourage you to use the VM in <a href="https://howto.cs.uchicago.edu/vm:headless">Headless Mode</a>.</p>
-
 <p>Completing this task requires running the VM on your own machine (not on a CSIL machine), so this task is optional and ungraded, but strongly recommended, specially if you’ve already installed the UChicago CS VM.</p>
-
 <p>Once you’ve started the UChicago CS VM, open a terminal. We will first need to install Redis and Docker on the virtual machine. You can install Redis by running the following commands (these instructions are based on the official Redis <a href="https://redis.io/download">installation documentation</a>):</p>
-
-<pre><code>$ wget http://download.redis.io/redis-stable.tar.gz
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ wget http://download.redis.io/redis-stable.tar.gz
 $ tar xzf redis-stable.tar.gz 
 $ cd redis-stable/
 $ make
 $ sudo make install
-</code></pre>
-
-<p>Notice how that last command is run with <code>sudo</code>. This basically instructs the operating system to run the command (<code>make install</code>) with root privileges. You will be asked to enter your password which, on the CS VM, is <code>uccs</code> by default. The reason we need to run this command with <code>sudo</code> is because it involves installing the Redis libraries and binaries in system-wide locations, which require root privileges to modify.</p>
-
+</code></pre></div><p>Notice how that last command is run with <code>sudo</code>. This basically instructs the operating system to run the command (<code>make install</code>) with root privileges. You will be asked to enter your password which, on the CS VM, is <code>uccs</code> by default. The reason we need to run this command with <code>sudo</code> is because it involves installing the Redis libraries and binaries in system-wide locations, which require root privileges to modify.</p>
 <p>Now, go back to the terminal and run the following commands (these are based on the official Docker <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">installation documentation</a>):</p>
-
-<pre><code>$ sudo apt update
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt update
 $ sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg-agent
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 $ sudo apt-key fingerprint 0EBFCD88
-$ sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;
+$ sudo add-apt-repository <span style="color:#e6db74">&#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu </span><span style="color:#66d9ef">$(</span>lsb_release -cs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> stable&#34;</span>
 $ sudo apt-get update
 $ sudo apt-get install -y docker-ce
-</code></pre>
-
-<p>You can verify that Docker is correctly installed by running this:</p>
-
-<pre><code>sudo docker run hello-world
-</code></pre>
-
-<p>This will run a container whose sole purpose is to print out a welcome message. If you do not see a message that starts with &ldquo;Hello from Docker!&rdquo;, please ask for help.</p>
-
+</code></pre></div><p>You can verify that Docker is correctly installed by running this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo docker run hello-world
+</code></pre></div><p>This will run a container whose sole purpose is to print out a welcome message. If you do not see a message that starts with &ldquo;Hello from Docker!&quot;, please ask for help.</p>
 <p>We can run a Redis container simply by running the following:</p>
-
-<pre><code>sudo docker run --name redis-server -p 6379:6379 redis
-</code></pre>
-
-<p>Docker will first download the Redis container image from the <a href="https://hub.docker.com/_/redis/">Docker Hub</a>, and then run it. You should see some output that ends with something like this:</p>
-
-<pre><code>1:M 17 May 14:04:54.269 * Ready to accept connections
-</code></pre>
-
-<p>Now, open another terminal and run this:</p>
-
-<pre><code>redis-cli
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo docker run --name redis-server -p 6379:6379 redis
+</code></pre></div><p>Docker will first download the Redis container image from the <a href="https://hub.docker.com/_/redis/">Docker Hub</a>, and then run it. You should see some output that ends with something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">1:M <span style="color:#ae81ff">17</span> May 14:04:54.269 * Ready to accept connections
+</code></pre></div><p>Now, open another terminal in the VM and run this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">redis-cli
+</code></pre></div><p>(if you are running the VM in Headless Mode, then you will need to SSH into it again to have a second terminal)</p>
 <p>This should open up a prompt like this:</p>
-
-<pre><code>127.0.0.1:6379&gt;
-</code></pre>
-
-<p>This means that the Redis CLI tool running on your VM has successfully connected to the Redis server running inside the Docker container. However, notice how we’re not running Redis directly on the VM (we installed Redis so we could use the <code>redis-cli</code> tool, but we never ran the <code>redis-server</code> command on the VM).</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt;
+</code></pre></div><p>This means that the Redis CLI tool running on your VM has successfully connected to the Redis server running inside the Docker container. However, notice how we’re not running Redis directly on the VM (we installed Redis so we could use the <code>redis-cli</code> tool, but we never ran the <code>redis-server</code> command on the VM).</p>
 <p>You can now try running a few Redis commands from the Redis CLI:</p>
-
-<pre><code>127.0.0.1:6379&gt; SET foo 42
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; SET foo <span style="color:#ae81ff">42</span>
 OK
 127.0.0.1:6379&gt; GET foo
-&quot;42&quot;
-127.0.0.1:6379&gt; HSET myhash name &quot;Borja&quot;
-(integer) 1
+<span style="color:#e6db74">&#34;42&#34;</span>
+127.0.0.1:6379&gt; HSET myhash name <span style="color:#e6db74">&#34;Borja&#34;</span>
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
 127.0.0.1:6379&gt; HGET myhash name
-&quot;Borja&quot;
-127.0.0.1:6379&gt; HSET myhash email &quot;borja@cs.uchicago.edu&quot;
-(integer) 1
+<span style="color:#e6db74">&#34;Borja&#34;</span>
+127.0.0.1:6379&gt; HSET myhash email <span style="color:#e6db74">&#34;borja@cs.uchicago.edu&#34;</span>
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
 127.0.0.1:6379&gt; HKEYS myhash
-1) &quot;name&quot;
-2) &quot;email&quot;
-</code></pre>
-
-<p>On a separate terminal, you can also try running a few Docker commands:</p>
-
+1<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;name&#34;</span>
+2<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;email&#34;</span>
+</code></pre></div><p>On a separate terminal, you can also try running a few Docker commands:</p>
 <ul>
 <li>To see the list of container images: <code>sudo docker image list</code></li>
 <li>To see the list of running containers: <code>sudo docker container list</code></li>
 <li>To stop the Redis container: <code>sudo docker container stop redis-server</code></li>
 <li>To start the Redis container again: <code>sudo docker container start -a redis-server</code></li>
 </ul>
-
 <h2 id="task-2-git-submodules">Task 2: Git Submodules</h2>
-
 <p>[20 points]</p>
-
-<p>Your <code>cs220-redis-example</code> repository contains code that extends the Redis server with some additional commands. We will only be concerned with one of these commands: the <code>EXAMPLE.HGETSET</code> command. This commands operates on a hash table and takes two parameters: a key and a value. It will fetch the value currently associated with the given key, and will replace its value with the one provided as a parameter. For example, notice how the example below fetches the current value of the <code>email</code> key, while also replacing it with a new value:</p>
-
-<pre><code>127.0.0.1:6379&gt; HSET myhash name &quot;Borja&quot;
-(integer) 1
-127.0.0.1:6379&gt; HSET myhash email &quot;borja@cs.uchicago.edu&quot;
-(integer) 1
-127.0.0.1:6379&gt; EXAMPLE.HGETSET myhash email &quot;borja@uchicago.edu&quot;
-&quot;borja@cs.uchicago.edu&quot;
+<p>Your lab repository contains code that extends the Redis server with some additional commands. We will only be concerned with one of these commands: the <code>EXAMPLE.HGETSET</code> command. This commands operates on a hash table and takes two parameters: a key and a value. It will fetch the value currently associated with the given key, and will replace its value with the one provided as a parameter. For example, notice how the example below fetches the current value of the <code>email</code> key, while also replacing it with a new value:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; HSET myhash name <span style="color:#e6db74">&#34;Borja&#34;</span>
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
+127.0.0.1:6379&gt; HSET myhash email <span style="color:#e6db74">&#34;borja@cs.uchicago.edu&#34;</span>
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
+127.0.0.1:6379&gt; EXAMPLE.HGETSET myhash email <span style="color:#e6db74">&#34;borja@uchicago.edu&#34;</span>
+<span style="color:#e6db74">&#34;borja@cs.uchicago.edu&#34;</span>
 127.0.0.1:6379&gt; HGET myhash email
-&quot;borja@uchicago.edu&quot;
-</code></pre>
-
-<p>The repository has two directories:</p>
-
+<span style="color:#e6db74">&#34;borja@uchicago.edu&#34;</span>
+</code></pre></div><p>The repository has two directories:</p>
 <ul>
 <li><code>module/</code> - This directory contains the module that implements the new commands (Note: in Redis, the term &ldquo;module&rdquo; has a specific meaning, and it refers to an installable component that extends Redis).</li>
 <li><code>tests/</code> - This directory contains a simple program that uses the hiredis library to connect to a Redis server to test the <code>HGETSET</code> operation.</li>
 </ul>
-
-<p>To compile the module code, we will need some files included in the Redis Module SDK (Software Development Kit) available in the following repo: <a href="https://github.com/RedisLabs/RedisModulesSDK">https://github.com/RedisLabs/RedisModulesSDK</a>. To compile the testing program, we also need hiredis, which is available in this repository: <a href="https://github.com/redis/hiredis">https://github.com/redis/hiredis</a>.</p>
-
+<p>To compile the module code, we will need some files included in the Redis Module SDK (Software Development Kit) available in the following repo: <a href="https://github.com/RedisLabs/RedisModulesSDK">https://github.com/RedisLabs/RedisModulesSDK</a>. To compile the testing program, we also need the hiredis library, which is available in this repository: <a href="https://github.com/redis/hiredis">https://github.com/redis/hiredis</a>.</p>
 <p>We could, of course, just clone those repositories and copy them into our repository. This is usually a bad idea, because it makes it harder to track updates in the original code. For example, if hiredis releases a new version, we would have to manually copy over their updated version into our repository.</p>
-
 <p>In general, the problem we’re facing is that there is some code produced by a &ldquo;third party&rdquo; that we would like to include in our project. In Git this is typically handled by using <em>submodules</em>, which effectively allow us to include &ldquo;third party repositories&rdquo; in our own repository (in other version control systems, this is sometimes referred to as &ldquo;vendor branches&rdquo;).</p>
-
 <p>We can add submodules by using the <code>git submodule</code> command:</p>
-
-<pre><code>$ git submodule add https://github.com/RedisLabs/RedisModulesSDK.git
-Cloning into '/tmp/cs220-redis-example/RedisModulesSDK'...
-remote: Counting objects: 439, done.
-remote: Total 439 (delta 0), reused 0 (delta 0), pack-reused 439
-Receiving objects: 100% (439/439), 187.79 KiB | 1.59 MiB/s, done.
-Resolving deltas: 100% (258/258), done.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git submodule add https://github.com/RedisLabs/RedisModulesSDK.git
+Cloning into <span style="color:#e6db74">&#39;/tmp/2020-lab8-GITHUB_USERNAME/RedisModulesSDK&#39;</span>...
+remote: Counting objects: 439, <span style="color:#66d9ef">done</span>.
+remote: Total <span style="color:#ae81ff">439</span> <span style="color:#f92672">(</span>delta 0<span style="color:#f92672">)</span>, reused <span style="color:#ae81ff">0</span> <span style="color:#f92672">(</span>delta 0<span style="color:#f92672">)</span>, pack-reused <span style="color:#ae81ff">439</span>
+Receiving objects: 100% <span style="color:#f92672">(</span>439/439<span style="color:#f92672">)</span>, 187.79 KiB | 1.59 MiB/s, <span style="color:#66d9ef">done</span>.
+Resolving deltas: 100% <span style="color:#f92672">(</span>258/258<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
 
 $ git submodule add https://github.com/redis/hiredis.git
-Cloning into '/tmp/cs220-redis-example/hiredis'...
-remote: Counting objects: 2909, done.
-remote: Compressing objects: 100% (13/13), done.
-remote: Total 2909 (delta 9), reused 19 (delta 9), pack-reused 2887
-Receiving objects: 100% (2909/2909), 866.09 KiB | 5.16 MiB/s, done.
-Resolving deltas: 100% (1791/1791), done.
-</code></pre>
-
-<p>You’ll notice that two new directories have appeared in your repository, containing the files that are in the original RedisModulesSDK and hiredis repositories.</p>
-
+Cloning into <span style="color:#e6db74">&#39;/tmp/2020-lab8-GITHUB_USERNAME/hiredis&#39;</span>...
+remote: Counting objects: 2909, <span style="color:#66d9ef">done</span>.
+remote: Compressing objects: 100% <span style="color:#f92672">(</span>13/13<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+remote: Total <span style="color:#ae81ff">2909</span> <span style="color:#f92672">(</span>delta 9<span style="color:#f92672">)</span>, reused <span style="color:#ae81ff">19</span> <span style="color:#f92672">(</span>delta 9<span style="color:#f92672">)</span>, pack-reused <span style="color:#ae81ff">2887</span>
+Receiving objects: 100% <span style="color:#f92672">(</span>2909/2909<span style="color:#f92672">)</span>, 866.09 KiB | 5.16 MiB/s, <span style="color:#66d9ef">done</span>.
+Resolving deltas: 100% <span style="color:#f92672">(</span>1791/1791<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</code></pre></div><p>You’ll notice that two new directories have appeared in your repository, containing the files that are in the original RedisModulesSDK and hiredis repositories.</p>
 <p>Before we continue, we need to commit these submodules. If you run <code>git status</code>, you’ll see that Git is aware that we’ve added two submodules (they are tracked in a special file called <code>.gitmodules</code>) but they have not yet been committed:</p>
-
-<pre><code>$ git status
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git status
 On branch master
-Your branch is up to date with 'origin/master'.
+Your branch is up to date with <span style="color:#e6db74">&#39;origin/master&#39;</span>.
 
 Changes to be committed:
-  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git reset HEAD &lt;file&gt;...&#34;</span> to unstage<span style="color:#f92672">)</span>
 
     new file:   .gitmodules
     new file:   RedisModulesSDK
     new file:   hiredis
-</code></pre>
-
-<p>So, simply run the following:</p>
-
-<pre><code>$ git commit -m&quot;Added submodules&quot;
+</code></pre></div><p>So, simply run the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git commit -m<span style="color:#e6db74">&#34;Added submodules&#34;</span>
 $ git push
-</code></pre>
-
-<p>If you go to your repo on the GitHub website (<a href="https://github.com/[yourusername]/cs220-redis-example">https://github.com/[yourusername]/cs220-redis-example</a>) you’ll see that the submodules are shown in a different way: Git is aware that, instead of just copying over the files into your repository, it should simply point to other repositories.</p>
-
+</code></pre></div><p>If you go to your repo on the GitHub website, you’ll see that the submodules are shown in a different way: Git is aware that, instead of just copying over the files into your repository, it should simply point to other repositories.</p>
 <p>Now, it will be possible for you to build hiredis, as well as the module and the tests:</p>
-
-<pre><code>$ make -C hiredis/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ make -C hiredis/
 $ make -C module/
 $ make -C tests/
-</code></pre>
-
-<p>However, you can&rsquo;t run any of this just yet. We need a Redis server for that!</p>
-
+</code></pre></div><p>However, you can&rsquo;t run any of this just yet. We need a Redis server for that!</p>
 <aside class="admonition warning">
-    <div class="admonition-icon">
-
-    </div>
-
-    <div class="admonition-content">
-<p>Cloning a repository does not automatically clone the submodules in that repository, instead showing them as empty directories. If you clone your repository somewhere else, you need to clone it like this:</p>
-
-<pre><code>git clone --recursive REPO_URL
-</code></pre>
-
-<p>If you forgot to use the <code>--recursive</code> option, you can also do this after the repository has been cloned:</p>
-
-<pre><code>git submodule update --init --recursive
-</code></pre>
-
-
-</div>
+<div class="admonition-icon"></div>
+<div class="admonition-content"><p>Cloning a repository does not automatically clone the submodules in that repository, instead showing them as empty directories. If you clone your repository somewhere else, you need to clone it like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone --recursive REPO_URL
+</code></pre></div><p>If you forgot to use the <code>--recursive</code> option, you can also do this after the repository has been cloned:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git submodule update --init --recursive
+</code></pre></div></div>
 </aside>
-
+<p>For this task, you won&rsquo;t need to enter anything into Gradescope, but make sure you&rsquo;ve successfully pushed the submodules to your GitHub repository.</p>
 <h2 id="task-3-using-docker-in-a-travis-build">Task 3: Using Docker in a Travis build</h2>
-
 <p>[30 points]</p>
-
 <p>Testing the module requires running Redis, so we will need to set up our Travis build to run a Redis server while testing our module. We will do this by telling Travis to use a Docker container with Redis installed in it, and to run our module in that container.</p>
-
 <p>Our container is specified using the <code>Dockerfile</code> file. You do not need to understand everything in that file, except that we use the <code>FROM redis</code> command to tell Docker that our container should simply use the standard Redis container that is available on the Docker Hub. Then, all we need to do is install our module in it, and make sure that we start Redis with the <code>--loadmodule</code> option to load our module.</p>
-
-<aside class="admonition warning">
-    <div class="admonition-icon">
-
-    </div>
-
-    <div class="admonition-content">
-<p>If you&rsquo;ve set up Docker on your VM, you can also test the module on the VM, essentially running the same commands that Travis will be running. Start by cloning your repository inside the VM:</p>
-
-<pre><code>$ git clone --recursive https://github.com/[yourusername]/cs220-redis-example
-</code></pre>
-
-<p>Then, go into the repository directory:</p>
-
-<pre><code>$ cd cs220-redis-example
-</code></pre>
-
-<p>And use this command to build a container image with Redis <em>and</em> our module:</p>
-
-<pre><code>$ sudo docker build -t redis-example . 
-</code></pre>
-
-<p>This may take a while, as Docker has to download a number of other container images to build ours.</p>
-
+<aside class="admonition note">
+<div class="admonition-icon"></div>
+<div class="admonition-content"><p>If you&rsquo;ve set up Docker on your VM, you can also test the module on the VM, essentially running the same commands that Travis will be running. Start by cloning your repository inside the VM:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone --recursive https://github.com/cmsc22000-labs/2020-lab8-GITHUB_USERNAME.git
+</code></pre></div><p>Then, go into the repository directory:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd 2020-lab8-GITHUB_USERNAME
+</code></pre></div><p>And use this command to build a container image with Redis <em>and</em> our module:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo docker build -t redis-example . 
+</code></pre></div><p>This may take a while, as Docker has to download a number of other container images to build ours.</p>
 <p>Finally, you can run the container like this:</p>
-
-<pre><code>$ sudo docker run -d -p 6379:6379 redis-example
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo docker run -d -p 6379:6379 redis-example
+</code></pre></div><p>If you need to stop the container later on, simply press Ctrl+C.</p>
 <p>In a separate terminal, build hiredis and the tests:</p>
-
-<pre><code>$ make -C hiredis/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ make -C hiredis/
 $ make -C tests/
-</code></pre>
-
-<p>You should now be able to run the test program:</p>
-
-<pre><code>$ ./tests/test-hgetset 
+</code></pre></div><p>You should now be able to run the test program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./tests/test-hgetset 
 PING: PONG
-HSET: (null)
+HSET: <span style="color:#f92672">(</span>null<span style="color:#f92672">)</span>
 HGETSET: Random J. Redisuser
 HGET: Alan T. Foobar
-</code></pre>
-
-
-</div>
+</code></pre></div></div>
 </aside>
-
 <p>Add a <code>.travis.yml</code> file to your repository with the following contents:</p>
-
 <pre><code>dist: xenial
 
 language: c
@@ -489,147 +353,95 @@ script:
  - make -C tests/
  - ./tests/test-hgetset
 </code></pre>
-
-<p>Before you push this file, make sure that your <code>cs220-redis-example</code> repository is activated on Travis (you can do this by going to your <a href="https://travis-ci.org/account/">Travis account page</a>) Once you&rsquo;ve done this, go ahead and commit and push this file. The Travis build may take a few minutes; just read ahead before checking the status of your build.</p>
-
+<p>Go ahead and commit and push this file. The Travis build may take a few minutes; just read ahead before checking the status of your build.</p>
 <p>There are a few differences with the Travis files we&rsquo;ve seen previously:</p>
-
 <ul>
 <li>The <code>services</code> option tells Travis that we will need access to Docker&rsquo;s tools, which includes the ability to build and run our own containers.</li>
 <li>The <code>before_install</code> option includes the Docker commands we need to run our container. Notice how they&rsquo;re the same as the ones you can run insider your VM. We&rsquo;ve also included <code>docker container list</code> to double-check that our container is running.</li>
 </ul>
-
 <p>Other than that, the <code>script</code> portion should be pretty self-explanatory: we build hiredis and the tests, and we run the sample program.</p>
-
 <p>The build on Travis may take a few minutes, as it will need to download the necessary container images before it can build and run our code. If the build succeeds, you should be able to see this towards the end of the build&rsquo;s output:</p>
-
-<pre><code>$ ./tests/test-hgetset 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./tests/test-hgetset 
 PING: PONG
-HSET: (null)
+HSET: <span style="color:#f92672">(</span>null<span style="color:#f92672">)</span>
 HGETSET: Random J. Redisuser
 HGET: Alan T. Foobar
-</code></pre>
-
-<p>If the build fails or you do not see this output, make sure to ask for help.</p>
-
+</code></pre></div><p>If the build fails or you do not see this output, make sure to ask for help.</p>
+<p>For this task, please enter the URL of your successful Travis build on Gradescope.</p>
 <h1 id="part-ii-a-complete-deployment-pipeline">Part II: A complete deployment pipeline</h1>
-
 <p>In class, we have discussed that software is rarely deployed directly into production but, instead, follows a <em>deployment pipeline</em>. In our previous lab we saw a very basic deployment pipeline: we set up our HelloApp to deploy to Heroku, but only if the CI tests passed. In this lab, we are going to see a more complete deployment pipeline.</p>
-
-<p>As we saw in class, a common pipeline is as follows:</p>
-
+<p>As we saw in the deployment lecture, a common pipeline is as follows:</p>
 <ul>
-<li><em>Development</em>, where you are the only one making changes to your codebase.</li>
+<li><em>Local</em>, where you are the only one making changes to your codebase.</li>
 <li><em>Staging</em>, where all developers can see your changes, but you have time to catch errors before showing the end-users.</li>
 <li><em>Production</em>, where your app is available to the real world. Usually, the staging app will be promoted to production when it is ready.</li>
 </ul>
-
 <p>In this lab, you’ll create a more complete Heroku pipeline for last week&rsquo;s HelloApp. If you did not successfully complete Lab 7, please ask for help so we can ensure that you&rsquo;re all set up for this week&rsquo;s lab.</p>
-
 <p>Heroku already provides support for creating pipelines, and ours will have three stages:</p>
-
 <ul>
 <li><em>Review</em>: Similar to a development stage. In Heroku, we can automatically link this stage to our pull requests on GitHub, so we can easily test any changes we are proposing in a pull request.</li>
 <li><em>Staging</em>: We will be using the app you created in Lab 7 as our staging app.</li>
 <li><em>Production</em>: A new production app that is only available if we are satisfied with our staging app.</li>
 </ul>
-
 <h2 id="task-1-create-a-pipeline">Task 1: Create a Pipeline</h2>
-
 <p>[0 points]</p>
-
-<p>In this task, you’ll create a new Heroku Pipeline, with your <code>cnetid-cs220-lab7</code> application as the staging application. Note that a common convention is for staging applications to have <code>-staging</code> as a suffix, but it won&rsquo;t be necessary for you to rename your app in this lab.</p>
-
-<p>To create the pipeline, log into Heroku, and select the app you created in Lab 7. Under the deploy tab, select &ldquo;Choose a pipeline&rdquo; and then &ldquo;Create new pipeline&rdquo;. Name your pipeline <code>CNETID-pipeline</code> (where <code>CNETID</code> should be replaced with your CNetID). You will also be asked to specify &ldquo;Choose a stage to add this app to&rdquo;. Make sure that &ldquo;staging&rdquo; is selected. Finally, click on &ldquo;Create pipeline&rdquo;.</p>
-
+<p>In this task, you’ll create a new Heroku Pipeline, using the the <code>CNETID-cs220-lab7</code> application (from last week&rsquo;s lab) as the staging application. Note that a common convention is for staging applications to have <code>-staging</code> as a suffix, but it won&rsquo;t be necessary for you to rename your app in this lab.</p>
+<p>To create the pipeline, log into Heroku, and select the app you created in Lab 7. Under the deploy tab, click on &ldquo;Choose a pipeline&rdquo; (in the &ldquo;Add this app to a pipeline&rdquo; section) and then &ldquo;Create new pipeline&rdquo;. Name your pipeline <code>CNETID-pipeline</code> (where <code>CNETID</code> should be replaced with your CNetID). You will also be asked to specify &ldquo;Choose a stage to add this app to&rdquo;. Make sure that &ldquo;staging&rdquo; is selected. Finally, click on &ldquo;Create pipeline&rdquo;.</p>
 <p>You will now be shown the pipeline&rsquo;s configuration (you will also be able to access this page through your dashboard, which will now include a <code>CNETID-pipeline</code> pipeline). Notice how there is no production application in your pipeline. In the real world, this would mean that your end users don’t see anything!</p>
-
+<p>Please note that you do not need to enter anything into Gradescope for this task. While it is worth 0 points, you still need to create a pipeline before moving on to the next tasks.</p>
 <h2 id="task-2-add-a-production-application">Task 2: Add a production application</h2>
-
 <p>[10 points]</p>
-
 <p>In this task, you’ll add a production application to your pipeline. Unlike the app in staging, your production app won&rsquo;t be associated with any specific repo. Instead, once your staging application is good to go, you can <em>promote</em> it to be the production application. That means the production application will just take the staging app, make a copy of it, and run that copy as the production app. This means that, if you make changes to the staging app, those changes whon&rsquo;t appear in production until you explicitly promote the staging app to production again.</p>
-
 <p>Later in the lab you may see Heroku messages that talk about &ldquo;slugs&rdquo;; in Heroku parlance, a &ldquo;slug&rdquo; is a pre-compiled version of your app that is ready to run. So, when we promote to production, we don&rsquo;t actually rebuild the application; we just take the &ldquo;slug&rdquo; that is in staging, and copy it to production.</p>
-
-<p>To add a production application, all you have to do is go to your pipeline and, under &ldquo;Production&rdquo;, click on &ldquo;Add app&rdquo; and then &ldquo;Create new app&rdquo;. Name the application <code>CNETID-cs220-prod</code> (where <code>CNETID</code> should be replaced with your CNetID). Notice how, if you try to access your app on Heroku (just go to <a href="http://CNETID-cs220-prod.herokuapp.com/">http://CNETID-cs220-prod.herokuapp.com/</a>), you&rsquo;ll just see a placeholder page, not HelloApp. That&rsquo;s because we haven&rsquo;t promoted our staging app to production yet.</p>
-
+<p>To add a production application, all you have to do is go to your pipeline and, under &ldquo;Production&rdquo;, click on &ldquo;Add app&rdquo; and then &ldquo;Create new app&rdquo;. Name the application <code>CNETID-cs220-prod</code> (where <code>CNETID</code> should be replaced with your CNetID). Notice how, if you try to access your app on Heroku (just go to <a href="http://CNETID-cs220-prod.herokuapp.com/),">http://CNETID-cs220-prod.herokuapp.com/),</a> you&rsquo;ll just see a placeholder page, not HelloApp. That&rsquo;s because we haven&rsquo;t promoted our staging app to production yet.</p>
+<p>On Gradescope, enter the URL of your staging app.</p>
 <h2 id="task-3-promoting-from-staging-to-production">Task 3: Promoting from staging to production</h2>
-
 <p>[20 points]</p>
-
 <p>First, let&rsquo;s make a change to our HelloApp: it&rsquo;s time to upgrade to HelloApp 2.0!</p>
-
 <ul>
-<li>In your forked <code>cs220-helloapp</code> repository (which you created in Lab 7), edit <code>hello/templates/base.html</code> and change &ldquo;Helloapp&rdquo; to &ldquo;Helloapp 2.0&rdquo;.</li>
+<li>In your repository from Lab 7 (<code>2020-lab7-GITHUB_USERNAME</code>), edit <code>hello/templates/base.html</code> and change &ldquo;Helloapp&rdquo; to &ldquo;Helloapp 2.0&rdquo;.</li>
 <li>Commit and push this change with the message &ldquo;Update to 2.0&rdquo;</li>
-<li>It should not break the tests, so Travis CI should succeed, and from the past lab, your app will automatically deploy.</li>
+<li>Assuming you completed Lab 7 last week, your updated app will automatically deploy. Remember this may take a few minutes (you can check the progress of the deployment by going to the &ldquo;Activity&rdquo; tab in your app)</li>
 </ul>
-
-<p>Now, notice that if you navigate to your staging website (CNETID-cs220-lab7.herokuapp.com) you’ll see your change. But if you navigate to your production website (CNETID-cs220-prod.herokuapp.com), you&rsquo;ll still see a placeholder page. Why is this?</p>
-
-<p>Changes from staging are <em>not</em> automatically deployed to production. This is intentional: we often don’t want things to automatically deploy to production, since we might risk breaking the public-facing version of our app. Pushing code that is broken is known as &ldquo;breaking the build&rdquo;, and you absolutely don&rsquo;t want that to propagate to production (by the way, if you know anyone who has done a software development internship or works in software development, ask them if they&rsquo;ve ever &ldquo;broken the build&rdquo;; we guarantee you&rsquo;ll hear some entertaning stories). By having a pipeline, we can ensure that users continuously see our production, without mistakes, and we only update it when we’re absolutely sure.</p>
-
-<p>So, let&rsquo;s go ahead and promote our staging application to production. You can do this simply by pressing the &ldquo;Promote to production&hellip;&rdquo; button in the staging app of your pipeline. Once you do this, your staging app (CNETID-cs220-lab7.herokuapp.com) and your production app (CNETID-cs220-prod.herokuapp.com) should look exactly the same.</p>
-
-<h2 id="task-4-create-review-apps-helloapp-3-0">Task 4: Create Review Apps - Helloapp 3.0</h2>
-
+<p>Now, notice that if you navigate to your staging website (<code>CNETID-cs220-lab7.herokuapp.com</code>) you’ll see your change. But if you navigate to your production website (<code>CNETID-cs220-prod.herokuapp.com</code>), you&rsquo;ll still see a placeholder page.</p>
+<p>Why is this? Changes from staging are <em>not</em> automatically deployed to production. This is intentional: we often don’t want things to automatically deploy to production, since we might risk breaking the public-facing version of our app. Pushing code that is broken is known as &ldquo;breaking the build&rdquo;, and you absolutely don&rsquo;t want that to propagate to production (by the way, if you know anyone who has done a software development internship or works in software development, ask them if they&rsquo;ve ever &ldquo;broken the build&rdquo;; we guarantee you&rsquo;ll hear some entertaning stories). By having a pipeline, we can ensure that users continuously see our production, without mistakes, and we only update it when we’re absolutely sure.</p>
+<p>So, let&rsquo;s go ahead and promote our staging application to production. You can do this simply by pressing the &ldquo;Promote to production&hellip;&rdquo; button in the staging app of your pipeline. Once you do this, your staging app (<code>CNETID-cs220-lab7.herokuapp.com</code>) and your production app (<code>CNETID-cs220-prod.herokuapp.com</code>) should look exactly the same.</p>
+<p>On Gradescope, enter the URL of your production app.</p>
+<h2 id="task-4-create-review-apps---helloapp-30">Task 4: Create Review Apps - Helloapp 3.0</h2>
 <p>[20 points]</p>
-
 <p>Currently, in order to make changes to staging, you have to directly modify the master branch of your repo. Can you imagine why this is a bad idea?</p>
-
 <p>In order to show your changes to anyone, you’d have to directly change staging, which isn’t as bad as directly modifying production, but could be embarrassing if you’re trying to get a small change approved and then break everything for every other developer in your team!</p>
-
 <p>The last thing you’ll do is create a review app stage for your pipeline. This way, every pull request submitted to GitHub can be its own app. This lets developers see changes per-pull request.</p>
-
-<p>To test this, first enable review apps.</p>
-
+<p>To do this, we first need to connect the pipeline to GitHub:</p>
 <ul>
-<li>On your pipeline dashboard, select &ldquo;Enable Review Apps&rdquo;</li>
-<li>When asked to select a &ldquo;parent app&rdquo;, just select your CNETID-cs220-lab7 app and click on &ldquo;Create an app.json file&rdquo;.</li>
-<li>You will be taken to a form. Don&rsquo;t change anything, and just scroll down to the bottom and press &ldquo;Commit to repo&rdquo;. This will actually add a configuration file called <code>app.json</code> to your forked <code>cs220-helloapp</code> repository.</li>
+<li>From the pipeline page on Heroku, click on &ldquo;Connect to GitHub&rdquo;</li>
+<li>This will take you to a different page. Under &ldquo;Search for a repository to connect to&rdquo;, select the &ldquo;cmsc22000-labs&rdquo; organization, and then enter your repository&rsquo;s name (<code>2020-lab7-GITHUB_USERNAME</code>). Make sure to click on the &ldquo;Search button&rdquo;</li>
+<li>Finally, click on the &ldquo;Connect&rdquo; button next to your repository&rsquo;s name.</li>
+</ul>
+<p>Now, from your pipeline&rsquo;s page, do the following:</p>
+<ul>
+<li>Click on &ldquo;Enable Review Apps&rdquo;. This will show you a form on the side of the page.</li>
 <li>Enable &ldquo;Create new review apps for new pull requests automatically&rdquo;</li>
+<li>Do NOT enable &ldquo;Wait for CI to pass&rdquo; (this refers to Heroku&rsquo;s own CI, and we are already using Travis for CI)</li>
 <li>Enable &ldquo;Destroy stale review apps automatically&rdquo;</li>
 <li>Don&rsquo;t worry about the &ldquo;Review apps may incur dyno and add-on charges.&rdquo; message. We are using the free tier of Heroku, so we won&rsquo;t be charged for anything. If you want to be extra sure, go to <a href="https://dashboard.heroku.com/account/billing">https://dashboard.heroku.com/account/billing</a> and make sure there is no credit card on file for your account, and that you have free hours available under &ldquo;Free Dyno Usage&rdquo;.</li>
-<li>After you enable review apps, you will need to <code>git pull</code> on your master branch to make sure it is up to date with the app.json</li>
+<li>Click on &ldquo;Enable Review Apps&rdquo;</li>
 </ul>
-
 <p>Now, you’ll create a pull request:</p>
-
 <ul>
-<li>Create a new branch called <code>create-version-3</code> in your forked <code>cs220-helloapp</code> repository.</li>
+<li>Create a new branch called <code>create-version-3</code> in your <code>2020-lab7-GITHUB_USERNAME</code> repository.</li>
 <li>Edit <code>hello/templates/base.html</code> and change &ldquo;Helloapp 2.0&rdquo; to &ldquo;Helloapp 3.0&rdquo;.</li>
 <li>Commit and push the changes with the message &ldquo;Update to 3.0&rdquo;</li>
-<li>Notice how the change won&rsquo;t show up on CNETID-cs220-lab7.herokuapp.com, because we haven&rsquo;t pushed the changes to <code>master</code>.</li>
-<li>Now, on GitHub, create a new pull request. Make sure your pull request is to merge the <code>create-version-3</code> branch to master branch of your forked repo, not the original cs220-helloapp repository you forked from. This means the &ldquo;base fork&rdquo; should NOT be &ldquo;uchicago-cs/cs220-helloapp&rdquo; (if it is, select &ldquo;[username]/cs220-helloapp&rdquo; instead)</li>
-<li>On your heroku Dashboard, you should see your branch show up under &ldquo;Review Apps&rdquo;</li>
+<li>Notice how the change won&rsquo;t show up on <code>CNETID-cs220-lab7.herokuapp.com</code>, because we haven&rsquo;t pushed the changes to <code>master</code>.</li>
+<li>Now, on GitHub, create a new pull request. Make sure your pull request is to merge the <code>create-version-3</code> branch to the <code>master</code> branch of your repository. You do not need to assign any reviewers to this pull request, nor do you need to worry about writing a summary, etc.</li>
+<li>On your heroku Dashboard, you should see a new application under &ldquo;Review Apps&rdquo; (with the name of the pull request: &ldquo;Updated to 3.0&rdquo;)</li>
 </ul>
-
-<p>The build should succeed, so the pull request app should automatically deploy. If it does not, simply click on &ldquo;Create Review App&rdquo;.</p>
-
-<p>Now, you can check <code>[cnetid]-cs220-lab7-pr-1.herokuapp.com</code> and see your pull request app!</p>
-
-<p>If everything checks out, merge your PR. This should push the changes to staging, since you set up automatic deploys for your app last time (please note that it may take a few minutes for this to happen). Once this succeeds, go ahead and promote your final app to production.</p>
-
+<p>Click on &ldquo;Open app&rdquo; to view the review app. This allows you to see what your app would look like if the changes in the pull request were deployed. The review app should show the title &ldquo;HelloApp 3.0&rdquo;, while both the staging (<code>CNETID-cs220-lab7.herokuapp.com</code>) and production (<code>CNETID-cs220-prod.herokuapp.com</code>) apps should still show &ldquo;HelloApp 2.0&rdquo;</p>
+<p>If the review app correctly shows the title &ldquo;HelloApp 3.0&rdquo;, go ahead and merge your PR (remember, you don&rsquo;t need to wait to get a review; just go ahead and merge the pull request). This should push the changes to staging, since you set up automatic deploys for your app  (please note that it may take a few minutes for this to happen). Once this succeeds, go ahead and promote your final app to production.</p>
+<p>Please note that, once you merge the pull request, the review app will disappear. This is normal.</p>
+<p>On Gradescope, enter the URL of the pull request you created on GitHub.</p>
 <h3 id="submitting-your-lab">Submitting your lab</h3>
-
-<p>Before submitting your lab, make sure you update your <code>lab8/tasks.txt</code> file with the URLs for the following:</p>
-
-<ul>
-<li>Your forked <code>cs220-redis-example</code> repository on GitHub.</li>
-<li>Your successful build of <code>cs220-redis-example</code> on Travis.</li>
-<li>The pull request you created in your forked <code>cs220-helloapp</code> repository.</li>
-<li>Your staging HelloApp</li>
-<li>Your production HelloApp</li>
-</ul>
-
-<p>Don&rsquo;t forget to commit and push your changes to the <code>lab8/tasks.txt</code> file (remember you can run <code>git status</code> to check this).</p>
-
-<p>Finally, Make sure you&rsquo;ve set up the <code>chisubmit</code> tool as described in <a href="/cmsc22000/labs/submit/">How to submit your labs</a>, and then run the following:</p>
-
-<pre><code>chisubmit student assignment register lab8
-chisubmit student assignment submit lab8
-</code></pre>
+<p>In this lab, you just need to enter a few URLs into Gradescope (make sure you&rsquo;ve done so at the points instructed above). You should also make sure you&rsquo;ve pushed your code to GitHub (but you will not be submitting your code through Gradescope; we just need to check that you&rsquo;ve made the commits we expected you to make).</p>
 
 </div>
 
