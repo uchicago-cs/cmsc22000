@@ -5,7 +5,7 @@ The final component of this course will be a series of final presentations, wher
 - A pre-recorded presentation that must be submitted by **Tuesday, June 9, at 12pm CDT**.
 - A 5-10 minute Q&A session with the instructor and TAs during the "final exam" slot for the class: **Tuesday, June 9, from 4pm to 6pm CDT**
 
-Once all presentations have been submitted, they will be shared with the entire class, so that other teams can learn about the work that other teams have done (similar to how, in live presentations, you would be able to attend the presentations for all the teams).
+Once all presentations have been submitted, they will be shared with the entire class, so that everyone in the class can learn about the work that all the teams have done (similar to how, in live presentations, you would be able to attend the presentations for all the teams).
 
 ## Presentation Contents
 
