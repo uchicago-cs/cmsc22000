@@ -210,7 +210,8 @@ Part I: Using Containers in CI It is often necessary for a CI build to use a spe
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/project/presentation/</guid>
-      <description>Final Presentations  NOTE: These are the requirements for the 2019 edition of CMSC 22000. They have not yet been updated for 2020!  The final component of this course will be a series of final presentations, where each team will present the work they have done throughout the quarter. The presentations will take place on Wednesday, June 12, from 1:30pm to 3:30pm, in Ryerson 277. Each team will have 15 minutes to present (with an additional 5 minutes for questions).</description>
+      <description>Final Presentations The final component of this course will be a series of final presentations, where each team will present the work they have done throughout the quarter. This presentation will be divided into two components:
+ A pre-recorded presentation that must be submitted by Tuesday, June 9, at 12pm CDT. A 5-10 minute Q&amp;amp;A session with the instructor and TAs during the &amp;ldquo;final exam&amp;rdquo; slot for the class: Tuesday, June 9, from 4pm to 6pm CDT  Once all presentations have been submitted, they will be shared with the entire class, so that everyone in the class can learn about the work that all the teams have done (similar to how, in live presentations, you would be able to attend the presentations for all the teams).</description>
     </item>
     
     <item>
@@ -219,8 +220,7 @@ Part I: Using Containers in CI It is often necessary for a CI build to use a spe
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/projects/2019/presentation/</guid>
-      <description>Final Presentations The final component of this course will be a series of final presentations, where each team will present the work they have done throughout the quarter. The presentations will take place on Wednesday, June 12, from 1:30pm to 3:30pm, in Ryerson 277. Each team will have 15 minutes to present (with an additional 5 minutes for questions).
-Presentation Contents Each presentation must be divided into three portions: a high-level discussion of how you designed and implemented your component, a demo, and reflections.</description>
+      <description>Final Presentations  NOTE: These are the requirements for the 2019 edition of CMSC 22000. The most up-to-date requirements can be found here  The final component of this course will be a series of final presentations, where each team will present the work they have done throughout the quarter. The presentations will take place on Wednesday, June 12, from 1:30pm to 3:30pm, in Ryerson 277. Each team will have 15 minutes to present (with an additional 5 minutes for questions).</description>
     </item>
     
     <item>
