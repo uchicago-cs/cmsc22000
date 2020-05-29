@@ -1,10 +1,11 @@
 # Final Presentations
 
-{{% warning %}}
-**NOTE**: These are the requirements for the 2019 edition of CMSC 22000. They have not yet been updated for 2020!
-{{% /warning %}}
+The final component of this course will be a series of final presentations, where each team will present the work they have done throughout the quarter. This presentation will be divided into two components:
 
-The final component of this course will be a series of final presentations, where each team will present the work they have done throughout the quarter. The presentations will take place on Wednesday, June 12, from 1:30pm to 3:30pm, in Ryerson 277. Each team will have 15 minutes to present (with an additional 5 minutes for questions).
+- A pre-recorded presentation that must be submitted by **Tuesday, June 9, at 12pm CDT**.
+- A 5-10 minute Q&A session with the instructor and TAs during the "final exam" slot for the class: **Tuesday, June 9, from 4pm to 6pm CDT**
+
+Once all presentations have been submitted, they will be shared with the entire class, so that everyone in the class can learn about the work that all the teams have done (similar to how, in live presentations, you would be able to attend the presentations for all the teams).
 
 ## Presentation Contents
 
@@ -12,11 +13,18 @@ Each presentation must be divided into three portions: a high-level discussion o
 
 ### Design and Implementation
 
-You must explain, at a high-level, the design of your component, and any non-trivial implementation details (like the use of external libraries)
+You must explain, at a high-level, the design of your component, and any non-trivial implementation details (like the use of external libraries). You should also take care to explain the main dependencies your code has with the rest of chiventure.
 
 ### Demo
 
-You must do a live demo of chiventure that specifically highlights the work your team was responsible for. You must do this demo from the version of the code that is in `master`.
+You must run a demo of your work meeting the following requirements:
+
+- You must show a program in execution.
+- The code you run *must* be in the `dev` branch of the repository. You cannot demo code that is still in one of your branches and has not gone through a code review.
+
+Ideally, you should run the main `chiventure` executable, in a way that highlights the work you've done. However, if your feature is not yet accessible from the main executable, you are allowed to create an example program inside the `examples/` directory of your feature. 
+
+Please note that this is not "sandbox" code: this should be code that integrates, as much as possible, with the rest of chiventure. A good way to think about this is to write an example program that showcases the work you were able to do, and that future developers can look at as an example of how your code works.
 
 ### Reflections
 
@@ -26,50 +34,73 @@ You must also discuss at least one thing that you would've done differently with
 
 ## Presentation Format
 
-We suggest you allocate roughly 5 minutes for each portion of the presentation. That said, it would be prudent to plan to speak for no more than 12-13 minutes, to give yourself some wiggle room. Please note that the design/implementation and demo portions can be interwoven together, as opposed to treating them as completely distinct portions.
+We do not expect your recorded presentation to be super-polished, with fancy editing, etc. Instead, we suggest you approach this in a manner similar to an in-person presentation: develop your slides and demo collaboratively, and then deliver your presentation using no more than 15 minutes, but do so over Zoom (with one of you recording the meeting).
 
-Take into account that the demo/presentation itself doesn't have to be delivered by all team members. In fact, for a 15 minute presentation, you probably want no more than 2-3 people speaking in total (but as many of you should be at the presentation, in case there are any questions that need to be answered by a specific team member)
+To reiterate: please do not spend time doing multiple retakes, editing your video (beyond trimming the start and end of the video), etc. If you would like to ensure that your presentation is minimally polished, we instead suggest you do the following:
 
-You do not need to dress formally for the presentations. Casual clothing is more than acceptable but, if you do feel the need to look a bit sharper, please don't wear anything more formal than [smart casual](https://en.wikipedia.org/wiki/Smart_casual) or [business casual](https://en.wikipedia.org/wiki/Business_casual).
+1. Do a very brief dry run (2-3 minutes) with one or two other team members, where one of you is sharing their screen, etc. to verify that you understand how to run the Zoom meeting and record it. We suggest you follow the steps for creating a [local recording in Zoom](https://support.zoom.us/hc/en-us/articles/201362473), and that you have everyone in the meeting say something to verify that they are being correctly recorded. *You should do this well in advance of the deadline* so we can sort out any technical issues beforehand.
+2. Allocate 15 minutes to deliver your presentation, and ask students in other teams whether they would be willing to attend the meeting. This will make your presentation less awkward, because you'll actually be presenting to other people, and you will feel more obligated to stay within the 15 minute limit (as opposed to getting into a "let's do a retake" mentality). Plus, the people from the other teams may give you some valuable feedback at the end of the meeting (and will themselves benefit from seeing how another team approaches giving a presentation; you should also volunteer to attend other presentations precisely for this reason!)
+3. If feasible, deliver the presentation again at a later time, incorporating the feedback you received from the other students.
+
+All that said, you are allowed to record your presentation in other ways if you feel that will work better for you. However, if you've never prepared a pre-recorded presentation before, we suggest you use Zoom as described above.
+
+We suggest you allocate roughly 5 minutes for each portion of the presentation. Please note that the design/implementation and demo portions can be interwoven together, as opposed to treating them as completely distinct portions.
+
+Take into account that the presentation itself doesn't have to be delivered by all team members. In fact, for a 15 minute presentation, you probably want no more than 2-3 people speaking in total. If you feel comfortable doing so, please make sure your camera is turned on when you speak during the presentation. 
+
+## Submission Instructions
+
+Submission instructions will be posted closer to the deadline, but we expect you will be able to upload your video through Panopto.
+
+## Q&A
+
+During the Q&A meeting, you will be asked some questions based on your presentation (this is meant to emulate the Q&A that typically happens after a live presentation; the instructor and TAs will watch your presentation before the Q&A portion). We expect to spend 5-10 minutes per team.
+
+While the entire team does not have to be present at the Q&A meeting, as many team members as possible should plan to attend. Take into account that you may be asked questions that one or two specific people in your team are best suited to answer (because they were more involved in the part of your code that a question relates to).
+
+Teams in a non-North American timezone who are unable to send a few team members to the Q&A meeting should contact the instructor in advance to schedule an alternate time for their Q&A.
 
 ## Scoring
 
-The presentation will be worth 10 points of your final grade. 6 of these points will be determined by the instructor and TAs, and the remaining 4 points will be determined by a panel of guest judges. The  instructor/TAs will score your presentation (on a scale of 0 to 5) on three aspects: Clarity/structure (weighed 40%), demo (weighed 35%) and Q&A (weighed 25%). The guest judges will score your presentation only on clarity/structure (75%) and Q&A (25%).
+The presentation will be worth 10 points of your final grade, broken down as follows:
+ 
+- 5 points for content/structure of the presentation
+- 3 points for the demo
+- 2 points for the Q&A
+ 
+The instructor/TAs will use the following rubric, with discretion to add/subtract half a point.
 
-Both the instructor/TAs and guest judges will use the following rubric, with discretion to add/subtract half a point.
+### Content and structure
 
-### Clarity and structure
-
-- 5 points: Flawless presentation.
+- 5 points: Perfectly structured, clear from beginning to end
 - 4 points: Overall well structured. Only a few minor hiccups and/or aspects that were not entirely clear.
 - 2.5 points: Needs improvement. Presentation was poorly structured with multiple aspects that were not clear.
 - 1 point: Poorly structured. Presentation does not substantially address the content we requested.
 - 0: No presentation was delivered.
 
-### Demo (instructor/TAs only)
+For avoidance of doubt, this score is based solely on the content and structure of the presentation, and whether it addresses all the requirements described earlier. Producing a slick video with fancy editing (or not) has no bearing on this score.
 
-- 5 points: Flawless demo that highlights the team's work.
-- 4 points: Smooth demo with only a few small hiccups.
-- 2.5 points: Needs improvement. Demo worked but with major issues.
+
+### Demo
+
+- 3 points: Flawless demo that highlights the team's work.
+- 2 points: Smooth demo with only a few small hiccups.
+- 1.5 points: Needs improvement. Demo worked but with major issues.
 - 1 point: Very incomplete demo. Demo hints at the work the team did, but doesn't directly showcase their work.
 - 0: No demo was done.
 
 ### Q&A
 
-- 5 points: All questions were answered
-- 4 points: Most questions were answered, but the team was stumped on some of them.
-- 2.5 points: The team was stumped on most of the questions they were asked.
-- 1 point: The team was stumped on all questions.
+- 2 points: All questions were answered
+- 1.5 points: Most questions were answered, but the team was stumped on some of them.
+- 1 points: The team was stumped on most of the questions they were asked.
+- 0.5 point: The team was stumped on all questions.
 - 0 points: The team did not answer any of the questions they were asked.
 
 
 ## Presentation and demo tips
 
-- If you're unsure whether your laptop will work with the projector, get to the room before 1:30pm and do a quick test (I have verified that no one is using it before us)
-- You should make sure to present from a single laptop, and you should run through the demo on that laptop a couple times before the actual presentation.
-- You should declare the `master` branch to be frozen at some point before the presentations (and after you have run through a successful demo with the code in that branch). We suggest aiming to freeze the `master` branch at least 24 hours before the presentation, and only allowing changes that do not affect your code (e.g., documentation changes, READMEs, etc.) or, at most, very small hotfixes.
-- Always have a contingency plan. Sometimes demos don't work and, while that is not ideal, you will not cause a bad impression if you bow out gracefully. Either give up on the demo immediately or, if the laptop is at least projecting, then have screenshots prepared to share with everyone. 
-- When you have a limited amount of time, don't improvise your demo. Think about what you will show exactly, and stick to your script. If something fails, don't try to fix it on the spot. Move on with the rest of the demo and, if that is not possible, give up on the demo gracefully.
+- You should declare the `dev` branch to be frozen at some point before the presentations (and after you have run through a successful demo with the code in that branch). We suggest aiming to freeze the `dev` branch at least 24 hours before the presentation, and only allowing changes that do not affect your code (e.g., documentation changes, READMEs, etc.) or, at most, very small hotfixes.
+- When you have a limited amount of time, don't improvise your demo. Think about what you will show exactly, and stick to your script. Make sure to rehearse your demo thoroughly before you actually record it.
 
 
-Teams will be given an opportunity to do a dry run of their presentation. At this dry run, we would provide feedback on your presentation's structure and style, to make sure you have a chance to polish it up before the actual presentation.
