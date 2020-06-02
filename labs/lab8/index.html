@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.71.1" />
+<meta name="generator" content="Hugo 0.72.0" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -212,7 +212,7 @@ $ sudo apt-get update
 $ sudo apt-get install -y docker-ce
 </code></pre></div><p>You can verify that Docker is correctly installed by running this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo docker run hello-world
-</code></pre></div><p>This will run a container whose sole purpose is to print out a welcome message. If you do not see a message that starts with &ldquo;Hello from Docker!&quot;, please ask for help.</p>
+</code></pre></div><p>This will run a container whose sole purpose is to print out a welcome message. If you do not see a message that starts with &ldquo;Hello from Docker!&rdquo;, please ask for help.</p>
 <p>We can run a Redis container simply by running the following:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo docker run --name redis-server -p 6379:6379 redis
 </code></pre></div><p>Docker will first download the Redis container image from the <a href="https://hub.docker.com/_/redis/">Docker Hub</a>, and then run it. You should see some output that ends with something like this:</p>
