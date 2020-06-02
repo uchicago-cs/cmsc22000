@@ -138,8 +138,8 @@ td {vertical-align:middle};
     <td rowspan="2">[Optional] Logging +Documentation</td>
   </tr>
   <tr>
-    <td>June 3</td>
-    <td>W</td>
+    <td>June 5</td>
+    <td>F</td>
     <td>Wrap-up</td>
   </tr>
   </tbody>
