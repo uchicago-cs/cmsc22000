@@ -4,12 +4,16 @@ menu: main
 date: 2018-02-17T08:47:20-06:00
 ---
 
+{{% warning %}}
+**NOTE**: This syllabus has been updated with some basic logistical information for Spring 2021 and, while we do not currently expect any major changes to the general structure of the class, this syllabus is still subject to change.
+{{% /warning %}}
+
 Course Description
 ------------------
 
 Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.
 
-This class bridges the gap between knowing how to program and knowing how to develop software: it is intended for students who have just completed CMSC 15200 Introduction to Computer Science 2 or CMSC 16200 Honors Introduction to Computer Science 2, and will cover fundamental concepts and skills in software development, providing a solid foundation before students move on to majors-level classes that require developing complex software systems. The class will cover foundational topics in software development in lectures, but will also include hands-on labs, guest lectures from industry speakers, and a collaborative quarter-long project, where the entire class, divided into teams with specific responsibilities, will work on developing new features for an existing software system.
+This class bridges the gap between knowing how to program and knowing how to develop software: it is intended for students who have recently completed CMSC 15200 Introduction to Computer Science 2 or CMSC 16200 Honors Introduction to Computer Science 2, and will cover fundamental concepts and skills in software development, providing a solid foundation before students move on to majors-level classes that require developing complex software systems. The class will cover foundational topics in software development in lectures, but will also include hands-on labs, guest lectures from industry speakers, and a collaborative quarter-long project, where the entire class, divided into teams with specific responsibilities, will work on developing new features for an existing software system.
 
 In this course, students will learn how to...
 
@@ -21,15 +25,17 @@ In this course, students will learn how to...
 
 Students must have taken CMSC 15200 or CMSC 16200. 
 
-In Spring 2020, students will have to apply to participate in this class, and only students taking CMSC 15200 or CMSC 16200 in Winter 2020, or who took CMSC 15200 in Spring 2019, will be considered (*absolutely no exceptions will be made*).
+In Spring 2021, students will have to apply to participate in this class, and only students who took CMSC 15200 or CMSC 16200 in Spring 2020, Summer 2020, Autumn 2020, or Winter 2021 will be invited to apply (*absolutely no exceptions will be made*).
 
-Please note that CMSC 15400 is *not* a prerequisite for this class. We strongly encourage students taking CMSC 22000 to defer CMSC 15400 until the Fall, instead of taking CMSC 22000 and CMSC 15400 concurrently.
+Please note that CMSC 15400 is *not* a prerequisite for this class. Students who are taking CMSC 15200/16200 in Winter 2021, and who end up taking CMSC 22000, are strongly encouraged to defer CMSC 15400 until the Fall, instead of taking CMSC 22000 and CMSC 15400 concurrently.
 
 
 Course Organization
 -------------------
 
-Lectures are scheduled to take place on MWF 2:30pm - 3:20pm, but please note that, in Spring 2020, we will generally only meet on Mondays and Fridays for discussion-oriented meetings over Zoom, with most of the course content delivered via pre-recorded lectures. Please see [Course Calendar]({{< relref "calendar.md" >}}) page for the exact days/times when we will meet over Zoom.
+This class will be run online, with no in-person components.
+
+Lectures are scheduled to take place on MWF 3:00pm - 3:50pm, but please note that, in Spring 2021, we will generally only meet on Mondays and Fridays for discussion-oriented meetings over Zoom, with most of the course content delivered via pre-recorded lectures. We may, in some weeks, host guest talks from outside speakers on Wednesdays.
 
 Additionally, we have time reserved on Mondays 4:30pm-5:50pm for project teams meetings (this is listed as a "lab" on the Registrar's site, but please note that it is unrelated to the lab assignments in this class). Team meetings will start on Week 3.
 
@@ -58,13 +64,22 @@ Starting in Week 3, project planning will follow a Scrum-like process, with week
 
 More details on the project can be found on the [Project]({{< relref "project/" >}}) page.
 
+Lecture Quizzes
+---------------
+
+The pre-recorded lectures will include very simple quizzes that should be trivial to pass if you pay attention to the videos. The goal of these quizzes is to reward students who watch the pre-recorded lectures in a timely manner, and who pay attention while watching the videos.
+
+To earn the points for a quiz, you must complete the quiz no later than one week after the lecture is posted. Furthermore, if your total score on the quizzes (for the entire quarter) is above 75%, you will get 100% of the points allocated to the lecture quizzes on your final grade. If your total score on the quizzes is below below 75%, you will be awarded a proportional amount of the points.
+
+
+
 Grading
 -------
 
 Grading is based on the following:
 
 * 25% Lab Assignments (each lab weighed equally)
-* 5% Participation (see Spring 2020 below)
+* 5% Lecture Quizzes
 * 70% Project, divided into:
   * 5% Team Design Exercise
   * 35% Individual Evaluation
@@ -105,64 +120,3 @@ The University of Chicago is committed to diversity and rigorous inquiry that ar
 
 If you have a preferred name different from what appears on the class roster, or preferred gender pronouns you would like us to use, please let us know.
 
-Spring 2020
------------
-
-There are a few aspects of the class that will be a bit unique in Spring 2020:
-
-### Participation Score
-
-5 points (out of 100) of your final grade will be allocated to attendance in Zoom sessions and watching pre-recorded lectures (students who are unable to join Zoom sessions will have an alternate mechanism for earning participation points). The intent of the participation points is that any student who attends most of the Zoom sessions and watches most of the pre-recorded lectures will effortlessly earn the full 5 points. The points are allocated as follows:
-
-- 2 points for attending Zoom sessions. If you attend at least 75% of the Zoom sessions, you get the full 2 points. Please note that it is enough to attend the session and be present for all or nearly all of it. If you attend less than 75% of the Zoom sessions, you get a number of points proportional to the number of Zoom sessions you attended.
-  
-  Students who are prevented from joining the Zoom sessions (due to their timezone, Internet access, or some other personal difficulty) can earn these points by, instead, suggesting questions for the discussion/Q&A sessions (which will revolve around the content provided in pre-recorded lectures). While any student will be able to submit questions, the students who are unable to participate in Zoom sessions can earn the 2 points by submitting two questions before a Zoom discussion session (similarly, they get the full 2 points if they submit questions for at least 75% of the Zoom sessions)
-  
-- 3 points for viewing pre-recorded lectures. The pre-recorded lectures will include very simple quizzes that should be trivial to pass if you pay attention to the videos. If your total score on the quizzes is above 75%, you get the full 3 points; below 75% you get a proportional score.
-
-### Late submission of lab assignments
-
-To add some flexibility to your coursework this quarter, we have setup Gradescope to accept lab submissions up to 48 hours after their deadline. We will not penalize your first two late submissions but, after that, any late submission will have a 20 point penalty (out of 100). Submissions will not be accepted 48 hours after the deadline, but we will make exceptions for students who are facing any additional personal difficulties (if so, please notify the instructor before the deadline, if possible)
-
-### Zoom Guidelines
-
-*Note: The following is based on text provided by Prof. Stuart Kurtz*
-
-We will be using Zoom in this class. We expect your interactions via Zoom to be consistent with an in-person class experience. Respect the people you're working with. Enter the Zoom meetings muted if possible (unfortunately, it will not be possible if you're calling in), and unmute to speak. Raise your hand if you'd like to speak. [There's a "Raise Hand" button on the participant page.] If your background is unusually noisy, use the chat channel instead of unmuting. You may show video, but you're not required to, and you may turn off video sharing at any time.
-
-Note that you can set your name in your Zoom profile, so you don't have to go with whatever was assigned. We encourage you to include your pronouns in your name (if so, please include them after your last name). If you set a name that can't be easily matched to the name on record with the University, please let us know.
-
-Our Zoom class meetings will be recorded and saved to the cloud to allow students in this class to review the discussion, and especially to allow students who can't participate the opportunity to benefit from class. It is not our intention that these recordings will be available to anyone but class participants, nor that they will be available after the quarter, but we don't have control over what others will do. If you have FERPA concerns, please mask yourself accordingly, e.g., by turning off video and using an alias.
-
-### Recording Policy
-
-*The following is the verbatim policy adopted by the university. Please make sure you understand it and abide by it.*
-
-As the University temporarily transitions to a remote teaching and learning environment, instructors
-and students have asked for guidance on the recording of course sessions. Instructors have the
-discretion to record course sessions, except when recording is required to meet the needs of students
-granted an accommodation by the Office of Student Disability Services. Recordings and transcripts will
-be made available to students in the relevant course, the instructor, and other necessary University
-officials. Recordings in which students are personally identifiable will be managed in accordance with
-the Family Educational Rights and Privacy Act (FERPA).
-
-This time-limited policy has been implemented to effectively deliver a remote education while
-safeguarding privacy and protecting rights in courses and instructional materials. Below is an
-acknowledgment for students designed to govern the use of any recordings and provide instructors and
-students with guidance on the use of instructional materials.
-By attending course sessions, students acknowledge that:
-
-1. They will not: (i) record, share, or disseminate University of Chicago course sessions, videos,
-transcripts, audio, or chats; (ii) retain such materials after the end of the course; or (iii) use such
-materials for any purpose other than in connection with participation in the course.
-
-2. They will not share links to University of Chicago course sessions with any persons not
-authorized to be in the course session. Sharing course materials with persons authorized to be
-in the relevant course is permitted. Syllabi, handouts, slides, and other documents may be
-shared at the discretion of the instructor.
-
-3. Course recordings, content, and materials may be covered by copyrights held by the University,
-the instructor, or third parties. Any unauthorized use of such recordings or course materials may
-violate such copyrights.
-
-4. Any violation of this policy will be referred to the Area Dean of Students. 

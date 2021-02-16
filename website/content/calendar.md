@@ -3,6 +3,10 @@ title: "Course Calendar"
 date: 2018-02-17T08:50:04-06:00
 ---
 
+{{% warning %}}
+**NOTE**: This is the calendar for Spring 2020. While we expect the Spring 2021 to be similar, this calendar is still subject to change.
+{{% /warning %}}
+
 <style>
 td {vertical-align:middle};
 </style>
