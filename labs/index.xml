@@ -6,11 +6,7 @@
     <description>Recent content in Labs on CS 220</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Jan 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://uchicago-cs.github.io/cmsc22000/labs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 28 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://uchicago-cs.github.io/cmsc22000/labs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting help on the lab assignments</title>
       <link>https://uchicago-cs.github.io/cmsc22000/labs/help/</link>

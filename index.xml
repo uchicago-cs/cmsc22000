@@ -6,11 +6,7 @@
     <description>Recent content in CMSC 22000 - Introduction to Software Development on CS 220</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Feb 2018 08:47:20 -0600</lastBuildDate>
-    
-	<atom:link href="https://uchicago-cs.github.io/cmsc22000/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 17 Feb 2018 08:47:20 -0600</lastBuildDate><atom:link href="https://uchicago-cs.github.io/cmsc22000/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>FAQs</title>
       <link>https://uchicago-cs.github.io/cmsc22000/faq/</link>
@@ -31,7 +27,7 @@ This is technically possible, but strongly discouraged.</description>
       <pubDate>Sat, 17 Feb 2018 08:50:04 -0600</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/calendar/</guid>
-      <description>td {vertical-align:middle};    Week Date Day Zoom Meetings Pre-recorded Lecture(s) Lab Assignment Project    1 April 6 M Introduction to CS 220 The Software Development Process Git    April 10 F Discussion/Q&amp;amp;A: Software Development Process   2 April 13 M Introduction to Software Design Software Design Software Design Design Warm-up #1   April 17 F Discussion/Q&amp;amp;A: Software Design   3 April 20 M Project kick-off Implementation: Linking, Libraries, etc.</description>
+      <description>NOTE: This is the calendar for Spring 2020. While we expect the Spring 2021 to be similar, this calendar is still subject to change.   td {vertical-align:middle};    Week Date Day Zoom Meetings Pre-recorded Lecture(s) Lab Assignment Project    1 April 6 M Introduction to CS 220 The Software Development Process Git    April 10 F Discussion/Q&amp;amp;A: Software Development Process   2 April 13 M Introduction to Software Design Software Design Software Design Design Warm-up #1   April 17 F Discussion/Q&amp;amp;A: Software Design   3 April 20 M Project kick-off Implementation: Linking, Libraries, etc.</description>
     </item>
     
     <item>
@@ -78,7 +74,7 @@ Types of features Broadly speaking, there are two types of features you will be 
       <pubDate>Sat, 17 Feb 2018 08:47:20 -0600</pubDate>
       
       <guid>https://uchicago-cs.github.io/cmsc22000/syllabus/</guid>
-      <description>Course Description Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain soft skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.</description>
+      <description>NOTE: This syllabus has been updated with some basic logistical information for Spring 2021 and, while we do not currently expect any major changes to the general structure of the class, this syllabus is still subject to change.  Course Description Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology.</description>
     </item>
     
     <item>

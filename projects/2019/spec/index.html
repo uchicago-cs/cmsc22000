@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://uchicago-cs.github.io/touch-icon-144-precomposed.png">
 <link href="https://uchicago-cs.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.72.0" />
+<meta name="generator" content="Hugo 0.80.0" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -297,7 +297,7 @@ It is the time of...
 </ul>
 <p>After this, you will find you will need to work more closely with the Game State team to figure out how to load the contents of the WDL file into the data structures provided by Game State (even then, loading the WDL file into libobj data structures will be a good intermediate step)</p>
 <h3 id="game-state">Game State</h3>
-<p>This team will be responsible for designing the data structures that will store the state of the game in memory, as well as a module to manipulate those data structures. A good initial goal is to focus on <em>designing</em> these modules by writing the modules&rsquo; header files without yet writing the implementation of the functions promised by the module&rsquo;s interface. This will get you thinking about what data structures to use, how they will relate to other data structures, what operations you want to allow on each data structure.</p>
+<p>This team will be responsible for designing the data structures that will store the state of the game in memory, as well as a module to manipulate those data structures. A good initial goal is to focus on <em>designing</em> these modules by writing the modules' header files without yet writing the implementation of the functions promised by the module&rsquo;s interface. This will get you thinking about what data structures to use, how they will relate to other data structures, what operations you want to allow on each data structure.</p>
 <h3 id="action-management">Action Management</h3>
 <p>The Action Management team is responsible for deciding what actions are possible, and how to model the conditions on an action as well as the effects of an action. Our sample WDL files provide examples of how these action conditions/effects could be specified in the WDL file, but that information will then have to be stored in memory in a general-purpose way that makes it easy to process actions during the game.</p>
 <p>As such, this team can initially focus on the following:</p>
