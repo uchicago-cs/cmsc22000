@@ -1,14 +1,14 @@
 Getting Help on the Homework Assignments
 ========================================
 
-If you have any questions or get stuck on the lab assignments, there are
+If you have any questions or get stuck on the homework assignments, there are
 two ways of getting help:
 
 Slack
 ~~~~~
 
-We have a ``#course-labs`` channel on our Slack workspace that can be
-used to ask questions about the lab assignments. However, to keep that
+We have a ``#course-homework`` channel on our Slack workspace that can be
+used to ask questions about the homework assignments. However, to keep that
 channel tidy we ask that you follow a couple of conventions in this
 channel.
 
@@ -20,12 +20,10 @@ can get messy if there are a lot of questions being asked at the same
 time).
 
 So, if you wanted to ask a question, you would just post your question
-on the ``#course-labs`` channel:
+on the ``#course-homework`` channel:
 
 .. figure:: question-1.png
    :alt: Question on Slack
-
-   Question on Slack
 
 Let’s say that question was actually asked by someone else, and you
 wanted to reply to it. You must do so by starting a thread:
@@ -33,15 +31,11 @@ wanted to reply to it. You must do so by starting a thread:
 .. figure:: question-2.png
    :alt: Starting a thread
 
-   Starting a thread
-
 You will be able to write a reply and, once you post it, it will appear
 under the original question:
 
 .. figure:: question-3.png
    :alt: Slack thread
-
-   Slack thread
 
 If you want to see the replies in an existing thread, you just need to
 click on the reply link (in the above example, you would click on “1
@@ -52,8 +46,6 @@ also allow you to write an additional reply:
 .. figure:: question-4.png
    :alt: Slack thread
 
-   Slack thread
-
 If you asked the original question, it’s important for the course staff
 to know when your question has been answered to your satisfaction. If
 you feel your question has been resolved, you should add the “resolved”
@@ -62,15 +54,11 @@ reaction to it. You can do this by clicking on “Add reaction”:
 .. figure:: question-5.png
    :alt: Adding a reaction
 
-   Adding a reaction
-
 And selecting the “resolved” emoji (note: this is an alias for the
 “heavy_check_mark” emoji; you can use that one as well)
 
 .. figure:: question-6.png
    :alt: Resolved reaction
-
-   Resolved reaction
 
 Note: An instructor or TA may also use the resolved emoji if they feel
 like the question has been resolved but, if it hasn’t, you should feel
