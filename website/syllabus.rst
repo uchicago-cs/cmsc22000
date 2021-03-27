@@ -209,6 +209,33 @@ sense. We use a standard set of grade boundaries:
 We curve only to the extent that we may lower the boundaries for one or
 more letter grades, depending on the distribution of the raw scores.
 
+Late submissions
+~~~~~~~~~~~~~~~~
+
+You are allowed to make **at most two** late submissions on the homeworks.
+Late submissions will be accepted up to 48 hours after the deadline.
+
+**No credit will be given** for late submissions after you have used up your two allowed
+late submissions.
+
+**No credit will be given** for *any* submission made 48 hours after the deadline.
+
+Please note that, while Gradescope does enforce the 48-hour limit on late submissions and will clearly flag
+late submissions with a red "LATE" label, it does not enforce our specific limit
+of two late submissions. **It is your responsibility to keep track of how many late submissions
+you have made so far, and to ensure you don't make more than two late submissions.**
+
+If extraordinary circumstances (illness,
+family emergency, etc.) prevent a student from meeting a deadline, we may
+grant additional extensions on a case-by-case basis. Whenever possible, the
+student must inform their instructor of these extraordinary circumstances
+*before* the deadline.
+
+Please note that having a heavy workload in a given
+week does not qualify as an extraordinary circumstance. The purpose of the
+two extensions is precisely to give you some flexibility in weeks when you
+are busier than usual.
+
 Homework Regrades
 ~~~~~~~~~~~~~~~~~
 
