@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Syllabus &#8212; CMSC 22000 - Introduction to Software Development</title>
+
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Calendar" href="calendar.html" />
+    <link rel="prev" title="CMSC 22000 - Introduction to Software Development" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          CMSC 22000 - Introduction to Software Development</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              
+              
+            
+            
+            
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course Information <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="#">Syllabus</a></li>
+        <li><a href="calendar.html">Calendar</a></li>
+        <li><a href="code_of_conduct.html">TA/Grader Code of Conduct</a></li>
+    </ul>
+</li>
+<li><a href="hw/index.html">Homework</a></li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="project/index.html">Introduction</a></li>
+        <li><a href="project/chiventure.html">chiventure</a></li>
+        <li><a href="project/policies.html">Policies</a></li>
+        <li><a href="project/features.html">Features</a></li>
+        <li><a href="project/warmup.html">Design Warm-Up Exercise</a></li>
+    </ul>
+</li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="resources/faq.html">CS 220 FAQs</a></li>
+        <li><a href="resources/tutorials/index.html">Tutorials</a></li>
+        <li><a href="https://uchicago-cs.github.io/dev-guide/" target="_blank">UChicago CS Developer's Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="https://uchicago-cs.github.io/debugging-guide" target="_blank">The Debugging Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="resources/other.html">Other Resources</a></li>
+    </ul>
+</li>
+
+            
+          </ul>
+
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Syllabus</a><ul>
+<li><a class="reference internal" href="#course-description">Course Description</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#course-organization">Course Organization</a><ul>
+<li><a class="reference internal" href="#homework">Homework</a></li>
+<li><a class="reference internal" href="#project">Project</a></li>
+<li><a class="reference internal" href="#lecture-quizzes">Lecture Quizzes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#books">Books</a></li>
+<li><a class="reference internal" href="#grading">Grading</a><ul>
+<li><a class="reference internal" href="#homework-regrades">Homework Regrades</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#policies">Policies</a><ul>
+<li><a class="reference internal" href="#policy-on-academic-honesty">Policy on academic honesty</a></li>
+<li><a class="reference internal" href="#ta-grader-code-of-conduct">TA/Grader Code of Conduct</a></li>
+<li><a class="reference internal" href="#zoom-guidelines">Zoom guidelines</a></li>
+<li><a class="reference internal" href="#diversity-statement">Diversity statement</a></li>
+<li><a class="reference internal" href="#accessibility-statement">Accessibility statement</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#covid-19-policies">COVID-19 Policies</a><ul>
+<li><a class="reference internal" href="#uchicago-health-pact">UChicago Health Pact</a></li>
+<li><a class="reference internal" href="#reporting-covid-19-related-concerns">Reporting COVID-19 Related Concerns</a></li>
+<li><a class="reference internal" href="#reporting-covid-19-exposure-or-a-confirmed-case">Reporting COVID-19 Exposure or a Confirmed Case</a></li>
+<li><a class="reference internal" href="#recording-and-deletion-policies-for-academic-year-2020-21">Recording and Deletion Policies for Academic Year 2020-21</a></li>
+<li><a class="reference internal" href="#attendance">Attendance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <div class="section" id="syllabus">
+<h1>Syllabus<a class="headerlink" href="#syllabus" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="course-description">
+<h2>Course Description<a class="headerlink" href="#course-description" title="Permalink to this headline">¶</a></h2>
+<p>Developing a software system (e.g., an application, a web server, an
+operating system, etc.) requires much more than just knowing how to
+program. Software development encompasses multiple activities, such as
+systems design, implementation, testing, debugging, deployment,
+documentation, and maintenance, all weaved together by following a
+specific methodology. Not just that, software development is a highly
+collaborative activity, where certain skills, like effective
+communication and the ability to give/receive feedback, can be key to
+the success of a software project.</p>
+<p>This class bridges the gap between knowing how to program and knowing
+how to develop software: it is intended for students who have recently
+completed CMSC 15200 Introduction to Computer Science 2 or CMSC 16200
+Honors Introduction to Computer Science 2, and will cover fundamental
+concepts and skills in software development, providing a solid
+foundation before students move on to majors-level classes that require
+developing complex software systems. The class will cover foundational
+topics in software development in lectures, but will also include
+hands-on homeworks, guest lectures from industry speakers, and a
+collaborative quarter-long project, where the entire class, divided into
+teams with specific responsibilities, will work on developing new
+features for an existing software system.</p>
+<p>In this course, students will learn how to…</p>
+<ul class="simple">
+<li><p>… follow a software development process/methodology to manage the
+life cycle of a software system.</p></li>
+<li><p>… use tools that support the software development process (e.g.,
+build systems, testing frameworks, debuggers, etc.)</p></li>
+<li><p>… develop software collaboratively through (a) the use of tools,
+systems, and best practices available to facilitate that
+collaboration (e.g., version control systems, code reviews, task
+tracking, etc.), and (b) exercising collaborative skills
+(communication, giving/accepting feedback, etc.)</p></li>
+</ul>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>Students must have taken CMSC 15200 or CMSC 16200.</p>
+<p>In Spring 2021, students will have to apply to participate in this
+class, and only students who took CMSC 15200 or CMSC 16200 in Spring
+2020, Summer 2020, Autumn 2020, or Winter 2021 will be invited to apply
+(<em>absolutely no exceptions will be made</em>).</p>
+<p>Please note that CMSC 15400 is <em>not</em> a prerequisite for this class.
+Students who are taking CMSC 15200/16200 in Winter 2021, and who end up
+taking CMSC 22000, are strongly encouraged to defer CMSC 15400 until the
+Fall, instead of taking CMSC 22000 and CMSC 15400 concurrently.</p>
+</div>
+</div>
+<div class="section" id="course-organization">
+<h2>Course Organization<a class="headerlink" href="#course-organization" title="Permalink to this headline">¶</a></h2>
+<p>This class will be run online, with no in-person components.</p>
+<p>Most of the course content will be delivered via pre-recorded lectures,
+but please note that the whole class will still meet synchronously via
+Zoom at the following times:</p>
+<ul class="simple">
+<li><p><strong>Mondays 3pm-3:50pm</strong></p>
+<ul>
+<li><p>Weeks 1-2: Lecture</p></li>
+<li><p>Weeks 3-9: Project All-Hands Meeting</p></li>
+</ul>
+</li>
+<li><p><strong>Fridays 3pm-3:50pm</strong>: Discussion/Q&amp;A</p></li>
+</ul>
+<p>All of the above meetings will be recorded for students who are unable
+to attend.</p>
+<p>Additionally, we have time reserved on Mondays 4:30pm-5:50pm for project
+teams meetings (this is listed as a “lab” on the Registrar’s site, but
+please note that it is not a traditional lab session).
+Team meetings will start on Week 3, and each team will be assigned a 30 minute
+slot between 4:30pm-5:50pm to meet with a TA.</p>
+<p>We may also schedule a series of optional discussions and guest talks
+on Wednesdays from 3pm to 3:50pm.</p>
+<p>A large part of the class will revolve around the development of a
+software project where students will be able to apply many of the
+concepts covered in the lectures (this project is described in more
+detail in the “Course Project” section below). In this project, the
+entire class will work on the same code (through a public GitHub
+repository visible to the entire class). Students will be divided into
+teams of 4-5 students, and each team will work on a specific aspect of
+the project. In each team, a TA will act as the senior developer in the
+team. Students will be assessed both on their performance as a team, as
+well as on their performance on individual tasks assigned to them in
+their teams.</p>
+<p>During the first two weeks of the quarter, the class will focus on
+covering core concepts regarding the software development process.
+Starting in week 3, the focus of the class will shift towards the
+development of the course project, with Mondays used for a project
+all-hands meeting, and each team having a 30-minute meeting with the
+team’s senior developer during lab hours.</p>
+<p>For a complete schedule of lectures and other milestones, please see
+the <a class="reference external" href="calendar.html">Course Calendar</a>.</p>
+<div class="section" id="homework">
+<h3>Homework<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h3>
+<p>Weekly homework assignments will supplement the material covered in lectures, and
+will allow students to learn and practice skills that will be necessary
+in the course project. These assignments must be completed individually.</p>
+</div>
+<div class="section" id="project">
+<h3>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h3>
+<p>The course project revolves around developing a complex software system.
+The scope and complexity of this project will require that the entire
+class work together towards developing a fully-featured software
+product.</p>
+<p>More specifically, the entire class will be working on the same
+codebase. The class will be divided into teams of 4-5 students, with an
+undergraduate TA acting as a “senior developer” in each of these teams
+(TAs will be students who have previously taken CMSC 22000 and/or who
+have prior industry experience via internships). Teams will be arranged
+by the instructor/TAs (they will not be self-selecting).</p>
+<p>During Weeks 2-3, the teams will work on a warmup exercise on software
+design. A design exercise will be assigned in Week 2 (due Week 3), and a
+follow-up exercise will be assigned in Week 3 (due Week 4). Teams will
+get feedback on their first exercise before the second one is due, and
+there will be a Zoom session in Week 3 dedicated to discussing the
+design exercise.</p>
+<p>Starting in Week 3, project planning will follow a Scrum-like process,
+with weeks 3-9 of the quarter being divided into several sprints.
+Starting on Week 3, all teams have an all-hands meeting during Monday
+class hours, and each team will have an additional team meeting during
+the lab section of the class. Teams will keep track of their tasks
+through GitHub issues, with grading primarily based on their performance
+on these tasks.</p>
+<p>More details on the project can be found on the <a class="reference external" href="project/index.html">Project</a> page.</p>
+</div>
+<div class="section" id="lecture-quizzes">
+<h3>Lecture Quizzes<a class="headerlink" href="#lecture-quizzes" title="Permalink to this headline">¶</a></h3>
+<p>The pre-recorded lectures will include very simple quizzes that should
+be trivial to pass if you pay attention to the videos. The goal of these
+quizzes is to reward students who watch the pre-recorded lectures in a
+timely manner, and who pay attention while watching the videos.</p>
+<p>To earn the points for a quiz, you must complete the quiz no later than
+one week after the lecture is posted. Furthermore, if your total score
+on the quizzes (for the entire quarter) is above 75%, you will get 100%
+of the points allocated to the lecture quizzes on your final grade. If
+your total score on the quizzes is below below 75%, you will be awarded
+a proportional amount of the points.</p>
+</div>
+</div>
+<div class="section" id="books">
+<h2>Books<a class="headerlink" href="#books" title="Permalink to this headline">¶</a></h2>
+<p>While this class does not have a required textbook, most of the Software
+Engineering content draws heavily from Ian Sommerville’s book, <a class="reference external" href="http://iansommerville.com/software-engineering-book/">Software
+Engineering</a>.
+The Software Design content also draws heavily from John Ousterhout’s
+<a class="reference external" href="https://www.amazon.com/Philosophy-Software-Design-John-Ousterhout/dp/1732102201">A Philosophy of Software Design</a>.</p>
+<p>Please see the <a class="reference external" href="resources/other.html">Other Resources</a> page for a
+number of other books and online resources covering much of the material
+in this class.</p>
+</div>
+<div class="section" id="grading">
+<h2>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h2>
+<p>Grading is based on the following:</p>
+<ul class="simple">
+<li><p>25% Homework Assignments (each homework weighed equally)</p></li>
+<li><p>5% Lecture Quizzes</p></li>
+<li><p>70% Project, divided into:</p>
+<ul>
+<li><p>5% Team Design Exercise</p></li>
+<li><p>35% Individual Evaluation</p></li>
+<li><p>15% Team Evaluation</p></li>
+<li><p>5% Peer Feedback</p></li>
+<li><p>10% Final Presentation</p></li>
+</ul>
+</li>
+</ul>
+<p>See the <a class="reference external" href="project/policies.html">Project Policies</a> page for more details
+on how the project scores are determined.</p>
+<p>Additionally, there are 2 points of extra credit that are unlocked by
+completing a final goal in the course project (this goal is such that it
+can only be reached if all teams have substantially completed and
+integrated their work for the project). If these extra points are
+unlocked, they are awarded to everyone in the class.</p>
+<p>Grades are not curved in this class or, at least, not in the traditional
+sense. We use a standard set of grade boundaries:</p>
+<ul class="simple">
+<li><p>95-100: A</p></li>
+<li><p>90-95: A-</p></li>
+<li><p>85-90: B+</p></li>
+<li><p>80-85: B</p></li>
+<li><p>75-80: B-</p></li>
+<li><p>70-75: C+</p></li>
+<li><p>&lt; 70: Dealt on a case-by-case basis</p></li>
+</ul>
+<p>We curve only to the extent that we may lower the boundaries for one or
+more letter grades, depending on the distribution of the raw scores.</p>
+<div class="section" id="homework-regrades">
+<h3>Homework Regrades<a class="headerlink" href="#homework-regrades" title="Permalink to this headline">¶</a></h3>
+<p>We sometimes make mistakes, and are happy to review any incorrect grading decision.</p>
+<p>However, please note that we will only consider regrade requests where a grader made an
+actual mistake (e.g., they took points off claiming you didn’t do something,
+when you actually did do it and the grader maybe missed that when reading over
+your submission). We will not consider regrade requests that ask for point
+penalties to be reduced, or try to argue that we should not be taking points off
+for a given issue in your code.</p>
+<p>For example, suppose you receive a penalty that says
+“-2 points: Function X did not check that parameter Y is greater than zero”.
+If function X in your code <em>did</em> perform this check, and the grader
+missed this fact (and erroneously applied that penalty), you can submit
+a regrade request asking us to review this decision. We ask that you keep
+these requests brief and to the point: no more than 1-2 paragraphs identifying
+the exact penalty and the reasons you believe it was applied erroneously, including
+references to specific parts of your code (e.g., “I did check the value of the
+parameter in line 107”). Focus on laying out the facts, and nothing else.</p>
+<p>On the other hand, let’s say you received the “Function X did not check that
+parameter Y is greater than zero” penalty, and function X in your code did <em>not</em> perform this check. In this case, you cannot submit
+a regrade request arguing that this is not something for which we should deduct
+points, or that the point deduction should be lower. Please note that all penalties
+are explicitly approved by an instructor (graders have no discretion to come up with
+penalties on their own and, if they took points off for something, it is because they
+were directed to do so by an instructor).</p>
+<p>Please note that, while you may request a regrade for a specific issue,
+an instructor may do a full regrade of your submission if they feel there
+are other issues with the grading of your submission. This can result in you
+ending up with a lower score on the assignment.</p>
+<p>Finally, it is also your responsibility to make
+these requests in a timely manner. Requests for regrades must be submitted
+no later than <strong>one week</strong> after a graded piece of work is returned to you.
+After that time, we will not consider any requests for regrades,
+<em>regardless of whether the regrade request is reasonable and justified</em>.</p>
+</div>
+</div>
+<div class="section" id="policies">
+<h2>Policies<a class="headerlink" href="#policies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="policy-on-academic-honesty">
+<h3>Policy on academic honesty<a class="headerlink" href="#policy-on-academic-honesty" title="Permalink to this headline">¶</a></h3>
+<p>We take academic honesty very seriously in this class. Please make sure to
+read our <a class="reference external" href="academic_honesty.html">Academic Honesty</a> page. Please note that
+this policy applies primarily to the homework assignments,
+which must be completed individually.</p>
+<p>On the other hand, the project is structured
+in such a way that you can collaborate and share code with anyone in the class,
+and even use code you find on the Internet. However,
+this can lead to a number of gray areas where it may be hard to tell if
+your work is academically honest.</p>
+<p>For example, the following are activities that may be considered academically
+dishonest in other contexts, but are acceptable in the project:</p>
+<ul class="simple">
+<li><p>Taking a snippet of code you find on Stack Overflow (as long as you provide attribution)</p></li>
+<li><p>Adding a large piece of code not written by yourself (e.g., a third-party library), as long as you
+provide attribution and your use of that code does not violate the terms of a software license.</p></li>
+<li><p>Asking someone outside the class for help with writing your code, as long as you credit
+them somewhere.</p></li>
+<li><p>Posting on online forums for help with figuring out a issue with your code (we would prefer
+that you ask those questions directly to us but, to be clear, using external forums in this way
+is not forbidden).</p></li>
+</ul>
+<p>In general, we will not be policing the attribution of small-scale contributions by outside
+sources, but it is still important that you include those attributions from a documentation
+perspective.</p>
+<p>On the other hand, the following are examples of behaviour that would be considered
+academically dishonest in the project:</p>
+<ul class="simple">
+<li><p>Having someone outside the class do your assigned tasks in the project (as opposed to
+just getting assistance from them)</p></li>
+<li><p>Taking credit for work that someone else in the class did. Please note that there are many situations
+where students will legitimately <em>share</em> credit for a piece of work, and jointly earn points for it;
+what would be unacceptable would be to falsely take sole credit for work you did not do,
+as a way to earn extra points for that work.</p></li>
+</ul>
+<p>If you are ever concerned that you may be doing something that could be considered academically
+dishonest, please don’t hesitate to ask us for clarification. We are always happy to answer
+these kind of questions.</p>
+</div>
+<div class="section" id="ta-grader-code-of-conduct">
+<h3>TA/Grader Code of Conduct<a class="headerlink" href="#ta-grader-code-of-conduct" title="Permalink to this headline">¶</a></h3>
+<p>This class has an explicit <a class="reference external" href="code_of_conduct.html">code of conduct</a> that TAs and graders must abide by.</p>
+<p>This code of conduct exists not because we expect bad behavior from our staff, but because we believe a clear code of conduct is an important piece in creating inclusive spaces, particularly in CS. We share this code of conduct with you (the students) so you know the expectations we have set for our TAs and graders.</p>
+</div>
+<div class="section" id="zoom-guidelines">
+<h3>Zoom guidelines<a class="headerlink" href="#zoom-guidelines" title="Permalink to this headline">¶</a></h3>
+<p>We will be using Zoom in this class. We expect your interactions via Zoom to be consistent with an in-person class experience. Respect the people you’re working with. Enter the Zoom meetings muted if possible (unfortunately, it will not be possible if you’re calling in), and unmute to speak. Raise your hand if you’d like to speak. [There’s a “Raise Hand” button on the participant page.] If your background is unusually noisy, use the chat channel instead of unmuting. We strongly encourage you to have your camera on during our Zoom sessions, but we’ll understand if some of you prefer to keep your video off.</p>
+<p>Note that you can set your name in your Zoom profile, so you don’t have to go with whatever was assigned. We encourage you to include your pronouns in your name (if so, please include them after your last name).</p>
+<p>Our Zoom class meetings will be recorded and saved to the cloud to allow students in this class to review the discussion, and especially to allow students who can’t participate the opportunity to benefit from class. We will not make these recordings available to anyone but class participants, we will not make them available after the quarter, and students will not be allowed to save copies. However, we have no way to guarantee that students will follow this policy. If you have FERPA concerns, please mask yourself accordingly, e.g., by turning off video and using an alias.</p>
+</div>
+<div class="section" id="diversity-statement">
+<h3>Diversity statement<a class="headerlink" href="#diversity-statement" title="Permalink to this headline">¶</a></h3>
+<p>The University of Chicago is committed to diversity and rigorous inquiry that arises from multiple
+perspectives. We concur with that commitment and also believe that we have the highest quality
+interactions and can creatively solve more problems when we recognize and share our diversity. We thus
+expect to maintain a productive learning environment based upon open communication, mutual respect,
+and non-discrimination. We view the diversity that students bring to this class as a resource, strength and
+benefit. It is our intent to present materials and activities that are respectful of diversity: gender,
+sexuality, disability, socioeconomic status, ethnicity, race, religious background, and immigration status.
+Any suggestions as to how to further such a positive and open environment in the class will be
+appreciated and given serious consideration.</p>
+<p>If you have a preferred name different from what appears on the class roster, or preferred gender pronouns
+you would like us to use, please let us know.</p>
+</div>
+<div class="section" id="accessibility-statement">
+<h3>Accessibility statement<a class="headerlink" href="#accessibility-statement" title="Permalink to this headline">¶</a></h3>
+<p>The University of Chicago is committed to ensuring equitable access to our academic
+programs and services. Students with disabilities who have been approved for the use of
+academic accommodations by <a class="reference external" href="https://disabilities.uchicago.edu/">Student Disability Services</a> (SDS) and need a reasonable
+accommodation(s) to participate fully in this course should follow the procedures
+established by SDS for using accommodations. Timely notifications are required in order to
+ensure that your accommodations can be implemented. Please meet with me to discuss
+your access needs in this class after you have completed the SDS procedures for
+requesting accommodations.</p>
+<p>Phone: (773) 702-6000
+Email: <a class="reference external" href="mailto:disabilities&#37;&#52;&#48;uchicago&#46;edu">disabilities<span>&#64;</span>uchicago<span>&#46;</span>edu</a></p>
+</div>
+</div>
+<div class="section" id="covid-19-policies">
+<h2>COVID-19 Policies<a class="headerlink" href="#covid-19-policies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="uchicago-health-pact">
+<h3>UChicago Health Pact<a class="headerlink" href="#uchicago-health-pact" title="Permalink to this headline">¶</a></h3>
+<p>This class does not include any in-person components. Nonetheless, if you do come on campus
+at any point, all students are required to adhere to the guidelines in the UChicago Health
+Pact in order to promote a safe environment in the classroom.</p>
+<ul class="simple">
+<li><p>Secure face coverings must be worn appropriately at all times while in University buildings</p></li>
+<li><p>Maintain a distance of 6 feet from others</p></li>
+<li><p>Do not attend an in-person class if you feel unwell or are experiencing COVID-19 related symptoms</p></li>
+</ul>
+<p>The complete text of the UChicago Health Pact along with additional information about
+COVID-19 protocols can be found <a class="reference external" href="https://goforward.uchicago.edu/health-requirements/#healthpact">here</a>.</p>
+</div>
+<div class="section" id="reporting-covid-19-related-concerns">
+<h3>Reporting COVID-19 Related Concerns<a class="headerlink" href="#reporting-covid-19-related-concerns" title="Permalink to this headline">¶</a></h3>
+<p>Any concerns over inappropriate PPE usage, physical distancing, cleaning/disinfection, or
+other COVID-19 related public health concerns should be directed to <a class="reference external" href="https://ehs-prd-01.uchicago.edu/ehsa-ucair/InjuryIllnessIndexUOFC-IT.html">UCAIR</a>.</p>
+<p>If there is an emergency, call 773-702-8181 or dial 123 on any campus phone.</p>
+</div>
+<div class="section" id="reporting-covid-19-exposure-or-a-confirmed-case">
+<h3>Reporting COVID-19 Exposure or a Confirmed Case<a class="headerlink" href="#reporting-covid-19-exposure-or-a-confirmed-case" title="Permalink to this headline">¶</a></h3>
+<p>If you were potentially exposed to COVID-19 or your COVID-19 test results come back
+positive, reach out immediately to <a class="reference external" href="mailto:C19HealthReport&#37;&#52;&#48;uchicago&#46;edu">C19HealthReport<span>&#64;</span>uchicago<span>&#46;</span>edu</a>.</p>
+</div>
+<div class="section" id="recording-and-deletion-policies-for-academic-year-2020-21">
+<h3>Recording and Deletion Policies for Academic Year 2020-21<a class="headerlink" href="#recording-and-deletion-policies-for-academic-year-2020-21" title="Permalink to this headline">¶</a></h3>
+<p>The Recording and Deletion Policies for the current academic year can be found in the
+Student Manual under <a class="reference external" href="https://studentmanual.uchicago.edu/administrative-policies/additional-administrative-regulations/petitions-audio-video-recording-on-campus/">Petitions, Audio &amp; Video Recording on Campus</a>.</p>
+<ul class="simple">
+<li><p>Do not record, share, or disseminate any course sessions, videos, transcripts, audio, or chats.</p></li>
+<li><p>Do not share links for the course to those not currently enrolled.</p></li>
+<li><p>Any Zoom cloud recordings will be automatically deleted 90 days after the completion of the recording.</p></li>
+</ul>
+</div>
+<div class="section" id="attendance">
+<h3>Attendance<a class="headerlink" href="#attendance" title="Permalink to this headline">¶</a></h3>
+<p>Absent any extraordinary circumstances, we expect students to attend all lectures. That said, we do not keep track of attendance in this class and no part of your final grade is computed based on your attendance to lectures.</p>
+<p>Students who have been exposed to or who are experiencing symptoms of COVID-19
+should contact <a class="reference external" href="https://wellness.uchicago.edu/">UChicago Student Wellness</a> immediately to be tested, and reach out to their
+area Dean of Students to request accommodations for classes until:</p>
+<ul class="simple">
+<li><p>At least 10 days have passed since symptoms first appeared and;</p></li>
+<li><p>At least 3 days (72 hours) have passed since recovery- defined as resolution of fever without the use of fever-reducing medications and improvement in respiratory symptoms (e.g., cough, shortness of breath).</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, The University of Chicago.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

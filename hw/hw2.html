@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Creating your lab repository &#8212; CMSC 22000 - Introduction to Software Development</title>
+
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          CMSC 22000 - Introduction to Software Development</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              
+              
+            
+            
+            
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course Information <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../syllabus.html">Syllabus</a></li>
+        <li><a href="../calendar.html">Calendar</a></li>
+        <li><a href="../code_of_conduct.html">TA/Grader Code of Conduct</a></li>
+    </ul>
+</li>
+<li><a href="index.html">Homework</a></li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../project/index.html">Introduction</a></li>
+        <li><a href="../project/chiventure.html">chiventure</a></li>
+        <li><a href="../project/policies.html">Policies</a></li>
+        <li><a href="../project/features.html">Features</a></li>
+        <li><a href="../project/warmup.html">Design Warm-Up Exercise</a></li>
+    </ul>
+</li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../resources/faq.html">CS 220 FAQs</a></li>
+        <li><a href="../resources/tutorials/index.html">Tutorials</a></li>
+        <li><a href="https://uchicago-cs.github.io/dev-guide/" target="_blank">UChicago CS Developer's Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="https://uchicago-cs.github.io/debugging-guide" target="_blank">The Debugging Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="../resources/other.html">Other Resources</a></li>
+    </ul>
+</li>
+
+            
+          </ul>
+
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <p><strong>Due:</strong> Wednesday, April 22nd, 8pm</p>
+<p>In this lab, you will carry out some basic software design tasks. This
+lab will be shorter than in other labs, because you will also be working
+on a design warmup exercise with your project team. Please note that,
+while the design warmup exercise is due at the same time as this lab, it
+will be part of your project score (it is not counted as an additional
+lab assignment).</p>
+<div class="section" id="creating-your-lab-repository">
+<h1>Creating your lab repository<a class="headerlink" href="#creating-your-lab-repository" title="Permalink to this headline">¶</a></h1>
+<p>In this lab, you will be using a different repository than the one you
+used in the previous lab (in general, GitHub will create a new
+repository for each assignment). Like the previous lab, we will provide
+you with an <em>invitation URL</em> that will allow you sign up for the lab
+assignment on GitHub, and which will result in the creation of a
+repository called <code class="docutils literal notranslate"><span class="pre">2020-labN-GITHUB_USERNAME</span></code> inside our
+<code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization on GitHub.</p>
+<p>One thing that will be different in this lab is that your lab repository
+will be seeded with some code. So, once you’ve signed up for the lab
+assignment on GitHub, you will just need to clone the repository to
+start working on it (you won’t need to run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> or add any files
+to the repository before you start working on the lab.)</p>
+<p>Please note that there will be a separate invitation URL to create a
+shared repository that everyone in your team will have access to.</p>
+</div>
+<div class="section" id="refactoring-libgeometry">
+<h1>Refactoring libgeometry<a class="headerlink" href="#refactoring-libgeometry" title="Permalink to this headline">¶</a></h1>
+<p>Your repository contains a single directory <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> that
+contains the implementation of a simple library for manipulating basic
+geometric shapes. You can build the library just by running this inside
+the <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make
+</pre></div>
+</div>
+<p>And build some sample programs that use the library like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make samples
+</pre></div>
+</div>
+<p>You can run the sample program like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ samples/polygon-sample
+The perimeter is 8.00
+The area is 4.00
+</pre></div>
+</div>
+<p>You’ll notice there is also a <code class="docutils literal notranslate"><span class="pre">polygon-sample-static</span></code> program as well;
+you can ignore it for now.</p>
+<p>When we get to <em>Implementation</em> in class, we’ll discuss exactly how a
+“library” is built, and how it is linked with other programs. You will
+not need to understand how the code is built to complete this lab.</p>
+<p>The library currently provides two modules:</p>
+<ul class="simple">
+<li><p>A Point module (<code class="docutils literal notranslate"><span class="pre">include/point.h'</span> <span class="pre">and</span></code>src/point.c`) that provides
+a number of operations on two-dimensional points</p></li>
+<li><p>A Polygon module (<code class="docutils literal notranslate"><span class="pre">include/polygon.h'</span> <span class="pre">and</span></code>src/polygon.c`) that
+provides a number of operations on polygons, and which depends on the
+Point module.</p></li>
+</ul>
+<p>We encourage you to read through the above files, and ask questions if
+anything is unclear in that code.</p>
+<p>One thing to note is that the Point module provides the following
+function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span> <span class="n">segment_intersect</span><span class="p">(</span><span class="n">point_t</span> <span class="o">*</span><span class="n">p1</span><span class="p">,</span> <span class="n">point_t</span> <span class="o">*</span><span class="n">q1</span><span class="p">,</span> <span class="n">point_t</span> <span class="o">*</span><span class="n">p2</span><span class="p">,</span> <span class="n">point_t</span> <span class="o">*</span><span class="n">q2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>While this function operates on points, what it really does is operate
+on line segments (i.e., a finite-length line in two-dimensional space,
+delimited by two points). That said, placing the <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code>
+function inside <code class="docutils literal notranslate"><span class="pre">point.c</span></code> / <code class="docutils literal notranslate"><span class="pre">point.h</span></code> is arguably a valid design
+choice: if segment intersection is the only operation for which we have
+to work with segments, it would be potentially wasteful to spend the
+time to define a Segment module just to compute segment intersections.</p>
+<p>However, as we continue to develop libgeometry, we realize that we need
+to perform segment operations in a variety of other places. So, it now
+makes sense to refactor our code to add a Segment module.</p>
+<p>In this task, you must do the following:</p>
+<ul>
+<li><p><strong>Task 1</strong> (30 points) Add <code class="docutils literal notranslate"><span class="pre">segment.c</span></code> / <code class="docutils literal notranslate"><span class="pre">segment.h</span></code> files with
+the implementation and interface of a new Segment data type. Make
+sure to include new/init/free functions (like the ones for Point and
+Polygon). You will also need to update the Makefile to make sure this
+new file is compiled and included in the libgeometry library. Just
+update the <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> variable in the Makefile to include your new
+<code class="docutils literal notranslate"><span class="pre">segment.c</span></code> file.</p></li>
+<li><p><strong>Task 2</strong> (20 points) Take <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> (and associated
+helper functions) out of <code class="docutils literal notranslate"><span class="pre">point.c</span></code> / <code class="docutils literal notranslate"><span class="pre">point.h</span></code> and make them a
+part of the Segment module. Take into account that this will involve
+changing the parameters of the function, since it now has to operate
+on Segments, not on Points.</p></li>
+<li><p><strong>Task 3</strong> (20 points) Update the Polygon implementation so it uses
+this updated <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> function. At this point, you
+should be able to build the entire library by running <code class="docutils literal notranslate"><span class="pre">make</span></code></p></li>
+<li><p><strong>Task 4</strong> (30 points) Uh oh, the libgeometry library may build
+correctly, but not the tests! (try this by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">tests</span></code>)
+This is because they still depend on the old version of the
+<code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> function. This is an example of how things can
+break if dependencies are not properly managed.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">test_point.c</span></code> file, update the intersection tests to make
+sure they use the new version of the file (you don’t need to know
+exactly how these tests work, and you can keep these tests inside the
+<code class="docutils literal notranslate"><span class="pre">test_point.c</span></code>; in a future lab, we will see a cleaner way of
+updating the tests). Once you have fixed this, you should be able to
+run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">tests</span></code> followed by <code class="docutils literal notranslate"><span class="pre">tests/test-libgeometry</span></code>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="submitting-your-lab">
+<h1>Submitting your lab<a class="headerlink" href="#submitting-your-lab" title="Permalink to this headline">¶</a></h1>
+<p>Before submitting, make sure you’ve added, committed, and pushed all
+your code to GitHub. You will submit your code through Gradescope but,
+unlike the previous lab, we need you to submit the code that is in your
+repository (as opposed to filling in some text fields).</p>
+<p>When submitting through Gradescope, you will be given the option of
+manually uploading files, or of uploading a GitHub repository (we
+recommend the latter, as this ensures you are uploading exactly the
+files that are in your repository). If you upload your repository, make
+sure you select your <code class="docutils literal notranslate"><span class="pre">2020-lab2-GITHUB_USERNAME</span></code> repository, with
+“master” as the branch. Please note that you can submit as many times as
+you want before the deadline.</p>
+<p>Once you submit your files, an “autograder” will run. This won’t
+actually be doing any grading, but it will try to build your code, to
+make sure you don’t have any compiler errors, etc. If you do, make sure
+to fix them and re-submit again.</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, The University of Chicago.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

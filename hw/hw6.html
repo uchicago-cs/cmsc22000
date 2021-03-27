@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Creating your lab repository &#8212; CMSC 22000 - Introduction to Software Development</title>
+
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          CMSC 22000 - Introduction to Software Development</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              
+              
+            
+            
+            
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course Information <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../syllabus.html">Syllabus</a></li>
+        <li><a href="../calendar.html">Calendar</a></li>
+        <li><a href="../code_of_conduct.html">TA/Grader Code of Conduct</a></li>
+    </ul>
+</li>
+<li><a href="index.html">Homework</a></li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../project/index.html">Introduction</a></li>
+        <li><a href="../project/chiventure.html">chiventure</a></li>
+        <li><a href="../project/policies.html">Policies</a></li>
+        <li><a href="../project/features.html">Features</a></li>
+        <li><a href="../project/warmup.html">Design Warm-Up Exercise</a></li>
+    </ul>
+</li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../resources/faq.html">CS 220 FAQs</a></li>
+        <li><a href="../resources/tutorials/index.html">Tutorials</a></li>
+        <li><a href="https://uchicago-cs.github.io/dev-guide/" target="_blank">UChicago CS Developer's Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="https://uchicago-cs.github.io/debugging-guide" target="_blank">The Debugging Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="../resources/other.html">Other Resources</a></li>
+    </ul>
+</li>
+
+            
+          </ul>
+
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <p><strong>Due:</strong> Wednesday, May 20th, 8pm</p>
+<p>Continuous Integration, or CI, is the practice of frequently merging
+developers’ work into a mainline branch in a version control system like
+Git. CI almost always involves running an extensive set of test cases
+every time such a merge happens, or even every time new code is
+committed to the repository (not just on the mainline branch, but also
+on other branches). Thus many version control systems facilitate CI by
+providing mechanisms to trigger certain actions when code is pushed to a
+repository.</p>
+<p>In this lab, we are going to explore the CI features available through
+GitHub and, more specifically, through the <a class="reference external" href="https://travis-ci.org/">Travis
+CI</a> platform. Throughout the lab, we will
+refer to these CI features as the “CI system”.</p>
+<div class="section" id="creating-your-lab-repository">
+<h1>Creating your lab repository<a class="headerlink" href="#creating-your-lab-repository" title="Permalink to this headline">¶</a></h1>
+<p>Like previous labs, we will provide you with an <em>invitation URL</em> that
+will allow you sign up for the lab assignment on GitHub, and which will
+result in the creation of a repository called
+<code class="docutils literal notranslate"><span class="pre">2020-lab6-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization
+on GitHub. Your repository will be seeded with some files for the lab
+and, more specifically, will contain the same files we provided for Lab
+#5 (an implementation of libgeometry).</p>
+<div class="section" id="task-1-building-your-code-with-ci">
+<h2>Task 1: Building your code with CI<a class="headerlink" href="#task-1-building-your-code-with-ci" title="Permalink to this headline">¶</a></h2>
+<p>In most CI systems, we will want to specify a series of actions that
+need to happen automatically whenever any commits are pushed to the
+repository. For example, we may need to build the code in our
+repository, and run some tests. These actions are typically referred to
+as <em>jobs</em>. A CI system will keep a record of all the jobs it runs, and
+will typically notify you if a job fails.</p>
+<p>When we push new commits to the repository, this may result in some or
+all of these jobs being run, which Travis CI refers to as “a build”.
+This is potentially confusing because, strictly speaking, “building”
+refers just to building/making your code but, in the context of CI, “a
+build” usually refers to “all the jobs that are run when you push any
+new commits to the repository”.</p>
+<p>On Travis, the jobs are specified in a text file named <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code>
+which is placed in the root of your repository.</p>
+<p>{{% note %}} The <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> is a YAML file. YAML is a text-based
+file format that is commonly used for configuration files. We’ll be
+showing the syntax you need in this lab, but if you are curious there is
+a ton of documentation out there on it. Fun fact, it’s short for “YAML
+Ain’t Markup Language”) {{% /note %}}</p>
+<p>We’ll start by looking at a simple Travis CI file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="p">:</span> <span class="n">linux</span>
+
+<span class="n">dist</span><span class="p">:</span> <span class="n">xenial</span>
+
+<span class="n">language</span><span class="p">:</span> <span class="n">c</span>
+
+<span class="n">before_install</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="o">-</span><span class="n">y</span> <span class="n">ppa</span><span class="p">:</span><span class="n">snaipewastaken</span><span class="o">/</span><span class="n">ppa</span>
+    <span class="o">-</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+
+<span class="n">install</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">criterion</span> <span class="n">criterion</span><span class="o">-</span><span class="n">dev</span>
+
+<span class="n">before_script</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">cd</span> <span class="n">libgeometry</span>
+    <span class="o">-</span> <span class="n">make</span> <span class="n">clean</span>
+
+<span class="n">script</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">make</span> <span class="nb">all</span>
+    <span class="o">-</span> <span class="n">make</span> <span class="n">tests</span>
+    <span class="o">-</span> <span class="n">tests</span><span class="o">/</span><span class="n">test</span><span class="o">-</span><span class="n">libgeometry</span>
+</pre></div>
+</div>
+<p>Save this as a <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file in the root of your repository;
+commit it, but don’t push it just yet.</p>
+<p>{{% note %}} Files that start with a period, like <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code>, are
+hidden by default on a UNIX system. This means the file won’t appear if
+you use <code class="docutils literal notranslate"><span class="pre">ls</span></code> from the terminal; you will need to include the <code class="docutils literal notranslate"><span class="pre">-a</span></code>
+option to be able to see it (i.e., <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-a</span></code> instead of <code class="docutils literal notranslate"><span class="pre">ls</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-al</span></code> instead of <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>). If you are using a graphical file
+browser, you may need to select a “Show Hidden Files” option somewhere
+to be able to see the file. {{% /note %}}</p>
+<p>By default, a Travis CI file will specify a single job that is run
+whenever we push any code to our repository (later on we’ll see how to
+specify multiple jobs). In this file, we specify some options that will
+affect how the job is run:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">os:</span> <span class="pre">linux</span></code> specifies that the job should be run on a Linux
+environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dist:</span> <span class="pre">xenial</span></code> specifies that it will specifically be run on an
+Ubuntu 16.04 (“Xenial”) environment</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">language:</span> <span class="pre">c</span></code> specifies that we are building a C project, so Travis
+knows to use an environment that includes a C compiler.</p></li>
+</ul>
+<p>The remaining options specify the <em>phases</em> of the job. A job is divided
+several <em>phases</em> that happen in sequence; Travis CI only supports a
+specific set of phases, and in this example we are only specifying what
+happens in four of them: <code class="docutils literal notranslate"><span class="pre">before_install</span></code>, <code class="docutils literal notranslate"><span class="pre">install</span></code>,
+<code class="docutils literal notranslate"><span class="pre">before_script</span></code>, and <code class="docutils literal notranslate"><span class="pre">script</span></code>.</p>
+<p>Here is what is happening in each of the phases:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">before_install</span></code>: Because libgeometry depends on the Criterion
+library, we need to make sure it is installed before we try to build
+our code. Travis CI uses an Ubuntu build environment by default, and
+these commands tell Ubuntu where to find the Criterion library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">install</span></code>: In this phase, we actually install the Criterion
+libraries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">before_script</span></code>: In this phase, we run any commands necessary
+before the actual build. In this case, since Travis runs all commands
+from the root of your repository, we need to <code class="docutils literal notranslate"><span class="pre">cd</span></code> into
+<code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> before we can run <code class="docutils literal notranslate"><span class="pre">make</span></code>. We also run
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code>, which is considered good practice in a build job, as
+it guarantees that your build starts from a clean slate (and can help
+you detect whether you’ve inadvertently committed object files or
+binary files that make your build work only when those files are
+already present)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">script</span></code>: This is the phase where we actually build our code and
+run the tests.</p></li>
+</ul>
+<p>{{% note %}} You can find more information about how to specify a Travis
+CI build in the <a class="reference external" href="https://docs.travis-ci.com/">Travis CI
+Documentation</a>, and a specification of
+their configuration file format in the <a class="reference external" href="https://config.travis-ci.com/">Travis CI Build Config
+Reference</a>. You don’t need to refer to
+these resources right now, but may need to consult them later in the
+lab. {{% /note %}}</p>
+<p>Take into account that we could’ve also run all the commands inside the
+<code class="docutils literal notranslate"><span class="pre">script</span></code> phase:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="p">:</span> <span class="n">linux</span>
+
+<span class="n">dist</span><span class="p">:</span> <span class="n">xenial</span>
+
+<span class="n">language</span><span class="p">:</span> <span class="n">c</span>
+
+<span class="n">script</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="o">-</span><span class="n">y</span> <span class="n">ppa</span><span class="p">:</span><span class="n">snaipewastaken</span><span class="o">/</span><span class="n">ppa</span>
+    <span class="o">-</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+    <span class="o">-</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">criterion</span> <span class="n">criterion</span><span class="o">-</span><span class="n">dev</span>
+    <span class="o">-</span> <span class="n">cd</span> <span class="n">libgeometry</span>
+    <span class="o">-</span> <span class="n">make</span> <span class="n">clean</span>
+    <span class="o">-</span> <span class="n">make</span> <span class="nb">all</span>
+    <span class="o">-</span> <span class="n">make</span> <span class="n">tests</span>
+    <span class="o">-</span> <span class="n">tests</span><span class="o">/</span><span class="n">test</span><span class="o">-</span><span class="n">libgeometry</span>
+</pre></div>
+</div>
+<p>However, it is considered good practice to separate these commands into
+their appropriate phases. In more complex builds, it can be useful to
+know exactly what phase of the build failed.</p>
+<p>Go ahead and push the commit you created previously. GitHub (and Travis
+CI) will detect that your repository has a <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file, and
+will trigger a build (following the phases specified in the
+<code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file). You can see the status of the build in the
+following URL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">travis</span><span class="o">-</span><span class="n">ci</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">cmsc22000</span><span class="o">-</span><span class="n">labs</span><span class="o">/</span><span class="mi">2020</span><span class="o">-</span><span class="n">lab6</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code> should be replaced with your GitHub username.
+If you see a message saying “We couldn’t display the repository
+cmsc22000-labs/2020-lab6-GITHUB_USERNAME”, you may need to follow the
+prompt to sign into Travis with your GitHub credentials (once you do,
+you should be able to see the build). You can also access the build by
+going here: <a class="reference external" href="https://travis-ci.com/github/cmsc22000-labs/">https://travis-ci.com/github/cmsc22000-labs/</a> (and clicking
+on the entry corresponsing to your repository)</p>
+<p>Please note that it can sometimes take a few minutes for the build to
+start (the page will automatically update as your build progresses).
+After a while, the “Current” tab should show a successful build like
+this:</p>
+<div class="figure align-default" id="id1">
+<img alt="build" src="cmsc22000/img/build.png" />
+<p class="caption"><span class="caption-text">build</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>{{% note %}} If the build shows up as “errored”, with errors that relate
+specifically to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>, this just means that GitHub is limiting
+the number of requests from Travis. Wait a minute or two and try
+pressing the “Restart job” button. {{% /note %}}</p>
+<p>The “#1” in the screenshot is the build number (this number may be
+different if you had to make multiple attempts to get a successful
+build). Click on the build number; this will take you to a page with a
+URL like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">travis</span><span class="o">-</span><span class="n">ci</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">cmsc22000</span><span class="o">-</span><span class="n">labs</span><span class="o">/</span><span class="mi">2020</span><span class="o">-</span><span class="n">lab6</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">/</span><span class="n">builds</span><span class="o">/</span><span class="n">XXXXXXXXX</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">XXXXXXXXX</span></code> will be a number. This is the URL for this
+particular build; as you make more builds in the lab, we will be asking
+you to provide the URL of those builds.</p>
+<p>Take into account that you can also access your latest build (even if
+it’s in progress) through GitHub. In your repository, there will be a
+small icon (a green check mark for a successful build, a yellow circle
+for a build in progress, and a red X for a failed build) in the top
+right of your list of files. If you click on it, it will show more
+information about the build:</p>
+<div class="figure align-default" id="id2">
+<img alt="github-travis" src="cmsc22000/img/github-travis.png" />
+<p class="caption"><span class="caption-text">github-travis</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>If you click on “Details”, it will take you to a page on GitHub with
+more details about the build. From that page, you can click on the link
+“The build”, which will take you to the Travis CI page for that build.
+Make sure to do this so you are familiar with how to navigate through
+GitHub’s and Travis’s build pages.</p>
+<p>Now, do the following:</p>
+<ul class="simple">
+<li><p>[10 points] Take the URL of the build you just produced, and paste it
+into Gradescope (under “Task 1: Successful build”)</p></li>
+<li><p>[10 points] Make a change to the libgeometry code that will prevent
+it from compiling. Commit and push that change; your build should
+eventually fail. Paste the URL of the failed build on Gradescope
+(under “Task 1: Failed build (compiling)”)</p></li>
+<li><p>[10 points] Fix the change you made, and make another change that
+will make the tests fail. Commit and push that change; your build
+should eventually fail. Paste the URL of the failed build on
+Gradescope (under “Task 1: Failed build (tests)”)</p></li>
+</ul>
+<p>Before moving on to the next task, make sure to fix the change you just
+made. Your build should succeed before moving on to the next tasks.</p>
+</div>
+<div class="section" id="task-2-multiple-jobs">
+<h2>Task 2: Multiple jobs<a class="headerlink" href="#task-2-multiple-jobs" title="Permalink to this headline">¶</a></h2>
+<p>In the previous task we saw that Travis CI can build our code and run
+the tests, and alert us to any issues when doing so. However, our job
+was running specifically in an Ubuntu 16.04 environment. What if our
+code doesn’t compile in other environments? CI systems can also help us
+with this, as they often provide mechanisms to easily build our code in
+multiple environments. For example, we may want to build our code in
+multiple Ubuntu versions, or using different compilers.</p>
+<p>In Travis CI, we have the ability to specify build options that will
+automatically generate additional jobs. For example, add the following
+to your <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">compiler</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">gcc</span>
+  <span class="o">-</span> <span class="n">clang</span>
+</pre></div>
+</div>
+<p>This tells Travis CI that we want to run the build with two compilers:
+<code class="docutils literal notranslate"><span class="pre">gcc</span></code> and <code class="docutils literal notranslate"><span class="pre">clang</span></code>. If you commit and push this updated file, this
+will produce a build with two jobs:</p>
+<div class="figure align-default" id="id3">
+<img alt="compilers-build" src="cmsc22000/img/compilers-build.png" />
+<p class="caption"><span class="caption-text">compilers-build</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>You can click on the individual jobs to see the full job log, showing
+the exact commands that were run in each job. You’ll actually notice
+that the clang job seems to still be running gcc. Don’t worry about this
+for now (we’ll revisit this in Task 3)</p>
+<ul class="simple">
+<li><p>[10 points] Take the URL of the build you just produced, and paste it
+into Gradescope (under “Task 2: Multiple compilers”).</p></li>
+</ul>
+<p>Travis CI actually provides two mechanisms to specify multiple jobs:</p>
+<p><strong>Using a “matrix expansion” option</strong>. There are certain options in
+Travis, such as the <code class="docutils literal notranslate"><span class="pre">compiler</span></code> option that will automatically result
+in generating multiple jobs. Another such option is the <code class="docutils literal notranslate"><span class="pre">arch</span></code> option
+(for specifying the processor architecture our build will run on). For
+example, if we specified the following options:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arch</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">amd64</span>
+  <span class="o">-</span> <span class="n">arm64</span>
+
+<span class="n">compiler</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">gcc</span>
+  <span class="o">-</span> <span class="n">clang</span>
+</pre></div>
+</div>
+<p>The “build matrix” would include every combination of these options:</p>
+<ul class="simple">
+<li><p>GCC on an AMD64 processor</p></li>
+<li><p>clang on an AMD64 processor</p></li>
+<li><p>GCC on an ARM64 processor</p></li>
+<li><p>clang on an ARM64 processor</p></li>
+</ul>
+<p>Modify your <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file to also include the <code class="docutils literal notranslate"><span class="pre">arch</span></code> option as
+shown above (i.e., you should still keep the <code class="docutils literal notranslate"><span class="pre">compiler</span></code> option you
+added previously). Commit and push the updated file. Once the build
+completes, you should see four jobs in the build. By the way, the ARM64
+processor architecture is commonly used in smartphones, which means that
+we have effortlessly verified that libgeometry will build and run
+correctly on most smartphones!</p>
+<ul class="simple">
+<li><p>[10 points] Take the URL of the build you just produced, and paste it
+into Gradescope (under “Task 2: Matrix expansion”).</p></li>
+</ul>
+<p><strong>Listing individual configurations</strong>: You can also just list the exact
+configurations you want to use using the <code class="docutils literal notranslate"><span class="pre">jobs</span></code> option. For example,
+this is how you would specify three jobs that compile your code in three
+different Ubuntu distributions (18.04 “Bionic”, 16.04 “Xenial, and
+14.04”Trusty”), all with GCC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="p">:</span>
+  <span class="n">include</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">os</span><span class="p">:</span> <span class="n">linux</span>
+    <span class="n">dist</span><span class="p">:</span> <span class="n">bionic</span>
+    <span class="n">compiler</span><span class="p">:</span> <span class="n">gcc</span>
+  <span class="o">-</span> <span class="n">os</span><span class="p">:</span> <span class="n">linux</span>
+    <span class="n">dist</span><span class="p">:</span> <span class="n">xenial</span>
+    <span class="n">compiler</span><span class="p">:</span> <span class="n">gcc</span>
+  <span class="o">-</span> <span class="n">os</span><span class="p">:</span> <span class="n">linux</span>
+    <span class="n">dist</span><span class="p">:</span> <span class="n">trusty</span>
+    <span class="n">compiler</span><span class="p">:</span> <span class="n">gcc</span>
+</pre></div>
+</div>
+<p>Remove the top-level <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">dist</span></code>, <code class="docutils literal notranslate"><span class="pre">compiler</span></code>, and <code class="docutils literal notranslate"><span class="pre">arch</span></code>
+options from your <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file, and replace it with the above
+<code class="docutils literal notranslate"><span class="pre">jobs</span></code> option. Commit and push the file; once the build completes, you
+should see it has three jobs.</p>
+<p>As it turns out, the job that ran on Ubuntu 14.04 will fail. You do not
+need to fix it, but it’s worth noting why it failed: the version of GCC
+shipped with that version of Ubuntu does not use, by default, the C99
+version of the C standard (which later versions of GCC do use by
+default). To get the code to build on Ubuntu 14.04, we would have to
+explicitly pass the <code class="docutils literal notranslate"><span class="pre">-std=c99</span></code> option to GCC to make sure it compiles
+the code using the C99 version of the C standard.</p>
+<p>Now imagine that we were developing software that was still required to
+run on old Ubuntu 14.04 systems (which none of our developers are likely
+to be using to write and test their code). Using a CI system allows us
+to uncover these kind of issues early on, by easily testing our code in
+multiple systems (including old legacy systems) so we can uncover issues
+like these.</p>
+<ul class="simple">
+<li><p>[10 points] Take the URL of the build you just produced, and paste it
+into Gradescope (under “Task 2: Individual job configurations”). It’s
+ok if the build contains the failed Ubuntu 14.04 job; you are not
+expected to fix it.</p></li>
+</ul>
+</div>
+<div class="section" id="task-3-more-build-configurations">
+<h2>Task 3: More build configurations<a class="headerlink" href="#task-3-more-build-configurations" title="Permalink to this headline">¶</a></h2>
+<p>In the previous tasks, we’ve given you the exact configurations you had
+to use (and asked for the build URLs to make sure you actually worked
+through the instructions in the lab). In this task, it’s time for you to
+figure out how to write certain build configurations on your own by
+reading the Travis CI documentation. More specifically, you will want to
+consult the <a class="reference external" href="https://docs.travis-ci.com/">Travis CI User
+Documentation</a> and the <a class="reference external" href="https://config.travis-ci.com/">Travis CI Build
+Config Reference</a>. Travis CI also
+provides a <a class="reference external" href="https://config.travis-ci.com/explore">Config Explorer</a>
+that can allow you to validate that your <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> is correct
+before you commit/push it and trigger a build.</p>
+<ul>
+<li><p>[10 points] In Task 2, we saw that using the <code class="docutils literal notranslate"><span class="pre">compiler</span></code> option
+resulted in the <code class="docutils literal notranslate"><span class="pre">clang</span></code> build still using GCC. There is something
+you will need to fix in your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> Hint: The Travis CI
+documentation includes language-specific documentation that explains
+what certain options, like the <code class="docutils literal notranslate"><span class="pre">compiler</span></code> option, do. You may want
+to look at that specifically.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">compiler</span></code> option to create a build with two jobs (one with
+GCC and one with clang), and make sure that the clang one is actually
+using clang (by looking at the output of the Make commands in the
+“Job log”). Take the URL of the build you just produced, and paste it
+into Gradescope (under “Task 3: GCC vs clang”). You must also explain
+what you did to ensure the clang job used clang.</p>
+<p>Note: If you end up with more than two jobs, make sure you’ve removed
+any other option that would result in additional jobs being launched.</p>
+</li>
+<li><p>[10 + 10 points] Using matrix expansion options <em>only</em>, generate a
+build with four configurations:</p>
+<ul class="simple">
+<li><p>GCC on Ubuntu 18.04</p></li>
+<li><p>clang on Ubuntu 18.04</p></li>
+<li><p>GCC on Mac OS X</p></li>
+<li><p>clang on Mac OS X</p></li>
+</ul>
+<p>You will get 10 points just for producing the build with the correct
+four jobs. To get the remaining 10 points, you will need to modify
+your <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file further to get the code to build correctly
+in a Mac OS X environment.</p>
+<p>Hint: as you’ll discover fairly quickly, Mac OS X doesn’t include the
+<code class="docutils literal notranslate"><span class="pre">apt</span></code> command used in Ubuntu systems, and which we rely on to
+install the Criterion library. Installing <em>dependencies</em> can be
+tricky when combining multiple different environment, so you may
+focus on the part of the Travis CI documentation that focuses on
+that.</p>
+<p>Take the URL of the build you just produced, and paste it into
+Gradescope (under “Task 3: Ubuntu and Mac OS X”). If you got the code
+to build in a Mac OS X environment, you must also explain how you
+accomplished this.</p>
+</li>
+<li><p>[10 points] It turns out that, in a Mac environment, running <code class="docutils literal notranslate"><span class="pre">gcc</span></code>
+just results in a call to clang. So, it seems a bit redundant to run
+the two Mac jobs in the previous build (which will both end up using
+clang). Figure out a way to <em>exclude</em> the Mac+GCC job from the build.
+Note: You will not get credit if you simply write out the three job
+configurations. You must instead continue to use matrix expansion,
+but figure out a way to exclude one specific configuration.</p>
+<p>Take the URL of the build you just produced, and paste it into
+Gradescope (under “Task 3: Excluding a job”).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submitting-your-lab">
+<h1>Submitting your lab<a class="headerlink" href="#submitting-your-lab" title="Permalink to this headline">¶</a></h1>
+<p>Please note that you will not be submitting your code through
+Gradescope. Instead, make sure that you have provided the URLs to your
+CI builds through Gradescope. That said, we still need you to push your
+code in case we need to look at any of your code (but we will not be
+grading the code itself).</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, The University of Chicago.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

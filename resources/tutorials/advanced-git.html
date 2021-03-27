@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Working collaboratively with Git &#8212; CMSC 22000 - Introduction to Software Development</title>
+
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          CMSC 22000 - Introduction to Software Development</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              
+              
+            
+            
+            
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course Information <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../../syllabus.html">Syllabus</a></li>
+        <li><a href="../../calendar.html">Calendar</a></li>
+        <li><a href="../../code_of_conduct.html">TA/Grader Code of Conduct</a></li>
+    </ul>
+</li>
+<li><a href="../../hw/index.html">Homework</a></li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../../project/index.html">Introduction</a></li>
+        <li><a href="../../project/chiventure.html">chiventure</a></li>
+        <li><a href="../../project/policies.html">Policies</a></li>
+        <li><a href="../../project/features.html">Features</a></li>
+        <li><a href="../../project/warmup.html">Design Warm-Up Exercise</a></li>
+    </ul>
+</li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../faq.html">CS 220 FAQs</a></li>
+        <li><a href="index.html">Tutorials</a></li>
+        <li><a href="https://uchicago-cs.github.io/dev-guide/" target="_blank">UChicago CS Developer's Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="https://uchicago-cs.github.io/debugging-guide" target="_blank">The Debugging Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="../other.html">Other Resources</a></li>
+    </ul>
+</li>
+
+            
+          </ul>
+
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <p>In the 150s/160s, as well as in the CS 220 labs, you have used version
+control systems (like Subversion and Git) essentially as a mechanism to
+store your code and to make it easily accessible to the course staff.
+However, in real software projects, version control systems are one of
+the most important tools that allow teams to collaborate on a shared
+code base.</p>
+<p>In this lab, we will explore features of Git that are more directly
+related to collaborative software development, and which you will need
+to use during the course project. While most of the concepts we will
+explore are not specific to any one Git platform, we will be using
+GitHub exclusively throughout the lab, as that is the platform you will
+be using for the course project.</p>
+<p>This lab will not be graded, but you must work through it before you can
+start working on the project. In particular, it includes one task which
+we will be checking; if you do not complete it by the end of fourth
+week, we may nag you about it.</p>
+<div class="section" id="working-collaboratively-with-git">
+<h1>Working collaboratively with Git<a class="headerlink" href="#working-collaboratively-with-git" title="Permalink to this headline">¶</a></h1>
+<p>Suppose you are working with a classmate on a homework assignment that
+requires producing a single file called <code class="docutils literal notranslate"><span class="pre">hw1.c</span></code> that includes the
+implementation of some functions. If the file is located in a shared
+filesystem (like the CS filesystem where the same home directories
+appear on all the CS machines), the two of you could edit it at the same
+time, but you’d have to be careful not to overwrite each other’s work.</p>
+<p>For example, suppose you both open the file and it contains the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Write</span> <span class="n">your</span> <span class="n">code</span> <span class="n">here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You decide to work on function <code class="docutils literal notranslate"><span class="pre">bar()</span></code> and your partner decides to
+work on function <code class="docutils literal notranslate"><span class="pre">baz()</span></code>. So, you end up with this file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Write</span> <span class="n">your</span> <span class="n">code</span> <span class="n">here</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And your partner ends up with this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Write</span> <span class="n">your</span> <span class="n">code</span> <span class="n">here</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">baz</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you save the file, and then your partner saves it after you, their
+version of the file will overwrite yours, so all your work on <code class="docutils literal notranslate"><span class="pre">bar()</span></code>
+will be overwritten.</p>
+<p>Ideally, we would like to end up with a consolidated version of the file
+that looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Write</span> <span class="n">your</span> <span class="n">code</span> <span class="n">here</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">baz</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Of course, instead of using a shared filesystem, you could instead
+decide that only one person can edit the file at a time, but that would
+involve a lot of overhead in coordinating each other’s work.</p>
+<p>Consider this other scenario: let’s say that the <code class="docutils literal notranslate"><span class="pre">foo()</span></code> function
+involves implementing two sub-tasks, which you divide amongst
+yourselves, and you each replace the <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">Write</span> <span class="pre">your</span> <span class="pre">code</span> <span class="pre">here</span></code> with
+your code (for the sake of simplicity, let’s assume that each sub-task
+is implemented with a single <code class="docutils literal notranslate"><span class="pre">printf</span></code>). Your code might look like
+this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Implemented task 1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And your partner’s code might look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Implemented task 2</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This actually represents a <em>conflict</em> in your code: you each have
+divergent replacements for the <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">Write</span> <span class="pre">your</span> <span class="pre">code</span> <span class="pre">here</span></code> line, and it
+is not clear which version is the correct one. In fact, while there may
+be cases where we simply want to use one version over another, in this
+case we would like to <em>merge</em> these two versions together to produce
+something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Implemented task 1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Implemented task 2</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice how, earlier, there was no conflict when implementing <code class="docutils literal notranslate"><span class="pre">bar()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">baz()</span></code> because you were adding code to <code class="docutils literal notranslate"><span class="pre">hw1.c</span></code>, instead of
+replacing existing code with different versions.</p>
+<p>Version control systems like Git are very useful when dealing with
+scenarios like the ones above. They will allow two (or more) developers
+to work concurrently on the same code and, whenever possible, will
+automatically merge together changes that do not conflict. When a
+conflict does arise, Git provides a specific mechanism to resolve that
+conflict.</p>
+<p>In the remainder of the lab, we will explore the following concepts:</p>
+<ul class="simple">
+<li><p>Forking: Creating a copy of a repository that you can work on
+independently from the original repository.</p></li>
+<li><p>Branches: A mechanism for creating an independent commit history that
+can be manipulated by itself.</p></li>
+<li><p>Pull requests: A mechanism for requesting that certain changes
+(usually those on a branch) be merged into a repository.</p></li>
+</ul>
+<p>To explore these concepts, we have created the following repository on
+GitHub which contains only a single file in it:</p>
+<p><a class="reference external" href="https://github.com/cmsc22000-labs/2020-advanced-git">https://github.com/cmsc22000-labs/2020-advanced-git</a></p>
+</div>
+<div class="section" id="forking-a-repository">
+<h1>Forking a repository<a class="headerlink" href="#forking-a-repository" title="Permalink to this headline">¶</a></h1>
+<p>Let’s say we want to make some changes to the <code class="docutils literal notranslate"><span class="pre">2020-advanced-git</span></code>
+repository. You could clone that repository and make some commits in it,
+but you would be unable to push those commits to the repository: you are
+not a developer in the <code class="docutils literal notranslate"><span class="pre">2020-advanced-git</span></code> repository, and thus don’t
+have push privileges on it.</p>
+<p>This is a very common scenario: there are millions of repositories on
+GitHub and the owners of those repositories don’t want just anybody
+pushing changes to those repositories. However, let’s say you find a bug
+in a GitHub repository, and know how to fix it. You would ideally like
+to contribute a fix back to that repository, but you would be unable to
+push that fix to the repository.</p>
+<p>So, a common first step in this case is to <em>fork</em> the repository. This
+creates a copy of the repository under your account, on which you <em>will</em>
+have push privileges. So, let’s start by forking the
+<code class="docutils literal notranslate"><span class="pre">2020-advanced-git</span></code> repository: go to
+<a class="reference external" href="https://github.com/cmsc22000-labs/2020-advanced-git">https://github.com/cmsc22000-labs/2020-advanced-git</a> and click on the
+Fork button in the top-right of the page:</p>
+<div class="figure align-default" id="id1">
+<img alt="fork" src="cmsc22000/img/git-lab-fork.png" />
+<p class="caption"><span class="caption-text">fork</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>If you are prompted to specify “Where should we fork this repository?”,
+make sure you select your GitHub user account.</p>
+<p>Your forked repo will now live here:</p>
+<p><a class="reference external" href="https://github.com/GITHUB_USERNAME/2020-advanced-git">https://github.com/GITHUB_USERNAME/2020-advanced-git</a></p>
+<p>Where <code class="docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code> should be replaced by your GitHub username.</p>
+<p>Now, clone this repo on your computer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">GITHUB_USERNAME</span><span class="o">/</span><span class="mi">2020</span><span class="o">-</span><span class="n">advanced</span><span class="o">-</span><span class="n">git</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Please note that there is also a “Clone or download” button on your
+repo’s page that you can click to obtain the URL to pass along to
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>.</p>
+<p>Next, <code class="docutils literal notranslate"><span class="pre">cd</span></code> into <code class="docutils literal notranslate"><span class="pre">2020-advanced-git</span></code>. We will be making some changes
+inside the repository. However, before we continue, we will reiterate an
+important point: any changes you make in <code class="docutils literal notranslate"><span class="pre">2020-advanced-git</span></code> will
+<em>not</em> be pushed to the original <code class="docutils literal notranslate"><span class="pre">2020-advanced-git</span></code> repository (the
+one in <a class="reference external" href="https://github.com/cmsc22000-labs/2020-advanced-git">https://github.com/cmsc22000-labs/2020-advanced-git</a>). Instead,
+they will be pushed to your <em>fork</em> of that repository, which lives
+inside your GitHub account
+(<a class="reference external" href="https://github.com/GITHUB_USERNAME/2020-advanced-git">https://github.com/GITHUB_USERNAME/2020-advanced-git</a>). Later on, we
+will see how you would be able to contribute changes back to the
+original repository.</p>
+</div>
+<div class="section" id="branches">
+<h1>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">¶</a></h1>
+<p>So far, the commits in your lab repository have created a linear
+sequence of changes like this:</p>
+<div class="figure align-default" id="id2">
+<img alt="branches" src="cmsc22000/img/git-lab-branches.png" />
+<p class="caption"><span class="caption-text">branches</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>You may have heard us talk informally about “branches” or seen that term
+in a variety of places (the GitLab/GitHub web interfaces, online
+documentation). So what <em>is</em> a branch? A branch, loosely, is an
+<strong>independent commit history</strong> than can be manipulated in its own right.
+Every git repository has, at least, one branch: the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch
+and, so far, you have been working only with that branch (and, thus,
+with a single linear history of commits).</p>
+<p>However, Git (and most version control systems) allow you to create
+<em>multiple</em> branches. These branches are not completely independent of
+each other as, ordinarily, a branch must be “branched off” from an
+existing commit. So, for example, we could have the following:</p>
+<div class="figure align-default" id="id3">
+<img alt="branches2" src="cmsc22000/img/git-lab-branches-2.png" />
+<p class="caption"><span class="caption-text">branches2</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Here, besides the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, we have an additional <code class="docutils literal notranslate"><span class="pre">task3</span></code>
+branch which could be used to work specifically on Task 3 of a lab. This
+separate branch allows us to work on Task 3 independently from the other
+tasks; this may seem over-complicated, but suppose you were working on
+the lab with a classmate: branches would allow you to work indepedently
+without having to step on each other’s toes. This is similar to the
+first example we showed above (where two developers could be working on
+separate functions, <code class="docutils literal notranslate"><span class="pre">bar()</span></code> and <code class="docutils literal notranslate"><span class="pre">baz()</span></code>).</p>
+<p>Let’s create a new branch in your <code class="docutils literal notranslate"><span class="pre">2020-advanced-git</span></code> repository. The
+branch will be called <code class="docutils literal notranslate"><span class="pre">add-author</span></code> and you can create it by running
+this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">add</span><span class="o">-</span><span class="n">author</span>
+</pre></div>
+</div>
+<p>If you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code>, you can see the list of branches in the
+repository, with the current branch highlighted with an asterisk:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">add</span><span class="o">-</span><span class="n">author</span>
+  <span class="n">master</span>
+</pre></div>
+</div>
+<p>The <em>current branch</em> of a local repository is the branch where any new
+commits will be added to. Remember, a single branch is a linear sequence
+of commits and, when we have multiple branches (as shown in the diagram
+above), a commit could be placed after the last commit, or <em>head</em>, of
+any branch. The head of the current branch is referred to as the
+<code class="docutils literal notranslate"><span class="pre">HEAD</span></code> (in all caps) of the repository.</p>
+<p>You can switch the current branch by using the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> command.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout master
+Switched to branch &#39;master&#39;
+Your branch is up to date with &#39;origin/master&#39;.
+$ git branch
+  add-author
+* master
+$ git checkout add-author
+Switched to branch &#39;add-author&#39;
+$ git branch
+* add-author
+  master
+</pre></div>
+</div>
+<p>Now, let’s add a commit to the <code class="docutils literal notranslate"><span class="pre">add-author</span></code> branch. Simply edit the
+<code class="docutils literal notranslate"><span class="pre">echo.c</span></code> file and replace <code class="docutils literal notranslate"><span class="pre">[AUTHOR</span> <span class="pre">GOES</span> <span class="pre">HERE]</span></code> with your name. You
+can commit the change but, if you try to push it, you will get an error
+message like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git push
+fatal: The current branch add-author has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin add-author
+</pre></div>
+</div>
+<p><strong>This means the push has not been completed</strong>. The reason for this is
+that we haven’t told Git where to push this new branch (it will not
+assume that it has to be pushed to the GitHub repository). Fortunately,
+you can resolve this issue simply by running the verbatim command
+provided in the error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git push --set-upstream origin add-author
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 292 bytes | 292.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:borjasotomayor/2020-advanced-git.git
+ * [new branch]      add-author -&gt; add-author
+Branch &#39;add-author&#39; set up to track remote branch &#39;add-author&#39; from &#39;origin&#39;.
+</pre></div>
+</div>
+<p>If you now go to <a class="reference external" href="https://github.com/GITHUB_USERNAME/2020-advanced-git">https://github.com/GITHUB_USERNAME/2020-advanced-git</a>,
+and click on the “Branch” pull-down list, you will see <code class="docutils literal notranslate"><span class="pre">add-author</span></code> in
+the list of branches (you will also see some additional branches besides
+the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch; we will see these soon).</p>
+</div>
+<div class="section" id="merging">
+<h1>Merging<a class="headerlink" href="#merging" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">master</span></code> branch is, by convention, the “stable” branch of the
+repository, in the sense that it should only contain stable (not broken)
+code. So, it is very common to create separate branches to implement
+specific tasks, features, etc. and to then <em>merge</em> them back to the
+<code class="docutils literal notranslate"><span class="pre">master</span></code> branch once that work is finished. This keeps the <code class="docutils literal notranslate"><span class="pre">master</span></code>
+branch much cleaner, as it only contains the “final” version of our code
+at any point, instead of lots of commits that may represent work in
+progress.</p>
+<p>When we merge a branch with another branch, we basically take all the
+changes done in all the commits in the origin branch, and add them to
+the destination branch. This is done by creating a new commit, called a
+<em>merge commit</em>, to merge together the heads of the two branches. For
+example, in this diagram, commit <code class="docutils literal notranslate"><span class="pre">854bff54</span></code> merges <code class="docutils literal notranslate"><span class="pre">task3</span></code> into
+<code class="docutils literal notranslate"><span class="pre">master</span></code>:</p>
+<div class="figure align-default" id="id4">
+<img alt="branches3" src="cmsc22000/img/git-lab-branches-3.png" />
+<p class="caption"><span class="caption-text">branches3</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>Our repository actually has two other branches: <code class="docutils literal notranslate"><span class="pre">change_author1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">change_author2</span></code>. Go to
+<a class="reference external" href="https://github.com/GITHUB_USERNAME/2020-advanced-git">https://github.com/GITHUB_USERNAME/2020-advanced-git</a> and browse those
+branches. Remember you can use the “Branches” pull-down list to switch
+between branches on GitHub; once you’re on a specific branch, you can
+click on “commits” to see the list of commits for that branch
+specifically. You should be able to see a commit that updates
+<code class="docutils literal notranslate"><span class="pre">[AUTHOR</span> <span class="pre">GOES</span> <span class="pre">HERE]</span></code> in <code class="docutils literal notranslate"><span class="pre">echo.c</span></code> to <code class="docutils literal notranslate"><span class="pre">Created</span> <span class="pre">by</span> <span class="pre">John</span> <span class="pre">Doe</span></code>.</p>
+<p>You should also explore these branches from the command-line using
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code>.</p>
+<p>Now, let’s say we want to merge the changes from <code class="docutils literal notranslate"><span class="pre">change_author1</span></code> into
+the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. We first need to switch to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>Then, we use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code> to specify that we want to merge
+<code class="docutils literal notranslate"><span class="pre">change_author1</span></code> into the current branch (<code class="docutils literal notranslate"><span class="pre">master</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">merge</span> <span class="n">change_author1</span>
+</pre></div>
+</div>
+<p>If you get an error saying
+<code class="docutils literal notranslate"><span class="pre">change_author1</span> <span class="pre">-</span> <span class="pre">not</span> <span class="pre">something</span> <span class="pre">we</span> <span class="pre">can</span> <span class="pre">merge</span></code>, make sure you’ve
+switched to the <code class="docutils literal notranslate"><span class="pre">change_author1</span></code> branch at least once using
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code>. Otherwise, Git will not have a local copy of the
+<code class="docutils literal notranslate"><span class="pre">change_author1</span></code> branch to make the merge.</p>
+<p>If the merge works, you should see the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Updating</span> <span class="mi">92</span><span class="n">a20af</span><span class="o">..</span><span class="n">e44f03a</span>
+<span class="n">Fast</span><span class="o">-</span><span class="n">forward</span>
+ <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="o">|</span> <span class="mi">2</span> <span class="o">+-</span>
+ <span class="mi">1</span> <span class="n">file</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">1</span> <span class="n">insertion</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="mi">1</span> <span class="n">deletion</span><span class="p">(</span><span class="o">-</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You should open <code class="docutils literal notranslate"><span class="pre">echo.c</span></code> to verify that the merge was completed
+successfully.</p>
+<p>However, if you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, you won’t see any special “merge
+commit” in the log history:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="n">e44f03a501fc380ef84e53bb8c0f8e978bc8ffed</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Isha</span> <span class="n">Mehrotra</span> <span class="o">&lt;</span><span class="n">imehrotra</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Fri</span> <span class="n">Mar</span> <span class="mi">23</span> <span class="mi">18</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">31</span> <span class="mi">2018</span> <span class="o">-</span><span class="mi">0400</span>
+
+    <span class="n">updated</span> <span class="n">author</span> <span class="n">to</span> <span class="n">John</span> <span class="n">Doe</span>
+
+<span class="n">commit</span> <span class="mi">92</span><span class="n">a20afcbfdd4ac7e174b47afc9a53bfeaf9b300</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Isha</span> <span class="n">Mehrotra</span> <span class="o">&lt;</span><span class="n">imehrotra</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Fri</span> <span class="n">Mar</span> <span class="mi">23</span> <span class="mi">18</span><span class="p">:</span><span class="mi">48</span><span class="p">:</span><span class="mi">56</span> <span class="mi">2018</span> <span class="o">-</span><span class="mi">0400</span>
+
+    <span class="n">wrote</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="n">program</span>
+</pre></div>
+</div>
+<p>The reason for this is that this was a fairly trivial merge which could
+be <em>fast-forwarded</em>, because the commit in <code class="docutils literal notranslate"><span class="pre">change_author1</span></code>
+(<code class="docutils literal notranslate"><span class="pre">updated</span> <span class="pre">author</span> <span class="pre">to</span> <span class="pre">John</span> <span class="pre">Doe</span></code>) descends directly from the
+<code class="docutils literal notranslate"><span class="pre">wrote</span> <span class="pre">echo.c</span> <span class="pre">program</span></code> commit in <code class="docutils literal notranslate"><span class="pre">master</span></code>, so we can simply take
+that commit and add it to <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+<p>Things get a bit trickier if we want to merge the <code class="docutils literal notranslate"><span class="pre">add-author</span></code> branch
+we created. That branch was also branched off the original
+<code class="docutils literal notranslate"><span class="pre">wrote</span> <span class="pre">echo.c</span> <span class="pre">program</span></code> commit in <code class="docutils literal notranslate"><span class="pre">master</span></code>, but now <code class="docutils literal notranslate"><span class="pre">master</span></code> has a
+new commit (<code class="docutils literal notranslate"><span class="pre">updated</span> <span class="pre">author</span> <span class="pre">to</span> <span class="pre">John</span> <span class="pre">Doe</span></code>). This means that <code class="docutils literal notranslate"><span class="pre">master</span></code>
+and <code class="docutils literal notranslate"><span class="pre">add-author</span></code> have <em>diverged</em>, and a fast-forward commit will not
+be possible.</p>
+<p>So, let’s try merging in <code class="docutils literal notranslate"><span class="pre">add-author</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git merge add-author
+Auto-merging echo.c
+CONFLICT (content): Merge conflict in echo.c
+Automatic merge failed; fix conflicts and then commit the result.
+</pre></div>
+</div>
+<p>Git has detected a merge conflict! The <code class="docutils literal notranslate"><span class="pre">master</span></code> branch contains a
+change for the <code class="docutils literal notranslate"><span class="pre">[AUTHOR</span> <span class="pre">GOES</span> <span class="pre">HERE]</span></code> line in <code class="docutils literal notranslate"><span class="pre">echo.c</span></code>, but so does
+the <code class="docutils literal notranslate"><span class="pre">add_author</span></code> branch. A merge conflict is basically Git telling us
+“I see two conflicting changes on these two branches, and I don’t know
+how to resolve them automatically; you need to tell me how to do it”.</p>
+<p>Merge conflicts will also be shown on <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+Your branch is ahead of &#39;origin/master&#39; by 1 commit.
+  (use &quot;git push&quot; to publish your local commits)
+
+You have unmerged paths.
+  (fix conflicts and run &quot;git commit&quot;)
+  (use &quot;git merge --abort&quot; to abort the merge)
+
+Unmerged paths:
+  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+
+    both modified:   echo.c
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</pre></div>
+</div>
+<p>If you open <code class="docutils literal notranslate"><span class="pre">echo.c</span></code>, you will see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span> <span class="n">echo</span> <span class="n">user</span> <span class="nb">input</span> <span class="o">*/</span>
+<span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
+<span class="o">/*</span> <span class="n">Created</span> <span class="n">by</span> <span class="n">John</span> <span class="n">Doe</span> <span class="o">*/</span>
+<span class="o">=======</span>
+<span class="o">/*</span> <span class="n">YOUR</span> <span class="n">NAME</span> <span class="o">*/</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">add</span><span class="o">-</span><span class="n">author</span>
+<span class="o">/*</span> <span class="n">Last</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">23</span><span class="o">/</span><span class="mi">18</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>(where <code class="docutils literal notranslate"><span class="pre">YOUR</span> <span class="pre">NAME</span></code> will be the name you entered when you created the
+<code class="docutils literal notranslate"><span class="pre">add-author</span></code> branch)</p>
+<p>In general, any time you see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">branch1</span>
+
+<span class="o">=======</span>
+
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">branch2</span>
+</pre></div>
+</div>
+<p>This is Git telling you “this is the version of the code in branch
+<code class="docutils literal notranslate"><span class="pre">branch1</span></code> and the version of the code in <code class="docutils literal notranslate"><span class="pre">branch2</span></code>; tell me which
+one to use”. In this case, the current branch (<code class="docutils literal notranslate"><span class="pre">HEAD</span></code>) contains this
+line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">Created</span> <span class="n">by</span> <span class="n">John</span> <span class="n">Doe</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>And the branch you’re trying to merge, <code class="docutils literal notranslate"><span class="pre">add-author</span></code>, contains this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">YOUR</span> <span class="n">NAME</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>In this case, we simply want to choose one version over another, so you
+should replace this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
+<span class="o">/*</span> <span class="n">Created</span> <span class="n">by</span> <span class="n">John</span> <span class="n">Doe</span> <span class="o">*/</span>
+<span class="o">=======</span>
+<span class="o">/*</span> <span class="n">YOUR</span> <span class="n">NAME</span> <span class="o">*/</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">add</span><span class="o">-</span><span class="n">author</span>
+</pre></div>
+</div>
+<p>with this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">YOUR</span> <span class="n">NAME</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>i.e., the top of echo.c should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span> <span class="n">echo</span> <span class="n">user</span> <span class="nb">input</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="n">YOUR</span> <span class="n">NAME</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="n">Last</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">23</span><span class="o">/</span><span class="mi">18</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>Now, we need to tell Git that we’ve resolved the merge conflict. We do
+this by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<p>Note how now <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> recognizes that the merge conflict has been
+resolved, but has yet to be committed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+Your branch is ahead of &#39;origin/master&#39; by 1 commit.
+  (use &quot;git push&quot; to publish your local commits)
+
+All conflicts fixed but you are still merging.
+  (use &quot;git commit&quot; to conclude merge)
+
+Changes to be committed:
+
+    modified:   echo.c
+</pre></div>
+</div>
+<p>So, all we need to do is to run this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span>
+</pre></div>
+</div>
+<p>This will open up an editor with a default commit message like
+<code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">branch</span> <span class="pre">'add-author'</span></code>. Simply save that commit message, and the
+merge will be completed and you will see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">master</span> <span class="mi">9</span><span class="n">f74d3f</span><span class="p">]</span> <span class="n">Merge</span> <span class="n">branch</span> <span class="s1">&#39;add-author&#39;</span>
+</pre></div>
+</div>
+<p>That is the <em>merge commit</em> for this merge; if you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, you
+will see that the commit history now includes the commit from
+<code class="docutils literal notranslate"><span class="pre">add-author</span></code>, as well as the merge commit. Notice how it includes a
+line telling us which two commits were merged:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="mi">9</span><span class="n">f74d3fc4c3b84bf80c0a4adc9ac7a862b382289</span>
+<span class="n">Merge</span><span class="p">:</span> <span class="n">e44f03a</span> <span class="n">a6f8642</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Borja</span> <span class="n">Sotomayor</span> <span class="o">&lt;</span><span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sun</span> <span class="n">Apr</span> <span class="mi">22</span> <span class="mi">12</span><span class="p">:</span><span class="mi">37</span><span class="p">:</span><span class="mi">40</span> <span class="mi">2018</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">Merge</span> <span class="n">branch</span> <span class="s1">&#39;add-author&#39;</span>
+
+<span class="n">commit</span> <span class="n">a6f8642bed35e2778f97f27b55e1aab8697afe61</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Borja</span> <span class="n">Sotomayor</span> <span class="o">&lt;</span><span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sun</span> <span class="n">Apr</span> <span class="mi">22</span> <span class="mi">11</span><span class="p">:</span><span class="mi">57</span><span class="p">:</span><span class="mi">48</span> <span class="mi">2018</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">Added</span> <span class="n">author</span>
+
+<span class="n">commit</span> <span class="n">e44f03a501fc380ef84e53bb8c0f8e978bc8ffed</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Isha</span> <span class="n">Mehrotra</span> <span class="o">&lt;</span><span class="n">imehrotra</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Fri</span> <span class="n">Mar</span> <span class="mi">23</span> <span class="mi">18</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">31</span> <span class="mi">2018</span> <span class="o">-</span><span class="mi">0400</span>
+
+    <span class="n">updated</span> <span class="n">author</span> <span class="n">to</span> <span class="n">John</span> <span class="n">Doe</span>
+
+<span class="n">commit</span> <span class="mi">92</span><span class="n">a20afcbfdd4ac7e174b47afc9a53bfeaf9b300</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Isha</span> <span class="n">Mehrotra</span> <span class="o">&lt;</span><span class="n">imehrotra</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Fri</span> <span class="n">Mar</span> <span class="mi">23</span> <span class="mi">18</span><span class="p">:</span><span class="mi">48</span><span class="p">:</span><span class="mi">56</span> <span class="mi">2018</span> <span class="o">-</span><span class="mi">0400</span>
+
+    <span class="n">wrote</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="n">program</span>
+</pre></div>
+</div>
+<p>Before continuing with the rest of the lab, make sure to push all these
+commits by running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p>
+</div>
+<div class="section" id="code-reviews-with-pull-requests">
+<h1>Code reviews with pull requests<a class="headerlink" href="#code-reviews-with-pull-requests" title="Permalink to this headline">¶</a></h1>
+<p>So far, we’ve made some changes to a fork of the following repository:</p>
+<p><a class="reference external" href="https://github.com/uchicago-cs/2020-advanced-git">https://github.com/uchicago-cs/2020-advanced-git</a></p>
+<p>Remember that we don’t have push access on that repository, but we do
+have push access on our fork. Now that we’ve made some changes in our
+fork, we may want to ask the owner of the original repository to merge
+our changes into the repository we forked from.</p>
+<p>This is a very common collaboration pattern, specially in open source
+software. If you spot a bug in your favorite software project, and their
+code is hosted on GitHub, you can create a fork of that repository,
+create a bugfix, and submit it back to the original repository.</p>
+<p>The way we do this is by doing a <em>pull request</em>. In the class project,
+however, you will not need to create a fork of the chiventure
+repository, because you <em>will</em> have push access in that repository, but
+with an important restriction: you are allowed to create additional
+branches and push to them, but you are <em>not</em> allowed to push to the
+<code class="docutils literal notranslate"><span class="pre">master</span></code> branch (in this case, we say that <code class="docutils literal notranslate"><span class="pre">master</span></code> is a <em>protected
+branch</em>). Only the senior developers (i.e., the instructor and the TAs)
+are allowed to push to <code class="docutils literal notranslate"><span class="pre">master</span></code>, which means that all changes to the
+<code class="docutils literal notranslate"><span class="pre">master</span></code> branch by a junior developer (i.e., you) must be reviewed and
+approved by a senior developer.</p>
+<p>This is another common collaboration pattern, which allows a team to
+work in the same repository (without having to create multiple forks),
+but making it less likely that broken code will enter the <code class="docutils literal notranslate"><span class="pre">master</span></code>
+branch.</p>
+<p>{{% note %}} In the course project, we will actually be using an
+additional branch called <code class="docutils literal notranslate"><span class="pre">dev</span></code> (the <code class="docutils literal notranslate"><span class="pre">dev</span></code>elopment branch) that
+will also be protected. You don’t need to worry about it for the
+purposes of this lab, but just be aware that in the project you will
+only ever be making pull requests to <code class="docutils literal notranslate"><span class="pre">dev</span></code> (the senior developers will
+then decide when <code class="docutils literal notranslate"><span class="pre">dev</span></code> can be merged into <code class="docutils literal notranslate"><span class="pre">master</span></code>). {{% /note %}}</p>
+<p>To see how this style of pull request works, we’re actually going to use
+a different repository with a protected <code class="docutils literal notranslate"><span class="pre">master</span></code> branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cmsc22000</span><span class="o">-</span><span class="n">labs</span><span class="o">/</span><span class="mi">2020</span><span class="o">-</span><span class="n">names</span>
+</pre></div>
+</div>
+<p>Go ahead and clone this repository. This repository contains a single
+<code class="docutils literal notranslate"><span class="pre">README.md</span></code> file with a list of names. You will be creating a branch
+to add your name to <code class="docutils literal notranslate"><span class="pre">README.md</span></code>. But don’t do it yet! Before you do
+this, let’s take a minute to talk about naming conventions.</p>
+<p>If everyone named their branch something like <code class="docutils literal notranslate"><span class="pre">update-readme</span></code> or
+<code class="docutils literal notranslate"><span class="pre">add-name</span></code>, we’d have lots of branches with the same name. In large
+collaborative projects, it’s common to prefix branch names with your own
+first name, to avoid collisions like this. We will adopt a similar
+convention in this class, except we will use feature names. So, if you
+are working on adding sound support to chiventure, you branches would be
+called <code class="docutils literal notranslate"><span class="pre">sound/fix-alsa-bug</span></code>, <code class="docutils literal notranslate"><span class="pre">sound/add-midi-support</span></code>, etc.</p>
+<p>For this sample repo, we’ll just use your CNetID. So, if your CNetID is
+<code class="docutils literal notranslate"><span class="pre">jdoe</span></code>, you should name your branch <code class="docutils literal notranslate"><span class="pre">jdoe/add-to-names</span></code> or
+<code class="docutils literal notranslate"><span class="pre">jdoe/update-readme</span></code> or similar. It doesn’t really matter what the
+name of the branch is, so long as it starts with <code class="docutils literal notranslate"><span class="pre">jdoe/</span></code>.</p>
+<p>Using the commands we described earlier in this lab, you should now do
+the following:</p>
+<ol class="arabic simple">
+<li><p>Create and check out a branch called <code class="docutils literal notranslate"><span class="pre">CNETID/add-to-names</span></code> (or
+similar, as long as it starts with your CNetID)</p></li>
+<li><p>Edit the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file to add your name, and create a commit
+with that change.</p></li>
+<li><p>Push your branch to GitHub. Git may helpfully provide you with a URL
+to create a pull request; ignore this for now, although you’re
+welcome to use that direct URL in the future.</p></li>
+</ol>
+<p>Now, go to the repository on GitHub
+(<a class="reference external" href="https://github.com/cmsc22000-labs/2020-names">https://github.com/cmsc22000-labs/2020-names</a>). It should actually show
+that you’ve pushed a branch recently, and there will be a green “Compare
+&amp; pull request” button. Click on this button to create a pull request.
+If you don’t see a “Compare &amp; pull request” button, you can also click
+on the “New pull request” button that appears next to the pull-down list
+of branches; you will then have to manually specify the branch you’re
+merging before you can create the pull request (the “base branch” would
+be <code class="docutils literal notranslate"><span class="pre">master</span></code> and the “compare branch” would be <code class="docutils literal notranslate"><span class="pre">CNETID/add-to-names</span></code>)</p>
+<p>After clicking “Compare &amp; pull request”, or after clicking “New pull
+request” and selecting the branch you want to merge, you will be able to
+specify a title and a summary for the pull request. For example, in this
+case, the title could be “Adding my name to README” and the summary
+could be “I am adding my name to the README as part of the Advanced Git
+Lab”.</p>
+<p>As in a regular pull request, we’re going to request that someone else
+review your pull request before it can be merged into <code class="docutils literal notranslate"><span class="pre">master</span></code>. To do
+this, select another student on your team under “Reviewers”.</p>
+<p>Finally, click “Create pull request”. You’ve marked your code for
+review!</p>
+<p>Note: if someone specifies you as a reviewer for this pull request,
+simply go ahead and mark the pull request as reviewed. For the project,
+you won’t arbitrarily get selected by teammates to review code; you will
+have to agree to review someone’s code before it is assigned to you.</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, The University of Chicago.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

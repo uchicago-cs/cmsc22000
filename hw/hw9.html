@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Creating your lab repository &#8212; CMSC 22000 - Introduction to Software Development</title>
+
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          CMSC 22000 - Introduction to Software Development</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              
+              
+            
+            
+            
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course Information <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../syllabus.html">Syllabus</a></li>
+        <li><a href="../calendar.html">Calendar</a></li>
+        <li><a href="../code_of_conduct.html">TA/Grader Code of Conduct</a></li>
+    </ul>
+</li>
+<li><a href="index.html">Homework</a></li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../project/index.html">Introduction</a></li>
+        <li><a href="../project/chiventure.html">chiventure</a></li>
+        <li><a href="../project/policies.html">Policies</a></li>
+        <li><a href="../project/features.html">Features</a></li>
+        <li><a href="../project/warmup.html">Design Warm-Up Exercise</a></li>
+    </ul>
+</li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="../resources/faq.html">CS 220 FAQs</a></li>
+        <li><a href="../resources/tutorials/index.html">Tutorials</a></li>
+        <li><a href="https://uchicago-cs.github.io/dev-guide/" target="_blank">UChicago CS Developer's Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="https://uchicago-cs.github.io/debugging-guide" target="_blank">The Debugging Guide <i class="fa fa-external-link"></i></a></li>
+        <li><a href="../resources/other.html">Other Resources</a></li>
+    </ul>
+</li>
+
+            
+          </ul>
+
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <p>{{% warning %}} This is an <strong>OPTIONAL</strong> lab. You do not have to submit
+it, and it will not be graded. {{% /warning %}}</p>
+<p>This lab will be divided into two distinct parts: one focused on
+documentation, and another focused on logging. In the first one, you
+will automatically generate documentation for libgeometry and, in the
+second one, we will provide you with a program that simulates playing
+Tic-Tac-Toe under several different strategies, and you will add logging
+code to better track the progress of the simulation.</p>
+<div class="section" id="creating-your-lab-repository">
+<h1>Creating your lab repository<a class="headerlink" href="#creating-your-lab-repository" title="Permalink to this headline">¶</a></h1>
+<p>Like previous labs, we will provide you with an <em>invitation URL</em> that
+will allow you sign up for the lab assignment on GitHub, and which will
+result in the creation of a repository called
+<code class="docutils literal notranslate"><span class="pre">2020-lab9-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization
+on GitHub. Your repository will be seeded with some files for the lab.</p>
+<div class="section" id="part-i-documentation">
+<h2>Part I: Documentation<a class="headerlink" href="#part-i-documentation" title="Permalink to this headline">¶</a></h2>
+<p>As we saw in class, there are many different ways of producing
+documentation, from adding a simple README file to your project, to
+writing more comprehensive documentation. There are many frameworks for
+writing and/or publishing documentation, like
+<a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a>, <a class="reference external" href="https://readthedocs.org/">Read The
+Docs</a>, and <a class="reference external" href="https://pages.github.com/">GitHub
+Pages</a>. If you’re curious to see what
+these looks like, check out the following examples:</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://criterion.readthedocs.io/en/master/">Criterion
+documentation</a> is
+produced with Sphinx, which involves using a <a class="reference external" href="https://en.wikipedia.org/wiki/Lightweight_markup_language">lightweight markup
+language</a>
+called
+<a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. You
+can see the source code of their documentation here:
+<a class="reference external" href="https://github.com/Snaipe/Criterion/tree/master/doc">https://github.com/Snaipe/Criterion/tree/master/doc</a> (note: when
+looking at individual files, you will need to click “Raw” to see the
+original reStructuredText source). Their documentation is also hosted
+on <a class="reference external" href="https://readthedocs.org/">Read the Docs</a>, a popular site for
+hosting technical documentation.</p></li>
+<li><p>The CS 220 website (where you are reading this lab) is written in a
+markup language called
+<a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>, which is also
+used in many other platforms, including GitHub. You can see the
+source code for the CS 220 website here:
+<a class="reference external" href="https://github.com/uchicago-cs/cmsc22000/tree/master/website/content">https://github.com/uchicago-cs/cmsc22000/tree/master/website/content</a>.
+You can see the source code for this lab here:
+<a class="reference external" href="https://raw.githubusercontent.com/uchicago-cs/cmsc22000/master/website/content/labs/lab9.md">https://raw.githubusercontent.com/uchicago-cs/cmsc22000/master/website/content/labs/lab9.md</a>
+The CS 220 website itself is produced using a tool called
+<a class="reference external" href="https://gohugo.io/">Hugo</a> which is not specifically designed for
+producing documentation (it is a more general-purpose tool for
+producing websites).</p></li>
+</ul>
+<p>In this lab, we will focus on tools that produce documentation
+automatically from code. Sphinx can actually be used for this purpose,
+but only with Python code. We will instead use a tool called
+<a class="reference external" href="http://www.doxygen.nl/">Doxygen</a>, which generates documentation from
+source code in a variety of languages.</p>
+<p>While tools like Doxygen can generate documentation based on any code
+(as long as they support the language it’s written in), they are
+specially useful when we annotate the code wth comments that Doxygen can
+parse and then include in the generated documentation. In this lab, we
+will do this with the libgeometry code.</p>
+</div>
+</div>
+<div class="section" id="task-1-creating-the-doxygen-configuration-file">
+<h1>Task 1: Creating the Doxygen configuration file<a class="headerlink" href="#task-1-creating-the-doxygen-configuration-file" title="Permalink to this headline">¶</a></h1>
+<p>Doxygen stores all its configuration information in a configuration
+file, typically named <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code>. While you can create the file
+manually, you can also create a configuration template using the
+<code class="docutils literal notranslate"><span class="pre">doxygen</span></code> command. Before we do this, let’s create a <code class="docutils literal notranslate"><span class="pre">docs</span></code>
+directory inside our <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> directory. Make sure to run the
+following commands inside the same directory that contains the
+<code class="docutils literal notranslate"><span class="pre">include</span></code> and <code class="docutils literal notranslate"><span class="pre">src</span></code> directories:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ mkdir docs/
+$ <span class="nb">cd</span> docs/
+$ doxygen -g
+</pre></div>
+</div>
+<p>That last command will generate a <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> file. If you open it, you
+will see it has a large number of options we can modify (Doxygen refers
+to options as “tags”). Fortunately, we will only have to modify a few
+tags. The value for a tag is specified like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TAGNAME</span> <span class="o">=</span> <span class="n">VALUE</span>
+</pre></div>
+</div>
+<p>Or, if multiple values are possible, like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>TAGNAME = VALUE1 VALUE2 …
+</pre></div>
+</div>
+<p>Comments are prepended by the <code class="docutils literal notranslate"><span class="pre">#</span></code> character.</p>
+<p>Try running Doxygen inside the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory (by default, it will
+read its configuration from the <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> file in the same
+directory):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ doxygen
+</pre></div>
+</div>
+<p>This will create an <code class="docutils literal notranslate"><span class="pre">html</span></code> directory. If you open the index.html file
+in that directory using a browser, you will see it contains
+documentation for “My Project” (or rather, it contains <em>no</em>
+documentation for that project). We need to edit the <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> to
+tell Doxygen where to look for our code. We will do this in the next
+task; before continuing make sure you add the <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> to Git:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git add Doxyfile
+$ git commit -m<span class="s2">&quot;Added basic Doxyfile&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="task-2-customizing-the-doxygen-configuration">
+<h1>Task 2: Customizing the Doxygen configuration<a class="headerlink" href="#task-2-customizing-the-doxygen-configuration" title="Permalink to this headline">¶</a></h1>
+<p>Let’s go ahead and change the following tags in the file (make sure to
+find them and set them to the values shown below):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROJECT_NAME</span>           <span class="o">=</span> <span class="s2">&quot;libgeometry&quot;</span>
+<span class="n">INPUT</span>                  <span class="o">=</span> <span class="o">../</span>
+<span class="n">FILE_PATTERNS</span>          <span class="o">=</span> <span class="o">*.</span><span class="n">c</span> <span class="o">*.</span><span class="n">h</span>
+<span class="n">RECURSIVE</span>              <span class="o">=</span> <span class="n">YES</span>
+</pre></div>
+</div>
+<p>These tags do the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PROJECT_NAME</span></code> specifies the project name that will be displayed in
+the generated documentation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INPUT</span></code> specifies the root directory of the project (in this case,
+the parent directory of the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory, i.e. <code class="docutils literal notranslate"><span class="pre">../</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE_PATTERNS</span></code> specifies the files that Doxygen should try to
+document automatically. Since libgeometry is a C project, we only
+want to look at files with a <code class="docutils literal notranslate"><span class="pre">.c</span></code> or a <code class="docutils literal notranslate"><span class="pre">.h</span></code> extension.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RECURSIVE</span></code> specifies that we want Doxygen to go into
+subdirectories when searching for files to generate documentation
+from.</p></li>
+</ul>
+<p>This is only the tip of the iceberg, and there are a ton of other ways
+you can specify how the file is generated. A list of all the tags can be
+found in the <a class="reference external" href="http://www.doxygen.nl/manual/config.html">Doxygen
+documentation</a></p>
+<p>Go ahead and re-run doxygen:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ doxygen
+</pre></div>
+</div>
+<p>And, in your web browser, re-load the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file inside the
+<code class="docutils literal notranslate"><span class="pre">html</span></code> directory. You will now see a “Classes” tab you can click on.
+This will show you the structs (or classes, in object oriented parlance)
+in your code. You should see three types: <code class="docutils literal notranslate"><span class="pre">point_t</span></code>, <code class="docutils literal notranslate"><span class="pre">polygon_t</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">segment_t</span></code>. If you click on <code class="docutils literal notranslate"><span class="pre">polygon_t</span></code> you’ll see that page
+contains abundant documentation about the <code class="docutils literal notranslate"><span class="pre">polygon_t</span></code> struct, its
+fields, and the functions associated with it. It even shows a helpful
+diagram showing how <code class="docutils literal notranslate"><span class="pre">polygon_t</span></code> relates to our other types; in
+particular, it shows that <code class="docutils literal notranslate"><span class="pre">polygon_t</span></code> has a field called <code class="docutils literal notranslate"><span class="pre">points</span></code>
+that relies on the <code class="docutils literal notranslate"><span class="pre">point_t</span></code> type. We can even click on <code class="docutils literal notranslate"><span class="pre">point_t</span></code>
+type to see the documentation for that type.</p>
+<p>If you take a look at <code class="docutils literal notranslate"><span class="pre">point.h</span></code> and <code class="docutils literal notranslate"><span class="pre">polygon.h</span></code>, you’ll see that the
+code comments in the structs and functions seem to follow a very
+specific format. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+ <span class="o">*</span> \<span class="n">memberof</span> <span class="n">polygon_t</span>
+ <span class="o">*</span> \<span class="n">brief</span> <span class="n">Adds</span> <span class="n">a</span> <span class="n">point</span> <span class="p">(</span><span class="n">expressed</span> <span class="k">as</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="n">coordinates</span><span class="p">)</span> <span class="n">to</span> <span class="n">a</span> <span class="n">polygon</span>
+ <span class="o">*</span>
+ <span class="o">*</span> \<span class="n">param</span> <span class="n">poly</span><span class="p">:</span> <span class="n">The</span> <span class="n">polygon</span>
+ <span class="o">*</span> \<span class="n">param</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="n">coordinate</span> <span class="n">of</span> <span class="n">the</span> <span class="n">point</span> <span class="n">to</span> <span class="n">add</span>
+ <span class="o">*</span> \<span class="n">param</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span> <span class="n">coordinate</span> <span class="n">of</span> <span class="n">the</span> <span class="n">point</span> <span class="n">to</span> <span class="n">add</span>
+ <span class="o">*</span>
+ <span class="o">*</span> \<span class="k">return</span> <span class="mi">0</span> <span class="n">on</span> <span class="n">success</span><span class="p">,</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">an</span> <span class="n">error</span> <span class="n">occurs</span><span class="o">.</span>
+ <span class="o">*/</span>
+<span class="nb">int</span> <span class="n">polygon_add_xy</span><span class="p">(</span><span class="n">polygon_t</span> <span class="o">*</span><span class="n">poly</span><span class="p">,</span> <span class="n">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">double</span> <span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you look up <code class="docutils literal notranslate"><span class="pre">polygon_add_xy</span></code> in the Doxygen-generated
+documentation, you’ll see that it shows the same information we
+specified in the above comment. In the next task we’ll learn more about
+this comment syntax, and will document a few functions of our own.
+Before continuing, make sure you commit the changes tp <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git add Doxyfile
+$ git commit -m<span class="s2">&quot;Updated Doxyfile&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="task-3-documenting-your-code">
+<h1>Task 3: Documenting your code<a class="headerlink" href="#task-3-documenting-your-code" title="Permalink to this headline">¶</a></h1>
+<p>If you click on <code class="docutils literal notranslate"><span class="pre">segment_t</span></code> in the Classes tab of the generated
+documentation, you’ll notice the page contains much less documentation
+than <code class="docutils literal notranslate"><span class="pre">point_t</span></code> and <code class="docutils literal notranslate"><span class="pre">polygon_t</span></code>. This is because we have not yet
+added the comment blocks that Doxygen expects (and which can be found in
+the <code class="docutils literal notranslate"><span class="pre">point_t</span></code> and <code class="docutils literal notranslate"><span class="pre">polygon_t</span></code> modules).</p>
+<p>To document a piece of code in a way that Doxygen can parse it, we need
+to add a <em>comment block</em> with <em>commands</em> that Doxygen understands. A
+comment block looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+ <span class="o">*</span> \<span class="n">command1</span> <span class="o">...</span>
+ <span class="o">*</span> \<span class="n">command2</span> <span class="o">...</span>
+ <span class="o">*</span> \<span class="n">command3</span> <span class="o">...</span>
+ <span class="o">*/</span>
+</pre></div>
+</div>
+<p>It looks just like a regular C comment, but that second <code class="docutils literal notranslate"><span class="pre">*</span></code> at the
+start of the comment is deliberate: that is how Doxygen knows that it
+needs to parse the comment in search of commands. Note that there are
+other ways to format comments (take a look at
+<a class="reference external" href="http://www.doxygen.nl/manual/docblocks.html#cppblock">http://www.doxygen.nl/manual/docblocks.html#cppblock</a> if you’re curious).</p>
+<p>If we are documenting a function, we would place the comment block
+immediately above the function, with commands that provide information
+about that function. For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\brief</span></code>, which gives a brief description of the function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\param</span></code>, to describe a parameter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\return</span></code>, to describe a return type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\memberof</span></code>, to specify that the function is associated with a
+specific type (we need to do this in C, as functions are not
+explicitly associated with a type, as they are in object-oriented
+languages)</p></li>
+</ul>
+<p>Some other useful commands include the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\def</span></code>, used to document for a #define macro</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\file</span></code>, used for documenting a file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\enum</span></code>, used for enums</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\typedef</span></code>, for typedefs</p></li>
+</ul>
+<p>You can find examples of most of the above throughout the provided
+libgeometry code. A full list of special commands can be found at
+<a class="reference external" href="http://www.doxygen.nl/manual/commands.html">http://www.doxygen.nl/manual/commands.html</a>. Doxygen supports multiple
+languages, so not all of these will necessarily apply to C.</p>
+<p>Another style of comment is the inline comment, which is commonly used
+when documenting the variables in a struct. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">double</span> <span class="n">x</span><span class="p">;</span> <span class="o">///&lt;</span> <span class="n">x</span> <span class="n">coordinate</span>
+    <span class="n">double</span> <span class="n">y</span><span class="p">;</span> <span class="o">///&lt;</span> <span class="n">y</span> <span class="n">coordinate</span>
+<span class="p">}</span> <span class="n">point_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In this comment we don’t use a command, and simply provide a description
+of the variable that is being documented.</p>
+<p>In this task, you will document the <code class="docutils literal notranslate"><span class="pre">segment_t</span></code> type by adding
+Doxygen-style comment blocks in the <code class="docutils literal notranslate"><span class="pre">segment.h</span></code> file. Each struct
+comment should include a brief description of the struct, and each
+function comment should include the following:</p>
+<ul class="simple">
+<li><p>A description of the function</p></li>
+<li><p>Each parameter (including a brief description of that parameter)</p></li>
+<li><p>The return value (including a brief description)</p></li>
+</ul>
+<p>Once you have added the comment blocks, re-generate the documentation by
+running this:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ doxygen
+</pre></div>
+</div>
+<p>Reload the documentation in your browser. The <code class="docutils literal notranslate"><span class="pre">segment_t</span></code> page (liked
+from the Classes tab) should now include the documentation you added to
+the code. Make sure to check that all the functions appear in the
+documentation!</p>
+<p>Before continuing, make sure to commit your changes to the segment
+files. Do not add or commit the automatically-generated <code class="docutils literal notranslate"><span class="pre">docs/html/</span></code>
+and <code class="docutils literal notranslate"><span class="pre">docs/latex/</span></code> directories! In fact, we have already included a
+<code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file that will prevent you from doing this but, in
+general, it’s useful to remember that automatically-generated files
+should not be committed to a source code repository.</p>
+<div class="section" id="part-ii-logging">
+<h2>Part II: Logging<a class="headerlink" href="#part-ii-logging" title="Permalink to this headline">¶</a></h2>
+<p>Over the course of the project, many of you have come across the desire
+to pepper your code with <code class="docutils literal notranslate"><span class="pre">printf</span></code> statements to see a “trace” of your
+program running. This is a <a class="reference external" href="https://uchicago-cs.github.io/debugging-guide/#print-debugging">valuable debugging
+technique</a>,
+but it can also result in your program’s output getting bogged down in
+debugging statements (which you then need to manually comment out before
+releasing your software). In this part of the lab, we’re going to
+explore a more methodical way of printing messages that inform you of
+the state of your program.</p>
+</div>
+</div>
+<div class="section" id="what-is-logging">
+<h1>What is logging?<a class="headerlink" href="#what-is-logging" title="Permalink to this headline">¶</a></h1>
+<p>Logging is, in essence, nothing more than controlled <code class="docutils literal notranslate"><span class="pre">printf</span></code>s,
+separated into <em>log levels</em>. A typical logging library will provide
+several standard log levels:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FATAL</span></code>: reserved for errors that crash the program or otherwise
+signify completely incorrect behavior;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR</span></code>: for other non-fatal errors;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WARN</span></code>: for bad inputs, etc that are not errors but could result in
+errors down the line;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INFO</span></code>: for general informational messages (e.g. “starting server”,
+“accepted connection”, “file scan completed”, etc);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>: for program structure (e.g. “entering send_message
+function”, messages that print for each iteration in a loop, etc);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRACE</span></code>: for printing out the contents of data structures and other
+program values.</p></li>
+</ul>
+<p>The order of these log levels is relevant: in the above list, each log
+level provides more detailed information than the log level before it. A
+typical logging library will allow you to <em>set</em> the log level, which
+means it will only print all the log messages at <em>or above</em> the
+specified log level. So, setting the log level to <code class="docutils literal notranslate"><span class="pre">INFO</span></code> will print
+out all the log messages at the <code class="docutils literal notranslate"><span class="pre">FATAL</span></code>, <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">WARN</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">INFO</span></code> levels. When debugging the program, you would set the log level
+to a deeper level, like <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> or <code class="docutils literal notranslate"><span class="pre">TRACE</span></code> to print more information
+during the execution of your program.</p>
+<p>In this lab, we will use <a class="reference external" href="https://github.com/rxi/log.c">this</a> log
+library which provides all of the above functionality (and a little
+more). In particular, we will take a program to simulate Tic-Tac-Toe
+games and add logging so we can see the progress of the simulation. The
+program is in the <code class="docutils literal notranslate"><span class="pre">labs/lab9/tictactoe</span></code> directory. Before continuing,
+take a moment to read the README file in that directory. Make sure you
+can build the program, and run it as described in the README file.</p>
+<div class="section" id="task-4-setup">
+<h2>Task 4: Setup<a class="headerlink" href="#task-4-setup" title="Permalink to this headline">¶</a></h2>
+<p>In order to actually use the logging library, we need to import it into
+our repository. We could copy the files in, but that’s a pretty
+inelegant solution. We will instead use git submodules, like we did in
+the previous lab. Run the following command from the root of your
+repository:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git submodule add https://github.com/rxi/log.c tictactoe/lib/log.c
+</pre></div>
+</div>
+<p>{{% warning %}} <strong>Caution</strong>: the above command creates a <em>folder</em> called
+<code class="docutils literal notranslate"><span class="pre">log.c</span></code>, <em>not</em> a file. The name of the whole library is <code class="docutils literal notranslate"><span class="pre">log.c</span></code>,
+which is really confusing because it sounds like a filename. {{%
+/warning %}}</p>
+</div>
+<div class="section" id="task-5-up-and-running-with-log-c">
+<h2>Task 5: Up and running with <code class="docutils literal notranslate"><span class="pre">log.c</span></code><a class="headerlink" href="#task-5-up-and-running-with-log-c" title="Permalink to this headline">¶</a></h2>
+<p>Your task is simple: read the code and figure out what it does, and then
+add logging statements at the appropriate log levels throughout the
+code. You can <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;log.c/src/log.h&quot;</span></code> (again - confusing library
+name) to get those functions, and you can check out the <code class="docutils literal notranslate"><span class="pre">log.c</span></code>
+<a class="reference external" href="https://github.com/rxi/log.c">GitHub page</a> for documentation.</p>
+<p>Take into account that you will also need to modify the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to
+also compile the <code class="docutils literal notranslate"><span class="pre">log.c</span></code> file (inside <code class="docutils literal notranslate"><span class="pre">lib/log.c/src/</span></code>) and to
+search for include files inside the <code class="docutils literal notranslate"><span class="pre">lib/</span></code> directory (remember that
+this can be done using the <code class="docutils literal notranslate"><span class="pre">-I</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">gcc</span></code>, which you can
+specify in the <code class="docutils literal notranslate"><span class="pre">CFLAGS</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>).</p>
+<p>To select the log level, we have already added a <code class="docutils literal notranslate"><span class="pre">-v</span></code> parameter to the
+program that allows you to control the “verbosity” of the program. This
+is a common command-line convention, where <code class="docutils literal notranslate"><span class="pre">-v</span></code> means “be verbose”,
+<code class="docutils literal notranslate"><span class="pre">-vv</span></code> means “be very verbose”, <code class="docutils literal notranslate"><span class="pre">-vvv</span></code> means “be super verbose”, etc.
+Inside the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function, the <code class="docutils literal notranslate"><span class="pre">verbosity</span></code> variable will contain
+the number of <code class="docutils literal notranslate"><span class="pre">v</span></code>s that were specified in the command-line. You can
+use this to set the log level appropriately. For example, <code class="docutils literal notranslate"><span class="pre">-v</span></code> could
+correspond to <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">-vv</span></code> to <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>, and <code class="docutils literal notranslate"><span class="pre">-vvv</span></code> to <code class="docutils literal notranslate"><span class="pre">TRACE</span></code>.
+This allows us to easily control the amount of output (and the level of
+detail) of our program.</p>
+<p>As you write log statements, you should have in mind three use cases:</p>
+<ol class="arabic simple">
+<li><p>A user running your program: if no <code class="docutils literal notranslate"><span class="pre">-v</span></code> option is specified, the
+user shouldn’t see anything except fatal errors. Ensure that running
+your program this way does not print anything except the result
+summary, or any fatal errors that occur. Note: you do not need to
+alter the <code class="docutils literal notranslate"><span class="pre">printf</span></code> statements that print the summary. Those are
+part of the normal output of the program, and not something we would
+print using a logging library. You also do not need to remove or
+modify the calls to <code class="docutils literal notranslate"><span class="pre">assert</span></code> throughout the program (while these
+will produce a fatal error, we don’t need to add an additional
+logging statement because <code class="docutils literal notranslate"><span class="pre">assert</span></code> will already print a helpful
+message if the assertion fails)</p></li>
+<li><p>A developer working on your program (yourself): while developing new
+features, you likely want to see a rough trace of the structure of
+your program, without overwhelming yourself with output. There isn’t
+really a clear brightline here on what belongs at the <code class="docutils literal notranslate"><span class="pre">WARN</span></code>
+through <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> log levels - use your best judgement.</p></li>
+<li><p>A developer debugging your program (yourself): note that debugging is
+a distinct case from normal development. When debugging, it’s helpful
+to get as much output as possible, to be able to inspect the output
+more clearly. The <code class="docutils literal notranslate"><span class="pre">TRACE</span></code> log level should thus contain the
+pretty-printed contents of all important data structures and
+variables whenever they are modified. Take into account that we
+already provide a function that pretty-prints a tic-tac-toe board,
+but which does not use a logging library to do so. You are welcome to
+modify this function so that it uses log functions.</p></li>
+</ol>
+<p>You might notice that two of these three use cases are specifically
+aimed at <em>you</em>: you should write these log statements with your future
+self in mind (e.g., if you wanted to implement a new strategy and wanted
+to use logging to see how it unfolds step by step). When testing those
+use cases, make sure you set the <code class="docutils literal notranslate"><span class="pre">-n</span></code> option to a low value, to avoid
+overwhelming your terminal with output.</p>
+<div class="section" id="submitting-your-lab">
+<h3>Submitting your lab<a class="headerlink" href="#submitting-your-lab" title="Permalink to this headline">¶</a></h3>
+<p>This is an optional, ungraded lab. You do not need to submit anything
+but, if you need any help with this lab, please make sure you push your
+latest code before asking for help.</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, The University of Chicago.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
