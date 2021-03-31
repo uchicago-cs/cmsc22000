@@ -125,6 +125,10 @@ those instructions, but first need to do the following:
       mkdir -p cs220/hw1
       cd cs220/hw1
 
+   (the ``-p`` flag to mkdir will create all the parent directories if
+   needed; i.e., if you don't already have a ``cs220`` directory, it will
+   create one, and then will create a ``hw1``directory inside it)
+
 -  Inside that folder, create a file called ``README.md`` and add your
    full name to the file.
 
@@ -566,7 +570,9 @@ Now, in the local repository in your home directory, add a line to
 ``test.txt`` with the text ``One more change!``. Create a commit for
 that change and push it to GitHub (you should know how to do this by
 now, but make sure to `ask for help <help.html>`__ if you’re
-unsure of how to proceed).
+unsure of how to proceed). Also, you don't have to use any specific
+commit message (unlike previous steps where we gave you the exact message),
+but make sure your commit message is descriptive and to the point.
 
 Next, in the *second* local repository (the one you just created in a
 separate location), check if that
