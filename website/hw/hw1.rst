@@ -62,6 +62,12 @@ do this in one of two ways:
    would see if you physically logged into a CSIL machine. However, this
    option may not work well for low-bandwidth Internet connections.
 
+Throughout the homework assignment, you will have to make some simple edits
+to a few text files. If you are using SSH, we suggest you use a command-line
+editor for this (like Vi, emacs, nano, etc.), or Ubuntu's built-in Text Editor
+if using the Virtual Desktop. You do not need to use a full-featured code editor
+in this homework assignment.
+
 In future homeworks, there will be more flexibility on where you can do your
 work, including working locally on your own computer.
 
