@@ -1538,6 +1538,9 @@ manually could get really messy. Fortunately, Git provides a command
 that will take one or more commits, and create a new commit with the
 opposite changes from those commits (effectively undoing those commits)
 
+On Gradescope, explain what command you used. Remember to actually
+run the command and push your changes!
+
 Note: You may encounter instructions online on how to “undo” a commit
 (in the sense of completely removing it from the commit log). This is
 not what we’re asking you to do: you must find a command that
