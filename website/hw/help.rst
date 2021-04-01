@@ -83,7 +83,7 @@ and visit each meeting to provide one-on-one help.
 
 Note: If you are uncomfortable sharing a meeting ID on the channel,
 simply specify that you would like the instructor/TA to send you a
-private message once they’re reading to see you, so you can then share a
+private message once they’re ready to see you, so you can then share a
 meeting ID with them privately.
 
 When an instructor or TA joins your meeting, please share your screen
