@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Creating your lab repository &#8212; CMSC 22000 - Introduction to Software Development</title>
+<title>Homework 1: Git &#8212; CMSC 22000 - Introduction to Software Development</title>
 
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -95,19 +95,55 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Homework 1: Git</a><ul>
+<li><a class="reference internal" href="#creating-your-homework-repository">Creating your homework repository</a></li>
+<li><a class="reference internal" href="#where-should-you-do-this-homework-assignment">Where should you do this homework assignment?</a></li>
+<li><a class="reference internal" href="#how-to-complete-this-homework">How to complete this homework</a></li>
+<li><a class="reference internal" href="#part-i-first-steps-with-git">Part I: First steps with Git</a><ul>
+<li><a class="reference internal" href="#initializing-your-repository">Initializing your repository</a></li>
+<li><a class="reference internal" href="#creating-a-commit">Creating a commit</a></li>
+<li><a class="reference internal" href="#git-add-revisited-and-git-status"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> revisited and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code></a></li>
+<li><a class="reference internal" href="#working-from-multiple-locations">Working from multiple locations</a></li>
+<li><a class="reference internal" href="#discarding-changes-and-unstaging">Discarding changes and unstaging</a></li>
+<li><a class="reference internal" href="#looking-at-the-commit-log">Looking at the commit log</a></li>
+<li><a class="reference internal" href="#passwordless-authentication">Passwordless Authentication</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#part-ii-working-collaboratively-with-git">Part II: Working collaboratively with Git</a><ul>
+<li><a class="reference internal" href="#branches">Branches</a></li>
+<li><a class="reference internal" href="#merging">Merging</a></li>
+<li><a class="reference internal" href="#merge-conflicts">Merge conflicts</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#part-iii-additional-exercises">Part III: Additional Exercises</a><ul>
+<li><a class="reference internal" href="#exercise-1">Exercise 1</a></li>
+<li><a class="reference internal" href="#exercise-2">Exercise 2</a></li>
+<li><a class="reference internal" href="#exercise-3">Exercise 3</a></li>
+<li><a class="reference internal" href="#exercise-4">Exercise 4</a></li>
+<li><a class="reference internal" href="#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
-  <p><strong>Due:</strong> Wednesday, April 15th, 8pm</p>
-<p>{{% warning %}} <strong>NOTE</strong>: This lab is based on a Linux and Git lab
-originally written by Anne Rogers for CMSC 12100 (and updated and edited
-by a variety of instructors and TAs throughout the years) {{% /warning
-%}}</p>
+  <div class="section" id="homework-1-git">
+<h1>Homework 1: Git<a class="headerlink" href="#homework-1-git" title="Permalink to this headline">¶</a></h1>
+<p><strong>Due:</strong> Wednesday, April 7th, 8pm CDT</p>
 <p>In some of your previous CS courses, you may have become familiar with
-using Subversion (SVN) to handle revision control (or <em>version control</em>)
-of your projects and assignments, and to submit your work for grading.
-In this class, we will be using Git, a more widespread version control
-system that is more commonly used in a variety of software projects.</p>
-<p>Like SVN, Git is a <em>version control system</em> that maintains files in a
+using either Subversion (SVN) or Git to store a copy of your code
+in a remote server, and to submit your work for grading.
+In the course project, you will be using Git for its intended purpose:
+as a version control tool that will facilitate collaboration between
+multiple developers.</p>
+<p>In a nutshell, Git is a <em>version control system</em> that maintains files in a
 <em>repository</em> that contains not just files, but also a record of all the
 changes made to those files. Git tracks every version of a file or
 directory using <em>commits</em>. When you have made changes to one or more
@@ -117,7 +153,7 @@ your work, representing the work you’ve done since the previous
 checkpoint. This mechanism makes it possible to look at and even revert
 to older versions of a file by going back to your code as it was when
 you “checkpointed” it with a commit.</p>
-<p>For each lab assignment, a Git repository will be created for you on
+<p>For each homework assignment, a Git repository will be created for you on
 <a class="reference external" href="https://github.com/">GitHub</a>, a web-based hosting service for Git
 repositories. However, before that repository can be created for you,
 you need to have a GitHub account. If you do not yet have one, you can
@@ -127,21 +163,21 @@ Pack</a>, which will give you access
 to a lot of other features (please note that having the Student
 Developer Pack is not necessary for CS 220; it’s just a nice benefit you
 get as a student)</p>
-<div class="section" id="creating-your-lab-repository">
-<h1>Creating your lab repository<a class="headerlink" href="#creating-your-lab-repository" title="Permalink to this headline">¶</a></h1>
-<p>For each lab assignment, we will provide you with an <em>invitation URL</em>
-that will allow you sign up for the lab assignment on GitHub, and which
+<div class="section" id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+<p>For each homework assignment, we will provide you with an <em>invitation URL</em>
+that will allow you sign up for the homework assignment on GitHub, and which
 will result in the creation of a repository called
-<code class="docutils literal notranslate"><span class="pre">2020-labN-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization
+<code class="docutils literal notranslate"><span class="pre">2021-hwN-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization
 on GitHub (a GitHub “organization” is basically a way to group together
 related repositories). For example, if your GitHub username is
-<code class="docutils literal notranslate"><span class="pre">jrandom</span></code>, your repository will be called <code class="docutils literal notranslate"><span class="pre">2020-lab1-jrandom</span></code>. This
+<code class="docutils literal notranslate"><span class="pre">jrandom</span></code>, your repository will be called <code class="docutils literal notranslate"><span class="pre">2021-hw1-jrandom</span></code>. This
 repository will be private, and can only be viewed by you and the CS 220
 course staff.</p>
 </div>
-<div class="section" id="where-should-you-do-this-lab">
-<h1>Where should you do this lab?<a class="headerlink" href="#where-should-you-do-this-lab" title="Permalink to this headline">¶</a></h1>
-<p>For this lab, we will specifically need you to work on a CS machine,
+<div class="section" id="where-should-you-do-this-homework-assignment">
+<h2>Where should you do this homework assignment?<a class="headerlink" href="#where-should-you-do-this-homework-assignment" title="Permalink to this headline">¶</a></h2>
+<p>For this homework, we will specifically need you to work on a CS machine,
 which means you will have to connect remotely to CS environment. You can
 do this in one of two ways:</p>
 <ul class="simple">
@@ -155,16 +191,50 @@ show you, on your computer, effectively the exact same desktop you
 would see if you physically logged into a CSIL machine. However, this
 option may not work well for low-bandwidth Internet connections.</p></li>
 </ul>
-<p>In future labs, there will be more flexibility on where you can do your
+<p>Throughout the homework assignment, you will have to make some simple edits
+to a few text files. If you are using SSH, we suggest you use a command-line
+editor for this (like Vi, emacs, nano, etc.), or Ubuntu’s built-in Text Editor
+if using the Virtual Desktop. You do not need to use a full-featured code editor
+in this homework assignment.</p>
+<p>In future homeworks, there will be more flexibility on where you can do your
 work, including working locally on your own computer.</p>
 </div>
+<div class="section" id="how-to-complete-this-homework">
+<h2>How to complete this homework<a class="headerlink" href="#how-to-complete-this-homework" title="Permalink to this headline">¶</a></h2>
+<p>This homework is divided into three parts. The first two parts provide
+a tutorial-style introduction to various aspects of Git. All you need
+to do is follow the instructions, and you will earn points simply for completing the
+steps described in those instructions
+(we will be able to tell whether you followed our instructions by
+looking at your repository). That said, please make sure you understand
+what is accomplished in each step and, if you have any questions, please
+don’t hesitate to <a class="reference external" href="help.html">ask for help</a>.</p>
+<p>The first part is worth 50 points, and the second part is worth 25 points.
+You will get partial credit if you complete some, but not all, of the steps
+described in each of these parts.</p>
+<p>The third part of the homework is worth 25 points and it involves a series of exercises
+that require you to find a new Git command (or series
+of Git commands) on your own. This will involve explaining how you solved
+a given exercise, and you will submit your answers on
+<a class="reference external" href="https://gradescope.com/">Gradescope</a>, which you can access through
+our Canvas site.</p>
+<p>Once in Gradescope, simply select assignment “Homework #1: Git”, and fill in
+the answers for the Part III exercises. Please note that you will also see
+“questions” corresponding to Parts I and II, but you will not be able to
+enter any answers there, since those will be based
+on the graders’ inspection of your GitHub repository (but we still need
+to include those tasks on Gradescope so we can grade them as part of
+this homework).</p>
+</div>
+<div class="section" id="part-i-first-steps-with-git">
+<h2>Part I: First steps with Git<a class="headerlink" href="#part-i-first-steps-with-git" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="initializing-your-repository">
-<h1>Initializing your repository<a class="headerlink" href="#initializing-your-repository" title="Permalink to this headline">¶</a></h1>
-<p>You will start by initializing your repository. Like SVN, your
+<h3>Initializing your repository<a class="headerlink" href="#initializing-your-repository" title="Permalink to this headline">¶</a></h3>
+<p>You will start by initializing your repository. Your
 repository is hosted on GitHub, but you can create a local copy in your
 home directory (we will refer to this as your <em>local repository</em>).</p>
-<p>Log into <a class="reference external" href="https://github.com/">https://github.com/</a>. Your lab repository,
-<code class="docutils literal notranslate"><span class="pre">cmsc22000-labs/2020-labN-GITHUB_USERNAME</span></code> should appear under
+<p>Log into <a class="reference external" href="https://github.com/">https://github.com/</a>. Your homework repository,
+<code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000/2021-hwN-GITHUB_USERNAME</span></code> should appear under
 “Repositories”. This will take you to a page where you can browse your
 repository through GitHub’s web interface. However, you haven’t
 initialized your repository yet, so GitHub will provide you with the
@@ -175,10 +245,13 @@ those instructions, but first need to do the following:</p>
 and location of this directory is not important, so if you already
 have a preferred directory structure, you’re welcome to use it.
 Otherwise, we suggest you simply do this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">cs220</span>
-<span class="n">cd</span> <span class="n">cs220</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">cs220</span><span class="o">/</span><span class="n">hw1</span>
+<span class="n">cd</span> <span class="n">cs220</span><span class="o">/</span><span class="n">hw1</span>
 </pre></div>
 </div>
+<p>(the <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag to mkdir will create all the parent directories if
+needed; i.e., if you don’t already have a <code class="docutils literal notranslate"><span class="pre">cs220</span></code> directory, it will
+create one, and then will create a <a href="#id1"><span class="problematic" id="id2">``</span></a>hw1``directory inside it)</p>
 </li>
 <li><p>Inside that folder, create a file called <code class="docutils literal notranslate"><span class="pre">README.md</span></code> and add your
 full name to the file.</p></li>
@@ -189,21 +262,29 @@ buttons: HTTPS and SSH. Make sure to change this to “HTTPS”.</p></li>
 <p>Now, from inside your CMSC 22000 directory, run the commands that appear
 under “…or create a new repository on the command line” <em>except</em> the
 first one (the one that starts with <code class="docutils literal notranslate"><span class="pre">echo</span></code>).</p>
-<p><em>Note: If any commands asks you to enter a username and password, just
-enter your GitHub username and password</em> (do not enter your CNetID and
-password) If you’re using two-factor authentication in GitHub, you’ll
+<p>If any commands asks you to enter a username and password, just
+enter your GitHub username and password* (do not enter your CNetID and
+password)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may get an e-mail from GitHub warning you that password authentication
+is deprecated. This is normal, and we discuss this in more detail below
+(in the “Passwordless authentication” section). For now, just use your
+GitHub username and password when prompted.</p>
+<p>Please note that, if you’re using two-factor authentication in GitHub, you’ll
 actually have to provide an “authentication token” instead of your
 password (you can find instructions on how to do this
 <a class="reference external" href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line">here</a>)</p>
+</div>
 <p>Don’t worry about what each individual command does; we will be seeing
-what most of these commands do in this lab. However, if you encounter
+what most of these commands do in this homework. However, if you encounter
 any error messages, please make sure to let us know.</p>
 <p>You can verify that your repository was correctly set up by going back
 to your repository’s page on GitHub, you should now see it contains a
 <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file. If you click on it, you can see its contents.</p>
 </div>
 <div class="section" id="creating-a-commit">
-<h1>Creating a commit<a class="headerlink" href="#creating-a-commit" title="Permalink to this headline">¶</a></h1>
+<h3>Creating a commit<a class="headerlink" href="#creating-a-commit" title="Permalink to this headline">¶</a></h3>
 <p>If you make changes to your repository, the way to store those changes
 (and the updated versions of the modified files) is by creating a
 <em>commit</em>. So, let’s start by making some changes:</p>
@@ -229,56 +310,64 @@ a commit:</p>
 </div>
 <p>The text after the <code class="docutils literal notranslate"><span class="pre">-m</span></code> is a short message that describes the changes
 you have made since your last commit. Common examples of commit messages
-might be “Finished lab 1” or “Implemented insert function for data
+might be “Finished homework 1” or “Implemented insert function for data
 struct”.</p>
-<p>{{% warning %}} If you forget the <code class="docutils literal notranslate"><span class="pre">-m</span></code> parameter, Git will think that
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you forget the <code class="docutils literal notranslate"><span class="pre">-m</span></code> parameter, Git will think that
 you forgot to specify a commit message. It will graciously open up a
 default editor so that you can enter such a message. This can be useful
 if you want to enter a longer commit message (including multi-line
-messages). We will experiment with this later. {{% /warning %}}</p>
+messages). We will experiment with this later.</p>
+</div>
 <p>Once you run the above command, you will see something like the
 following output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">master</span> <span class="mf">3e39</span><span class="n">c15</span><span class="p">]</span> <span class="n">Updated</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">main</span> <span class="mf">3e39</span><span class="n">c15</span><span class="p">]</span> <span class="n">Updated</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
  <span class="mi">1</span> <span class="n">file</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">1</span> <span class="n">insertion</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="mi">1</span> <span class="n">deletion</span><span class="p">(</span><span class="o">-</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You’ve created a commit, but you’re not done yet: you haven’t uploaded
-it to the server yet. Forgetting this step is actually a very common
+it to GitHub yet. Forgetting this step is actually a very common
 pitfall, so don’t forget to upload your changes. You must use the
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> command for your changes to actually be uploaded to the Git
-server. <em>If you don’t, the graders will not be able to see your code</em>.
+server. <em>If you don’t, the graders will not be able to see your work</em>.
 Simply run the following command from the Linux command-line:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span>
 </pre></div>
 </div>
 <p>You will be asked for your GitHub username and password; once you enter
 them, you should see something like this output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Writing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="mi">274</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="mi">0</span> <span class="nb">bytes</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enumerating</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">5</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">Writing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="mi">279</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="mf">279.00</span> <span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
 <span class="n">Total</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">To</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cmsc22000</span><span class="o">-</span><span class="n">labs</span><span class="o">/</span><span class="mi">2020</span><span class="o">-</span><span class="n">lab1</span><span class="o">-</span><span class="n">borjasotomayor</span><span class="o">.</span><span class="n">git</span>
-   <span class="mi">4885</span><span class="n">f1c</span><span class="o">..</span><span class="mf">3e39</span><span class="n">c15</span>  <span class="n">master</span> <span class="o">-&gt;</span> <span class="n">master</span>
+<span class="n">To</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
+   <span class="mi">392555</span><span class="n">e</span><span class="o">..</span><span class="mi">0</span><span class="n">c85752</span>  <span class="n">main</span> <span class="o">-&gt;</span> <span class="n">main</span>
 </pre></div>
 </div>
 <p>You can ignore most of those messages. The important thing is to not see
 any warnings or error messages.</p>
-<p>{{% warning %}} When you push for the first time, you may get a message
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When you push for the first time, you may get a message
 saying that <code class="docutils literal notranslate"><span class="pre">push.default</span> <span class="pre">is</span> <span class="pre">unset</span></code>, and suggesting two possible
-commands to remedy the situation. While the rest of the lab will work
-fine if you don’t run either of these commands, you should run the
+commands to remedy the situation. While the rest of the commands in this homework
+will work fine if you don’t run either of these commands, you should run the
 command to use “simple” (this will prevent the warning from appearing
-every time you push) {{% /warning %}}</p>
-<p>You can verify that our Git server correctly received your commit by
-going to your repository on GitHub. The <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file should now
+every time you push)</p>
+</div>
+<p>You can verify that your commit was correctly pushed to GitHub by
+going to your repository on the GitHub website. The <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file should now
 show the updated content (your name with your CNetID)</p>
 <p>In general, if you’re concerned about whether the graders are seeing the
-right version of your code, you can just go to GitHub. Whatever is shown
+right version of your work, you can just go to GitHub. Whatever is shown
 on your repository’s page is what the graders will see. If you wrote
 some code, and it doesn’t show up on GitHub, make sure you didn’t forget
 to add your files, create a commit, and push the most recent commit to
 the server.</p>
 </div>
 <div class="section" id="git-add-revisited-and-git-status">
-<h1>git add revisited and git status<a class="headerlink" href="#git-add-revisited-and-git-status" title="Permalink to this headline">¶</a></h1>
+<h3><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> revisited and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code><a class="headerlink" href="#git-add-revisited-and-git-status" title="Permalink to this headline">¶</a></h3>
 <p>Let’s make a further change to <code class="docutils literal notranslate"><span class="pre">README.md</span></code>: Add a line with the text
 <code class="docutils literal notranslate"><span class="pre">CMSC</span> <span class="pre">22000</span> <span class="pre">-</span> <span class="pre">Introduction</span> <span class="pre">to</span> <span class="pre">Software</span> <span class="pre">Development</span></code>.</p>
 <p>So, at this point, we have a file we have already committed
@@ -290,21 +379,27 @@ to ask Git for a summary of the files it is tracking:</p>
 </pre></div>
 </div>
 <p>This command should output something like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">master</span>
-<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/master&#39;</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/main&#39;</span><span class="o">.</span>
+
 <span class="n">Changes</span> <span class="ow">not</span> <span class="n">staged</span> <span class="k">for</span> <span class="n">commit</span><span class="p">:</span>
   <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">update</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
-
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
     <span class="n">modified</span><span class="p">:</span>   <span class="n">README</span><span class="o">.</span><span class="n">md</span>
 
 <span class="n">Untracked</span> <span class="n">files</span><span class="p">:</span>
   <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">include</span> <span class="ow">in</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
-
     <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
 
 <span class="n">no</span> <span class="n">changes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">commit</span> <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add&quot;</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="s2">&quot;git commit -a&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on the version of Git you’re using, the message under
+<code class="docutils literal notranslate"><span class="pre">Changes</span> <span class="pre">not</span> <span class="pre">staged</span> <span class="pre">for</span> <span class="pre">commit</span></code> may refer to a command called
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> (instead of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code>). You will be able to complete this homework even
+if you’re using a version of Git that displays the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> message.</p>
 </div>
 <p>Notice that there are two types of files listed here:</p>
 <ul class="simple">
@@ -321,32 +416,40 @@ the commit, and then you create the commit).</p></li>
 the same directory as your repository, but which Git isn’t keeping
 track of.</p></li>
 </ul>
-<p>{{% warning %}} You may see some automatically generated files in your
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You may see some automatically generated files in your
 Untracked files section. Files that start with a pound sign (#) or end
 with a tilde should <em>not</em> be added to your repository. Files that end
 with a tilde are backup files created by some editors that are intended
 to help you restore your files if your computer crashes. In general,
 files that are automatically generated should not be committed to your
 repository. Other people should be able to generate their own versions,
-if necessary. {{% /warning %}}</p>
+if necessary.</p>
+</div>
 <p>So, let’s go ahead and add <code class="docutils literal notranslate"><span class="pre">README.md</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
 </pre></div>
 </div>
 <p>And re-run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>. You should see something like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">master</span>
-<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/master&#39;</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/main&#39;</span><span class="o">.</span>
+
 <span class="n">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">committed</span><span class="p">:</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
+    <span class="n">modified</span><span class="p">:</span>   <span class="n">README</span><span class="o">.</span><span class="n">md</span>
 
-    <span class="n">new</span> <span class="n">file</span><span class="p">:</span>   <span class="n">README</span><span class="o">.</span><span class="n">md</span>
-
-<span class="n">Changes</span> <span class="ow">not</span> <span class="n">staged</span> <span class="k">for</span> <span class="n">commit</span><span class="p">:</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">update</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
-
-    <span class="n">modified</span><span class="p">:</span>   <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Untracked</span> <span class="n">files</span><span class="p">:</span>
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">include</span> <span class="ow">in</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
+    <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on the version of Git you’re using, the message under
+<code class="docutils literal notranslate"><span class="pre">Changes</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">committed</span></code> may refer to a command called
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> (instead of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code>). You will be able to complete this homework even
+if you’re using a version of Git that display the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> message.</p>
 </div>
 <p>Notice how there is now a new category of files:
 <code class="docutils literal notranslate"><span class="pre">Changes</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">committed</span></code>. Adding <code class="docutils literal notranslate"><span class="pre">README.md</span></code> not only added the
@@ -357,13 +460,13 @@ remember, won’t happen until you actually run <code class="docutils literal no
 </pre></div>
 </div>
 <p>The output of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> should now look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">master</span>
-<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/master&#39;</span><span class="o">.</span>
-<span class="n">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">committed</span><span class="p">:</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/main&#39;</span><span class="o">.</span>
 
-    <span class="n">new</span> <span class="n">file</span><span class="p">:</span>   <span class="n">README</span><span class="o">.</span><span class="n">md</span>
-    <span class="n">modified</span><span class="p">:</span>   <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">committed</span><span class="p">:</span>
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
+    <span class="n">modified</span><span class="p">:</span>   <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+    <span class="n">new</span> <span class="n">file</span><span class="p">:</span>   <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>Now, we are going to create a commit with these changes. Notice how we
@@ -373,58 +476,64 @@ are not going to use the <code class="docutils literal notranslate"><span class=
 </div>
 <p>When you omit <code class="docutils literal notranslate"><span class="pre">-m</span></code>, Git will open a terminal text editor where you can
 write your commit message, including multiline commit messages. By
-default, the CS machines will use Vim for this (if you are not a Vim
-user, you can quit by typing <code class="docutils literal notranslate"><span class="pre">:wq</span></code>). If you want to change your
-default command-line editor, add a line like this:</p>
+default, the CS machines will use <a class="reference external" href="https://www.nano-editor.org/">nano</a> for this.
+You should see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please enter the commit message for your changes. Lines starting</span>
+<span class="c1"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span>
+<span class="c1">#</span>
+<span class="c1"># On branch main</span>
+<span class="c1"># Your branch is up to date with &#39;origin/main&#39;.</span>
+<span class="c1">#</span>
+<span class="c1"># Changes to be committed:</span>
+<span class="c1">#       modified:   README.md</span>
+<span class="c1">#       new file:   test.txt</span>
+<span class="c1">#</span>
+</pre></div>
+</div>
+<p>Now, type in the following commit message above the lines that start with <code class="docutils literal notranslate"><span class="pre">#</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Homework</span> <span class="mi">1</span> <span class="n">updates</span><span class="p">:</span>
+
+<span class="o">-</span> <span class="n">Added</span> <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">-</span> <span class="n">Updated</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span> <span class="n">file</span>
+</pre></div>
+</div>
+<p>In nano, you can save the file and exit by pressing Control-X, entering “Y” when
+prompted to “save modified buffer” (i.e., whether to save the file before exiting),
+and then Enter (you will be asked to confirm the filename to save; do not modify this
+in any way, just confirm by pressing Enter).</p>
+<p>This will complete the commit, and you will see a message like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">main</span> <span class="mi">1810</span><span class="n">c54</span><span class="p">]</span> <span class="n">Homework</span> <span class="mi">1</span> <span class="n">updates</span><span class="p">:</span>
+ <span class="mi">2</span> <span class="n">files</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">3</span> <span class="n">insertions</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="mi">1</span> <span class="n">deletion</span><span class="p">(</span><span class="o">-</span><span class="p">)</span>
+ <span class="n">create</span> <span class="n">mode</span> <span class="mi">100644</span> <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to change your default command-line editor, add a line like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">EDITOR</span><span class="o">=</span><span class="n">myfavoriteeditor</span>
 </pre></div>
 </div>
 <p>At the end of the <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file in your home directory (make sure you
 replace <code class="docutils literal notranslate"><span class="pre">myfavoriteeditor</span></code> with the command for your favorite
 command-line editor: <code class="docutils literal notranslate"><span class="pre">vi</span></code>, <code class="docutils literal notranslate"><span class="pre">emacs</span></code>, <code class="docutils literal notranslate"><span class="pre">nano</span></code>, <code class="docutils literal notranslate"><span class="pre">mcedit</span></code>, etc.)</p>
-<p>Once Git opens your editor of choice, you will see something like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please enter the commit message for your changes. Lines starting</span>
-<span class="c1"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span>
-<span class="c1"># On branch master</span>
-<span class="c1"># Your branch is up-to-date with &#39;origin/master&#39;.</span>
-<span class="c1">#</span>
-<span class="c1"># Changes to be committed:</span>
-<span class="c1">#       new file:   README.md</span>
-<span class="c1">#       modified:   test.txt</span>
-<span class="c1">#</span>
-</pre></div>
 </div>
-<p>Now, type in the following commit message:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lab</span> <span class="mi">1</span> <span class="n">updates</span><span class="p">:</span>
-
-<span class="o">-</span> <span class="n">Added</span> <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
-<span class="o">-</span> <span class="n">Updated</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span> <span class="n">file</span>
-</pre></div>
-</div>
-<p>Then, just save the file and exit (using the appropriate commands in
-your editor of choice). This will complete the commit, and you will see
-a message like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">master</span> <span class="mi">9119</span><span class="n">c6f</span><span class="p">]</span> <span class="n">Lab</span> <span class="mi">1</span> <span class="n">updates</span>
- <span class="mi">2</span> <span class="n">files</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">3</span> <span class="n">insertions</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="mi">1</span> <span class="n">deletion</span><span class="p">(</span><span class="o">-</span><span class="p">)</span>
- <span class="n">create</span> <span class="n">mode</span> <span class="mi">100644</span> <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
-</pre></div>
-</div>
-<p>Now, edit both files and add an extra line to each of them with the text
+<p>Now, edit <code class="docutils literal notranslate"><span class="pre">README.md</span></code> and <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> and add an extra line to each of them with the text
 <code class="docutils literal notranslate"><span class="pre">Git</span> <span class="pre">is</span> <span class="pre">pretty</span> <span class="pre">cool</span></code>. Running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> should now show the
 following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">master</span>
-<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">ahead</span> <span class="n">of</span> <span class="s1">&#39;origin/master&#39;</span> <span class="n">by</span> <span class="mi">1</span> <span class="n">commit</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">ahead</span> <span class="n">of</span> <span class="s1">&#39;origin/main&#39;</span> <span class="n">by</span> <span class="mi">1</span> <span class="n">commit</span><span class="o">.</span>
   <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git push&quot;</span> <span class="n">to</span> <span class="n">publish</span> <span class="n">your</span> <span class="n">local</span> <span class="n">commits</span><span class="p">)</span>
+
 <span class="n">Changes</span> <span class="ow">not</span> <span class="n">staged</span> <span class="k">for</span> <span class="n">commit</span><span class="p">:</span>
   <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">update</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
-
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
     <span class="n">modified</span><span class="p">:</span>   <span class="n">README</span><span class="o">.</span><span class="n">md</span>
     <span class="n">modified</span><span class="p">:</span>   <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>If we want to create a commit with these changes, we could simply run
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> twice (once for each file) but, fortunately, we can also do
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">README.md</span> <span class="pre">test.txt</span></code>, but this can get cumbersome if we want to
+add a lot of files. Fortunately, we can also do
 this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">u</span>
 </pre></div>
@@ -439,26 +548,29 @@ repository.</p>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> will now show this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">master</span>
-<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">ahead</span> <span class="n">of</span> <span class="s1">&#39;origin/master&#39;</span> <span class="n">by</span> <span class="mi">2</span> <span class="n">commits</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">ahead</span> <span class="n">of</span> <span class="s1">&#39;origin/main&#39;</span> <span class="n">by</span> <span class="mi">2</span> <span class="n">commits</span><span class="o">.</span>
   <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git push&quot;</span> <span class="n">to</span> <span class="n">publish</span> <span class="n">your</span> <span class="n">local</span> <span class="n">commits</span><span class="p">)</span>
-<span class="n">nothing</span> <span class="n">to</span> <span class="n">commit</span><span class="p">,</span> <span class="n">working</span> <span class="n">directory</span> <span class="n">clean</span>
+
+<span class="n">nothing</span> <span class="n">to</span> <span class="n">commit</span><span class="p">,</span> <span class="n">working</span> <span class="n">tree</span> <span class="n">clean</span>
 </pre></div>
 </div>
-<p>The message <code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">branch</span> <span class="pre">is</span> <span class="pre">ahead</span> <span class="pre">of</span> <span class="pre">'origin/master'</span> <span class="pre">by</span> <span class="pre">2</span> <span class="pre">commits.</span></code> is
+<p>The message <code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">branch</span> <span class="pre">is</span> <span class="pre">ahead</span> <span class="pre">of</span> <span class="pre">'origin/main'</span> <span class="pre">by</span> <span class="pre">2</span> <span class="pre">commits.</span></code> is
 telling you that your local repository contains two commits that have
 not yet been uploaded to GitHub. In fact, if you go to your repository
 on the GitHub website, you’ll see that the two commits we just created
 are nowhere to be seen. As helpfully pointed out by the above output,
 all we need to do is run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, which should show something like
 this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
-<span class="n">Delta</span> <span class="n">compression</span> <span class="n">using</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">8</span> <span class="n">threads</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enumerating</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="mi">10</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">Delta</span> <span class="n">compression</span> <span class="n">using</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">16</span> <span class="n">threads</span>
 <span class="n">Compressing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">6</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
-<span class="n">Writing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">8</span><span class="p">),</span> <span class="mi">730</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="mi">0</span> <span class="nb">bytes</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">Writing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">8</span><span class="p">),</span> <span class="mi">728</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="mf">728.00</span> <span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
 <span class="n">Total</span> <span class="mi">8</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">1</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">To</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cmsc22000</span><span class="o">-</span><span class="n">labs</span><span class="o">/</span><span class="mi">2020</span><span class="o">-</span><span class="n">lab1</span><span class="o">-</span><span class="n">username</span><span class="o">.</span><span class="n">git</span>
-   <span class="mf">3e39</span><span class="n">c15</span><span class="o">..</span><span class="mi">53462</span><span class="n">fb</span>  <span class="n">master</span> <span class="o">-&gt;</span> <span class="n">master</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Resolving</span> <span class="n">deltas</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">To</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
+   <span class="mi">0</span><span class="n">c85752</span><span class="o">..</span><span class="n">e3f9ef1</span>  <span class="n">main</span> <span class="o">-&gt;</span> <span class="n">main</span>
 </pre></div>
 </div>
 <p>Now go to GitHub. Do you see the updates in your repository? Click on
@@ -466,36 +578,39 @@ this:</p>
 the individual commits, you will be able to see the exact changes that
 were included in each commit.</p>
 <p>Now, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> will look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">master</span>
-<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/master&#39;</span><span class="o">.</span>
-<span class="n">nothing</span> <span class="n">to</span> <span class="n">commit</span><span class="p">,</span> <span class="n">working</span> <span class="n">directory</span> <span class="n">clean</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/main&#39;</span><span class="o">.</span>
+
+<span class="n">nothing</span> <span class="n">to</span> <span class="n">commit</span><span class="p">,</span> <span class="n">working</span> <span class="n">tree</span> <span class="n">clean</span>
 </pre></div>
 </div>
-<p>If you see <code class="docutils literal notranslate"><span class="pre">nothing</span> <span class="pre">to</span> <span class="pre">commit,</span> <span class="pre">working</span> <span class="pre">directory</span> <span class="pre">clean</span></code>, that means
+<p>If you see <code class="docutils literal notranslate"><span class="pre">nothing</span> <span class="pre">to</span> <span class="pre">commit,</span> <span class="pre">working</span> <span class="pre">tree</span> <span class="pre">clean</span></code>, that means
 that there are no changes in your local repository since the last commit
 you created (and, additionally, the above output also tells us that all
 our commits have also been uploaded to GitHub)</p>
 </div>
 <div class="section" id="working-from-multiple-locations">
-<h1>Working from multiple locations<a class="headerlink" href="#working-from-multiple-locations" title="Permalink to this headline">¶</a></h1>
+<h3>Working from multiple locations<a class="headerlink" href="#working-from-multiple-locations" title="Permalink to this headline">¶</a></h3>
 <p>So far, you have a local repository in your CS home directory, which you
 have been uploading to GitHub using the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> command. However,
 if you work from multiple locations (e.g., on a CS machine but also from
 your laptop), you will need to be able to create a local repository in
 those locations too. You can do this by running the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>
 command (don’t run this command just yet):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cmsc22000</span><span class="o">-</span><span class="n">labs</span><span class="o">/</span><span class="mi">2020</span><span class="o">-</span><span class="n">lab1</span><span class="o">-</span><span class="n">username</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 <p>This will create a local repository that “clones” the version of the
-repository that is currently stored on GitHub. Let’s do this in a
-different directory on the machine you are on. For example:</p>
+repository that is currently stored on GitHub. If you have Git installed
+on your personal machine, you can try running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> there,
+but you can also do this in a separate directory of the same machine
+where you’ve been running Git commands so far. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p /tmp/$USER/cs220
 cd /tmp/$USER/cs220
-git clone https://github.com/cmsc22000-labs/2020-lab1-username.git
+git clone https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
 </pre></div>
 </div>
-<p>Make sure to replace <code class="docutils literal notranslate"><span class="pre">username</span></code> with your GitHub username!</p>
+<p>Make sure to replace <code class="docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code> with your GitHub username!</p>
 <p>Take into account that, when you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>, the repository is
 not cloned <em>into</em> the current directory. Instead, a <em>new</em> directory
 (with the same name as the repository) will be created in the current
@@ -504,10 +619,12 @@ that repository.</p>
 <p>Now, in the local repository in your home directory, add a line to
 <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> with the text <code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">more</span> <span class="pre">change!</span></code>. Create a commit for
 that change and push it to GitHub (you should know how to do this by
-now, but make sure to [ask for help]({{&lt; relref “help.md” &gt;}}) if you’re
-unsure of how to proceed).</p>
+now, but make sure to <a class="reference external" href="help.html">ask for help</a> if you’re
+unsure of how to proceed). Also, you don’t have to use any specific
+commit message (unlike previous steps where we gave you the exact message),
+but make sure your commit message is descriptive and to the point.</p>
 <p>Next, in the <em>second</em> local repository (the one you just created in a
-separate location in the machine you’re working on), check if that
+separate location), check if that
 change appears in the <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> file. It will not, because you have
 not yet downloaded the latest commits from the repository. You can do
 this by running this:</p>
@@ -515,13 +632,14 @@ this by running this:</p>
 </pre></div>
 </div>
 <p>This should output something like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">remote</span><span class="p">:</span> <span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
-<span class="n">remote</span><span class="p">:</span> <span class="n">Compressing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
-<span class="n">remote</span><span class="p">:</span> <span class="n">Total</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">1</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">Unpacking</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
-<span class="n">From</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cmsc22000</span><span class="o">-</span><span class="n">labs</span><span class="o">/</span><span class="mi">2020</span><span class="o">-</span><span class="n">lab1</span><span class="o">-</span><span class="n">username</span><span class="o">.</span><span class="n">git</span>
-   <span class="mi">53462</span><span class="n">fb</span><span class="o">..</span><span class="mi">0</span><span class="n">c29617</span>  <span class="n">master</span>     <span class="o">-&gt;</span> <span class="n">origin</span><span class="o">/</span><span class="n">master</span>
-<span class="n">Updating</span> <span class="mi">53462</span><span class="n">fb</span><span class="o">..</span><span class="mi">0</span><span class="n">c29617</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">remote</span><span class="p">:</span> <span class="n">Enumerating</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">5</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Compressing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Total</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pack</span><span class="o">-</span><span class="n">reused</span> <span class="mi">0</span>
+<span class="n">Unpacking</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="mi">312</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="mf">20.00</span> <span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">From</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span>
+   <span class="n">e3f9ef1</span><span class="o">..</span><span class="mi">5716877</span>  <span class="n">main</span>       <span class="o">-&gt;</span> <span class="n">origin</span><span class="o">/</span><span class="n">main</span>
+<span class="n">Updating</span> <span class="n">e3f9ef1</span><span class="o">..</span><span class="mi">5716877</span>
 <span class="n">Fast</span><span class="o">-</span><span class="n">forward</span>
  <span class="n">test</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="mi">3</span> <span class="o">++-</span>
  <span class="mi">1</span> <span class="n">file</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">2</span> <span class="n">insertions</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="mi">1</span> <span class="n">deletion</span><span class="p">(</span><span class="o">-</span><span class="p">)</span>
@@ -532,44 +650,50 @@ one on your laptop), it is very important that you remember to run
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> before you start working, and that you <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> any
 changes you make. Otherwise, your local repositories (and the repository
 on GitHub) may <em>diverge</em> leading to a messy situation called a <em>merge
-conflict</em> (we will be exploring these in a future Git lab). This will be
+conflict</em> (we discuss this in more detail below). This will be
 specially important once you start using Git for its intended purpose:
 to collaborate with multiple developers, where each developer will have
 their own local repository, and it will become easier for some
 developers’ code to diverge from others’.</p>
 </div>
 <div class="section" id="discarding-changes-and-unstaging">
-<h1>Discarding changes and unstaging<a class="headerlink" href="#discarding-changes-and-unstaging" title="Permalink to this headline">¶</a></h1>
+<h3>Discarding changes and unstaging<a class="headerlink" href="#discarding-changes-and-unstaging" title="Permalink to this headline">¶</a></h3>
 <p>One of the benefits of using a version control system is that it is very
 easy to inspect the history of changes to a given file, as well as to
 undo changes we did not intend to make. For example, edit <code class="docutils literal notranslate"><span class="pre">test.txt</span></code>
 to remove all its contents. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> will tell us this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">master</span>
-<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/master&#39;</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/main&#39;</span><span class="o">.</span>
+
 <span class="n">Changes</span> <span class="ow">not</span> <span class="n">staged</span> <span class="k">for</span> <span class="n">commit</span><span class="p">:</span>
   <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">update</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
-
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
     <span class="n">modified</span><span class="p">:</span>   <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
-
-<span class="n">no</span> <span class="n">changes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">commit</span> <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add&quot;</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="s2">&quot;git commit -a&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If we want to discard the changes we made to <code class="docutils literal notranslate"><span class="pre">test.txt</span></code>, all we have
 to do is follow the helpful advice provided by the above output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">restore</span> <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In older versions of Git, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> may refer to the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> command.
+In that case, run this command instead:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">--</span> <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
+</div>
 </div>
 <p>If you open <code class="docutils literal notranslate"><span class="pre">test.txt</span></code>, you’ll see that its contents have been
 magically restored!</p>
 <p>Now, edit <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">README.md</span></code> to add an additional line with
 the text <code class="docutils literal notranslate"><span class="pre">Hopefully</span> <span class="pre">our</span> <span class="pre">last</span> <span class="pre">change...</span></code>. Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-u</span></code> but don’t
 commit it just yet. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> will show this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">master</span>
-<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/master&#39;</span><span class="o">.</span>
-<span class="n">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">committed</span><span class="p">:</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/main&#39;</span><span class="o">.</span>
 
+<span class="n">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">committed</span><span class="p">:</span>
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
     <span class="n">modified</span><span class="p">:</span>   <span class="n">README</span><span class="o">.</span><span class="n">md</span>
     <span class="n">modified</span><span class="p">:</span>   <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
@@ -578,29 +702,51 @@ commit it just yet. <code class="docutils literal notranslate"><span class="pre"
 <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, but not to <code class="docutils literal notranslate"><span class="pre">test.txt</span></code>. However, we’ve already told git
 that we want to include <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> in the commit. Fortunately, we can
 “un-include” it (or “unstage” it, in Git lingo) by running this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">restore</span> <span class="o">--</span><span class="n">staged</span> <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In older versions of Git, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> may refer to the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> command.
+In that case, run this command instead:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">reset</span> <span class="n">HEAD</span> <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
+</div>
 <p>Now, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> will show the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">master</span>
-<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/master&#39;</span><span class="o">.</span>
-<span class="n">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">committed</span><span class="p">:</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/main&#39;</span><span class="o">.</span>
 
+<span class="n">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">committed</span><span class="p">:</span>
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
     <span class="n">modified</span><span class="p">:</span>   <span class="n">README</span><span class="o">.</span><span class="n">md</span>
 
 <span class="n">Changes</span> <span class="ow">not</span> <span class="n">staged</span> <span class="k">for</span> <span class="n">commit</span><span class="p">:</span>
   <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">update</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
-
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
     <span class="n">modified</span><span class="p">:</span>   <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>Go ahead and run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>. The commit will now include only
 <code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p>
+<p>We’re nearing the end of the first part of the homework so, before
+continuing to the second part of the homework, let’s make sure all
+our changes have been committed and pushed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">u</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span><span class="s2">&quot;Wrapping up first part of the homework&quot;</span>
+<span class="n">git</span> <span class="n">push</span>
+</pre></div>
+</div>
+<p>Before continuing, make sure <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> shows this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/main&#39;</span><span class="o">.</span>
+
+<span class="n">nothing</span> <span class="n">to</span> <span class="n">commit</span><span class="p">,</span> <span class="n">working</span> <span class="n">tree</span> <span class="n">clean</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="looking-at-the-commit-log">
-<h1>Looking at the commit log<a class="headerlink" href="#looking-at-the-commit-log" title="Permalink to this headline">¶</a></h1>
+<h3>Looking at the commit log<a class="headerlink" href="#looking-at-the-commit-log" title="Permalink to this headline">¶</a></h3>
 <p>Once you have made multiple commits, you can see these commits, their
 dates, commit messages, author, etc. by typing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>. This command
 will open a scrollable interface (using the up/down arrow keys) that you
@@ -636,39 +782,570 @@ this:</p>
 <p>Git will only complain if there is more than one commit that starts with
 that same prefix.</p>
 </div>
-<div class="section" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
-<p>If you’ve completed all the steps described above, congratulations,
-you’ve already earned 40 points (out of 100) in this lab! Make sure you
-remember to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> so the grader can verify you completed all the
-above tasks. Please note that the above tasks will be graded as follows:</p>
-<ul class="simple">
-<li><p><strong>Task 1</strong>: 10 points for the <code class="docutils literal notranslate"><span class="pre">Updated</span> <span class="pre">README.md</span></code> commit</p></li>
-<li><p><strong>Task 2</strong>: 5 points for the <code class="docutils literal notranslate"><span class="pre">Lab</span> <span class="pre">1</span> <span class="pre">updates</span></code> commit</p></li>
-<li><p><strong>Task 3</strong>: 5 points for the <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">few</span> <span class="pre">more</span> <span class="pre">changes</span></code> commit</p></li>
-<li><p><strong>Task 4</strong>: 10 points for the commit for testing that git pull works
-correctly</p></li>
-<li><p><strong>Task 5</strong>: 10 points for the commit with <code class="docutils literal notranslate"><span class="pre">README.md</span></code> (after
-unstaging <code class="docutils literal notranslate"><span class="pre">test.txt</span></code>)</p></li>
+<div class="section" id="passwordless-authentication">
+<h3>Passwordless Authentication<a class="headerlink" href="#passwordless-authentication" title="Permalink to this headline">¶</a></h3>
+<p>At this point, you’re probably getting tired of always having
+to enter your GitHub password whenever you run certain Git commands.</p>
+<p>Fortunately, there are two mechanisms to avoid having to enter your
+password every time:</p>
+<ul>
+<li><p>If you are using the HTTPS URL to your repository (as we have been
+doing so far), you can ask Git to “remember” your password for
+some set amount of time. This means that, once you enter your
+password once, Git will not ask for it again for some amount
+of time (by default, this will be 15 minutes). To enable this feature,
+run the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">credential</span><span class="o">.</span><span class="n">helper</span> <span class="n">cache</span>
+</pre></div>
+</div>
+<p>You can set a longer timeout with this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">credential</span><span class="o">.</span><span class="n">helper</span> <span class="s1">&#39;cache --timeout=3600&#39;</span>
+</pre></div>
+</div>
+<p>(the timeout is in seconds, which means the above command will make Git
+remember your password for one hour)</p>
+<p><strong>Note</strong>: GitHub will be deprecating password authentication in August 2021.
+While you’ll be able to use your username and password in this class,
+you may want to switch to their preferred authentication method:
+“personal access tokens” (you can read more about this in this page: <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token">https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token</a>)</p>
+</li>
+<li><p>You can also upload an SSH key to GitHub, and use the SSH URL when
+cloning the repository. If you are already accustomed to using SSH
+and SSH keys, we suggest you use this mechanism (otherwise,
+sticking with the HTTPS mechanism described above is fine).
+Explaining SSH and SSH keys is beyond the scope of this homework,
+but you can find GitHub’s documentation on this mechanism here: <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh</a></p></li>
 </ul>
-<p>Before this lab’s deadline, you must also complete the tasks below. Some
-of them can be done just with what you have learned in this lab, but
-most of them will require that you find the exact Git command (or series
-of Git commands) on your own. This is a very useful skill to develop:
+<p>While either method will work, we recommend eventually getting set up to use
+SSH keys to access GitHub. It is the most secure method, and also the most
+convenient, as you do not have to use your GitHub password or keep track
+of a personal access token.</p>
+</div>
+</div>
+<div class="section" id="part-ii-working-collaboratively-with-git">
+<h2>Part II: Working collaboratively with Git<a class="headerlink" href="#part-ii-working-collaboratively-with-git" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you are working with a classmate on a homework assignment that
+requires producing a single file called <code class="docutils literal notranslate"><span class="pre">hw1.c</span></code> that includes the
+implementation of some functions. If the file is located in a shared
+filesystem (like the CS filesystem where the same home directories
+appear on all the CS machines), the two of you could edit it at the same
+time, but you’d have to be careful not to overwrite each other’s work.</p>
+<p>For example, suppose you both open the file and it contains the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Write</span> <span class="n">your</span> <span class="n">code</span> <span class="n">here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You decide to work on function <code class="docutils literal notranslate"><span class="pre">bar()</span></code> and your partner decides to
+work on function <code class="docutils literal notranslate"><span class="pre">baz()</span></code>. So, you end up with this file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Write</span> <span class="n">your</span> <span class="n">code</span> <span class="n">here</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And your partner ends up with this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Write</span> <span class="n">your</span> <span class="n">code</span> <span class="n">here</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">baz</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you save the file, and then your partner saves it after you, their
+version of the file will overwrite yours, so all your work on <code class="docutils literal notranslate"><span class="pre">bar()</span></code>
+will be overwritten.</p>
+<p>Ideally, we would like to end up with a consolidated version of the file
+that looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Write</span> <span class="n">your</span> <span class="n">code</span> <span class="n">here</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">baz</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Of course, instead of using a shared filesystem, you could instead
+decide that only one person can edit the file at a time, but that would
+involve a lot of overhead in coordinating each other’s work.</p>
+<p>Consider this other scenario: let’s say that the <code class="docutils literal notranslate"><span class="pre">foo()</span></code> function
+involves implementing two sub-tasks, which you divide amongst
+yourselves, and you each replace the <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">Write</span> <span class="pre">your</span> <span class="pre">code</span> <span class="pre">here</span></code> with
+your code (for the sake of simplicity, let’s assume that each sub-task
+is implemented with a single <code class="docutils literal notranslate"><span class="pre">printf</span></code>). Your code might look like
+this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Implemented task 1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And your partner’s code might look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Implemented task 2</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This actually represents a <em>conflict</em> in your code: you each have
+divergent replacements for the <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">Write</span> <span class="pre">your</span> <span class="pre">code</span> <span class="pre">here</span></code> line, and it
+is not clear which version is the correct one. In fact, while there may
+be cases where we simply want to use one version over another, in this
+case we would like to <em>merge</em> these two versions together to produce
+something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Implemented task 1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Implemented task 2</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice how, earlier, there was no conflict when implementing <code class="docutils literal notranslate"><span class="pre">bar()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">baz()</span></code> because you were adding code to <code class="docutils literal notranslate"><span class="pre">hw1.c</span></code>, instead of
+replacing existing code with different versions.</p>
+<p>Version control systems like Git are very useful when dealing with
+scenarios like the ones above. They will allow two (or more) developers
+to work concurrently on the same code and, whenever possible, will
+automatically merge together changes that do not conflict. When a
+conflict does arise, Git provides a specific mechanism to resolve that
+conflict, which we discuss in the following sections.</p>
+<div class="section" id="branches">
+<h3>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">¶</a></h3>
+<p>So far, the commits in your homework repository have created a linear
+sequence of changes like this:</p>
+<div class="figure align-default">
+<img alt="branches" src="../_images/git-branches.png" />
+</div>
+<p>This is known as the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch of your repository (Git itself uses
+the name <code class="docutils literal notranslate"><span class="pre">master</span></code> by default, but GitHub <a class="reference external" href="https://github.com/github/renaming">uses the name “main”</a>).
+But, what
+is a “branch”? A branch, loosely, is an
+<strong>independent commit history</strong> than can be manipulated in its own right.
+So far, you have been working with only one branch (the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch) and,
+thus, with a single linear history of commits.</p>
+<p>However, Git (and most version control systems) allow you to create
+<em>multiple</em> branches. These branches are not completely independent of
+each other as, ordinarily, a branch must be “branched off” from an
+existing commit. So, for example, we could have the following:</p>
+<div class="figure align-default">
+<img alt="branches2" src="../_images/git-branches-2.png" />
+</div>
+<p>Here, besides the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, we have an additional <code class="docutils literal notranslate"><span class="pre">foo</span></code> branch
+which could be used to work on a separate feature of a project (or, in this
+case, on an additional <code class="docutils literal notranslate"><span class="pre">foobar.c</span></code> file where we are implementing a <code class="docutils literal notranslate"><span class="pre">foo()</span></code>
+function).  This
+separate branch allows us to work on this task independently from other
+tasks; this may seem over-complicated, but suppose you were working on
+this homework with a classmate: branches would allow you to work independently
+without having to step on each other’s toes. This is similar to the
+first example we showed above (where two developers could be working on
+separate functions, <code class="docutils literal notranslate"><span class="pre">bar()</span></code> and <code class="docutils literal notranslate"><span class="pre">baz()</span></code>).</p>
+<p>To experiment with branches, start by adding a file called <code class="docutils literal notranslate"><span class="pre">echo.c</span></code>
+to your repository, with the following contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span> <span class="n">echo</span> <span class="n">user</span> <span class="nb">input</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="p">[</span><span class="n">AUTHOR</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="p">]</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="n">Last</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">23</span><span class="o">/</span><span class="mi">18</span> <span class="o">*/</span>
+
+<span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="c1">#include &lt;stdlib.h&gt;</span>
+<span class="c1">#include &lt;string.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">char</span> <span class="nb">input</span><span class="p">[</span><span class="mi">500</span><span class="p">];</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)){</span>  <span class="o">//</span><span class="n">read</span> <span class="kn">from</span> <span class="nn">STDIN</span> <span class="p">(</span><span class="n">aka</span> <span class="n">command</span><span class="o">-</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">input</span><span class="p">);</span>  <span class="o">//</span><span class="nb">print</span> <span class="n">out</span> <span class="n">what</span> <span class="n">user</span> <span class="n">typed</span> <span class="ow">in</span>
+        <span class="n">memset</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="nb">input</span><span class="p">));</span>  <span class="o">//</span><span class="n">reset</span> <span class="n">string</span> <span class="n">to</span> <span class="nb">all</span> <span class="mi">0</span><span class="s1">&#39;s</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Make sure to add and commit the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span><span class="s2">&quot;Added echo.c&quot;</span>
+</pre></div>
+</div>
+<p>Now, let’s create a new branch in your repository. The
+branch will be called <code class="docutils literal notranslate"><span class="pre">add-author</span></code> and you can create it by running
+this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">add</span><span class="o">-</span><span class="n">author</span>
+</pre></div>
+</div>
+<p>If you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code>, you can see the list of branches in the
+repository, with the current branch highlighted with an asterisk:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">add</span><span class="o">-</span><span class="n">author</span>
+  <span class="n">main</span>
+</pre></div>
+</div>
+<p>The <em>current branch</em> of a local repository is the branch where any new
+commits will be added to. Remember, a single branch is a linear sequence
+of commits and, when we have multiple branches (as shown in the diagram
+above), a commit could be placed after the last commit, or <em>head</em>, of
+any branch. The head of the current branch is referred to as the
+<code class="docutils literal notranslate"><span class="pre">HEAD</span></code> (in all caps) of the repository.</p>
+<p>You can switch the current branch by using the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> command.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout main
+Switched to branch &#39;main&#39;
+Your branch is up to date with &#39;origin/main&#39;.
+$ git branch
+  add-author
+* main
+$ git checkout add-author
+Switched to branch &#39;add-author&#39;
+$ git branch
+* add-author
+  main
+</pre></div>
+</div>
+<p>Now, let’s add a commit to the <code class="docutils literal notranslate"><span class="pre">add-author</span></code> branch. Simply edit the
+<code class="docutils literal notranslate"><span class="pre">echo.c</span></code> file and replace <code class="docutils literal notranslate"><span class="pre">[AUTHOR</span> <span class="pre">GOES</span> <span class="pre">HERE]</span></code> with your name. Let’s
+add and commit this change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span><span class="s2">&quot;Updated author in echo.c&quot;</span>
+</pre></div>
+</div>
+<p>Now, let’s push this change. We’ll actually be prevented from doing so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git push
+fatal: The current branch add-author has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin add-author
+</pre></div>
+</div>
+<p><strong>This means the push has not been completed</strong>. The reason for this is
+that we haven’t told Git where to push this new branch (it will not
+assume that it has to be pushed to the GitHub repository). Fortunately,
+you can resolve this issue simply by running the verbatim command
+provided in the error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git push --set-upstream origin add-author
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 367 bytes | 367.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote:
+remote: Create a pull request for &#39;add-author&#39; on GitHub by visiting:
+remote:      https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME/pull/new/add-author
+remote:
+To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+ * [new branch]      add-author -&gt; add-author
+Branch &#39;add-author&#39; set up to track remote branch &#39;add-author&#39; from &#39;origin&#39;.
+</pre></div>
+</div>
+<p>Note: You should ignore the “pull request” instructions in the above message.
+We will cover pull requests later in the quarter.</p>
+<p>If you now go to your repository on GitHub,
+and click on the “Branch” pull-down list, you will see <code class="docutils literal notranslate"><span class="pre">add-author</span></code> in
+the list of branches.</p>
+<p>Please note that, from this point onwards, you’ll be able to push this
+new branch just by running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> (the <code class="docutils literal notranslate"><span class="pre">--set-upstream</span></code> option
+is only necessary the first time you push a new branch)</p>
+</div>
+<div class="section" id="merging">
+<h3>Merging<a class="headerlink" href="#merging" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">main</span></code> branch is, by convention, the “stable” branch of the
+repository, in the sense that it should only contain stable (not broken)
+code. So, it is very common to create separate branches to implement
+specific tasks, features, etc. and to then <em>merge</em> them back to the
+<code class="docutils literal notranslate"><span class="pre">main</span></code> branch once that work is finished. This keeps the <code class="docutils literal notranslate"><span class="pre">main</span></code>
+branch much cleaner, as it only contains the “final” version of our code
+at any point, instead of lots of commits that may represent work in
+progress.</p>
+<p>When we merge a branch with another branch, we basically take all the
+changes done in all the commits in the origin branch, and add them to
+the destination branch. This is done by creating a new commit, called a
+<em>merge commit</em>, to merge together the heads of the two branches. For
+example, in this diagram, commit <code class="docutils literal notranslate"><span class="pre">854bff54</span></code> merges <code class="docutils literal notranslate"><span class="pre">foo</span></code> into
+<code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<div class="figure align-default">
+<img alt="branches3" src="../_images/git-branches-3.png" />
+</div>
+<p>Now, let’s say we want to merge the changes from our <code class="docutils literal notranslate"><span class="pre">add-author</span></code> branch into
+the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. We first need to switch to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
+</pre></div>
+</div>
+<p>Then, we use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code> to specify that we want to merge
+<code class="docutils literal notranslate"><span class="pre">add-author</span></code> into the current branch (<code class="docutils literal notranslate"><span class="pre">main</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">merge</span> <span class="n">add</span><span class="o">-</span><span class="n">author</span>
+</pre></div>
+</div>
+<p>If the merge works, you should see the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Updating</span> <span class="mi">2</span><span class="n">a78570</span><span class="o">..</span><span class="n">a893dc8</span>
+<span class="n">Fast</span><span class="o">-</span><span class="n">forward</span>
+ <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="o">|</span> <span class="mi">2</span> <span class="o">+-</span>
+ <span class="mi">1</span> <span class="n">file</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">1</span> <span class="n">insertion</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="mi">1</span> <span class="n">deletion</span><span class="p">(</span><span class="o">-</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You should open <code class="docutils literal notranslate"><span class="pre">echo.c</span></code> to verify that the merge was completed
+successfully.</p>
+<p>However, if you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, you won’t see any special “merge
+commit” in the log history:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="n">a893dc8d2843b1f00f1f083cf7a32931aaef909e</span> <span class="p">(</span><span class="n">HEAD</span> <span class="o">-&gt;</span> <span class="n">main</span><span class="p">,</span> <span class="n">add</span><span class="o">-</span><span class="n">author</span><span class="p">)</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Borja</span> <span class="n">Sotomayor</span> <span class="o">&lt;</span><span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sat</span> <span class="n">Mar</span> <span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mi">21</span> <span class="mi">2021</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">Updated</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span>
+
+<span class="n">commit</span> <span class="mi">2</span><span class="n">a7857065581a0c003418c308cd0330b1021d32d</span> <span class="p">(</span><span class="n">origin</span><span class="o">/</span><span class="n">main</span><span class="p">)</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Borja</span> <span class="n">Sotomayor</span> <span class="o">&lt;</span><span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sat</span> <span class="n">Mar</span> <span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span> <span class="mi">2021</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">Wrapping</span> <span class="n">up</span> <span class="n">first</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">homework</span>
+
+<span class="n">commit</span> <span class="mi">6</span><span class="n">b336a1d68b868da708c38bf3e1683155ae2967f</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Borja</span> <span class="n">Sotomayor</span> <span class="o">&lt;</span><span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sat</span> <span class="n">Mar</span> <span class="mi">27</span> <span class="mi">10</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">21</span> <span class="mi">2021</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">Added</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<p>The reason for this is that this was a fairly trivial merge which could
+be <em>fast-forwarded</em>, because the commit in <code class="docutils literal notranslate"><span class="pre">add-author</span></code>
+(<code class="docutils literal notranslate"><span class="pre">Updated</span> <span class="pre">author</span> <span class="pre">in</span> <span class="pre">echo.c</span></code>) descends directly from the
+<code class="docutils literal notranslate"><span class="pre">Added</span> <span class="pre">echo.c</span></code> commit in <code class="docutils literal notranslate"><span class="pre">main</span></code>, so we can simply take
+that commit and add it to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+</div>
+<div class="section" id="merge-conflicts">
+<h3>Merge conflicts<a class="headerlink" href="#merge-conflicts" title="Permalink to this headline">¶</a></h3>
+<p>Things get a bit trickier if we try to merge branches where
+the code has diverged in some way. For example, let’s create
+a new branch called <code class="docutils literal notranslate"><span class="pre">update-buffer-size</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">update</span><span class="o">-</span><span class="n">buffer</span><span class="o">-</span><span class="n">size</span>
+</pre></div>
+</div>
+<p>Now, update <code class="docutils literal notranslate"><span class="pre">echo.c</span></code> so the size of the <code class="docutils literal notranslate"><span class="pre">input</span></code> array is <code class="docutils literal notranslate"><span class="pre">1000</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">500</span></code> (similarly, update the second parameter to <code class="docutils literal notranslate"><span class="pre">fgets</span></code>
+accordingly).</p>
+<p>Let’s commit and push this change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git add echo.c
+$ git commit -m&quot;Updated buffer size to 1000&quot;
+[update-buffer-size a72bbd0] Updated buffer size to 1000
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+$ git push --set-upstream origin update-buffer-size
+Total 0 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for &#39;update-buffer-size&#39; on GitHub by visiting:
+remote:      https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME/pull/new/update-buffer-size
+remote:
+To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+ * [new branch]      update-buffer-size -&gt; update-buffer-size
+Branch &#39;update-buffer-size&#39; set up to track remote branch &#39;update-buffer-size&#39; from &#39;origin&#39;.
+</pre></div>
+</div>
+<p>Now, let’s switch to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
+</pre></div>
+</div>
+<p>The buffer size in <code class="docutils literal notranslate"><span class="pre">echo.c</span></code> will still be 500. Let’s make a change
+that will conflict with the change we made on a separate branch:
+change the buffer to <code class="docutils literal notranslate"><span class="pre">250</span></code>, and commit that change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git add echo.c
+$ git commit -m&quot;Updated buffer size to 250&quot;
+[main e5ec414] Updated buffer size to 250
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+</pre></div>
+</div>
+<p>So, we’re now in a situation where the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch and the <code class="docutils literal notranslate"><span class="pre">update-buffer-size</span></code>
+branches have each made conflicting changes to the same lines. While we’ve artificially
+created this situation, take into account that this can easily happen in a project
+with multiple developers: one developer could decide to change the buffer size to
+1000, while another decides that 250 is enough.</p>
+<p>Let’s see what happens if we try to merge <code class="docutils literal notranslate"><span class="pre">update-buffer-size</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git merge update-buffer-size
+Auto-merging echo.c
+CONFLICT (content): Merge conflict in echo.c
+Automatic merge failed; fix conflicts and then commit the result.
+</pre></div>
+</div>
+<p>Git has detected a merge conflict! A merge conflict is basically Git telling us
+“I see two conflicting changes on these two branches, and I don’t know
+how to resolve them automatically; you need to tell me how to do it”.</p>
+<p>Merge conflicts will also be shown on <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch main
+Your branch is ahead of &#39;origin/main&#39; by 2 commits.
+  (use &quot;git push&quot; to publish your local commits)
+
+You have unmerged paths.
+  (fix conflicts and run &quot;git commit&quot;)
+  (use &quot;git merge --abort&quot; to abort the merge)
+
+Unmerged paths:
+  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+    both modified:   echo.c
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</pre></div>
+</div>
+<p>If you open <code class="docutils literal notranslate"><span class="pre">echo.c</span></code>, you will see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
+<span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
+    <span class="n">char</span> <span class="nb">input</span><span class="p">[</span><span class="mi">250</span><span class="p">];</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)){</span>  <span class="o">//</span><span class="n">read</span> <span class="kn">from</span> <span class="nn">STDIN</span> <span class="p">(</span><span class="n">aka</span> <span class="n">command</span><span class="o">-</span><span class="n">line</span><span class="p">)</span>
+<span class="o">=======</span>
+    <span class="n">char</span> <span class="nb">input</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)){</span>  <span class="o">//</span><span class="n">read</span> <span class="kn">from</span> <span class="nn">STDIN</span> <span class="p">(</span><span class="n">aka</span> <span class="n">command</span><span class="o">-</span><span class="n">line</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">update</span><span class="o">-</span><span class="n">buffer</span><span class="o">-</span><span class="n">size</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">input</span><span class="p">);</span>  <span class="o">//</span><span class="nb">print</span> <span class="n">out</span> <span class="n">what</span> <span class="n">user</span> <span class="n">typed</span> <span class="ow">in</span>
+        <span class="n">memset</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="nb">input</span><span class="p">));</span>  <span class="o">//</span><span class="n">reset</span> <span class="n">string</span> <span class="n">to</span> <span class="nb">all</span> <span class="mi">0</span><span class="s1">&#39;s</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In general, any time you see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">branch1</span>
+
+<span class="o">=======</span>
+
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">branch2</span>
+</pre></div>
+</div>
+<p>This is Git telling you “this is the version of the code in branch
+<code class="docutils literal notranslate"><span class="pre">branch1</span></code> and the version of the code in <code class="docutils literal notranslate"><span class="pre">branch2</span></code>; tell me which
+one to use”.</p>
+<p>In some cases, this will just involve editing the file to keep the
+exact version in one of the two branches. However, we are not required
+to do so. For example, the developer handling this merge conflict
+may look at this and realize that the buffer size should actually be
+300. In that case, we would just replace this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
+    <span class="n">char</span> <span class="nb">input</span><span class="p">[</span><span class="mi">250</span><span class="p">];</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)){</span>  <span class="o">//</span><span class="n">read</span> <span class="kn">from</span> <span class="nn">STDIN</span> <span class="p">(</span><span class="n">aka</span> <span class="n">command</span><span class="o">-</span><span class="n">line</span><span class="p">)</span>
+<span class="o">=======</span>
+    <span class="n">char</span> <span class="nb">input</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)){</span>  <span class="o">//</span><span class="n">read</span> <span class="kn">from</span> <span class="nn">STDIN</span> <span class="p">(</span><span class="n">aka</span> <span class="n">command</span><span class="o">-</span><span class="n">line</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">update</span><span class="o">-</span><span class="n">buffer</span><span class="o">-</span><span class="n">size</span>
+</pre></div>
+</div>
+<p>with this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span> <span class="nb">input</span><span class="p">[</span><span class="mi">300</span><span class="p">];</span>
+<span class="k">while</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)){</span>  <span class="o">//</span><span class="n">read</span> <span class="kn">from</span> <span class="nn">STDIN</span> <span class="p">(</span><span class="n">aka</span> <span class="n">command</span><span class="o">-</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>i.e., the full <code class="docutils literal notranslate"><span class="pre">echo.c</span></code> file should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span> <span class="n">echo</span> <span class="n">user</span> <span class="nb">input</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="n">YOUR_NAME</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="n">Last</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">23</span><span class="o">/</span><span class="mi">18</span> <span class="o">*/</span>
+
+<span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="c1">#include &lt;stdlib.h&gt;</span>
+<span class="c1">#include &lt;string.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">char</span> <span class="nb">input</span><span class="p">[</span><span class="mi">300</span><span class="p">];</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)){</span>  <span class="o">//</span><span class="n">read</span> <span class="kn">from</span> <span class="nn">STDIN</span> <span class="p">(</span><span class="n">aka</span> <span class="n">command</span><span class="o">-</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">input</span><span class="p">);</span>  <span class="o">//</span><span class="nb">print</span> <span class="n">out</span> <span class="n">what</span> <span class="n">user</span> <span class="n">typed</span> <span class="ow">in</span>
+        <span class="n">memset</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="nb">input</span><span class="p">));</span>  <span class="o">//</span><span class="n">reset</span> <span class="n">string</span> <span class="n">to</span> <span class="nb">all</span> <span class="mi">0</span><span class="s1">&#39;s</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now, we need to tell Git that we’ve resolved the merge conflict. We do
+this by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<p>Note how now <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> recognizes that the merge conflict has been
+resolved, but has yet to be committed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch main
+Your branch is ahead of &#39;origin/main&#39; by 2 commits.
+  (use &quot;git push&quot; to publish your local commits)
+
+All conflicts fixed but you are still merging.
+  (use &quot;git commit&quot; to conclude merge)
+
+Changes to be committed:
+    modified:   echo.c
+</pre></div>
+</div>
+<p>So, all we need to do is to run this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span>
+</pre></div>
+</div>
+<p>This will open up an editor with a default commit message like
+<code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">branch</span> <span class="pre">'update-buffer-size'</span> <span class="pre">into</span> <span class="pre">main</span></code>. You could change this
+to something like <code class="docutils literal notranslate"><span class="pre">Merging</span> <span class="pre">'update-buffer-size'</span> <span class="pre">(buffer</span> <span class="pre">should</span> <span class="pre">actually</span> <span class="pre">be</span> <span class="pre">300)</span></code>
+to indicate that you did not actually accept the changes from the <code class="docutils literal notranslate"><span class="pre">update-buffer-size</span></code>
+branch but, for the purposes of this homework, you can also just use the default message.</p>
+<p>Once you save the commit message, the
+merge will be completed and you will see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">main</span> <span class="n">e58a1ba</span><span class="p">]</span> <span class="n">Merge</span> <span class="n">branch</span> <span class="s1">&#39;update-buffer-size&#39;</span> <span class="n">into</span> <span class="n">main</span>
+</pre></div>
+</div>
+<p>That is the <em>merge commit</em> for this merge; if you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, you
+will see that the commit history now includes the commit from
+<code class="docutils literal notranslate"><span class="pre">update-buffer-size</span></code>, as well as the merge commit. Notice how it includes a
+<code class="docutils literal notranslate"><span class="pre">Merge:</span></code> line telling us which two commits were merged:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="n">e58a1baa2d6d408027a04d19ca322ef4ceaae9da</span> <span class="p">(</span><span class="n">HEAD</span> <span class="o">-&gt;</span> <span class="n">main</span><span class="p">)</span>
+<span class="n">Merge</span><span class="p">:</span> <span class="n">e5ec414</span> <span class="n">a72bbd0</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Borja</span> <span class="n">Sotomayor</span> <span class="o">&lt;</span><span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sat</span> <span class="n">Mar</span> <span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">43</span> <span class="mi">2021</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">Merge</span> <span class="n">branch</span> <span class="s1">&#39;update-buffer-size&#39;</span> <span class="n">into</span> <span class="n">main</span>
+
+<span class="n">commit</span> <span class="n">e5ec414fb5422487f3d0469583461c9a260432d9</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Borja</span> <span class="n">Sotomayor</span> <span class="o">&lt;</span><span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sat</span> <span class="n">Mar</span> <span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">04</span> <span class="mi">2021</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">Updated</span> <span class="n">buffer</span> <span class="n">size</span> <span class="n">to</span> <span class="mi">250</span>
+
+<span class="n">commit</span> <span class="n">a72bbd0ee5302906177cc9f62d4ff55e1a02c999</span> <span class="p">(</span><span class="n">update</span><span class="o">-</span><span class="n">buffer</span><span class="o">-</span><span class="n">size</span><span class="p">)</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Borja</span> <span class="n">Sotomayor</span> <span class="o">&lt;</span><span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sat</span> <span class="n">Mar</span> <span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">57</span> <span class="mi">2021</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">Updated</span> <span class="n">buffer</span> <span class="n">size</span> <span class="n">to</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+<p>Before continuing with the rest of the homework, make sure to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>
+your work.</p>
+</div>
+</div>
+<div class="section" id="part-iii-additional-exercises">
+<h2>Part III: Additional Exercises<a class="headerlink" href="#part-iii-additional-exercises" title="Permalink to this headline">¶</a></h2>
+<p>The remainder of the homework involves a series of short exercises
+that require you to find a new Git command (or series
+of Git commands) on your own (i.e., these exercises cannot be solved
+just with the commands we’ve explained so far).</p>
+<p>This is a very useful skill to develop:
 most software developers never take a course on Git or read a full book
 on Git before starting to use it; they learn the basics (like you did in
-this lab), and then rely on online documentation to fill the gaps.</p>
+this homework), and then rely on online documentation to fill the gaps.</p>
 <p>So, for the following tasks, you are allowed to obtain the answers in
 any way you want <strong>EXCEPT</strong> by asking someone (other than a CS 220
 instructor or TA) to help you. This means you cannot ask for hints,
 solutions, pointers to documentation, etc. from <em>anyone</em> (classmates,
 roommates, friends, parents, etc.). There is one exception, though: if
-someone asks a question on the <code class="docutils literal notranslate"><span class="pre">#course-labs</span></code> channel on Slack, you
+someone asks a question on the <code class="docutils literal notranslate"><span class="pre">#course-homework</span></code> channel on Slack, you
 are allowed to help them out there, as long as you don’t provide them
 with the answer (however, you are allowed to provide them with links to
-resources they may find useful to figure out the task). See our [Getting
-Help]({{&lt; relref “help.md” &gt;}}) page for more details on the
-<code class="docutils literal notranslate"><span class="pre">#course-labs</span></code> channel.</p>
+resources they may find useful to figure out the task). See our <a class="reference external" href="help.html">Getting Help</a> page for more details on the
+<code class="docutils literal notranslate"><span class="pre">#course-homework</span></code> channel.</p>
 <p>Please note that you are welcome to take the answer verbatim from a
 website, online reference, online forum, etc. as long as you provide
 <em>attribution</em> (i.e., you need to tell us where you found the answer). Of
@@ -676,101 +1353,80 @@ course, you must also follow the instructions you find in those
 references to complete the task you’ve been given.</p>
 <p>Pro tip: Sometimes, just Googling for “how do I…” will yield the answer
 or, at least, some solid leads.</p>
-<div class="section" id="task-6">
-<h2>Task 6<a class="headerlink" href="#task-6" title="Permalink to this headline">¶</a></h2>
-<p>(10 points) Create a directory <code class="docutils literal notranslate"><span class="pre">lab1</span></code> in your repository containing a
-file called <code class="docutils literal notranslate"><span class="pre">README.md</span></code> containing your name and CNetID. Add, commit,
-and push that file.</p>
-<p>Create a file called <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code> in your <code class="docutils literal notranslate"><span class="pre">lab1</span></code> directory. Most of
-the following tasks will require that you add something to this file, so
-we can verify that you completed a task correctly. Don’t add the file
-just yet.</p>
-<p>Note: In all subsequent tasks, you should work only with the files
-inside the <code class="docutils literal notranslate"><span class="pre">lab1</span></code> directory.</p>
-</div>
-<div class="section" id="task-7">
-<h2>Task 7<a class="headerlink" href="#task-7" title="Permalink to this headline">¶</a></h2>
-<p>(5 points) Add the following in <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Task</span> <span class="mi">7</span>
-<span class="o">------</span>
+<p>Finally, remember that, for these exercises, we will be looking at repository
+to check whether you performed the requested actions, but you will also have
+to provide a brief explanation on Gradescope.</p>
+<div class="section" id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<p>(5 points) Add the following line to the <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Yet another change!
 </pre></div>
 </div>
-<p>Create a commit for this change with commit message <code class="docutils literal notranslate"><span class="pre">Addeing</span> <span class="pre">Task</span> <span class="pre">8</span></code>
+<p>Create a commit for this change with commit message <code class="docutils literal notranslate"><span class="pre">Updated</span> <span class="pre">README.md</span> <span class="pre">for</span> <span class="pre">Exercise</span> <span class="pre">1</span></code>
 (yes, exactly that commit message) but make sure you <em>don’t push it</em>.</p>
-<p>Wait! What an embarrassing typo! Find out how you can edit the commit
+<p>Wait! What an embarrassing mistake! (you means to say you’re updating <code class="docutils literal notranslate"><span class="pre">test.txt</span></code>,
+not <code class="docutils literal notranslate"><span class="pre">README.md</span></code>). Find out how you can edit the commit
 message of an existing commit (i.e., the solution is not to create a new
 commit; you have to find out how to edit the commit message of the
-commit you just created). Update the commit message to be “Adding Task
-7”.</p>
-<p>Edit <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code> to explain how you updated the commit message (feel
+commit you just created). Update the commit message to be <code class="docutils literal notranslate"><span class="pre">Updated</span> <span class="pre">test.txt</span> <span class="pre">for</span> <span class="pre">Exercise</span> <span class="pre">1</span></code>.</p>
+<p>On Gradescope, explain how you updated the commit message (feel
 free to simply copy-paste the command you ran and its output). Make sure
 to explain how you found out the answer to this questions! (including
-citing any relevant sources). When you’re done editing <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code>,
-make sure to add, commit and push your changes.</p>
+citing any relevant sources).</p>
 </div>
-<div class="section" id="task-8">
-<h2>Task 8<a class="headerlink" href="#task-8" title="Permalink to this headline">¶</a></h2>
-<p>(5 points) At this point, you’re probably getting tired of always having
-to enter your GitHub password whenever you run certain Git commands.
-Figure out a way to not have to enter your password every time, and edit
-the <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code> file to explain what you did (copy-pasting the
-command(s) you ran and their output is also enough)</p>
-<p>Hint: There is basically a way to tell Git to remember your password.
-That is the simplest way to accomplish this, but there’s also a
-(slightly more complicated) way involving “SSH keys”. Unless you already
-know about SSH keys, you may want to skip that mechanism for now, and
-revisit it at a later time.</p>
-</div>
-<div class="section" id="task-9">
-<h2>Task 9<a class="headerlink" href="#task-9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
 <p>(5 points) Take a look at the following project on GitHub:
 <a class="reference external" href="https://github.com/junegunn/fzf">https://github.com/junegunn/fzf</a>. All you need to know about this project
 is that it provides a very handy tool called <code class="docutils literal notranslate"><span class="pre">fzf</span></code> that is run from
 the terminal, and which can take some number of command-line arguments.</p>
 <p>Clone this repository on your machine, but make sure you clone it in a
 directory <em>outside</em> the local repository you’ve been using so far in
-this lab. Then, find the exact commit where the authors of this project
+this homework. Then, find the exact commit where the authors of this project
 added a <code class="docutils literal notranslate"><span class="pre">--no-mouse</span></code> option to the <code class="docutils literal notranslate"><span class="pre">fzf</span></code> command (hint: commit
 messages will usually mention when a new feature is added, and this
 project is no exception).</p>
 <p>Take into account that, while you should be able to find this out using
 only Git commands, you may need to find out a convenient way of
 exploring the commit log (instead of just scrolling endlessly until you
-find some mention of the <code class="docutils literal notranslate"><span class="pre">--no-mouse</span></code> option). Include the commit SHA
-and commit message in <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code>, and explain how you located that
-commit.</p>
-<p>{{% warning %}} You should ignore any Git instructions provided in the
+find some mention of the <code class="docutils literal notranslate"><span class="pre">--no-mouse</span></code> option).</p>
+<p>On Gradescope, provide the commit SHA and commit message of the commit
+that added the <code class="docutils literal notranslate"><span class="pre">--no-mouse</span></code> option, and explain how you located that commit.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You should ignore any Git instructions provided in the
 <code class="docutils literal notranslate"><span class="pre">fzf</span></code> documentation (specially in their <code class="docutils literal notranslate"><span class="pre">README</span></code> file). These will
-lead you down the wrong path. {{% /warning %}}</p>
+lead you down the wrong path.</p>
 </div>
-<div class="section" id="task-10">
-<h2>Task 10<a class="headerlink" href="#task-10" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="exercise-3">
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
 <p>(5 point) Edit <code class="docutils literal notranslate"><span class="pre">README.md</span></code> (in your repository, not in the <code class="docutils literal notranslate"><span class="pre">fzf</span></code>
 repository you just cloned) and add any content to the file. Figure out
 how you can get Git to tell you the changes you’ve made to the file
 relative to the latest commit. Note that this is different from using
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">show</span></code>, as we have not yet committed these changes. Once you have
-figured this out, and updated <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code> accordingly, undo these
-changes using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">show</span></code>, as we have not yet committed these changes.</p>
+<p>On Gradescope, specify what command you used.</p>
+<p>Before continuing, undo your changes using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code>.</p>
 </div>
-<div class="section" id="task-11">
-<h2>Task 11<a class="headerlink" href="#task-11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-4">
+<h3>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h3>
 <p>(5 points) Create a file called <code class="docutils literal notranslate"><span class="pre">mistake.txt</span></code> with any content. Add,
 commit, and push it to your repository.</p>
 <p>Actually, adding that file was a mistake (duh!). Figure out how to
 remove that file from your repository, while keeping a record of the
 fact that the file existed at some point. In other words, we are not
 asking you to <em>undo</em> the commit that created the file. We’re asking you
-to create a commit that will remove the file. Explain in <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code>
-how you did this.</p>
+to create a commit that will remove the file.</p>
+<p>On Gradescope, explain how you did this.</p>
 <p>Note: The next task asks you to do something similar, and this task can
 technically be accomplished using the same (more general) mechanism in
-Task 12. For this task, you should find a command that specifically
+the next exercise. For this task, you should find a command that specifically
 allows you to remove files.</p>
 </div>
-<div class="section" id="task-12">
-<h2>Task 12<a class="headerlink" href="#task-12" title="Permalink to this headline">¶</a></h2>
-<p>(10 points) Edit <code class="docutils literal notranslate"><span class="pre">README.md</span></code> to add the text <code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">mistake</span></code>.
+<div class="section" id="exercise-5">
+<h3>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h3>
+<p>(5 points) Edit <code class="docutils literal notranslate"><span class="pre">README.md</span></code> to add the text <code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">mistake</span></code>.
 Add and commit (but do not push) this change. Edit the file again to add
 the test <code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">is</span> <span class="pre">also</span> <span class="pre">a</span> <span class="pre">mistake</span></code>. Add and commit (but do not push)
 this change.</p>
@@ -782,76 +1438,21 @@ commits contained a large number of changes, removing those changes
 manually could get really messy. Fortunately, Git provides a command
 that will take one or more commits, and create a new commit with the
 opposite changes from those commits (effectively undoing those commits)</p>
+<p>On Gradescope, explain what command you used. Remember to actually
+run the command and push your changes!</p>
 <p>Note: You may encounter instructions online on how to “undo” a commit
 (in the sense of completely removing it from the commit log). This is
 not what we’re asking you to do: you must find a command that
 specifically takes one or more commits, and undoes them by creating a
 new commit (thus preserving the record of those original commits).</p>
 </div>
-<div class="section" id="task-13">
-<h2>Task 13<a class="headerlink" href="#task-13" title="Permalink to this headline">¶</a></h2>
-<p>(15 points) In many software projects, it’s not uncommon for bugs to go
-unnoticed for a long time, until someone happens to run the software in
-a way that makes the bug apparent. At that point, it’s often your
-responsibility to find the commit that introduced the bad behavior. On
-the flipside, it’s also common to want to find the commit that
-introduced new good behavior, for example, in issue discussions
-(e.g. “This request is redundant because that new behavior was already
-introduced in commit c4b17f9…”). Git provides an extremely powerful
-command for doing exactly this! (we will cryptically refer to this
-command as “command X”) In this task, you must find this command and
-then use it to track down where a bug was fixed in an existing
-repository.</p>
-<p>bcal (found here <a class="reference external" href="https://github.com/jarun/bcal">https://github.com/jarun/bcal</a>) is a nifty little
-utility for doing byte arithmetic and unit conversions (e.g. “how much
-is 5MB in MiB?” “what’s 5KB*1GB?”). In the old days of bcal, it had a
-bug in its parser that would cause the following expression to fail to
-evaluate:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bcal &quot;5*5*5mb&quot;
-</pre></div>
 </div>
-<p>Clone the bcal repository into a new directory, and use command X to
-find the exact commit that fixed this behavior. You can run the bcal
-command like so:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make
-$ ./bcal &quot;5*5*5mb&quot;
-</pre></div>
-</div>
-<p>In <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code>, add a few sentences explaining how you found the
-desired commit, and a line with the commit SHA (the hash identifier of
-the commit) as well as its text. There is one and only one right answer
-to this task, and there is one and only one git command that we will
-consider correct. We will only give you the following hints:</p>
-<ul class="simple">
-<li><p>Command X is not any of the commands we have shown in this lab, nor
-any of the commands you were asked to find in previous tasks. In
-particular, you cannot solve this task just by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> to
-inspect the commit log of the bcal project.</p></li>
-<li><p>Command X has to be run multiple times (with different
-options/parameters) to solve this task.</p></li>
-</ul>
-<p>You will be graded partially on discovering the identity of command X,
-and partially on using command X to find the commit where the bcal bug
-was fixed.</p>
-<div class="section" id="submitting-your-lab">
-<h3>Submitting your lab<a class="headerlink" href="#submitting-your-lab" title="Permalink to this headline">¶</a></h3>
-<p>Before submitting, make sure you’ve committed and pushed your changes to
-the <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code> file (remember you can run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> to check
-this).</p>
-<p>Additionally, to make it easier for the graders to check your answers to
-Tasks 7-13, you will be copy-pasting your answers to those tasks (i.e.,
-whatever you wrote for those tasks in the <code class="docutils literal notranslate"><span class="pre">tasks.txt</span></code> file) on
-<a class="reference external" href="https://gradescope.com/">Gradescope</a>. If you have never used
-Gradescope before, it is a web-based assignment submission and grading
-system. You can access Lab #1 either by logging into
-<a class="reference external" href="https://gradescope.com/">Gradescope</a> or via Canvas.</p>
-<p>Once in Gradescope, simply select assignment “Lab #1: Git”, and fill in
-the answers for Tasks 7-12. Please note that you will not be able to
-enter any answers for Tasks 1-6 on Gradescope, since those will be based
-on the graders’ inspection of your GitHub repository (but we still need
-to include those tasks on Gradescope so we can grade them as part of
-this lab).</p>
-</div>
+<div class="section" id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<p>Parts of this homework are based on a Git lab originally written for CMSC 12100
+by Prof. Anne Rogers, and edited by numerous TAs over the years. The
+Working Collaboratively part of the homework is based on materials
+originally written by Isha Mehrotra (SB’19)</p>
 </div>
 </div>
 
