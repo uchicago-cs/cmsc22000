@@ -1,17 +1,16 @@
-**Due:** Wednesday, April 15th, 8pm
+Homework 1: Git
+===============
 
-{{% warning %}} **NOTE**: This lab is based on a Linux and Git lab
-originally written by Anne Rogers for CMSC 12100 (and updated and edited
-by a variety of instructors and TAs throughout the years) {{% /warning
-%}}
+**Due:** Wednesday, April 7th, 8pm CDT
 
 In some of your previous CS courses, you may have become familiar with
-using Subversion (SVN) to handle revision control (or *version control*)
-of your projects and assignments, and to submit your work for grading.
-In this class, we will be using Git, a more widespread version control
-system that is more commonly used in a variety of software projects.
+using either Subversion (SVN) or Git to store a copy of your code
+in a remote server, and to submit your work for grading.
+In the course project, you will be using Git for its intended purpose:
+as a version control tool that will facilitate collaboration between
+multiple developers.
 
-Like SVN, Git is a *version control system* that maintains files in a
+In a nutshell, Git is a *version control system* that maintains files in a
 *repository* that contains not just files, but also a record of all the
 changes made to those files. Git tracks every version of a file or
 directory using *commits*. When you have made changes to one or more
@@ -22,7 +21,7 @@ checkpoint. This mechanism makes it possible to look at and even revert
 to older versions of a file by going back to your code as it was when
 you “checkpointed” it with a commit.
 
-For each lab assignment, a Git repository will be created for you on
+For each homework assignment, a Git repository will be created for you on
 `GitHub <https://github.com/>`__, a web-based hosting service for Git
 repositories. However, before that repository can be created for you,
 you need to have a GitHub account. If you do not yet have one, you can
@@ -33,23 +32,23 @@ to a lot of other features (please note that having the Student
 Developer Pack is not necessary for CS 220; it’s just a nice benefit you
 get as a student)
 
-Creating your lab repository
-----------------------------
+Creating your homework repository
+---------------------------------
 
-For each lab assignment, we will provide you with an *invitation URL*
-that will allow you sign up for the lab assignment on GitHub, and which
+For each homework assignment, we will provide you with an *invitation URL*
+that will allow you sign up for the homework assignment on GitHub, and which
 will result in the creation of a repository called
-``2020-labN-GITHUB_USERNAME`` inside our ``cmsc22000-labs`` organization
+``2021-hwN-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
 on GitHub (a GitHub “organization” is basically a way to group together
 related repositories). For example, if your GitHub username is
-``jrandom``, your repository will be called ``2020-lab1-jrandom``. This
+``jrandom``, your repository will be called ``2021-hw1-jrandom``. This
 repository will be private, and can only be viewed by you and the CS 220
 course staff.
 
-Where should you do this lab?
------------------------------
+Where should you do this homework assignment?
+---------------------------------------------
 
-For this lab, we will specifically need you to work on a CS machine,
+For this homework, we will specifically need you to work on a CS machine,
 which means you will have to connect remotely to CS environment. You can
 do this in one of two ways:
 
@@ -63,18 +62,59 @@ do this in one of two ways:
    would see if you physically logged into a CSIL machine. However, this
    option may not work well for low-bandwidth Internet connections.
 
-In future labs, there will be more flexibility on where you can do your
+Throughout the homework assignment, you will have to make some simple edits
+to a few text files. If you are using SSH, we suggest you use a command-line
+editor for this (like Vi, emacs, nano, etc.), or Ubuntu's built-in Text Editor
+if using the Virtual Desktop. You do not need to use a full-featured code editor
+in this homework assignment.
+
+In future homeworks, there will be more flexibility on where you can do your
 work, including working locally on your own computer.
 
-Initializing your repository
+How to complete this homework
+-----------------------------
+
+This homework is divided into three parts. The first two parts provide
+a tutorial-style introduction to various aspects of Git. All you need
+to do is follow the instructions, and you will earn points simply for completing the
+steps described in those instructions
+(we will be able to tell whether you followed our instructions by
+looking at your repository). That said, please make sure you understand
+what is accomplished in each step and, if you have any questions, please
+don't hesitate to `ask for help <help.html>`__.
+
+The first part is worth 50 points, and the second part is worth 25 points.
+You will get partial credit if you complete some, but not all, of the steps
+described in each of these parts.
+
+The third part of the homework is worth 25 points and it involves a series of exercises
+that require you to find a new Git command (or series
+of Git commands) on your own. This will involve explaining how you solved
+a given exercise, and you will submit your answers on
+`Gradescope <https://gradescope.com/>`__, which you can access through
+our Canvas site.
+
+Once in Gradescope, simply select assignment “Homework #1: Git”, and fill in
+the answers for the Part III exercises. Please note that you will also see
+"questions" corresponding to Parts I and II, but you will not be able to
+enter any answers there, since those will be based
+on the graders’ inspection of your GitHub repository (but we still need
+to include those tasks on Gradescope so we can grade them as part of
+this homework).
+
+
+Part I: First steps with Git
 ----------------------------
 
-You will start by initializing your repository. Like SVN, your
+Initializing your repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You will start by initializing your repository. Your
 repository is hosted on GitHub, but you can create a local copy in your
 home directory (we will refer to this as your *local repository*).
 
-Log into https://github.com/. Your lab repository,
-``cmsc22000-labs/2020-labN-GITHUB_USERNAME`` should appear under
+Log into https://github.com/. Your homework repository,
+``uchicago-cmsc22000/2021-hwN-GITHUB_USERNAME`` should appear under
 “Repositories”. This will take you to a page where you can browse your
 repository through GitHub’s web interface. However, you haven’t
 initialized your repository yet, so GitHub will provide you with the
@@ -88,8 +128,12 @@ those instructions, but first need to do the following:
 
    ::
 
-      mkdir cs220
-      cd cs220
+      mkdir -p cs220/hw1
+      cd cs220/hw1
+
+   (the ``-p`` flag to mkdir will create all the parent directories if
+   needed; i.e., if you don't already have a ``cs220`` directory, it will
+   create one, and then will create a ``hw1``directory inside it)
 
 -  Inside that folder, create a file called ``README.md`` and add your
    full name to the file.
@@ -102,15 +146,24 @@ Now, from inside your CMSC 22000 directory, run the commands that appear
 under “…or create a new repository on the command line” *except* the
 first one (the one that starts with ``echo``).
 
-*Note: If any commands asks you to enter a username and password, just
+If any commands asks you to enter a username and password, just
 enter your GitHub username and password* (do not enter your CNetID and
-password) If you’re using two-factor authentication in GitHub, you’ll
-actually have to provide an “authentication token” instead of your
-password (you can find instructions on how to do this
-`here <https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line>`__)
+password)
+
+.. note::
+
+  You may get an e-mail from GitHub warning you that password authentication
+  is deprecated. This is normal, and we discuss this in more detail below
+  (in the "Passwordless authentication" section). For now, just use your
+  GitHub username and password when prompted.
+
+  Please note that, if you’re using two-factor authentication in GitHub, you’ll
+  actually have to provide an “authentication token” instead of your
+  password (you can find instructions on how to do this
+  `here <https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line>`__)
 
 Don’t worry about what each individual command does; we will be seeing
-what most of these commands do in this lab. However, if you encounter
+what most of these commands do in this homework. However, if you encounter
 any error messages, please make sure to let us know.
 
 You can verify that your repository was correctly set up by going back
@@ -118,7 +171,7 @@ to your repository’s page on GitHub, you should now see it contains a
 ``README.md`` file. If you click on it, you can see its contents.
 
 Creating a commit
------------------
+~~~~~~~~~~~~~~~~~
 
 If you make changes to your repository, the way to store those changes
 (and the updated versions of the modified files) is by creating a
@@ -150,28 +203,30 @@ a commit:
 
 The text after the ``-m`` is a short message that describes the changes
 you have made since your last commit. Common examples of commit messages
-might be “Finished lab 1” or “Implemented insert function for data
+might be “Finished homework 1” or “Implemented insert function for data
 struct”.
 
-{{% warning %}} If you forget the ``-m`` parameter, Git will think that
-you forgot to specify a commit message. It will graciously open up a
-default editor so that you can enter such a message. This can be useful
-if you want to enter a longer commit message (including multi-line
-messages). We will experiment with this later. {{% /warning %}}
+.. warning::
+
+   If you forget the ``-m`` parameter, Git will think that
+   you forgot to specify a commit message. It will graciously open up a
+   default editor so that you can enter such a message. This can be useful
+   if you want to enter a longer commit message (including multi-line
+   messages). We will experiment with this later.
 
 Once you run the above command, you will see something like the
 following output:
 
 ::
 
-   [master 3e39c15] Updated README.md
+   [main 3e39c15] Updated README.md
     1 file changed, 1 insertion(+), 1 deletion(-)
 
 You’ve created a commit, but you’re not done yet: you haven’t uploaded
-it to the server yet. Forgetting this step is actually a very common
+it to GitHub yet. Forgetting this step is actually a very common
 pitfall, so don’t forget to upload your changes. You must use the
 ``git push`` command for your changes to actually be uploaded to the Git
-server. *If you don’t, the graders will not be able to see your code*.
+server. *If you don’t, the graders will not be able to see your work*.
 Simply run the following command from the Linux command-line:
 
 ::
@@ -183,34 +238,38 @@ them, you should see something like this output:
 
 ::
 
-   Writing objects: 100% (3/3), 274 bytes | 0 bytes/s, done.
-   Total 3 (delta 0), reused 0 (delta 0)
-   To https://github.com/cmsc22000-labs/2020-lab1-borjasotomayor.git
-      4885f1c..3e39c15  master -> master
+    Enumerating objects: 5, done.
+    Counting objects: 100% (5/5), done.
+    Writing objects: 100% (3/3), 279 bytes | 279.00 KiB/s, done.
+    Total 3 (delta 0), reused 0 (delta 0)
+    To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+       392555e..0c85752  main -> main
 
 You can ignore most of those messages. The important thing is to not see
 any warnings or error messages.
 
-{{% warning %}} When you push for the first time, you may get a message
-saying that ``push.default is unset``, and suggesting two possible
-commands to remedy the situation. While the rest of the lab will work
-fine if you don’t run either of these commands, you should run the
-command to use “simple” (this will prevent the warning from appearing
-every time you push) {{% /warning %}}
+.. warning::
 
-You can verify that our Git server correctly received your commit by
-going to your repository on GitHub. The ``README.md`` file should now
+   When you push for the first time, you may get a message
+   saying that ``push.default is unset``, and suggesting two possible
+   commands to remedy the situation. While the rest of the commands in this homework
+   will work fine if you don’t run either of these commands, you should run the
+   command to use “simple” (this will prevent the warning from appearing
+   every time you push)
+
+You can verify that your commit was correctly pushed to GitHub by
+going to your repository on the GitHub website. The ``README.md`` file should now
 show the updated content (your name with your CNetID)
 
 In general, if you’re concerned about whether the graders are seeing the
-right version of your code, you can just go to GitHub. Whatever is shown
+right version of your work, you can just go to GitHub. Whatever is shown
 on your repository’s page is what the graders will see. If you wrote
 some code, and it doesn’t show up on GitHub, make sure you didn’t forget
 to add your files, create a commit, and push the most recent commit to
 the server.
 
-git add revisited and git status
---------------------------------
+``git add`` revisited and ``git status``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let’s make a further change to ``README.md``: Add a line with the text
 ``CMSC 22000 - Introduction to Software Development``.
@@ -229,20 +288,26 @@ This command should output something like this:
 
 ::
 
-   On branch master
-   Your branch is up-to-date with 'origin/master'.
-   Changes not staged for commit:
-     (use "git add <file>..." to update what will be committed)
-     (use "git checkout -- <file>..." to discard changes in working directory)
+    On branch main
+    Your branch is up to date with 'origin/main'.
 
-       modified:   README.md
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
 
-   Untracked files:
-     (use "git add <file>..." to include in what will be committed)
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+        test.txt
 
-       test.txt
+    no changes added to commit (use "git add" and/or "git commit -a")
 
-   no changes added to commit (use "git add" and/or "git commit -a")
+.. note::
+
+   Depending on the version of Git you're using, the message under
+   ``Changes not staged for commit`` may refer to a command called
+   ``git checkout`` (instead of ``git restore``). You will be able to complete this homework even
+   if you're using a version of Git that displays the ``git checkout`` message.
 
 Notice that there are two types of files listed here:
 
@@ -260,14 +325,16 @@ Notice that there are two types of files listed here:
    the same directory as your repository, but which Git isn’t keeping
    track of.
 
-{{% warning %}} You may see some automatically generated files in your
-Untracked files section. Files that start with a pound sign (#) or end
-with a tilde should *not* be added to your repository. Files that end
-with a tilde are backup files created by some editors that are intended
-to help you restore your files if your computer crashes. In general,
-files that are automatically generated should not be committed to your
-repository. Other people should be able to generate their own versions,
-if necessary. {{% /warning %}}
+.. warning::
+
+   You may see some automatically generated files in your
+   Untracked files section. Files that start with a pound sign (#) or end
+   with a tilde should *not* be added to your repository. Files that end
+   with a tilde are backup files created by some editors that are intended
+   to help you restore your files if your computer crashes. In general,
+   files that are automatically generated should not be committed to your
+   repository. Other people should be able to generate their own versions,
+   if necessary.
 
 So, let’s go ahead and add ``README.md``:
 
@@ -279,18 +346,23 @@ And re-run ``git status``. You should see something like this:
 
 ::
 
-   On branch master
-   Your branch is up-to-date with 'origin/master'.
-   Changes to be committed:
-     (use "git reset HEAD <file>..." to unstage)
+    On branch main
+    Your branch is up to date with 'origin/main'.
 
-       new file:   README.md
+    Changes to be committed:
+      (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
 
-   Changes not staged for commit:
-     (use "git add <file>..." to update what will be committed)
-     (use "git checkout -- <file>..." to discard changes in working directory)
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+        test.txt
 
-       modified:   test.txt
+.. note::
+
+   Depending on the version of Git you're using, the message under
+   ``Changes to be committed`` may refer to a command called
+   ``git reset`` (instead of ``git restore``). You will be able to complete this homework even
+   if you're using a version of Git that display the ``git reset`` message.
 
 Notice how there is now a new category of files:
 ``Changes to be committed``. Adding ``README.md`` not only added the
@@ -307,13 +379,13 @@ The output of ``git status`` should now look like this:
 
 ::
 
-   On branch master
-   Your branch is up-to-date with 'origin/master'.
-   Changes to be committed:
-     (use "git reset HEAD <file>..." to unstage)
+    On branch main
+    Your branch is up to date with 'origin/main'.
 
-       new file:   README.md
-       modified:   test.txt
+    Changes to be committed:
+      (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+        new file:   test.txt
 
 Now, we are going to create a commit with these changes. Notice how we
 are not going to use the ``-m`` parameter to ``git commit``:
@@ -324,69 +396,78 @@ are not going to use the ``-m`` parameter to ``git commit``:
 
 When you omit ``-m``, Git will open a terminal text editor where you can
 write your commit message, including multiline commit messages. By
-default, the CS machines will use Vim for this (if you are not a Vim
-user, you can quit by typing ``:wq``). If you want to change your
-default command-line editor, add a line like this:
+default, the CS machines will use `nano <https://www.nano-editor.org/>`__ for this.
+You should see something like this:
 
 ::
 
-   export EDITOR=myfavoriteeditor
+    # Please enter the commit message for your changes. Lines starting
+    # with '#' will be ignored, and an empty message aborts the commit.
+    #
+    # On branch main
+    # Your branch is up to date with 'origin/main'.
+    #
+    # Changes to be committed:
+    #       modified:   README.md
+    #       new file:   test.txt
+    #
 
-At the end of the ``.bashrc`` file in your home directory (make sure you
-replace ``myfavoriteeditor`` with the command for your favorite
-command-line editor: ``vi``, ``emacs``, ``nano``, ``mcedit``, etc.)
 
-Once Git opens your editor of choice, you will see something like this:
-
-::
-
-   # Please enter the commit message for your changes. Lines starting
-   # with '#' will be ignored, and an empty message aborts the commit.
-   # On branch master
-   # Your branch is up-to-date with 'origin/master'.
-   #
-   # Changes to be committed:
-   #       new file:   README.md
-   #       modified:   test.txt
-   #
-
-Now, type in the following commit message:
+Now, type in the following commit message above the lines that start with ``#``:
 
 ::
 
-   Lab 1 updates:
+   Homework 1 updates:
 
    - Added test.txt
    - Updated README.md file
 
-Then, just save the file and exit (using the appropriate commands in
-your editor of choice). This will complete the commit, and you will see
-a message like this:
+In nano, you can save the file and exit by pressing Control-X, entering "Y" when
+prompted to "save modified buffer" (i.e., whether to save the file before exiting),
+and then Enter (you will be asked to confirm the filename to save; do not modify this
+in any way, just confirm by pressing Enter).
+
+This will complete the commit, and you will see a message like this:
 
 ::
 
-   [master 9119c6f] Lab 1 updates
-    2 files changed, 3 insertions(+), 1 deletion(-)
-    create mode 100644 test.txt
+    [main 1810c54] Homework 1 updates:
+     2 files changed, 3 insertions(+), 1 deletion(-)
+     create mode 100644 test.txt
 
-Now, edit both files and add an extra line to each of them with the text
+
+.. note::
+
+    If you want to change your default command-line editor, add a line like this:
+
+    ::
+
+       export EDITOR=myfavoriteeditor
+
+    At the end of the ``.bashrc`` file in your home directory (make sure you
+    replace ``myfavoriteeditor`` with the command for your favorite
+    command-line editor: ``vi``, ``emacs``, ``nano``, ``mcedit``, etc.)
+
+Now, edit ``README.md`` and ``test.txt`` and add an extra line to each of them with the text
 ``Git is pretty cool``. Running ``git status`` should now show the
 following:
 
 ::
 
-   On branch master
-   Your branch is ahead of 'origin/master' by 1 commit.
-     (use "git push" to publish your local commits)
-   Changes not staged for commit:
-     (use "git add <file>..." to update what will be committed)
-     (use "git checkout -- <file>..." to discard changes in working directory)
+    On branch main
+    Your branch is ahead of 'origin/main' by 1 commit.
+      (use "git push" to publish your local commits)
 
-       modified:   README.md
-       modified:   test.txt
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   test.txt
+
 
 If we want to create a commit with these changes, we could simply run
-``git add`` twice (once for each file) but, fortunately, we can also do
+``git add README.md test.txt``, but this can get cumbersome if we want to
+add a lot of files. Fortunately, we can also do
 this:
 
 ::
@@ -409,12 +490,14 @@ So, if you run ``git add -u`` and create a commit:
 
 ::
 
-   On branch master
-   Your branch is ahead of 'origin/master' by 2 commits.
-     (use "git push" to publish your local commits)
-   nothing to commit, working directory clean
+    On branch main
+    Your branch is ahead of 'origin/main' by 2 commits.
+      (use "git push" to publish your local commits)
 
-The message ``Your branch is ahead of 'origin/master' by 2 commits.`` is
+    nothing to commit, working tree clean
+
+
+The message ``Your branch is ahead of 'origin/main' by 2 commits.`` is
 telling you that your local repository contains two commits that have
 not yet been uploaded to GitHub. In fact, if you go to your repository
 on the GitHub website, you’ll see that the two commits we just created
@@ -424,13 +507,16 @@ this:
 
 ::
 
-   Counting objects: 8, done.
-   Delta compression using up to 8 threads.
-   Compressing objects: 100% (6/6), done.
-   Writing objects: 100% (8/8), 730 bytes | 0 bytes/s, done.
-   Total 8 (delta 1), reused 0 (delta 0)
-   To https://github.com/cmsc22000-labs/2020-lab1-username.git
-      3e39c15..53462fb  master -> master
+    Enumerating objects: 10, done.
+    Counting objects: 100% (10/10), done.
+    Delta compression using up to 16 threads
+    Compressing objects: 100% (6/6), done.
+    Writing objects: 100% (8/8), 728 bytes | 728.00 KiB/s, done.
+    Total 8 (delta 1), reused 0 (delta 0)
+    remote: Resolving deltas: 100% (1/1), done.
+    To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+       0c85752..e3f9ef1  main -> main
+
 
 Now go to GitHub. Do you see the updates in your repository? Click on
 “Commits” (above the file listing in your repository). If you click on
@@ -441,17 +527,19 @@ Now, ``git status`` will look like this:
 
 ::
 
-   On branch master
-   Your branch is up-to-date with 'origin/master'.
-   nothing to commit, working directory clean
+    On branch main
+    Your branch is up to date with 'origin/main'.
 
-If you see ``nothing to commit, working directory clean``, that means
+    nothing to commit, working tree clean
+
+
+If you see ``nothing to commit, working tree clean``, that means
 that there are no changes in your local repository since the last commit
 you created (and, additionally, the above output also tells us that all
 our commits have also been uploaded to GitHub)
 
 Working from multiple locations
--------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 So far, you have a local repository in your CS home directory, which you
 have been uploading to GitHub using the ``git push`` command. However,
@@ -462,19 +550,21 @@ command (don’t run this command just yet):
 
 ::
 
-   git clone https://github.com/cmsc22000-labs/2020-lab1-username.git
+   git clone https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
 
 This will create a local repository that “clones” the version of the
-repository that is currently stored on GitHub. Let’s do this in a
-different directory on the machine you are on. For example:
+repository that is currently stored on GitHub. If you have Git installed
+on your personal machine, you can try running ``git clone`` there,
+but you can also do this in a separate directory of the same machine
+where you've been running Git commands so far. For example:
 
 ::
 
    mkdir -p /tmp/$USER/cs220
    cd /tmp/$USER/cs220
-   git clone https://github.com/cmsc22000-labs/2020-lab1-username.git
+   git clone https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
 
-Make sure to replace ``username`` with your GitHub username!
+Make sure to replace ``GITHUB_USERNAME`` with your GitHub username!
 
 Take into account that, when you run ``git clone``, the repository is
 not cloned *into* the current directory. Instead, a *new* directory
@@ -485,11 +575,13 @@ that repository.
 Now, in the local repository in your home directory, add a line to
 ``test.txt`` with the text ``One more change!``. Create a commit for
 that change and push it to GitHub (you should know how to do this by
-now, but make sure to [ask for help]({{< relref “help.md” >}}) if you’re
-unsure of how to proceed).
+now, but make sure to `ask for help <help.html>`__ if you’re
+unsure of how to proceed). Also, you don't have to use any specific
+commit message (unlike previous steps where we gave you the exact message),
+but make sure your commit message is descriptive and to the point.
 
 Next, in the *second* local repository (the one you just created in a
-separate location in the machine you’re working on), check if that
+separate location), check if that
 change appears in the ``test.txt`` file. It will not, because you have
 not yet downloaded the latest commits from the repository. You can do
 this by running this:
@@ -502,30 +594,32 @@ This should output something like this:
 
 ::
 
-   remote: Counting objects: 3, done.
-   remote: Compressing objects: 100% (3/3), done.
-   remote: Total 3 (delta 1), reused 0 (delta 0)
-   Unpacking objects: 100% (3/3), done.
-   From https://github.com/cmsc22000-labs/2020-lab1-username.git
-      53462fb..0c29617  master     -> origin/master
-   Updating 53462fb..0c29617
-   Fast-forward
-    test.txt | 3 ++-
-    1 file changed, 2 insertions(+), 1 deletion(-)
+    remote: Enumerating objects: 5, done.
+    remote: Counting objects: 100% (5/5), done.
+    remote: Compressing objects: 100% (2/2), done.
+    remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+    Unpacking objects: 100% (3/3), 312 bytes | 20.00 KiB/s, done.
+    From https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME
+       e3f9ef1..5716877  main       -> origin/main
+    Updating e3f9ef1..5716877
+    Fast-forward
+     test.txt | 3 ++-
+     1 file changed, 2 insertions(+), 1 deletion(-)
+
 
 If you have multiple local repositories (e.g., one on a CS machine and
 one on your laptop), it is very important that you remember to run
 ``git pull`` before you start working, and that you ``git push`` any
 changes you make. Otherwise, your local repositories (and the repository
 on GitHub) may *diverge* leading to a messy situation called a *merge
-conflict* (we will be exploring these in a future Git lab). This will be
+conflict* (we discuss this in more detail below). This will be
 specially important once you start using Git for its intended purpose:
 to collaborate with multiple developers, where each developer will have
 their own local repository, and it will become easier for some
 developers’ code to diverge from others’.
 
 Discarding changes and unstaging
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 One of the benefits of using a version control system is that it is very
 easy to inspect the history of changes to a given file, as well as to
@@ -534,22 +628,28 @@ to remove all its contents. ``git status`` will tell us this:
 
 ::
 
-   On branch master
-   Your branch is up-to-date with 'origin/master'.
-   Changes not staged for commit:
-     (use "git add <file>..." to update what will be committed)
-     (use "git checkout -- <file>..." to discard changes in working directory)
+    On branch main
+    Your branch is up to date with 'origin/main'.
 
-       modified:   test.txt
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+        modified:   test.txt
 
-   no changes added to commit (use "git add" and/or "git commit -a")
 
 If we want to discard the changes we made to ``test.txt``, all we have
 to do is follow the helpful advice provided by the above output:
 
 ::
 
-   git checkout -- test.txt
+   git restore test.txt
+
+.. note::
+
+   In older versions of Git, ``git status`` may refer to the ``git checkout`` command.
+   In that case, run this command instead::
+
+        git checkout -- test.txt
 
 If you open ``test.txt``, you’ll see that its contents have been
 magically restored!
@@ -560,13 +660,14 @@ commit it just yet. ``git status`` will show this:
 
 ::
 
-   On branch master
-   Your branch is up-to-date with 'origin/master'.
-   Changes to be committed:
-     (use "git reset HEAD <file>..." to unstage)
+    On branch main
+    Your branch is up to date with 'origin/main'.
 
-       modified:   README.md
-       modified:   test.txt
+    Changes to be committed:
+      (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+        modified:   test.txt
+
 
 Now, let’s say we realized we want to commit the changes to
 ``README.md``, but not to ``test.txt``. However, we’ve already told git
@@ -575,30 +676,52 @@ that we want to include ``test.txt`` in the commit. Fortunately, we can
 
 ::
 
-   git reset HEAD test.txt
+   git restore --staged test.txt
+
+.. note::
+
+   In older versions of Git, ``git status`` may refer to the ``git reset`` command.
+   In that case, run this command instead::
+
+        git reset HEAD test.txt
 
 Now, ``git status`` will show the following:
 
 ::
 
-   On branch master
-   Your branch is up-to-date with 'origin/master'.
-   Changes to be committed:
-     (use "git reset HEAD <file>..." to unstage)
+    On branch main
+    Your branch is up to date with 'origin/main'.
 
-       modified:   README.md
+    Changes to be committed:
+      (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
 
-   Changes not staged for commit:
-     (use "git add <file>..." to update what will be committed)
-     (use "git checkout -- <file>..." to discard changes in working directory)
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+        modified:   test.txt
 
-       modified:   test.txt
 
 Go ahead and run ``git commit``. The commit will now include only
 ``README.md``.
 
+We're nearing the end of the first part of the homework so, before
+continuing to the second part of the homework, let's make sure all
+our changes have been committed and pushed::
+
+    git add -u
+    git commit -m"Wrapping up first part of the homework"
+    git push
+
+Before continuing, make sure ``git status`` shows this::
+
+    On branch main
+    Your branch is up to date with 'origin/main'.
+
+    nothing to commit, working tree clean
+
 Looking at the commit log
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once you have made multiple commits, you can see these commits, their
 dates, commit messages, author, etc. by typing ``git log``. This command
@@ -644,41 +767,662 @@ this:
 Git will only complain if there is more than one commit that starts with
 that same prefix.
 
-Exercises
----------
+Passwordless Authentication
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you’ve completed all the steps described above, congratulations,
-you’ve already earned 40 points (out of 100) in this lab! Make sure you
-remember to ``git push`` so the grader can verify you completed all the
-above tasks. Please note that the above tasks will be graded as follows:
+At this point, you’re probably getting tired of always having
+to enter your GitHub password whenever you run certain Git commands.
 
--  **Task 1**: 10 points for the ``Updated README.md`` commit
--  **Task 2**: 5 points for the ``Lab 1 updates`` commit
--  **Task 3**: 5 points for the ``A few more changes`` commit
--  **Task 4**: 10 points for the commit for testing that git pull works
-   correctly
--  **Task 5**: 10 points for the commit with ``README.md`` (after
-   unstaging ``test.txt``)
+Fortunately, there are two mechanisms to avoid having to enter your
+password every time:
 
-Before this lab’s deadline, you must also complete the tasks below. Some
-of them can be done just with what you have learned in this lab, but
-most of them will require that you find the exact Git command (or series
-of Git commands) on your own. This is a very useful skill to develop:
+- If you are using the HTTPS URL to your repository (as we have been
+  doing so far), you can ask Git to "remember" your password for
+  some set amount of time. This means that, once you enter your
+  password once, Git will not ask for it again for some amount
+  of time (by default, this will be 15 minutes). To enable this feature,
+  run the following::
+
+      git config --global credential.helper cache
+
+  You can set a longer timeout with this command::
+
+      git config --global credential.helper 'cache --timeout=3600'
+
+  (the timeout is in seconds, which means the above command will make Git
+  remember your password for one hour)
+
+  **Note**: GitHub will be deprecating password authentication in August 2021.
+  While you'll be able to use your username and password in this class,
+  you may want to switch to their preferred authentication method:
+  "personal access tokens" (you can read more about this in this page: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+
+- You can also upload an SSH key to GitHub, and use the SSH URL when
+  cloning the repository. If you are already accustomed to using SSH
+  and SSH keys, we suggest you use this mechanism (otherwise,
+  sticking with the HTTPS mechanism described above is fine).
+  Explaining SSH and SSH keys is beyond the scope of this homework,
+  but you can find GitHub's documentation on this mechanism here: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
+
+While either method will work, we recommend eventually getting set up to use
+SSH keys to access GitHub. It is the most secure method, and also the most
+convenient, as you do not have to use your GitHub password or keep track
+of a personal access token.
+
+
+Part II: Working collaboratively with Git
+-----------------------------------------
+
+Suppose you are working with a classmate on a homework assignment that
+requires producing a single file called ``hw1.c`` that includes the
+implementation of some functions. If the file is located in a shared
+filesystem (like the CS filesystem where the same home directories
+appear on all the CS machines), the two of you could edit it at the same
+time, but you’d have to be careful not to overwrite each other’s work.
+
+For example, suppose you both open the file and it contains the
+following:
+
+::
+
+   int foo()
+   {
+       // Write your code here
+   }
+
+You decide to work on function ``bar()`` and your partner decides to
+work on function ``baz()``. So, you end up with this file:
+
+::
+
+   int foo()
+   {
+       // Write your code here
+   }
+
+   int bar()
+   {
+       // ...
+   }
+
+And your partner ends up with this:
+
+::
+
+   int foo()
+   {
+       // Write your code here
+   }
+
+   int baz()
+   {
+       // ...
+   }
+
+If you save the file, and then your partner saves it after you, their
+version of the file will overwrite yours, so all your work on ``bar()``
+will be overwritten.
+
+Ideally, we would like to end up with a consolidated version of the file
+that looks like this:
+
+::
+
+   int foo()
+   {
+       // Write your code here
+   }
+
+   int bar()
+   {
+       // ...
+   }
+
+   int baz()
+   {
+       // ...
+   }
+
+Of course, instead of using a shared filesystem, you could instead
+decide that only one person can edit the file at a time, but that would
+involve a lot of overhead in coordinating each other’s work.
+
+Consider this other scenario: let’s say that the ``foo()`` function
+involves implementing two sub-tasks, which you divide amongst
+yourselves, and you each replace the ``// Write your code here`` with
+your code (for the sake of simplicity, let’s assume that each sub-task
+is implemented with a single ``printf``). Your code might look like
+this:
+
+::
+
+   int foo()
+   {
+       printf("Implemented task 1\n");
+   }
+
+And your partner’s code might look like this:
+
+::
+
+   int foo()
+   {
+       printf("Implemented task 2\n");
+   }
+
+This actually represents a *conflict* in your code: you each have
+divergent replacements for the ``// Write your code here`` line, and it
+is not clear which version is the correct one. In fact, while there may
+be cases where we simply want to use one version over another, in this
+case we would like to *merge* these two versions together to produce
+something like this:
+
+::
+
+   int foo()
+   {
+       printf("Implemented task 1\n");
+       printf("Implemented task 2\n");
+   }
+
+Notice how, earlier, there was no conflict when implementing ``bar()``
+and ``baz()`` because you were adding code to ``hw1.c``, instead of
+replacing existing code with different versions.
+
+Version control systems like Git are very useful when dealing with
+scenarios like the ones above. They will allow two (or more) developers
+to work concurrently on the same code and, whenever possible, will
+automatically merge together changes that do not conflict. When a
+conflict does arise, Git provides a specific mechanism to resolve that
+conflict, which we discuss in the following sections.
+
+Branches
+~~~~~~~~
+
+So far, the commits in your homework repository have created a linear
+sequence of changes like this:
+
+.. figure:: git-branches.png
+   :alt: branches
+
+This is known as the ``main`` branch of your repository (Git itself uses
+the name ``master`` by default, but GitHub `uses the name "main" <https://github.com/github/renaming>`__).
+But, what
+is a "branch"? A branch, loosely, is an
+**independent commit history** than can be manipulated in its own right.
+So far, you have been working with only one branch (the ``main`` branch) and,
+thus, with a single linear history of commits.
+
+However, Git (and most version control systems) allow you to create
+*multiple* branches. These branches are not completely independent of
+each other as, ordinarily, a branch must be “branched off” from an
+existing commit. So, for example, we could have the following:
+
+.. figure:: git-branches-2.png
+   :alt: branches2
+
+Here, besides the ``main`` branch, we have an additional ``foo`` branch
+which could be used to work on a separate feature of a project (or, in this
+case, on an additional ``foobar.c`` file where we are implementing a ``foo()``
+function).  This
+separate branch allows us to work on this task independently from other
+tasks; this may seem over-complicated, but suppose you were working on
+this homework with a classmate: branches would allow you to work independently
+without having to step on each other’s toes. This is similar to the
+first example we showed above (where two developers could be working on
+separate functions, ``bar()`` and ``baz()``).
+
+To experiment with branches, start by adding a file called ``echo.c``
+to your repository, with the following contents:
+
+::
+
+    /* echo.c - echo user input */
+    /* [AUTHOR GOES HERE] */
+    /* Last updated: 3/23/18 */
+
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+    int main(){
+        char input[500];
+        while(fgets(input, 500, stdin)){  //read from STDIN (aka command-line)
+            printf("%s\n", input);  //print out what user typed in
+            memset(input, 0, strlen(input));  //reset string to all 0's
+        }
+        return 1;
+    }
+
+Make sure to add and commit the file::
+
+    git add echo.c
+    git commit -m"Added echo.c"
+
+
+Now, let’s create a new branch in your repository. The
+branch will be called ``add-author`` and you can create it by running
+this:
+
+::
+
+   git checkout -b add-author
+
+If you run ``git branch``, you can see the list of branches in the
+repository, with the current branch highlighted with an asterisk:
+
+::
+
+   * add-author
+     main
+
+The *current branch* of a local repository is the branch where any new
+commits will be added to. Remember, a single branch is a linear sequence
+of commits and, when we have multiple branches (as shown in the diagram
+above), a commit could be placed after the last commit, or *head*, of
+any branch. The head of the current branch is referred to as the
+``HEAD`` (in all caps) of the repository.
+
+You can switch the current branch by using the ``git checkout`` command.
+For example:
+
+::
+
+    $ git checkout main
+    Switched to branch 'main'
+    Your branch is up to date with 'origin/main'.
+    $ git branch
+      add-author
+    * main
+    $ git checkout add-author
+    Switched to branch 'add-author'
+    $ git branch
+    * add-author
+      main
+
+Now, let’s add a commit to the ``add-author`` branch. Simply edit the
+``echo.c`` file and replace ``[AUTHOR GOES HERE]`` with your name. Let's
+add and commit this change::
+
+    git add echo.c
+    git commit -m"Updated author in echo.c"
+
+Now, let's push this change. We'll actually be prevented from doing so:
+
+::
+
+   $ git push
+   fatal: The current branch add-author has no upstream branch.
+   To push the current branch and set the remote as upstream, use
+
+       git push --set-upstream origin add-author
+
+
+**This means the push has not been completed**. The reason for this is
+that we haven’t told Git where to push this new branch (it will not
+assume that it has to be pushed to the GitHub repository). Fortunately,
+you can resolve this issue simply by running the verbatim command
+provided in the error message:
+
+::
+
+    $ git push --set-upstream origin add-author
+    Enumerating objects: 5, done.
+    Counting objects: 100% (5/5), done.
+    Delta compression using up to 16 threads
+    Compressing objects: 100% (3/3), done.
+    Writing objects: 100% (3/3), 367 bytes | 367.00 KiB/s, done.
+    Total 3 (delta 1), reused 0 (delta 0)
+    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+    remote:
+    remote: Create a pull request for 'add-author' on GitHub by visiting:
+    remote:      https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME/pull/new/add-author
+    remote:
+    To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+     * [new branch]      add-author -> add-author
+    Branch 'add-author' set up to track remote branch 'add-author' from 'origin'.
+
+Note: You should ignore the "pull request" instructions in the above message.
+We will cover pull requests later in the quarter.
+
+If you now go to your repository on GitHub,
+and click on the “Branch” pull-down list, you will see ``add-author`` in
+the list of branches.
+
+Please note that, from this point onwards, you'll be able to push this
+new branch just by running ``git push`` (the ``--set-upstream`` option
+is only necessary the first time you push a new branch)
+
+Merging
+~~~~~~~
+
+The ``main`` branch is, by convention, the “stable” branch of the
+repository, in the sense that it should only contain stable (not broken)
+code. So, it is very common to create separate branches to implement
+specific tasks, features, etc. and to then *merge* them back to the
+``main`` branch once that work is finished. This keeps the ``main``
+branch much cleaner, as it only contains the “final” version of our code
+at any point, instead of lots of commits that may represent work in
+progress.
+
+When we merge a branch with another branch, we basically take all the
+changes done in all the commits in the origin branch, and add them to
+the destination branch. This is done by creating a new commit, called a
+*merge commit*, to merge together the heads of the two branches. For
+example, in this diagram, commit ``854bff54`` merges ``foo`` into
+``main``:
+
+.. figure:: git-branches-3.png
+   :alt: branches3
+
+Now, let’s say we want to merge the changes from our ``add-author`` branch into
+the ``main`` branch. We first need to switch to the ``main`` branch:
+
+::
+
+   git checkout main
+
+Then, we use ``git merge`` to specify that we want to merge
+``add-author`` into the current branch (``main``):
+
+::
+
+   git merge add-author
+
+If the merge works, you should see the following:
+
+::
+
+    Updating 2a78570..a893dc8
+    Fast-forward
+     echo.c | 2 +-
+     1 file changed, 1 insertion(+), 1 deletion(-)
+
+You should open ``echo.c`` to verify that the merge was completed
+successfully.
+
+However, if you run ``git log``, you won’t see any special “merge
+commit” in the log history:
+
+::
+
+    commit a893dc8d2843b1f00f1f083cf7a32931aaef909e (HEAD -> main, add-author)
+    Author: Borja Sotomayor <borja@cs.uchicago.edu>
+    Date:   Sat Mar 27 11:08:21 2021 -0500
+
+        Updated author in echo.c
+
+    commit 2a7857065581a0c003418c308cd0330b1021d32d (origin/main)
+    Author: Borja Sotomayor <borja@cs.uchicago.edu>
+    Date:   Sat Mar 27 11:00:12 2021 -0500
+
+        Wrapping up first part of the homework
+
+    commit 6b336a1d68b868da708c38bf3e1683155ae2967f
+    Author: Borja Sotomayor <borja@cs.uchicago.edu>
+    Date:   Sat Mar 27 10:53:21 2021 -0500
+
+        Added echo.c
+
+
+The reason for this is that this was a fairly trivial merge which could
+be *fast-forwarded*, because the commit in ``add-author``
+(``Updated author in echo.c``) descends directly from the
+``Added echo.c`` commit in ``main``, so we can simply take
+that commit and add it to ``main``.
+
+Merge conflicts
+~~~~~~~~~~~~~~~
+
+Things get a bit trickier if we try to merge branches where
+the code has diverged in some way. For example, let's create
+a new branch called ``update-buffer-size``::
+
+    git checkout -b update-buffer-size
+
+Now, update ``echo.c`` so the size of the ``input`` array is ``1000``
+instead of ``500`` (similarly, update the second parameter to ``fgets``
+accordingly).
+
+Let's commit and push this change::
+
+    $ git add echo.c
+    $ git commit -m"Updated buffer size to 1000"
+    [update-buffer-size a72bbd0] Updated buffer size to 1000
+     1 file changed, 2 insertions(+), 2 deletions(-)
+    $ git push --set-upstream origin update-buffer-size
+    Total 0 (delta 0), reused 0 (delta 0)
+    remote:
+    remote: Create a pull request for 'update-buffer-size' on GitHub by visiting:
+    remote:      https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME/pull/new/update-buffer-size
+    remote:
+    To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+     * [new branch]      update-buffer-size -> update-buffer-size
+    Branch 'update-buffer-size' set up to track remote branch 'update-buffer-size' from 'origin'.
+
+
+Now, let's switch to the ``main`` branch::
+
+    git checkout main
+
+The buffer size in ``echo.c`` will still be 500. Let's make a change
+that will conflict with the change we made on a separate branch:
+change the buffer to ``250``, and commit that change::
+
+    $ git add echo.c
+    $ git commit -m"Updated buffer size to 250"
+    [main e5ec414] Updated buffer size to 250
+     1 file changed, 2 insertions(+), 2 deletions(-)
+
+So, we're now in a situation where the ``main`` branch and the ``update-buffer-size``
+branches have each made conflicting changes to the same lines. While we've artificially
+created this situation, take into account that this can easily happen in a project
+with multiple developers: one developer could decide to change the buffer size to
+1000, while another decides that 250 is enough.
+
+Let's see what happens if we try to merge ``update-buffer-size``:
+
+::
+
+    $ git merge update-buffer-size
+    Auto-merging echo.c
+    CONFLICT (content): Merge conflict in echo.c
+    Automatic merge failed; fix conflicts and then commit the result.
+
+Git has detected a merge conflict! A merge conflict is basically Git telling us
+“I see two conflicting changes on these two branches, and I don’t know
+how to resolve them automatically; you need to tell me how to do it”.
+
+Merge conflicts will also be shown on ``git status``:
+
+::
+
+    $ git status
+    On branch main
+    Your branch is ahead of 'origin/main' by 2 commits.
+      (use "git push" to publish your local commits)
+
+    You have unmerged paths.
+      (fix conflicts and run "git commit")
+      (use "git merge --abort" to abort the merge)
+
+    Unmerged paths:
+      (use "git add <file>..." to mark resolution)
+        both modified:   echo.c
+
+    no changes added to commit (use "git add" and/or "git commit -a")
+
+
+If you open ``echo.c``, you will see something like this:
+
+::
+
+    int main(){
+    <<<<<<< HEAD
+        char input[250];
+        while(fgets(input, 250, stdin)){  //read from STDIN (aka command-line)
+    =======
+        char input[1000];
+        while(fgets(input, 1000, stdin)){  //read from STDIN (aka command-line)
+    >>>>>>> update-buffer-size
+            printf("%s\n", input);  //print out what user typed in
+            memset(input, 0, strlen(input));  //reset string to all 0's
+        }
+        return 1;
+    }
+
+In general, any time you see something like this:
+
+::
+
+   <<<<<<< branch1
+
+   =======
+
+   >>>>>>> branch2
+
+This is Git telling you “this is the version of the code in branch
+``branch1`` and the version of the code in ``branch2``; tell me which
+one to use”.
+
+In some cases, this will just involve editing the file to keep the
+exact version in one of the two branches. However, we are not required
+to do so. For example, the developer handling this merge conflict
+may look at this and realize that the buffer size should actually be
+300. In that case, we would just replace this:
+
+::
+
+    <<<<<<< HEAD
+        char input[250];
+        while(fgets(input, 250, stdin)){  //read from STDIN (aka command-line)
+    =======
+        char input[1000];
+        while(fgets(input, 1000, stdin)){  //read from STDIN (aka command-line)
+    >>>>>>> update-buffer-size
+
+with this:
+
+::
+
+    char input[300];
+    while(fgets(input, 300, stdin)){  //read from STDIN (aka command-line)
+
+i.e., the full ``echo.c`` file should look like this::
+
+    /* echo.c - echo user input */
+    /* YOUR_NAME */
+    /* Last updated: 3/23/18 */
+
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+    int main(){
+        char input[300];
+        while(fgets(input, 300, stdin)){  //read from STDIN (aka command-line)
+            printf("%s\n", input);  //print out what user typed in
+            memset(input, 0, strlen(input));  //reset string to all 0's
+        }
+        return 1;
+    }
+
+Now, we need to tell Git that we’ve resolved the merge conflict. We do
+this by using ``git add``:
+
+::
+
+   git add echo.c
+
+Note how now ``git status`` recognizes that the merge conflict has been
+resolved, but has yet to be committed:
+
+::
+
+    $ git status
+    On branch main
+    Your branch is ahead of 'origin/main' by 2 commits.
+      (use "git push" to publish your local commits)
+
+    All conflicts fixed but you are still merging.
+      (use "git commit" to conclude merge)
+
+    Changes to be committed:
+        modified:   echo.c
+
+
+So, all we need to do is to run this:
+
+::
+
+   git commit
+
+This will open up an editor with a default commit message like
+``Merge branch 'update-buffer-size' into main``. You could change this
+to something like ``Merging 'update-buffer-size' (buffer should actually be 300)``
+to indicate that you did not actually accept the changes from the ``update-buffer-size``
+branch but, for the purposes of this homework, you can also just use the default message.
+
+Once you save the commit message, the
+merge will be completed and you will see something like this:
+
+::
+
+   [main e58a1ba] Merge branch 'update-buffer-size' into main
+
+That is the *merge commit* for this merge; if you run ``git log``, you
+will see that the commit history now includes the commit from
+``update-buffer-size``, as well as the merge commit. Notice how it includes a
+``Merge:`` line telling us which two commits were merged:
+
+::
+
+    commit e58a1baa2d6d408027a04d19ca322ef4ceaae9da (HEAD -> main)
+    Merge: e5ec414 a72bbd0
+    Author: Borja Sotomayor <borja@cs.uchicago.edu>
+    Date:   Sat Mar 27 11:25:43 2021 -0500
+
+        Merge branch 'update-buffer-size' into main
+
+    commit e5ec414fb5422487f3d0469583461c9a260432d9
+    Author: Borja Sotomayor <borja@cs.uchicago.edu>
+    Date:   Sat Mar 27 11:15:04 2021 -0500
+
+        Updated buffer size to 250
+
+    commit a72bbd0ee5302906177cc9f62d4ff55e1a02c999 (update-buffer-size)
+    Author: Borja Sotomayor <borja@cs.uchicago.edu>
+    Date:   Sat Mar 27 11:12:57 2021 -0500
+
+        Updated buffer size to 1000
+
+
+Before continuing with the rest of the homework, make sure to ``git push``
+your work.
+
+Part III: Additional Exercises
+------------------------------
+
+The remainder of the homework involves a series of short exercises
+that require you to find a new Git command (or series
+of Git commands) on your own (i.e., these exercises cannot be solved
+just with the commands we've explained so far).
+
+This is a very useful skill to develop:
 most software developers never take a course on Git or read a full book
 on Git before starting to use it; they learn the basics (like you did in
-this lab), and then rely on online documentation to fill the gaps.
+this homework), and then rely on online documentation to fill the gaps.
 
 So, for the following tasks, you are allowed to obtain the answers in
 any way you want **EXCEPT** by asking someone (other than a CS 220
 instructor or TA) to help you. This means you cannot ask for hints,
 solutions, pointers to documentation, etc. from *anyone* (classmates,
 roommates, friends, parents, etc.). There is one exception, though: if
-someone asks a question on the ``#course-labs`` channel on Slack, you
+someone asks a question on the ``#course-homework`` channel on Slack, you
 are allowed to help them out there, as long as you don’t provide them
 with the answer (however, you are allowed to provide them with links to
-resources they may find useful to figure out the task). See our [Getting
-Help]({{< relref “help.md” >}}) page for more details on the
-``#course-labs`` channel.
+resources they may find useful to figure out the task). See our `Getting Help <help.html>`__ page for more details on the
+``#course-homework`` channel.
 
 Please note that you are welcome to take the answer verbatim from a
 website, online reference, online forum, etc. as long as you provide
@@ -689,63 +1433,35 @@ references to complete the task you’ve been given.
 Pro tip: Sometimes, just Googling for “how do I…” will yield the answer
 or, at least, some solid leads.
 
-Task 6
-^^^^^^
+Finally, remember that, for these exercises, we will be looking at repository
+to check whether you performed the requested actions, but you will also have
+to provide a brief explanation on Gradescope.
 
-(10 points) Create a directory ``lab1`` in your repository containing a
-file called ``README.md`` containing your name and CNetID. Add, commit,
-and push that file.
+Exercise 1
+~~~~~~~~~~
 
-Create a file called ``tasks.txt`` in your ``lab1`` directory. Most of
-the following tasks will require that you add something to this file, so
-we can verify that you completed a task correctly. Don’t add the file
-just yet.
-
-Note: In all subsequent tasks, you should work only with the files
-inside the ``lab1`` directory.
-
-Task 7
-^^^^^^
-
-(5 points) Add the following in ``tasks.txt``:
+(5 points) Add the following line to the ``test.txt`` file:
 
 ::
 
-   Task 7
-   ------
+   Yet another change!
 
-Create a commit for this change with commit message ``Addeing Task 8``
+Create a commit for this change with commit message ``Updated README.md for Exercise 1``
 (yes, exactly that commit message) but make sure you *don’t push it*.
 
-Wait! What an embarrassing typo! Find out how you can edit the commit
+Wait! What an embarrassing mistake! (you means to say you're updating ``test.txt``,
+not ``README.md``). Find out how you can edit the commit
 message of an existing commit (i.e., the solution is not to create a new
 commit; you have to find out how to edit the commit message of the
-commit you just created). Update the commit message to be “Adding Task
-7”.
+commit you just created). Update the commit message to be ``Updated test.txt for Exercise 1``.
 
-Edit ``tasks.txt`` to explain how you updated the commit message (feel
+On Gradescope, explain how you updated the commit message (feel
 free to simply copy-paste the command you ran and its output). Make sure
 to explain how you found out the answer to this questions! (including
-citing any relevant sources). When you’re done editing ``tasks.txt``,
-make sure to add, commit and push your changes.
+citing any relevant sources).
 
-Task 8
-^^^^^^
-
-(5 points) At this point, you’re probably getting tired of always having
-to enter your GitHub password whenever you run certain Git commands.
-Figure out a way to not have to enter your password every time, and edit
-the ``tasks.txt`` file to explain what you did (copy-pasting the
-command(s) you ran and their output is also enough)
-
-Hint: There is basically a way to tell Git to remember your password.
-That is the simplest way to accomplish this, but there’s also a
-(slightly more complicated) way involving “SSH keys”. Unless you already
-know about SSH keys, you may want to skip that mechanism for now, and
-revisit it at a later time.
-
-Task 9
-^^^^^^
+Exercise 2
+~~~~~~~~~~
 
 (5 points) Take a look at the following project on GitHub:
 https://github.com/junegunn/fzf. All you need to know about this project
@@ -754,7 +1470,7 @@ the terminal, and which can take some number of command-line arguments.
 
 Clone this repository on your machine, but make sure you clone it in a
 directory *outside* the local repository you’ve been using so far in
-this lab. Then, find the exact commit where the authors of this project
+this homework. Then, find the exact commit where the authors of this project
 added a ``--no-mouse`` option to the ``fzf`` command (hint: commit
 messages will usually mention when a new feature is added, and this
 project is no exception).
@@ -762,27 +1478,32 @@ project is no exception).
 Take into account that, while you should be able to find this out using
 only Git commands, you may need to find out a convenient way of
 exploring the commit log (instead of just scrolling endlessly until you
-find some mention of the ``--no-mouse`` option). Include the commit SHA
-and commit message in ``tasks.txt``, and explain how you located that
-commit.
+find some mention of the ``--no-mouse`` option).
 
-{{% warning %}} You should ignore any Git instructions provided in the
-``fzf`` documentation (specially in their ``README`` file). These will
-lead you down the wrong path. {{% /warning %}}
+On Gradescope, provide the commit SHA and commit message of the commit
+that added the ``--no-mouse`` option, and explain how you located that commit.
 
-Task 10
-^^^^^^^
+.. warning::
+
+   You should ignore any Git instructions provided in the
+   ``fzf`` documentation (specially in their ``README`` file). These will
+   lead you down the wrong path.
+
+Exercise 3
+~~~~~~~~~~
 
 (5 point) Edit ``README.md`` (in your repository, not in the ``fzf``
 repository you just cloned) and add any content to the file. Figure out
 how you can get Git to tell you the changes you’ve made to the file
 relative to the latest commit. Note that this is different from using
-``git show``, as we have not yet committed these changes. Once you have
-figured this out, and updated ``tasks.txt`` accordingly, undo these
-changes using ``git checkout``.
+``git show``, as we have not yet committed these changes.
 
-Task 11
-^^^^^^^
+On Gradescope, specify what command you used.
+
+Before continuing, undo your changes using ``git restore``.
+
+Exercise 4
+~~~~~~~~~~
 
 (5 points) Create a file called ``mistake.txt`` with any content. Add,
 commit, and push it to your repository.
@@ -791,18 +1512,19 @@ Actually, adding that file was a mistake (duh!). Figure out how to
 remove that file from your repository, while keeping a record of the
 fact that the file existed at some point. In other words, we are not
 asking you to *undo* the commit that created the file. We’re asking you
-to create a commit that will remove the file. Explain in ``tasks.txt``
-how you did this.
+to create a commit that will remove the file.
+
+On Gradescope, explain how you did this.
 
 Note: The next task asks you to do something similar, and this task can
 technically be accomplished using the same (more general) mechanism in
-Task 12. For this task, you should find a command that specifically
+the next exercise. For this task, you should find a command that specifically
 allows you to remove files.
 
-Task 12
-^^^^^^^
+Exercise 5
+~~~~~~~~~~
 
-(10 points) Edit ``README.md`` to add the text ``This is a mistake``.
+(5 points) Edit ``README.md`` to add the text ``This is a mistake``.
 Add and commit (but do not push) this change. Edit the file again to add
 the test ``This is also a mistake``. Add and commit (but do not push)
 this change.
@@ -822,76 +1544,10 @@ not what we’re asking you to do: you must find a command that
 specifically takes one or more commits, and undoes them by creating a
 new commit (thus preserving the record of those original commits).
 
-Task 13
-^^^^^^^
+Acknowledgements
+----------------
 
-(15 points) In many software projects, it’s not uncommon for bugs to go
-unnoticed for a long time, until someone happens to run the software in
-a way that makes the bug apparent. At that point, it’s often your
-responsibility to find the commit that introduced the bad behavior. On
-the flipside, it’s also common to want to find the commit that
-introduced new good behavior, for example, in issue discussions
-(e.g. “This request is redundant because that new behavior was already
-introduced in commit c4b17f9…”). Git provides an extremely powerful
-command for doing exactly this! (we will cryptically refer to this
-command as “command X”) In this task, you must find this command and
-then use it to track down where a bug was fixed in an existing
-repository.
-
-bcal (found here https://github.com/jarun/bcal) is a nifty little
-utility for doing byte arithmetic and unit conversions (e.g. “how much
-is 5MB in MiB?” "what’s 5KB*1GB?"). In the old days of bcal, it had a
-bug in its parser that would cause the following expression to fail to
-evaluate:
-
-::
-
-   $ ./bcal "5*5*5mb"
-
-Clone the bcal repository into a new directory, and use command X to
-find the exact commit that fixed this behavior. You can run the bcal
-command like so:
-
-::
-
-   $ make
-   $ ./bcal "5*5*5mb"
-
-In ``tasks.txt``, add a few sentences explaining how you found the
-desired commit, and a line with the commit SHA (the hash identifier of
-the commit) as well as its text. There is one and only one right answer
-to this task, and there is one and only one git command that we will
-consider correct. We will only give you the following hints:
-
--  Command X is not any of the commands we have shown in this lab, nor
-   any of the commands you were asked to find in previous tasks. In
-   particular, you cannot solve this task just by using ``git log`` to
-   inspect the commit log of the bcal project.
--  Command X has to be run multiple times (with different
-   options/parameters) to solve this task.
-
-You will be graded partially on discovering the identity of command X,
-and partially on using command X to find the commit where the bcal bug
-was fixed.
-
-Submitting your lab
-~~~~~~~~~~~~~~~~~~~
-
-Before submitting, make sure you’ve committed and pushed your changes to
-the ``tasks.txt`` file (remember you can run ``git status`` to check
-this).
-
-Additionally, to make it easier for the graders to check your answers to
-Tasks 7-13, you will be copy-pasting your answers to those tasks (i.e.,
-whatever you wrote for those tasks in the ``tasks.txt`` file) on
-`Gradescope <https://gradescope.com/>`__. If you have never used
-Gradescope before, it is a web-based assignment submission and grading
-system. You can access Lab #1 either by logging into
-`Gradescope <https://gradescope.com/>`__ or via Canvas.
-
-Once in Gradescope, simply select assignment “Lab #1: Git”, and fill in
-the answers for Tasks 7-12. Please note that you will not be able to
-enter any answers for Tasks 1-6 on Gradescope, since those will be based
-on the graders’ inspection of your GitHub repository (but we still need
-to include those tasks on Gradescope so we can grade them as part of
-this lab).
+Parts of this homework are based on a Git lab originally written for CMSC 12100
+by Prof. Anne Rogers, and edited by numerous TAs over the years. The
+Working Collaboratively part of the homework is based on materials
+originally written by Isha Mehrotra (SB'19)
