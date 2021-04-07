@@ -18,7 +18,7 @@ used in the previous homework (in general, GitHub will create a new
 repository for each assignment). Like the previous homework, we will provide
 you with an *invitation URL* that will allow you sign up for the homework
 assignment on GitHub, and which will result in the creation of a
-repository called ``2021-hw2-GITHUB_USERNAME``` inside our
+repository called ``2021-hw2-GITHUB_USERNAME`` inside our
 ``uchicago-cmsc22000`` organization on GitHub.
 
 One thing that will be different in this homework is that your homework repository
@@ -68,7 +68,7 @@ The library currently provides two modules:
 
 -  A Point module (``include/point.h`` and ``src/point.c``) that provides
    a number of operations on two-dimensional points
--  A Polygon module (``include/polygon.h' and ``src/polygon.c``) that
+-  A Polygon module (``include/polygon.h`` and ``src/polygon.c``) that
    provides a number of operations on polygons, and which depends on the
    Point module.
 

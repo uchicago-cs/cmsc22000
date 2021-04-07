@@ -20,7 +20,7 @@ we are going to start by supporting only chess. This will give us a
 chance to get some initial feedback on the Boardmaster 3000 before we
 move on to supporting other games.
 
-What’s that you say? There’s a lot of chess games out there already? Ah,
+What’s that you say? There are a lot of chess games out there already? Ah,
 but the Boardmaster 3000 will feature a state-of-the-art multiplatform
 VR interface with AI adversaries powered by sophisticated Deep Learning
 algorithms! Also, you can bet on games using our own cryptocurrency,
@@ -96,7 +96,7 @@ Take into account that you are only going to be *designing* these
 modules. So, you will be focusing only on specifying the *interface* of
 those modules, and not their implementation (with one exception: you
 will have to provide a specification of any internal data structures you
-expect to use)
+expect to use).
 
 Your modules must provide at least the following functionality:
 
@@ -108,7 +108,7 @@ Your modules must provide at least the following functionality:
    -  What are the possible moves for the piece in position *x, y*?
    -  Can piece in position (x0, y0) move to position (x1, y1)?
    -  What piece (if any) will the piece in position (x0, y0) take if it
-      moves to position (x1, y1)
+      moves to position (x1, y1)?
    -  Can the piece in position *x, y* be taken by some other piece in
       one move?
    -  What pieces have been taken by a given player?
@@ -146,7 +146,7 @@ For example:
        int add(int x, int y)
        {
            /* TODO */
-           Return 0;
+           return 0;
        }
 
 You must also provide struct definitions for any data structures you
