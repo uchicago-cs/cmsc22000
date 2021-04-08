@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Creating your lab repository &#8212; CMSC 22000 - Introduction to Software Development</title>
+<title>Homework 2: Software Design &#8212; CMSC 22000 - Introduction to Software Development</title>
 
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -97,32 +97,35 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <p><strong>Due:</strong> Wednesday, April 22nd, 8pm</p>
-<p>In this lab, you will carry out some basic software design tasks. This
-lab will be shorter than in other labs, because you will also be working
+  <div class="section" id="homework-2-software-design">
+<h1>Homework 2: Software Design<a class="headerlink" href="#homework-2-software-design" title="Permalink to this headline">¶</a></h1>
+<p><strong>Due:</strong> Wednesday, April 14, 8pm CDT</p>
+<p>In this homework, you will carry out some basic software design tasks. This
+homework will be shorter than other homeworks, because you will also be working
 on a design warmup exercise with your project team. Please note that,
-while the design warmup exercise is due at the same time as this lab, it
+while the design warmup exercise is due at the same time as this homework, it
 will be part of your project score (it is not counted as an additional
-lab assignment).</p>
-<div class="section" id="creating-your-lab-repository">
-<h1>Creating your lab repository<a class="headerlink" href="#creating-your-lab-repository" title="Permalink to this headline">¶</a></h1>
-<p>In this lab, you will be using a different repository than the one you
-used in the previous lab (in general, GitHub will create a new
-repository for each assignment). Like the previous lab, we will provide
-you with an <em>invitation URL</em> that will allow you sign up for the lab
+homework assignment).</p>
+<div class="section" id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+<p>In this homework, you will be using a different repository than the one you
+used in the previous homework (in general, GitHub will create a new
+repository for each assignment). Like the previous homework, we will provide
+you with an <em>invitation URL</em> that will allow you sign up for the homework
 assignment on GitHub, and which will result in the creation of a
-repository called <code class="docutils literal notranslate"><span class="pre">2020-labN-GITHUB_USERNAME</span></code> inside our
-<code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization on GitHub.</p>
-<p>One thing that will be different in this lab is that your lab repository
-will be seeded with some code. So, once you’ve signed up for the lab
+repository called <code class="docutils literal notranslate"><span class="pre">2021-hw2-GITHUB_USERNAME</span></code> inside our
+<code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization on GitHub.</p>
+<p>One thing that will be different in this homework is that your homework repository
+will be seeded with some code. So, once you’ve signed up for the homework
 assignment on GitHub, you will just need to clone the repository to
 start working on it (you won’t need to run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> or add any files
-to the repository before you start working on the lab.)</p>
-<p>Please note that there will be a separate invitation URL to create a
-shared repository that everyone in your team will have access to.</p>
+to the repository before you start working on the homework).</p>
+<p>Please note that there will be a separate invitation URL for the
+team design exercise, since that will involve creating a separate
+repository that your entire team has access to.</p>
 </div>
 <div class="section" id="refactoring-libgeometry">
-<h1>Refactoring libgeometry<a class="headerlink" href="#refactoring-libgeometry" title="Permalink to this headline">¶</a></h1>
+<h2>Refactoring libgeometry<a class="headerlink" href="#refactoring-libgeometry" title="Permalink to this headline">¶</a></h2>
 <p>Your repository contains a single directory <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> that
 contains the implementation of a simple library for manipulating basic
 geometric shapes. You can build the library just by running this inside
@@ -144,12 +147,12 @@ The area is 4.00
 you can ignore it for now.</p>
 <p>When we get to <em>Implementation</em> in class, we’ll discuss exactly how a
 “library” is built, and how it is linked with other programs. You will
-not need to understand how the code is built to complete this lab.</p>
+not need to understand how the code is built to complete this homework.</p>
 <p>The library currently provides two modules:</p>
 <ul class="simple">
-<li><p>A Point module (<code class="docutils literal notranslate"><span class="pre">include/point.h'</span> <span class="pre">and</span></code>src/point.c`) that provides
+<li><p>A Point module (<code class="docutils literal notranslate"><span class="pre">include/point.h</span></code> and <code class="docutils literal notranslate"><span class="pre">src/point.c</span></code>) that provides
 a number of operations on two-dimensional points</p></li>
-<li><p>A Polygon module (<code class="docutils literal notranslate"><span class="pre">include/polygon.h'</span> <span class="pre">and</span></code>src/polygon.c`) that
+<li><p>A Polygon module (<code class="docutils literal notranslate"><span class="pre">include/polygon.h</span></code> and <code class="docutils literal notranslate"><span class="pre">src/polygon.c</span></code>) that
 provides a number of operations on polygons, and which depends on the
 Point module.</p></li>
 </ul>
@@ -170,7 +173,7 @@ time to define a Segment module just to compute segment intersections.</p>
 <p>However, as we continue to develop libgeometry, we realize that we need
 to perform segment operations in a variety of other places. So, it now
 makes sense to refactor our code to add a Segment module.</p>
-<p>In this task, you must do the following:</p>
+<p>You must do the following:</p>
 <ul>
 <li><p><strong>Task 1</strong> (30 points) Add <code class="docutils literal notranslate"><span class="pre">segment.c</span></code> / <code class="docutils literal notranslate"><span class="pre">segment.h</span></code> files with
 the implementation and interface of a new Segment data type. Make
@@ -195,29 +198,30 @@ break if dependencies are not properly managed.</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">test_point.c</span></code> file, update the intersection tests to make
 sure they use the new version of the file (you don’t need to know
 exactly how these tests work, and you can keep these tests inside the
-<code class="docutils literal notranslate"><span class="pre">test_point.c</span></code>; in a future lab, we will see a cleaner way of
+<code class="docutils literal notranslate"><span class="pre">test_point.c</span></code>; in a future homework, we will see a cleaner way of
 updating the tests). Once you have fixed this, you should be able to
 run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">tests</span></code> followed by <code class="docutils literal notranslate"><span class="pre">tests/test-libgeometry</span></code>.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="submitting-your-lab">
-<h1>Submitting your lab<a class="headerlink" href="#submitting-your-lab" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submitting-your-homework">
+<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h2>
 <p>Before submitting, make sure you’ve added, committed, and pushed all
 your code to GitHub. You will submit your code through Gradescope but,
-unlike the previous lab, we need you to submit the code that is in your
+unlike the previous homework, we need you to submit the code that is in your
 repository (as opposed to filling in some text fields).</p>
 <p>When submitting through Gradescope, you will be given the option of
 manually uploading files, or of uploading a GitHub repository (we
 recommend the latter, as this ensures you are uploading exactly the
 files that are in your repository). If you upload your repository, make
-sure you select your <code class="docutils literal notranslate"><span class="pre">2020-lab2-GITHUB_USERNAME</span></code> repository, with
-“master” as the branch. Please note that you can submit as many times as
+sure you select your <code class="docutils literal notranslate"><span class="pre">2021-hw2-GITHUB_USERNAME</span></code> repository, with
+“main” as the branch. Please note that you can submit as many times as
 you want before the deadline.</p>
 <p>Once you submit your files, an “autograder” will run. This won’t
 actually be doing any grading, but it will try to build your code, to
 make sure you don’t have any compiler errors, etc. If you do, make sure
 to fix them and re-submit again.</p>
+</div>
 </div>
 
 
