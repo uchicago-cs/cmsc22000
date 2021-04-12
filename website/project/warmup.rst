@@ -5,7 +5,7 @@ Design Warm-up #1: Boardmaster 3000
 
 **NOTE:** The late submission policy for homeworks does not apply to this
 assignment. We will be discussing this design in class on Friday, April
-18th, and need all submissions ready by then.
+16th, and need all submissions ready by then.
 
 You have recently joined a software company that is developing an
 exciting new game: The Boardmaster 3000! This game will allow users to
