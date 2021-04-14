@@ -1,37 +1,42 @@
-**Due:** Wednesday, April 29th, 8pm CDT
+Homework 3: Make
+================
+
+**Due:** Wednesday, April 21st, 8pm CDT
 
 In the class project, you will likely produce dozens of C files that
 will ultimately produce a single executable. When dealing with multiple
 source files, specially when there are dependencies between them, it is
 common to use a *build system* instead of manually compiling and linking
-all the files. in this lab, we’ll explore the ways a program can be
+all the files. in this homework, we’ll explore the ways a program can be
 “built”–that is, the way that source code is turned into binary code so
 that a computer can execute it. In some cases, “building” may refer to
 compiling a single file, but usually it refers to the whole process of
 linking and creating a project: which can include linking, compiling,
-and running tests. We’ll look at testing in later labs, and for this lab
+and running tests. We’ll look at testing in later homeworks, and for this homework
 we’ll focus on the ``make`` command as a way to compile and build
 projects.
 
-{{% warning %}} **NOTE**: For some of these tasks, you may be tempted to
-look at the Makefiles included with libgeometry, and copy-paste parts of
-them into your Makefiles. There are two important reasons not to do
-this:
+.. warning::
 
-1. It is important that you understand what you’re doing in each of the
-   tasks in this lab. If you get stuck and you’re not sure how to
-   proceed, please make sure to ask for help. If you just copy-paste
-   from one of our Makefiles, you won’t understand how those parts of
-   the Makefile work.
-2. The tasks in this lab actually ask you to modify a Makefile in ways
-   that are different from how the libgeometry Makefile is written. If
-   you just copy-paste from our Makefile, it is almost certain we will
-   be able to tell that you did so.
+    For some of these tasks, you may be tempted to
+    look at the Makefiles included with libgeometry, and copy-paste parts of
+    them into your Makefiles. There are two important reasons not to do
+    this:
 
-That said, by the end of this lab you should be able to understand
-almost everything that is contained in the libgeometry Makefiles.
-However, it is important that you perform all the intermediate tasks
-before you get to that point. {{% /warning %}}
+    1. It is important that you understand what you’re doing in each of the
+       tasks in this homework. If you get stuck and you’re not sure how to
+       proceed, please make sure to ask for help. If you just copy-paste
+       from one of our Makefiles, you won’t understand how those parts of
+       the Makefile work.
+    2. The tasks in this homework actually ask you to modify a Makefile in ways
+       that are different from how the libgeometry Makefile is written. If
+       you just copy-paste from our Makefile, it is almost certain we will
+       be able to tell that you did so.
+
+    That said, by the end of this homework you should be able to understand
+    almost everything that is contained in the libgeometry Makefiles.
+    However, it is important that you perform all the intermediate tasks
+    before you get to that point.
 
 Finally, for your reference, you may find the following resources
 helpful:
@@ -45,20 +50,19 @@ helpful:
 Project Team Exercise: Design Warm-up (Part II)
 -----------------------------------------------
 
-Along with this week’s lab, we are also assigning the second part of the
-design warm-up exercise, which you can find [here]({{< ref
-“/project/design-2.md” >}}). Please note that the second part of the
-design exercise is due at the same time as this lab.
+Along with this week’s homework, we are also assigning the second part of the
+design warm-up exercise, which you can find `here <../project/design.html>`__.
+Please note that the second part of the design exercise is due at the same time as this homework.
 
-Creating your lab repository
-----------------------------
+Creating your homework repository
+---------------------------------
 
-Like previous labs, we will provide you with an *invitation URL* that
-will allow you sign up for the lab assignment on GitHub, and which will
+Like previous homeworks, we will provide you with an *invitation URL* that
+will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2020-lab3-GITHUB_USERNAME`` inside our ``cmsc22000-labs`` organization
-on GitHub. Like Lab #2, your repository will be seeded with some files
-for the lab, which will be contained in four ``task`` directories inside
+``2021-hw3-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+on GitHub. Like Homework #2, your repository will be seeded with some files
+for the homework, which will be contained in four ``task`` directories inside
 the repository.
 
 Task 1: A simple ``Makefile``
@@ -70,12 +74,18 @@ In the ``task1`` directory, you’ll see a simple program (``greet.c``)
 that prints “Hello there” to the screen and exits. As you’ve done in
 previous courses, you can compile and run the program like so:
 
-``shell script $ gcc -o greet greet.c $ ./greet``
+.. code-block:: shell
+
+    $ gcc -o greet greet.c
+    $ ./greet
+    Hello there
 
 And when you’re done, you can always remove the executable (also called
 the binary) to prevent adding it to version control like so:
 
-``shell script $ rm -f greet``
+.. code-block:: shell
+
+    $ rm -f greet
 
 Now, let’s say you want to change your program so that instead of
 printing “Hello there”, it prints “General Kenobi!” You either have to
@@ -84,7 +94,9 @@ hit the up arrow on your keyboard a million times, or remember
 enable all the warnings, and enable debugging symbols (so you can use
 ``gdb``):
 
-``shell script $ gcc -O2 -Wall -Wextra -g -o greet greet.c``
+.. code-block:: shell
+
+    $ gcc -O2 -Wall -Wextra -g -o greet greet.c
 
 Yuck! Who likes typing all that every time? Let’s simplify this process
 using ``make``. ``make`` is a simple tool that does one and only one
@@ -92,7 +104,7 @@ thing: it looks for a file in the current directory called ``Makefile``,
 and executes commands according to **rules** specified in the
 ``Makefile``. A rule looks something like this:
 
-::
+.. code-block:: makefile
 
    rule-name: prerequisite
        command
@@ -105,7 +117,7 @@ arbitrary commands. Here’s a simple “hello world” ``Makefile``, that
 uses the shell command “echo” (which does exactly what you think it
 does):
 
-::
+.. code-block:: makefile
 
    hello:
        echo "Hello"
@@ -115,33 +127,43 @@ does):
 
 We can use this ``Makefile`` like so:
 
-``shell script $ make hello echo "Hello" Hello $ make world echo "Hello" Hello echo "World!" World!``
+.. code-block:: shell
 
-{{% warning %}} **Beware the curse of the tabs and the missing
-separators!**
+    $ make hello
+    echo "Hello"
+    Hello
+    $ make world
+    echo "Hello"
+    Hello
+    echo "World!"
+    World!
 
-If you get an error message like this:
 
-::
+.. warning::
 
-   Makefile:2: *** missing separator.  Stop.
+    **Beware the curse of the tabs and the missing separators!**
 
-This means there may have been an issue when copy-pasting from this page
-to the ``Makefile``. More specifically, Makefiles use `tab
-characters <https://en.wikipedia.org/wiki/Tab_key>`__ to indent the
-commands in a rule. This makes it challenging to edit Makefiles if you
-have set up your editor to use spaces to indent your code. If you’re
-getting the “missing separator error”, it’s likely that your editor
-automatically converted the tab characters to spaces.
+    If you get an error message like this:
 
-If that is the case, you can tell ``make`` to use spaces instead of tabs
-by adding the following at the top of your Makefile:
+    ::
 
-::
+       Makefile:2: *** missing separator.  Stop.
 
-   .RECIPEPREFIX +=
+    This means there may have been an issue when copy-pasting from this page
+    to the ``Makefile``. More specifically, Makefiles use `tab
+    characters <https://en.wikipedia.org/wiki/Tab_key>`__ to indent the
+    commands in a rule. This makes it challenging to edit Makefiles if you
+    have set up your editor to use spaces to indent your code. If you’re
+    getting the “missing separator error”, it’s likely that your editor
+    automatically converted the tab characters to spaces.
 
-{{% /warning %}}
+    If that is the case, you can tell ``make`` to use spaces instead of tabs
+    by adding the following at the top of your Makefile:
+
+    ::
+
+       .RECIPEPREFIX +=
+
 
 First, notice how ``make hello`` prints both the command that is run by
 that rule, as well as the result of running that command. Next, notice
@@ -156,17 +178,24 @@ One more thing to note is that since ``make`` was designed to work with
 C, it also has a number of *implicit rules*. For example, run the
 following to delete the ``greet`` program we created earlier:
 
-``shell script $ rm -f greet``
+
+.. code-block:: shell
+
+    $ rm -f greet
 
 Now, run this:
 
-``shell script $ make greet``
+.. code-block:: shell
+
+    $ make greet
 
 Our Makefile doesn’t have a ``greet`` rule and, yet, because there is a
 ``greet.c`` file, ``make`` interprets that as “I should generate a
 ``greet`` executable from ``greet.c``”. Similarly, if you run this:
 
-``shell script make greet.o``
+.. code-block:: shell
+
+    $ make greet.o
 
 ``make`` will generate an object file from ``greet.c`` (but won’t
 generate an executable).
@@ -177,7 +206,7 @@ ever create a file called ``clean.c`` in the current directory, or
 or apply an implicit rule. Poor design, sure, but it can be mitigated by
 adding the following to your ``Makefile``:
 
-::
+.. code-block:: makefile
 
    .PHONY: rule1 rule2 ...etc
 
@@ -198,19 +227,21 @@ that the first rule in the file will be the *default* rule, meaning that
 it will be selected whenever you run ``make`` without any parameters. If
 you want to run any other rule, you have to specify the rule name when
 running ``make`` (e.g., ``make clean``). So, it is common to call the
-default rule ``all``, and to write in a way that will build our entire
+default rule ``all``, and to have that rule build our entire
 program.
 
 Once you’re done, add your ``Makefile`` to git, commit it, and push.
 
-{{% warning %}} **NOTE**: Building produces a number of binary files,
-including object files, executables, and (as we’ll see later in this
-lab) library files. These should *never* be added to your Git
-repository! You’ll notice that there’s actually a ``.gitignore`` file in
-the root of your repository with a list of files that Git should ignore
-(so you won’t inadvertently add them to your repository). It is good
-practice to have such a file in any repository you create, to make sure
-you never add binary files to your repository. {{% /warning %}}
+.. note::
+
+    Building produces a number of binary files,
+    including object files, executables, and (as we’ll see later in this
+    homework) library files. These should *never* be added to your Git
+    repository! You’ll notice that there’s actually a ``.gitignore`` file in
+    the root of your repository with a list of files that Git should ignore
+    (so you won’t inadvertently add them to your repository). It is good
+    practice to have such a file in any repository you create, to make sure
+    you never add binary files to your repository.
 
 Task 2: Let’s generalize!
 -------------------------
@@ -225,7 +256,7 @@ different C files, that simply won’t do. Fortunately, ``make`` includes
 a notion of **variables** that we can use here. Working with the example
 from task 1, they work like so:
 
-::
+.. code-block:: makefile
 
    COMMAND = echo
 
@@ -286,12 +317,16 @@ function that calls ``hello_there`` and ``general_kenobi``. To compile
 these files together, recall from 152 / 162 that you have to pass them
 to ``gcc`` like so:
 
-``shell script $ gcc -g -O2 -Wall -Wextra -g src/main.c src/obi_wan.c src/grievous.c -o hello``
+.. code-block:: shell
+
+    $ gcc -g -O2 -Wall -Wextra -g src/main.c src/obi_wan.c src/grievous.c -o hello
 
 There’s a problem with this: how does ``gcc`` know where to find the
 header files? For this we use the ``-I`` flag:
 
-``shell script $ gcc -g -O2 -Wall -Wextra -g -I ./include/ src/main.c src/obi_wan.c src/grievous.c -o hello``
+.. code-block:: shell
+
+    $ gcc -g -O2 -Wall -Wextra -g -I ./include/ src/main.c src/obi_wan.c src/grievous.c -o hello
 
 Yuck! Let’s streamline this. Copy your ``Makefile`` from the previous
 task and add a new variable, ``SRCS``, that defines the list of source
@@ -310,7 +345,9 @@ class.
 First, remove the ``main.c`` file - we don’t want ``main`` in a library.
 From inside the ``task3`` directory:
 
-``shell script $ git rm src/main.c``
+.. code-block:: shell
+
+    $ git rm src/main.c
 
 Note that the ``git rm`` command both removes the file from the
 filesystem, *and* removes it from version control. You should now make a
@@ -331,17 +368,21 @@ large **shared object** file.
 
 To compile a file ``hello.c`` into an object file ``hello.o``:
 
-``shell script gcc -Wall -Wextra -O2 -g -fPIC -c -o hello.o hello.c``
+.. code-block:: shell
+
+   $ gcc -Wall -Wextra -O2 -g -fPIC -c -o hello.o hello.c
 
 Note the presence of the new ``gcc`` flag ``-fPIC``. This flag tells
 ``gcc`` to enable position-independent code. Position-independence is
-beyond the scope of this lab, but it’s necessary for building shared
+beyond the scope of this homework, but it’s necessary for building shared
 libraries. Accordingly, you’ll need to add ``-fPIC`` to your ``CFLAGS``.
 
 To build one or several object files into a shared library, we would do
 this:
 
-``shell script gcc -shared -o libhello.so hello.o``
+.. code-block:: shell
+
+    $ gcc -shared -o libhello.so hello.o
 
 The ``-shared`` option, unsurprisingly, tells ``gcc`` to output a shared
 object file.
@@ -386,24 +427,26 @@ functions:
    current rule, substitute the extension ``.o`` for ``.d``, and pass
    that file to gcc”.
 
-{{% note %}} ``.d`` files (aka, “dependency files”), which you will
-encounter in libgeometry and in other projects, are special files that
-list out all the header files that the project depends on. This is
-because by default, ``make`` does not track changes to .h files, while
-it does track changes to .c files. So, we use a special flag in gcc (the
-``-MM`` flag which you can read more about in ``man gcc``) which
-compiles a list of header files that the code depends on. ``make`` can
-then use that ``.d`` file to figure out when a header file has been
-modified and recompile the code accordingly.
+.. note::
 
-Please note that you do not need to worry about ``.d`` files in this
-lab. {{% /note %}}
+    ``.d`` files (aka, “dependency files”), which you will
+    encounter in libgeometry and in other projects, are special files that
+    list out all the header files that the project depends on. This is
+    because by default, ``make`` does not track changes to .h files, while
+    it does track changes to .c files. So, we use a special flag in gcc (the
+    ``-MM`` flag which you can read more about in ``man gcc``) which
+    compiles a list of header files that the code depends on. ``make`` can
+    then use that ``.d`` file to figure out when a header file has been
+    modified and recompile the code accordingly.
+
+    Please note that you do not need to worry about ``.d`` files in this
+    homework.
 
 Finally, rules can have variable names: if you want to parameterize a
 rule so that it works for any files in a list of files, you could name a
 rule ``$(SRCS)``. Consider the following rule:
 
-::
+.. code-block:: makefile
 
    $(OBJS): %.o:%.c
      $(CC) $(CFLAGS) -c -o $@ $(patsubst %.o, %.c, $@)
@@ -446,7 +489,7 @@ as a guide. However, it is not enough for you to copy-paste parts of
 that ``Makefile``: your ``Makefile`` for this task must be annotated
 with comments (comments in Makefiles begin with ``#``). These comments
 must explain what each rule does, and you must explain any detail or
-feature that was not explicitly explained earlier in the lab.
+feature that was not explicitly explained earlier in the homework.
 
 You must also include a ``readme.txt`` file with instructions on how to
 build and run your program. Remember that, by default, programs running
@@ -457,12 +500,12 @@ correctly find the ``libstarwars.so`` library when it runs.
 CMake
 -----
 
-While you have learned about Make in this lab, the course project uses a
+While you have learned about Make in this homework, the course project uses a
 more advanced build system called `CMake <https://cmake.org/>`__, which
 actually provides a layer of abstraction over Make. For example, this is
 was a simple CMake file for building a library looks like:
 
-::
+.. code-block:: cmake
 
    cmake_minimum_required(VERSION 3.5.1)
    project(libstarwars C)
@@ -478,39 +521,37 @@ was a simple CMake file for building a library looks like:
 You can try this CMake build file by saving it as ``CMakeLists.txt``
 inside the ``task4`` directory. Then, run the following commands:
 
-``shell script $ mkdir build $ cd build $ cmake .. $ make``
+.. code-block:: shell
+
+    $ cmake -B build/
 
 This creates a separate ``build`` directory where all the build files
 (including intermediate object files) will be created. This keeps your
 directory structure cleaner by separating your source files from your
-build files. Running ``cmake ..`` actually generates a ``Makefile``;
-running ``make`` will result in a ``libstarwars.so`` library being built
+build files. CMake will actually generate a ``Makefile`` inside the ``build``
+directory, and running ``make`` in that directory will result in a ``libstarwars.so`` library being built
 inside the ``build`` directory.
 
 While it may seem odd that we went through several Make exercises, to
 then reveal we’re not using Make in the course project, it’s hard to
 understand how CMake works if you don’t first understand how the
-underlying Make system works (not just that, there are lots of projects
+underlying Make system works (and not just that, there are lots of projects
 out there that use Make exclusively). We’re not covering CMake in detail
 here because, as you can see above (and as you’ll see in the course
-project), the CMake syntax is pretty intuitive.
+project), the CMake syntax is pretty intuitive and easy to pick up
+on your own once you understand the basics of build systems.
 
-Submitting your lab
--------------------
+Submitting your homework
+------------------------
 
 Before submitting, make sure you’ve added, committed, and pushed all
-your code to GitHub. Like the previous lab, you will submit your code
+your code to GitHub. Like the previous homework, you will submit your code
 through Gradescope,
 
 When submitting through Gradescope, you will be given the option of
 manually uploading files, or of uploading a GitHub repository (we
 recommend the latter, as this ensures you are uploading exactly the
 files that are in your repository). If you upload your repository, make
-sure you select your ``2020-lab3-GITHUB_USERNAME`` repository, with
-“master” as the branch. Please note that you can submit as many times as
+sure you select your ``2021-hw3-GITHUB_USERNAME`` repository, with
+“main” as the branch. Please note that you can submit as many times as
 you want before the deadline.
-
-Once you submit your files, an “autograder” will run. This won’t
-actually be doing any grading, but it will try to build your code, to
-make sure you don’t have any compiler errors, etc. If you do, make sure
-to fix them and re-submit again.
