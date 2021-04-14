@@ -197,5 +197,5 @@ double polygon_area(polygon_t *poly)
         prev = cur;
     }
 
-    return abs(area / 2.0);
+    return fabs(area / 2.0);
 }
