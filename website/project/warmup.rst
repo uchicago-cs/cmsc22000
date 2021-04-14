@@ -420,7 +420,7 @@ still, essentially, the same as before:
    -  What are the possible moves for the piece in position *x, y*?
    -  Can piece in position (x0, y0) move to position (x1, y1)?
    -  What piece (if any) will the piece in position (x0, y0) take if it
-      moves to position (x1, y1)
+      moves to position (x1, y1)?
    -  Can the piece in position *x, y* be taken by some other piece in
       one move?
    -  What pieces have been taken by a given player?
