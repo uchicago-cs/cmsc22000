@@ -106,6 +106,20 @@
 <li><a class="reference internal" href="#submission-instructions">Submission Instructions</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#design-warm-up-2-boardmaster-3000-part-ii">Design Warm-up #2: Boardmaster 3000 (Part II)</a><ul>
+<li><a class="reference internal" href="#additional-games">Additional games</a><ul>
+<li><a class="reference internal" href="#international-checkers">International Checkers</a></li>
+<li><a class="reference internal" href="#almost-chess">Almost Chess</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#larger-chessboards">Larger Chessboards</a></li>
+<li><a class="reference internal" href="#pawn-promotion">Pawn Promotion</a></li>
+<li><a class="reference internal" href="#support-for-cbfv2">Support for CBFv2</a></li>
+<li><a class="reference internal" href="#id1">Your task</a></li>
+<li><a class="reference internal" href="#id2">Creating your shared team repository</a></li>
+<li><a class="reference internal" href="#id3">Submission Instructions</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -147,9 +161,9 @@ and then load those saved games from disk (additionally, a user may want
 to load a famous chess match). We will be using a simple file format
 called CBF (ChessBoard File), where the chessboard is represented with
 text characters. For example, this chessboard:</p>
-<div class="figure align-default" id="id1">
+<div class="figure align-default" id="id4">
 <img alt="Chess game. Source: https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6" src="../_images/chess.png" />
-<p class="caption"><span class="caption-text">Source: <a class="reference external" href="https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6">https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6</a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Source: <a class="reference external" href="https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6">https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6</a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>Would be represented like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R_BK_B_R</span>
@@ -225,7 +239,7 @@ an illegal move.</p></li>
 the state of the game using C structs.</p>
 </div>
 <div class="section" id="deliverables">
-<h2>Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this headline">¶</a></h2>
+<span id="warmup-deliverables"></span><h2>Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this headline">¶</a></h2>
 <p>Instead of preparing a formal document, you will be specifying your
 design in C code. For each module you design, you must provide a header
 file and a C file. The header file should contain all the functions that
@@ -340,6 +354,218 @@ GitHub repository (we recommend the latter, as this ensures you are
 uploading exactly the files that are in your repository). If you upload
 your repository, make sure you select your
 <code class="docutils literal notranslate"><span class="pre">2021-design1-team-X</span></code> repository, with “main” as the
+branch. Please note that you can submit as many times as you want before
+the deadline.</p>
+</div>
+</div>
+<div class="section" id="design-warm-up-2-boardmaster-3000-part-ii">
+<h1>Design Warm-up #2: Boardmaster 3000 (Part II)<a class="headerlink" href="#design-warm-up-2-boardmaster-3000-part-ii" title="Permalink to this headline">¶</a></h1>
+<p><strong>Due:</strong> Wednesday, April 21st, 8pm CDT</p>
+<p><strong>NOTE:</strong> The late submission policy for labs does not apply to this
+assignment. We will be discussing this design in class on Friday, April
+23rd, and need all submissions ready by then.</p>
+<p>Good news, everyone! The first version of the Boardmaster 3000 has been
+a resounding success! We got a lot of quality feedback from users, which
+included comments like “the VR interface is like nothing I’ve seen
+before”, “finally, a chess game that challenges both my intellect <em>and</em>
+my senses”, and “the AI is creepily lifelike, in a good way, I guess”.
+We know you were not involved in any of those aspects of the game, but
+your modules for loading, manipulating, and saving the state of a game
+were an indispensable building block that made the rest of the game
+possible.</p>
+<p>Encouraged by this early feedback on the first version of the game, we
+are going to add more features to the Boardmaster 3000:</p>
+<ul class="simple">
+<li><p>Support for two more games: checkers and Almost Chess</p></li>
+<li><p>Support for square chessboards larger than 8x8</p></li>
+<li><p>Support for pawn promotion in chess</p></li>
+<li><p>Support for CBFv2, a new and improved file format for specifying
+chessboard-based games</p></li>
+</ul>
+<p>In this design exercise, you will revise your previous design to
+accommodate these additional features.</p>
+<div class="section" id="additional-games">
+<h2>Additional games<a class="headerlink" href="#additional-games" title="Permalink to this headline">¶</a></h2>
+<p>The Boardmaster 3000 must now support
+<a class="reference external" href="https://en.wikipedia.org/wiki/Draughts">checkers</a> (and,
+specifically, <a class="reference external" href="https://en.wikipedia.org/wiki/International_draughts">International
+Checkers</a>) and
+<a class="reference external" href="https://en.wikipedia.org/wiki/Almost_Chess">Almost Chess</a>. Take into
+account that, while we are only adding these two games right now, we
+anticipate we will likely want to support more games in the future, so
+our design should not be specific to just chess, checkers, and Almost
+Chess, and should be easily extensible to support other games played on
+a square chessboard. For example, it’s likely we will want to support
+<a class="reference external" href="https://en.wikipedia.org/wiki/Capablanca_Chess">Capablanca Chess</a> in
+the near future.</p>
+<div class="section" id="international-checkers">
+<h3>International Checkers<a class="headerlink" href="#international-checkers" title="Permalink to this headline">¶</a></h3>
+<p>We will follow the rules described in the <a class="reference external" href="https://en.wikipedia.org/wiki/International_draughts">International
+draughts</a>
+Wikipedia article. However, it is not our goal to support every possible
+rule perfectly in our first implementation of checkers. You may make any
+simplifying assumptions you want, as long as you support, at least,
+moves by regular and crowned pieces, and single-piece captures. Take
+into account this means you don’t have to support capturing multiple
+pieces in successive jumps.</p>
+<p>Take into account that checkers is played on a 10x10 board, an
+additional requirement that is described further below.</p>
+</div>
+<div class="section" id="almost-chess">
+<h3>Almost Chess<a class="headerlink" href="#almost-chess" title="Permalink to this headline">¶</a></h3>
+<p>In <a class="reference external" href="https://en.wikipedia.org/wiki/Almost_Chess">Almost Chess</a>, the
+queen piece is replaced with a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Empress_(chess)">chancellor</a> piece,
+which can move like a rook or a knight. Other than that, there are no
+other changes to the rules.</p>
+</div>
+</div>
+<div class="section" id="larger-chessboards">
+<h2>Larger Chessboards<a class="headerlink" href="#larger-chessboards" title="Permalink to this headline">¶</a></h2>
+<p>In part due to supporting checkers, we now have to be able to support
+chessboards larger than 8x8. Besides the 10x10 chessboard, we may want
+to also allow for chess to be played in chessboards larger than 8x8. You
+may assume that, when using a larger chessboard, the game still starts
+with 32 pieces, and that the exact initial arrangement will be an
+implementation detail.</p>
+</div>
+<div class="section" id="pawn-promotion">
+<h2>Pawn Promotion<a class="headerlink" href="#pawn-promotion" title="Permalink to this headline">¶</a></h2>
+<p>We will now support pawn promotion in chess: when a pawn reaches the
+other end of the board, it can be promoted to a queen, rook, bishop, or
+knight. We will continue to <em>not</em> support castling or <em>en passant</em>.</p>
+</div>
+<div class="section" id="support-for-cbfv2">
+<h2>Support for CBFv2<a class="headerlink" href="#support-for-cbfv2" title="Permalink to this headline">¶</a></h2>
+<p>The CBF format we used in the first design is insufficient to support
+the new features being introduced in this new version of the Boardmaster
+3000. Fortunately, there is a more advanced format, CBFv2, we can use.
+Here is an example for a chess game:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">:</span> <span class="n">chess</span>
+<span class="n">board</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">8</span>
+<span class="n">p1</span><span class="o">-</span><span class="n">captured</span><span class="p">:</span> <span class="n">PPNN</span>
+<span class="n">p2</span><span class="o">-</span><span class="n">captured</span><span class="p">:</span> <span class="n">q</span>
+<span class="nb">next</span><span class="o">-</span><span class="n">turn</span><span class="p">:</span> <span class="n">p2</span>
+<span class="n">R_BQKB_R</span>
+<span class="n">P____PP_</span>
+<span class="n">__PPP__b</span>
+<span class="n">__p_____</span>
+<span class="n">________</span>
+<span class="n">n_______</span>
+<span class="n">ppp_pppp</span>
+<span class="n">r___kbnr</span>
+</pre></div>
+</div>
+<p>Here is an example for a checkers game:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">:</span> <span class="n">checkers</span>
+<span class="n">board</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">10</span>
+<span class="n">p1</span><span class="o">-</span><span class="n">captured</span><span class="p">:</span> <span class="n">CCC</span>
+<span class="n">p2</span><span class="o">-</span><span class="n">captured</span><span class="p">:</span> <span class="n">c</span>
+<span class="nb">next</span><span class="o">-</span><span class="n">turn</span><span class="p">:</span> <span class="n">p1</span>
+<span class="n">_C_C_C_C_C</span>
+<span class="n">C_C_C_C_C_</span>
+<span class="n">___C_C_C_C</span>
+<span class="n">C_____C___</span>
+<span class="n">_______C__</span>
+<span class="n">__c_______</span>
+<span class="n">_c_____c_c</span>
+<span class="n">c_c_c_c_c_</span>
+<span class="n">_c_c_c_c_c</span>
+<span class="n">c_c_c_c_c_</span>
+</pre></div>
+</div>
+<p>A few notes:</p>
+<ul class="simple">
+<li><p>For Almost Chess, the game type is <code class="docutils literal notranslate"><span class="pre">almost-chess</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">captured</span></code> fields refer to the pieces capture <em>by</em> that player
+(not <em>from</em> that player). Player 1 (<code class="docutils literal notranslate"><span class="pre">p1</span></code>) is whatever player makes
+the first move in the game.</p></li>
+<li><p>In almost chess, a chancellor is represented with <code class="docutils literal notranslate"><span class="pre">c</span></code>/<code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p>In checkers, a crowned piece is represented with <code class="docutils literal notranslate"><span class="pre">k</span></code>/<code class="docutils literal notranslate"><span class="pre">K</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>Your task<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>You must modify the design you produced in the first design exercise to
+support these additional requirements, possibly adding additional
+modules. The number of changes required will depend on how
+general-purpose you made your first design (so, having to make only a
+few small changes is not necessarily a bad thing).</p>
+<p>Take into account that the functionality provided by your modules is
+still, essentially, the same as before:</p>
+<ul class="simple">
+<li><p>Loading a game from disk</p></li>
+<li><p>Saving a game to disk</p></li>
+<li><p>Determining the following about the state of the game:</p>
+<ul>
+<li><p>What piece (if any) is in position <em>x, y</em>?</p></li>
+<li><p>What are the possible moves for the piece in position <em>x, y</em>?</p></li>
+<li><p>Can piece in position (x0, y0) move to position (x1, y1)?</p></li>
+<li><p>What piece (if any) will the piece in position (x0, y0) take if it
+moves to position (x1, y1)?</p></li>
+<li><p>Can the piece in position <em>x, y</em> be taken by some other piece in
+one move?</p></li>
+<li><p>What pieces have been taken by a given player?</p></li>
+</ul>
+</li>
+<li><p>Changing the state of the game:</p>
+<ul>
+<li><p>Move piece in position (x0, y0) to position (x1, y1), unless it is
+an illegal move.</p></li>
+</ul>
+</li>
+</ul>
+<p>However, you must take into account the following:</p>
+<ul class="simple">
+<li><p>Moving a piece could result in the piece changing to a different type
+(e.g., pawn promotion in chess and crowning in checkers). While this
+could be treated as an implementation detail (if you make a move,
+this is just a different way in which the internal state of the game
+changes), your “move” function should supply this information in some
+way (otherwise, the user of your module will have to check the state
+of the piece after every move, to see whether it has changed)</p></li>
+<li><p>Since we expect to support more games in the future, you should avoid
+having a function for moving a chess piece and a function for moving
+a checkers piece. Otherwise, if we end up supporting 50 games, we’ll
+end up with 50 “move” functions! (and similarly with other functions
+in your interface)</p></li>
+</ul>
+<p>Like the previous exercise, remember that you should focus only on
+specifying the <em>interface</em> of your modules, and not their
+implementation. Make sure to review the  <a class="reference internal" href="#warmup-deliverables"><span class="std std-ref">Deliverables</span></a> section of the
+first part of the exercise, as your updated
+design should follow the same guidelines described there.</p>
+<p>Besides the C code that specifies your design, you should also answer
+the following questions in your README file:</p>
+<ul class="simple">
+<li><p>In general, what major changes (if any) did you have to make to your
+design to accommodate the additional requirements?</p></li>
+<li><p>In hindsight, what (if anything) would you have done differently in
+your original design that would’ve made it easier to add support for
+these additional requirements?</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>Creating your shared team repository<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Like the previous design exercise, you will have to follow an
+<em>invitation URL</em> to create a repository. However, since the teams were
+already created in the previous design exercise, the invitation URL will
+show you all the existing teams, and all you need to do is select yours.</p>
+<p>If you join the wrong team, or mistakenly create a duplicate team,
+please notify an instructor/TA.</p>
+</div>
+<div class="section" id="id3">
+<h2>Submission Instructions<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Before submitting, make sure you’ve added, committed, and pushed all
+your code to GitHub.</p>
+<p>You will submit your code through Gradescope. Please note that only one
+team member needs to make the submission (that team member will be given
+the option to specify who else is in their team). When submitting, you
+will be given the option of manually uploading files, or of uploading a
+GitHub repository (we recommend the latter, as this ensures you are
+uploading exactly the files that are in your repository). If you upload
+your repository, make sure you select your
+<code class="docutils literal notranslate"><span class="pre">2021-design2-team-X</span></code> repository, with “main” as the
 branch. Please note that you can submit as many times as you want before
 the deadline.</p>
 </div>

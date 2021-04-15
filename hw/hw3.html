@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Project Team Exercise: Design Warm-up (Part II) &#8212; CMSC 22000 - Introduction to Software Development</title>
+<title>Homework 3: Make &#8212; CMSC 22000 - Introduction to Software Development</title>
 
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -95,40 +95,63 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Homework 3: Make</a><ul>
+<li><a class="reference internal" href="#project-team-exercise-design-warm-up-part-ii">Project Team Exercise: Design Warm-up (Part II)</a></li>
+<li><a class="reference internal" href="#creating-your-homework-repository">Creating your homework repository</a></li>
+<li><a class="reference internal" href="#task-1-a-simple-makefile">Task 1: A simple <code class="docutils literal notranslate"><span class="pre">Makefile</span></code></a></li>
+<li><a class="reference internal" href="#task-2-lets-generalize">Task 2: Let’s generalize!</a></li>
+<li><a class="reference internal" href="#task-3-building-a-somewhat-realistic-library">Task 3: Building a (somewhat) realistic library</a></li>
+<li><a class="reference internal" href="#task-4-maximum-modularity-and-elegance">Task 4: Maximum modularity and elegance</a></li>
+<li><a class="reference internal" href="#task-5-linking-with-your-library">Task 5: Linking with your library</a></li>
+<li><a class="reference internal" href="#cmake">CMake</a></li>
+<li><a class="reference internal" href="#submitting-your-homework">Submitting your homework</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
-  <p><strong>Due:</strong> Wednesday, April 29th, 8pm CDT</p>
+  <div class="section" id="homework-3-make">
+<h1>Homework 3: Make<a class="headerlink" href="#homework-3-make" title="Permalink to this headline">¶</a></h1>
+<p><strong>Due:</strong> Wednesday, April 21st, 8pm CDT</p>
 <p>In the class project, you will likely produce dozens of C files that
 will ultimately produce a single executable. When dealing with multiple
 source files, specially when there are dependencies between them, it is
 common to use a <em>build system</em> instead of manually compiling and linking
-all the files. in this lab, we’ll explore the ways a program can be
+all the files. in this homework, we’ll explore the ways a program can be
 “built”–that is, the way that source code is turned into binary code so
 that a computer can execute it. In some cases, “building” may refer to
 compiling a single file, but usually it refers to the whole process of
 linking and creating a project: which can include linking, compiling,
-and running tests. We’ll look at testing in later labs, and for this lab
+and running tests. We’ll look at testing in later homeworks, and for this homework
 we’ll focus on the <code class="docutils literal notranslate"><span class="pre">make</span></code> command as a way to compile and build
 projects.</p>
-<p>{{% warning %}} <strong>NOTE</strong>: For some of these tasks, you may be tempted to
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For some of these tasks, you may be tempted to
 look at the Makefiles included with libgeometry, and copy-paste parts of
 them into your Makefiles. There are two important reasons not to do
 this:</p>
 <ol class="arabic simple">
 <li><p>It is important that you understand what you’re doing in each of the
-tasks in this lab. If you get stuck and you’re not sure how to
+tasks in this homework. If you get stuck and you’re not sure how to
 proceed, please make sure to ask for help. If you just copy-paste
 from one of our Makefiles, you won’t understand how those parts of
 the Makefile work.</p></li>
-<li><p>The tasks in this lab actually ask you to modify a Makefile in ways
+<li><p>The tasks in this homework actually ask you to modify a Makefile in ways
 that are different from how the libgeometry Makefile is written. If
 you just copy-paste from our Makefile, it is almost certain we will
 be able to tell that you did so.</p></li>
 </ol>
-<p>That said, by the end of this lab you should be able to understand
+<p>That said, by the end of this homework you should be able to understand
 almost everything that is contained in the libgeometry Makefiles.
 However, it is important that you perform all the intermediate tasks
-before you get to that point. {{% /warning %}}</p>
+before you get to that point.</p>
+</div>
 <p>Finally, for your reference, you may find the following resources
 helpful:</p>
 <ul class="simple">
@@ -139,46 +162,53 @@ and</p></li>
 through <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">make</span></code> and <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">gcc</span></code>.</p></li>
 </ul>
 <div class="section" id="project-team-exercise-design-warm-up-part-ii">
-<h1>Project Team Exercise: Design Warm-up (Part II)<a class="headerlink" href="#project-team-exercise-design-warm-up-part-ii" title="Permalink to this headline">¶</a></h1>
-<p>Along with this week’s lab, we are also assigning the second part of the
-design warm-up exercise, which you can find [here]({{&lt; ref
-“/project/design-2.md” &gt;}}). Please note that the second part of the
-design exercise is due at the same time as this lab.</p>
+<h2>Project Team Exercise: Design Warm-up (Part II)<a class="headerlink" href="#project-team-exercise-design-warm-up-part-ii" title="Permalink to this headline">¶</a></h2>
+<p>Along with this week’s homework, we are also assigning the second part of the
+design warm-up exercise, which you can find <a class="reference external" href="../project/design.html">here</a>.
+Please note that the second part of the design exercise is due at the same time as this homework.</p>
 </div>
-<div class="section" id="creating-your-lab-repository">
-<h1>Creating your lab repository<a class="headerlink" href="#creating-your-lab-repository" title="Permalink to this headline">¶</a></h1>
-<p>Like previous labs, we will provide you with an <em>invitation URL</em> that
-will allow you sign up for the lab assignment on GitHub, and which will
+<div class="section" id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+<p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
+will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-<code class="docutils literal notranslate"><span class="pre">2020-lab3-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization
-on GitHub. Like Lab #2, your repository will be seeded with some files
-for the lab, which will be contained in four <code class="docutils literal notranslate"><span class="pre">task</span></code> directories inside
+<code class="docutils literal notranslate"><span class="pre">2021-hw3-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization
+on GitHub. Like Homework #2, your repository will be seeded with some files
+for the homework, which will be contained in four <code class="docutils literal notranslate"><span class="pre">task</span></code> directories inside
 the repository.</p>
 </div>
 <div class="section" id="task-1-a-simple-makefile">
-<h1>Task 1: A simple <code class="docutils literal notranslate"><span class="pre">Makefile</span></code><a class="headerlink" href="#task-1-a-simple-makefile" title="Permalink to this headline">¶</a></h1>
+<h2>Task 1: A simple <code class="docutils literal notranslate"><span class="pre">Makefile</span></code><a class="headerlink" href="#task-1-a-simple-makefile" title="Permalink to this headline">¶</a></h2>
 <p>(15 points)</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">task1</span></code> directory, you’ll see a simple program (<code class="docutils literal notranslate"><span class="pre">greet.c</span></code>)
 that prints “Hello there” to the screen and exits. As you’ve done in
 previous courses, you can compile and run the program like so:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">gcc</span> <span class="pre">-o</span> <span class="pre">greet</span> <span class="pre">greet.c</span> <span class="pre">$</span> <span class="pre">./greet</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc -o greet greet.c
+$ ./greet
+Hello there
+</pre></div>
+</div>
 <p>And when you’re done, you can always remove the executable (also called
 the binary) to prevent adding it to version control like so:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">rm</span> <span class="pre">-f</span> <span class="pre">greet</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ rm -f greet
+</pre></div>
+</div>
 <p>Now, let’s say you want to change your program so that instead of
 printing “Hello there”, it prints “General Kenobi!” You either have to
 hit the up arrow on your keyboard a million times, or remember
 <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-o</span> <span class="pre">greet</span> <span class="pre">greet.c</span></code>. And perhaps you want to enable optimizations,
 enable all the warnings, and enable debugging symbols (so you can use
 <code class="docutils literal notranslate"><span class="pre">gdb</span></code>):</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">gcc</span> <span class="pre">-O2</span> <span class="pre">-Wall</span> <span class="pre">-Wextra</span> <span class="pre">-g</span> <span class="pre">-o</span> <span class="pre">greet</span> <span class="pre">greet.c</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc -O2 -Wall -Wextra -g -o greet greet.c
+</pre></div>
+</div>
 <p>Yuck! Who likes typing all that every time? Let’s simplify this process
 using <code class="docutils literal notranslate"><span class="pre">make</span></code>. <code class="docutils literal notranslate"><span class="pre">make</span></code> is a simple tool that does one and only one
 thing: it looks for a file in the current directory called <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>,
 and executes commands according to <strong>rules</strong> specified in the
 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. A rule looks something like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="o">-</span><span class="n">name</span><span class="p">:</span> <span class="n">prerequisite</span>
-    <span class="n">command</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">rule-name</span><span class="o">:</span> <span class="n">prerequisite</span>
+    <span class="nb">command</span>
 </pre></div>
 </div>
 <p>In general, rules can have any number of (or zero) prerequisites
@@ -188,17 +218,27 @@ most often used with C programs, <code class="docutils literal notranslate"><spa
 arbitrary commands. Here’s a simple “hello world” <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, that
 uses the shell command “echo” (which does exactly what you think it
 does):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span><span class="p">:</span>
-    <span class="n">echo</span> <span class="s2">&quot;Hello&quot;</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">hello</span><span class="o">:</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Hello&quot;</span>
 
-<span class="n">world</span><span class="p">:</span> <span class="n">hello</span>
-    <span class="n">echo</span> <span class="s2">&quot;World!&quot;</span>
+<span class="nf">world</span><span class="o">:</span> <span class="n">hello</span>
+    <span class="nb">echo</span> <span class="s2">&quot;World!&quot;</span>
 </pre></div>
 </div>
 <p>We can use this <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> like so:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">make</span> <span class="pre">hello</span> <span class="pre">echo</span> <span class="pre">&quot;Hello&quot;</span> <span class="pre">Hello</span> <span class="pre">$</span> <span class="pre">make</span> <span class="pre">world</span> <span class="pre">echo</span> <span class="pre">&quot;Hello&quot;</span> <span class="pre">Hello</span> <span class="pre">echo</span> <span class="pre">&quot;World!&quot;</span> <span class="pre">World!</span></code></p>
-<p>{{% warning %}} <strong>Beware the curse of the tabs and the missing
-separators!</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make hello
+<span class="nb">echo</span> <span class="s2">&quot;Hello&quot;</span>
+Hello
+$ make world
+<span class="nb">echo</span> <span class="s2">&quot;Hello&quot;</span>
+Hello
+<span class="nb">echo</span> <span class="s2">&quot;World!&quot;</span>
+World!
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Beware the curse of the tabs and the missing separators!</strong></p>
 <p>If you get an error message like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Makefile</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span> <span class="o">***</span> <span class="n">missing</span> <span class="n">separator</span><span class="o">.</span>  <span class="n">Stop</span><span class="o">.</span>
 </pre></div>
@@ -215,7 +255,7 @@ by adding the following at the top of your Makefile:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">RECIPEPREFIX</span> <span class="o">+=</span>
 </pre></div>
 </div>
-<p>{{% /warning %}}</p>
+</div>
 <p>First, notice how <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">hello</span></code> prints both the command that is run by
 that rule, as well as the result of running that command. Next, notice
 how since the <code class="docutils literal notranslate"><span class="pre">world</span></code> rule depends on the <code class="docutils literal notranslate"><span class="pre">hello</span></code> rule, the
@@ -227,13 +267,19 @@ case above, <code class="docutils literal notranslate"><span class="pre">make</s
 <p>One more thing to note is that since <code class="docutils literal notranslate"><span class="pre">make</span></code> was designed to work with
 C, it also has a number of <em>implicit rules</em>. For example, run the
 following to delete the <code class="docutils literal notranslate"><span class="pre">greet</span></code> program we created earlier:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">rm</span> <span class="pre">-f</span> <span class="pre">greet</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ rm -f greet
+</pre></div>
+</div>
 <p>Now, run this:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">make</span> <span class="pre">greet</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make greet
+</pre></div>
+</div>
 <p>Our Makefile doesn’t have a <code class="docutils literal notranslate"><span class="pre">greet</span></code> rule and, yet, because there is a
 <code class="docutils literal notranslate"><span class="pre">greet.c</span></code> file, <code class="docutils literal notranslate"><span class="pre">make</span></code> interprets that as “I should generate a
 <code class="docutils literal notranslate"><span class="pre">greet</span></code> executable from <code class="docutils literal notranslate"><span class="pre">greet.c</span></code>”. Similarly, if you run this:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">make</span> <span class="pre">greet.o</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make greet.o
+</pre></div>
+</div>
 <p><code class="docutils literal notranslate"><span class="pre">make</span></code> will generate an object file from <code class="docutils literal notranslate"><span class="pre">greet.c</span></code> (but won’t
 generate an executable).</p>
 <p>The problem here is that if we have a rule called <code class="docutils literal notranslate"><span class="pre">clean</span></code>, we can’t
@@ -241,7 +287,7 @@ ever create a file called <code class="docutils literal notranslate"><span class
 <code class="docutils literal notranslate"><span class="pre">make</span></code> will get confused as to whether it’s supposed to use our rule
 or apply an implicit rule. Poor design, sure, but it can be mitigated by
 adding the following to your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">PHONY</span><span class="p">:</span> <span class="n">rule1</span> <span class="n">rule2</span> <span class="o">...</span><span class="n">etc</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">rule</span>1 <span class="n">rule</span>2 ...<span class="n">etc</span>
 </pre></div>
 </div>
 <p>Where <code class="docutils literal notranslate"><span class="pre">rule1</span></code> and <code class="docutils literal notranslate"><span class="pre">rule2</span></code> and so on are the names of the rules
@@ -259,20 +305,23 @@ that the first rule in the file will be the <em>default</em> rule, meaning that
 it will be selected whenever you run <code class="docutils literal notranslate"><span class="pre">make</span></code> without any parameters. If
 you want to run any other rule, you have to specify the rule name when
 running <code class="docutils literal notranslate"><span class="pre">make</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code>). So, it is common to call the
-default rule <code class="docutils literal notranslate"><span class="pre">all</span></code>, and to write in a way that will build our entire
+default rule <code class="docutils literal notranslate"><span class="pre">all</span></code>, and to have that rule build our entire
 program.</p>
 <p>Once you’re done, add your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to git, commit it, and push.</p>
-<p>{{% warning %}} <strong>NOTE</strong>: Building produces a number of binary files,
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Building produces a number of binary files,
 including object files, executables, and (as we’ll see later in this
-lab) library files. These should <em>never</em> be added to your Git
+homework) library files. These should <em>never</em> be added to your Git
 repository! You’ll notice that there’s actually a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file in
 the root of your repository with a list of files that Git should ignore
 (so you won’t inadvertently add them to your repository). It is good
 practice to have such a file in any repository you create, to make sure
-you never add binary files to your repository. {{% /warning %}}</p>
+you never add binary files to your repository.</p>
+</div>
 </div>
 <div class="section" id="task-2-lets-generalize">
-<h1>Task 2: Let’s generalize!<a class="headerlink" href="#task-2-lets-generalize" title="Permalink to this headline">¶</a></h1>
+<h2>Task 2: Let’s generalize!<a class="headerlink" href="#task-2-lets-generalize" title="Permalink to this headline">¶</a></h2>
 <p>(15 points)</p>
 <p>What happens if we want to change the name of the binary to <code class="docutils literal notranslate"><span class="pre">shblah</span></code>?
 We’d have to go into our <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and replace every occurrence of
@@ -281,13 +330,13 @@ We’d have to go into our <code class="docutils literal notranslate"><span clas
 different C files, that simply won’t do. Fortunately, <code class="docutils literal notranslate"><span class="pre">make</span></code> includes
 a notion of <strong>variables</strong> that we can use here. Working with the example
 from task 1, they work like so:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>COMMAND = echo
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">COMMAND</span> <span class="o">=</span> <span class="nb">echo</span>
 
-hello:
-    $(COMMAND) &quot;Hello&quot;
+<span class="nf">hello</span><span class="o">:</span>
+    <span class="k">$(</span>COMMAND<span class="k">)</span> <span class="s2">&quot;Hello&quot;</span>
 
-world: hello
-    $(COMMAND) &quot;World!&quot;
+<span class="nf">world</span><span class="o">:</span> <span class="n">hello</span>
+    <span class="k">$(</span>COMMAND<span class="k">)</span> <span class="s2">&quot;World!&quot;</span>
 </pre></div>
 </div>
 <p>This <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> works the same as it did above, but now if we ever
@@ -321,7 +370,7 @@ replace instances of <code class="docutils literal notranslate"><span class="pre
 a commit at this point.</p>
 </div>
 <div class="section" id="task-3-building-a-somewhat-realistic-library">
-<h1>Task 3: Building a (somewhat) realistic library<a class="headerlink" href="#task-3-building-a-somewhat-realistic-library" title="Permalink to this headline">¶</a></h1>
+<h2>Task 3: Building a (somewhat) realistic library<a class="headerlink" href="#task-3-building-a-somewhat-realistic-library" title="Permalink to this headline">¶</a></h2>
 <p>(15 + 20 points)</p>
 <p>This task is split into two phases: the first will help you familiarize
 yourself with the structure of a project with multiple files, and the
@@ -336,10 +385,14 @@ which define a function called <code class="docutils literal notranslate"><span 
 function that calls <code class="docutils literal notranslate"><span class="pre">hello_there</span></code> and <code class="docutils literal notranslate"><span class="pre">general_kenobi</span></code>. To compile
 these files together, recall from 152 / 162 that you have to pass them
 to <code class="docutils literal notranslate"><span class="pre">gcc</span></code> like so:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">gcc</span> <span class="pre">-g</span> <span class="pre">-O2</span> <span class="pre">-Wall</span> <span class="pre">-Wextra</span> <span class="pre">-g</span> <span class="pre">src/main.c</span> <span class="pre">src/obi_wan.c</span> <span class="pre">src/grievous.c</span> <span class="pre">-o</span> <span class="pre">hello</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc -g -O2 -Wall -Wextra -g src/main.c src/obi_wan.c src/grievous.c -o hello
+</pre></div>
+</div>
 <p>There’s a problem with this: how does <code class="docutils literal notranslate"><span class="pre">gcc</span></code> know where to find the
 header files? For this we use the <code class="docutils literal notranslate"><span class="pre">-I</span></code> flag:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">gcc</span> <span class="pre">-g</span> <span class="pre">-O2</span> <span class="pre">-Wall</span> <span class="pre">-Wextra</span> <span class="pre">-g</span> <span class="pre">-I</span> <span class="pre">./include/</span> <span class="pre">src/main.c</span> <span class="pre">src/obi_wan.c</span> <span class="pre">src/grievous.c</span> <span class="pre">-o</span> <span class="pre">hello</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc -g -O2 -Wall -Wextra -g -I ./include/ src/main.c src/obi_wan.c src/grievous.c -o hello
+</pre></div>
+</div>
 <p>Yuck! Let’s streamline this. Copy your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> from the previous
 task and add a new variable, <code class="docutils literal notranslate"><span class="pre">SRCS</span></code>, that defines the list of source
 files to pass to <code class="docutils literal notranslate"><span class="pre">gcc</span></code>. Furthermore, you’ll need to modify your
@@ -354,7 +407,9 @@ produce a dynamically-linked library, like the ones we described in
 class.</p>
 <p>First, remove the <code class="docutils literal notranslate"><span class="pre">main.c</span></code> file - we don’t want <code class="docutils literal notranslate"><span class="pre">main</span></code> in a library.
 From inside the <code class="docutils literal notranslate"><span class="pre">task3</span></code> directory:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">git</span> <span class="pre">rm</span> <span class="pre">src/main.c</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git rm src/main.c
+</pre></div>
+</div>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span></code> command both removes the file from the
 filesystem, <em>and</em> removes it from version control. You should now make a
 commit with the message “Starting task 3 phase 2”.</p>
@@ -371,14 +426,18 @@ and ask it to produce an <strong>object</strong> file. Then, we’ll invoke <cod
 more time, asking it to mash all the object files together into one
 large <strong>shared object</strong> file.</p>
 <p>To compile a file <code class="docutils literal notranslate"><span class="pre">hello.c</span></code> into an object file <code class="docutils literal notranslate"><span class="pre">hello.o</span></code>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">gcc</span> <span class="pre">-Wall</span> <span class="pre">-Wextra</span> <span class="pre">-O2</span> <span class="pre">-g</span> <span class="pre">-fPIC</span> <span class="pre">-c</span> <span class="pre">-o</span> <span class="pre">hello.o</span> <span class="pre">hello.c</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc -Wall -Wextra -O2 -g -fPIC -c -o hello.o hello.c
+</pre></div>
+</div>
 <p>Note the presence of the new <code class="docutils literal notranslate"><span class="pre">gcc</span></code> flag <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code>. This flag tells
 <code class="docutils literal notranslate"><span class="pre">gcc</span></code> to enable position-independent code. Position-independence is
-beyond the scope of this lab, but it’s necessary for building shared
+beyond the scope of this homework, but it’s necessary for building shared
 libraries. Accordingly, you’ll need to add <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> to your <code class="docutils literal notranslate"><span class="pre">CFLAGS</span></code>.</p>
 <p>To build one or several object files into a shared library, we would do
 this:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">gcc</span> <span class="pre">-shared</span> <span class="pre">-o</span> <span class="pre">libhello.so</span> <span class="pre">hello.o</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc -shared -o libhello.so hello.o
+</pre></div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">-shared</span></code> option, unsurprisingly, tells <code class="docutils literal notranslate"><span class="pre">gcc</span></code> to output a shared
 object file.</p>
 <p>Add a rule to your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> for <code class="docutils literal notranslate"><span class="pre">obi_wan.o</span></code> and <code class="docutils literal notranslate"><span class="pre">grievous.o</span></code>,
@@ -390,7 +449,7 @@ a shared library. You’ll likely want an <code class="docutils literal notransl
 make a commit at this point.</p>
 </div>
 <div class="section" id="task-4-maximum-modularity-and-elegance">
-<h1>Task 4: Maximum modularity and elegance<a class="headerlink" href="#task-4-maximum-modularity-and-elegance" title="Permalink to this headline">¶</a></h1>
+<h2>Task 4: Maximum modularity and elegance<a class="headerlink" href="#task-4-maximum-modularity-and-elegance" title="Permalink to this headline">¶</a></h2>
 <p>(15 points)</p>
 <p>In task 3, you defined separate, explicit rules for each object file in
 the project. This has a number of disadvantages: you repeat a lot of
@@ -420,7 +479,9 @@ files in <code class="docutils literal notranslate"><span class="pre">BAR</span>
 current rule, substitute the extension <code class="docutils literal notranslate"><span class="pre">.o</span></code> for <code class="docutils literal notranslate"><span class="pre">.d</span></code>, and pass
 that file to gcc”.</p></li>
 </ul>
-<p>{{% note %}} <code class="docutils literal notranslate"><span class="pre">.d</span></code> files (aka, “dependency files”), which you will
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">.d</span></code> files (aka, “dependency files”), which you will
 encounter in libgeometry and in other projects, are special files that
 list out all the header files that the project depends on. This is
 because by default, <code class="docutils literal notranslate"><span class="pre">make</span></code> does not track changes to .h files, while
@@ -430,12 +491,13 @@ compiles a list of header files that the code depends on. <code class="docutils 
 then use that <code class="docutils literal notranslate"><span class="pre">.d</span></code> file to figure out when a header file has been
 modified and recompile the code accordingly.</p>
 <p>Please note that you do not need to worry about <code class="docutils literal notranslate"><span class="pre">.d</span></code> files in this
-lab. {{% /note %}}</p>
+homework.</p>
+</div>
 <p>Finally, rules can have variable names: if you want to parameterize a
 rule so that it works for any files in a list of files, you could name a
 rule <code class="docutils literal notranslate"><span class="pre">$(SRCS)</span></code>. Consider the following rule:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$(OBJS): %.o:%.c
-  $(CC) $(CFLAGS) -c -o $@ $(patsubst %.o, %.c, $@)
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">$(OBJS)</span><span class="o">:</span> %.<span class="n">o</span>:%.<span class="n">c</span>
+  <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> -c -o <span class="nv">$@</span> <span class="k">$(</span>patsubst %.o, %.c, <span class="nv">$@</span><span class="k">)</span>
 </pre></div>
 </div>
 <p>There’s a lot going on here, so let’s unpack it all. Naming the rule
@@ -460,7 +522,7 @@ specific rule. Note that there are possibly many correct ways to do
 this. You should make a commit at this point.</p>
 </div>
 <div class="section" id="task-5-linking-with-your-library">
-<h1>Task 5: Linking with your library<a class="headerlink" href="#task-5-linking-with-your-library" title="Permalink to this headline">¶</a></h1>
+<h2>Task 5: Linking with your library<a class="headerlink" href="#task-5-linking-with-your-library" title="Permalink to this headline">¶</a></h2>
 <p>(20 points)</p>
 <p>At this point, you have a Makefile that produces a <code class="docutils literal notranslate"><span class="pre">libstarwars.so</span></code>
 library. For this final task, you must create a <code class="docutils literal notranslate"><span class="pre">task5</span></code> directory, and
@@ -473,7 +535,7 @@ as a guide. However, it is not enough for you to copy-paste parts of
 that <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>: your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> for this task must be annotated
 with comments (comments in Makefiles begin with <code class="docutils literal notranslate"><span class="pre">#</span></code>). These comments
 must explain what each rule does, and you must explain any detail or
-feature that was not explicitly explained earlier in the lab.</p>
+feature that was not explicitly explained earlier in the homework.</p>
 <p>You must also include a <code class="docutils literal notranslate"><span class="pre">readme.txt</span></code> file with instructions on how to
 build and run your program. Remember that, by default, programs running
 on a Linux system will look for shared libraries in specific locations,
@@ -481,56 +543,56 @@ so you must tell us how we must run your program so that it can
 correctly find the <code class="docutils literal notranslate"><span class="pre">libstarwars.so</span></code> library when it runs.</p>
 </div>
 <div class="section" id="cmake">
-<h1>CMake<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h1>
-<p>While you have learned about Make in this lab, the course project uses a
+<h2>CMake<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h2>
+<p>While you have learned about Make in this homework, the course project uses a
 more advanced build system called <a class="reference external" href="https://cmake.org/">CMake</a>, which
 actually provides a layer of abstraction over Make. For example, this is
 was a simple CMake file for building a library looks like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake_minimum_required</span><span class="p">(</span><span class="n">VERSION</span> <span class="mf">3.5</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">project</span><span class="p">(</span><span class="n">libstarwars</span> <span class="n">C</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.5.1</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">libstarwars</span> <span class="s">C</span><span class="p">)</span>
 
-<span class="nb">set</span><span class="p">(</span><span class="n">CMAKE_C_STANDARD</span> <span class="mi">11</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_C_STANDARD</span> <span class="s">11</span><span class="p">)</span>
 
-<span class="n">include_directories</span><span class="p">(</span><span class="n">include</span><span class="o">/</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="s">include/</span><span class="p">)</span>
 
-<span class="n">add_library</span><span class="p">(</span><span class="n">starwars</span> <span class="n">SHARED</span>
-            <span class="n">src</span><span class="o">/</span><span class="n">obi_wan</span><span class="o">.</span><span class="n">c</span>
-            <span class="n">src</span><span class="o">/</span><span class="n">grievous</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">starwars</span> <span class="s">SHARED</span>
+            <span class="s">src/obi_wan.c</span>
+            <span class="s">src/grievous.c</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can try this CMake build file by saving it as <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>
 inside the <code class="docutils literal notranslate"><span class="pre">task4</span></code> directory. Then, run the following commands:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">script</span> <span class="pre">$</span> <span class="pre">mkdir</span> <span class="pre">build</span> <span class="pre">$</span> <span class="pre">cd</span> <span class="pre">build</span> <span class="pre">$</span> <span class="pre">cmake</span> <span class="pre">..</span> <span class="pre">$</span> <span class="pre">make</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ cmake -B build/
+</pre></div>
+</div>
 <p>This creates a separate <code class="docutils literal notranslate"><span class="pre">build</span></code> directory where all the build files
 (including intermediate object files) will be created. This keeps your
 directory structure cleaner by separating your source files from your
-build files. Running <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">..</span></code> actually generates a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>;
-running <code class="docutils literal notranslate"><span class="pre">make</span></code> will result in a <code class="docutils literal notranslate"><span class="pre">libstarwars.so</span></code> library being built
+build files. CMake will actually generate a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> inside the <code class="docutils literal notranslate"><span class="pre">build</span></code>
+directory, and running <code class="docutils literal notranslate"><span class="pre">make</span></code> in that directory will result in a <code class="docutils literal notranslate"><span class="pre">libstarwars.so</span></code> library being built
 inside the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory.</p>
 <p>While it may seem odd that we went through several Make exercises, to
 then reveal we’re not using Make in the course project, it’s hard to
 understand how CMake works if you don’t first understand how the
-underlying Make system works (not just that, there are lots of projects
+underlying Make system works (and not just that, there are lots of projects
 out there that use Make exclusively). We’re not covering CMake in detail
 here because, as you can see above (and as you’ll see in the course
-project), the CMake syntax is pretty intuitive.</p>
+project), the CMake syntax is pretty intuitive and easy to pick up
+on your own once you understand the basics of build systems.</p>
 </div>
-<div class="section" id="submitting-your-lab">
-<h1>Submitting your lab<a class="headerlink" href="#submitting-your-lab" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submitting-your-homework">
+<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h2>
 <p>Before submitting, make sure you’ve added, committed, and pushed all
-your code to GitHub. Like the previous lab, you will submit your code
+your code to GitHub. Like the previous homework, you will submit your code
 through Gradescope,</p>
 <p>When submitting through Gradescope, you will be given the option of
 manually uploading files, or of uploading a GitHub repository (we
 recommend the latter, as this ensures you are uploading exactly the
 files that are in your repository). If you upload your repository, make
-sure you select your <code class="docutils literal notranslate"><span class="pre">2020-lab3-GITHUB_USERNAME</span></code> repository, with
-“master” as the branch. Please note that you can submit as many times as
+sure you select your <code class="docutils literal notranslate"><span class="pre">2021-hw3-GITHUB_USERNAME</span></code> repository, with
+“main” as the branch. Please note that you can submit as many times as
 you want before the deadline.</p>
-<p>Once you submit your files, an “autograder” will run. This won’t
-actually be doing any grading, but it will try to build your code, to
-make sure you don’t have any compiler errors, etc. If you do, make sure
-to fix them and re-submit again.</p>
+</div>
 </div>
 
 
