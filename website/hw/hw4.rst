@@ -247,9 +247,116 @@ on Gradescope; they are just for you to practice):
 You can find the answers to these questions at the end of this homework.
 
 The Micro Editor
----------------
+----------------
 
-TODO: Describe what it is and how to build. Source: https://viewsourcecode.org/snaptoken/kilo/
+We've seen how GDB works with some simple examples, but now it's time to debug
+a more complex piece of software. We will be using a very simple terminal-based
+editor called ``micro``. This is our version of the ``kilo`` editor, a simple
+but functional text editor that can be implemented in about 1,000 lines of C
+code; if you're interested, you can see a step-by-step guide to writing this
+editor here: https://viewsourcecode.org/snaptoken/kilo/ (please note that you
+do not have to read this to complete this homework; however, if you're interested
+in the inner workings of a text editor, you may find that guide interesting)
+
+``micro`` largely follows the same structure as the ``kilo`` code, except we
+divided it into multiple modules and documented the code following our style guide.
+
+You can build the ``micro`` editor by going into the ``micro/`` directory in
+your repository and running the following::
+
+    cmake -b build/
+    make -C build/
+
+This will generate a ``micro`` executable inside a ``build/`` directory.
+Let's give it a try! Run the following::
+
+    build/micro
+
+This will open the editor with a "blank file". You can start typing to edit
+the file, and you'll notice that you can move around with the arrow keys, use
+the Backspace key, and the Delete key. You can press Ctrl-S to save the file
+(you will be prompted at the bottom of the screen to enter a name; feel free
+to give it any name you want), and then Ctrl-Q to quit.
+
+Let's say we wanted to debug this executable. We actually cannot call GDB like
+before, because the text editor needs to use the entire terminal, so it
+would be impractical to have a GDB prompt interfering with that. So, this will
+allow us to do *remote debugging*, where the program and the debugger are
+run separately (and could even be running in completely different computers,
+and communicating over the network).
+
+To do this, open two terminals. On the first one, run the following from the
+``micro/`` directory::
+
+    gdbserver :50000 build/micro
+
+The editor won't actually start just yet (this is normal!) and you'll see something
+like this::
+
+    Process build/micro created; pid = 549651
+    Listening on port 50000
+
+.. note::
+
+   If you see the following message::
+
+        Can't bind address: Address already in use.
+        Exiting
+
+   Then pick a number other than 50000 in the parameter to ``gdbserver``
+   (any number between 50000 and 60000 should work). This number is known
+   as a "port", and we will be using it to connect to the editor from GDB.
+   We have to pick a number that is unique within the machine we are running
+   on; this means that if you are running this on one of the CS Linux server,
+   and multiple people choose 50000, only one of them will actually be able
+   to run the debugger.
+
+Now, on the second terminal, run this::
+
+    gdb build/micro
+
+This will open the usual GDB prompt but, instead of typing "run", we need to
+connect to the editor that is running on the other terminal. You need
+to run the following command from the GDB prompt::
+
+    target remote :50000
+
+You will see something like this::
+
+    (gdb) target remote :50000
+    Remote debugging using :50000
+    Reading /lib64/ld-linux-x86-64.so.2 from remote target...
+    warning: File transfers from remote targets can be slow. Use "set sysroot" to access files locally instead.
+    Reading /lib64/ld-linux-x86-64.so.2 from remote target...
+    Reading symbols from target:/lib64/ld-linux-x86-64.so.2...
+    Reading /lib64/ld-2.31.so from remote target...
+    Reading /lib64/.debug/ld-2.31.so from remote target...
+    Reading /usr/lib/debug//lib64/ld-2.31.so from remote target...
+    Reading /usr/lib/debug/lib64//ld-2.31.so from remote target...
+    Reading target:/usr/lib/debug/lib64//ld-2.31.so from remote target...
+    (No debugging symbols found in target:/lib64/ld-linux-x86-64.so.2)
+    0x00007ffff7fd0100 in ?? () from target:/lib64/ld-linux-x86-64.so.2
+
+You can ignore the warning about file transfers being slow, or the message about
+"No debugging symbols" (this refers to a system library, not to our editor)
+
+You can now run any of the commands we've seen previously, with one caveat: once
+you want to start running the editor, you must use the ``continue`` command,
+and not the ``run`` command. In fact, try just running the ``continue`` command;
+you will then see the editor start in the first terminal, and GDB will
+show something like this::
+
+    (gdb) continue
+    Continuing.
+
+If you need to quit the editor, we suggest doing so from the first terminal
+(by pressing Ctrl-Q) but you can also force the editor to terminate the
+program by pressing Ctrl-C in GDB, followed by Ctrl-D. However, this can leave
+the first terminal in an unstable state (in particular, it may seem like the
+keyboard is not working). If that happens, you should close that terminal and open
+it again.
+
+
 
 Task 1: Stepping Through the Micro Editor Code
 ----------------------------------------------
