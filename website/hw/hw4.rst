@@ -437,10 +437,18 @@ evolve as we use the editor. You must do the following:
    variable is updated when we load a file. On Gradescope, specify the line(s) of code
    where this happens, and copy-paste the full and unabridged GDB session that helped
    you determine this.
+
 2. Open file ``samples/lorem-ipsum.txt`` in the editor. We can press Ctrl-F to search
    for a piece of text within the file. Internally, the ``editor_find`` function
    will be called when this happens. Set one or more breakpoints that allow you to determine the
-   values of ``ctx->cx`` and ``ctx->cy`` after searching for the term ``Integer``. On
+   values of ``ctx->cx`` and ``ctx->cy`` after searching for the term ``Integer``.
+   Please note that using ``watch`` in this task is impractical, since those values
+   actually can change a lot during a search, and all we're interested in is their
+   final value.
+
+   So, in this particular task, it can be beneficial to read through the ``editor_find`` to
+   get a sense of where you should set the breakpoint, and at what point you'll be able to
+   obtain the final values of ``ctx->cx`` and ``ctx->cy``. On
    Gradescope, specify those values and copy-paste the full and unabridged GDB session
    that helped you determine this.
 
