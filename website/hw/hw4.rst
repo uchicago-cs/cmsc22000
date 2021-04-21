@@ -34,7 +34,7 @@ your changes to your repository, in case we need to look at your code.
 Task 1: Compiler/Linker Error Debugging
 ---------------------------------------
 
-(20 points)
+(30 points)
 
 Read the `Debugging
 Guide <https://uchicago-cs.github.io/debugging-guide/>`__ up to (and including)
@@ -374,7 +374,11 @@ GDB will show something like this::
 And, on the first terminal, the editor will start running.
 
 If you need to quit the editor, we suggest doing so from the first terminal
-(by pressing Ctrl-Q) but you can also force the editor to terminate the
+(by pressing Ctrl-Q). If you start the editor again on the first terminal,
+you can actually "reattach" the debugger by running ``target remote :50000``
+again from inside GDB. You don't have to also quit GDB and start it again.
+
+You can also force the editor to terminate the
 program by pressing Ctrl-C in GDB, followed by Ctrl-D. Please note that this
 may leave the first terminal in an unstable state (in the same way as described
 above in the case of the editor crashing). If that happens, simply perform
@@ -384,9 +388,9 @@ the steps described earlier.
 Task 2: Stepping Through the Micro Editor Code
 ----------------------------------------------
 
-(40 points)
+(20 + 20 points)
 
-As you can see in the ``micro/main.c`` file, the ``main()`` function of our
+As you can see in the ``micro/src/main.c`` file, the ``main()`` function of our
 editor is actually pretty simple and brief (in large part, thanks to the
 modular design of the code which hides the various complexities of
 running an editor). The ``main()`` function basically does the following:
@@ -413,7 +417,22 @@ running an editor). The ``main()`` function basically does the following:
 When debugging our code, we may want to see how some of the fields of our context object
 evolve as we use the editor. You must do the following:
 
-1. Open file ``samples/simple.txt`` in the editor. We would like to figure out the
+1. Open file ``samples/simple.txt`` in the editor. Remember to do this using two terminals;
+   in one terminal run this::
+
+       gdbserver :50000 build/micro samples/simple.txt
+
+   In the other terminal, run this::
+
+       gdb build/micro
+
+   Notice how, when opening a file, we only need to specify the file in the first terminal,
+   when calling ``gdbserver``.
+
+   You may also want to open a third terminal in case you need to inspect or edit any files
+   from a conventional editor.
+
+   On to our task: we would like to figure out the
    exact line(s) in our code where the ``ctx->num_rows``
    variable is updated when we load a file. On Gradescope, specify the line(s) of code
    where this happens, and copy-paste the full and unabridged GDB session that helped
@@ -421,7 +440,7 @@ evolve as we use the editor. You must do the following:
 2. Open file ``samples/lorem-ipsum.txt`` in the editor. We can press Ctrl-F to search
    for a piece of text within the file. Internally, the ``editor_find`` function
    will be called when this happens. Set one or more breakpoints that allow you to determine the
-   values of ``ctx->cx`` and ``ctx->cy`` after searching for the term ``Integer`. On
+   values of ``ctx->cx`` and ``ctx->cy`` after searching for the term ``Integer``. On
    Gradescope, specify those values and copy-paste the full and unabridged GDB session
    that helped you determine this.
 
@@ -482,8 +501,6 @@ the answer at the bottom of this homework.
 Task 3: Fixing Runtime Errors in the Micro Editor
 -------------------------------------------------
 
-(40 points)
-
 We have inserted two bugs in the Micro code that will cause the editor to
 crash, and which would be challenging to spot
 just by code inspection, given the amount of code you'd have to read through.
@@ -492,11 +509,20 @@ This is where a debugger can make your life much easier!
 Bug #1
 ~~~~~~
 
+(20 points)
+
 The editor will crash if you try to save any file by pressing Ctrl-S.
 That said, if you have trouble reproducing this issue, you can try
-opening the provided ``micro/samples/save.txt`` file. If you immediately
+opening the provided ``micro/samples/lorem-ipsum.txt`` file. If you immediately
 try to save it, the editor should segfault (you don't even have to make
 any modifications to the file).
+
+.. note::
+
+   When the editor crashes, it may leave the terminal in an unstable state.
+   Remember that you can resolve this by pressing Enter followed by typing
+   the word ``reset`` followed by pressing Enter. You can also close and re-open
+   the terminal.
 
 Use GDB to track down the source of the segfault, and to fix it. Provide
 the following information on Gradescope:
@@ -508,8 +534,11 @@ the following information on Gradescope:
   be the line you have to edit to fix the bug.
 
 
+
 Bug #2
 ~~~~~~
+
+(10 points)
 
 If you place the cursor at the start of a line (other than the first line
 of the file) and press the "Backspace" key, this will move the contents
@@ -552,6 +581,9 @@ For this task, you must provide the following information on Gradescope:
 - The before and after version of any lines of code you changed to
   fix the bug.
 
+**NOTE:** This is a particularly challenging bug. We will give partial credit
+if you describe how you attempted to track down the bug but, for full credit,
+you must actually fix the bug.
 
 Submitting your homework
 ------------------------
