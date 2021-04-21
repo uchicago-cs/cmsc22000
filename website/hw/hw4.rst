@@ -283,9 +283,17 @@ Let's give it a try! Run the following from the ``micro/`` directory::
 
 This will open the editor with a "blank file". You can start typing to edit
 the file, and you'll notice that you can move around with the arrow keys, use
-the Backspace key, and the Delete key. You can press Ctrl-S to save the file
-(you will be prompted at the bottom of the screen to enter a name; feel free
-to give it any name you want), and then Ctrl-Q to quit.
+the Backspace key, and the Delete key. You should be able to quit the editor
+by pressing Ctrl-Q (if you modified the file, you'll have to press it three
+times to confirm you want to exit without saving).
+
+However, we have inserted a few bugs in the code, so don't be surprised if
+you do something that makes the editor crash! Please note that, if this
+happens, your terminal may be left in a seemingly unusable state (in particular,
+it will seem like you can't type anything into the terminal). When this happens,
+press Enter followed by typing the word ``reset`` followed by pressing Enter (this doesn't
+reset your computer, it just resets your terminal). You can also just close the
+terminal and open it up again.
 
 Let's say we wanted to debug this executable. We actually cannot call GDB like
 before, because the text editor needs to use the entire terminal, so it
@@ -378,9 +386,51 @@ Task 1: Stepping Through the Micro Editor Code
 
 (XX points)
 
-TODO: Exercise where they have to set breakpoints in the Micro code and answer some
-basic questions about what is happening to certain variables.
+As you can see in the ``micro/main.c`` file, the ``main()`` function of our
+editor is actually pretty simple and brief (in large part, thanks to the
+modular design of the code which hides the various complexities of
+running an editor). The ``main()`` function basically does the following:
 
+- Enable "raw mode" on the terminal, which will allow the editor to effectively
+  take over the terminal and "draw" characters anywhere on it (when the terminal
+  is running in normal mode, we typically can only print to the terminal line
+  by line)
+- We initialize an ``editor_ctx_t`` struct, which we use as a context object
+  to store global information about the editor.
+- If a file was specified in the command-line when running the ``micro`` executable,
+  we load that file.
+- We set a status message at the bottom of the screen.
+- We enter an "event loop", where we continously repeat the following two operations:
+
+  - We refresh the screen with the most up-to-date content of the editor.
+  - We wait for a keypress (our "event")
+
+  Event loops are a common way of structuring interactive applications, where we just
+  wait for something to happen (in this case, input from the user), and then refresh the
+  contents of the screen based on that event. For example, if the user presses the ``F``
+  key, we would expect an ``F`` to be inserted at the position of the cursor in the editor.
+
+When debugging our code, we may want to see how some of the fields of our context object
+evolve as we use the editor. You must do the following:
+
+1. Open file ``samples/simple.txt`` in the editor. We would like to figure out the
+   exact line(s) in our code where the ``ctx->num_rows``
+   variable is updated when we load a file. On Gradescope, specify the line(s) of code
+   where this happens, and copy-paste the full and unabridged GDB session that helped
+   you determine this.
+2. Open file ``samples/lorem-ipsum.txt`` in the editor. We can press Ctrl-F to search
+   for a piece of text within the file. Internally, the ``editor_find`` function
+   will be called when this happens. Set one or more breakpoints that allow you to determine the
+   values of ``ctx->cx`` and ``ctx->cy`` after searching for the term ``Integer`. On
+   Gradescope, specify those values and copy-paste the full and unabridged GDB session
+   that helped you determine this.
+
+.. note::
+
+   This homework is also, indirectly, an exercise in diving into an existing codebase.
+   While we encourage you to read through the editor code to figure out what it does
+   (this is a very valuable skill!) you're also welcome to ask us any questions you want
+   about the editor code itself.
 
 Runtime Error Debugging
 -----------------------
@@ -390,13 +440,11 @@ they are hard to find because the compiler doesn’t always give
 particularly informative error messages.
 
 For example, your repository includes an ``examples/sefault.c`` that will
-crash with a segmentation fault when run:
+crash with a segmentation fault when run::
 
-```
-$ gcc -g segfault.c -o segfault
-$ ./segfault
-Segmentation fault (core dumped)
-```
+    $ gcc -g segfault.c -o segfault
+    $ ./segfault
+    Segmentation fault (core dumped)
 
 Segmentation faults (or "segfaults") typically arise when we access memory we shouldn't
 be accessing (e.g., by using an uninitialized pointer). While we can
@@ -427,17 +475,82 @@ to do this, you must first use the ``kill`` to stop the current run of the progr
 You will then be able to ``run`` the program again, stopping at any additional
 breakpoints you specify.
 
-Try running the ``segfault`` program with gdb and using the above
+**Practice Question E**: Try running the ``segfault`` program with gdb and using the above
 commands to figure out what is causing the segfault. You will find
 the answer at the bottom of this homework.
 
-Task 2: Fixing Segfaults in the Micro Editor
---------------------------------------------
+Task 2: Fixing Runtime Errors in the Micro Editor
+-------------------------------------------------
 
 (XX points)
 
-TODO: Micro will segfault under certain conditions. Figure out what the issue is.
+We have inserted two bugs in the Micro code that will cause the editor to
+crash, and which would be challenging to spot
+just by code inspection, given the amount of code you'd have to read through.
+This is where a debugger can make your life much easier!
 
+Bug #1
+~~~~~~
+
+The editor will crash if you try to save any file by pressing Ctrl-S.
+That said, if you have trouble reproducing this issue, you can try
+opening the provided ``micro/samples/save.txt`` file. If you immediately
+try to save it, the editor should segfault (you don't even have to make
+any modifications to the file).
+
+Use GDB to track down the source of the segfault, and to fix it. Provide
+the following information on Gradescope:
+
+- Copy-paste the line that is causing the segfault.
+- Explain why the segfault is happening.
+- The before and after version of any lines of code you changed to
+  fix the bug. Remember: the line that causes the segfault may not
+  be the line you have to edit to fix the bug.
+
+
+Bug #2
+~~~~~~
+
+If you place the cursor at the start of a line (other than the first line
+of the file) and press the "Backspace" key, this will move the contents
+of that line to the end of the previous line. For example, open the file
+``micro/samples/lines-1.txt``, which contains the following::
+
+    AAAAAAAAAA
+    BBBBBBBBBB
+
+If you place the cursor at the start of the second line and press "Backspace",
+the editor will now display this::
+
+    AAAAAAAAAABBBBBBBBBB
+
+So far, so good. However, try doing the same thing with the file
+``micro/samples/lines-2.txt``, where the second line is much longer than the first.
+The editor will now crash with an error like this::
+
+    munmap_chunk(): invalid pointer
+    Aborted (core dumped)
+
+This is not a segfault, but we can debug it with GDB following the same steps
+we followed to debug a segfault (this error is alerting
+us to the fact that a system library received an invalid pointer, which may help us
+narrow down the issue).
+
+That said, this bug is much more insidious than the previous one: the line that
+causes the editor to crash is actually a *spurious error*. There is actually nothing
+wrong with that line or even with the variable that is being manipulated in that line.
+However, something in the lines of code leading up to that line has corrupted the
+editor's data structures, causing that variable to contain an
+invalid pointer. So, to debug this issue, you should look at what happens before
+the line that causes the crash (including prior functions in the backtrace) to
+see if you can spot anything wrong.
+
+For this task, you must provide the following information on Gradescope:
+
+- Copy-paste the line that is causing the crash.
+- Identify the programming error that leads to that crash happening.
+- The before and after version of any lines of code you changed to
+  fix the bug.
 
 Task 3: Logic Error Debugging
 -----------------------------
