@@ -219,7 +219,7 @@ see the values of certain variables. You can do this by running the
 ``print`` command. ``print val``, for example, will print the value
 ``val``. With pointers, you can use ``print *p`` to print out the value
 pointed to by p. If you want to print in hex, use ``print/x val``, and
-to print in binary use ``print/b val``
+to print in binary use ``print/t val``
 
 There is also a useful command to keep track of when a variable changes.
 This command is ``watch`` (careful: you can't use this command before
@@ -231,18 +231,27 @@ and print the old and new values (note that it will break in the line
 *after* the variable was changed).
 
 When you’re done using gdb, you can exit by typing ``quit`` or by
-pressing Ctrl+D.
+pressing Ctrl+D. If the program you're debugging is still running,
+you will see the following message::
+
+    A debugging session is active.
+
+        Inferior 1 [process 642037] will be killed.
+
+    Quit anyway? (y or n)
+
+You can safely select ``y`` here.
 
 If you'd like to practice using these commands a bit more, try doing
 the following (you don't have to answer these questions
 on Gradescope; they are just for you to practice):
 
-- Set a breakpoint at the start of the ``main`` function.
+- **Practice Question A**: Set a breakpoint at the start of the ``main`` function.
   Can you find the line(s) where the value of variable ``c`` changes?
-- What is the value pointed to by pointer p after line 42?
-- Set a breakpoint at line 38. Print the value of variable ``a`` and step through lines 38-41,
+- **Practice Question B**: What is the value pointed to by pointer p after line 42?
+- **Practice Question C**: Set a breakpoint at line 38. Print the value of variable ``a`` and step through lines 38-41,
   then print the value of variable ``a`` after line 41.
-- What is the return value of the function ``num()`` in hexadecimal?
+- **Practice Question D**: What is the return value of the function ``num()`` in hexadecimal?
 
 You can find the answers to these questions at the end of this homework.
 
@@ -264,11 +273,11 @@ divided it into multiple modules and documented the code following our style gui
 You can build the ``micro`` editor by going into the ``micro/`` directory in
 your repository and running the following::
 
-    cmake -b build/
+    cmake -B build/
     make -C build/
 
 This will generate a ``micro`` executable inside a ``build/`` directory.
-Let's give it a try! Run the following::
+Let's give it a try! Run the following from the ``micro/`` directory::
 
     build/micro
 
@@ -285,7 +294,8 @@ allow us to do *remote debugging*, where the program and the debugger are
 run separately (and could even be running in completely different computers,
 and communicating over the network).
 
-To do this, open two terminals. On the first one, run the following from the
+To do this, open two terminals (if you're logging to a CS Linux server, make
+sure you're logged into the same Linux server on both terminals). On the first one, run the following from the
 ``micro/`` directory::
 
     gdbserver :50000 build/micro
@@ -343,19 +353,24 @@ You can ignore the warning about file transfers being slow, or the message about
 You can now run any of the commands we've seen previously, with one caveat: once
 you want to start running the editor, you must use the ``continue`` command,
 and not the ``run`` command. In fact, try just running the ``continue`` command;
-you will then see the editor start in the first terminal, and GDB will
-show something like this::
+GDB will show something like this::
 
     (gdb) continue
     Continuing.
+    Reading /lib/x86_64-linux-gnu/libc.so.6 from remote target...
+    Reading /lib/x86_64-linux-gnu/libc-2.31.so from remote target...
+    Reading /lib/x86_64-linux-gnu/.debug/libc-2.31.so from remote target...
+    Reading /usr/lib/debug//lib/x86_64-linux-gnu/libc-2.31.so from remote target...
+    Reading /usr/lib/debug//lib/x86_64-linux-gnu/libc-2.31.so from remote target...
+
+And, on the first terminal, the editor will start running.
 
 If you need to quit the editor, we suggest doing so from the first terminal
 (by pressing Ctrl-Q) but you can also force the editor to terminate the
-program by pressing Ctrl-C in GDB, followed by Ctrl-D. However, this can leave
-the first terminal in an unstable state (in particular, it may seem like the
-keyboard is not working). If that happens, you should close that terminal and open
-it again.
-
+program by pressing Ctrl-C in GDB, followed by Ctrl-D. Please note that this
+may leave the first terminal in an unstable state (in the same way as described
+above in the case of the editor crashing). If that happens, simply perform
+the steps described earlier.
 
 
 Task 1: Stepping Through the Micro Editor Code
@@ -450,7 +465,11 @@ the code itself).
 Answers to Practice Questions
 -----------------------------
 
-**Finding the lines where variable c changes**
+**Practice Question A**
+
+Variable ``c`` changes at lines 4, 36, 44, 47, 53, 55, 56.
+
+Notice how GDB will break in the line *after* the variable changes:
 
 ::
 
@@ -529,7 +548,9 @@ Answers to Practice Questions
     (gdb) continue
     Continuing.
 
-**Finding the value pointed by p after line 42**
+**Practice Question B**
+
+The value is ``42``.
 
 ::
 
@@ -548,7 +569,9 @@ Answers to Practice Questions
     $2 = 42
 
 
-**Stepping through lines 38-41**
+**Practice Question C**
+
+The value of ``a`` at line 38 is ``5``. After line 41, it is ``42``.
 
 ::
 
@@ -573,7 +596,9 @@ Answers to Practice Questions
     $4 = 42
 
 
-**Return value of num()**
+**Practice Question D**
+
+The return value is ``0xa``
 
 ::
 
@@ -587,7 +612,9 @@ Answers to Practice Questions
     (gdb) print/x num
     $5 = 0xa
 
-**Debugging a segfault**
+**Practice Question D**
+
+The segfault happens in line 16:
 
 ::
 
