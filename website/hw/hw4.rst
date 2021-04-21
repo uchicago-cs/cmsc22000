@@ -580,7 +580,7 @@ Answers to Practice Questions
 
 **Practice Question A**
 
-Variable ``c`` changes at lines 4, 36, 44, 47, 53, 55, 56.
+Variable ``c`` changes at lines 34, 36, 44, 47, 53, 55, 56.
 
 Notice how GDB will break in the line *after* the variable changes:
 
