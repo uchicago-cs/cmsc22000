@@ -22,7 +22,7 @@ will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
 ``2021-hw4-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
 on GitHub. Like Homework #3, your repository will be seeded with some files
-for the homework, TODO
+for the homework.
 
 Please note that, while you will be modifying some of the files we give
 you, in this homework we will mostly be looking at the answers you provide to
@@ -34,7 +34,7 @@ your changes to your repository, in case we need to look at your code.
 Task 1: Compiler/Linker Error Debugging
 ---------------------------------------
 
-(XX points)
+(20 points)
 
 Read the `Debugging
 Guide <https://uchicago-cs.github.io/debugging-guide/>`__ up to (and including)
@@ -89,9 +89,9 @@ finding errors.
     -  Most IDEs, including CLion, have `excellent built-in
        debuggers <https://www.jetbrains.com/clion/features/run-and-debug.html>`__.
 
-    While the lab instructions are written for the terminal-based gdb, we
+    While the homework instructions are written for the terminal-based gdb, we
     encourage you to learn about a graphical debugger on your own after
-    you’ve completed this lab. Take into account that these graphical
+    you’ve completed this homework. Take into account that these graphical
     debuggers all use gdb in the backend, which means that everything you’ll
     learn about the terminal-based gdb will translate well into a graphical
     debugger.
@@ -381,10 +381,10 @@ above in the case of the editor crashing). If that happens, simply perform
 the steps described earlier.
 
 
-Task 1: Stepping Through the Micro Editor Code
+Task 2: Stepping Through the Micro Editor Code
 ----------------------------------------------
 
-(XX points)
+(40 points)
 
 As you can see in the ``micro/main.c`` file, the ``main()`` function of our
 editor is actually pretty simple and brief (in large part, thanks to the
@@ -479,10 +479,10 @@ breakpoints you specify.
 commands to figure out what is causing the segfault. You will find
 the answer at the bottom of this homework.
 
-Task 2: Fixing Runtime Errors in the Micro Editor
+Task 3: Fixing Runtime Errors in the Micro Editor
 -------------------------------------------------
 
-(XX points)
+(40 points)
 
 We have inserted two bugs in the Micro code that will cause the editor to
 crash, and which would be challenging to spot
@@ -552,21 +552,9 @@ For this task, you must provide the following information on Gradescope:
 - The before and after version of any lines of code you changed to
   fix the bug.
 
-Task 3: Logic Error Debugging
------------------------------
 
-(XX points)
-
-Logic errors can happen even when your program compiles and runs, but
-may result in incorrect behavior. The commands we went through in the
-warmup can help you find logic errors by allowing actions such as
-stepping through the program line-by-line, printing variables, and
-seeing when variables are changed.
-
-TODO: Finding a logic error in Micro editor
-
-Submitting your lab
--------------------
+Submitting your homework
+------------------------
 
 Please note that you will not be submitting your code through
 Gradescope. Instead, make sure that the questions posed in each task are
