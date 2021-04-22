@@ -1,4 +1,7 @@
-**Due:** Wednesday, May 13th, 8pm
+Homework 5: Testing
+===================
+
+**Due:** Wednesday, May 5th, 8pm CDT
 
 By this point in your CS studies, you’ve probably experienced the
 following at least once:
@@ -25,28 +28,32 @@ make debugging a much more painless experience, by quickly narrowing
 down our search for the part of our code that is failing.
 
 Generally speaking, there are two kinds of tests: *unit tests* and
-*integration tests*. In this lab we will focus on *unit tests*, which
+*integration tests*. In this homework we will focus on *unit tests*, which
 check the correctness of a single component or module, typically by
 testing individual functions within that component. *Integration tests*,
 on the other hand, check the correctness of multiple components at once,
 or of an entire system.
 
-By the end of this lab, you’ll have experience writing unit tests, as
+By the end of this homework, you’ll have experience writing unit tests, as
 well as an appreciation for their importance. You’ll be writing tests
 for existing code, as well as using the practice of *Test-Driven
 Development* to develop new code.
 
-Creating your lab repository
-----------------------------
+Creating your homework repository
+---------------------------------
 
-Like previous labs, we will provide you with an *invitation URL* that
-will allow you sign up for the lab assignment on GitHub, and which will
+Like previous homeworks, we will provide you with an *invitation URL* that
+will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2020-lab5-GITHUB_USERNAME`` inside our ``cmsc22000-labs`` organization
-on GitHub. Your repository will be seeded with some files for the lab
+``2021-hw5-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+on GitHub.
+
+Your repository will be seeded with some files for the homework
 and, more specifically, will contain a ``libgeometry`` directory with an
 updated version of ``libgeometry`` with the refactored ``segment``
-module we asked you to implement in Lab #2.
+module we asked you to implement in Homework #5.
+
+
 
 Task 0: A bit about ``criterion``
 =================================
@@ -55,7 +62,7 @@ The ``libgeometry`` library already includes several unit tests, which
 use a testing framework called
 `Criterion <https://github.com/Snaipe/Criterion>`__. This framework is
 already installed on the CS machines. Let’s learn a little bit about
-this testing framework before we get to the actual tasks for this lab.
+this testing framework before we get to the actual tasks for this homework.
 Consider the following sample tests:
 
 .. code:: c
@@ -153,7 +160,7 @@ Makefile that you do not understand, please make sure to ask us.
 Task 1: Testing existing code
 =============================
 
-Remember that, in Lab 2, we asked you to refactor some of the code in
+Remember that, in Homework #2, we asked you to refactor some of the code in
 ``point.c`` to a new ``segment.c`` module. At the time, you may have
 asked yourself: “If I’m implementing this code as part of a library, how
 can I *run* the segment code I just wrote?”. One answer to that question
@@ -162,7 +169,7 @@ libgeometry, and calls the segment functions to see whether they work
 (and, with what you know about Makefiles, it should be possible for you
 to do that). However, what we really want to do is write tests for this
 new segment datatype, similar to the ones that already exist for the
-point and polygon datatypes. In Lab 2 we asked you to simply modify the
+point and polygon datatypes. In Homework #2 we asked you to simply modify the
 calls to ``segment_intersect`` in ``test_point.c``, which was a
 temporary solution before we learned how tests work. Now, we will write
 proper tests for the segment datatype.
@@ -179,26 +186,30 @@ started:
    #include "point.h"
    #include "segment.h"
 
-{{% warning %}} **Warning**: Because this lab depends on the
-``criterion`` library, you should make sure to compile and test your
-work on a CS environment, which will has the ``criterion`` library
-properly set up and ready to go. You can find instructions on how to
-access a CS environment (including options that will allow you to work
-on your computer, and just compile/run your code in a CS environment) in
-our `developer
-guide <https://uchicago-cs.github.io/dev-guide/environment.html>`__.
-While it is possible to install ``criterion`` on an unsupported machine,
-we may not be able to provide support for that setup. {{% /warning %}}
+.. note::
+
+    Because this homework depends on the
+    ``criterion`` library, you should make sure to compile and test your
+    work on a CS environment, which will has the ``criterion`` library
+    properly set up and ready to go. You can find instructions on how to
+    access a CS environment (including options that will allow you to work
+    on your computer, and just compile/run your code in a CS environment) in
+    our `developer
+    guide <https://uchicago-cs.github.io/dev-guide/environment.html>`__.
+    While it is possible to install ``criterion`` on an unsupported machine,
+    we may not be able to provide support for that setup.
 
 You will also need to modify the ``Makefile`` in the ``tests/``
 directory to add your new file.
 
-{{% warning %}} {{% md %}} **Caution**: There are *three*
-``Makefile``\ s in this project! There’s the root-level ``Makefile`` for
-building the library, a ``Makefile`` in the ``samples`` directory to
-build the sample programs, and a ``Makefile`` in the ``tests`` directory
-specifically for building test files. You should only modify this last
-``Makefile``. {{% /md %}} {{% /warning %}}
+.. warning::
+
+    Careful: There are *three*
+    ``Makefile``\ s in this project! There’s the root-level ``Makefile`` for
+    building the library, a ``Makefile`` in the ``samples`` directory to
+    build the sample programs, and a ``Makefile`` in the ``tests`` directory
+    specifically for building test files. You should only modify this last
+    ``Makefile``.
 
 It’s time to write your first tests! In your ``test_segment.c`` file, do
 the following:
@@ -218,7 +229,7 @@ the following:
    note we won’t be grading you on the number of tests your write, but
    on how much coverage they provide.
 
-   Note: Remember that, in Lab 2, you had the option of moving these
+   Note: Remember that, in Homework #2, you had the option of moving these
    functions to ``segment.c``, or to keep them in ``point.c`` (and
    exposing them through ``point.h``). In the code we’ve provided,
    ``on_segment`` has been moved to the segment module, and
@@ -251,7 +262,7 @@ something like this:
 
 1. Write tests that cover all behavior of the interface you’re
    implementing
-2. Write skeleton functions (i.e. functions that have the correct type
+2. Write skeleton functions (i.e., functions that have the correct type
    signature but return dummy values, and don’t contain any logic) so
    that your program compiles
 3. All of your tests fail because nothing is implemented yet
@@ -260,7 +271,7 @@ something like this:
    test. If the test doesn’t pass, debug what you implemented.
 
 In this task, you will implement a new ``circle_t`` data structure for
-representing circles in ``libgeometry``. For the purposes of this lab,
+representing circles in ``libgeometry``. For the purposes of this homework,
 circles will be represented by a center and radius. The center will be
 represented by a ``point_t``, and the radius by a ``double``.
 
@@ -269,29 +280,33 @@ You should create three new files: ``include/circle.h``,
 both the root-level ``Makefile`` and the ``Makefile`` in the ``tests``
 directory to ensure the new files are compiled. Make a commit with the
 new files as well as the changes to the ``Makefile``\ s, with the
-message “Starting lab 5 task 2”. *Don’t forget to ``git add`` the new
+message “Starting homework 5 task 2”.
+
+*Don’t forget to "git add" the new
 files; otherwise, they won’t be included in the commit.*
 
 Now, use TDD to develop ``new``, ``init``, and ``free`` functions for
 circles.
 
-{{% warning %}} **Note:** To ensure that you are following TDD, we will
-be inspecting your commit history to check that you actually wrote your
-tests first. At a minimum, we require the following workflow:
+.. note::
 
-1. Write your tests in ``tests/test_circle.c``
-2. Write a struct definition in ``include/circle.h``
-3. Write skeleton functions in ``src/circle.c``, and put their headers
-   in ``include/circle.h``
-4. **Make a commit** indicating that you’ve written tests, and are about
-   to start implementation
-5. Write your implementations
-6. **Make a commit** indicating that you’ve finished implementation and
-   that your tests pass.
+    To ensure that you are following TDD, we will
+    be inspecting your commit history to check that you actually wrote your
+    tests first. At a minimum, we require the following workflow:
 
-By all means, please make more commits as you write individual tests and
-implement individual functions. This is just the *minimum* we require to
-tell whether or not you implemented tests first. {{% /warning %}}
+    1. Write your tests in ``tests/test_circle.c``
+    2. Write a struct definition in ``include/circle.h``
+    3. Write skeleton functions in ``src/circle.c``, and put their headers
+       in ``include/circle.h``
+    4. **Make a commit** indicating that you’ve written tests, and are about
+       to start implementation
+    5. Write your implementations
+    6. **Make a commit** indicating that you’ve finished implementation and
+       that your tests pass.
+
+    By all means, please make more commits as you write individual tests and
+    implement individual functions. This is just the *minimum* we require to
+    tell whether or not you implemented tests first.
 
 Next, let’s use TDD to implement a few slightly more complex functions
 that compute things about circles:
@@ -315,12 +330,12 @@ determining whether two circles overlap (this is often referred to the
 *intersection* of two circles). As usual, you must cite these sources.
 
 When writing the tests for the first three functions, you may find the
-function ``cr_assert_float_eq`` helpful. As you know, floating-point
+function ``cr_assert_float_eq`` helpful. As you may know, floating-point
 arithmetic on computers is not 100% accurate; ``cr_assert_float_eq``
 allows you to check that the first value you supply to it is within some
 range of the second value. For example:
 
-.. code:: c
+.. code-block:: c
 
    circle_t *c = circle_new(point_new(0, 0), 5);
    cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, "Circle area wasn’t correct!");
@@ -336,19 +351,18 @@ that implementation.
 Finally, as before, you should include header comments in all the tests
 you write.
 
-Submitting your lab
--------------------
+Submitting your homework
+------------------------
 
 Before submitting, make sure you’ve added, committed, and pushed all
-your code to GitHub. *Don’t forget to ``git add`` any new files.*
+your code to GitHub. *Don’t forget to "git add" any new files.*
 
-Like the previous lab, you will submit your code through Gradescope.
 When submitting through Gradescope, you will be given the option of
 manually uploading files, or of uploading a GitHub repository (we
 recommend the latter, as this ensures you are uploading exactly the
 files that are in your repository). If you upload your repository, make
-sure you select your ``2020-lab5-GITHUB_USERNAME`` repository, with
-“master” as the branch. Please note that you can submit as many times as
+sure you select your ``2021-hw5-GITHUB_USERNAME`` repository, with
+“main” as the branch. Please note that you can submit as many times as
 you want before the deadline.
 
 Once you submit your files, an “autograder” will run. This won’t
