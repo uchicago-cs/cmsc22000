@@ -1,4 +1,7 @@
-**Due:** Wednesday, May 20th, 8pm
+Homework 6: Continuous Integration
+==================================
+
+**Due:** Wednesday, May 12, 8pm CDT
 
 Continuous Integration, or CI, is the practice of frequently merging
 developers’ work into a mainline branch in a version control system like
@@ -9,21 +12,25 @@ on other branches). Thus many version control systems facilitate CI by
 providing mechanisms to trigger certain actions when code is pushed to a
 repository.
 
-In this lab, we are going to explore the CI features available through
+In this homework, we are going to explore the CI features available through
 GitHub and, more specifically, through the `Travis
-CI <https://travis-ci.org/>`__ platform. Throughout the lab, we will
+CI <https://travis-ci.org/>`__ platform. Throughout the homework, we will
 refer to these CI features as the “CI system”.
 
-Creating your lab repository
-----------------------------
+Creating your homework repository
+---------------------------------
 
-Like previous labs, we will provide you with an *invitation URL* that
-will allow you sign up for the lab assignment on GitHub, and which will
+Like previous homeworks, we will provide you with an *invitation URL* that
+will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2020-lab6-GITHUB_USERNAME`` inside our ``cmsc22000-labs`` organization
-on GitHub. Your repository will be seeded with some files for the lab
-and, more specifically, will contain the same files we provided for Lab
+``2021-hw6-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+on GitHub.
+
+Your repository will be seeded with some files for the homework
+and, more specifically, will contain the same files we provided for Homework
 #5 (an implementation of libgeometry).
+
+
 
 Task 1: Building your code with CI
 ==================================
@@ -45,11 +52,14 @@ new commits to the repository”.
 On Travis, the jobs are specified in a text file named ``.travis.yml``
 which is placed in the root of your repository.
 
-{{% note %}} The ``.travis.yml`` is a YAML file. YAML is a text-based
-file format that is commonly used for configuration files. We’ll be
-showing the syntax you need in this lab, but if you are curious there is
-a ton of documentation out there on it. Fun fact, it’s short for “YAML
-Ain’t Markup Language”) {{% /note %}}
+
+.. note::
+
+    The ``.travis.yml`` is a YAML file. YAML is a text-based
+    file format that is commonly used for configuration files. We’ll be
+    showing the syntax you need in this homework, but if you are curious there is
+    a ton of documentation out there on it. Fun fact, it’s short for “YAML
+    Ain’t Markup Language”)
 
 We’ll start by looking at a simple Travis CI file:
 
@@ -126,13 +136,15 @@ Here is what is happening in each of the phases:
 -  ``script``: This is the phase where we actually build our code and
    run the tests.
 
-{{% note %}} You can find more information about how to specify a Travis
-CI build in the `Travis CI
-Documentation <https://docs.travis-ci.com/>`__, and a specification of
-their configuration file format in the `Travis CI Build Config
-Reference <https://config.travis-ci.com/>`__. You don’t need to refer to
-these resources right now, but may need to consult them later in the
-lab. {{% /note %}}
+.. note::
+
+    You can find more information about how to specify a Travis
+    CI build in the `Travis CI
+    Documentation <https://docs.travis-ci.com/>`__, and a specification of
+    their configuration file format in the `Travis CI Build Config
+    Reference <https://config.travis-ci.com/>`__. You don’t need to refer to
+    these resources right now, but may need to consult them later in the
+    homework.
 
 Take into account that we could’ve also run all the commands inside the
 ``script`` phase:
@@ -176,7 +188,7 @@ cmsc22000-labs/2020-lab6-GITHUB_USERNAME”, you may need to follow the
 prompt to sign into Travis with your GitHub credentials (once you do,
 you should be able to see the build). You can also access the build by
 going here: https://travis-ci.com/github/cmsc22000-labs/ (and clicking
-on the entry corresponsing to your repository)
+on the entry corresponding to your repository)
 
 Please note that it can sometimes take a few minutes for the build to
 start (the page will automatically update as your build progresses).
@@ -203,7 +215,7 @@ URL like this:
    https://travis-ci.com/github/cmsc22000-labs/2020-lab6-GITHUB_USERNAME/builds/XXXXXXXXX
 
 Where ``XXXXXXXXX`` will be a number. This is the URL for this
-particular build; as you make more builds in the lab, we will be asking
+particular build; as you make more builds in the homework, we will be asking
 you to provide the URL of those builds.
 
 Take into account that you can also access your latest build (even if
@@ -367,7 +379,7 @@ Task 3: More build configurations
 
 In the previous tasks, we’ve given you the exact configurations you had
 to use (and asked for the build URLs to make sure you actually worked
-through the instructions in the lab). In this task, it’s time for you to
+through the instructions in the homework). In this task, it’s time for you to
 figure out how to write certain build configurations on your own by
 reading the Travis CI documentation. More specifically, you will want to
 consult the `Travis CI User
@@ -430,8 +442,8 @@ before you commit/push it and trigger a build.
    Take the URL of the build you just produced, and paste it into
    Gradescope (under “Task 3: Excluding a job”).
 
-Submitting your lab
--------------------
+Submitting your homework
+------------------------
 
 Please note that you will not be submitting your code through
 Gradescope. Instead, make sure that you have provided the URLs to your
