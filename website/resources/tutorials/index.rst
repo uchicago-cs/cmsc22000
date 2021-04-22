@@ -1,4 +1,8 @@
 Tutorials
 =========
 
-* `Code Reviews with Pull Requests <code-reviews.rst>`__
++------------------------------------------------------------------+
+| `Code Reviews with Pull Requests <code-reviews.html>`__          |
++------------------------------------------------------------------+
+
+
