@@ -538,10 +538,10 @@ any modifications to the file).
 Use GDB to track down the source of the segfault, and to fix it. Provide
 the following information on Gradescope:
 
-- Copy-paste the line that is causing the segfault.
+- Copy-paste the line where the segfault is happening.
 - Explain why the segfault is happening.
 - The before and after version of any lines of code you changed to
-  fix the bug. Remember: the line that causes the segfault may not
+  fix the bug. Remember: the line where the segfault happens may not
   be the line you have to edit to fix the bug.
 
 
@@ -587,7 +587,7 @@ see if you can spot anything wrong.
 
 For this task, you must provide the following information on Gradescope:
 
-- Copy-paste the line that is causing the crash.
+- Copy-paste the line that where the crash is happening.
 - Identify the programming error that leads to that crash happening.
 - The before and after version of any lines of code you changed to
   fix the bug.
