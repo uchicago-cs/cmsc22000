@@ -115,7 +115,7 @@ support. To start gdb, run the following command:
 are debugging. Now that ``gdb`` is running, you can start the program by
 typing ``run``. This program won't actually print anything and, if you
 look at the code, it doesn't do anything particularly useful, but
-it will allows us to showcase some simple GDB commands.
+it will allow us to showcase some simple GDB commands.
 
 For example, we may want to stop at certain points in the program. We can
 do this by setting *breakpoints*. These could be done in one of the following ways using
@@ -265,7 +265,7 @@ but functional text editor that can be implemented in about 1,000 lines of C
 code; if you're interested, you can see a step-by-step guide to writing this
 editor here: https://viewsourcecode.org/snaptoken/kilo/ (please note that you
 do not have to read this to complete this homework; however, if you're interested
-in the inner workings of a text editor, you may find that guide interesting)
+in the inner workings of a text editor, you may find that guide interesting).
 
 ``micro`` largely follows the same structure as the ``kilo`` code, except we
 divided it into multiple modules and documented the code following our style guide.
@@ -338,6 +338,9 @@ connect to the editor that is running on the other terminal. You need
 to run the following command from the GDB prompt::
 
     target remote :50000
+
+Note: If you specified a different port number when running ``gdbserver``, you must use that
+number instead of ``50000`` when running ``target remote``.
 
 You will see something like this::
 
@@ -466,8 +469,8 @@ Runtime errors make the program crash while it is running, and sometimes
 they are hard to find because the compiler doesn’t always give
 particularly informative error messages.
 
-For example, your repository includes an ``examples/sefault.c`` that will
-crash with a segmentation fault when run::
+For example, your repository includes an ``examples/segfault.c`` that will
+crash with a segmentation fault when you run it::
 
     $ gcc -g segfault.c -o segfault
     $ ./segfault
