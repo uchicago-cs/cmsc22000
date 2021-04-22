@@ -1,4 +1,4 @@
 Tutorials
 =========
 
-No tutorials available (yet)!
+* `Code Reviews with Pull Requests <code-reviews.rst>`__
