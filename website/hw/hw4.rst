@@ -34,7 +34,7 @@ your changes to your repository, in case we need to look at your code.
 Task 1: Compiler/Linker Error Debugging
 ---------------------------------------
 
-(30 points)
+(15 + 15 points)
 
 Read the `Debugging
 Guide <https://uchicago-cs.github.io/debugging-guide/>`__ up to (and including)
