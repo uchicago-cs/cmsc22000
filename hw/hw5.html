@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Creating your lab repository &#8212; CMSC 22000 - Introduction to Software Development</title>
+<title>Homework 5: Testing &#8212; CMSC 22000 - Introduction to Software Development</title>
 
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -97,7 +97,9 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <p><strong>Due:</strong> Wednesday, May 13th, 8pm</p>
+  <div class="section" id="homework-5-testing">
+<h1>Homework 5: Testing<a class="headerlink" href="#homework-5-testing" title="Permalink to this headline">¶</a></h1>
+<p><strong>Due:</strong> Wednesday, May 5th, 8pm CDT</p>
 <p>By this point in your CS studies, you’ve probably experienced the
 following at least once:</p>
 <ol class="arabic simple">
@@ -122,32 +124,35 @@ reassuring us that our code does what it is supposed to do, it can also
 make debugging a much more painless experience, by quickly narrowing
 down our search for the part of our code that is failing.</p>
 <p>Generally speaking, there are two kinds of tests: <em>unit tests</em> and
-<em>integration tests</em>. In this lab we will focus on <em>unit tests</em>, which
+<em>integration tests</em>. In this homework we will focus on <em>unit tests</em>, which
 check the correctness of a single component or module, typically by
 testing individual functions within that component. <em>Integration tests</em>,
 on the other hand, check the correctness of multiple components at once,
 or of an entire system.</p>
-<p>By the end of this lab, you’ll have experience writing unit tests, as
+<p>By the end of this homework, you’ll have experience writing unit tests, as
 well as an appreciation for their importance. You’ll be writing tests
 for existing code, as well as using the practice of <em>Test-Driven
 Development</em> to develop new code.</p>
-<div class="section" id="creating-your-lab-repository">
-<h1>Creating your lab repository<a class="headerlink" href="#creating-your-lab-repository" title="Permalink to this headline">¶</a></h1>
-<p>Like previous labs, we will provide you with an <em>invitation URL</em> that
-will allow you sign up for the lab assignment on GitHub, and which will
+<div class="section" id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+<p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
+will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-<code class="docutils literal notranslate"><span class="pre">2020-lab5-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization
-on GitHub. Your repository will be seeded with some files for the lab
+<code class="docutils literal notranslate"><span class="pre">2021-hw5-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization
+on GitHub.</p>
+<p>Your repository will be seeded with some files for the homework
 and, more specifically, will contain a <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> directory with an
 updated version of <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> with the refactored <code class="docutils literal notranslate"><span class="pre">segment</span></code>
-module we asked you to implement in Lab #2.</p>
+module we asked you to implement in Homework #5.</p>
+</div>
+</div>
 <div class="section" id="task-0-a-bit-about-criterion">
-<h2>Task 0: A bit about <code class="docutils literal notranslate"><span class="pre">criterion</span></code><a class="headerlink" href="#task-0-a-bit-about-criterion" title="Permalink to this headline">¶</a></h2>
+<h1>Task 0: A bit about <code class="docutils literal notranslate"><span class="pre">criterion</span></code><a class="headerlink" href="#task-0-a-bit-about-criterion" title="Permalink to this headline">¶</a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> library already includes several unit tests, which
 use a testing framework called
 <a class="reference external" href="https://github.com/Snaipe/Criterion">Criterion</a>. This framework is
 already installed on the CS machines. Let’s learn a little bit about
-this testing framework before we get to the actual tasks for this lab.
+this testing framework before we get to the actual tasks for this homework.
 Consider the following sample tests:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span>Test(foo, add)
 {
@@ -231,8 +236,8 @@ inside the <code class="docutils literal notranslate"><span class="pre">tests/</
 Makefile that you do not understand, please make sure to ask us.</p>
 </div>
 <div class="section" id="task-1-testing-existing-code">
-<h2>Task 1: Testing existing code<a class="headerlink" href="#task-1-testing-existing-code" title="Permalink to this headline">¶</a></h2>
-<p>Remember that, in Lab 2, we asked you to refactor some of the code in
+<h1>Task 1: Testing existing code<a class="headerlink" href="#task-1-testing-existing-code" title="Permalink to this headline">¶</a></h1>
+<p>Remember that, in Homework #2, we asked you to refactor some of the code in
 <code class="docutils literal notranslate"><span class="pre">point.c</span></code> to a new <code class="docutils literal notranslate"><span class="pre">segment.c</span></code> module. At the time, you may have
 asked yourself: “If I’m implementing this code as part of a library, how
 can I <em>run</em> the segment code I just wrote?”. One answer to that question
@@ -241,7 +246,7 @@ libgeometry, and calls the segment functions to see whether they work
 (and, with what you know about Makefiles, it should be possible for you
 to do that). However, what we really want to do is write tests for this
 new segment datatype, similar to the ones that already exist for the
-point and polygon datatypes. In Lab 2 we asked you to simply modify the
+point and polygon datatypes. In Homework #2 we asked you to simply modify the
 calls to <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> in <code class="docutils literal notranslate"><span class="pre">test_point.c</span></code>, which was a
 temporary solution before we learned how tests work. Now, we will write
 proper tests for the segment datatype.</p>
@@ -255,7 +260,9 @@ started:</p>
 <span class="cp">#include</span> <span class="cpf">&quot;segment.h&quot;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p>{{% warning %}} <strong>Warning</strong>: Because this lab depends on the
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because this homework depends on the
 <code class="docutils literal notranslate"><span class="pre">criterion</span></code> library, you should make sure to compile and test your
 work on a CS environment, which will has the <code class="docutils literal notranslate"><span class="pre">criterion</span></code> library
 properly set up and ready to go. You can find instructions on how to
@@ -264,15 +271,19 @@ on your computer, and just compile/run your code in a CS environment) in
 our <a class="reference external" href="https://uchicago-cs.github.io/dev-guide/environment.html">developer
 guide</a>.
 While it is possible to install <code class="docutils literal notranslate"><span class="pre">criterion</span></code> on an unsupported machine,
-we may not be able to provide support for that setup. {{% /warning %}}</p>
+we may not be able to provide support for that setup.</p>
+</div>
 <p>You will also need to modify the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in the <code class="docutils literal notranslate"><span class="pre">tests/</span></code>
 directory to add your new file.</p>
-<p>{{% warning %}} {{% md %}} <strong>Caution</strong>: There are <em>three</em>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Careful: There are <em>three</em>
 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>s in this project! There’s the root-level <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> for
 building the library, a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in the <code class="docutils literal notranslate"><span class="pre">samples</span></code> directory to
 build the sample programs, and a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory
 specifically for building test files. You should only modify this last
-<code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. {{% /md %}} {{% /warning %}}</p>
+<code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
+</div>
 <p>It’s time to write your first tests! In your <code class="docutils literal notranslate"><span class="pre">test_segment.c</span></code> file, do
 the following:</p>
 <ul>
@@ -290,11 +301,12 @@ the individual function) as possible. You should be able to
 accomplish this by writing 3-4 tests for each function, but please
 note we won’t be grading you on the number of tests your write, but
 on how much coverage they provide.</p>
-<p>Note: Remember that, in Lab 2, you had the option of moving these
+<p>Note: Remember that, in Homework #2, you had the option of moving these
 functions to <code class="docutils literal notranslate"><span class="pre">segment.c</span></code>, or to keep them in <code class="docutils literal notranslate"><span class="pre">point.c</span></code> (and
 exposing them through <code class="docutils literal notranslate"><span class="pre">point.h</span></code>). In the code we’ve provided,
 <code class="docutils literal notranslate"><span class="pre">on_segment</span></code> has been moved to the segment module, and
-<code class="docutils literal notranslate"><span class="pre">orientation</span></code> has been kept in the point module (and both have been
+<code class="docutils literal notranslate"><span class="pre">orientation</span></code> has been renamed to <code class="docutils literal notranslate"><span class="pre">point_orientation</span></code> and
+kept in the point module (and both have been
 added to their respective module’s header file).</p>
 </li>
 </ul>
@@ -312,7 +324,7 @@ explaining the test. For example:</p>
 </div>
 </div>
 <div class="section" id="task-2-test-driven-development">
-<h2>Task 2: Test-Driven Development<a class="headerlink" href="#task-2-test-driven-development" title="Permalink to this headline">¶</a></h2>
+<h1>Task 2: Test-Driven Development<a class="headerlink" href="#task-2-test-driven-development" title="Permalink to this headline">¶</a></h1>
 <p><em>Test-Driven Development</em> (or <em>TDD</em> for short) is a method of
 programming that uses tests to guide implementation. The goal of TDD is
 to make it easier to create clean, correct code on the first try and
@@ -322,7 +334,7 @@ something like this:</p>
 <ol class="arabic simple">
 <li><p>Write tests that cover all behavior of the interface you’re
 implementing</p></li>
-<li><p>Write skeleton functions (i.e. functions that have the correct type
+<li><p>Write skeleton functions (i.e., functions that have the correct type
 signature but return dummy values, and don’t contain any logic) so
 that your program compiles</p></li>
 <li><p>All of your tests fail because nothing is implemented yet</p></li>
@@ -331,7 +343,7 @@ that your program compiles</p></li>
 test. If the test doesn’t pass, debug what you implemented.</p></li>
 </ol>
 <p>In this task, you will implement a new <code class="docutils literal notranslate"><span class="pre">circle_t</span></code> data structure for
-representing circles in <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code>. For the purposes of this lab,
+representing circles in <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code>. For the purposes of this homework,
 circles will be represented by a center and radius. The center will be
 represented by a <code class="docutils literal notranslate"><span class="pre">point_t</span></code>, and the radius by a <code class="docutils literal notranslate"><span class="pre">double</span></code>.</p>
 <p>You should create three new files: <code class="docutils literal notranslate"><span class="pre">include/circle.h</span></code>,
@@ -339,11 +351,14 @@ represented by a <code class="docutils literal notranslate"><span class="pre">po
 both the root-level <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in the <code class="docutils literal notranslate"><span class="pre">tests</span></code>
 directory to ensure the new files are compiled. Make a commit with the
 new files as well as the changes to the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>s, with the
-message “Starting lab 5 task 2”. <em>Don’t forget to ``git add`` the new
+message “Starting homework 5 task 2”.</p>
+<p><em>Don’t forget to “git add” the new
 files; otherwise, they won’t be included in the commit.</em></p>
 <p>Now, use TDD to develop <code class="docutils literal notranslate"><span class="pre">new</span></code>, <code class="docutils literal notranslate"><span class="pre">init</span></code>, and <code class="docutils literal notranslate"><span class="pre">free</span></code> functions for
 circles.</p>
-<p>{{% warning %}} <strong>Note:</strong> To ensure that you are following TDD, we will
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To ensure that you are following TDD, we will
 be inspecting your commit history to check that you actually wrote your
 tests first. At a minimum, we require the following workflow:</p>
 <ol class="arabic simple">
@@ -359,7 +374,8 @@ that your tests pass.</p></li>
 </ol>
 <p>By all means, please make more commits as you write individual tests and
 implement individual functions. This is just the <em>minimum</em> we require to
-tell whether or not you implemented tests first. {{% /warning %}}</p>
+tell whether or not you implemented tests first.</p>
+</div>
 <p>Next, let’s use TDD to implement a few slightly more complex functions
 that compute things about circles:</p>
 <ul class="simple">
@@ -383,7 +399,7 @@ includes a circle being wholly contained inside another circle.</p></li>
 determining whether two circles overlap (this is often referred to the
 <em>intersection</em> of two circles). As usual, you must cite these sources.</p>
 <p>When writing the tests for the first three functions, you may find the
-function <code class="docutils literal notranslate"><span class="pre">cr_assert_float_eq</span></code> helpful. As you know, floating-point
+function <code class="docutils literal notranslate"><span class="pre">cr_assert_float_eq</span></code> helpful. As you may know, floating-point
 arithmetic on computers is not 100% accurate; <code class="docutils literal notranslate"><span class="pre">cr_assert_float_eq</span></code>
 allows you to check that the first value you supply to it is within some
 range of the second value. For example:</p>
@@ -399,25 +415,23 @@ written the tests, write the implementation, and then make a commit with
 that implementation.</p>
 <p>Finally, as before, you should include header comments in all the tests
 you write.</p>
-</div>
-</div>
-<div class="section" id="submitting-your-lab">
-<h1>Submitting your lab<a class="headerlink" href="#submitting-your-lab" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submitting-your-homework">
+<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h2>
 <p>Before submitting, make sure you’ve added, committed, and pushed all
-your code to GitHub. <em>Don’t forget to ``git add`` any new files.</em></p>
-<p>Like the previous lab, you will submit your code through Gradescope.
-When submitting through Gradescope, you will be given the option of
+your code to GitHub. <em>Don’t forget to “git add” any new files.</em></p>
+<p>When submitting through Gradescope, you will be given the option of
 manually uploading files, or of uploading a GitHub repository (we
 recommend the latter, as this ensures you are uploading exactly the
 files that are in your repository). If you upload your repository, make
-sure you select your <code class="docutils literal notranslate"><span class="pre">2020-lab5-GITHUB_USERNAME</span></code> repository, with
-“master” as the branch. Please note that you can submit as many times as
+sure you select your <code class="docutils literal notranslate"><span class="pre">2021-hw5-GITHUB_USERNAME</span></code> repository, with
+“main” as the branch. Please note that you can submit as many times as
 you want before the deadline.</p>
 <p>Once you submit your files, an “autograder” will run. This won’t
 actually be doing any grading, but it will try to build your code and
 run the tests, which can help you verify that your submission doesn’t
 have any last-minute issues in it. If it does, make sure to fix them and
 re-submit again.</p>
+</div>
 </div>
 
 
