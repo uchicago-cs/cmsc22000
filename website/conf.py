@@ -124,7 +124,8 @@ html_sidebars = {'*': None,
                  'project/policies': ['localtoc.html'],
                  'project/warmup': ['localtoc.html'],
                  'hw/hw1': ['localtoc.html'],
-                 'hw/hw3': ['localtoc.html']
+                 'hw/hw3': ['localtoc.html'],
+                 'hw/hw4': ['localtoc.html']
                  }
 
 html_context = {"web_navbar": [("Course Information", [
