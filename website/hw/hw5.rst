@@ -233,7 +233,8 @@ the following:
    functions to ``segment.c``, or to keep them in ``point.c`` (and
    exposing them through ``point.h``). In the code we’ve provided,
    ``on_segment`` has been moved to the segment module, and
-   ``orientation`` has been kept in the point module (and both have been
+   ``orientation`` has been renamed to ``point_orientation`` and
+   kept in the point module (and both have been
    added to their respective module’s header file).
 
 For each of the tests (except the ``segment_intersect`` ones refactored
