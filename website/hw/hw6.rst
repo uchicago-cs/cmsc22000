@@ -13,9 +13,10 @@ providing mechanisms to trigger certain actions when code is pushed to a
 repository.
 
 In this homework, we are going to explore the CI features available through
-GitHub and, more specifically, through the `Travis
-CI <https://travis-ci.org/>`__ platform. Throughout the homework, we will
-refer to these CI features as the “CI system”.
+`GitHub Actions <https://docs.github.com/en/actions>`__, a mechanism
+provided by GitHub that allows you to run a series of actions whenever you push new
+code to your repository, and which can be used to implement continuous integration
+in a repository.
 
 Creating your homework repository
 ---------------------------------
@@ -33,7 +34,7 @@ and, more specifically, will contain the same files we provided for Homework
 
 
 Task 1: Building your code with CI
-==================================
+----------------------------------
 
 In most CI systems, we will want to specify a series of actions that
 need to happen automatically whenever any commits are pushed to the
@@ -42,222 +43,293 @@ repository, and run some tests. These actions are typically referred to
 as *jobs*. A CI system will keep a record of all the jobs it runs, and
 will typically notify you if a job fails.
 
-When we push new commits to the repository, this may result in some or
-all of these jobs being run, which Travis CI refers to as “a build”.
-This is potentially confusing because, strictly speaking, “building”
-refers just to building/making your code but, in the context of CI, “a
-build” usually refers to “all the jobs that are run when you push any
-new commits to the repository”.
+GitHub Actions groups jobs into "workflows", and it is possible to specify
+multiple workflows for the same repository. For example, we could have
+one workflow to build our code, and another workflow to generate an
+installable package for our software.
 
-On Travis, the jobs are specified in a text file named ``.travis.yml``
-which is placed in the root of your repository.
+Workflows are specified using the YAML file format, a text-based
+file format that is commonly used for configuration files (fun fact:
+YAML is a recursive acronym that stands for “YAML Ain’t Markup Language”). We’ll be
+showing some of the basic syntax you need in this homework, but you do not
+need to know YAML in depth to be able to write workflow configuration
+files in YAML.
 
-
-.. note::
-
-    The ``.travis.yml`` is a YAML file. YAML is a text-based
-    file format that is commonly used for configuration files. We’ll be
-    showing the syntax you need in this homework, but if you are curious there is
-    a ton of documentation out there on it. Fun fact, it’s short for “YAML
-    Ain’t Markup Language”)
-
-We’ll start by looking at a simple Travis CI file:
+We’ll start by looking at a simple GitHub Actions workflow file:
 
 ::
 
-   os: linux
+    name: Build and Test libgeometry
 
-   dist: xenial
+    on: [push]
 
-   language: c
+    jobs:
+      build-and-test:
 
-   before_install:
-       - sudo add-apt-repository -y ppa:snaipewastaken/ppa
-       - sudo apt-get update
+        runs-on: ubuntu-16.04
 
-   install:
-       - sudo apt-get install -y criterion criterion-dev
+        steps:
+        - uses: actions/checkout@v2
 
-   before_script:
-       - cd libgeometry
-       - make clean
+        - name: Install Criterion
+          run: |
+           sudo add-apt-repository -y ppa:snaipewastaken/ppa
+           sudo apt update -q
+           sudo apt install -qy criterion criterion-dev
 
-   script: 
-       - make all
-       - make tests
-       - tests/test-libgeometry
+        - name: Build libgeometry
+          working-directory: libgeometry/
+          run: |
+            make clean
+            make all
 
-Save this as a ``.travis.yml`` file in the root of your repository;
-commit it, but don’t push it just yet.
+        - name: Build tests
+          working-directory: libgeometry/
+          run: make tests
 
-{{% note %}} Files that start with a period, like ``.travis.yml``, are
-hidden by default on a UNIX system. This means the file won’t appear if
-you use ``ls`` from the terminal; you will need to include the ``-a``
-option to be able to see it (i.e., ``ls -a`` instead of ``ls``, and
-``ls -al`` instead of ``ls -l``). If you are using a graphical file
-browser, you may need to select a “Show Hidden Files” option somewhere
-to be able to see the file. {{% /note %}}
+        - name: Run tests
+          working-directory: libgeometry/
+          run: tests/test-libgeometry --verbose
 
-By default, a Travis CI file will specify a single job that is run
-whenever we push any code to our repository (later on we’ll see how to
-specify multiple jobs). In this file, we specify some options that will
-affect how the job is run:
-
--  ``os: linux`` specifies that the job should be run on a Linux
-   environment.
--  ``dist: xenial`` specifies that it will specifically be run on an
-   Ubuntu 16.04 (“Xenial”) environment
--  ``language: c`` specifies that we are building a C project, so Travis
-   knows to use an environment that includes a C compiler.
-
-The remaining options specify the *phases* of the job. A job is divided
-several *phases* that happen in sequence; Travis CI only supports a
-specific set of phases, and in this example we are only specifying what
-happens in four of them: ``before_install``, ``install``,
-``before_script``, and ``script``.
-
-Here is what is happening in each of the phases:
-
--  ``before_install``: Because libgeometry depends on the Criterion
-   library, we need to make sure it is installed before we try to build
-   our code. Travis CI uses an Ubuntu build environment by default, and
-   these commands tell Ubuntu where to find the Criterion library.
--  ``install``: In this phase, we actually install the Criterion
-   libraries.
--  ``before_script``: In this phase, we run any commands necessary
-   before the actual build. In this case, since Travis runs all commands
-   from the root of your repository, we need to ``cd`` into
-   ``libgeometry`` before we can run ``make``. We also run
-   ``make clean``, which is considered good practice in a build job, as
-   it guarantees that your build starts from a clean slate (and can help
-   you detect whether you’ve inadvertently committed object files or
-   binary files that make your build work only when those files are
-   already present)
--  ``script``: This is the phase where we actually build our code and
-   run the tests.
+Create a ``.github`` directory in your repository, and a ``workflows`` directory inside
+that directory. Save the above file as ``.github/workflows/build-and-test.yml`` ,
+but don’t push it just yet.
 
 .. note::
 
-    You can find more information about how to specify a Travis
-    CI build in the `Travis CI
-    Documentation <https://docs.travis-ci.com/>`__, and a specification of
-    their configuration file format in the `Travis CI Build Config
-    Reference <https://config.travis-ci.com/>`__. You don’t need to refer to
-    these resources right now, but may need to consult them later in the
-    homework.
+    Files and directories that start with a period, like ``.github``, are
+    hidden by default on a UNIX system. This means the file won’t appear if
+    you use ``ls`` from the terminal; you will need to include the ``-a``
+    option to be able to see it (i.e., ``ls -a`` instead of ``ls``, and
+    ``ls -al`` instead of ``ls -l``). If you are using a graphical file
+    browser, you may need to select a “Show Hidden Files” option somewhere
+    to be able to see the file.
 
-Take into account that we could’ve also run all the commands inside the
+Let's take a look at what the contents of this file mean. The file
+starts with two general configuration options:
+
+-  ``name: Build and Test libgeometry`` specifies a name for the workflow.
+-  ``on: [push]`` specifies that the workflow should be run whenever we
+   push to the repository. The ``on`` option can be used to specify more
+   fine-grained events (e.g., we could specify a workflow that only runs
+   when we push to a specific branch)
+
+After that, we have a ``jobs:`` option where we can specify the jobs
+that make up this workflow. In this workflow, we are only specifying
+a single job called ``build-and-test``.
+
+The first option of the job (``runs-on: ubuntu-16.04``) specifies
+that the job should be run on an Ubuntu 16.04 environment. We can't specify
+arbitrary environments here, though; a CI system will typically
+have a limited set of environments they support (for GitHub Actions,
+you can see the list of supported environments
+`here <https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources>`__)
+
+Next, the ``steps`` option specifies the exact steps that should
+be performed as part of this job. You'll notice that all of them,
+except the first one, have two options in common: ``name`` and ``run``.
+Those steps specify the commands that have to be run as part of the
+workflow (notice how these are just commands that you would run
+from the terminal if you were building the code manually). Some
+of these steps also have a ``working-directory`` option, which
+specifies the directory the commands have to be run from.
+
+The first step is different. GitHub Actions actually allows developers to
+publish actions that other developers
+can re-use in their workflows, and we are reusing an action provided
+by GitHub: the ``actions/checkout@v2`` action. This action simply
+clones our repository before running the rest of the commands
+in the job.
+
+Let's take a closer look at what the other steps do.
+
+First of all, libgeometry uses the Criterion library to run unit tests, so
+we need to install that library before building our code.
+The following step uses Ubuntu's ``apt`` command to install Criterion:
+
+::
+
+        - name: Install Criterion
+          run: |
+           sudo add-apt-repository -y ppa:snaipewastaken/ppa
+           sudo apt update -q
+           sudo apt install -qy criterion criterion-dev
+
+Next, we actually build libgeometry. Notice how we run ``make clean``
+first: this is considered good practice, because it ensures our build
+starts from a clean slate, in case we inadvertently committed any binary
+files to our repository that would interfere with the build.
+
+::
+
+        - name: Build libgeometry
+          working-directory: libgeometry/
+          run: |
+            make clean
+            make all
+
+As a separate step, we build the tests. It is also good to place this in
+its own step so that, if building the library or the tests fails,
+we can easily distinguish which one failed just by seeing what step
+of the job failed.
+
+::
+
+        - name: Build tests
+          working-directory: libgeometry/
+          run: make tests
+
+Finally, we run the tests:
+
+::
+
+        - name: Run tests
+          working-directory: libgeometry/
+          run: tests/test-libgeometry --verbose
+
+
+
+
+Take into account that we could’ve also run all the commands inside a single
+``run`` step:
 ``script`` phase:
 
 ::
 
-   os: linux
+    name: Build and Test libgeometry
 
-   dist: xenial
+    on: [push]
 
-   language: c
+    jobs:
+      build-and-test:
 
-   script: 
-       - sudo add-apt-repository -y ppa:snaipewastaken/ppa
-       - sudo apt-get update
-       - sudo apt-get install -y criterion criterion-dev
-       - cd libgeometry
-       - make clean
-       - make all
-       - make tests
-       - tests/test-libgeometry
+        runs-on: ubuntu-16.04
+
+        steps:
+        - uses: actions/checkout@v2
+
+        - name: Build and Test
+          working-directory: libgeometry/
+          run: |
+            sudo add-apt-repository -y ppa:snaipewastaken/ppa
+            sudo apt update -q
+            sudo apt install -qy criterion criterion-dev
+            make clean
+            make all
+            make tests
+            tests/test-libgeometry --verbose
 
 However, it is considered good practice to separate these commands into
-their appropriate phases. In more complex builds, it can be useful to
-know exactly what phase of the build failed.
+separate steps. In more complex builds, it can be useful to
+know exactly what step of a given job failed.
 
-Go ahead and push the commit you created previously. GitHub (and Travis
-CI) will detect that your repository has a ``.travis.yml`` file, and
-will trigger a build (following the phases specified in the
-``.travis.yml`` file). You can see the status of the build in the
-following URL:
+.. note::
+
+    You can find more information about GitHub Actions in the `GitHub Actions
+    Documentation <https://docs.github.com/en/actions>`__, and a specification of
+    their worflow file format in the `Workflow syntax for GitHub Actions <https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions>`__ page.
+    You don’t need to refer to
+    these resources right now, but may need to consult them later in the
+    homework.
+
+
+Go ahead and push the commit you created previously. GitHub will
+detect that your repository has a workflow file and
+will run the job specified in that workflow.
+You can see the status of the workflow by clicking on the
+Actions tab of your repository:
+
+.. figure:: hw6-github-actions-tab.png
+   :alt: Actions tab in GitHub
+
+
+You should see something like this:
+
+.. figure:: hw6-workflows.png
+   :alt: GitHub Actions workflows
+
+.. note::
+
+    If you see a yellow icon next to your workflow, that means the workflow is still running.
+    It should not take more than a few minutes to complete.
+
+Each row corresponds to an individual *run* of a workflow (identified by the commit
+that triggered that run). As you push more commits
+to your repository, you'll see more entries in this table.
+
+If you click on the commit name, you'll see more details about the workflow's
+jobs (in this case, we only have one job, ``build-and-test``):
+
+.. figure:: hw6-workflow-jobs.png
+   :alt: GitHub Actions workflow jobs
+
+Make a note of the URL of this page, which should look something like this:
 
 ::
 
-     https://travis-ci.com/github/cmsc22000-labs/2020-lab6-GITHUB_USERNAME
-     
+   https://github.com/uchicago-cmsc22000/2021-hw6-GITHUB_USERNAME/actions/runs/XXXXXXXXXX
 
-Where ``GITHUB_USERNAME`` should be replaced with your GitHub username.
-If you see a message saying “We couldn’t display the repository
-cmsc22000-labs/2020-lab6-GITHUB_USERNAME”, you may need to follow the
-prompt to sign into Travis with your GitHub credentials (once you do,
-you should be able to see the build). You can also access the build by
-going here: https://travis-ci.com/github/cmsc22000-labs/ (and clicking
-on the entry corresponding to your repository)
+Where ``XXXXXXXXXX`` will be a number. Later in the homework, we will be asking you
+to provide this URL, as well as the
+URLs of future runs. To double-check that you're providing the right URL, make sure
+that it looks like the one above.
 
-Please note that it can sometimes take a few minutes for the build to
-start (the page will automatically update as your build progresses).
-After a while, the “Current” tab should show a successful build like
-this:
+If we click on the ``build-and-test`` job, we can see more details on that job,
+including the list of steps that were run in that job:
 
-.. figure:: /cmsc22000/img/build.png
-   :alt: build
+.. figure:: hw6-workflow-job.png
+   :alt: GitHub Actions workflow job details
 
-   build
+And, if we click on an individual step, we can see the output of any commands
+run in that step.
 
-{{% note %}} If the build shows up as “errored”, with errors that relate
-specifically to ``git clone``, this just means that GitHub is limiting
-the number of requests from Travis. Wait a minute or two and try
-pressing the “Restart job” button. {{% /note %}}
+.. figure:: hw6-workflow-job-steps.png
+   :alt: GitHub Actions step details
 
-The “#1” in the screenshot is the build number (this number may be
-different if you had to make multiple attempts to get a successful
-build). Click on the build number; this will take you to a page with a
-URL like this:
+.. note::
 
-::
+   If a workflow is running (and not completed), you can still navigate to these
+   pages to observe the execution of the various steps.
 
-   https://travis-ci.com/github/cmsc22000-labs/2020-lab6-GITHUB_USERNAME/builds/XXXXXXXXX
 
-Where ``XXXXXXXXX`` will be a number. This is the URL for this
-particular build; as you make more builds in the homework, we will be asking
-you to provide the URL of those builds.
-
-Take into account that you can also access your latest build (even if
-it’s in progress) through GitHub. In your repository, there will be a
-small icon (a green check mark for a successful build, a yellow circle
-for a build in progress, and a red X for a failed build) in the top
+Take into account that you can also access your latest workflow run (even if
+it’s in progress) through the main page of your GitHub repository.
+In your repository, there will be a
+small icon (a green check mark for a successful run, a yellow circle
+for a run in progress, and a red X for a failed run) in the top
 right of your list of files. If you click on it, it will show more
-information about the build:
+information about the run:
 
-.. figure:: /cmsc22000/img/github-travis.png
-   :alt: github-travis
+.. figure:: hw6-build-status.png
+   :alt: Build status on GitHub
 
-   github-travis
-
-If you click on “Details”, it will take you to a page on GitHub with
-more details about the build. From that page, you can click on the link
-“The build”, which will take you to the Travis CI page for that build.
-Make sure to do this so you are familiar with how to navigate through
-GitHub’s and Travis’s build pages.
+If you click on “Details”, it will take you directly to the page with
+more details about that particular run.
 
 Now, do the following:
 
--  [10 points] Take the URL of the build you just produced, and paste it
-   into Gradescope (under “Task 1: Successful build”)
+-  [10 points] Take the URL of the run you just produced, and paste it
+   into Gradescope (under “Task 1: Successful run”)
 
 -  [10 points] Make a change to the libgeometry code that will prevent
-   it from compiling. Commit and push that change; your build should
-   eventually fail. Paste the URL of the failed build on Gradescope
-   (under “Task 1: Failed build (compiling)”)
+   it from compiling. Commit and push that change; your run should
+   eventually fail (make sure to double-check that the "Build libgeometry"
+   step is failing). Paste the URL of the failed run on Gradescope
+   (under “Task 1: Failed run (compiling)”)
 
 -  [10 points] Fix the change you made, and make another change that
-   will make the tests fail. Commit and push that change; your build
-   should eventually fail. Paste the URL of the failed build on
-   Gradescope (under “Task 1: Failed build (tests)”)
+   will make the tests fail. Commit and push that change; your run
+   should eventually fail (make sure to double-check that the "Run tests"
+   step is failing). Paste the URL of the failed run on
+   Gradescope (under “Task 1: Failed run (tests)”)
 
 Before moving on to the next task, make sure to fix the change you just
 made. Your build should succeed before moving on to the next tasks.
 
 Task 2: Multiple jobs
-=====================
+---------------------
 
-In the previous task we saw that Travis CI can build our code and run
+In the previous task we saw that GitHub Actions can build our code and run
 the tests, and alert us to any issues when doing so. However, our job
 was running specifically in an Ubuntu 16.04 environment. What if our
 code doesn’t compile in other environments? CI systems can also help us
@@ -265,188 +337,186 @@ with this, as they often provide mechanisms to easily build our code in
 multiple environments. For example, we may want to build our code in
 multiple Ubuntu versions, or using different compilers.
 
-In Travis CI, we have the ability to specify build options that will
-automatically generate additional jobs. For example, add the following
-to your ``.travis.yml`` file:
+In GitHub Actions, we can do this by specifying a *matrix* of job
+configurations. For example, add this option to your ``build-and-test``
+job:
 
 ::
 
-   compiler:
-     - gcc
-     - clang
+    strategy:
+      matrix:
+        os: [ubuntu-16.04, ubuntu-18.04]
+        compiler: [gcc, clang]
 
-This tells Travis CI that we want to run the build with two compilers:
-``gcc`` and ``clang``. If you commit and push this updated file, this
-will produce a build with two jobs:
+Commit and push this change. You'll notice that your workflow now
+produces four jobs, corresponding to every combination of the ``os``
+and ``compiler`` values shown above.
 
-.. figure:: /cmsc22000/img/compilers-build.png
-   :alt: compilers-build
+However, the ``matrix`` option above doesn't actually affect the
+running environment or compiler used in the jobs (for example,
+if you click through the details of the Ubuntu 18.04 clang job,
+you'll see that Ubuntu 16.04 still appears in the "Set up job"
+step, under "Operating System", and that the build steps still use GCC).
 
-   compilers-build
+The ``matrix`` option simply defines variables we can use in our
+workflow file, and which get substituted for each individual job.
+In this case, the variables are ``${{ matrix.os }}`` and ``${{ matrix.compiler }}``.
+So, if we replace this::
 
-You can click on the individual jobs to see the full job log, showing
-the exact commands that were run in each job. You’ll actually notice
-that the clang job seems to still be running gcc. Don’t worry about this
-for now (we’ll revisit this in Task 3)
+    runs-on: ubuntu-16.04
 
--  [10 points] Take the URL of the build you just produced, and paste it
-   into Gradescope (under “Task 2: Multiple compilers”).
+With this::
 
-Travis CI actually provides two mechanisms to specify multiple jobs:
+    runs-on: ${{ matrix.os }}
 
-**Using a “matrix expansion” option**. There are certain options in
-Travis, such as the ``compiler`` option that will automatically result
-in generating multiple jobs. Another such option is the ``arch`` option
-(for specifying the processor architecture our build will run on). For
-example, if we specified the following options:
+Each run will use the appropriate operating system. Give it a try!
 
-::
+-  [10 points] Take the URL of the run you just produced, and paste it
+   into Gradescope (under “Task 2.1: Multiple operating systems”).
 
-        arch:
-          - amd64
-          - arm64
-        
-        compiler:
-          - gcc
-          - clang
-      
+However, our builds are still using GCC in every job. Unfortunately,
+the workflow file doesn't have a convenient "tell Make to use this compiler"
+option, so this requires a bit more work.
 
-The “build matrix” would include every combination of these options:
+First of all, we will need to modify our Makefile. Notice how the
+``libgeometry/Makefile`` and ``libgeometry/tests/Makefile`` files
+hardcode ``gcc`` as the compiler::
 
--  GCC on an AMD64 processor
--  clang on an AMD64 processor
--  GCC on an ARM64 processor
--  clang on an ARM64 processor
+    CC = gcc
 
-Modify your ``.travis.yml`` file to also include the ``arch`` option as
-shown above (i.e., you should still keep the ``compiler`` option you
-added previously). Commit and push the updated file. Once the build
-completes, you should see four jobs in the build. By the way, the ARM64
-processor architecture is commonly used in smartphones, which means that
-we have effortlessly verified that libgeometry will build and run
-correctly on most smartphones!
+Simply remove this line from both Makefiles, and try running the
+following from inside the ``libgeometry`` directory::
 
--  [10 points] Take the URL of the build you just produced, and paste it
-   into Gradescope (under “Task 2: Matrix expansion”).
+    $ CC=clang make
 
-**Listing individual configurations**: You can also just list the exact
-configurations you want to use using the ``jobs`` option. For example,
-this is how you would specify three jobs that compile your code in three
-different Ubuntu distributions (18.04 “Bionic”, 16.04 “Xenial, and
-14.04”Trusty"), all with GCC:
+``CC=clang`` defines an *environment variable* that is passed along
+to `make` (this is not a Make-specific feature; many UNIX commands
+will check the values of certain environment variables).
 
-::
+Notice how you will still be able to run ``make`` without the ``CC``
+environment variable::
 
-   jobs:
-     include:
-     - os: linux
-       dist: bionic
-       compiler: gcc
-     - os: linux
-       dist: xenial
-       compiler: gcc
-     - os: linux
-       dist: trusty
-       compiler: gcc
+    $ make clean
+    $ make
 
-Remove the top-level ``os``, ``dist``, ``compiler``, and ``arch``
-options from your ``.travis.yml`` file, and replace it with the above
-``jobs`` option. Commit and push the file; once the build completes, you
-should see it has three jobs.
+This is because, if you do not define ``CC`` in the Makefile,
+Make will simply use a default value.
 
-As it turns out, the job that ran on Ubuntu 14.04 will fail. You do not
-need to fix it, but it’s worth noting why it failed: the version of GCC
-shipped with that version of Ubuntu does not use, by default, the C99
-version of the C standard (which later versions of GCC do use by
-default). To get the code to build on Ubuntu 14.04, we would have to
-explicitly pass the ``-std=c99`` option to GCC to make sure it compiles
-the code using the C99 version of the C standard.
+Finally, take into account that you could also do something like this::
 
-Now imagine that we were developing software that was still required to
-run on old Ubuntu 14.04 systems (which none of our developers are likely
-to be using to write and test their code). Using a CI system allows us
-to uncover these kind of issues early on, by easily testing our code in
-multiple systems (including old legacy systems) so we can uncover issues
-like these.
+    $ export CC=clang
+    $ make
 
--  [10 points] Take the URL of the build you just produced, and paste it
-   into Gradescope (under “Task 2: Individual job configurations”). It’s
-   ok if the build contains the failed Ubuntu 14.04 job; you are not
-   expected to fix it.
+The difference is that using ``export`` sets the value of the ``CC``
+variable for all subsequent commands, while ``CC=clang make``
+only sets it for that specific command that is being run (``make``).
 
-Task 3: More build configurations
-=================================
+Your task is to figure out how to specify environment variables as part
+of a workflow job. Remember that you can find the workflow format
+documentation `here <https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions>`__
+and that you're welcome to look for the answer through external
+sources, as long as you cite your sources.
 
-In the previous tasks, we’ve given you the exact configurations you had
-to use (and asked for the build URLs to make sure you actually worked
-through the instructions in the homework). In this task, it’s time for you to
-figure out how to write certain build configurations on your own by
-reading the Travis CI documentation. More specifically, you will want to
-consult the `Travis CI User
-Documentation <https://docs.travis-ci.com/>`__ and the `Travis CI Build
-Config Reference <https://config.travis-ci.com/>`__. Travis CI also
-provides a `Config Explorer <https://config.travis-ci.com/explore>`__
-that can allow you to validate that your ``.travis.yml`` is correct
-before you commit/push it and trigger a build.
+-  [10 points] Modify the Makefile as described above, and update
+   your workflow file so that the libgeometry code and the tests
+   are built with the right compiler. Take the URL of the run
+   you just produced, and paste it
+   into Gradescope (under “Task 2.2: Multiple compilers”).
 
--  [10 points] In Task 2, we saw that using the ``compiler`` option
-   resulted in the ``clang`` build still using GCC. There is something
-   you will need to fix in your ``Makefile`` Hint: The Travis CI
-   documentation includes language-specific documentation that explains
-   what certain options, like the ``compiler`` option, do. You may want
-   to look at that specifically.
+Task 3: Supporting Different Environments
+-----------------------------------------
 
-   Use the ``compiler`` option to create a build with two jobs (one with
-   GCC and one with clang), and make sure that the clang one is actually
-   using clang (by looking at the output of the Make commands in the
-   “Job log”). Take the URL of the build you just produced, and paste it
-   into Gradescope (under “Task 3: GCC vs clang”). You must also explain
-   what you did to ensure the clang job used clang.
+You may have noticed that Ubuntu 20.04 (the latest "Long Term Support"
+version of Ubuntu) was conspicuously missing from the list of operating
+systems we were building libgeometry in. This is because the Criterion
+library does not provide installable packages for Ubuntu 20.04, which
+means the "Install Criterion" step we defined (which uses Ubuntu's ``apt`` command to fetch
+and install the Criterion package) will fail on Ubuntu 20.04.
 
-   Note: If you end up with more than two jobs, make sure you’ve removed
-   any other option that would result in additional jobs being launched.
+You can give it a try by changing this::
 
--  [10 + 10 points] Using matrix expansion options *only*, generate a
-   build with four configurations:
+        os: [ubuntu-16.04, ubuntu-18.04]
 
-   -  GCC on Ubuntu 18.04
-   -  clang on Ubuntu 18.04
-   -  GCC on Mac OS X
-   -  clang on Mac OS X
+To this::
 
-   You will get 10 points just for producing the build with the correct
-   four jobs. To get the remaining 10 points, you will need to modify
-   your ``.travis.yml`` file further to get the code to build correctly
-   in a Mac OS X environment.
+        os: [ubuntu-16.04, ubuntu-20.04]
 
-   Hint: as you’ll discover fairly quickly, Mac OS X doesn’t include the
-   ``apt`` command used in Ubuntu systems, and which we rely on to
-   install the Criterion library. Installing *dependencies* can be
-   tricky when combining multiple different environment, so you may
-   focus on the part of the Travis CI documentation that focuses on
-   that.
+You'll notice that the "Install Criterion" step fails for the Ubuntu 20.04 runs.
 
-   Take the URL of the build you just produced, and paste it into
-   Gradescope (under “Task 3: Ubuntu and Mac OS X”). If you got the code
-   to build in a Mac OS X environment, you must also explain how you
-   accomplished this.
+Fortunately, we can just build Criterion from its source code.
+However, we'd like to do this *only* when building our code
+for Ubuntu 20.04 (building Criterion from scratch takes longer
+than installing a package, so we'd like to continue to use
+the installable packages whenever possible).
 
--  [10 points] It turns out that, in a Mac environment, running ``gcc``
-   just results in a call to clang. So, it seems a bit redundant to run
-   the two Mac jobs in the previous build (which will both end up using
-   clang). Figure out a way to *exclude* the Mac+GCC job from the build.
-   Note: You will not get credit if you simply write out the three job
-   configurations. You must instead continue to use matrix expansion,
-   but figure out a way to exclude one specific configuration.
+So, we're going to end up with two possible installation steps
+for Criterion::
 
-   Take the URL of the build you just produced, and paste it into
-   Gradescope (under “Task 3: Excluding a job”).
+    - name: Install Criterion (Ubuntu < 20.04)
+      run: |
+       sudo add-apt-repository -y ppa:snaipewastaken/ppa
+       sudo apt update -q
+       sudo apt install -qy criterion criterion-dev
+
+    - name: Install Criterion (Ubuntu >= 20.04)
+      run: |
+        git clone --recursive https://github.com/Snaipe/Criterion
+        cd Criterion
+        git checkout master
+        cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -B build/
+        make -C build/
+        sudo make -C build/ install
+
+Your task is to figure out how to ensure that the first step is only
+run if the operating system is ``ubuntu-16.04``, and the second
+step is only run if the operating system is ``ubuntu-20.04``.
+Note: you must do this without modifying the ``run`` option.
+Like before, remember that you can find the workflow format
+documentation `here <https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions>`__
+and that you're welcome to look for the answer through external
+sources, as long as you cite your sources.
+
+-  [10 points] Take the URL of the run you just produced, and paste it
+   into Gradescope (under “Task 3: Supporting Different Environments”).
+
+Task 4: Tweaking the Matrix
+---------------------------
+
+One of the advantages of specifying a matrix of configurations is that
+it can allow us to very easily verify that our code works across
+multiple combinations of different options. For example, let's
+say we defined the following matrix::
+
+    strategy:
+      matrix:
+        os: [ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]
+        compiler: [gcc, clang]
+
+This would run six different configurations. However, let's say
+we're only interested in testing our code with both GCC and clang
+in the latest version of Ubuntu (for prior versions, we'll just
+test it with GCC). So, for avoidance of doubt, you would end
+up with four jobs:
+
+- Ubuntu 16.04 with GCC
+- Ubuntu 18.04 with GCC
+- Ubuntu 20.04 with GCC
+- Ubuntu 20.04 with clang
+
+Figure out a way to run only the above jobs. For full credit,
+you must do so in a way that does not involve writing out the configuration
+for four separate jobs. Also, take into account that, depending on
+how you solved Task 3, you may have to further tweak your
+Task 3 solution to get it to work with all these configurations.
+
+-  [10 points] Take the URL of the run you just produced, and paste it
+   into Gradescope (under “Task 4: Tweaking the Matrix”).
 
 Submitting your homework
-------------------------
+========================
 
 Please note that you will not be submitting your code through
 Gradescope. Instead, make sure that you have provided the URLs to your
-CI builds through Gradescope. That said, we still need you to push your
+runs through Gradescope. That said, we still need you to push your
 code in case we need to look at any of your code (but we will not be
 grading the code itself).
