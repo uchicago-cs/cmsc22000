@@ -18,13 +18,13 @@ the other hand, if you’re deploying a small web application, you just
 need a way to get your application from your computer to a server where
 other users can access it.
 
-In this lab, you will deploy an application to
+In this homework, you will deploy an application to
 `Heroku <https://www.heroku.com/>`__, one of the most popular services
 for hosting web apps. More specifically, you’ll be deploying HelloApp,
 the small `Flask <http://flask.pocoo.org/>`__ web application we
 demonstrated in this week’s lectures (you can see our deployed version
 here: https://cs220-helloapp.herokuapp.com/). Don’t worry: while the app
-is implemented in Python, no Python knowledge is necessary for this lab.
+is implemented in Python, no Python knowledge is necessary for this homework.
 
 Creating your homework repository
 ---------------------------------
@@ -35,7 +35,7 @@ result in the creation of a repository called
 ``2021-hw7-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
 on GitHub.
 
-Your repository will be seeded with some files for the lab
+Your repository will be seeded with some files for the homework
 and, more specifically, will contain the code for HelloApp.
 
 Task 1: Create a Heroku App
@@ -60,7 +60,7 @@ Once you’ve created your account, you’re ready to create a Heroku app.
    url for your app will be ``https://CNETID-cs220-hw7.herokuapp.com``
 
 You’ve created your app! But navigate to
-``https://CNETID-cs220-lab7.herokuapp.com``. As you can see, there’s
+``https://CNETID-cs220-hw7.herokuapp.com``. As you can see, there’s
 nothing there. In the coming tasks we will get HelloApp up and running
 on this URL.
 
@@ -351,7 +351,7 @@ to GitHub as instructed above.
 Submitting your homework
 ------------------------
 
-In this lab, you just need to enter a few URLs into Gradescope (make
+In this homework, you just need to enter a few URLs into Gradescope (make
 sure you’ve done so at the points instructed above). You should also
 make sure you’ve pushed your code to GitHub (but you will not be submitting
 your code through Gradescope; we just need to check that you’ve made the
