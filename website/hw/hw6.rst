@@ -92,8 +92,8 @@ We’ll start by looking at a simple GitHub Actions workflow file:
           run: tests/test-libgeometry --verbose
 
 Create a ``.github`` directory in your repository, and a ``workflows`` directory inside
-that directory. Save the above file as ``.github/workflows/build-and-test.yml`` ,
-but don’t push it just yet.
+that directory. Save the above file as ``.github/workflows/build-and-test.yml``,
+but don’t commit/push it just yet.
 
 .. note::
 
@@ -233,7 +233,8 @@ know exactly what step of a given job failed.
     homework.
 
 
-Go ahead and push the commit you created previously. GitHub will
+Go ahead and commit the ``.github/workflows/build-and-test.yml`` file, and
+push it to GitHub. GitHub will
 detect that your repository has a workflow file and
 will run the job specified in that workflow.
 You can see the status of the workflow by clicking on the
@@ -369,7 +370,8 @@ With this::
 
     runs-on: ${{ matrix.os }}
 
-Each run will use the appropriate operating system. Give it a try!
+Each run will use the appropriate operating system. Make the above
+change and commit/push the change to give it a try.
 
 -  [10 points] Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 2.1: Multiple operating systems”).
@@ -505,7 +507,10 @@ up with four jobs:
 
 Figure out a way to run only the above jobs. For full credit,
 you must do so in a way that does not involve writing out the configuration
-for four separate jobs. Also, take into account that, depending on
+for four separate jobs (either by writing four separate jobs, or by
+creating a matrix that specifies four distinct configurations). Instead, you
+should look for a way to selectively add/remove jobs from an existing matrix.
+Also, take into account that, depending on
 how you solved Task 3, you may have to further tweak your
 Task 3 solution to get it to work with all these configurations.
 
