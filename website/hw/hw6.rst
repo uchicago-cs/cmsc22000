@@ -310,19 +310,19 @@ more details about that particular run.
 Now, do the following:
 
 -  [10 points] Take the URL of the run you just produced, and paste it
-   into Gradescope (under “Task 1: Successful run”)
+   into Gradescope (under “Task 1.1: Successful run”)
 
 -  [10 points] Make a change to the libgeometry code that will prevent
    it from compiling. Commit and push that change; your run should
    eventually fail (make sure to double-check that the "Build libgeometry"
    step is failing). Paste the URL of the failed run on Gradescope
-   (under “Task 1: Failed run (compiling)”)
+   (under “Task 1.2: Failed run (compiling)”)
 
 -  [10 points] Fix the change you made, and make another change that
    will make the tests fail. Commit and push that change; your run
    should eventually fail (make sure to double-check that the "Run tests"
    step is failing). Paste the URL of the failed run on
-   Gradescope (under “Task 1: Failed run (tests)”)
+   Gradescope (under “Task 1.3: Failed run (tests)”)
 
 Before moving on to the next task, make sure to fix the change you just
 made. Your build should succeed before moving on to the next tasks.
@@ -419,7 +419,7 @@ documentation `here <https://docs.github.com/en/actions/reference/workflow-synta
 and that you're welcome to look for the answer through external
 sources, as long as you cite your sources.
 
--  [10 points] Modify the Makefile as described above, and update
+-  [20 points] Modify the Makefile as described above, and update
    your workflow file so that the libgeometry code and the tests
    are built with the right compiler. Take the URL of the run
    you just produced, and paste it
@@ -478,7 +478,7 @@ documentation `here <https://docs.github.com/en/actions/reference/workflow-synta
 and that you're welcome to look for the answer through external
 sources, as long as you cite your sources.
 
--  [10 points] Take the URL of the run you just produced, and paste it
+-  [20 points] Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 3: Supporting Different Environments”).
 
 Task 4: Tweaking the Matrix
@@ -514,7 +514,7 @@ Also, take into account that, depending on
 how you solved Task 3, you may have to further tweak your
 Task 3 solution to get it to work with all these configurations.
 
--  [10 points] Take the URL of the run you just produced, and paste it
+-  [20 points] Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 4: Tweaking the Matrix”).
 
 Submitting your homework
