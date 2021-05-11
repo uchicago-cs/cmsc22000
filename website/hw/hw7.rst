@@ -78,8 +78,10 @@ set it up to also push to Heroku. We can do this using a command-line
 tool provided by Heroku. This command-line tool is available on the CSIL machines
 and the ``linux.cs`` servers.
 
-First, you’ll need to log into Heroku like this (make sure you run the following
-commands *inside* your ``2021-hw7-GITHUB_USERNAME`` directory):
+First, you’ll need to log into Heroku using one of the methods described
+below. Before doing this, make sure you've cloned your homework repository,
+and that you are *inside* your ``2021-hw7-GITHUB_USERNAME`` directory before
+you run any of the commands below:
 
 * **If running on an SSH connection to a CS Linux server**:
 
@@ -176,7 +178,7 @@ This should produce an output like this:
     =========================== 2 passed in 0.06 seconds ===========================
 
 Now, let’s break our app. Edit the file ``hello/templates/index.html``
-and replace ``Hello`` with ``Howdy``. If you re-run the tests, one test
+and replace ``Hello`` with ``Howdy`` on line 10. If you re-run the tests, one test
 will pass, but another will fail:
 
 .. code:: sh
@@ -259,7 +261,7 @@ As you may remember from our `previous homework <hw6.html>`__,
 we have a way to make sure our app passes all the tests every time we
 push.
 
-For this, you should create a ``.github/workflows/test-app.yml`` file in your
+For this task, you should create a ``.github/workflows/test-app.yml`` file in your
 ``2021-hw7-GITHUB_USERNAME`` repo. With Python, there’s no need to
 build, so your job should only do the following:
 
@@ -272,6 +274,10 @@ build, so your job should only do the following:
 
     pytest --verbose
 
+.. note::
+
+   For the above to work, you need to make sure your workflow runs on
+   the ``ubuntu-latest`` environment.
 
 
 In the last task, you made the tests fail. Commit and push your
