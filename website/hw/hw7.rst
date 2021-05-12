@@ -1,4 +1,7 @@
-**Due:** Wednesday, May 27th, 8pm
+Homework 7: Deployment
+======================
+
+**Due:** Wednesday, May 19th, 8pm CDT
 
 Last week, you learned about Continuous Integration, which deals with
 how application code makes it to the master branch. But how do our
@@ -15,26 +18,28 @@ the other hand, if you’re deploying a small web application, you just
 need a way to get your application from your computer to a server where
 other users can access it.
 
-In this lab, you will deploy an application to
+In this homework, you will deploy an application to
 `Heroku <https://www.heroku.com/>`__, one of the most popular services
 for hosting web apps. More specifically, you’ll be deploying HelloApp,
 the small `Flask <http://flask.pocoo.org/>`__ web application we
 demonstrated in this week’s lectures (you can see our deployed version
 here: https://cs220-helloapp.herokuapp.com/). Don’t worry: while the app
-is implemented in Python, no Python knowledge is necessary for this lab.
+is implemented in Python, no Python knowledge is necessary for this homework.
 
-Creating your lab repository
-----------------------------
+Creating your homework repository
+---------------------------------
 
-Like previous labs, we will provide you with an *invitation URL* that
-will allow you sign up for the lab assignment on GitHub, and which will
+Like previous homeworks, we will provide you with an *invitation URL* that
+will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2020-lab7-GITHUB_USERNAME`` inside our ``cmsc22000-labs`` organization
-on GitHub. Your repository will be seeded with some files for the lab
+``2021-hw7-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+on GitHub.
+
+Your repository will be seeded with some files for the homework
 and, more specifically, will contain the code for HelloApp.
 
 Task 1: Create a Heroku App
-===========================
+---------------------------
 
 [20 points]
 
@@ -50,69 +55,84 @@ Once you’ve created your account, you’re ready to create a Heroku app.
 
 1. Go to your dashboard, https://dashboard.heroku.com/apps
 2. Click the button that says “New” and then click on “Create new app”
-3. Under “app-name” title your app ``CNETID-cs220-lab7`` (where
+3. Under “App name” title your app ``CNETID-cs220-hw7`` (where
    ``CNETID`` should be replaced with your CNetID). This means that the
-   url for your app will be ``https://CNETID-cs220-lab7.herokuapp.com``
+   url for your app will be ``https://CNETID-cs220-hw7.herokuapp.com``
 
 You’ve created your app! But navigate to
-``https://CNETID-cs220-lab7.herokuapp.com``. As you can see, there’s
+``https://CNETID-cs220-hw7.herokuapp.com``. As you can see, there’s
 nothing there. In the coming tasks we will get HelloApp up and running
 on this URL.
 
 Before continuing, enter the URL of your Heroku app on Gradescope.
 
 Task 2: Deploy using Heroku CLI
-===============================
+-------------------------------
 
 [20 points]
 
 In class, we saw that we can deploy an app to Heroku simply by pushing
-to their Git repository. Your local ``2020-lab7-GITHUB_USERNAME``
+to their Git repository. Your local ``2021-hw7-GITHUB_USERNAME``
 repository is currently configured to push only to GitHub, so we need to
 set it up to also push to Heroku. We can do this using a command-line
-tool provided by Heroku.
-
-First, you’ll need to log into Heroku like this (make sure you run this
-command *inside* your ``2020-lab7-GITHUB_USERNAME`` directory):
-
-.. code:: sh
-
-   $ heroku login
-
-{{% warning %}} The ``heroku`` command is available on the CSIL machines
+tool provided by Heroku. This command-line tool is available on the CSIL machines
 and the ``linux.cs`` servers.
 
-If you are running inside the CS VM, then you will need to install Flask
-and the ``heroku`` command by running the following:
+First, you’ll need to log into Heroku using one of the methods described
+below. Before doing this, make sure you've cloned your homework repository,
+and that you are *inside* your ``2021-hw7-GITHUB_USERNAME`` directory before
+you run any of the commands below:
 
-.. code:: sh
+* **If running on an SSH connection to a CS Linux server**:
 
-   $ sudo -H pip3 install flask
-   $ sudo snap install --classic heroku
+    .. code:: sh
 
-If you are using the Headless VM setup, take into account that the
-``heroku login`` command will attempt to open a browser to log you into
-Heroku, which is not possible from headless mode. Instead, the command
-will print out a URL, which you will have to manually copy/paste into a
-browser in your computer. {{% /warning %}}
+       $ heroku login -i
+
+  This will ask you for your Heroku username and password on the terminal.
+
+* **If running on a CS Virtual Desktop**:
+
+    .. code:: sh
+
+       $ heroku login
+
+  This will open a browser where you will be able to log into
+  Heroku.
+
+  Note: If you get an error about an "IP address mismatch", please
+  try using the ``-i`` option as described above.
+
+* **If running on the CS VM**:
+
+    You will need to install Flask
+    and the ``heroku`` command by running the following:
+
+    .. code:: sh
+
+       $ sudo -H pip3 install flask
+       $ sudo snap install --classic heroku
+
+    Then, run ``heroku login`` as described above.
+
 
 The instructions for deploying using the CLI are located at
-``https://dashboard.heroku.com/apps/CNETID-cs220-lab7/deploy/heroku-git``
+``https://dashboard.heroku.com/apps/CNETID-cs220-hw7/deploy/heroku-git``
 (under “Deploy using Heroku Git”). We already have a git repository, so
 we’ll follow the instructions for *Existing Git Repository*.
 
 .. code:: sh
 
-   $ heroku git:remote -a CNETID-cs220-lab7
+   $ heroku git:remote -a CNETID-cs220-hw7
 
-So, we’ve set up Heroku for this app, but we haven’t deployed it yet…
-Navigate to your app’s webpage, and you’ll see nothing is there.
+So, we’ve set up Heroku for this app, but we haven’t deployed it yet.
+Navigate to your app’s webpage, and you’ll see there is still nothing there.
 
-In order to deploy, you should use:
+In order to deploy, you need to run the following:
 
 .. code:: sh
 
-   $ git push heroku master
+   $ git push heroku main
 
 The ``heroku git:remote`` command you ran above added the ``heroku``
 remote to your local repository, and pushing to it means that Heroku’s
@@ -122,20 +142,21 @@ like this:
 
 .. code:: sh
 
-   remote: -----> Launching...
-   remote:        Released v3
-   remote:        https://CNETID-cs220-lab7.herokuapp.com/ deployed to Heroku
-   remote: 
-   remote: Verifying deploy... done.
-   To https://git.heroku.com/CNETID-cs220-lab7.git
-    * [new branch]      master -> master
+    remote: -----> Launching...
+    remote:        Released v3
+    remote:        https://CNETID-cs220-hw7.herokuapp.com/ deployed to Heroku
+    remote:
+    remote: Verifying deploy... done.
+    To https://git.heroku.com/CNETID-cs220-hw7.git
+     * [new branch]      main -> main
 
-Go ahead and go to ``https://CNETID-cs220-lab7.herokuapp.com/``.
+
+Go ahead and go to ``https://CNETID-cs220-hw7.herokuapp.com/``.
 HelloApp should now be running correctly at that URL.
 
 The version you just deployed happens to be a correct version of the
 app. We actually have a few tests that will run some basic checks to
-make sure the app is behaving as intended. You can run this tests simply
+make sure the app is behaving as intended. You can run these tests simply
 by running this:
 
 .. code:: sh
@@ -146,55 +167,55 @@ This should produce an output like this:
 
 .. code:: sh
 
-   ====================================== test session starts =======================================
-   platform linux -- Python 3.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
-   rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
-   plugins: metadata-1.7.0, json-0.4.0, html-1.17.0
-   collected 2 items
+    ============================= test session starts ==============================
+    platform linux -- Python 3.8.5, pytest-3.9.1, py-1.10.0, pluggy-0.13.1
+    rootdir: /home/CNETID/cs220/CNETID-cs220-hw7, inifile:
+    plugins: json-0.4.0, metadata-1.7.0, html-1.19.0, timeout-1.3.2
+    collected 2 items
 
-   tests/test_greeting.py ..                                                                  [100%]
+    tests/test_greeting.py ..                                                [100%]
 
-   ==================================== 2 passed in 0.02 seconds ====================================
+    =========================== 2 passed in 0.06 seconds ===========================
 
 Now, let’s break our app. Edit the file ``hello/templates/index.html``
-and replace ``Hello`` with ``Howdy``. If you re-run the tests, one test
+and replace ``Hello`` with ``Howdy`` on line 10. If you re-run the tests, one test
 will pass, but another will fail:
 
 .. code:: sh
 
-   ====================================== test session starts =======================================
-   platform linux -- Python 3.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
-   rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
-   plugins: metadata-1.7.0, json-0.4.0, html-1.17.0
-   collected 2 items
+    ============================= test session starts ==============================
+    platform linux -- Python 3.8.5, pytest-3.9.1, py-1.10.0, pluggy-0.13.1
+    rootdir: /home/CNETID/cs220/CNETID-cs220-hw7, inifile:
+    plugins: json-0.4.0, metadata-1.7.0, html-1.19.0, timeout-1.3.2
+    collected 2 items
 
-   tests/test_greeting.py .F                                                                  [100%]
+    tests/test_greeting.py .F                                                [100%]
 
-   ============================================ FAILURES ============================================
-   _________________________________________ test_greeting __________________________________________
+    =================================== FAILURES ===================================
+    ________________________________ test_greeting _________________________________
 
-   client = <FlaskClient <Flask 'hello.main'>>
+    client = <FlaskClient <Flask 'hello.main'>>
 
-       def test_greeting(client):
-           """
-           Test that we get the correct greeting
-           if we submit the form.
-           """
+        def test_greeting(client):
+            """
+            Test that we get the correct greeting
+            if we submit the form.
+            """
 
-           name = b"Random J. Hacker"
-           greeting = GREETING + b", " + name + b"!"
+            name = b"Random J. Hacker"
+            greeting = GREETING + b", " + name + b"!"
 
-           rv = client.post("/", data={"name": name})
+            rv = client.post("/", data={"name": name})
 
-           # Test that the resulting page contains the app name
-           # and the correct greeting.
-           assert APPNAME in rv.data
-   >       assert greeting in rv.data
-   E       assert b'Hello, Random J. Hacker!' in b'<!doctype html>\n<title>HelloApp</title>\n<link rel="stylesheet" href="/static/style.css">\n<nav>\n  <h1>HelloApp</h...h1>\n\n  </header>\n  \n\n<p>\n  Howdy, Random J. Hacker!\n</p>\n<p>\n  <a href="/">Again!</a>\n</p>\n\n\n\n</section>'
-   E        +  where b'<!doctype html>\n<title>HelloApp</title>\n<link rel="stylesheet" href="/static/style.css">\n<nav>\n  <h1>HelloApp</h...h1>\n\n  </header>\n  \n\n<p>\n  Howdy, Random J. Hacker!\n</p>\n<p>\n  <a href="/">Again!</a>\n</p>\n\n\n\n</section>' = <Response 294 bytes [200 OK]>.data
+            # Test that the resulting page contains the app name
+            # and the correct greeting.
+            assert APPNAME in rv.data
+    >       assert greeting in rv.data
+    E       assert b'Hello, Random J. Hacker!' in b'<!doctype html>\n<title>HelloApp</title>\n<link rel="stylesheet" href="/static/style.css">\n<nav>\n  <h1>HelloApp</h...h1>\n\n  </header>\n  \n\n<p>\n  Howdy, Random J. Hacker!\n</p>\n<p>\n  <a href="/">Again!</a>\n</p>\n\n\n\n</section>'
+    E        +  where b'<!doctype html>\n<title>HelloApp</title>\n<link rel="stylesheet" href="/static/style.css">\n<nav>\n  <h1>HelloApp</h...h1>\n\n  </header>\n  \n\n<p>\n  Howdy, Random J. Hacker!\n</p>\n<p>\n  <a href="/">Again!</a>\n</p>\n\n\n\n</section>' = <Response 294 bytes [200 OK]>.data
 
-   tests/test_greeting.py:33: AssertionError
-   =============================== 1 failed, 1 passed in 0.03 seconds ===============================
+    tests/test_greeting.py:33: AssertionError
+    ====================== 1 failed, 1 passed in 0.11 seconds ======================
 
 You don’t need to understand everything that’s going on here but, in a
 nutshell, the tests verified that the index page of our application
@@ -209,7 +230,7 @@ ahead and deploy the broken code:
 
    $ git add hello/templates/index.html
    $ git commit -m "Broke the Internet!"
-   $ git push heroku master
+   $ git push heroku main
 
 As you’ll notice, you’re still able to deploy your app. But it’s now
 returning the wrong greeting, and millions of users are upset because
@@ -231,67 +252,83 @@ repository:
 That way, we can check that you’ve followed the steps described in this
 task. You do not need to enter anything into Gradescope for this task.
 
-Task 3: Create .travis.yml for HelloApp
-=======================================
+Task 3: Create GitHub Actions for HelloApp
+------------------------------------------
 
 [40 points]
 
-As you may remember from our [previous lab]({{< relref “lab6.md” >}}),
+As you may remember from our `previous homework <hw6.html>`__,
 we have a way to make sure our app passes all the tests every time we
 push.
 
-For this, you should create a ``.travis.yml`` file in your
-``2020-lab7-GITHUB_USERNAME`` repo. With Python, there’s no need to
-build, so you should just define a single job that runs the command
-``pytest`` as its test script (in a Linux environment)
+For this task, you should create a ``.github/workflows/test-app.yml`` file in your
+``2021-hw7-GITHUB_USERNAME`` repo. With Python, there’s no need to
+build, so your job should only do the following:
+
+- Checkout the repository using the ``actions/checkout@v2`` action.
+- Install the required Python libraries by running the following::
+
+    sudo -H pip3 install pytest flask
+
+- Run the tests by running the following::
+
+    pytest --verbose
+
+.. note::
+
+   For the above to work, you need to make sure your workflow runs on
+   the ``ubuntu-latest`` environment.
+
 
 In the last task, you made the tests fail. Commit and push your
-.travis.yml file and make sure the CI job fails specifically because the
-tests are failing (you will need to inspect the job log to see that
-``pytest`` is failing in your CI build). Take the URL of the failed
-build, and enter it in Gradescope.
+workflow file and make sure the run fails specifically because the
+tests are failing (you will need to inspect the job steps to see that
+``pytest`` is failing). Take the URL of the failed workflow
+run, and enter it in Gradescope. Remember that it will look something
+like this (where `XXXXXXXX`` will be a number) ::
 
-Now, go back and fix the app so that they all pass. Then, push your
+    https://github.com/uchicago-cmsc22000/2021-hw7-GITHUB_USERNAME/actions/runs/XXXXXXXX
+
+Now, go back and fix the app so that the tests pass again. Then, push your
 fixed app to both GitHub and to Heroku. Take the URL of the successful
-build, and enter it in Gradescope.
+run, and enter it in Gradescope.
 
-Task 4: Deploy using Github Integration with Travis CI
-======================================================
+Task 4: Deploy using Github Integration
+---------------------------------------
 
 [20 points]
 
 Wouldn’t it be convenient if we could deploy continuously, as soon as
-tests pass? You might think “well, what if we had a deploy phase in our
-Travis CI”? This is possible (see
-https://docs.travis-ci.com/user/deployment/heroku/), but it turns out
+tests pass? You might think “well, what if we had a deploy job in our
+GitHub Actions workflow”? This is possible (see
+https://github.com/marketplace/actions/deploy-to-heroku), but it turns out
 Heroku makes it *even easier* than that. On your Heroku app dashboard,
 in the “Deploy” tab, under “Deployment method”, select “GitHub - connect
 to GitHub” instead of “Heroku Git - Use Heroku CLI”.
 
 Then, you should be able to connect to your repo. To do this, you need
-to first select the ``cmsc22000-labs`` organization under “Search for a
+to first select the ``uchicago-cmsc22000`` organization under “Search for a
 repository to connect to”, and then enter your repository’s name
-(``2020-lab7-GITHUB_USERNAME``) in the text field (make sure to click
-the “Search” button so Heroku will search for your repository).
+(``2021-hw7-GITHUB_USERNAME``) in the text field. Make sure to click
+the “Search” button so Heroku will search for your repository; your
+repository should then appear under the search field, with a "Connect"
+button next to it. Click on that button to connect your repository.
 
-Once you connect the repo, you should see an option that says “Automatic
+Once you connect the repo, you should see a new section called “Automatic
 deploys” with a checkbox “Wait for CI to pass before deploy”. Make sure
 that checkbox is checked, and then click on “Enable Automatic Deploys”
 
 Make the tests fail again and push to GitHub with a simple ``git push``.
-The CI tests should fail and, if you navigate to your URL, you’ll see
+*Do not* run ``git push heroku main``, as this will force a deployment
+of your (now broken) app. Instead, we want Heroku's automatic deployment
+mechanism to detect when we've pushed a new version to GitHub *and* only
+deploy it if it passes all the CI tests.
+
+In this case, the CI tests should fail and, if you navigate to your app's URL, you’ll see
 that the broken version has not been deployed.
 
-{{% warning %}} **Caution:** In the above ``git push`` step, *don’t*
-push to Heroku as you did in previous tasks. What’s happening here is
-that the Heroku service will now wait for tests to pass CI, and then
-automagically pull your code and deploy it. No need to manually push to
-Heroku. {{% /warning %}}
-
-Before continuing, fix the tests and make sure your CI tests are passing
-again.
-
-Now, we’re going to make a change that doesn’t make the tests fail, to
+Before continuing, fix the tests but don't push your changes just yet.
+We're going to make one more change that *doesn’t* make the tests fail, to
 verify the change is correctly deployed just by pushing to GitHub. If
 you look at the app, you’ll see that the main page shows the title “What
 is your name?” followed by a form with a field titled “Name”. That
@@ -303,19 +340,17 @@ is your name?” followed by a form with a field titled “Name”. That
        <label for="name">Name</label>
 
 Now, commit your changes and push to GitHub. Once the CI tests pass,
-your updated app should be available on Heroku shortly aftewards. On
-your app dashboard on Heroku, you can go to the “Activity” tab to see
-whether your latest commit has been deployed (this tab can also provide
-details on why an app wasn’t deployed).
+your updated app should be available on Heroku shortly afterwards (you
+can also verify this on the “Activity” tab)
 
 For this task, you just need to make sure that you’ve pushed your code
 to GitHub as instructed above.
 
-Submitting your lab
-~~~~~~~~~~~~~~~~~~~
+Submitting your homework
+------------------------
 
-In this lab, you just need to enter a few URLs into Gradescope (make
+In this homework, you just need to enter a few URLs into Gradescope (make
 sure you’ve done so at the points instructed above). You should also
-make sure you’ve pushed your code to GitHub (but will not be submitting
+make sure you’ve pushed your code to GitHub (but you will not be submitting
 your code through Gradescope; we just need to check that you’ve made the
 commits we expected you to make).
