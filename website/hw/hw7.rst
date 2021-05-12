@@ -319,7 +319,7 @@ deploys” with a checkbox “Wait for CI to pass before deploy”. Make sure
 that checkbox is checked, and then click on “Enable Automatic Deploys”
 
 Make the tests fail again and push to GitHub with a simple ``git push``.
-*Do not* run ``git push heroku master``, as this will force a deployment
+*Do not* run ``git push heroku main``, as this will force a deployment
 of your (now broken) app. Instead, we want Heroku's automatic deployment
 mechanism to detect when we've pushed a new version to GitHub *and* only
 deploy it if it passes all the CI tests.
