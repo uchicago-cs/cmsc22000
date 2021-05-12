@@ -319,24 +319,16 @@ deploys” with a checkbox “Wait for CI to pass before deploy”. Make sure
 that checkbox is checked, and then click on “Enable Automatic Deploys”
 
 Make the tests fail again and push to GitHub with a simple ``git push``.
-The CI tests should fail and, if you navigate to your URL, you’ll see
+*Do not* run ``git push heroku master``, as this will force a deployment
+of your (now broken) app. Instead, we want Heroku's automatic deployment
+mechanism to detect when we've pushed a new version to GitHub *and* only
+deploy it if it passes all the CI tests.
+
+In this case, the CI tests should fail and, if you navigate to your app's URL, you’ll see
 that the broken version has not been deployed.
 
-.. warning::
-
-    **Caution:** In the above ``git push`` step, *don’t*
-    push to Heroku as you did in previous tasks. What’s happening here is
-    that the Heroku service will now wait for tests to pass CI, and then
-    automagically pull your code and deploy it. No need to manually push to
-    Heroku.
-
-Before continuing, fix the tests and push the changes. You won't notice any
-changes in the app itself (since it's just behaving like the previously deployed
-version), but you can look at the "Activity" tab in your Heroku dashboard to
-confirm that Heroku deployed the fixed version you just pushed (because
-the CI tests passed).
-
-Now, we’re going to make a change that doesn’t make the tests fail, to
+Before continuing, fix the tests but don't push your changes just yet.
+We're going to make one more change that *doesn’t* make the tests fail, to
 verify the change is correctly deployed just by pushing to GitHub. If
 you look at the app, you’ll see that the main page shows the title “What
 is your name?” followed by a form with a field titled “Name”. That
