@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Creating your lab repository &#8212; CMSC 22000 - Introduction to Software Development</title>
+<title>Homework 7: Deployment &#8212; CMSC 22000 - Introduction to Software Development</title>
 
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -95,9 +95,26 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Homework 7: Deployment</a><ul>
+<li><a class="reference internal" href="#creating-your-homework-repository">Creating your homework repository</a></li>
+<li><a class="reference internal" href="#task-1-create-a-heroku-app">Task 1: Create a Heroku App</a></li>
+<li><a class="reference internal" href="#task-2-deploy-using-heroku-cli">Task 2: Deploy using Heroku CLI</a></li>
+<li><a class="reference internal" href="#task-3-create-github-actions-for-helloapp">Task 3: Create GitHub Actions for HelloApp</a></li>
+<li><a class="reference internal" href="#task-4-deploy-using-github-integration">Task 4: Deploy using Github Integration</a></li>
+<li><a class="reference internal" href="#submitting-your-homework">Submitting your homework</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
-  <p><strong>Due:</strong> Wednesday, May 27th, 8pm</p>
+  <div class="section" id="homework-7-deployment">
+<h1>Homework 7: Deployment<a class="headerlink" href="#homework-7-deployment" title="Permalink to this headline">¶</a></h1>
+<p><strong>Due:</strong> Wednesday, May 19th, 8pm CDT</p>
 <p>Last week, you learned about Continuous Integration, which deals with
 how application code makes it to the master branch. But how do our
 applications make it to the <em>real world</em>, where other people can use
@@ -111,21 +128,23 @@ architects to come and physically upload software on the machines. On
 the other hand, if you’re deploying a small web application, you just
 need a way to get your application from your computer to a server where
 other users can access it.</p>
-<p>In this lab, you will deploy an application to
+<p>In this homework, you will deploy an application to
 <a class="reference external" href="https://www.heroku.com/">Heroku</a>, one of the most popular services
 for hosting web apps. More specifically, you’ll be deploying HelloApp,
 the small <a class="reference external" href="http://flask.pocoo.org/">Flask</a> web application we
 demonstrated in this week’s lectures (you can see our deployed version
 here: <a class="reference external" href="https://cs220-helloapp.herokuapp.com/">https://cs220-helloapp.herokuapp.com/</a>). Don’t worry: while the app
-is implemented in Python, no Python knowledge is necessary for this lab.</p>
-<div class="section" id="creating-your-lab-repository">
-<h1>Creating your lab repository<a class="headerlink" href="#creating-your-lab-repository" title="Permalink to this headline">¶</a></h1>
-<p>Like previous labs, we will provide you with an <em>invitation URL</em> that
-will allow you sign up for the lab assignment on GitHub, and which will
+is implemented in Python, no Python knowledge is necessary for this homework.</p>
+<div class="section" id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+<p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
+will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-<code class="docutils literal notranslate"><span class="pre">2020-lab7-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization
-on GitHub. Your repository will be seeded with some files for the lab
+<code class="docutils literal notranslate"><span class="pre">2021-hw7-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization
+on GitHub.</p>
+<p>Your repository will be seeded with some files for the homework
 and, more specifically, will contain the code for HelloApp.</p>
+</div>
 <div class="section" id="task-1-create-a-heroku-app">
 <h2>Task 1: Create a Heroku App<a class="headerlink" href="#task-1-create-a-heroku-app" title="Permalink to this headline">¶</a></h2>
 <p>[20 points]</p>
@@ -141,12 +160,12 @@ your account, and then create a password.</p></li>
 <ol class="arabic simple">
 <li><p>Go to your dashboard, <a class="reference external" href="https://dashboard.heroku.com/apps">https://dashboard.heroku.com/apps</a></p></li>
 <li><p>Click the button that says “New” and then click on “Create new app”</p></li>
-<li><p>Under “app-name” title your app <code class="docutils literal notranslate"><span class="pre">CNETID-cs220-lab7</span></code> (where
+<li><p>Under “App name” title your app <code class="docutils literal notranslate"><span class="pre">CNETID-cs220-hw7</span></code> (where
 <code class="docutils literal notranslate"><span class="pre">CNETID</span></code> should be replaced with your CNetID). This means that the
-url for your app will be <code class="docutils literal notranslate"><span class="pre">https://CNETID-cs220-lab7.herokuapp.com</span></code></p></li>
+url for your app will be <code class="docutils literal notranslate"><span class="pre">https://CNETID-cs220-hw7.herokuapp.com</span></code></p></li>
 </ol>
 <p>You’ve created your app! But navigate to
-<code class="docutils literal notranslate"><span class="pre">https://CNETID-cs220-lab7.herokuapp.com</span></code>. As you can see, there’s
+<code class="docutils literal notranslate"><span class="pre">https://CNETID-cs220-hw7.herokuapp.com</span></code>. As you can see, there’s
 nothing there. In the coming tasks we will get HelloApp up and running
 on this URL.</p>
 <p>Before continuing, enter the URL of your Heroku app on Gradescope.</p>
@@ -155,39 +174,52 @@ on this URL.</p>
 <h2>Task 2: Deploy using Heroku CLI<a class="headerlink" href="#task-2-deploy-using-heroku-cli" title="Permalink to this headline">¶</a></h2>
 <p>[20 points]</p>
 <p>In class, we saw that we can deploy an app to Heroku simply by pushing
-to their Git repository. Your local <code class="docutils literal notranslate"><span class="pre">2020-lab7-GITHUB_USERNAME</span></code>
+to their Git repository. Your local <code class="docutils literal notranslate"><span class="pre">2021-hw7-GITHUB_USERNAME</span></code>
 repository is currently configured to push only to GitHub, so we need to
 set it up to also push to Heroku. We can do this using a command-line
-tool provided by Heroku.</p>
-<p>First, you’ll need to log into Heroku like this (make sure you run this
-command <em>inside</em> your <code class="docutils literal notranslate"><span class="pre">2020-lab7-GITHUB_USERNAME</span></code> directory):</p>
+tool provided by Heroku. This command-line tool is available on the CSIL machines
+and the <code class="docutils literal notranslate"><span class="pre">linux.cs</span></code> servers.</p>
+<p>First, you’ll need to log into Heroku using one of the methods described
+below. Before doing this, make sure you’ve cloned your homework repository,
+and that you are <em>inside</em> your <code class="docutils literal notranslate"><span class="pre">2021-hw7-GITHUB_USERNAME</span></code> directory before
+you run any of the commands below:</p>
+<ul>
+<li><p><strong>If running on an SSH connection to a CS Linux server</strong>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ heroku login -i
+</pre></div>
+</div>
+<p>This will ask you for your Heroku username and password on the terminal.</p>
+</li>
+<li><p><strong>If running on a CS Virtual Desktop</strong>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ heroku login
 </pre></div>
 </div>
-<p>{{% warning %}} The <code class="docutils literal notranslate"><span class="pre">heroku</span></code> command is available on the CSIL machines
-and the <code class="docutils literal notranslate"><span class="pre">linux.cs</span></code> servers.</p>
-<p>If you are running inside the CS VM, then you will need to install Flask
+<p>This will open a browser where you will be able to log into
+Heroku.</p>
+<p>Note: If you get an error about an “IP address mismatch”, please
+try using the <code class="docutils literal notranslate"><span class="pre">-i</span></code> option as described above.</p>
+</li>
+<li><p><strong>If running on the CS VM</strong>:</p>
+<p>You will need to install Flask
 and the <code class="docutils literal notranslate"><span class="pre">heroku</span></code> command by running the following:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo -H pip3 install flask
 $ sudo snap install --classic heroku
 </pre></div>
 </div>
-<p>If you are using the Headless VM setup, take into account that the
-<code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code> command will attempt to open a browser to log you into
-Heroku, which is not possible from headless mode. Instead, the command
-will print out a URL, which you will have to manually copy/paste into a
-browser in your computer. {{% /warning %}}</p>
+<p>Then, run <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code> as described above.</p>
+</li>
+</ul>
 <p>The instructions for deploying using the CLI are located at
-<code class="docutils literal notranslate"><span class="pre">https://dashboard.heroku.com/apps/CNETID-cs220-lab7/deploy/heroku-git</span></code>
+<code class="docutils literal notranslate"><span class="pre">https://dashboard.heroku.com/apps/CNETID-cs220-hw7/deploy/heroku-git</span></code>
 (under “Deploy using Heroku Git”). We already have a git repository, so
 we’ll follow the instructions for <em>Existing Git Repository</em>.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ heroku git:remote -a CNETID-cs220-lab7
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ heroku git:remote -a CNETID-cs220-hw7
 </pre></div>
 </div>
-<p>So, we’ve set up Heroku for this app, but we haven’t deployed it yet…
-Navigate to your app’s webpage, and you’ll see nothing is there.</p>
-<p>In order to deploy, you should use:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ git push heroku master
+<p>So, we’ve set up Heroku for this app, but we haven’t deployed it yet.
+Navigate to your app’s webpage, and you’ll see there is still nothing there.</p>
+<p>In order to deploy, you need to run the following:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ git push heroku main
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">git:remote</span></code> command you ran above added the <code class="docutils literal notranslate"><span class="pre">heroku</span></code>
@@ -197,47 +229,47 @@ take about a minute or so and, once it’s done, you should see a message
 like this:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>remote: -----&gt; Launching...
 remote:        Released v3
-remote:        https://CNETID-cs220-lab7.herokuapp.com/ deployed to Heroku
+remote:        https://CNETID-cs220-hw7.herokuapp.com/ deployed to Heroku
 remote:
 remote: Verifying deploy... <span class="k">done</span>.
-To https://git.heroku.com/CNETID-cs220-lab7.git
- * <span class="o">[</span>new branch<span class="o">]</span>      master -&gt; master
+To https://git.heroku.com/CNETID-cs220-hw7.git
+ * <span class="o">[</span>new branch<span class="o">]</span>      main -&gt; main
 </pre></div>
 </div>
-<p>Go ahead and go to <code class="docutils literal notranslate"><span class="pre">https://CNETID-cs220-lab7.herokuapp.com/</span></code>.
+<p>Go ahead and go to <code class="docutils literal notranslate"><span class="pre">https://CNETID-cs220-hw7.herokuapp.com/</span></code>.
 HelloApp should now be running correctly at that URL.</p>
 <p>The version you just deployed happens to be a correct version of the
 app. We actually have a few tests that will run some basic checks to
-make sure the app is behaving as intended. You can run this tests simply
+make sure the app is behaving as intended. You can run these tests simply
 by running this:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ pytest
 </pre></div>
 </div>
 <p>This should produce an output like this:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">======================================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">=======================================</span>
-platform linux -- Python <span class="m">3</span>.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
-rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
-plugins: metadata-1.7.0, json-0.4.0, html-1.17.0
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">=============================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">==============================</span>
+platform linux -- Python <span class="m">3</span>.8.5, pytest-3.9.1, py-1.10.0, pluggy-0.13.1
+rootdir: /home/CNETID/cs220/CNETID-cs220-hw7, inifile:
+plugins: json-0.4.0, metadata-1.7.0, html-1.19.0, timeout-1.3.2
 collected <span class="m">2</span> items
 
-tests/test_greeting.py ..                                                                  <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
+tests/test_greeting.py ..                                                <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
 
-<span class="o">====================================</span> <span class="m">2</span> passed in <span class="m">0</span>.02 <span class="nv">seconds</span> <span class="o">====================================</span>
+<span class="o">===========================</span> <span class="m">2</span> passed in <span class="m">0</span>.06 <span class="nv">seconds</span> <span class="o">===========================</span>
 </pre></div>
 </div>
 <p>Now, let’s break our app. Edit the file <code class="docutils literal notranslate"><span class="pre">hello/templates/index.html</span></code>
-and replace <code class="docutils literal notranslate"><span class="pre">Hello</span></code> with <code class="docutils literal notranslate"><span class="pre">Howdy</span></code>. If you re-run the tests, one test
+and replace <code class="docutils literal notranslate"><span class="pre">Hello</span></code> with <code class="docutils literal notranslate"><span class="pre">Howdy</span></code> on line 10. If you re-run the tests, one test
 will pass, but another will fail:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">======================================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">=======================================</span>
-platform linux -- Python <span class="m">3</span>.5.2, pytest-3.5.1, py-1.5.3, pluggy-0.6.0
-rootdir: /var/tmp/borja/cs220-helloapp-2019, inifile:
-plugins: metadata-1.7.0, json-0.4.0, html-1.17.0
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">=============================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">==============================</span>
+platform linux -- Python <span class="m">3</span>.8.5, pytest-3.9.1, py-1.10.0, pluggy-0.13.1
+rootdir: /home/CNETID/cs220/CNETID-cs220-hw7, inifile:
+plugins: json-0.4.0, metadata-1.7.0, html-1.19.0, timeout-1.3.2
 collected <span class="m">2</span> items
 
-tests/test_greeting.py .F                                                                  <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
+tests/test_greeting.py .F                                                <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
 
-<span class="o">============================================</span> <span class="nv">FAILURES</span> <span class="o">============================================</span>
-_________________________________________ test_greeting __________________________________________
+<span class="o">===================================</span> <span class="nv">FAILURES</span> <span class="o">===================================</span>
+________________________________ test_greeting _________________________________
 
 <span class="nv">client</span> <span class="o">=</span> &lt;FlaskClient &lt;Flask <span class="s1">&#39;hello.main&#39;</span>&gt;&gt;
 
@@ -260,7 +292,7 @@ E       assert b<span class="s1">&#39;Hello, Random J. Hacker!&#39;</span> in b<
 E        +  where b<span class="s1">&#39;&lt;!doctype html&gt;\n&lt;title&gt;HelloApp&lt;/title&gt;\n&lt;link rel=&quot;stylesheet&quot; href=&quot;/static/style.css&quot;&gt;\n&lt;nav&gt;\n  &lt;h1&gt;HelloApp&lt;/h...h1&gt;\n\n  &lt;/header&gt;\n  \n\n&lt;p&gt;\n  Howdy, Random J. Hacker!\n&lt;/p&gt;\n&lt;p&gt;\n  &lt;a href=&quot;/&quot;&gt;Again!&lt;/a&gt;\n&lt;/p&gt;\n\n\n\n&lt;/section&gt;&#39;</span> <span class="o">=</span> &lt;Response <span class="m">294</span> bytes <span class="o">[</span><span class="m">200</span> OK<span class="o">]</span>&gt;.data
 
 tests/test_greeting.py:33: <span class="nv">AssertionError</span>
-<span class="o">===============================</span> <span class="m">1</span> failed, <span class="m">1</span> passed in <span class="m">0</span>.03 <span class="nv">seconds</span> <span class="o">===============================</span>
+<span class="o">======================</span> <span class="m">1</span> failed, <span class="m">1</span> passed in <span class="m">0</span>.11 <span class="nv">seconds</span> <span class="o">======================</span>
 </pre></div>
 </div>
 <p>You don’t need to understand everything that’s going on here but, in a
@@ -272,7 +304,7 @@ nothing is preventing us from deploying this broken app. In fact, go
 ahead and deploy the broken code:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ git add hello/templates/index.html
 $ git commit -m <span class="s2">&quot;Broke the Internet!&quot;</span>
-$ git push heroku master
+$ git push heroku main
 </pre></div>
 </div>
 <p>As you’ll notice, you’re still able to deploy your app. But it’s now
@@ -291,54 +323,75 @@ repository:</p>
 <p>That way, we can check that you’ve followed the steps described in this
 task. You do not need to enter anything into Gradescope for this task.</p>
 </div>
-<div class="section" id="task-3-create-travis-yml-for-helloapp">
-<h2>Task 3: Create .travis.yml for HelloApp<a class="headerlink" href="#task-3-create-travis-yml-for-helloapp" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="task-3-create-github-actions-for-helloapp">
+<h2>Task 3: Create GitHub Actions for HelloApp<a class="headerlink" href="#task-3-create-github-actions-for-helloapp" title="Permalink to this headline">¶</a></h2>
 <p>[40 points]</p>
-<p>As you may remember from our [previous lab]({{&lt; relref “lab6.md” &gt;}}),
+<p>As you may remember from our <a class="reference external" href="hw6.html">previous homework</a>,
 we have a way to make sure our app passes all the tests every time we
 push.</p>
-<p>For this, you should create a <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file in your
-<code class="docutils literal notranslate"><span class="pre">2020-lab7-GITHUB_USERNAME</span></code> repo. With Python, there’s no need to
-build, so you should just define a single job that runs the command
-<code class="docutils literal notranslate"><span class="pre">pytest</span></code> as its test script (in a Linux environment)</p>
-<p>In the last task, you made the tests fail. Commit and push your
-.travis.yml file and make sure the CI job fails specifically because the
-tests are failing (you will need to inspect the job log to see that
-<code class="docutils literal notranslate"><span class="pre">pytest</span></code> is failing in your CI build). Take the URL of the failed
-build, and enter it in Gradescope.</p>
-<p>Now, go back and fix the app so that they all pass. Then, push your
-fixed app to both GitHub and to Heroku. Take the URL of the successful
-build, and enter it in Gradescope.</p>
+<p>For this task, you should create a <code class="docutils literal notranslate"><span class="pre">.github/workflows/test-app.yml</span></code> file in your
+<code class="docutils literal notranslate"><span class="pre">2021-hw7-GITHUB_USERNAME</span></code> repo. With Python, there’s no need to
+build, so your job should only do the following:</p>
+<ul>
+<li><p>Checkout the repository using the <code class="docutils literal notranslate"><span class="pre">actions/checkout&#64;v2</span></code> action.</p></li>
+<li><p>Install the required Python libraries by running the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">pytest</span> <span class="n">flask</span>
+</pre></div>
 </div>
-<div class="section" id="task-4-deploy-using-github-integration-with-travis-ci">
-<h2>Task 4: Deploy using Github Integration with Travis CI<a class="headerlink" href="#task-4-deploy-using-github-integration-with-travis-ci" title="Permalink to this headline">¶</a></h2>
+</li>
+<li><p>Run the tests by running the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="o">--</span><span class="n">verbose</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the above to work, you need to make sure your workflow runs on
+the <code class="docutils literal notranslate"><span class="pre">ubuntu-latest</span></code> environment.</p>
+</div>
+<p>In the last task, you made the tests fail. Commit and push your
+workflow file and make sure the run fails specifically because the
+tests are failing (you will need to inspect the job steps to see that
+<code class="docutils literal notranslate"><span class="pre">pytest</span></code> is failing). Take the URL of the failed workflow
+run, and enter it in Gradescope. Remember that it will look something
+like this (where <cite>XXXXXXXX`</cite> will be a number)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw7</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">/</span><span class="n">actions</span><span class="o">/</span><span class="n">runs</span><span class="o">/</span><span class="n">XXXXXXXX</span>
+</pre></div>
+</div>
+<p>Now, go back and fix the app so that the tests pass again. Then, push your
+fixed app to both GitHub and to Heroku. Take the URL of the successful
+run, and enter it in Gradescope.</p>
+</div>
+<div class="section" id="task-4-deploy-using-github-integration">
+<h2>Task 4: Deploy using Github Integration<a class="headerlink" href="#task-4-deploy-using-github-integration" title="Permalink to this headline">¶</a></h2>
 <p>[20 points]</p>
 <p>Wouldn’t it be convenient if we could deploy continuously, as soon as
-tests pass? You might think “well, what if we had a deploy phase in our
-Travis CI”? This is possible (see
-<a class="reference external" href="https://docs.travis-ci.com/user/deployment/heroku/">https://docs.travis-ci.com/user/deployment/heroku/</a>), but it turns out
+tests pass? You might think “well, what if we had a deploy job in our
+GitHub Actions workflow”? This is possible (see
+<a class="reference external" href="https://github.com/marketplace/actions/deploy-to-heroku">https://github.com/marketplace/actions/deploy-to-heroku</a>), but it turns out
 Heroku makes it <em>even easier</em> than that. On your Heroku app dashboard,
 in the “Deploy” tab, under “Deployment method”, select “GitHub - connect
 to GitHub” instead of “Heroku Git - Use Heroku CLI”.</p>
 <p>Then, you should be able to connect to your repo. To do this, you need
-to first select the <code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization under “Search for a
+to first select the <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization under “Search for a
 repository to connect to”, and then enter your repository’s name
-(<code class="docutils literal notranslate"><span class="pre">2020-lab7-GITHUB_USERNAME</span></code>) in the text field (make sure to click
-the “Search” button so Heroku will search for your repository).</p>
-<p>Once you connect the repo, you should see an option that says “Automatic
+(<code class="docutils literal notranslate"><span class="pre">2021-hw7-GITHUB_USERNAME</span></code>) in the text field. Make sure to click
+the “Search” button so Heroku will search for your repository; your
+repository should then appear under the search field, with a “Connect”
+button next to it. Click on that button to connect your repository.</p>
+<p>Once you connect the repo, you should see a new section called “Automatic
 deploys” with a checkbox “Wait for CI to pass before deploy”. Make sure
 that checkbox is checked, and then click on “Enable Automatic Deploys”</p>
 <p>Make the tests fail again and push to GitHub with a simple <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.
-The CI tests should fail and, if you navigate to your URL, you’ll see
+<em>Do not</em> run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">heroku</span> <span class="pre">main</span></code>, as this will force a deployment
+of your (now broken) app. Instead, we want Heroku’s automatic deployment
+mechanism to detect when we’ve pushed a new version to GitHub <em>and</em> only
+deploy it if it passes all the CI tests.</p>
+<p>In this case, the CI tests should fail and, if you navigate to your app’s URL, you’ll see
 that the broken version has not been deployed.</p>
-<p>{{% warning %}} <strong>Caution:</strong> In the above <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> step, <em>don’t</em>
-push to Heroku as you did in previous tasks. What’s happening here is
-that the Heroku service will now wait for tests to pass CI, and then
-automagically pull your code and deploy it. No need to manually push to
-Heroku. {{% /warning %}}</p>
-<p>Before continuing, fix the tests and make sure your CI tests are passing
-again.</p>
-<p>Now, we’re going to make a change that doesn’t make the tests fail, to
+<p>Before continuing, fix the tests but don’t push your changes just yet.
+We’re going to make one more change that <em>doesn’t</em> make the tests fail, to
 verify the change is correctly deployed just by pushing to GitHub. If
 you look at the app, you’ll see that the main page shows the title “What
 is your name?” followed by a form with a field titled “Name”. That
@@ -348,20 +401,18 @@ is your name?” followed by a form with a field titled “Name”. That
 </pre></div>
 </div>
 <p>Now, commit your changes and push to GitHub. Once the CI tests pass,
-your updated app should be available on Heroku shortly aftewards. On
-your app dashboard on Heroku, you can go to the “Activity” tab to see
-whether your latest commit has been deployed (this tab can also provide
-details on why an app wasn’t deployed).</p>
+your updated app should be available on Heroku shortly afterwards (you
+can also verify this on the “Activity” tab)</p>
 <p>For this task, you just need to make sure that you’ve pushed your code
 to GitHub as instructed above.</p>
-<div class="section" id="submitting-your-lab">
-<h3>Submitting your lab<a class="headerlink" href="#submitting-your-lab" title="Permalink to this headline">¶</a></h3>
-<p>In this lab, you just need to enter a few URLs into Gradescope (make
+</div>
+<div class="section" id="submitting-your-homework">
+<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h2>
+<p>In this homework, you just need to enter a few URLs into Gradescope (make
 sure you’ve done so at the points instructed above). You should also
-make sure you’ve pushed your code to GitHub (but will not be submitting
+make sure you’ve pushed your code to GitHub (but you will not be submitting
 your code through Gradescope; we just need to check that you’ve made the
 commits we expected you to make).</p>
-</div>
 </div>
 </div>
 
