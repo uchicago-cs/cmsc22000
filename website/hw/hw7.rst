@@ -85,17 +85,17 @@ you run any of the commands below:
 
 * **If running on an SSH connection to a CS Linux server**:
 
-    .. code:: sh
+  .. code:: sh
 
-       $ heroku login -i
+     $ heroku login -i
 
   This will ask you for your Heroku username and password on the terminal.
 
 * **If running on a CS Virtual Desktop**:
 
-    .. code:: sh
+  .. code:: sh
 
-       $ heroku login
+     $ heroku login
 
   This will open a browser where you will be able to log into
   Heroku.
@@ -105,15 +105,15 @@ you run any of the commands below:
 
 * **If running on the CS VM**:
 
-    You will need to install Flask
-    and the ``heroku`` command by running the following:
+  You will need to install Flask
+  and the ``heroku`` command by running the following:
 
-    .. code:: sh
+  .. code:: sh
 
-       $ sudo -H pip3 install flask
-       $ sudo snap install --classic heroku
+     $ sudo -H pip3 install flask
+     $ sudo snap install --classic heroku
 
-    Then, run ``heroku login`` as described above.
+  Then, run ``heroku login`` as described above.
 
 
 The instructions for deploying using the CLI are located at
