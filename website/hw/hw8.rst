@@ -151,7 +151,7 @@ So, simply run the following:
 If you go to your repo on the GitHub website, you’ll see that the
 submodules are shown in a different way:
 
-.. figure:: submodules.png
+.. figure:: submodule.png
    :alt: Submodules in GitHub
 
 Git is aware that, instead of
