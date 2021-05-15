@@ -127,6 +127,7 @@ html_sidebars = {'*': None,
                  'hw/hw3': ['localtoc.html'],
                  'hw/hw4': ['localtoc.html'],
                  'hw/hw6': ['localtoc.html'],
+                 'hw/hw7': ['localtoc.html'],
                  'hw/hw8': ['localtoc.html']
                  }
 
