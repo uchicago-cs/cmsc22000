@@ -106,7 +106,7 @@ us to include “third party repositories” in our own repository (in other
 version control systems, this is sometimes referred to as “vendor
 branches”).
 
-We can add submodules by using the ``git submodule`` command:
+You can add submodules by using the ``git submodule`` command inside your repository:
 
 .. code:: shell
 
@@ -149,7 +149,12 @@ So, simply run the following:
    $ git push
 
 If you go to your repo on the GitHub website, you’ll see that the
-submodules are shown in a different way: Git is aware that, instead of
+submodules are shown in a different way:
+
+.. figure:: submodules.png
+   :alt: Submodules in GitHub
+
+Git is aware that, instead of
 just copying over the files into your repository, it should simply point
 to other repositories.
 
@@ -302,7 +307,7 @@ output in that step:
 
    PING: PONG
    HSET: (null)
-   HGET: Alan T. Foobar
+   HGET: Random J. Redisuser
 
 If the build fails or you do not see this output, make sure to ask for
 help.
@@ -328,8 +333,8 @@ not have on the CS machines. So, we will use the `UChicago CS Virtual
 Machine <https://howto.cs.uchicago.edu/vm:index>`__, where you do have
 the ability to run commands with root privileges.
 
-Completing this task requires running the VM on your own machine (not on
-a CS machine), so this task is optional and ungraded, but strongly
+Completing this task requires running the VM on your own machine,
+so this task is optional and ungraded, but strongly
 recommended, specially if you’ve already installed the UChicago CS VM.
 
 Once you’ve started the UChicago CS VM, open a terminal. We will first
@@ -354,7 +359,7 @@ command with ``sudo`` is because it involves installing the Redis
 libraries and binaries in system-wide locations, which require root
 privileges to modify.
 
-Now, go back to the terminal and run the following commands (these are
+Now, run the following commands (these are
 based on the official Docker `installation
 documentation <https://docs.docker.com/install/linux/docker-ce/ubuntu/>`__):
 
@@ -452,7 +457,9 @@ So far, we've been using pre-existing container images found on `Docker
 Hub <https://hub.docker.com/_/redis/>`__, but we also have the ability
 to define our own container images. Your homework repository includes
 a ``Dockerfile`` file that includes the specification of a custom Redis
-image. To give it a try, start by cloning your repository inside the VM:
+image. To give it a try, start by cloning your repository inside the VM
+(if you are still inside the `redis-stable` directory, make sure to `cd`
+back to your home directory before running the following command):
 
 .. code:: shell
 
@@ -544,7 +551,11 @@ Task 4: Using a Custom Dockerfile in our Workflow
 [10 points]
 
 Now that we've seen how to specify a custom container, let's try using it
-in our CI workflow. Update your ``.github/workflows/build-and-test.yml`` file so
+in our CI workflow. Please note that you don't need to complete this
+task on the CS VM. You can follow all the necessary steps while logged
+into a CS machine.
+
+Update the ``.github/workflows/build-and-test.yml`` file in your repository so
 it will contain the following::
 
     name: Build and Test Redis program
@@ -764,19 +775,22 @@ To do this, we first need to connect the pipeline to GitHub:
 
 Now, from your pipeline’s page, do the following:
 
--  Click on “Enable Review Apps”. This will show you a form on the side
+-  Click on “Enable Review Apps" in the "Review Apps” section. This will show you a form on the side
    of the page.
 -  Enable “Create new review apps for new pull requests automatically”
 -  Do NOT enable “Wait for CI to pass” (this refers to Heroku’s own CI,
    and we are already using GitHub Actions for CI)
--  Enable “Destroy stale review apps automatically”.
--  Don’t worry about the “Review apps may incur dyno and add-on
-   charges.” message. We are using the free tier of Heroku, so we won’t
+-  Enable “Destroy stale review apps automatically”. This will allow you
+   to specify a number of days; you can leave the default value ("After 5 days") as-is.
+-  Click on “Enable Review Apps”
+
+   Don’t worry about the “Review apps may incur dyno and add-on
+   charges.” that appears above the "Enable Review Apps" button.
+   We are using the free tier of Heroku, so we won’t
    be charged for anything. If you want to be extra sure, go to
    https://dashboard.heroku.com/account/billing and make sure there is
    no credit card on file for your account, and that you have free hours
    available under “Free Dyno Usage”.
--  Click on “Enable Review Apps”
 
 Now, you’ll create a pull request:
 
