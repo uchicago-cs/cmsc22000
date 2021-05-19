@@ -22,7 +22,7 @@ In this homework, we are going to work through an example that requires a
 running `Redis <https://redis.io/>`__, a popular data structure store.
 In a nutshell, Redis is a server that can store a variety of data
 structures (including lists, hash tables, etc.), and which allows you to
-manipulate those data structures via an API and a CLI. The API is
+manipulate those data structures via an API (Application Programming Interface) and a CLI. The API is
 typically accessed remotely (i.e., the Redis server runs on one machine,
 and client software running on a different machine accesses the API
 through a network), which means that testing client software that relies
