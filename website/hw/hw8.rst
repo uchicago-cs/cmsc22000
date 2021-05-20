@@ -705,7 +705,7 @@ URL as the HelloApp you deployed in Homework #7).
 Task 3: Promoting from staging to production
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[20 points]
+[10 points]
 
 First, let’s make a change to our HelloApp: it’s time to upgrade to
 HelloApp 2.0!
