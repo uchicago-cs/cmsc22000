@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Part I: Using Containers in CI &#8212; CMSC 22000 - Introduction to Software Development</title>
+<title>Homework 8: More CI and Deployment &#8212; CMSC 22000 - Introduction to Software Development</title>
 
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -95,35 +95,62 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Homework 8: More CI and Deployment</a><ul>
+<li><a class="reference internal" href="#part-i-using-containers-in-ci">Part I: Using Containers in CI</a><ul>
+<li><a class="reference internal" href="#creating-your-homework-repository">Creating your homework repository</a></li>
+<li><a class="reference internal" href="#task-1-git-submodules">Task 1: Git Submodules</a></li>
+<li><a class="reference internal" href="#task-2-using-a-container-ized-service-in-a-github-actions-workflow">Task 2: Using a Container-ized Service in a GitHub Actions workflow</a></li>
+<li><a class="reference internal" href="#task-3-running-docker-in-the-cs-vm">Task 3: Running Docker in the CS VM</a></li>
+<li><a class="reference internal" href="#task-4-using-a-custom-dockerfile-in-our-workflow">Task 4: Using a Custom Dockerfile in our Workflow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#part-ii-a-complete-deployment-pipeline">Part II: A Complete Deployment Pipeline</a><ul>
+<li><a class="reference internal" href="#task-1-create-a-pipeline">Task 1: Create a Pipeline</a></li>
+<li><a class="reference internal" href="#task-2-add-a-production-app">Task 2: Add a production app</a></li>
+<li><a class="reference internal" href="#task-3-promoting-from-staging-to-production">Task 3: Promoting from staging to production</a></li>
+<li><a class="reference internal" href="#task-4-create-review-apps-helloapp-3-0">Task 4: Create Review Apps - HelloApp 3.0</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#submitting-your-homework">Submitting your homework</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
-  <p><strong>Due:</strong> Wednesday, June 3rd, 8pm</p>
-<p>In this lab, we will continue to explore concepts related to Continuous
-Integration and Deployment. The lab is divided into two main parts: one
+  <div class="section" id="homework-8-more-ci-and-deployment">
+<h1>Homework 8: More CI and Deployment<a class="headerlink" href="#homework-8-more-ci-and-deployment" title="Permalink to this headline">¶</a></h1>
+<p><strong>Due:</strong> Wednesday, May 26th, 8pm CDT</p>
+<p>In this homework, we will continue to explore concepts related to Continuous
+Integration and Deployment. The homework is divided into two main parts: one
 where we will see how we can use Docker containers as part of a CI
 build, and one where we will expand the deployment pipeline we saw in
-our previous lab.</p>
+our previous homework.</p>
 <div class="section" id="part-i-using-containers-in-ci">
-<h1>Part I: Using Containers in CI<a class="headerlink" href="#part-i-using-containers-in-ci" title="Permalink to this headline">¶</a></h1>
+<h2>Part I: Using Containers in CI<a class="headerlink" href="#part-i-using-containers-in-ci" title="Permalink to this headline">¶</a></h2>
 <p>It is often necessary for a CI build to use a specific software
 environment to build code and to run tests. This may be as simple as
 needing some set of libraries installed before we can build and run your
 code, or as complex as running some sort of server that our code and
 tests need to run.</p>
-<p>In this lab, we are going to work through an example that requires a
+<p>In this homework, we are going to work through an example that requires a
 running <a class="reference external" href="https://redis.io/">Redis</a>, a popular data structure store.
 In a nutshell, Redis is a server that can store a variety of data
 structures (including lists, hash tables, etc.), and which allows you to
-manipulate those data structures via an API and a CLI. The API is
+manipulate those data structures via an API (Application Programming Interface) and a CLI. The API is
 typically accessed remotely (i.e., the Redis server runs on one machine,
 and client software running on a different machine accesses the API
 through a network), which means that testing client software that relies
 on Redis requires running a Redis server too.</p>
-<p>Most CI systems allow you to install software before the CI jobs are
-run. For example, in the previous lab you saw how to install the
-Criterion testing library as part of a build (specifying the exact steps
-to do so under the <code class="docutils literal notranslate"><span class="pre">before_install</span></code> and <code class="docutils literal notranslate"><span class="pre">install</span></code> steps, or using
-the <code class="docutils literal notranslate"><span class="pre">addons</span></code> portion of the <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file). However, installing
+<p>In Homework #6, we saw how you can install a software dependency (the
+Criterion testing library) as part of a GitHub Actions workflow, by
+specifying the exact installation commands in one of the steps of the
+workflow. In general, most CI systems will allow you to install additional
+software to run your CI jobs. However, installing
 and configuring a complex piece of software like Redis through this
 mechanism can be cumbersome. It can also take a fair amount of time,
 even if the installation is automated, so it can pay off to simply have
@@ -133,7 +160,7 @@ need.</p>
 virtual machine that provides a specific software environment we need.
 Unlike virtual machines, containers are typically used to package a
 specific piece of software, instead of providing a full OS environment
-(although this is also possible with containers)</p>
+(although this is also possible with containers).</p>
 <p>For example, a Redis container would include a Redis server and, by
 default, running the container would immediately start that Redis
 server, instead of taking us to a UNIX shell where we have to run the
@@ -141,52 +168,258 @@ Redis server ourselves. So, if we wanted to run Redis during a CI build,
 all we would need to do is download a Redis <em>container image</em>, and run
 that container during the CI build. A popular container manager is
 <a class="reference external" href="https://www.docker.com/">Docker</a>, which we will be using in this
-lab. Make sure to read their <a class="reference external" href="https://www.docker.com/what-container">What is a
+homework. Make sure to read their <a class="reference external" href="https://www.docker.com/what-container">What is a
 Container</a> page, which
 provides a more in-depth explanation of what a container is, and how it
 compares to virtual machines.</p>
-<div class="section" id="creating-your-lab-repository">
-<h2>Creating your lab repository<a class="headerlink" href="#creating-your-lab-repository" title="Permalink to this headline">¶</a></h2>
-<p>Like previous labs, we will provide you with an <em>invitation URL</em> that
-will allow you sign up for the lab assignment on GitHub, and which will
+<div class="section" id="creating-your-homework-repository">
+<h3>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h3>
+<p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
+will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-<code class="docutils literal notranslate"><span class="pre">2020-lab8-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">cmsc22000-labs</span></code> organization
-on GitHub. Your repository will be seeded with some files for the lab
+<code class="docutils literal notranslate"><span class="pre">2021-hw8-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization
+on GitHub.</p>
+<p>Your repository will be seeded with some files for the homework
 and, more specifically, will contain some code that requires a Redis
 server to run correctly.</p>
 </div>
-<div class="section" id="task-1-running-docker-in-the-cs-vm">
-<h2>Task 1: Running Docker in the CS VM<a class="headerlink" href="#task-1-running-docker-in-the-cs-vm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="task-1-git-submodules">
+<h3>Task 1: Git Submodules<a class="headerlink" href="#task-1-git-submodules" title="Permalink to this headline">¶</a></h3>
+<p>[20 points]</p>
+<p>Before we setup our CI job to run a Redis server, we’re going
+to explore a new Git concept: submodules.</p>
+<p>Your homework repository contains a simple program that connects
+to a Redis server and runs a few simple commands on the Redis
+server. You do not need
+to understand what these commands do (we’ll discuss them in
+more detail later in the homework); it is enough to know that this
+program will only work if there is a Redis server running on the
+same computer as the program.</p>
+<p>This program depends on a library called <a class="reference external" href="https://github.com/redis/hiredis">hiredis</a>
+that provides an API for C programs to send commands to a Redis server.
+In fact, we need the header files from that library to compile the program.
+We could, of course, install the library on our computer, but another
+approach is to include the library in our repository: that way, our
+repository will have everything we need to compile our program.</p>
+<p>However, cloning the hiredis repository and copying it into
+our repository is usually a bad idea, because it makes it harder
+to track updates in the original code. For example, if hiredis releases
+a new version, we would have to manually copy over their updated version
+into our repository.</p>
+<p>In general, the problem we’re facing is that there is some code produced
+by a “third party” that we would like to include in our project. In Git,
+this is typically handled by using <em>submodules</em>, which effectively allow
+us to include “third party repositories” in our own repository (in other
+version control systems, this is sometimes referred to as “vendor
+branches”).</p>
+<p>You can add submodules by using the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span></code> command inside your repository:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git submodule add https://github.com/redis/hiredis.git
+Cloning into <span class="s1">&#39;/home/studemt/2021-hw8-GITHUB_USERNAME/hiredis&#39;</span>...
+remote: Enumerating objects: <span class="m">3950</span>, <span class="k">done</span>.
+remote: Counting objects: <span class="m">100</span>% <span class="o">(</span><span class="m">20</span>/20<span class="o">)</span>, <span class="k">done</span>.
+remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">18</span>/18<span class="o">)</span>, <span class="k">done</span>.
+remote: Total <span class="m">3950</span> <span class="o">(</span>delta <span class="m">7</span><span class="o">)</span>, reused <span class="m">9</span> <span class="o">(</span>delta <span class="m">2</span><span class="o">)</span>, pack-reused <span class="m">3930</span>
+Receiving objects: <span class="m">100</span>% <span class="o">(</span><span class="m">3950</span>/3950<span class="o">)</span>, <span class="m">1</span>.34 MiB <span class="p">|</span> <span class="m">14</span>.58 MiB/s, <span class="k">done</span>.
+Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">2484</span>/2484<span class="o">)</span>, <span class="k">done</span>.
+</pre></div>
+</div>
+<p>You’ll notice a new <code class="docutils literal notranslate"><span class="pre">hiredis</span></code> directory has appeared in your repository,
+containing the files that are in the original hiredis repositories.</p>
+<p>Before we continue, we need to commit this submodule. If you run
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, you’ll see that Git is aware that we’ve added a
+submodule but it has not yet been committed (besides the submodule
+itself, Git has also modified a special file called <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> that
+it uses to keep track of all submodules):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch main
+Your branch is up to date with <span class="s1">&#39;origin/main&#39;</span>.
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+        new file:   .gitmodules
+        new file:   hiredis
+</pre></div>
+</div>
+<p>So, simply run the following:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git commit -m<span class="s2">&quot;Added hiredis submodule&quot;</span>
+$ git push
+</pre></div>
+</div>
+<p>If you go to your repo on the GitHub website, you’ll see that the
+submodules are shown in a different way:</p>
+<div class="figure align-default">
+<img alt="Submodules in GitHub" src="../_images/submodule.png" />
+</div>
+<p>Git is aware that, instead of
+just copying over the files into your repository, it should simply point
+to other repositories.</p>
+<p>Now, it will be possible for you to build hiredis, as well as the module
+and the tests:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make -C hiredis/
+$ make -C sample/
+</pre></div>
+</div>
+<p>However, if we try to run the sample program, it will fail because it can’t
+find a Redis server to connect to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sample/sample-redis
+Connection error: Connection refused
+</pre></div>
+</div>
+<p>Before we see how to launch a Redis server as part of a CI job in the next task,
+make sure you’ve successfully pushed the submodule to your GitHub
+repository. You do not need to enter anything on Gradescope.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you need to clone your repository in a separate location later on,
+take into account that cloning a repository does not automatically clone the
+submodules in that repository, instead showing them as empty
+directories. If you clone your repository somewhere else, you need to
+clone it like this:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --recursive REPO_URL
+</pre></div>
+</div>
+<p>If you forgot to use the <code class="docutils literal notranslate"><span class="pre">--recursive</span></code> option, you can also do this
+after the repository has been cloned:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git submodule update --init --recursive
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="task-2-using-a-container-ized-service-in-a-github-actions-workflow">
+<h3>Task 2: Using a Container-ized Service in a GitHub Actions workflow<a class="headerlink" href="#task-2-using-a-container-ized-service-in-a-github-actions-workflow" title="Permalink to this headline">¶</a></h3>
+<p>[30 points]</p>
+<p>Testing our program requires running Redis, so we will need to set up our
+GitHub Actions workflow to run a Redis server. We will do
+this by telling GitHub Actions to use a Docker container with Redis installed in
+it. Running additional software in a Docker container is such a common operation,
+that GitHub Actions makes this very easy. It basically boils down to adding
+something like this to our workflow file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">services</span><span class="p">:</span>
+  <span class="n">redis</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">redis</span>
+    <span class="n">ports</span><span class="p">:</span>
+      <span class="o">-</span> <span class="mi">6379</span><span class="p">:</span><span class="mi">6379</span>
+</pre></div>
+</div>
+<p>That’s it! In the next task we’ll dig a bit deeper into how this translates
+into specific Docker commands. For now, just add a <code class="docutils literal notranslate"><span class="pre">.github/workflows/build-and-test.yml</span></code>
+file to your repository with the following contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span><span class="p">:</span> <span class="n">Build</span> <span class="ow">and</span> <span class="n">Test</span> <span class="n">Redis</span> <span class="n">program</span>
+
+<span class="n">on</span><span class="p">:</span> <span class="p">[</span><span class="n">push</span><span class="p">]</span>
+
+<span class="n">jobs</span><span class="p">:</span>
+  <span class="n">build</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">test</span><span class="p">:</span>
+
+    <span class="n">runs</span><span class="o">-</span><span class="n">on</span><span class="p">:</span> <span class="n">ubuntu</span><span class="o">-</span><span class="n">latest</span>
+
+    <span class="n">services</span><span class="p">:</span>
+      <span class="n">redis</span><span class="o">-</span><span class="n">server</span><span class="p">:</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">redis</span>
+        <span class="n">ports</span><span class="p">:</span>
+          <span class="o">-</span> <span class="mi">6379</span><span class="p">:</span><span class="mi">6379</span>
+
+    <span class="n">steps</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">uses</span><span class="p">:</span> <span class="n">actions</span><span class="o">/</span><span class="n">checkout</span><span class="nd">@v2</span>
+      <span class="k">with</span><span class="p">:</span>
+        <span class="n">submodules</span><span class="p">:</span> <span class="s1">&#39;recursive&#39;</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Build</span> <span class="n">hiredis</span>
+      <span class="n">working</span><span class="o">-</span><span class="n">directory</span><span class="p">:</span> <span class="n">hiredis</span><span class="o">/</span>
+      <span class="n">run</span><span class="p">:</span> <span class="o">|</span>
+        <span class="n">make</span> <span class="n">clean</span>
+        <span class="n">make</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Build</span> <span class="n">sample</span> <span class="n">program</span>
+      <span class="n">working</span><span class="o">-</span><span class="n">directory</span><span class="p">:</span> <span class="n">sample</span><span class="o">/</span>
+      <span class="n">run</span><span class="p">:</span> <span class="o">|</span>
+        <span class="n">make</span> <span class="n">clean</span>
+        <span class="n">make</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Run</span> <span class="n">sample</span> <span class="n">program</span>
+      <span class="n">run</span><span class="p">:</span> <span class="o">./</span><span class="n">sample</span><span class="o">/</span><span class="n">sample</span><span class="o">-</span><span class="n">redis</span>
+</pre></div>
+</div>
+<p>Go ahead and commit and push this file; this should result in a successful
+workflow run. The main difference with previous workflow files we’ve
+seen is the <code class="docutils literal notranslate"><span class="pre">services</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">services</span><span class="p">:</span>
+  <span class="n">redis</span><span class="o">-</span><span class="n">server</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">redis</span>
+    <span class="n">ports</span><span class="p">:</span>
+      <span class="o">-</span> <span class="mi">6379</span><span class="p">:</span><span class="mi">6379</span>
+</pre></div>
+</div>
+<p>In this option we are specifying that we want the <code class="docutils literal notranslate"><span class="pre">build-and-test</span></code> job
+to run a “service” inside a Docker container for the duration of the job. The service
+is named <code class="docutils literal notranslate"><span class="pre">redis-server</span></code> (we can choose any name we want here), and
+we specify that the Docker container must use the <code class="docutils literal notranslate"><span class="pre">redis</span></code> container image
+(you can think of the “container image” as the exact software environment
+we want to run in the Docker container).</p>
+<p>The value of the <code class="docutils literal notranslate"><span class="pre">image</span></code> option
+has to be an image that is publicly available on <a class="reference external" href="https://hub.docker.com/">Docker Hub</a>,
+a public repository of Docker images. If you browse through Docker Hub,
+you’ll see that we have <em>a lot</em> of software environments at our disposal:
+web servers, database servers, etc. (and all of these can be easily
+launched in our workflow with the <code class="docutils literal notranslate"><span class="pre">service</span></code> option). For example,
+here is the entry for the <code class="docutils literal notranslate"><span class="pre">redis</span></code> image: <a class="reference external" href="https://hub.docker.com/_/redis">https://hub.docker.com/_/redis</a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ports</span></code> option specifies how TCP ports are mapped between the Docker
+container and our workflow job. You do not need to understand how TCP ports
+work, but this option is required for our program to be able to connect
+to the Redis server that is running in the Docker container.</p>
+<p>The rest of the workflow file should be pretty self-explanatory:
+we build hiredis and the sample program, and then we run the sample
+program.</p>
+<p>Now, fetch the URL of the workflow run, and paste it into Gradescope
+(under “Task 2: Using a Container-ized Service in a GitHub Actions workflow”). Remember it will look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw8</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">/</span><span class="n">actions</span><span class="o">/</span><span class="n">runs</span><span class="o">/</span><span class="n">XXXXXXXXXX</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">XXXXXXXXXX</span></code> will be a number.</p>
+<p>Before continuing to the next task, take a look at the job steps in
+your workflow run on GitHub: you’ll
+see there is a new “Initialize containers” step, where GitHub Actions
+launches a Docker container with a Redis server. The “Run sample program”
+step should be able to connect to the Redis server, and you’ll see this
+output in that step:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>PING: PONG
+HSET: <span class="o">(</span>null<span class="o">)</span>
+HGET: Random J. Redisuser
+</pre></div>
+</div>
+<p>If the build fails or you do not see this output, make sure to ask for
+help.</p>
+</div>
+<div class="section" id="task-3-running-docker-in-the-cs-vm">
+<h3>Task 3: Running Docker in the CS VM<a class="headerlink" href="#task-3-running-docker-in-the-cs-vm" title="Permalink to this headline">¶</a></h3>
 <p>[0 Points]</p>
-<p>{{% note %}} This is an optional task, and you will be able to complete
-the lab even if you don’t do this task. However, even if you do not
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an optional task, and you will be able to complete
+the homework even if you don’t do this task. However, even if you do not
 perform the steps in this task, you should still read through the task,
-as it provides some additional details on how Redis works. {{% /note %}}</p>
-<p>Using Docker requires <a class="reference external" href="https://en.wikipedia.org/wiki/Superuser">root
+as it provides some additional details on how Docker and Redis work.</p>
+</div>
+<p>In the previous task, we saw that GitHub Actions abstracts away all the
+details of running a Docker container. In this task, we will see how
+to actually run a Docker container ourselves. However, using Docker requires <a class="reference external" href="https://en.wikipedia.org/wiki/Superuser">root
 privileges</a>, which you do
-not have on the CSIL machines. Fortunately, as we’ll see later on, that
-won’t stop us from running Docker on Travis, but it does mean that you
-won’t get to use Docker yourself (you’ll simply be instructing Travis to
-use Docker)</p>
-<p>However, it can be helpful to learn the basics of how to use Docker, and
-you can do so using the <a class="reference external" href="https://howto.cs.uchicago.edu/vm:index">UChicago CS Virtual
+not have on the CS machines. So, we will use the <a class="reference external" href="https://howto.cs.uchicago.edu/vm:index">UChicago CS Virtual
 Machine</a>, where you do have
-the ability to run commands with root privileges. In particular, we
-encourage you to use the VM in <a class="reference external" href="https://howto.cs.uchicago.edu/vm:headless">Headless
-Mode</a>.</p>
-<p>Completing this task requires running the VM on your own machine (not on
-a CSIL machine), so this task is optional and ungraded, but strongly
+the ability to run commands with root privileges.</p>
+<p>Completing this task requires running the VM on your own machine,
+so this task is optional and ungraded, but strongly
 recommended, specially if you’ve already installed the UChicago CS VM.</p>
 <p>Once you’ve started the UChicago CS VM, open a terminal. We will first
 need to install Redis and Docker on the virtual machine. You can install
 Redis by running the following commands (these instructions are based on
 the official Redis <a class="reference external" href="https://redis.io/download">installation
 documentation</a>):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ wget http://download.redis.io/redis-stable.tar.gz
-$ tar xzf redis-stable.tar.gz
-$ <span class="nb">cd</span> redis-stable/
-$ make
-$ sudo make install
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>wget http://download.redis.io/redis-stable.tar.gz
+tar xzf redis-stable.tar.gz
+<span class="nb">cd</span> redis-stable/
+make
+sudo make install
 </pre></div>
 </div>
 <p>Notice how that last command is run with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>. This basically
@@ -196,16 +429,15 @@ the CS VM, is <code class="docutils literal notranslate"><span class="pre">uccs<
 command with <code class="docutils literal notranslate"><span class="pre">sudo</span></code> is because it involves installing the Redis
 libraries and binaries in system-wide locations, which require root
 privileges to modify.</p>
-<p>Now, go back to the terminal and run the following commands (these are
+<p>Now, run the following commands (these are
 based on the official Docker <a class="reference external" href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">installation
 documentation</a>):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo apt update
-$ sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg-agent
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
-$ sudo apt-key fingerprint 0EBFCD88
-$ sudo add-apt-repository <span class="s2">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&quot;</span>
-$ sudo apt-get update
-$ sudo apt-get install -y docker-ce
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+<span class="nb">echo</span> <span class="s2">&quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 </pre></div>
 </div>
 <p>You can verify that Docker is correctly installed by running this:</p>
@@ -219,18 +451,16 @@ Docker!”, please ask for help.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo docker run --name redis-server -p <span class="m">6379</span>:6379 redis
 </pre></div>
 </div>
-<p>Docker will first download the Redis container image from the <a class="reference external" href="https://hub.docker.com/_/redis/">Docker
+<p>Docker will first download the Redis container image from <a class="reference external" href="https://hub.docker.com/_/redis/">Docker
 Hub</a>, and then run it. You should
 see some output that ends with something like this:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>:M <span class="m">17</span> May <span class="m">14</span>:04:54.269 * Ready to accept connections
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>:M <span class="m">11</span> May <span class="m">2021</span> <span class="m">14</span>:16:09.584 * Ready to accept connections
 </pre></div>
 </div>
 <p>Now, open another terminal in the VM and run this:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>redis-cli
 </pre></div>
 </div>
-<p>(if you are running the VM in Headless Mode, then you will need to SSH
-into it again to have a second terminal)</p>
 <p>This should open up a prompt like this:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="m">127</span>.0.0.1:6379&gt;
 </pre></div>
@@ -256,6 +486,11 @@ OK
 <span class="m">2</span><span class="o">)</span> <span class="s2">&quot;email&quot;</span>
 </pre></div>
 </div>
+<p>The above commands basically set and get the value of a variable called
+<code class="docutils literal notranslate"><span class="pre">foo</span></code> (using the <code class="docutils literal notranslate"><span class="pre">SET</span></code> and <code class="docutils literal notranslate"><span class="pre">GET</span></code>) commands, and also create a
+hash table called <code class="docutils literal notranslate"><span class="pre">myhash</span></code> where we set values for two keys, <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">email</span></code>,
+using the <code class="docutils literal notranslate"><span class="pre">HSET</span></code> command. We can then get values from the hash table using
+the <code class="docutils literal notranslate"><span class="pre">HGET</span></code> command, or list all the keys in the hash table using the <code class="docutils literal notranslate"><span class="pre">HKEYS</span></code> command.</p>
 <p>On a separate terminal, you can also try running a few Docker commands:</p>
 <ul class="simple">
 <li><p>To see the list of container images: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">docker</span> <span class="pre">image</span> <span class="pre">list</span></code></p></li>
@@ -265,233 +500,157 @@ OK
 <li><p>To start the Redis container again:
 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">docker</span> <span class="pre">container</span> <span class="pre">start</span> <span class="pre">-a</span> <span class="pre">redis-server</span></code></p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before continuing with the rest of the task, make sure to stop
+the Docker container you’ve just launched. Otherwise, it will
+interfere with the rest of the task.</p>
 </div>
-<div class="section" id="task-2-git-submodules">
-<h2>Task 2: Git Submodules<a class="headerlink" href="#task-2-git-submodules" title="Permalink to this headline">¶</a></h2>
-<p>[20 points]</p>
-<p>Your lab repository contains code that extends the Redis server with
-some additional commands. We will only be concerned with one of these
-commands: the <code class="docutils literal notranslate"><span class="pre">EXAMPLE.HGETSET</span></code> command. This commands operates on a
-hash table and takes two parameters: a key and a value. It will fetch
-the value currently associated with the given key, and will replace its
-value with the one provided as a parameter. For example, notice how the
-example below fetches the current value of the <code class="docutils literal notranslate"><span class="pre">email</span></code> key, while also
-replacing it with a new value:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="m">127</span>.0.0.1:6379&gt; HSET myhash name <span class="s2">&quot;Borja&quot;</span>
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-<span class="m">127</span>.0.0.1:6379&gt; HSET myhash email <span class="s2">&quot;borja@cs.uchicago.edu&quot;</span>
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-<span class="m">127</span>.0.0.1:6379&gt; EXAMPLE.HGETSET myhash email <span class="s2">&quot;borja@uchicago.edu&quot;</span>
-<span class="s2">&quot;borja@cs.uchicago.edu&quot;</span>
-<span class="m">127</span>.0.0.1:6379&gt; HGET myhash email
-<span class="s2">&quot;borja@uchicago.edu&quot;</span>
-</pre></div>
-</div>
-<p>The repository has two directories:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">module/</span></code> - This directory contains the module that implements the
-new commands (Note: in Redis, the term “module” has a specific
-meaning, and it refers to an installable component that extends
-Redis).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tests/</span></code> - This directory contains a simple program that uses the
-hiredis library to connect to a Redis server to test the <code class="docutils literal notranslate"><span class="pre">HGETSET</span></code>
-operation.</p></li>
-</ul>
-<p>To compile the module code, we will need some files included in the
-Redis Module SDK (Software Development Kit) available in the following
-repo: <a class="reference external" href="https://github.com/RedisLabs/RedisModulesSDK">https://github.com/RedisLabs/RedisModulesSDK</a>. To compile the
-testing program, we also need the hiredis library, which is available in
-this repository: <a class="reference external" href="https://github.com/redis/hiredis">https://github.com/redis/hiredis</a>.</p>
-<p>We could, of course, just clone those repositories and copy them into
-our repository. This is usually a bad idea, because it makes it harder
-to track updates in the original code. For example, if hiredis releases
-a new version, we would have to manually copy over their updated version
-into our repository.</p>
-<p>In general, the problem we’re facing is that there is some code produced
-by a “third party” that we would like to include in our project. In Git
-this is typically handled by using <em>submodules</em>, which effectively allow
-us to include “third party repositories” in our own repository (in other
-version control systems, this is sometimes referred to as “vendor
-branches”).</p>
-<p>We can add submodules by using the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span></code> command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git submodule add https://github.com/RedisLabs/RedisModulesSDK.git
-Cloning into <span class="s1">&#39;/tmp/2020-lab8-GITHUB_USERNAME/RedisModulesSDK&#39;</span>...
-remote: Counting objects: <span class="m">439</span>, <span class="k">done</span>.
-remote: Total <span class="m">439</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">439</span>
-Receiving objects: <span class="m">100</span>% <span class="o">(</span><span class="m">439</span>/439<span class="o">)</span>, <span class="m">187</span>.79 KiB <span class="p">|</span> <span class="m">1</span>.59 MiB/s, <span class="k">done</span>.
-Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">258</span>/258<span class="o">)</span>, <span class="k">done</span>.
-
-$ git submodule add https://github.com/redis/hiredis.git
-Cloning into <span class="s1">&#39;/tmp/2020-lab8-GITHUB_USERNAME/hiredis&#39;</span>...
-remote: Counting objects: <span class="m">2909</span>, <span class="k">done</span>.
-remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">13</span>/13<span class="o">)</span>, <span class="k">done</span>.
-remote: Total <span class="m">2909</span> <span class="o">(</span>delta <span class="m">9</span><span class="o">)</span>, reused <span class="m">19</span> <span class="o">(</span>delta <span class="m">9</span><span class="o">)</span>, pack-reused <span class="m">2887</span>
-Receiving objects: <span class="m">100</span>% <span class="o">(</span><span class="m">2909</span>/2909<span class="o">)</span>, <span class="m">866</span>.09 KiB <span class="p">|</span> <span class="m">5</span>.16 MiB/s, <span class="k">done</span>.
-Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">1791</span>/1791<span class="o">)</span>, <span class="k">done</span>.
-</pre></div>
-</div>
-<p>You’ll notice that two new directories have appeared in your repository,
-containing the files that are in the original RedisModulesSDK and
-hiredis repositories.</p>
-<p>Before we continue, we need to commit these submodules. If you run
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, you’ll see that Git is aware that we’ve added two
-submodules (they are tracked in a special file called <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code>)
-but they have not yet been committed:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git status
-On branch master
-Your branch is up to date with <span class="s1">&#39;origin/master&#39;</span>.
-
-Changes to be committed:
-  <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
-
-    new file:   .gitmodules
-    new file:   RedisModulesSDK
-    new file:   hiredis
-</pre></div>
-</div>
-<p>So, simply run the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git commit -m<span class="s2">&quot;Added submodules&quot;</span>
-$ git push
-</pre></div>
-</div>
-<p>If you go to your repo on the GitHub website, you’ll see that the
-submodules are shown in a different way: Git is aware that, instead of
-just copying over the files into your repository, it should simply point
-to other repositories.</p>
-<p>Now, it will be possible for you to build hiredis, as well as the module
-and the tests:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make -C hiredis/
-$ make -C module/
-$ make -C tests/
-</pre></div>
-</div>
-<p>However, you can’t run any of this just yet. We need a Redis server for
-that!</p>
-<p>{{% warning %}} Cloning a repository does not automatically clone the
-submodules in that repository, instead showing them as empty
-directories. If you clone your repository somewhere else, you need to
-clone it like this:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --recursive REPO_URL
-</pre></div>
-</div>
-<p>If you forgot to use the <code class="docutils literal notranslate"><span class="pre">--recursive</span></code> option, you can also do this
-after the repository has been cloned:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git submodule update --init --recursive
-</pre></div>
-</div>
-<p>{{% /warning %}}</p>
-<p>For this task, you won’t need to enter anything into Gradescope, but
-make sure you’ve successfully pushed the submodules to your GitHub
-repository.</p>
-</div>
-<div class="section" id="task-3-using-docker-in-a-travis-build">
-<h2>Task 3: Using Docker in a Travis build<a class="headerlink" href="#task-3-using-docker-in-a-travis-build" title="Permalink to this headline">¶</a></h2>
-<p>[30 points]</p>
-<p>Testing the module requires running Redis, so we will need to set up our
-Travis build to run a Redis server while testing our module. We will do
-this by telling Travis to use a Docker container with Redis installed in
-it, and to run our module in that container.</p>
-<p>Our container is specified using the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> file. You do not
-need to understand everything in that file, except that we use the
-<code class="docutils literal notranslate"><span class="pre">FROM</span> <span class="pre">redis</span></code> command to tell Docker that our container should simply
-use the standard Redis container that is available on the Docker Hub.
-Then, all we need to do is install our module in it, and make sure that
-we start Redis with the <code class="docutils literal notranslate"><span class="pre">--loadmodule</span></code> option to load our module.</p>
-<p>{{% note %}} If you’ve set up Docker on your VM, you can also test the
-module on the VM, essentially running the same commands that Travis will
-be running. Start by cloning your repository inside the VM:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git clone --recursive https://github.com/cmsc22000-labs/2020-lab8-GITHUB_USERNAME.git
+<p>So far, we’ve been using pre-existing container images found on <a class="reference external" href="https://hub.docker.com/_/redis/">Docker
+Hub</a>, but we also have the ability
+to define our own container images. Your homework repository includes
+a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> file that includes the specification of a custom Redis
+image. To give it a try, start by cloning your repository inside the VM
+(if you are still inside the <cite>redis-stable</cite> directory, make sure to <cite>cd</cite>
+back to your home directory before running the following command):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git clone --recursive https://github.com/uchicago-cmsc22000/2021-hw8-GITHUB_USERNAME.git
 </pre></div>
 </div>
 <p>Then, go into the repository directory:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="m">2020</span>-lab8-GITHUB_USERNAME
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="m">2021</span>-hw8-GITHUB_USERNAME
 </pre></div>
 </div>
-<p>And use this command to build a container image with Redis <em>and</em> our
-module:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo docker build -t redis-example .
+<p>Take a look at the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> file. This file instructs Docker
+on how to build a new container image. The first line
+tells Docker to use the <code class="docutils literal notranslate"><span class="pre">gcc</span></code> image on Docker Hub as a starting
+point (since we’re building Redis from scratch, we need access to
+a software environment with a compiler):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">gcc</span><span class="p">:</span><span class="mf">9.3</span>
 </pre></div>
 </div>
+<p>The next lines are essentially the same commands we ran earlier
+to build Redis in the VM:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download Redis</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">tmp</span>
+<span class="n">RUN</span> <span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">redis</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">stable</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">RUN</span> <span class="n">tar</span> <span class="n">xzf</span> <span class="n">redis</span><span class="o">-</span><span class="n">stable</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+
+<span class="c1"># Build and install Redis</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">stable</span><span class="o">/</span>
+<span class="n">RUN</span> <span class="n">make</span>
+<span class="n">RUN</span> <span class="n">make</span> <span class="n">install</span>
+
+<span class="c1"># Clean up</span>
+<span class="n">RUN</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">stable</span><span class="o">/</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">stable</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Finally, we need to specify the command that will be run
+whenever we launch a container with this image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Command to run when container is launched</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;redis-server&quot;</span><span class="p">,</span> <span class="s2">&quot;--bind&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To be clear, the <code class="docutils literal notranslate"><span class="pre">RUN</span></code> commands are run only once, when the container
+image is first built, not every time we launch the container.</p>
+<p>To build our custom container, run this command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo docker build -t custom-redis .
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.</span></code> refers to the current directory (which contains the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>
+that Docker needs to build the container image).</p>
 <p>This may take a while, as Docker has to download a number of other
-container images to build ours.</p>
-<p>Finally, you can run the container like this:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo docker run -d -p <span class="m">6379</span>:6379 redis-example
+container images to build ours <em>and</em> it has to build Redis from
+scratch. Once it finishes building the image, you can run the container like this:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo docker run -p <span class="m">6379</span>:6379 custom-redis
 </pre></div>
 </div>
-<p>If you need to stop the container later on, simply press Ctrl+C.</p>
-<p>In a separate terminal, build hiredis and the tests:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get a <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">is</span> <span class="pre">already</span> <span class="pre">allocated</span></code> error, make sure the container
+you launched previously has been stopped:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">container</span> <span class="n">stop</span> <span class="n">redis</span><span class="o">-</span><span class="n">server</span>
+</pre></div>
+</div>
+</div>
+<p>In a separate terminal, build hiredis and the sample program:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make -C hiredis/
-$ make -C tests/
+$ make -C sample/
 </pre></div>
 </div>
 <p>You should now be able to run the test program:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ./tests/test-hgetset
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ./sample/sample-redis
 PING: PONG
 HSET: <span class="o">(</span>null<span class="o">)</span>
-HGETSET: Random J. Redisuser
-HGET: Alan T. Foobar
+HGET: Random J. Redisuser
 </pre></div>
 </div>
-<p>{{% /note %}}</p>
-<p>Add a <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file to your repository with the following
-contents:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dist</span><span class="p">:</span> <span class="n">xenial</span>
+</div>
+<div class="section" id="task-4-using-a-custom-dockerfile-in-our-workflow">
+<h3>Task 4: Using a Custom Dockerfile in our Workflow<a class="headerlink" href="#task-4-using-a-custom-dockerfile-in-our-workflow" title="Permalink to this headline">¶</a></h3>
+<p>[10 points]</p>
+<p>Now that we’ve seen how to specify a custom container, let’s try using it
+in our CI workflow. Please note that you don’t need to complete this
+task on the CS VM. You can follow all the necessary steps while logged
+into a CS machine.</p>
+<p>Update the <code class="docutils literal notranslate"><span class="pre">.github/workflows/build-and-test.yml</span></code> file in your repository so
+it will contain the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span><span class="p">:</span> <span class="n">Build</span> <span class="ow">and</span> <span class="n">Test</span> <span class="n">Redis</span> <span class="n">program</span>
 
-<span class="n">language</span><span class="p">:</span> <span class="n">c</span>
+<span class="n">on</span><span class="p">:</span> <span class="p">[</span><span class="n">push</span><span class="p">]</span>
 
-<span class="n">services</span><span class="p">:</span>
-  <span class="o">-</span> <span class="n">docker</span>
+<span class="n">jobs</span><span class="p">:</span>
+  <span class="n">build</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">test</span><span class="p">:</span>
 
-<span class="n">before_install</span><span class="p">:</span>
-  <span class="o">-</span> <span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">redis</span><span class="o">-</span><span class="n">example</span> <span class="o">.</span>
-  <span class="o">-</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">6379</span><span class="p">:</span><span class="mi">6379</span> <span class="n">redis</span><span class="o">-</span><span class="n">example</span>
-  <span class="o">-</span> <span class="n">docker</span> <span class="n">container</span> <span class="nb">list</span>
+    <span class="n">runs</span><span class="o">-</span><span class="n">on</span><span class="p">:</span> <span class="n">ubuntu</span><span class="o">-</span><span class="n">latest</span>
 
-<span class="n">script</span><span class="p">:</span>
- <span class="o">-</span> <span class="n">make</span> <span class="o">-</span><span class="n">C</span> <span class="n">hiredis</span><span class="o">/</span>
- <span class="o">-</span> <span class="n">make</span> <span class="o">-</span><span class="n">C</span> <span class="n">tests</span><span class="o">/</span>
- <span class="o">-</span> <span class="o">./</span><span class="n">tests</span><span class="o">/</span><span class="n">test</span><span class="o">-</span><span class="n">hgetset</span>
+    <span class="n">steps</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">uses</span><span class="p">:</span> <span class="n">actions</span><span class="o">/</span><span class="n">checkout</span><span class="nd">@v2</span>
+      <span class="k">with</span><span class="p">:</span>
+        <span class="n">submodules</span><span class="p">:</span> <span class="s1">&#39;recursive&#39;</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Build</span> <span class="ow">and</span> <span class="n">run</span> <span class="n">Docker</span> <span class="n">container</span>
+      <span class="n">run</span><span class="p">:</span> <span class="o">|</span>
+        <span class="n">sudo</span> <span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">custom</span><span class="o">-</span><span class="n">redis</span> <span class="o">.</span>
+        <span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">6379</span><span class="p">:</span><span class="mi">6379</span> <span class="n">custom</span><span class="o">-</span><span class="n">redis</span>
+        <span class="n">sudo</span> <span class="n">docker</span> <span class="n">container</span> <span class="nb">list</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Build</span> <span class="n">hiredis</span>
+      <span class="n">working</span><span class="o">-</span><span class="n">directory</span><span class="p">:</span> <span class="n">hiredis</span><span class="o">/</span>
+      <span class="n">run</span><span class="p">:</span> <span class="o">|</span>
+        <span class="n">make</span> <span class="n">clean</span>
+        <span class="n">make</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Build</span> <span class="n">sample</span> <span class="n">program</span>
+      <span class="n">working</span><span class="o">-</span><span class="n">directory</span><span class="p">:</span> <span class="n">sample</span><span class="o">/</span>
+      <span class="n">run</span><span class="p">:</span> <span class="o">|</span>
+        <span class="n">make</span> <span class="n">clean</span>
+        <span class="n">make</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Run</span> <span class="n">sample</span> <span class="n">program</span>
+      <span class="n">run</span><span class="p">:</span> <span class="o">./</span><span class="n">sample</span><span class="o">/</span><span class="n">sample</span><span class="o">-</span><span class="n">redis</span>
 </pre></div>
 </div>
-<p>Go ahead and commit and push this file. The Travis build may take a few
-minutes; just read ahead before checking the status of your build.</p>
-<p>There are a few differences with the Travis files we’ve seen previously:</p>
-<ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">services</span></code> option tells Travis that we will need access to
-Docker’s tools, which includes the ability to build and run our own
-containers.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">before_install</span></code> option includes the Docker commands we need to
-run our container. Notice how they’re the same as the ones you can
-run insider your VM. We’ve also included <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">list</span></code> to
-double-check that our container is running.</p></li>
-</ul>
-<p>Other than that, the <code class="docutils literal notranslate"><span class="pre">script</span></code> portion should be pretty
-self-explanatory: we build hiredis and the tests, and we run the sample
-program.</p>
-<p>The build on Travis may take a few minutes, as it will need to download
-the necessary container images before it can build and run our code. If
-the build succeeds, you should be able to see this towards the end of
-the build’s output:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ./tests/test-hgetset
-PING: PONG
-HSET: <span class="o">(</span>null<span class="o">)</span>
-HGETSET: Random J. Redisuser
-HGET: Alan T. Foobar
-</pre></div>
-</div>
-<p>If the build fails or you do not see this output, make sure to ask for
-help.</p>
-<p>For this task, please enter the URL of your successful Travis build on
-Gradescope.</p>
+<p>Notice how we’ve removed the <code class="docutils literal notranslate"><span class="pre">services</span></code> option, and instead added a new
+step that manually builds and runs our custom container. We’ve also included
+<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">list</span></code> to double-check that our container is running.</p>
+<p>You’ll notice that this workflow takes considerably longer to run than previous
+workflow, because building the custom container involves building Redis from
+scratch. In practice, we would not build this container from scratch in
+every workflow run and, instead, we would either upload our container image
+to Docker Hub so we can easily reuse it, or we would make use of GitHub Actions’
+<a class="reference external" href="https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows">caching features</a>
+to reuse the container image across multiple workflow runs.</p>
+<p>Before continuing, take the URL of your successful workflow run, and paste it into Gradescope
+(under “Task 4: Using a Custom Dockerfile in our Workflow”).</p>
 </div>
 </div>
 <div class="section" id="part-ii-a-complete-deployment-pipeline">
-<h1>Part II: A complete deployment pipeline<a class="headerlink" href="#part-ii-a-complete-deployment-pipeline" title="Permalink to this headline">¶</a></h1>
+<h2>Part II: A Complete Deployment Pipeline<a class="headerlink" href="#part-ii-a-complete-deployment-pipeline" title="Permalink to this headline">¶</a></h2>
 <p>In class, we have discussed that software is rarely deployed directly
 into production but, instead, follows a <em>deployment pipeline</em>. In our
-previous lab we saw a very basic deployment pipeline: we set up our
+previous homework we saw a very basic deployment pipeline: we set up our
 HelloApp to deploy to Heroku, but only if the CI tests passed. In this
-lab, we are going to see a more complete deployment pipeline.</p>
+homework, we are going to see a more complete deployment pipeline.</p>
 <p>As we saw in the deployment lecture, a common pipeline is as follows:</p>
 <ul class="simple">
 <li><p><em>Local</em>, where you are the only one making changes to your codebase.</p></li>
@@ -500,30 +659,30 @@ time to catch errors before showing the end-users.</p></li>
 <li><p><em>Production</em>, where your app is available to the real world. Usually,
 the staging app will be promoted to production when it is ready.</p></li>
 </ul>
-<p>In this lab, you’ll create a more complete Heroku pipeline for last
-week’s HelloApp. If you did not successfully complete Lab 7, please ask
-for help so we can ensure that you’re all set up for this week’s lab.</p>
+<p>In this homework, you’ll create a more complete Heroku pipeline for last
+week’s HelloApp. If you did not successfully complete Homework #7, please ask
+for help so we can ensure that you’re all set up for this week’s homework.</p>
 <p>Heroku already provides support for creating pipelines, and ours will
 have three stages:</p>
 <ul class="simple">
 <li><p><em>Review</em>: Similar to a development stage. In Heroku, we can
 automatically link this stage to our pull requests on GitHub, so we
 can easily test any changes we are proposing in a pull request.</p></li>
-<li><p><em>Staging</em>: We will be using the app you created in Lab 7 as our
+<li><p><em>Staging</em>: We will be using the app you created in Homework #7 as our
 staging app.</p></li>
 <li><p><em>Production</em>: A new production app that is only available if we are
 satisfied with our staging app.</p></li>
 </ul>
 <div class="section" id="task-1-create-a-pipeline">
-<h2>Task 1: Create a Pipeline<a class="headerlink" href="#task-1-create-a-pipeline" title="Permalink to this headline">¶</a></h2>
+<h3>Task 1: Create a Pipeline<a class="headerlink" href="#task-1-create-a-pipeline" title="Permalink to this headline">¶</a></h3>
 <p>[0 points]</p>
-<p>In this task, you’ll create a new Heroku Pipeline, using the the
-<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-lab7</span></code> application (from last week’s lab) as the staging
-application. Note that a common convention is for staging applications
+<p>In this task, you’ll create a new Heroku Pipeline, using the
+<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-hw7</span></code> app(from last week’s homework) as the staging
+app. Note that a common convention is for staging apps
 to have <code class="docutils literal notranslate"><span class="pre">-staging</span></code> as a suffix, but it won’t be necessary for you to
-rename your app in this lab.</p>
+rename your app in this homework.</p>
 <p>To create the pipeline, log into Heroku, and select the app you created
-in Lab 7. Under the deploy tab, click on “Choose a pipeline” (in the
+in Homework #7. Under the Deploy tab, click on “Choose a pipeline” (in the
 “Add this app to a pipeline” section) and then “Create new pipeline”.
 Name your pipeline <code class="docutils literal notranslate"><span class="pre">CNETID-pipeline</span></code> (where <code class="docutils literal notranslate"><span class="pre">CNETID</span></code> should be
 replaced with your CNetID). You will also be asked to specify “Choose a
@@ -532,25 +691,25 @@ Finally, click on “Create pipeline”.</p>
 <p>You will now be shown the pipeline’s configuration (you will also be
 able to access this page through your dashboard, which will now include
 a <code class="docutils literal notranslate"><span class="pre">CNETID-pipeline</span></code> pipeline). Notice how there is no production
-application in your pipeline. In the real world, this would mean that
+app in your pipeline. In the real world, this would mean that
 your end users don’t see anything!</p>
 <p>Please note that you do not need to enter anything into Gradescope for
 this task. While it is worth 0 points, you still need to create a
 pipeline before moving on to the next tasks.</p>
 </div>
-<div class="section" id="task-2-add-a-production-application">
-<h2>Task 2: Add a production application<a class="headerlink" href="#task-2-add-a-production-application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="task-2-add-a-production-app">
+<h3>Task 2: Add a production app<a class="headerlink" href="#task-2-add-a-production-app" title="Permalink to this headline">¶</a></h3>
 <p>[10 points]</p>
-<p>In this task, you’ll add a production application to your pipeline.
+<p>In this task, you’ll add a production app to your pipeline.
 Unlike the app in staging, your production app won’t be associated with
-any specific repo. Instead, once your staging application is good to go,
-you can <em>promote</em> it to be the production application. That means the
-production application will just take the staging app, make a copy of
+any specific repo. Instead, once your staging app is good to go,
+you can <em>promote</em> it to be the production app. That means the
+production app will just take the staging app, make a copy of
 it, and run that copy as the production app. This means that, if you
-make changes to the staging app, those changes whon’t appear in
+make changes to the staging app, those changes won’t appear in
 production until you explicitly promote the staging app to production
 again.</p>
-<p>Later in the lab you may see Heroku messages that talk about “slugs”; in
+<p>Later in the homework you may see Heroku messages that talk about “slugs”; in
 Heroku parlance, a “slug” is a pre-compiled version of your app that is
 ready to run. So, when we promote to production, we don’t actually
 rebuild the application; we just take the “slug” that is in staging, and
@@ -562,25 +721,25 @@ should be replaced with your CNetID). Notice how, if you try to access
 your app on Heroku (just go to <a class="reference external" href="http://CNETID-cs220-prod.herokuapp.com/">http://CNETID-cs220-prod.herokuapp.com/</a>),
 you’ll just see a placeholder page, not HelloApp. That’s because we
 haven’t promoted our staging app to production yet.</p>
-<p>On Gradescope, enter the URL of your staging app.</p>
+<p>On Gradescope, enter the URL of your staging app (this will be the same
+URL as the HelloApp you deployed in Homework #7).</p>
 </div>
 <div class="section" id="task-3-promoting-from-staging-to-production">
-<h2>Task 3: Promoting from staging to production<a class="headerlink" href="#task-3-promoting-from-staging-to-production" title="Permalink to this headline">¶</a></h2>
+<h3>Task 3: Promoting from staging to production<a class="headerlink" href="#task-3-promoting-from-staging-to-production" title="Permalink to this headline">¶</a></h3>
 <p>[20 points]</p>
 <p>First, let’s make a change to our HelloApp: it’s time to upgrade to
 HelloApp 2.0!</p>
 <ul class="simple">
-<li><p>In your repository from Lab 7 (<code class="docutils literal notranslate"><span class="pre">2020-lab7-GITHUB_USERNAME</span></code>), edit
-<code class="docutils literal notranslate"><span class="pre">hello/templates/base.html</span></code> and change “Helloapp” to “Helloapp
-2.0”.</p></li>
+<li><p>In your repository from Homework #7 (<code class="docutils literal notranslate"><span class="pre">2021-hw7-GITHUB_USERNAME</span></code>), edit
+<code class="docutils literal notranslate"><span class="pre">hello/templates/base.html</span></code> and change <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;HelloApp&lt;/h1&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;HelloApp</span> <span class="pre">2.0&lt;/h1&gt;</span></code></p></li>
 <li><p>Commit and push this change with the message “Update to 2.0”</p></li>
-<li><p>Assuming you completed Lab 7 last week, your updated app will
+<li><p>Assuming you completed Homework #7 last week, your updated app will
 automatically deploy. Remember this may take a few minutes (you can
 check the progress of the deployment by going to the “Activity” tab
 in your app)</p></li>
 </ul>
 <p>Now, notice that if you navigate to your staging website
-(<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-lab7.herokuapp.com</span></code>) you’ll see your change. But if you
+(<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-hw7.herokuapp.com</span></code>) you’ll see your change. But if you
 navigate to your production website
 (<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-prod.herokuapp.com</span></code>), you’ll still see a placeholder
 page.</p>
@@ -592,68 +751,70 @@ as “breaking the build”, and you absolutely don’t want that to propagate
 to production (by the way, if you know anyone who has done a software
 development internship or works in software development, ask them if
 they’ve ever “broken the build”; we guarantee you’ll hear some
-entertaning stories). By having a pipeline, we can ensure that users
-continuously see our production, without mistakes, and we only update it
+entertaining stories). By having a pipeline, we can ensure that users
+continuously see our production app, without mistakes, and we only update it
 when we’re absolutely sure.</p>
 <p>So, let’s go ahead and promote our staging application to production.
 You can do this simply by pressing the “Promote to production…” button
 in the staging app of your pipeline. Once you do this, your staging app
-(<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-lab7.herokuapp.com</span></code>) and your production app
+(<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-hw7.herokuapp.com</span></code>) and your production app
 (<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-prod.herokuapp.com</span></code>) should look exactly the same.</p>
 <p>On Gradescope, enter the URL of your production app.</p>
 </div>
 <div class="section" id="task-4-create-review-apps-helloapp-3-0">
-<h2>Task 4: Create Review Apps - Helloapp 3.0<a class="headerlink" href="#task-4-create-review-apps-helloapp-3-0" title="Permalink to this headline">¶</a></h2>
+<h3>Task 4: Create Review Apps - HelloApp 3.0<a class="headerlink" href="#task-4-create-review-apps-helloapp-3-0" title="Permalink to this headline">¶</a></h3>
 <p>[20 points]</p>
 <p>Currently, in order to make changes to staging, you have to directly
-modify the master branch of your repo. Can you imagine why this is a bad
+modify the main branch of your repo. Can you imagine why this is a bad
 idea?</p>
 <p>In order to show your changes to anyone, you’d have to directly change
 staging, which isn’t as bad as directly modifying production, but could
 be embarrassing if you’re trying to get a small change approved and then
 break everything for every other developer in your team!</p>
-<p>The last thing you’ll do is create a review app stage for your pipeline.
+<p>The last thing you’ll do is create a <em>review app</em> stage for your pipeline.
 This way, every pull request submitted to GitHub can be its own app.
 This lets developers see changes per-pull request.</p>
 <p>To do this, we first need to connect the pipeline to GitHub:</p>
 <ul class="simple">
 <li><p>From the pipeline page on Heroku, click on “Connect to GitHub”</p></li>
 <li><p>This will take you to a different page. Under “Search for a
-repository to connect to”, select the “cmsc22000-labs” organization,
+repository to connect to”, select the “uchicago-cmsc22000” organization,
 and then enter your repository’s name
-(<code class="docutils literal notranslate"><span class="pre">2020-lab7-GITHUB_USERNAME</span></code>). Make sure to click on the “Search
-button”</p></li>
+(<code class="docutils literal notranslate"><span class="pre">2021-hw7-GITHUB_USERNAME</span></code>). Make sure to click on the “Search”
+button.</p></li>
 <li><p>Finally, click on the “Connect” button next to your repository’s
 name.</p></li>
 </ul>
 <p>Now, from your pipeline’s page, do the following:</p>
-<ul class="simple">
-<li><p>Click on “Enable Review Apps”. This will show you a form on the side
+<ul>
+<li><p>Click on “Enable Review Apps” in the “Review Apps” section. This will show you a form on the side
 of the page.</p></li>
 <li><p>Enable “Create new review apps for new pull requests automatically”</p></li>
 <li><p>Do NOT enable “Wait for CI to pass” (this refers to Heroku’s own CI,
-and we are already using Travis for CI)</p></li>
-<li><p>Enable “Destroy stale review apps automatically”</p></li>
-<li><p>Don’t worry about the “Review apps may incur dyno and add-on
-charges.” message. We are using the free tier of Heroku, so we won’t
+and we are already using GitHub Actions for CI)</p></li>
+<li><p>Enable “Destroy stale review apps automatically”. This will allow you
+to specify a number of days; you can leave the default value (“After 5 days”) as-is.</p></li>
+<li><p>Click on “Enable Review Apps”</p>
+<p>Don’t worry about the “Review apps may incur dyno and add-on
+charges.” that appears above the “Enable Review Apps” button.
+We are using the free tier of Heroku, so we won’t
 be charged for anything. If you want to be extra sure, go to
 <a class="reference external" href="https://dashboard.heroku.com/account/billing">https://dashboard.heroku.com/account/billing</a> and make sure there is
 no credit card on file for your account, and that you have free hours
-available under “Free Dyno Usage”.</p></li>
-<li><p>Click on “Enable Review Apps”</p></li>
+available under “Free Dyno Usage”.</p>
+</li>
 </ul>
 <p>Now, you’ll create a pull request:</p>
 <ul class="simple">
 <li><p>Create a new branch called <code class="docutils literal notranslate"><span class="pre">create-version-3</span></code> in your
-<code class="docutils literal notranslate"><span class="pre">2020-lab7-GITHUB_USERNAME</span></code> repository.</p></li>
-<li><p>Edit <code class="docutils literal notranslate"><span class="pre">hello/templates/base.html</span></code> and change “Helloapp 2.0” to
-“Helloapp 3.0”.</p></li>
+<code class="docutils literal notranslate"><span class="pre">2021-hw7-GITHUB_USERNAME</span></code> repository.</p></li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">hello/templates/base.html</span></code> and change <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;HelloApp</span> <span class="pre">2.0&lt;/h1&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;HelloApp</span> <span class="pre">3.0&lt;/h1&gt;</span></code></p></li>
 <li><p>Commit and push the changes with the message “Update to 3.0”</p></li>
 <li><p>Notice how the change won’t show up on
-<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-lab7.herokuapp.com</span></code>, because we haven’t pushed the
-changes to <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p></li>
+<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-hw7.herokuapp.com</span></code>, because we haven’t pushed the
+changes to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
 <li><p>Now, on GitHub, create a new pull request. Make sure your pull
-request is to merge the <code class="docutils literal notranslate"><span class="pre">create-version-3</span></code> branch to the <code class="docutils literal notranslate"><span class="pre">master</span></code>
+request is to merge the <code class="docutils literal notranslate"><span class="pre">create-version-3</span></code> branch to the <code class="docutils literal notranslate"><span class="pre">main</span></code>
 branch of your repository. You do not need to assign any reviewers to
 this pull request, nor do you need to worry about writing a summary,
 etc.</p></li>
@@ -663,7 +824,7 @@ etc.</p></li>
 <p>Click on “Open app” to view the review app. This allows you to see what
 your app would look like if the changes in the pull request were
 deployed. The review app should show the title “HelloApp 3.0”, while
-both the staging (<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-lab7.herokuapp.com</span></code>) and production
+both the staging (<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-hw7.herokuapp.com</span></code>) and production
 (<code class="docutils literal notranslate"><span class="pre">CNETID-cs220-prod.herokuapp.com</span></code>) apps should still show “HelloApp
 2.0”</p>
 <p>If the review app correctly shows the title “HelloApp 3.0”, go ahead and
@@ -675,14 +836,15 @@ go ahead and promote your final app to production.</p>
 <p>Please note that, once you merge the pull request, the review app will
 disappear. This is normal.</p>
 <p>On Gradescope, enter the URL of the pull request you created on GitHub.</p>
-<div class="section" id="submitting-your-lab">
-<h3>Submitting your lab<a class="headerlink" href="#submitting-your-lab" title="Permalink to this headline">¶</a></h3>
-<p>In this lab, you just need to enter a few URLs into Gradescope (make
-sure you’ve done so at the points instructed above). You should also
-make sure you’ve pushed your code to GitHub (but you will not be
-submitting your code through Gradescope; we just need to check that
-you’ve made the commits we expected you to make).</p>
 </div>
+</div>
+<div class="section" id="submitting-your-homework">
+<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h2>
+<p>In this homework, you just need to enter a few URLs into Gradescope (make
+sure you’ve done so at the points instructed above). You should also
+make sure you’ve pushed your code to GitHub, as we need to check
+whether you created the <code class="docutils literal notranslate"><span class="pre">hiredis</span></code> submodule correctly
+(however, you will not be submitting your code through Gradescope).</p>
 </div>
 </div>
 
