@@ -1,21 +1,27 @@
-{{% warning %}} This is an **OPTIONAL** lab. You do not have to submit
-it, and it will not be graded. {{% /warning %}}
+Homework 9: Documentation and Logging
+=====================================
 
-This lab will be divided into two distinct parts: one focused on
+.. note::
+
+    This is an **OPTIONAL** homework. You do not have to submit
+    it, and it will not be graded.
+
+This homework will be divided into two distinct parts: one focused on
 documentation, and another focused on logging. In the first one, you
 will automatically generate documentation for libgeometry and, in the
 second one, we will provide you with a program that simulates playing
 Tic-Tac-Toe under several different strategies, and you will add logging
 code to better track the progress of the simulation.
 
-Creating your lab repository
-----------------------------
+Creating your homework repository
+---------------------------------
 
-Like previous labs, we will provide you with an *invitation URL* that
-will allow you sign up for the lab assignment on GitHub, and which will
+Like previous homeworks, we will provide you with an *invitation URL* that
+will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2020-lab9-GITHUB_USERNAME`` inside our ``cmsc22000-labs`` organization
-on GitHub. Your repository will be seeded with some files for the lab.
+``2021-hw9-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+on GitHub. Your repository will be seeded with the files you need
+to complete this homework.
 
 Part I: Documentation
 =====================
@@ -41,20 +47,18 @@ these looks like, check out the following examples:
    original reStructuredText source). Their documentation is also hosted
    on `Read the Docs <https://readthedocs.org/>`__, a popular site for
    hosting technical documentation.
--  The CS 220 website (where you are reading this lab) is written in a
-   markup language called
-   `Markdown <https://en.wikipedia.org/wiki/Markdown>`__, which is also
-   used in many other platforms, including GitHub. You can see the
+-  The CS 220 website (where you are reading this homework) is also written
+   with Sphinx, but is hosted on GitHub Pages. You can see the
    source code for the CS 220 website here:
-   https://github.com/uchicago-cs/cmsc22000/tree/master/website/content.
-   You can see the source code for this lab here:
-   https://raw.githubusercontent.com/uchicago-cs/cmsc22000/master/website/content/labs/lab9.md
-   The CS 220 website itself is produced using a tool called
-   `Hugo <https://gohugo.io/>`__ which is not specifically designed for
-   producing documentation (it is a more general-purpose tool for
-   producing websites).
+   https://github.com/uchicago-cs/cmsc22000/tree/master/website.
+   You can see the source code for this homework here:
+   https://raw.githubusercontent.com/uchicago-cs/cmsc22000/master/website/hw/hw9.rst
 
-In this lab, we will focus on tools that produce documentation
+Notice how, despite both using Sphinx, they are two very different styles
+of documentation (both in substance and in form): one is the documentation
+of a software library, while the other is a course website.
+
+In this homework, we will focus on tools that produce documentation
 automatically from code. Sphinx can actually be used for this purpose,
 but only with Python code. We will instead use a tool called
 `Doxygen <http://www.doxygen.nl/>`__, which generates documentation from
@@ -63,7 +67,7 @@ source code in a variety of languages.
 While tools like Doxygen can generate documentation based on any code
 (as long as they support the language it’s written in), they are
 specially useful when we annotate the code wth comments that Doxygen can
-parse and then include in the generated documentation. In this lab, we
+parse and then include in the generated documentation. In this homework, we
 will do this with the libgeometry code.
 
 Task 1: Creating the Doxygen configuration file
@@ -108,6 +112,8 @@ directory):
 
    $ doxygen
 
+Note: this command may take a while to run.
+
 This will create an ``html`` directory. If you open the index.html file
 in that directory using a browser, you will see it contains
 documentation for “My Project” (or rather, it contains *no*
@@ -130,7 +136,6 @@ find them and set them to the values shown below):
 
    PROJECT_NAME           = "libgeometry"
    INPUT                  = ../
-   FILE_PATTERNS          = *.c *.h
    RECURSIVE              = YES
 
 These tags do the following:
@@ -139,9 +144,6 @@ These tags do the following:
    the generated documentation.
 -  ``INPUT`` specifies the root directory of the project (in this case,
    the parent directory of the ``docs`` directory, i.e. \ ``../``)
--  ``FILE_PATTERNS`` specifies the files that Doxygen should try to
-   document automatically. Since libgeometry is a C project, we only
-   want to look at files with a ``.c`` or a ``.h`` extension.
 -  ``RECURSIVE`` specifies that we want Doxygen to go into
    subdirectories when searching for files to generate documentation
    from.
@@ -158,7 +160,8 @@ Go ahead and re-run doxygen:
    $ doxygen
 
 And, in your web browser, re-load the ``index.html`` file inside the
-``html`` directory. You will now see a “Classes” tab you can click on.
+``html`` directory. You will now see a “Classes” menu; click on the "Class List"
+option.
 This will show you the structs (or classes, in object oriented parlance)
 in your code. You should see three types: ``point_t``, ``polygon_t``,
 and ``segment_t``. If you click on ``polygon_t`` you’ll see that page
@@ -201,7 +204,7 @@ Before continuing, make sure you commit the changes tp ``Doxyfile``:
 Task 3: Documenting your code
 -----------------------------
 
-If you click on ``segment_t`` in the Classes tab of the generated
+If you click on ``segment_t`` in the Class List page of the generated
 documentation, you’ll notice the page contains much less documentation
 than ``point_t`` and ``polygon_t``. This is because we have not yet
 added the comment blocks that Doxygen expects (and which can be found in
@@ -278,8 +281,8 @@ running this:
 
    $ doxygen
 
-Reload the documentation in your browser. The ``segment_t`` page (liked
-from the Classes tab) should now include the documentation you added to
+Reload the documentation in your browser. The ``segment_t`` page (linked
+from the Class List page) should now include the documentation you added to
 the code. Make sure to check that all the functions appear in the
 documentation!
 
@@ -299,7 +302,7 @@ program running. This is a `valuable debugging
 technique <https://uchicago-cs.github.io/debugging-guide/#print-debugging>`__,
 but it can also result in your program’s output getting bogged down in
 debugging statements (which you then need to manually comment out before
-releasing your software). In this part of the lab, we’re going to
+releasing your software). In this part of the homework, we’re going to
 explore a more methodical way of printing messages that inform you of
 the state of your program.
 
@@ -332,34 +335,35 @@ out all the log messages at the ``FATAL``, ``ERROR``, ``WARN``, and
 to a deeper level, like ``DEBUG`` or ``TRACE`` to print more information
 during the execution of your program.
 
-In this lab, we will use `this <https://github.com/rxi/log.c>`__ log
+In this homework, we will use `this <https://github.com/rxi/log.c>`__ log
 library which provides all of the above functionality (and a little
 more). In particular, we will take a program to simulate Tic-Tac-Toe
 games and add logging so we can see the progress of the simulation. The
-program is in the ``labs/lab9/tictactoe`` directory. Before continuing,
+program is in the ``tictactoe`` directory in your repository. Before continuing,
 take a moment to read the README file in that directory. Make sure you
 can build the program, and run it as described in the README file.
 
 Task 4: Setup
-=============
+-------------
 
 In order to actually use the logging library, we need to import it into
 our repository. We could copy the files in, but that’s a pretty
 inelegant solution. We will instead use git submodules, like we did in
-the previous lab. Run the following command from the root of your
+the previous homework. Run the following command from the root of your
 repository:
 
 .. code:: shell
 
    $ git submodule add https://github.com/rxi/log.c tictactoe/lib/log.c
 
-{{% warning %}} **Caution**: the above command creates a *folder* called
-``log.c``, *not* a file. The name of the whole library is ``log.c``,
-which is really confusing because it sounds like a filename. {{%
-/warning %}}
+.. warning::
+
+    Careful: the above command creates a *folder* called
+    ``log.c``, *not* a file. The name of the whole library is ``log.c``,
+    which is really confusing because it sounds like a filename.
 
 Task 5: Up and running with ``log.c``
-=====================================
+-------------------------------------
 
 Your task is simple: read the code and figure out what it does, and then
 add logging statements at the appropriate log levels throughout the
@@ -419,9 +423,9 @@ to use logging to see how it unfolds step by step). When testing those
 use cases, make sure you set the ``-n`` option to a low value, to avoid
 overwhelming your terminal with output.
 
-Submitting your lab
-~~~~~~~~~~~~~~~~~~~
+Submitting your homework
+========================
 
-This is an optional, ungraded lab. You do not need to submit anything
-but, if you need any help with this lab, please make sure you push your
+This is an optional, ungraded homework. You do not need to submit anything
+but, if you need any help with this homework, please make sure you push your
 latest code before asking for help.
