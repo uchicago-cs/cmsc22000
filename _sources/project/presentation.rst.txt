@@ -1,19 +1,14 @@
 Final Presentations
 ===================
 
-.. note::
-
-   These are the presentation requirements from Spring 2020, and are
-   subject to change in Spring 2021.
-
 The final component of this course will be a series of final
 presentations, where each team will present the work they have done
 throughout the quarter. This presentation will be divided into two
 components:
 
--  A pre-recorded presentation
+-  A pre-recorded presentation due **Thursday, June 3rd at 8pm CDT**
 -  A 5-10 minute Q&A session with the instructor and TAs during the
-   “final exam” slot for the class
+   “final exam” slot for the class on **Friday, June 4th, 4pm-6pm CDT**
 
 Once all presentations have been submitted, they will be shared with the
 entire class, so that everyone in the class can learn about the work
@@ -35,6 +30,13 @@ non-trivial implementation details (like the use of external libraries).
 You should also take care to explain the main dependencies your code has
 with the rest of chiventure.
 
+Please note that you should not need to show any of your code during
+your presentation: you should instead focus on describing at a high level
+the features you added or improved in chiventure, including any modules, data
+structures, etc. you implemented. That said, it can be
+appropriate to show very short examples (3-4 lines) of how your code
+might be called from other components.
+
 Demo
 ~~~~
 
@@ -44,6 +46,10 @@ You must run a demo of your work meeting the following requirements:
 -  The code you run *must* be in the ``dev`` branch of the repository.
    You cannot demo code that is still in one of your branches and has
    not gone through a code review.
+
+We recommend that you think carefully about what you want to show
+in your demo, and that you plan ahead of time the exact steps you
+will take during the demo (as opposed to doing a more improvised demo).
 
 Ideally, you should run the main ``chiventure`` executable, in a way
 that highlights the work you’ve done. However, if your feature is not
@@ -64,8 +70,8 @@ software development process which you found challenging and/or
 rewarding. We encourage you to decouple these as much as possible from
 the structure of this particular class. In other words, reflect upon
 what aspects of developing software as part of a team (and with other
-teams), and using the tools that facilitate this process (GitHub, Slack,
-Travis, etc.) proved to be more challenging (and/or rewarding) than
+teams), and using the tools that facilitate this process (GitHub, Slack, etc.)
+proved to be more challenging (and/or rewarding) than
 simply working individually.
 
 You must also discuss at least one thing that you would’ve done
@@ -126,23 +132,44 @@ speak during the presentation.
 Submission Instructions
 -----------------------
 
-Submission instructions will be posted closer to the deadline, but we
-expect you will be able to upload your video through Panopto.
+You will submit your presentation through Panopto. On the CMSC 22000 canvas
+site, go to "Panopto Video", and then into the folder "Final Presentations [Submission Folder]".
+To upload your video, click on the "Create" button (which appears to the right
+of the search bar), and select "Upload media". You will then be prompted
+to upload a file. Please make sure the video file includes the name of
+your team in it.
+
+Please note that this submission folder is set up so that only the person
+who uploads a video can see that video. Your teammates should not be alarmed
+if they go to this folder and do not see your team's video there.
+
+
 
 Q&A
 ---
 
-During the Q&A meeting, you will be asked some questions based on your
-presentation (this is meant to emulate the Q&A that typically happens
-after a live presentation; the instructor and TAs will watch your
-presentation before the Q&A portion). We expect to spend 5-10 minutes
-per team.
+During the Q&A meeting, each team will get approximately 10 minutes for:
 
-While the entire team does not have to be present at the Q&A meeting, as
-many team members as possible should plan to attend. Take into account
-that you may be asked questions that one or two specific people in your
-team are best suited to answer (because they were more involved in the
-part of your code that a question relates to).
+1. A **brief** (less than 5 minutes) summary/demo of your team's work.
+2. Q&A by the instructor/TAs.
+
+The summary/demo *will not be graded*. The audience of this summary/demo
+is not the instructor/TAs (who will have already watched your pre-recorded
+presentation), but rather the other teams (who have not watched your
+pre-recorded presentation). This will be a chance for everyone in the class
+to hear more about what every team did this quarter.
+
+Please note that we will be on a tight schedule during the Q&A meeting so,
+if you are going to use slides or demo any running code, your presentation
+or demo must be ready to go the moment your team's turn is up.
+
+In the Q&A portion, you will be asked some questions based on your
+pre-recorded presentation. While the entire team does not have to be
+present for this Q&A, as many team members as possible should plan to
+attend. Take into account that you may be asked questions that one or
+two specific people in your team are best suited to answer
+(because they were more involved in the part of your code that a
+question relates to).
 
 Teams in a non-North American timezone who are unable to send a few team
 members to the Q&A meeting should contact the instructor in advance to
@@ -204,16 +231,22 @@ Q&A
 -  0 points: The team did not answer any of the questions they were
    asked.
 
-Presentation and demo tips
---------------------------
+Code Freezes
+------------
 
--  You should declare the ``dev`` branch to be frozen at some point
-   before the presentations (and after you have run through a successful
-   demo with the code in that branch). We suggest aiming to freeze the
-   ``dev`` branch at least 24 hours before the presentation, and only
-   allowing changes that do not affect your code (e.g., documentation
-   changes, READMEs, etc.) or, at most, very small hotfixes.
--  When you have a limited amount of time, don’t improvise your demo.
-   Think about what you will show exactly, and stick to your script.
-   Make sure to rehearse your demo thoroughly before you actually record
-   it.
+Please note that, leading up to the final presentations, there will
+be two freezes on the ``dev`` branch. Remember that your demo **must**
+run code that is in the ``dev`` branch.
+
+- **Soft Freeze**: Friday, May 28th at 11:59pm CDT
+
+  - Only issues/PRs that are open at this time will be reviewed and graded.
+  - Issues/PRs can still be opened after the soft freeze (under a new milestone, “2021/Wrap-up”) but they will not be graded.
+  - We cannot guarantee that PRs opened after the soft freeze will be reviewed/merged.
+  - In general, we will not approve PRs that introduce a completely new feature, or that modify the core data structures of chiventure.
+
+- **Code Freeze**: Wednesday, June 2nd at 8pm CDT
+
+  - No code will be merged after this time.
+  - Exceptions may be made for very minor bugfixes and documentation updates, but we cannot guarantee they will be reviewed in a timely fashion.
+

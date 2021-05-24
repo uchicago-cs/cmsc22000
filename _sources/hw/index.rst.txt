@@ -20,7 +20,7 @@ Homework
 +---+------------------------------------------+-------------------+
 | 8 | `More CI and Deployment <hw8.html>`__    | May 26, 8pm CDT   |
 +---+------------------------------------------+-------------------+
-| 9 | Documentation and Logging                | Optional          |
+| 9 | `Documentation and Logging <hw9.html>`__ | Optional          |
 +---+------------------------------------------+-------------------+
 
 If you need any help on the homework assignments, please see our `Getting help on the homework assignments <help.html>`__ page.

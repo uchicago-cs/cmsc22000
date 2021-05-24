@@ -95,23 +95,43 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Final Presentations</a><ul>
+<li><a class="reference internal" href="#presentation-contents">Presentation Contents</a><ul>
+<li><a class="reference internal" href="#design-and-implementation">Design and Implementation</a></li>
+<li><a class="reference internal" href="#demo">Demo</a></li>
+<li><a class="reference internal" href="#reflections">Reflections</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#presentation-format">Presentation Format</a></li>
+<li><a class="reference internal" href="#submission-instructions">Submission Instructions</a></li>
+<li><a class="reference internal" href="#q-a">Q&amp;A</a></li>
+<li><a class="reference internal" href="#scoring">Scoring</a><ul>
+<li><a class="reference internal" href="#content-and-structure">Content and structure</a></li>
+<li><a class="reference internal" href="#demo-1">Demo</a></li>
+<li><a class="reference internal" href="#qa-1">Q&amp;A</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#code-freezes">Code Freezes</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="section" id="final-presentations">
 <h1>Final Presentations<a class="headerlink" href="#final-presentations" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>These are the presentation requirements from Spring 2020, and are
-subject to change in Spring 2021.</p>
-</div>
 <p>The final component of this course will be a series of final
 presentations, where each team will present the work they have done
 throughout the quarter. This presentation will be divided into two
 components:</p>
 <ul class="simple">
-<li><p>A pre-recorded presentation</p></li>
+<li><p>A pre-recorded presentation due <strong>Thursday, June 3rd at 8pm CDT</strong></p></li>
 <li><p>A 5-10 minute Q&amp;A session with the instructor and TAs during the
-“final exam” slot for the class</p></li>
+“final exam” slot for the class on <strong>Friday, June 4th, 4pm-6pm CDT</strong></p></li>
 </ul>
 <p>Once all presentations have been submitted, they will be shared with the
 entire class, so that everyone in the class can learn about the work
@@ -128,6 +148,12 @@ and reflections.</p>
 non-trivial implementation details (like the use of external libraries).
 You should also take care to explain the main dependencies your code has
 with the rest of chiventure.</p>
+<p>Please note that you should not need to show any of your code during
+your presentation: you should instead focus on describing at a high level
+the features you added or improved in chiventure, including any modules, data
+structures, etc. you implemented. That said, it can be
+appropriate to show very short examples (3-4 lines) of how your code
+might be called from other components.</p>
 </div>
 <div class="section" id="demo">
 <h3>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h3>
@@ -138,6 +164,9 @@ with the rest of chiventure.</p>
 You cannot demo code that is still in one of your branches and has
 not gone through a code review.</p></li>
 </ul>
+<p>We recommend that you think carefully about what you want to show
+in your demo, and that you plan ahead of time the exact steps you
+will take during the demo (as opposed to doing a more improvised demo).</p>
 <p>Ideally, you should run the main <code class="docutils literal notranslate"><span class="pre">chiventure</span></code> executable, in a way
 that highlights the work you’ve done. However, if your feature is not
 yet accessible from the main executable, you are allowed to create an
@@ -155,8 +184,8 @@ software development process which you found challenging and/or
 rewarding. We encourage you to decouple these as much as possible from
 the structure of this particular class. In other words, reflect upon
 what aspects of developing software as part of a team (and with other
-teams), and using the tools that facilitate this process (GitHub, Slack,
-Travis, etc.) proved to be more challenging (and/or rewarding) than
+teams), and using the tools that facilitate this process (GitHub, Slack, etc.)
+proved to be more challenging (and/or rewarding) than
 simply working individually.</p>
 <p>You must also discuss at least one thing that you would’ve done
 differently with the benefit of hindsight.</p>
@@ -212,21 +241,38 @@ speak during the presentation.</p>
 </div>
 <div class="section" id="submission-instructions">
 <h2>Submission Instructions<a class="headerlink" href="#submission-instructions" title="Permalink to this headline">¶</a></h2>
-<p>Submission instructions will be posted closer to the deadline, but we
-expect you will be able to upload your video through Panopto.</p>
+<p>You will submit your presentation through Panopto. On the CMSC 22000 canvas
+site, go to “Panopto Video”, and then into the folder “Final Presentations [Submission Folder]”.
+To upload your video, click on the “Create” button (which appears to the right
+of the search bar), and select “Upload media”. You will then be prompted
+to upload a file. Please make sure the video file includes the name of
+your team in it.</p>
+<p>Please note that this submission folder is set up so that only the person
+who uploads a video can see that video. Your teammates should not be alarmed
+if they go to this folder and do not see your team’s video there.</p>
 </div>
 <div class="section" id="q-a">
 <h2>Q&amp;A<a class="headerlink" href="#q-a" title="Permalink to this headline">¶</a></h2>
-<p>During the Q&amp;A meeting, you will be asked some questions based on your
-presentation (this is meant to emulate the Q&amp;A that typically happens
-after a live presentation; the instructor and TAs will watch your
-presentation before the Q&amp;A portion). We expect to spend 5-10 minutes
-per team.</p>
-<p>While the entire team does not have to be present at the Q&amp;A meeting, as
-many team members as possible should plan to attend. Take into account
-that you may be asked questions that one or two specific people in your
-team are best suited to answer (because they were more involved in the
-part of your code that a question relates to).</p>
+<p>During the Q&amp;A meeting, each team will get approximately 10 minutes for:</p>
+<ol class="arabic simple">
+<li><p>A <strong>brief</strong> (less than 5 minutes) summary/demo of your team’s work.</p></li>
+<li><p>Q&amp;A by the instructor/TAs.</p></li>
+</ol>
+<p>The summary/demo <em>will not be graded</em>. The audience of this summary/demo
+is not the instructor/TAs (who will have already watched your pre-recorded
+presentation), but rather the other teams (who have not watched your
+pre-recorded presentation). This will be a chance for everyone in the class
+to hear more about what every team did this quarter.</p>
+<p>Please note that we will be on a tight schedule during the Q&amp;A meeting so,
+if you are going to use slides or demo any running code, your presentation
+or demo must be ready to go the moment your team’s turn is up.</p>
+<p>In the Q&amp;A portion, you will be asked some questions based on your
+pre-recorded presentation. While the entire team does not have to be
+present for this Q&amp;A, as many team members as possible should plan to
+attend. Take into account that you may be asked questions that one or
+two specific people in your team are best suited to answer
+(because they were more involved in the part of your code that a
+question relates to).</p>
 <p>Teams in a non-North American timezone who are unable to send a few team
 members to the Q&amp;A meeting should contact the instructor in advance to
 schedule an alternate time for their Q&amp;A.</p>
@@ -284,19 +330,26 @@ asked.</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="presentation-and-demo-tips">
-<h2>Presentation and demo tips<a class="headerlink" href="#presentation-and-demo-tips" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-freezes">
+<h2>Code Freezes<a class="headerlink" href="#code-freezes" title="Permalink to this headline">¶</a></h2>
+<p>Please note that, leading up to the final presentations, there will
+be two freezes on the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch. Remember that your demo <strong>must</strong>
+run code that is in the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch.</p>
 <ul class="simple">
-<li><p>You should declare the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch to be frozen at some point
-before the presentations (and after you have run through a successful
-demo with the code in that branch). We suggest aiming to freeze the
-<code class="docutils literal notranslate"><span class="pre">dev</span></code> branch at least 24 hours before the presentation, and only
-allowing changes that do not affect your code (e.g., documentation
-changes, READMEs, etc.) or, at most, very small hotfixes.</p></li>
-<li><p>When you have a limited amount of time, don’t improvise your demo.
-Think about what you will show exactly, and stick to your script.
-Make sure to rehearse your demo thoroughly before you actually record
-it.</p></li>
+<li><p><strong>Soft Freeze</strong>: Friday, May 28th at 11:59pm CDT</p>
+<ul>
+<li><p>Only issues/PRs that are open at this time will be reviewed and graded.</p></li>
+<li><p>Issues/PRs can still be opened after the soft freeze (under a new milestone, “2021/Wrap-up”) but they will not be graded.</p></li>
+<li><p>We cannot guarantee that PRs opened after the soft freeze will be reviewed/merged.</p></li>
+<li><p>In general, we will not approve PRs that introduce a completely new feature, or that modify the core data structures of chiventure.</p></li>
+</ul>
+</li>
+<li><p><strong>Code Freeze</strong>: Wednesday, June 2nd at 8pm CDT</p>
+<ul>
+<li><p>No code will be merged after this time.</p></li>
+<li><p>Exceptions may be made for very minor bugfixes and documentation updates, but we cannot guarantee they will be reviewed in a timely fashion.</p></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
