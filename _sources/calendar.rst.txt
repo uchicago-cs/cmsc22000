@@ -1,6 +1,10 @@
 Calendar
 ========
 
+.. note::
+
+   The calendar below is from the Spring 2021 edition of CMSC 22000. While we expect the general structure of the class to remain largely the same, particularly with regards to the course project, the Spring 2022 edition will be offered in person, and will meet Monday/Wednesday/Friday (instead of Monday/Friday as in Spring 2021). 
+
 Homeworks are released on Wednesdays, and are due the following Wednesday at 8pm CDT.
 
 The pre-recorded lectures for Weeks 1 and 2 are released on Monday of those weeks. Pre-recorded lectures for Weeks 3-9 are released on Friday or Saturday of the preceding week.
