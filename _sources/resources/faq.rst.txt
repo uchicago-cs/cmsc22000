@@ -12,9 +12,14 @@ allowed to take CMSC 22000 between CMSC 15200 / 16200 and CMSC 15400.
 
 **Can I take CMSC 22000 concurrently with CMSC 15400?**
 
-This is technically possible, but strongly discouraged. You will get the
-most out of CMSC 22000 and CMSC 15400 if you take them on separate
-quarters, instead of at the same time.
+This is technically possible, but strongly discouraged. From a curricular
+perspective, you will get the most out of both classes if you take
+CMSC 22000 first and then follow it up with CMSC 15400, 
+instead of taking them at the same time.
+
+Additionally, over the years, several students have pointed out that the
+workload of taking CMSC 15400 and CMSC 22000 on the same quarter can be
+hard to manage.
 
 **What is the difference between CMSC 22000 and CMSC 22001?**
 
