@@ -1,19 +1,16 @@
 CMSC 22000 - Introduction to Software Development
 =================================================
 
+.. note::
+
+   This website currently contains information from the Spring 2021 edition of CMSC 22000. While we expect the general structure of the class to remain largely the same, particularly with regards to the course project, the Spring 2022 edition will be offered in person, and will meet Monday/Wednesday/Friday (instead of Monday/Friday as in Spring 2021). 
+
 Course Staff
 ~~~~~~~~~~~~
 
 **Instructor**
 
 `Borja Sotomayor <http://people.cs.uchicago.edu/~borja/>`_ (borja@cs.uchicago.edu)
-
-**TAs**
-
-- Elizabeth Coble
-- Fırat Çiftçi
-- Lily Ehsani
-- Maxine King
 
 
 Course Description
