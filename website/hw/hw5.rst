@@ -1,7 +1,15 @@
 Homework 5: Testing
 ===================
 
-**Due:** Wednesday, May 5th, 8pm CDT
+.. danger::
+
+   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
+   If you are currently taking this class, you're welcome to take a look at the homework below,
+   but bear in mind that it could change substantially. Do not start working on the homework
+   until instructed to do so.
+
+
+**Due:** Wednesday, May 4th, 8pm CDT
 
 By this point in your CS studies, you’ve probably experienced the
 following at least once:

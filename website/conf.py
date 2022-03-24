@@ -136,7 +136,7 @@ html_sidebars = {'*': None,
 html_context = {"web_navbar": [("Course Information", [
                                     ("Syllabus", "syllabus", False),
                                     ("Calendar", "calendar", False),
-                                    ("TA/Grader Code of Conduct", "code_of_conduct", False)
+                                    ("Code of Conduct for Course Staff", "code-of-conduct", False)
                                  ]),
                                  ("Homework", "hw/index", False),
                                  ("Project", [
@@ -144,7 +144,7 @@ html_context = {"web_navbar": [("Course Information", [
                                      ("chiventure", "project/chiventure", False),
                                      ("Policies", "project/policies", False),
                                      ("Features", "project/features", False),
-                                     ("Design Warm-Up Exercise", "project/warmup", False)
+                                     #("Design Warm-Up Exercise", "project/warmup", False)
                                  ]),
                                  ("Resources", [
                                      ("CS 220 FAQs", "resources/faq", False),

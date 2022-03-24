@@ -1,7 +1,7 @@
 Homework 1: Git
 ===============
 
-**Due:** Wednesday, April 7th, 8pm CDT
+**Due:** Wednesday, April 6th, 8pm CDT
 
 In some of your previous CS courses, you may have become familiar with
 using either Subversion (SVN) or Git to store a copy of your code
@@ -32,26 +32,16 @@ to a lot of other features (please note that having the Student
 Developer Pack is not necessary for CS 220; it’s just a nice benefit you
 get as a student)
 
-Creating your homework repository
----------------------------------
-
-For each homework assignment, we will provide you with an *invitation URL*
-that will allow you sign up for the homework assignment on GitHub, and which
-will result in the creation of a repository called
-``2021-hwN-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
-on GitHub (a GitHub “organization” is basically a way to group together
-related repositories). For example, if your GitHub username is
-``jrandom``, your repository will be called ``2021-hw1-jrandom``. This
-repository will be private, and can only be viewed by you and the CS 220
-course staff.
-
 Where should you do this homework assignment?
 ---------------------------------------------
 
-For this homework, we will specifically need you to work on a CS machine,
-which means you will have to connect remotely to CS environment. You can
-do this in one of two ways:
+For this homework, we will specifically need you to work on a CS environment.
+You can this in one of several ways:
 
+-  Going to the
+   `Computer Science Instructional Laboratory (CSIL) <https://csil.cs.uchicago.edu/>`__
+   in the first floor of Crerar Library and using one of the Linux
+   machines in CSIL 3, CSIL 4, or CSIL 5.
 -  Using SSH, which will allow you to open a command-line terminal on a
    CS machine. The CS techstaff provides `detailed
    instructions <https://howto.cs.uchicago.edu/remote_access>`__ on how
@@ -102,24 +92,186 @@ on the graders’ inspection of your GitHub repository (but we still need
 to include those tasks on Gradescope so we can grade them as part of
 this homework).
 
+Creating your homework repository
+---------------------------------
+
+For each homework assignment, we will provide you with an *invitation URL*
+that will allow you sign up for the homework assignment on GitHub. When you
+open the invitation URL in a browser tab, you will have to complete
+the following steps:
+
+#. You will need to select your name (and CnetID) from a list. This step will allow us to know what student is associated with each GitHub account. This step is only done for the very first invitation you accept.
+
+#. You must click “Accept this assignment” or your repository will not actually be created.
+
+This will result in the creation of a repository called
+``hwN-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
+on GitHub (a GitHub “organization” is basically a way to group together
+related repositories). For example, if your GitHub username is
+``jrandom``, your repository will be called ``hw1-jrandom``. This
+repository will be private, and can only be viewed by you and the CS 220
+course staff.
 
 Part I: First steps with Git
 ----------------------------
-
-Initializing your repository
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You will start by initializing your repository. Your
 repository is hosted on GitHub, but you can create a local copy in your
 home directory (we will refer to this as your *local repository*).
 
 Log into https://github.com/. Your homework repository,
-``uchicago-cmsc22000/2021-hwN-GITHUB_USERNAME`` should appear under
+``uchicago-cmsc22000-2022/hwN-GITHUB_USERNAME`` should appear under
 “Repositories”. This will take you to a page where you can browse your
 repository through GitHub’s web interface. However, you haven’t
 initialized your repository yet, so GitHub will provide you with the
-instructions to initialize your repository. You are going to follow
-those instructions, but first need to do the following:
+instructions to initialize your repository.
+
+Don't try to run these commands from the terminal just yet! You will first
+need to perform some setup steps that will allow you to access
+your Git repository from the command-line.
+
+Creating an SSH Key
+~~~~~~~~~~~~~~~~~~~
+
+When you log into the GitHub website, you use the username and
+password associated with your GitHub account. However, when using
+Git commands from the terminal, things are a bit different.
+In particular, GitHub uses two mechanisms for authenticating yourself
+from the terminal: Personal Access Tokens and SSH Keys. We will
+be using SSH keys.
+
+In a nutshell, an SSH key is a file that resides in your home directory,
+and which you can think of as a file that stores a secure password
+(SSH keys are a bit more complex than that but, for our purposes,
+we can just think of them as extra-secure passwords)
+
+To create an SSH key, run the following command from the terminal::
+
+    $ ssh-keygen
+
+You will see the following prompt::
+
+    Generating public/private rsa key pair.
+    Enter file in which to save the key (/home/username/.ssh/id_rsa):
+
+Press Enter (this will select the default file path shown in the prompt: ``/home/username/.ssh/id_rsa``
+
+.. note::
+
+   If, after pressing Enter, you see the following message::
+
+        /home/username/.ssh/id_rsa already exists.
+        Overwrite (y/n)?
+
+   This means there is already an SSH key in your home directory.
+   You should proceed as follows:
+
+   1. If you are already familiar with SSH keys, and know for certain
+      that you'd like to use your existing SSH key, type "n" and
+      skip ahead to the "Uploading your SSH key to GitHub" section below.
+   2. If you do not know why you have an SSH key in your directory,
+      it's possible it was created for you if you've taken another
+      CMSC class in the past. Type "n" and then run the following commands
+      to create a backup of your existing key::
+
+            mv ~/.ssh/id_rsa ~/.ssh/id_rsa.bak
+            mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub.bak
+
+      Then, re-run the ``ssh-keygen`` command, press Enter when prompted
+      for the file name, and follow the rest of the
+      instructions in this section.
+
+Next, you will see this prompt::
+
+    Enter passphrase (empty for no passphrase):
+
+Just press Enter here. You will be asked to confirm (just press Enter again)::
+
+    Enter same passphrase again:
+
+.. note::
+
+    While it may seem counterintuitive, we don't want our SSH
+    key to have a passphrase (this is an added layer of security which we won't
+    need for this class; your GitHub account will still be secure even if your
+    SSH key doesn't have a password)
+
+If all goes well, you should see something like this::
+
+    Your identification has been saved in /home/username/.ssh/id_rsa
+    Your public key has been saved in /home/username/.ssh/id_rsa.pub
+    The key fingerprint is:
+    SHA256:cBUUs2FeMCIrBlTyv/PGpBtNz0v235zvLykpoWIOS9I username@machine
+    The key's randomart image is:
+    +---[RSA 3072]----+
+    | .+.. . ..@+.    |
+    |   +   o = *     |
+    |    + o . o      |
+    |   . o o         |
+    |      . S        |
+    |   .   +.o.      |
+    |  . E ++..=. . . |
+    |   o o+++o.oo oo.|
+    |    .oo+. ...o.+O|
+    +----[SHA256]-----+
+
+This means your key was created correctly.
+
+Uploading your SSH key to GitHub
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now, we need to instruct GitHub to accept our SSH key. To do this, log into https://github.com/
+and go to your Settings page (by clicking on the top-right account icon, and then selecting "Settings"
+in the drop-down menu. Then, click on "SSH and GPG keys".
+
+Now, click on the green "New SSH key" button. This will take you to a page where you can upload your
+SSH key. You will be asked for two values: a "Title" and the key itself. The title can be anything
+you want, but we suggest something like "CS SSH Key".
+
+The value of the key is contained in the ``.ssh/id_rsa.pub`` file in your home directory. To print
+out the contents of that file, we can just use the ``cat`` command::
+
+    $ cat ~/.ssh/id_rsa.pub
+
+This will print a few lines of output starting with ``ssh-rsa`` and ending in something like ``username@machine``.
+Copy the whole output to the clipboard; you can do this by clicking and dragging the mouse from the first
+character to the last character, and then pressing Ctrl-Shift-C.
+
+Then, paste the key into the "Key" field on the GitHub page. Then click on the green "Add SSH Key"
+button.
+
+To verify that you correctly uploaded the key, try running the following command::
+
+    ssh -T git@github.com
+
+You may see a message like this::
+
+    The authenticity of host 'github.com (...)' can't be established.
+    RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+    Are you sure you want to continue connecting (yes/no)?
+
+You can safely enter "yes" here. You should then see a message like this::
+
+    Hi username! You've successfully authenticated, but GitHub does
+    not provide shell access.
+
+This means your SSH key is properly set up (don't worry about the "does not provide shell access"; that is
+normal).
+
+If you are unable to set up your SSH key, please make sure to ask for help. You will not
+be able to complete the rest of the homework until you've set up your SSH key.
+
+If you would like to set up SSH access from your personal computer at a later time,
+GitHub provides some pretty detailed documentation on how to do this in a number
+of different operating systems: `Connecting to GitHub with SSH <https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh>`__
+Please note that we may not be able to assist you with SSH issues on your own computer.
+
+
+Initializing your repository (continued)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ok, now we're actually ready to initialize your repository.
+Do the following:
 
 -  Create a directory in your home directory for CMSC 22000. The name
    and location of this directory is not important, so if you already
@@ -128,39 +280,25 @@ those instructions, but first need to do the following:
 
    ::
 
+      cd
       mkdir -p cs220/hw1
       cd cs220/hw1
 
    (the ``-p`` flag to mkdir will create all the parent directories if
    needed; i.e., if you don't already have a ``cs220`` directory, it will
-   create one, and then will create a ``hw1``directory inside it)
+   create one, and then will create a ``hw1`` directory inside it)
 
 -  Inside that folder, create a file called ``README.md`` and add your
    full name to the file.
 
--  On your repository’s GitHub page, right under “Quick setup — if
-   you’ve done this kind of thing before” there is a URL field with two
-   buttons: HTTPS and SSH. Make sure to change this to “HTTPS”.
+-  On your repository’s GitHub page (on the GitHub website), right
+   under “Quick setup — if you’ve done this kind of thing before”
+   there is a URL field with two buttons: HTTPS and SSH.
+   Make sure that “SSH” is selected.
 
 Now, from inside your CMSC 22000 directory, run the commands that appear
 under “…or create a new repository on the command line” *except* the
 first one (the one that starts with ``echo``).
-
-If any commands asks you to enter a username and password, just
-enter your GitHub username and password* (do not enter your CNetID and
-password)
-
-.. note::
-
-  You may get an e-mail from GitHub warning you that password authentication
-  is deprecated. This is normal, and we discuss this in more detail below
-  (in the "Passwordless authentication" section). For now, just use your
-  GitHub username and password when prompted.
-
-  Please note that, if you’re using two-factor authentication in GitHub, you’ll
-  actually have to provide an “authentication token” instead of your
-  password (you can find instructions on how to do this
-  `here <https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line>`__)
 
 Don’t worry about what each individual command does; we will be seeing
 what most of these commands do in this homework. However, if you encounter
@@ -177,9 +315,8 @@ If you make changes to your repository, the way to store those changes
 (and the updated versions of the modified files) is by creating a
 *commit*. So, let’s start by making some changes:
 
--  Edit ``README.md`` to also include your CNetID
--  Add a new file called ``test.txt``. This file should contain a single
-   line with the text ``Hello, world!``
+-  Edit ``README.md`` to also include your CNetID on the same line as your name
+-  Create a new file called ``test.txt`` that contains a single line with the text ``Hello, world!``
 
 Creating a commit is a two-step process. First, you have to indicate
 what files you want to include in your commit. Let’s say we want to
@@ -225,16 +362,15 @@ following output:
 You’ve created a commit, but you’re not done yet: you haven’t uploaded
 it to GitHub yet. Forgetting this step is actually a very common
 pitfall, so don’t forget to upload your changes. You must use the
-``git push`` command for your changes to actually be uploaded to the Git
-server. *If you don’t, the graders will not be able to see your work*.
+``git push`` command for your changes to be uploaded to the Git
+server. *If you don’t, the course staff will not be able to see your work*.
 Simply run the following command from the Linux command-line:
 
 ::
 
    git push
 
-You will be asked for your GitHub username and password; once you enter
-them, you should see something like this output:
+This should output something like this:
 
 ::
 
@@ -242,7 +378,7 @@ them, you should see something like this output:
     Counting objects: 100% (5/5), done.
     Writing objects: 100% (3/3), 279 bytes | 279.00 KiB/s, done.
     Total 3 (delta 0), reused 0 (delta 0)
-    To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+    To https://github.com/uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
        392555e..0c85752  main -> main
 
 You can ignore most of those messages. The important thing is to not see
@@ -259,11 +395,11 @@ any warnings or error messages.
 
 You can verify that your commit was correctly pushed to GitHub by
 going to your repository on the GitHub website. The ``README.md`` file should now
-show the updated content (your name with your CNetID)
+show the updated content (your name and CNetID)
 
-In general, if you’re concerned about whether the graders are seeing the
+In general, if you’re concerned about whether the course staff are seeing the
 right version of your work, you can just go to GitHub. Whatever is shown
-on your repository’s page is what the graders will see. If you wrote
+on your repository’s page is what the course staff will see. If you wrote
 some code, and it doesn’t show up on GitHub, make sure you didn’t forget
 to add your files, create a commit, and push the most recent commit to
 the server.
@@ -304,10 +440,11 @@ This command should output something like this:
 
 .. note::
 
-   Depending on the version of Git you're using, the message under
-   ``Changes not staged for commit`` may refer to a command called
-   ``git checkout`` (instead of ``git restore``). You will be able to complete this homework even
-   if you're using a version of Git that displays the ``git checkout`` message.
+   When working on CS machines, you should see the message above.  At
+   some point, you will start using git with your own machine.
+   depending on the version of Git you have installed, the message
+   under ``Changes not staged for commit`` may refer to a command
+   called ``git checkout`` (instead of ``git restore``). 
 
 Notice that there are two types of files listed here:
 
@@ -317,13 +454,12 @@ Notice that there are two types of files listed here:
    *did* use ``git add`` previously with ``README.md`` (which is why Git
    is “tracking” that file), but we have not run ``git add`` since our
    last commit, which means the change we made to ``README.md`` is not
-   currently going to be included in any commit. Remember: committing is
+   currently scheduled to be included in any commit. Remember: committing is
    a two-step process (you ``git add`` the files that will be part of
    the commit, and then you create the commit).
 
 -  ``Untracked files``: This is a list of files that Git has found in
-   the same directory as your repository, but which Git isn’t keeping
-   track of.
+   the same directory as your repository, but which Git isn’t tracking.
 
 .. warning::
 
@@ -359,10 +495,11 @@ And re-run ``git status``. You should see something like this:
 
 .. note::
 
-   Depending on the version of Git you're using, the message under
-   ``Changes to be committed`` may refer to a command called
-   ``git reset`` (instead of ``git restore``). You will be able to complete this homework even
-   if you're using a version of Git that display the ``git reset`` message.
+   When working on CS machines, you should see the message above.
+   When using your git on own machine and depending on the version of
+   Git you have installed, the message under ``Changes to be
+   committed`` may refer to a command called ``git reset`` (instead of
+   ``git restore``).
 
 Notice how there is now a new category of files:
 ``Changes to be committed``. Adding ``README.md`` not only added the
@@ -395,7 +532,7 @@ are not going to use the ``-m`` parameter to ``git commit``:
    git commit
 
 When you omit ``-m``, Git will open a terminal text editor where you can
-write your commit message, including multiline commit messages. By
+write your commit message, including multi-line commit messages. By
 default, the CS machines will use `nano <https://www.nano-editor.org/>`__ for this.
 You should see something like this:
 
@@ -474,9 +611,9 @@ this:
 
    git add -u
 
-This will add every file that Git is tracking, and will ignore untracked
+This command will add every file that Git is tracking, and will ignore untracked
 files. There are a few other shortcuts for adding multiple files, like
-``git add .`` and ``git add --all``, but we suggest you avoid them,
+``git add .`` and ``git add --all``, but we strongly suggest you avoid them,
 since they can result in adding files you did not intend to add to your
 repository.
 
@@ -514,7 +651,7 @@ this:
     Writing objects: 100% (8/8), 728 bytes | 728.00 KiB/s, done.
     Total 8 (delta 1), reused 0 (delta 0)
     remote: Resolving deltas: 100% (1/1), done.
-    To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+    To git@github.com:uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
        0c85752..e3f9ef1  main -> main
 
 
@@ -550,19 +687,19 @@ command (don’t run this command just yet):
 
 ::
 
-   git clone https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+   git clone git@github.com:uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
 
 This will create a local repository that “clones” the version of the
-repository that is currently stored on GitHub. If you have Git installed
-on your personal machine, you can try running ``git clone`` there,
-but you can also do this in a separate directory of the same machine
-where you've been running Git commands so far. For example:
+repository that is currently stored on GitHub.
+For the purposes of this homework, we'll create this second copy in a
+separate directory of the same machine where you've been running Git
+commands so far. Open a second terminal window, and run the following:
 
 ::
 
    mkdir -p /tmp/$USER/cs220
    cd /tmp/$USER/cs220
-   git clone https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+   git clone git@github.com:uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
 
 Make sure to replace ``GITHUB_USERNAME`` with your GitHub username!
 
@@ -572,19 +709,26 @@ not cloned *into* the current directory. Instead, a *new* directory
 directory, and you will need to ``cd`` into it to use Git commands for
 that repository.
 
-Now, in the local repository in your home directory, add a line to
-``test.txt`` with the text ``One more change!``. Create a commit for
-that change and push it to GitHub (you should know how to do this by
-now, but make sure to `ask for help <help.html>`__ if you’re
-unsure of how to proceed). Also, you don't have to use any specific
-commit message (unlike previous steps where we gave you the exact message),
-but make sure your commit message is descriptive and to the point.
+You now have two local copies of the repository: one in your home
+directory (``/home/USER/cs220/hw1``), which we will refer to as your
+*home* repository for now and one in ``/tmp``
+(``/tmp/USER/cs220/hw1-GITHUB_USERNAME``) which we will
+refer to as your *temp* repository.
 
-Next, in the *second* local repository (the one you just created in a
-separate location), check if that
-change appears in the ``test.txt`` file. It will not, because you have
-not yet downloaded the latest commits from the repository. You can do
-this by running this:
+
+Now, switch to the window that is open to your home repository, add a
+line to ``test.txt`` with the text ``One more change!``. Create a
+commit for that change and push it to GitHub (you should know how to
+do this by now, but make sure to ask for help if
+you’re unsure of how to proceed). Also, you don't have to use any
+specific commit message (unlike previous steps where we gave you the
+exact message), but make sure your commit message is descriptive and
+to the point.
+
+Next, switch to the window that is open to your temp repository, check
+if that change appears in the ``test.txt`` file. It will not, because
+you have not yet downloaded the latest commits from the
+repository. You can do this by running this command:
 
 ::
 
@@ -599,7 +743,7 @@ This should output something like this:
     remote: Compressing objects: 100% (2/2), done.
     remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
     Unpacking objects: 100% (3/3), 312 bytes | 20.00 KiB/s, done.
-    From https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME
+    From git@github.com:uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
        e3f9ef1..5716877  main       -> origin/main
     Updating e3f9ef1..5716877
     Fast-forward
@@ -612,7 +756,7 @@ one on your laptop), it is very important that you remember to run
 ``git pull`` before you start working, and that you ``git push`` any
 changes you make. Otherwise, your local repositories (and the repository
 on GitHub) may *diverge* leading to a messy situation called a *merge
-conflict* (we discuss this in more detail below). This will be
+conflict* (we discuss conflicts in more detail below). This will be
 specially important once you start using Git for its intended purpose:
 to collaborate with multiple developers, where each developer will have
 their own local repository, and it will become easier for some
@@ -623,8 +767,13 @@ Discarding changes and unstaging
 
 One of the benefits of using a version control system is that it is very
 easy to inspect the history of changes to a given file, as well as to
-undo changes we did not intend to make. For example, edit ``test.txt``
-to remove all its contents. ``git status`` will tell us this:
+undo changes we did not intend to make.
+
+For example, edit ``test.txt`` to remove all its contents. Make sure you
+do this in your home repository (``/home/USER/cs220/hw1``)
+and not in the temp repository you created earlier.
+
+``git status`` will tell us this:
 
 ::
 
@@ -766,48 +915,6 @@ this:
 
 Git will only complain if there is more than one commit that starts with
 that same prefix.
-
-Passwordless Authentication
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-At this point, you’re probably getting tired of always having
-to enter your GitHub password whenever you run certain Git commands.
-
-Fortunately, there are two mechanisms to avoid having to enter your
-password every time:
-
-- If you are using the HTTPS URL to your repository (as we have been
-  doing so far), you can ask Git to "remember" your password for
-  some set amount of time. This means that, once you enter your
-  password once, Git will not ask for it again for some amount
-  of time (by default, this will be 15 minutes). To enable this feature,
-  run the following::
-
-      git config --global credential.helper cache
-
-  You can set a longer timeout with this command::
-
-      git config --global credential.helper 'cache --timeout=3600'
-
-  (the timeout is in seconds, which means the above command will make Git
-  remember your password for one hour)
-
-  **Note**: GitHub will be deprecating password authentication in August 2021.
-  While you'll be able to use your username and password in this class,
-  you may want to switch to their preferred authentication method:
-  "personal access tokens" (you can read more about this in this page: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
-
-- You can also upload an SSH key to GitHub, and use the SSH URL when
-  cloning the repository. If you are already accustomed to using SSH
-  and SSH keys, we suggest you use this mechanism (otherwise,
-  sticking with the HTTPS mechanism described above is fine).
-  Explaining SSH and SSH keys is beyond the scope of this homework,
-  but you can find GitHub's documentation on this mechanism here: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
-
-While either method will work, we recommend eventually getting set up to use
-SSH keys to access GitHub. It is the most secure method, and also the most
-convenient, as you do not have to use your GitHub password or keep track
-of a personal access token.
 
 
 Part II: Working collaboratively with Git
@@ -979,7 +1086,7 @@ to your repository, with the following contents:
 
     /* echo.c - echo user input */
     /* [AUTHOR GOES HERE] */
-    /* Last updated: 3/23/18 */
+    /* Last updated: 3/28/22 */
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -1076,9 +1183,9 @@ provided in the error message:
     remote: Resolving deltas: 100% (1/1), completed with 1 local object.
     remote:
     remote: Create a pull request for 'add-author' on GitHub by visiting:
-    remote:      https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME/pull/new/add-author
+    remote:      https://github.com/uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME/pull/new/add-author
     remote:
-    To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+    To git@github.com:uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
      * [new branch]      add-author -> add-author
     Branch 'add-author' set up to track remote branch 'add-author' from 'origin'.
 
@@ -1194,9 +1301,9 @@ Let's commit and push this change::
     Total 0 (delta 0), reused 0 (delta 0)
     remote:
     remote: Create a pull request for 'update-buffer-size' on GitHub by visiting:
-    remote:      https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME/pull/new/update-buffer-size
+    remote:      https://github.com/uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME/pull/new/update-buffer-size
     remote:
-    To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+    To git@github.com:uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
      * [new branch]      update-buffer-size -> update-buffer-size
     Branch 'update-buffer-size' set up to track remote branch 'update-buffer-size' from 'origin'.
 
@@ -1312,7 +1419,7 @@ i.e., the full ``echo.c`` file should look like this::
 
     /* echo.c - echo user input */
     /* YOUR_NAME */
-    /* Last updated: 3/23/18 */
+    /* Last updated: 3/28/22 */
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -1351,7 +1458,7 @@ resolved, but has yet to be committed:
         modified:   echo.c
 
 
-So, all we need to do is to run this:
+So, all we need to do is to run this command:
 
 ::
 

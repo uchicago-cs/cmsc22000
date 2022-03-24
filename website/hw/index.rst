@@ -4,23 +4,23 @@ Homework
 +---+------------------------------------------+-------------------+
 | # | Homework                                 | Due Date          |
 +===+==========================================+===================+
-| 1 | `Git <hw1.html>`__                       | April 7, 8pm CDT  |
+| 1 | `Git <hw1.html>`__                       | April 6, 8pm CDT  |
 +---+------------------------------------------+-------------------+
-| 2 | `Software Design <hw2.html>`__           | April 14, 8pm CDT |
+| 2 | Software Design                          | April 13, 8pm CDT |
 +---+------------------------------------------+-------------------+
-| 3 | `Make <hw3.html>`__                      | April 21, 8pm CDT |
+| 3 | Make                                     | April 20, 8pm CDT |
 +---+------------------------------------------+-------------------+
-| 4 | `Debugging <hw4.html>`__                 | April 28, 8pm CDT |
+| 4 | Debugging                                | April 27, 8pm CDT |
 +---+------------------------------------------+-------------------+
-| 5 | `Testing <hw5.html>`__                   | May 5, 8pm CDT    |
+| 5 | Testing                                  | May 4, 8pm CDT    |
 +---+------------------------------------------+-------------------+
-| 6 | `Continuous Integration <hw6.html>`__    | May 12, 8pm CDT   |
+| 6 | Continuous Integration                   | May 11, 8pm CDT   |
 +---+------------------------------------------+-------------------+
-| 7 | `Deployment <hw7.html>`__                | May 19, 8pm CDT   |
+| 7 | Deployment                               | May 18, 8pm CDT   |
 +---+------------------------------------------+-------------------+
-| 8 | `More CI and Deployment <hw8.html>`__    | May 26, 8pm CDT   |
+| 8 | More CI and Deployment                   | May 25, 8pm CDT   |
 +---+------------------------------------------+-------------------+
-| 9 | `Documentation and Logging <hw9.html>`__ | Optional          |
+| 9 | Documentation and Logging                | Optional          |
 +---+------------------------------------------+-------------------+
 
 If you need any help on the homework assignments, please see our `Getting help on the homework assignments <help.html>`__ page.

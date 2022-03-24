@@ -19,6 +19,6 @@ project:
 -  `Features <features.html>`__: The features that teams can
    be assigned to work on.
 
-Additionally, the course project also involves `two warm-up exercises <warmup.html>`__
+Additionally, the course project also involves two warm-up exercises
 that you will do with your teams, and which revolve around software
 design.
