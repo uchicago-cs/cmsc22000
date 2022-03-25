@@ -17,6 +17,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Homework 2: Software Design" href="hw2.html" />
+    <link rel="prev" title="Homework" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -57,7 +59,7 @@
     <ul class="dropdown-menu">
         <li><a href="../syllabus.html">Syllabus</a></li>
         <li><a href="../calendar.html">Calendar</a></li>
-        <li><a href="../code_of_conduct.html">TA/Grader Code of Conduct</a></li>
+        <li><a href="../code-of-conduct.html">Code of Conduct for Course Staff</a></li>
     </ul>
 </li>
 <li><a href="index.html">Homework</a></li>
@@ -68,7 +70,6 @@
         <li><a href="../project/chiventure.html">chiventure</a></li>
         <li><a href="../project/policies.html">Policies</a></li>
         <li><a href="../project/features.html">Features</a></li>
-        <li><a href="../project/warmup.html">Design Warm-Up Exercise</a></li>
     </ul>
 </li>
 <li class="dropdown">
@@ -96,17 +97,18 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Homework 1: Git</a><ul>
-<li><a class="reference internal" href="#creating-your-homework-repository">Creating your homework repository</a></li>
 <li><a class="reference internal" href="#where-should-you-do-this-homework-assignment">Where should you do this homework assignment?</a></li>
 <li><a class="reference internal" href="#how-to-complete-this-homework">How to complete this homework</a></li>
+<li><a class="reference internal" href="#creating-your-homework-repository">Creating your homework repository</a></li>
 <li><a class="reference internal" href="#part-i-first-steps-with-git">Part I: First steps with Git</a><ul>
-<li><a class="reference internal" href="#initializing-your-repository">Initializing your repository</a></li>
+<li><a class="reference internal" href="#creating-an-ssh-key">Creating an SSH Key</a></li>
+<li><a class="reference internal" href="#uploading-your-ssh-key-to-github">Uploading your SSH key to GitHub</a></li>
+<li><a class="reference internal" href="#initializing-your-repository-continued">Initializing your repository (continued)</a></li>
 <li><a class="reference internal" href="#creating-a-commit">Creating a commit</a></li>
 <li><a class="reference internal" href="#git-add-revisited-and-git-status"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> revisited and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code></a></li>
 <li><a class="reference internal" href="#working-from-multiple-locations">Working from multiple locations</a></li>
 <li><a class="reference internal" href="#discarding-changes-and-unstaging">Discarding changes and unstaging</a></li>
 <li><a class="reference internal" href="#looking-at-the-commit-log">Looking at the commit log</a></li>
-<li><a class="reference internal" href="#passwordless-authentication">Passwordless Authentication</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#part-ii-working-collaboratively-with-git">Part II: Working collaboratively with Git</a><ul>
@@ -134,7 +136,14 @@
       
   <div class="section" id="homework-1-git">
 <h1>Homework 1: Git<a class="headerlink" href="#homework-1-git" title="Permalink to this headline">¶</a></h1>
-<p><strong>Due:</strong> Wednesday, April 7th, 8pm CDT</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
+If you are currently taking this class, you’re welcome to take a look at the homework below,
+but bear in mind that it could change substantially. Do not start working on the homework
+until instructed to do so.</p>
+</div>
+<p><strong>Due:</strong> Wednesday, April 6th, 8pm CDT</p>
 <p>In some of your previous CS courses, you may have become familiar with
 using either Subversion (SVN) or Git to store a copy of your code
 in a remote server, and to submit your work for grading.
@@ -161,24 +170,15 @@ Pack</a>, which will give you access
 to a lot of other features (please note that having the Student
 Developer Pack is not necessary for CS 220; it’s just a nice benefit you
 get as a student)</p>
-<div class="section" id="creating-your-homework-repository">
-<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
-<p>For each homework assignment, we will provide you with an <em>invitation URL</em>
-that will allow you sign up for the homework assignment on GitHub, and which
-will result in the creation of a repository called
-<code class="docutils literal notranslate"><span class="pre">2021-hwN-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization
-on GitHub (a GitHub “organization” is basically a way to group together
-related repositories). For example, if your GitHub username is
-<code class="docutils literal notranslate"><span class="pre">jrandom</span></code>, your repository will be called <code class="docutils literal notranslate"><span class="pre">2021-hw1-jrandom</span></code>. This
-repository will be private, and can only be viewed by you and the CS 220
-course staff.</p>
-</div>
 <div class="section" id="where-should-you-do-this-homework-assignment">
 <h2>Where should you do this homework assignment?<a class="headerlink" href="#where-should-you-do-this-homework-assignment" title="Permalink to this headline">¶</a></h2>
-<p>For this homework, we will specifically need you to work on a CS machine,
-which means you will have to connect remotely to CS environment. You can
-do this in one of two ways:</p>
+<p>For this homework, we will specifically need you to work on a CS environment.
+You can this in one of several ways:</p>
 <ul class="simple">
+<li><p>Going to the
+<a class="reference external" href="https://csil.cs.uchicago.edu/">Computer Science Instructional Laboratory (CSIL)</a>
+in the first floor of Crerar Library and using one of the Linux
+machines in CSIL 3, CSIL 4, or CSIL 5.</p></li>
 <li><p>Using SSH, which will allow you to open a command-line terminal on a
 CS machine. The CS techstaff provides <a class="reference external" href="https://howto.cs.uchicago.edu/remote_access">detailed
 instructions</a> on how
@@ -224,56 +224,193 @@ on the graders’ inspection of your GitHub repository (but we still need
 to include those tasks on Gradescope so we can grade them as part of
 this homework).</p>
 </div>
+<div class="section" id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+<p>For each homework assignment, we will provide you with an <em>invitation URL</em>
+that will allow you sign up for the homework assignment on GitHub. When you
+open the invitation URL in a browser tab, you will have to complete
+the following steps:</p>
+<ol class="arabic simple">
+<li><p>You will need to select your name (and CnetID) from a list. This step will allow us to know what student is associated with each GitHub account. This step is only done for the very first invitation you accept.</p></li>
+<li><p>You must click “Accept this assignment” or your repository will not actually be created.</p></li>
+</ol>
+<p>This will result in the creation of a repository called
+<code class="docutils literal notranslate"><span class="pre">hwN-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000-2022</span></code> organization
+on GitHub (a GitHub “organization” is basically a way to group together
+related repositories). For example, if your GitHub username is
+<code class="docutils literal notranslate"><span class="pre">jrandom</span></code>, your repository will be called <code class="docutils literal notranslate"><span class="pre">hw1-jrandom</span></code>. This
+repository will be private, and can only be viewed by you and the CS 220
+course staff.</p>
+</div>
 <div class="section" id="part-i-first-steps-with-git">
 <h2>Part I: First steps with Git<a class="headerlink" href="#part-i-first-steps-with-git" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="initializing-your-repository">
-<h3>Initializing your repository<a class="headerlink" href="#initializing-your-repository" title="Permalink to this headline">¶</a></h3>
 <p>You will start by initializing your repository. Your
 repository is hosted on GitHub, but you can create a local copy in your
 home directory (we will refer to this as your <em>local repository</em>).</p>
 <p>Log into <a class="reference external" href="https://github.com/">https://github.com/</a>. Your homework repository,
-<code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000/2021-hwN-GITHUB_USERNAME</span></code> should appear under
+<code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000-2022/hwN-GITHUB_USERNAME</span></code> should appear under
 “Repositories”. This will take you to a page where you can browse your
 repository through GitHub’s web interface. However, you haven’t
 initialized your repository yet, so GitHub will provide you with the
-instructions to initialize your repository. You are going to follow
-those instructions, but first need to do the following:</p>
+instructions to initialize your repository.</p>
+<p>Don’t try to run these commands from the terminal just yet! You will first
+need to perform some setup steps that will allow you to access
+your Git repository from the command-line.</p>
+<div class="section" id="creating-an-ssh-key">
+<h3>Creating an SSH Key<a class="headerlink" href="#creating-an-ssh-key" title="Permalink to this headline">¶</a></h3>
+<p>When you log into the GitHub website, you use the username and
+password associated with your GitHub account. However, when using
+Git commands from the terminal, things are a bit different.
+In particular, GitHub uses two mechanisms for authenticating yourself
+from the terminal: Personal Access Tokens and SSH Keys. We will
+be using SSH keys.</p>
+<p>In a nutshell, an SSH key is a file that resides in your home directory,
+and which you can think of as a file that stores a secure password
+(SSH keys are a bit more complex than that but, for our purposes,
+we can just think of them as extra-secure passwords)</p>
+<p>To create an SSH key, run the following command from the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen
+</pre></div>
+</div>
+<p>You will see the following prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generating</span> <span class="n">public</span><span class="o">/</span><span class="n">private</span> <span class="n">rsa</span> <span class="n">key</span> <span class="n">pair</span><span class="o">.</span>
+<span class="n">Enter</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">which</span> <span class="n">to</span> <span class="n">save</span> <span class="n">the</span> <span class="n">key</span> <span class="p">(</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">username</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Press Enter (this will select the default file path shown in the prompt: <code class="docutils literal notranslate"><span class="pre">/home/username/.ssh/id_rsa</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If, after pressing Enter, you see the following message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/home/username/.ssh/id_rsa already exists.
+Overwrite (y/n)?
+</pre></div>
+</div>
+<p>This means there is already an SSH key in your home directory.
+You should proceed as follows:</p>
+<ol class="arabic">
+<li><p>If you are already familiar with SSH keys, and know for certain
+that you’d like to use your existing SSH key, type “n” and
+skip ahead to the “Uploading your SSH key to GitHub” section below.</p></li>
+<li><p>If you do not know why you have an SSH key in your directory,
+it’s possible it was created for you if you’ve taken another
+CMSC class in the past. Type “n” and then run the following commands
+to create a backup of your existing key:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="o">.</span><span class="n">bak</span>
+<span class="n">mv</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span><span class="o">.</span><span class="n">bak</span>
+</pre></div>
+</div>
+<p>Then, re-run the <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code> command, press Enter when prompted
+for the file name, and follow the rest of the
+instructions in this section.</p>
+</li>
+</ol>
+</div>
+<p>Next, you will see this prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">passphrase</span> <span class="p">(</span><span class="n">empty</span> <span class="k">for</span> <span class="n">no</span> <span class="n">passphrase</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Just press Enter here. You will be asked to confirm (just press Enter again):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">same</span> <span class="n">passphrase</span> <span class="n">again</span><span class="p">:</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While it may seem counterintuitive, we don’t want our SSH
+key to have a passphrase (this is an added layer of security which we won’t
+need for this class; your GitHub account will still be secure even if your
+SSH key doesn’t have a password)</p>
+</div>
+<p>If all goes well, you should see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Your</span> <span class="n">identification</span> <span class="n">has</span> <span class="n">been</span> <span class="n">saved</span> <span class="ow">in</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">username</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span>
+<span class="n">Your</span> <span class="n">public</span> <span class="n">key</span> <span class="n">has</span> <span class="n">been</span> <span class="n">saved</span> <span class="ow">in</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">username</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span>
+<span class="n">The</span> <span class="n">key</span> <span class="n">fingerprint</span> <span class="ow">is</span><span class="p">:</span>
+<span class="n">SHA256</span><span class="p">:</span><span class="n">cBUUs2FeMCIrBlTyv</span><span class="o">/</span><span class="n">PGpBtNz0v235zvLykpoWIOS9I</span> <span class="n">username</span><span class="nd">@machine</span>
+<span class="n">The</span> <span class="n">key</span><span class="s1">&#39;s randomart image is:</span>
+<span class="o">+---</span><span class="p">[</span><span class="n">RSA</span> <span class="mi">3072</span><span class="p">]</span><span class="o">----+</span>
+<span class="o">|</span> <span class="o">.+..</span> <span class="o">.</span> <span class="o">..@+.</span>    <span class="o">|</span>
+<span class="o">|</span>   <span class="o">+</span>   <span class="n">o</span> <span class="o">=</span> <span class="o">*</span>     <span class="o">|</span>
+<span class="o">|</span>    <span class="o">+</span> <span class="n">o</span> <span class="o">.</span> <span class="n">o</span>      <span class="o">|</span>
+<span class="o">|</span>   <span class="o">.</span> <span class="n">o</span> <span class="n">o</span>         <span class="o">|</span>
+<span class="o">|</span>      <span class="o">.</span> <span class="n">S</span>        <span class="o">|</span>
+<span class="o">|</span>   <span class="o">.</span>   <span class="o">+.</span><span class="n">o</span><span class="o">.</span>      <span class="o">|</span>
+<span class="o">|</span>  <span class="o">.</span> <span class="n">E</span> <span class="o">++..=.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">|</span>
+<span class="o">|</span>   <span class="n">o</span> <span class="n">o</span><span class="o">+++</span><span class="n">o</span><span class="o">.</span><span class="n">oo</span> <span class="n">oo</span><span class="o">.|</span>
+<span class="o">|</span>    <span class="o">.</span><span class="n">oo</span><span class="o">+.</span> <span class="o">...</span><span class="n">o</span><span class="o">.+</span><span class="n">O</span><span class="o">|</span>
+<span class="o">+----</span><span class="p">[</span><span class="n">SHA256</span><span class="p">]</span><span class="o">-----+</span>
+</pre></div>
+</div>
+<p>This means your key was created correctly.</p>
+</div>
+<div class="section" id="uploading-your-ssh-key-to-github">
+<h3>Uploading your SSH key to GitHub<a class="headerlink" href="#uploading-your-ssh-key-to-github" title="Permalink to this headline">¶</a></h3>
+<p>Now, we need to instruct GitHub to accept our SSH key. To do this, log into <a class="reference external" href="https://github.com/">https://github.com/</a>
+and go to your Settings page (by clicking on the top-right account icon, and then selecting “Settings”
+in the drop-down menu. Then, click on “SSH and GPG keys”.</p>
+<p>Now, click on the green “New SSH key” button. This will take you to a page where you can upload your
+SSH key. You will be asked for two values: a “Title” and the key itself. The title can be anything
+you want, but we suggest something like “CS SSH Key”.</p>
+<p>The value of the key is contained in the <code class="docutils literal notranslate"><span class="pre">.ssh/id_rsa.pub</span></code> file in your home directory. To print
+out the contents of that file, we can just use the <code class="docutils literal notranslate"><span class="pre">cat</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat ~/.ssh/id_rsa.pub
+</pre></div>
+</div>
+<p>This will print a few lines of output starting with <code class="docutils literal notranslate"><span class="pre">ssh-rsa</span></code> and ending in something like <code class="docutils literal notranslate"><span class="pre">username&#64;machine</span></code>.
+Copy the whole output to the clipboard; you can do this by clicking and dragging the mouse from the first
+character to the last character, and then pressing Ctrl-Shift-C.</p>
+<p>Then, paste the key into the “Key” field on the GitHub page. Then click on the green “Add SSH Key”
+button.</p>
+<p>To verify that you correctly uploaded the key, try running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">T</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>You may see a message like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The authenticity of host &#39;github.com (...)&#39; can&#39;t be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)?
+</pre></div>
+</div>
+<p>You can safely enter “yes” here. You should then see a message like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hi username! You&#39;ve successfully authenticated, but GitHub does
+not provide shell access.
+</pre></div>
+</div>
+<p>This means your SSH key is properly set up (don’t worry about the “does not provide shell access”; that is
+normal).</p>
+<p>If you are unable to set up your SSH key, please make sure to ask for help. You will not
+be able to complete the rest of the homework until you’ve set up your SSH key.</p>
+<p>If you would like to set up SSH access from your personal computer at a later time,
+GitHub provides some pretty detailed documentation on how to do this in a number
+of different operating systems: <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">Connecting to GitHub with SSH</a>
+Please note that we may not be able to assist you with SSH issues on your own computer.</p>
+</div>
+<div class="section" id="initializing-your-repository-continued">
+<h3>Initializing your repository (continued)<a class="headerlink" href="#initializing-your-repository-continued" title="Permalink to this headline">¶</a></h3>
+<p>Ok, now we’re actually ready to initialize your repository.
+Do the following:</p>
 <ul>
 <li><p>Create a directory in your home directory for CMSC 22000. The name
 and location of this directory is not important, so if you already
 have a preferred directory structure, you’re welcome to use it.
 Otherwise, we suggest you simply do this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">cs220</span><span class="o">/</span><span class="n">hw1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">cs220</span><span class="o">/</span><span class="n">hw1</span>
 <span class="n">cd</span> <span class="n">cs220</span><span class="o">/</span><span class="n">hw1</span>
 </pre></div>
 </div>
 <p>(the <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag to mkdir will create all the parent directories if
 needed; i.e., if you don’t already have a <code class="docutils literal notranslate"><span class="pre">cs220</span></code> directory, it will
-create one, and then will create a <a href="#id1"><span class="problematic" id="id2">``</span></a>hw1``directory inside it)</p>
+create one, and then will create a <code class="docutils literal notranslate"><span class="pre">hw1</span></code> directory inside it)</p>
 </li>
 <li><p>Inside that folder, create a file called <code class="docutils literal notranslate"><span class="pre">README.md</span></code> and add your
 full name to the file.</p></li>
-<li><p>On your repository’s GitHub page, right under “Quick setup — if
-you’ve done this kind of thing before” there is a URL field with two
-buttons: HTTPS and SSH. Make sure to change this to “HTTPS”.</p></li>
+<li><p>On your repository’s GitHub page (on the GitHub website), right
+under “Quick setup — if you’ve done this kind of thing before”
+there is a URL field with two buttons: HTTPS and SSH.
+Make sure that “SSH” is selected.</p></li>
 </ul>
 <p>Now, from inside your CMSC 22000 directory, run the commands that appear
 under “…or create a new repository on the command line” <em>except</em> the
 first one (the one that starts with <code class="docutils literal notranslate"><span class="pre">echo</span></code>).</p>
-<p>If any commands asks you to enter a username and password, just
-enter your GitHub username and password* (do not enter your CNetID and
-password)</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You may get an e-mail from GitHub warning you that password authentication
-is deprecated. This is normal, and we discuss this in more detail below
-(in the “Passwordless authentication” section). For now, just use your
-GitHub username and password when prompted.</p>
-<p>Please note that, if you’re using two-factor authentication in GitHub, you’ll
-actually have to provide an “authentication token” instead of your
-password (you can find instructions on how to do this
-<a class="reference external" href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line">here</a>)</p>
-</div>
 <p>Don’t worry about what each individual command does; we will be seeing
 what most of these commands do in this homework. However, if you encounter
 any error messages, please make sure to let us know.</p>
@@ -287,9 +424,8 @@ to your repository’s page on GitHub, you should now see it contains a
 (and the updated versions of the modified files) is by creating a
 <em>commit</em>. So, let’s start by making some changes:</p>
 <ul class="simple">
-<li><p>Edit <code class="docutils literal notranslate"><span class="pre">README.md</span></code> to also include your CNetID</p></li>
-<li><p>Add a new file called <code class="docutils literal notranslate"><span class="pre">test.txt</span></code>. This file should contain a single
-line with the text <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">world!</span></code></p></li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">README.md</span></code> to also include your CNetID on the same line as your name</p></li>
+<li><p>Create a new file called <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> that contains a single line with the text <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">world!</span></code></p></li>
 </ul>
 <p>Creating a commit is a two-step process. First, you have to indicate
 what files you want to include in your commit. Let’s say we want to
@@ -327,20 +463,19 @@ following output:</p>
 <p>You’ve created a commit, but you’re not done yet: you haven’t uploaded
 it to GitHub yet. Forgetting this step is actually a very common
 pitfall, so don’t forget to upload your changes. You must use the
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> command for your changes to actually be uploaded to the Git
-server. <em>If you don’t, the graders will not be able to see your work</em>.
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> command for your changes to be uploaded to the Git
+server. <em>If you don’t, the course staff will not be able to see your work</em>.
 Simply run the following command from the Linux command-line:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span>
 </pre></div>
 </div>
-<p>You will be asked for your GitHub username and password; once you enter
-them, you should see something like this output:</p>
+<p>This should output something like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enumerating</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
 <span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">5</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
 <span class="n">Writing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="mi">279</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="mf">279.00</span> <span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
 <span class="n">Total</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">To</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
-   <span class="mi">392555</span><span class="n">e</span><span class="o">.</span><span class="mf">.0</span><span class="n">c85752</span>  <span class="n">main</span> <span class="o">-&gt;</span> <span class="n">main</span>
+<span class="n">To</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">-</span><span class="mi">2022</span><span class="o">/</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
+   <span class="mi">392555</span><span class="n">e</span><span class="o">..</span><span class="mi">0</span><span class="n">c85752</span>  <span class="n">main</span> <span class="o">-&gt;</span> <span class="n">main</span>
 </pre></div>
 </div>
 <p>You can ignore most of those messages. The important thing is to not see
@@ -356,10 +491,10 @@ every time you push)</p>
 </div>
 <p>You can verify that your commit was correctly pushed to GitHub by
 going to your repository on the GitHub website. The <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file should now
-show the updated content (your name with your CNetID)</p>
-<p>In general, if you’re concerned about whether the graders are seeing the
+show the updated content (your name and CNetID)</p>
+<p>In general, if you’re concerned about whether the course staff are seeing the
 right version of your work, you can just go to GitHub. Whatever is shown
-on your repository’s page is what the graders will see. If you wrote
+on your repository’s page is what the course staff will see. If you wrote
 some code, and it doesn’t show up on GitHub, make sure you didn’t forget
 to add your files, create a commit, and push the most recent commit to
 the server.</p>
@@ -394,10 +529,11 @@ to ask Git for a summary of the files it is tracking:</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Depending on the version of Git you’re using, the message under
-<code class="docutils literal notranslate"><span class="pre">Changes</span> <span class="pre">not</span> <span class="pre">staged</span> <span class="pre">for</span> <span class="pre">commit</span></code> may refer to a command called
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> (instead of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code>). You will be able to complete this homework even
-if you’re using a version of Git that displays the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> message.</p>
+<p>When working on CS machines, you should see the message above.  At
+some point, you will start using git with your own machine.
+depending on the version of Git you have installed, the message
+under <code class="docutils literal notranslate"><span class="pre">Changes</span> <span class="pre">not</span> <span class="pre">staged</span> <span class="pre">for</span> <span class="pre">commit</span></code> may refer to a command
+called <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> (instead of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code>).</p>
 </div>
 <p>Notice that there are two types of files listed here:</p>
 <ul class="simple">
@@ -407,12 +543,11 @@ have not been added to a commit (with <code class="docutils literal notranslate"
 <em>did</em> use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> previously with <code class="docutils literal notranslate"><span class="pre">README.md</span></code> (which is why Git
 is “tracking” that file), but we have not run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> since our
 last commit, which means the change we made to <code class="docutils literal notranslate"><span class="pre">README.md</span></code> is not
-currently going to be included in any commit. Remember: committing is
+currently scheduled to be included in any commit. Remember: committing is
 a two-step process (you <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> the files that will be part of
 the commit, and then you create the commit).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Untracked</span> <span class="pre">files</span></code>: This is a list of files that Git has found in
-the same directory as your repository, but which Git isn’t keeping
-track of.</p></li>
+the same directory as your repository, but which Git isn’t tracking.</p></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -444,10 +579,11 @@ if necessary.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Depending on the version of Git you’re using, the message under
-<code class="docutils literal notranslate"><span class="pre">Changes</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">committed</span></code> may refer to a command called
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> (instead of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code>). You will be able to complete this homework even
-if you’re using a version of Git that display the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> message.</p>
+<p>When working on CS machines, you should see the message above.
+When using your git on own machine and depending on the version of
+Git you have installed, the message under <code class="docutils literal notranslate"><span class="pre">Changes</span> <span class="pre">to</span> <span class="pre">be</span>
+<span class="pre">committed</span></code> may refer to a command called <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> (instead of
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code>).</p>
 </div>
 <p>Notice how there is now a new category of files:
 <code class="docutils literal notranslate"><span class="pre">Changes</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">committed</span></code>. Adding <code class="docutils literal notranslate"><span class="pre">README.md</span></code> not only added the
@@ -473,7 +609,7 @@ are not going to use the <code class="docutils literal notranslate"><span class=
 </pre></div>
 </div>
 <p>When you omit <code class="docutils literal notranslate"><span class="pre">-m</span></code>, Git will open a terminal text editor where you can
-write your commit message, including multiline commit messages. By
+write your commit message, including multi-line commit messages. By
 default, the CS machines will use <a class="reference external" href="https://www.nano-editor.org/">nano</a> for this.
 You should see something like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please enter the commit message for your changes. Lines starting</span>
@@ -536,9 +672,9 @@ this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">u</span>
 </pre></div>
 </div>
-<p>This will add every file that Git is tracking, and will ignore untracked
+<p>This command will add every file that Git is tracking, and will ignore untracked
 files. There are a few other shortcuts for adding multiple files, like
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">--all</span></code>, but we suggest you avoid them,
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">--all</span></code>, but we strongly suggest you avoid them,
 since they can result in adding files you did not intend to add to your
 repository.</p>
 <p>So, if you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-u</span></code> and create a commit:</p>
@@ -567,7 +703,7 @@ this:</p>
 <span class="n">Writing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">8</span><span class="p">),</span> <span class="mi">728</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="mf">728.00</span> <span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
 <span class="n">Total</span> <span class="mi">8</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">1</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">remote</span><span class="p">:</span> <span class="n">Resolving</span> <span class="n">deltas</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
-<span class="n">To</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
+<span class="n">To</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">-</span><span class="mi">2022</span><span class="o">/</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
    <span class="mi">0</span><span class="n">c85752</span><span class="o">..</span><span class="n">e3f9ef1</span>  <span class="n">main</span> <span class="o">-&gt;</span> <span class="n">main</span>
 </pre></div>
 </div>
@@ -595,17 +731,17 @@ if you work from multiple locations (e.g., on a CS machine but also from
 your laptop), you will need to be able to create a local repository in
 those locations too. You can do this by running the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>
 command (don’t run this command just yet):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">-</span><span class="mi">2022</span><span class="o">/</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 <p>This will create a local repository that “clones” the version of the
-repository that is currently stored on GitHub. If you have Git installed
-on your personal machine, you can try running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> there,
-but you can also do this in a separate directory of the same machine
-where you’ve been running Git commands so far. For example:</p>
+repository that is currently stored on GitHub.
+For the purposes of this homework, we’ll create this second copy in a
+separate directory of the same machine where you’ve been running Git
+commands so far. Open a second terminal window, and run the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p /tmp/$USER/cs220
 cd /tmp/$USER/cs220
-git clone https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+git clone git@github.com:uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
 </pre></div>
 </div>
 <p>Make sure to replace <code class="docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code> with your GitHub username!</p>
@@ -614,18 +750,23 @@ not cloned <em>into</em> the current directory. Instead, a <em>new</em> director
 (with the same name as the repository) will be created in the current
 directory, and you will need to <code class="docutils literal notranslate"><span class="pre">cd</span></code> into it to use Git commands for
 that repository.</p>
-<p>Now, in the local repository in your home directory, add a line to
-<code class="docutils literal notranslate"><span class="pre">test.txt</span></code> with the text <code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">more</span> <span class="pre">change!</span></code>. Create a commit for
-that change and push it to GitHub (you should know how to do this by
-now, but make sure to <a class="reference external" href="help.html">ask for help</a> if you’re
-unsure of how to proceed). Also, you don’t have to use any specific
-commit message (unlike previous steps where we gave you the exact message),
-but make sure your commit message is descriptive and to the point.</p>
-<p>Next, in the <em>second</em> local repository (the one you just created in a
-separate location), check if that
-change appears in the <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> file. It will not, because you have
-not yet downloaded the latest commits from the repository. You can do
-this by running this:</p>
+<p>You now have two local copies of the repository: one in your home
+directory (<code class="docutils literal notranslate"><span class="pre">/home/USER/cs220/hw1</span></code>), which we will refer to as your
+<em>home</em> repository for now and one in <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>
+(<code class="docutils literal notranslate"><span class="pre">/tmp/USER/cs220/hw1-GITHUB_USERNAME</span></code>) which we will
+refer to as your <em>temp</em> repository.</p>
+<p>Now, switch to the window that is open to your home repository, add a
+line to <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> with the text <code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">more</span> <span class="pre">change!</span></code>. Create a
+commit for that change and push it to GitHub (you should know how to
+do this by now, but make sure to ask for help if
+you’re unsure of how to proceed). Also, you don’t have to use any
+specific commit message (unlike previous steps where we gave you the
+exact message), but make sure your commit message is descriptive and
+to the point.</p>
+<p>Next, switch to the window that is open to your temp repository, check
+if that change appears in the <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> file. It will not, because
+you have not yet downloaded the latest commits from the
+repository. You can do this by running this command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">pull</span>
 </pre></div>
 </div>
@@ -635,9 +776,9 @@ this by running this:</p>
 <span class="n">remote</span><span class="p">:</span> <span class="n">Compressing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
 <span class="n">remote</span><span class="p">:</span> <span class="n">Total</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pack</span><span class="o">-</span><span class="n">reused</span> <span class="mi">0</span>
 <span class="n">Unpacking</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="mi">312</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="mf">20.00</span> <span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
-<span class="n">From</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span>
-   <span class="n">e3f9ef1</span><span class="o">.</span><span class="mf">.5716877</span>  <span class="n">main</span>       <span class="o">-&gt;</span> <span class="n">origin</span><span class="o">/</span><span class="n">main</span>
-<span class="n">Updating</span> <span class="n">e3f9ef1</span><span class="o">.</span><span class="mf">.5716877</span>
+<span class="n">From</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">-</span><span class="mi">2022</span><span class="o">/</span><span class="n">hw1</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">.</span><span class="n">git</span>
+   <span class="n">e3f9ef1</span><span class="o">..</span><span class="mi">5716877</span>  <span class="n">main</span>       <span class="o">-&gt;</span> <span class="n">origin</span><span class="o">/</span><span class="n">main</span>
+<span class="n">Updating</span> <span class="n">e3f9ef1</span><span class="o">..</span><span class="mi">5716877</span>
 <span class="n">Fast</span><span class="o">-</span><span class="n">forward</span>
  <span class="n">test</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="mi">3</span> <span class="o">++-</span>
  <span class="mi">1</span> <span class="n">file</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">2</span> <span class="n">insertions</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="mi">1</span> <span class="n">deletion</span><span class="p">(</span><span class="o">-</span><span class="p">)</span>
@@ -648,7 +789,7 @@ one on your laptop), it is very important that you remember to run
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> before you start working, and that you <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> any
 changes you make. Otherwise, your local repositories (and the repository
 on GitHub) may <em>diverge</em> leading to a messy situation called a <em>merge
-conflict</em> (we discuss this in more detail below). This will be
+conflict</em> (we discuss conflicts in more detail below). This will be
 specially important once you start using Git for its intended purpose:
 to collaborate with multiple developers, where each developer will have
 their own local repository, and it will become easier for some
@@ -658,8 +799,11 @@ developers’ code to diverge from others’.</p>
 <h3>Discarding changes and unstaging<a class="headerlink" href="#discarding-changes-and-unstaging" title="Permalink to this headline">¶</a></h3>
 <p>One of the benefits of using a version control system is that it is very
 easy to inspect the history of changes to a given file, as well as to
-undo changes we did not intend to make. For example, edit <code class="docutils literal notranslate"><span class="pre">test.txt</span></code>
-to remove all its contents. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> will tell us this:</p>
+undo changes we did not intend to make.</p>
+<p>For example, edit <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> to remove all its contents. Make sure you
+do this in your home repository (<code class="docutils literal notranslate"><span class="pre">/home/USER/cs220/hw1</span></code>)
+and not in the temp repository you created earlier.</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> will tell us this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
 <span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/main&#39;</span><span class="o">.</span>
 
@@ -779,45 +923,6 @@ this:</p>
 </div>
 <p>Git will only complain if there is more than one commit that starts with
 that same prefix.</p>
-</div>
-<div class="section" id="passwordless-authentication">
-<h3>Passwordless Authentication<a class="headerlink" href="#passwordless-authentication" title="Permalink to this headline">¶</a></h3>
-<p>At this point, you’re probably getting tired of always having
-to enter your GitHub password whenever you run certain Git commands.</p>
-<p>Fortunately, there are two mechanisms to avoid having to enter your
-password every time:</p>
-<ul>
-<li><p>If you are using the HTTPS URL to your repository (as we have been
-doing so far), you can ask Git to “remember” your password for
-some set amount of time. This means that, once you enter your
-password once, Git will not ask for it again for some amount
-of time (by default, this will be 15 minutes). To enable this feature,
-run the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">credential</span><span class="o">.</span><span class="n">helper</span> <span class="n">cache</span>
-</pre></div>
-</div>
-<p>You can set a longer timeout with this command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">credential</span><span class="o">.</span><span class="n">helper</span> <span class="s1">&#39;cache --timeout=3600&#39;</span>
-</pre></div>
-</div>
-<p>(the timeout is in seconds, which means the above command will make Git
-remember your password for one hour)</p>
-<p><strong>Note</strong>: GitHub will be deprecating password authentication in August 2021.
-While you’ll be able to use your username and password in this class,
-you may want to switch to their preferred authentication method:
-“personal access tokens” (you can read more about this in this page: <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token">https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token</a>)</p>
-</li>
-<li><p>You can also upload an SSH key to GitHub, and use the SSH URL when
-cloning the repository. If you are already accustomed to using SSH
-and SSH keys, we suggest you use this mechanism (otherwise,
-sticking with the HTTPS mechanism described above is fine).
-Explaining SSH and SSH keys is beyond the scope of this homework,
-but you can find GitHub’s documentation on this mechanism here: <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh</a></p></li>
-</ul>
-<p>While either method will work, we recommend eventually getting set up to use
-SSH keys to access GitHub. It is the most secure method, and also the most
-convenient, as you do not have to use your GitHub password or keep track
-of a personal access token.</p>
 </div>
 </div>
 <div class="section" id="part-ii-working-collaboratively-with-git">
@@ -961,7 +1066,7 @@ separate functions, <code class="docutils literal notranslate"><span class="pre"
 to your repository, with the following contents:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span> <span class="n">echo</span> <span class="n">user</span> <span class="nb">input</span> <span class="o">*/</span>
 <span class="o">/*</span> <span class="p">[</span><span class="n">AUTHOR</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="p">]</span> <span class="o">*/</span>
-<span class="o">/*</span> <span class="n">Last</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">23</span><span class="o">/</span><span class="mi">18</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="n">Last</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">28</span><span class="o">/</span><span class="mi">22</span> <span class="o">*/</span>
 
 <span class="c1">#include &lt;stdio.h&gt;</span>
 <span class="c1">#include &lt;stdlib.h&gt;</span>
@@ -1045,9 +1150,9 @@ Total 3 (delta 1), reused 0 (delta 0)
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 remote:
 remote: Create a pull request for &#39;add-author&#39; on GitHub by visiting:
-remote:      https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME/pull/new/add-author
+remote:      https://github.com/uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME/pull/new/add-author
 remote:
-To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+To git@github.com:uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
  * [new branch]      add-author -&gt; add-author
 Branch &#39;add-author&#39; set up to track remote branch &#39;add-author&#39; from &#39;origin&#39;.
 </pre></div>
@@ -1146,9 +1251,9 @@ $ git push --set-upstream origin update-buffer-size
 Total 0 (delta 0), reused 0 (delta 0)
 remote:
 remote: Create a pull request for &#39;update-buffer-size&#39; on GitHub by visiting:
-remote:      https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME/pull/new/update-buffer-size
+remote:      https://github.com/uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME/pull/new/update-buffer-size
 remote:
-To https://github.com/uchicago-cmsc22000/2021-hw1-GITHUB_USERNAME.git
+To git@github.com:uchicago-cmsc22000-2022/hw1-GITHUB_USERNAME.git
  * [new branch]      update-buffer-size -&gt; update-buffer-size
 Branch &#39;update-buffer-size&#39; set up to track remote branch &#39;update-buffer-size&#39; from &#39;origin&#39;.
 </pre></div>
@@ -1247,7 +1352,7 @@ may look at this and realize that the buffer size should actually be
 <p>i.e., the full <code class="docutils literal notranslate"><span class="pre">echo.c</span></code> file should look like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">echo</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span> <span class="n">echo</span> <span class="n">user</span> <span class="nb">input</span> <span class="o">*/</span>
 <span class="o">/*</span> <span class="n">YOUR_NAME</span> <span class="o">*/</span>
-<span class="o">/*</span> <span class="n">Last</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">23</span><span class="o">/</span><span class="mi">18</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="n">Last</span> <span class="n">updated</span><span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">28</span><span class="o">/</span><span class="mi">22</span> <span class="o">*/</span>
 
 <span class="c1">#include &lt;stdio.h&gt;</span>
 <span class="c1">#include &lt;stdlib.h&gt;</span>
@@ -1282,7 +1387,7 @@ Changes to be committed:
     modified:   echo.c
 </pre></div>
 </div>
-<p>So, all we need to do is to run this:</p>
+<p>So, all we need to do is to run this command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span>
 </pre></div>
 </div>
@@ -1467,7 +1572,7 @@ originally written by Isha Mehrotra (SB’19)</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
     </p>
   </div>
 </footer>

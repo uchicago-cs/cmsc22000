@@ -17,7 +17,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Calendar" href="calendar.html" />
+    <link rel="next" title="Academic Honesty" href="academic-honesty.html" />
     <link rel="prev" title="CMSC 22000 - Introduction to Software Development" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -59,7 +59,7 @@
     <ul class="dropdown-menu">
         <li><a href="#">Syllabus</a></li>
         <li><a href="calendar.html">Calendar</a></li>
-        <li><a href="code_of_conduct.html">TA/Grader Code of Conduct</a></li>
+        <li><a href="code-of-conduct.html">Code of Conduct for Course Staff</a></li>
     </ul>
 </li>
 <li><a href="hw/index.html">Homework</a></li>
@@ -70,7 +70,6 @@
         <li><a href="project/chiventure.html">chiventure</a></li>
         <li><a href="project/policies.html">Policies</a></li>
         <li><a href="project/features.html">Features</a></li>
-        <li><a href="project/warmup.html">Design Warm-Up Exercise</a></li>
     </ul>
 </li>
 <li class="dropdown">
@@ -105,29 +104,15 @@
 <li><a class="reference internal" href="#course-organization">Course Organization</a><ul>
 <li><a class="reference internal" href="#homework">Homework</a></li>
 <li><a class="reference internal" href="#project">Project</a></li>
-<li><a class="reference internal" href="#lecture-quizzes">Lecture Quizzes</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#books">Books</a></li>
-<li><a class="reference internal" href="#grading">Grading</a><ul>
-<li><a class="reference internal" href="#late-submissions">Late submissions</a></li>
-<li><a class="reference internal" href="#homework-regrades">Homework Regrades</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#grading">Grading</a></li>
 <li><a class="reference internal" href="#policies">Policies</a><ul>
+<li><a class="reference internal" href="#code-of-conduct-for-course-staff">Code of Conduct for Course Staff</a></li>
 <li><a class="reference internal" href="#policy-on-academic-honesty">Policy on academic honesty</a></li>
-<li><a class="reference internal" href="#ta-grader-code-of-conduct">TA/Grader Code of Conduct</a></li>
-<li><a class="reference internal" href="#zoom-guidelines">Zoom guidelines</a></li>
 <li><a class="reference internal" href="#diversity-statement">Diversity statement</a></li>
 <li><a class="reference internal" href="#accessibility-statement">Accessibility statement</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#covid-19-policies">COVID-19 Policies</a><ul>
-<li><a class="reference internal" href="#uchicago-health-pact">UChicago Health Pact</a></li>
-<li><a class="reference internal" href="#reporting-covid-19-related-concerns">Reporting COVID-19 Related Concerns</a></li>
-<li><a class="reference internal" href="#reporting-covid-19-exposure-or-a-confirmed-case">Reporting COVID-19 Exposure or a Confirmed Case</a></li>
-<li><a class="reference internal" href="#recording-and-deletion-policies-for-academic-year-2020-21">Recording and Deletion Policies for Academic Year 2020-21</a></li>
-<li><a class="reference internal" href="#attendance">Attendance</a></li>
 </ul>
 </li>
 </ul>
@@ -140,10 +125,6 @@
       
   <div class="section" id="syllabus">
 <h1>Syllabus<a class="headerlink" href="#syllabus" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The syllabus below is from the Spring 2021 edition of CMSC 22000. While we expect the general structure of the class to remain largely the same, particularly with regards to the course project, the Spring 2022 edition will be offered in person, and will meet Monday/Wednesday/Friday (instead of Monday/Friday as in Spring 2021).</p>
-</div>
 <div class="section" id="course-description">
 <h2>Course Description<a class="headerlink" href="#course-description" title="Permalink to this headline">¶</a></h2>
 <p>Developing a software system (e.g., an application, a web server, an
@@ -182,40 +163,24 @@ tracking, etc.), and (b) exercising collaborative skills
 <div class="section" id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
 <p>Students must have taken CMSC 15200 or CMSC 16200.</p>
-<p>In Spring 2021, students will have to apply to participate in this
+<p>In Spring 2022, students will have to apply to participate in this
 class, and only students who took CMSC 15200 or CMSC 16200 in Spring
-2020, Summer 2020, Autumn 2020, or Winter 2021 will be invited to apply
+2021, Summer 2021, Autumn 2021, or Winter 2022 will be invited to apply
 (<em>absolutely no exceptions will be made</em>).</p>
 <p>Please note that CMSC 15400 is <em>not</em> a prerequisite for this class.
-Students who are taking CMSC 15200/16200 in Winter 2021, and who end up
+Students who are taking CMSC 15200/16200 in Winter 2022, and who end up
 taking CMSC 22000, are strongly encouraged to defer CMSC 15400 until the
 Fall, instead of taking CMSC 22000 and CMSC 15400 concurrently.</p>
 </div>
 </div>
 <div class="section" id="course-organization">
 <h2>Course Organization<a class="headerlink" href="#course-organization" title="Permalink to this headline">¶</a></h2>
-<p>This class will be run online, with no in-person components.</p>
-<p>Most of the course content will be delivered via pre-recorded lectures,
-but please note that the whole class will still meet synchronously via
-Zoom at the following times:</p>
-<ul class="simple">
-<li><p><strong>Mondays 3pm-3:50pm</strong></p>
-<ul>
-<li><p>Weeks 1-2: Lecture</p></li>
-<li><p>Weeks 3-9: Project All-Hands Meeting</p></li>
-</ul>
-</li>
-<li><p><strong>Fridays 3pm-3:50pm</strong>: Discussion/Q&amp;A</p></li>
-</ul>
-<p>All of the above meetings will be recorded for students who are unable
-to attend.</p>
-<p>Additionally, we have time reserved on Mondays 4:30pm-5:50pm for project
+<p>The class meets in-person three times a week for lectures (MWF 2:30pm - 3:20pm in Ryerson 251).
+Additionally, we have time reserved on Mondays 4:30pm-5:50pm for project
 teams meetings (this is listed as a “lab” on the Registrar’s site, but
-please note that it is not a traditional lab session).
-Team meetings will start on Week 3, and each team will be assigned a 30 minute
-slot between 4:30pm-5:50pm to meet with a TA.</p>
-<p>We may also schedule a series of optional discussions and guest talks
-on Wednesdays from 3pm to 3:50pm.</p>
+please note that it is not a traditional lab session). These project team
+meetings will start on Week 3, but we will also be scheduling other
+activities during the Week 1 and Week 2 lab slots.</p>
 <p>A large part of the class will revolve around the development of a
 software project where students will be able to apply many of the
 concepts covered in the lectures (this project is described in more
@@ -230,9 +195,13 @@ their teams.</p>
 <p>During the first two weeks of the quarter, the class will focus on
 covering core concepts regarding the software development process.
 Starting in week 3, the focus of the class will shift towards the
-development of the course project, with Mondays used for a project
-all-hands meeting, and each team having a 30-minute meeting with the
-team’s senior developer during lab hours.</p>
+development of the course project, and the lecture sessions
+will switch to the following:</p>
+<ul class="simple">
+<li><p><strong>Mondays</strong>: Sprint reviews and all-hands meetings</p></li>
+<li><p><strong>Wednesdays</strong>: Traditional lecture (supplemented with some pre-recorded lectures)</p></li>
+<li><p><strong>Friday</strong>: Guest lecture / Panel discussion with outside speakers</p></li>
+</ul>
 <p>For a complete schedule of lectures and other milestones, please see
 the <a class="reference external" href="calendar.html">Course Calendar</a>.</p>
 <div class="section" id="homework">
@@ -257,8 +226,7 @@ by the instructor/TAs (they will not be self-selecting).</p>
 design. A design exercise will be assigned in Week 2 (due Week 3), and a
 follow-up exercise will be assigned in Week 3 (due Week 4). Teams will
 get feedback on their first exercise before the second one is due, and
-there will be a Zoom session in Week 3 dedicated to discussing the
-design exercise.</p>
+we will be discussing the first design exercise in class during Week 3.</p>
 <p>Starting in Week 3, project planning will follow a Scrum-like process,
 with weeks 3-9 of the quarter being divided into several sprints.
 Starting on Week 3, all teams have an all-hands meeting during Monday
@@ -267,19 +235,6 @@ the lab section of the class. Teams will keep track of their tasks
 through GitHub issues, with grading primarily based on their performance
 on these tasks.</p>
 <p>More details on the project can be found on the <a class="reference external" href="project/index.html">Project</a> page.</p>
-</div>
-<div class="section" id="lecture-quizzes">
-<h3>Lecture Quizzes<a class="headerlink" href="#lecture-quizzes" title="Permalink to this headline">¶</a></h3>
-<p>The pre-recorded lectures will include very simple quizzes that should
-be trivial to pass if you pay attention to the videos. The goal of these
-quizzes is to reward students who watch the pre-recorded lectures in a
-timely manner, and who pay attention while watching the videos.</p>
-<p>To earn the points for a quiz, you must complete the quiz no later than
-one week after the lecture is posted. Furthermore, if your total score
-on the quizzes (for the entire quarter) is above 75%, you will get 100%
-of the points allocated to the lecture quizzes on your final grade. If
-your total score on the quizzes is below below 75%, you will be awarded
-a proportional amount of the points.</p>
 </div>
 </div>
 <div class="section" id="books">
@@ -295,103 +250,43 @@ in this class.</p>
 </div>
 <div class="section" id="grading">
 <h2>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h2>
-<p>Grading is based on the following:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are currently updating the grading scheme for this class. Full details will be available during
+the first week of the quarter. That said, the coursework that will have an impact on your final
+grade will be the following:</p>
 <ul class="simple">
-<li><p>25% Homework Assignments (each homework weighed equally)</p></li>
-<li><p>5% Lecture Quizzes</p></li>
-<li><p>70% Project, divided into:</p>
+<li><p>Homework Assignments</p></li>
+<li><p>Project, divided into:</p>
 <ul>
-<li><p>5% Team Design Exercise</p></li>
-<li><p>35% Individual Evaluation</p></li>
-<li><p>15% Team Evaluation</p></li>
-<li><p>5% Peer Feedback</p></li>
-<li><p>10% Final Presentation</p></li>
+<li><p>Team Design Exercise</p></li>
+<li><p>Individual work on issues/tasks</p></li>
+<li><p>Peer Feedback</p></li>
+<li><p>Final Presentation</p></li>
 </ul>
 </li>
 </ul>
-<p>See the <a class="reference external" href="project/policies.html">Project Policies</a> page for more details
-on how the project scores are determined.</p>
-<p>Additionally, there are 2 points of extra credit that are unlocked by
-completing a final goal in the course project (this goal is such that it
-can only be reached if all teams have substantially completed and
-integrated their work for the project). If these extra points are
-unlocked, they are awarded to everyone in the class.</p>
-<p>Grades are not curved in this class or, at least, not in the traditional
-sense. We use a standard set of grade boundaries:</p>
-<ul class="simple">
-<li><p>95-100: A</p></li>
-<li><p>90-95: A-</p></li>
-<li><p>85-90: B+</p></li>
-<li><p>80-85: B</p></li>
-<li><p>75-80: B-</p></li>
-<li><p>70-75: C+</p></li>
-<li><p>&lt; 70: Dealt on a case-by-case basis</p></li>
-</ul>
-<p>We curve only to the extent that we may lower the boundaries for one or
-more letter grades, depending on the distribution of the raw scores.</p>
-<div class="section" id="late-submissions">
-<h3>Late submissions<a class="headerlink" href="#late-submissions" title="Permalink to this headline">¶</a></h3>
-<p>You are allowed to make <strong>at most two</strong> late submissions on the homeworks.
-Late submissions will be accepted up to 48 hours after the deadline.</p>
-<p><strong>No credit will be given</strong> for late submissions after you have used up your two allowed
-late submissions.</p>
-<p><strong>No credit will be given</strong> for <em>any</em> submission made 48 hours after the deadline.</p>
-<p>Please note that, while Gradescope does enforce the 48-hour limit on late submissions and will clearly flag
-late submissions with a red “LATE” label, it does not enforce our specific limit
-of two late submissions. <strong>It is your responsibility to keep track of how many late submissions
-you have made so far, and to ensure you don’t make more than two late submissions.</strong></p>
-<p>If extraordinary circumstances (illness,
-family emergency, etc.) prevent a student from meeting a deadline, we may
-grant additional extensions on a case-by-case basis. Whenever possible, the
-student must inform their instructor of these extraordinary circumstances
-<em>before</em> the deadline.</p>
-<p>Please note that having a heavy workload in a given
-week does not qualify as an extraordinary circumstance. The purpose of the
-two extensions is precisely to give you some flexibility in weeks when you
-are busier than usual.</p>
-</div>
-<div class="section" id="homework-regrades">
-<h3>Homework Regrades<a class="headerlink" href="#homework-regrades" title="Permalink to this headline">¶</a></h3>
-<p>We sometimes make mistakes, and are happy to review any incorrect grading decision.</p>
-<p>However, please note that we will only consider regrade requests where a grader made an
-actual mistake (e.g., they took points off claiming you didn’t do something,
-when you actually did do it and the grader maybe missed that when reading over
-your submission). We will not consider regrade requests that ask for point
-penalties to be reduced, or try to argue that we should not be taking points off
-for a given issue in your code.</p>
-<p>For example, suppose you receive a penalty that says
-“-2 points: Function X did not check that parameter Y is greater than zero”.
-If function X in your code <em>did</em> perform this check, and the grader
-missed this fact (and erroneously applied that penalty), you can submit
-a regrade request asking us to review this decision. We ask that you keep
-these requests brief and to the point: no more than 1-2 paragraphs identifying
-the exact penalty and the reasons you believe it was applied erroneously, including
-references to specific parts of your code (e.g., “I did check the value of the
-parameter in line 107”). Focus on laying out the facts, and nothing else.</p>
-<p>On the other hand, let’s say you received the “Function X did not check that
-parameter Y is greater than zero” penalty, and function X in your code did <em>not</em> perform this check. In this case, you cannot submit
-a regrade request arguing that this is not something for which we should deduct
-points, or that the point deduction should be lower. Please note that all penalties
-are explicitly approved by an instructor (graders have no discretion to come up with
-penalties on their own and, if they took points off for something, it is because they
-were directed to do so by an instructor).</p>
-<p>Please note that, while you may request a regrade for a specific issue,
-an instructor may do a full regrade of your submission if they feel there
-are other issues with the grading of your submission. This can result in you
-ending up with a lower score on the assignment.</p>
-<p>Finally, it is also your responsibility to make
-these requests in a timely manner. Requests for regrades must be submitted
-no later than <strong>one week</strong> after a graded piece of work is returned to you.
-After that time, we will not consider any requests for regrades,
-<em>regardless of whether the regrade request is reasonable and justified</em>.</p>
+<p>Please see the <a class="reference external" href="project/policies.html">Project Policies</a> page for more details
+on the coursework involved in the project, but please bear in mind that we are
+in the process of updating that page too.</p>
 </div>
 </div>
 <div class="section" id="policies">
 <h2>Policies<a class="headerlink" href="#policies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-of-conduct-for-course-staff">
+<h3>Code of Conduct for Course Staff<a class="headerlink" href="#code-of-conduct-for-course-staff" title="Permalink to this headline">¶</a></h3>
+<p>This class has a <a class="reference external" href="code-of-conduct.html">Code of Conduct for Course Staff</a>.
+We share this code of conduct with you (the students) so you know the
+expectations we have set for our staff and, while we expect and hope they
+will scrupulously follow this code of conduct, you should let us know if
+you witness or experience a code of conduct violation. This will allow us
+to continue to improve the student experience in this class, and to prevent
+any issues from reocurring.</p>
+</div>
 <div class="section" id="policy-on-academic-honesty">
 <h3>Policy on academic honesty<a class="headerlink" href="#policy-on-academic-honesty" title="Permalink to this headline">¶</a></h3>
 <p>We take academic honesty very seriously in this class. Please make sure to
-read our <a class="reference external" href="academic_honesty.html">Academic Honesty</a> page. Please note that
+read our <a class="reference external" href="academic-honesty.html">Academic Honesty</a> page. Please note that
 this policy applies primarily to the homework assignments,
 which must be completed individually.</p>
 <p>On the other hand, the project is structured
@@ -420,24 +315,13 @@ academically dishonest in the project:</p>
 <li><p>Having someone outside the class do your assigned tasks in the project (as opposed to
 just getting assistance from them)</p></li>
 <li><p>Taking credit for work that someone else in the class did. Please note that there are many situations
-where students will legitimately <em>share</em> credit for a piece of work, and jointly earn points for it;
+where students will legitimately <em>share</em> credit for a piece of work;
 what would be unacceptable would be to falsely take sole credit for work you did not do,
-as a way to earn extra points for that work.</p></li>
+as a way to improve your score in the class.</p></li>
 </ul>
 <p>If you are ever concerned that you may be doing something that could be considered academically
 dishonest, please don’t hesitate to ask us for clarification. We are always happy to answer
 these kind of questions.</p>
-</div>
-<div class="section" id="ta-grader-code-of-conduct">
-<h3>TA/Grader Code of Conduct<a class="headerlink" href="#ta-grader-code-of-conduct" title="Permalink to this headline">¶</a></h3>
-<p>This class has an explicit <a class="reference external" href="code_of_conduct.html">code of conduct</a> that TAs and graders must abide by.</p>
-<p>This code of conduct exists not because we expect bad behavior from our staff, but because we believe a clear code of conduct is an important piece in creating inclusive spaces, particularly in CS. We share this code of conduct with you (the students) so you know the expectations we have set for our TAs and graders.</p>
-</div>
-<div class="section" id="zoom-guidelines">
-<h3>Zoom guidelines<a class="headerlink" href="#zoom-guidelines" title="Permalink to this headline">¶</a></h3>
-<p>We will be using Zoom in this class. We expect your interactions via Zoom to be consistent with an in-person class experience. Respect the people you’re working with. Enter the Zoom meetings muted if possible (unfortunately, it will not be possible if you’re calling in), and unmute to speak. Raise your hand if you’d like to speak. [There’s a “Raise Hand” button on the participant page.] If your background is unusually noisy, use the chat channel instead of unmuting. We strongly encourage you to have your camera on during our Zoom sessions, but we’ll understand if some of you prefer to keep your video off.</p>
-<p>Note that you can set your name in your Zoom profile, so you don’t have to go with whatever was assigned. We encourage you to include your pronouns in your name (if so, please include them after your last name).</p>
-<p>Our Zoom class meetings will be recorded and saved to the cloud to allow students in this class to review the discussion, and especially to allow students who can’t participate the opportunity to benefit from class. We will not make these recordings available to anyone but class participants, we will not make them available after the quarter, and students will not be allowed to save copies. However, we have no way to guarantee that students will follow this policy. If you have FERPA concerns, please mask yourself accordingly, e.g., by turning off video and using an alias.</p>
 </div>
 <div class="section" id="diversity-statement">
 <h3>Diversity statement<a class="headerlink" href="#diversity-statement" title="Permalink to this headline">¶</a></h3>
@@ -467,54 +351,6 @@ requesting accommodations.</p>
 Email: <a class="reference external" href="mailto:disabilities&#37;&#52;&#48;uchicago&#46;edu">disabilities<span>&#64;</span>uchicago<span>&#46;</span>edu</a></p>
 </div>
 </div>
-<div class="section" id="covid-19-policies">
-<h2>COVID-19 Policies<a class="headerlink" href="#covid-19-policies" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="uchicago-health-pact">
-<h3>UChicago Health Pact<a class="headerlink" href="#uchicago-health-pact" title="Permalink to this headline">¶</a></h3>
-<p>This class does not include any in-person components. Nonetheless, if you do come on campus
-at any point, all students are required to adhere to the guidelines in the UChicago Health
-Pact in order to promote a safe environment in the classroom.</p>
-<ul class="simple">
-<li><p>Secure face coverings must be worn appropriately at all times while in University buildings</p></li>
-<li><p>Maintain a distance of 6 feet from others</p></li>
-<li><p>Do not attend an in-person class if you feel unwell or are experiencing COVID-19 related symptoms</p></li>
-</ul>
-<p>The complete text of the UChicago Health Pact along with additional information about
-COVID-19 protocols can be found <a class="reference external" href="https://goforward.uchicago.edu/health-requirements/#healthpact">here</a>.</p>
-</div>
-<div class="section" id="reporting-covid-19-related-concerns">
-<h3>Reporting COVID-19 Related Concerns<a class="headerlink" href="#reporting-covid-19-related-concerns" title="Permalink to this headline">¶</a></h3>
-<p>Any concerns over inappropriate PPE usage, physical distancing, cleaning/disinfection, or
-other COVID-19 related public health concerns should be directed to <a class="reference external" href="https://ehs-prd-01.uchicago.edu/ehsa-ucair/InjuryIllnessIndexUOFC-IT.html">UCAIR</a>.</p>
-<p>If there is an emergency, call 773-702-8181 or dial 123 on any campus phone.</p>
-</div>
-<div class="section" id="reporting-covid-19-exposure-or-a-confirmed-case">
-<h3>Reporting COVID-19 Exposure or a Confirmed Case<a class="headerlink" href="#reporting-covid-19-exposure-or-a-confirmed-case" title="Permalink to this headline">¶</a></h3>
-<p>If you were potentially exposed to COVID-19 or your COVID-19 test results come back
-positive, reach out immediately to <a class="reference external" href="mailto:C19HealthReport&#37;&#52;&#48;uchicago&#46;edu">C19HealthReport<span>&#64;</span>uchicago<span>&#46;</span>edu</a>.</p>
-</div>
-<div class="section" id="recording-and-deletion-policies-for-academic-year-2020-21">
-<h3>Recording and Deletion Policies for Academic Year 2020-21<a class="headerlink" href="#recording-and-deletion-policies-for-academic-year-2020-21" title="Permalink to this headline">¶</a></h3>
-<p>The Recording and Deletion Policies for the current academic year can be found in the
-Student Manual under <a class="reference external" href="https://studentmanual.uchicago.edu/administrative-policies/additional-administrative-regulations/petitions-audio-video-recording-on-campus/">Petitions, Audio &amp; Video Recording on Campus</a>.</p>
-<ul class="simple">
-<li><p>Do not record, share, or disseminate any course sessions, videos, transcripts, audio, or chats.</p></li>
-<li><p>Do not share links for the course to those not currently enrolled.</p></li>
-<li><p>Any Zoom cloud recordings will be automatically deleted 90 days after the completion of the recording.</p></li>
-</ul>
-</div>
-<div class="section" id="attendance">
-<h3>Attendance<a class="headerlink" href="#attendance" title="Permalink to this headline">¶</a></h3>
-<p>Absent any extraordinary circumstances, we expect students to attend all lectures. That said, we do not keep track of attendance in this class and no part of your final grade is computed based on your attendance to lectures.</p>
-<p>Students who have been exposed to or who are experiencing symptoms of COVID-19
-should contact <a class="reference external" href="https://wellness.uchicago.edu/">UChicago Student Wellness</a> immediately to be tested, and reach out to their
-area Dean of Students to request accommodations for classes until:</p>
-<ul class="simple">
-<li><p>At least 10 days have passed since symptoms first appeared and;</p></li>
-<li><p>At least 3 days (72 hours) have passed since recovery- defined as resolution of fever without the use of fever-reducing medications and improvement in respiratory symptoms (e.g., cough, shortness of breath).</p></li>
-</ul>
-</div>
-</div>
 </div>
 
 
@@ -530,7 +366,7 @@ area Dean of Students to request accommodations for classes until:</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
     </p>
   </div>
 </footer>

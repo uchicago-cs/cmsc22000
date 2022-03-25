@@ -1,10 +1,6 @@
 CMSC 22000 - Introduction to Software Development
 =================================================
 
-.. note::
-
-   This website currently contains information from the Spring 2021 edition of CMSC 22000. While we expect the general structure of the class to remain largely the same, particularly with regards to the course project, the Spring 2022 edition will be offered in person, and will meet Monday/Wednesday/Friday (instead of Monday/Friday as in Spring 2021). 
-
 Course Staff
 ~~~~~~~~~~~~
 
@@ -27,14 +23,13 @@ Please see the `syllabus <syllabus.html>`__ for more details.
    :hidden:
 
    syllabus.rst
+   academic-honesty.rst
    calendar.rst
-   code_of_conduct.rst
-   projects/started.rst
-   projects/specs.rst
-   projects/registering_submitting.rst
-   projects/initial_code.rst
-   resources/git.rst
-   resources/questions.rst
+   code-of-conduct.rst
+   hw/index.rst
+   project/index.rst
+   resources/faq.rst
    resources/other.rst
+   resources/tutorials/index.rst
 
 

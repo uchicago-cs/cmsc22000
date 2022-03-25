@@ -17,6 +17,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Homework 5: Testing" href="hw5.html" />
+    <link rel="prev" title="Homework 3: Make" href="hw3.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -57,7 +59,7 @@
     <ul class="dropdown-menu">
         <li><a href="../syllabus.html">Syllabus</a></li>
         <li><a href="../calendar.html">Calendar</a></li>
-        <li><a href="../code_of_conduct.html">TA/Grader Code of Conduct</a></li>
+        <li><a href="../code-of-conduct.html">Code of Conduct for Course Staff</a></li>
     </ul>
 </li>
 <li><a href="index.html">Homework</a></li>
@@ -68,7 +70,6 @@
         <li><a href="../project/chiventure.html">chiventure</a></li>
         <li><a href="../project/policies.html">Policies</a></li>
         <li><a href="../project/features.html">Features</a></li>
-        <li><a href="../project/warmup.html">Design Warm-Up Exercise</a></li>
     </ul>
 </li>
 <li class="dropdown">
@@ -119,7 +120,14 @@
       
   <div class="section" id="homework-4-debugging">
 <h1>Homework 4: Debugging<a class="headerlink" href="#homework-4-debugging" title="Permalink to this headline">¶</a></h1>
-<p><strong>Due:</strong> Wednesday, April 28th, 8pm CDT</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
+If you are currently taking this class, you’re welcome to take a look at the homework below,
+but bear in mind that it could change substantially. Do not start working on the homework
+until instructed to do so.</p>
+</div>
+<p><strong>Due:</strong> Wednesday, April 27th, 8pm CDT</p>
 <p>In this homework, you will get some practice debugging a few programs and, in
 particular, will resolve some of the errors we described in class. In
 some of the tasks, you will also become more familiar with GDB, a
@@ -436,7 +444,7 @@ and not the <code class="docutils literal notranslate"><span class="pre">run</sp
 GDB will show something like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="k">continue</span>
 <span class="n">Continuing</span><span class="o">.</span>
-<span class="n">Reading</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
+<span class="n">Reading</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
 <span class="n">Reading</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="mf">2.31</span><span class="o">.</span><span class="n">so</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
 <span class="n">Reading</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/.</span><span class="n">debug</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="mf">2.31</span><span class="o">.</span><span class="n">so</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
 <span class="n">Reading</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">debug</span><span class="o">//</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="mf">2.31</span><span class="o">.</span><span class="n">so</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
@@ -818,7 +826,7 @@ $1 = 0x0
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
     </p>
   </div>
 </footer>

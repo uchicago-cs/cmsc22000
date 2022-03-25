@@ -1,10 +1,6 @@
 Syllabus
 ========
 
-.. note::
-
-   The syllabus below is from the Spring 2021 edition of CMSC 22000. While we expect the general structure of the class to remain largely the same, particularly with regards to the course project, the Spring 2022 edition will be offered in person, and will meet Monday/Wednesday/Friday (instead of Monday/Friday as in Spring 2021). 
-
 Course Description
 ------------------
 
@@ -48,43 +44,25 @@ Prerequisites
 
 Students must have taken CMSC 15200 or CMSC 16200.
 
-In Spring 2021, students will have to apply to participate in this
+In Spring 2022, students will have to apply to participate in this
 class, and only students who took CMSC 15200 or CMSC 16200 in Spring
-2020, Summer 2020, Autumn 2020, or Winter 2021 will be invited to apply
+2021, Summer 2021, Autumn 2021, or Winter 2022 will be invited to apply
 (*absolutely no exceptions will be made*).
 
 Please note that CMSC 15400 is *not* a prerequisite for this class.
-Students who are taking CMSC 15200/16200 in Winter 2021, and who end up
+Students who are taking CMSC 15200/16200 in Winter 2022, and who end up
 taking CMSC 22000, are strongly encouraged to defer CMSC 15400 until the
 Fall, instead of taking CMSC 22000 and CMSC 15400 concurrently.
 
 Course Organization
 -------------------
 
-This class will be run online, with no in-person components.
-
-Most of the course content will be delivered via pre-recorded lectures,
-but please note that the whole class will still meet synchronously via
-Zoom at the following times:
-
-- **Mondays 3pm-3:50pm**
-
-  - Weeks 1-2: Lecture
-  - Weeks 3-9: Project All-Hands Meeting
-
-- **Fridays 3pm-3:50pm**: Discussion/Q&A
-
-All of the above meetings will be recorded for students who are unable
-to attend.
-
+The class meets in-person three times a week for lectures (MWF 2:30pm - 3:20pm in Ryerson 251).
 Additionally, we have time reserved on Mondays 4:30pm-5:50pm for project
 teams meetings (this is listed as a “lab” on the Registrar’s site, but
-please note that it is not a traditional lab session).
-Team meetings will start on Week 3, and each team will be assigned a 30 minute
-slot between 4:30pm-5:50pm to meet with a TA.
-
-We may also schedule a series of optional discussions and guest talks
-on Wednesdays from 3pm to 3:50pm.
+please note that it is not a traditional lab session). These project team
+meetings will start on Week 3, but we will also be scheduling other
+activities during the Week 1 and Week 2 lab slots.
 
 A large part of the class will revolve around the development of a
 software project where students will be able to apply many of the
@@ -101,9 +79,12 @@ their teams.
 During the first two weeks of the quarter, the class will focus on
 covering core concepts regarding the software development process.
 Starting in week 3, the focus of the class will shift towards the
-development of the course project, with Mondays used for a project
-all-hands meeting, and each team having a 30-minute meeting with the
-team’s senior developer during lab hours.
+development of the course project, and the lecture sessions
+will switch to the following:
+
+* **Mondays**: Sprint reviews and all-hands meetings
+* **Wednesdays**: Traditional lecture (supplemented with some pre-recorded lectures)
+* **Friday**: Guest lecture / Panel discussion with outside speakers
 
 For a complete schedule of lectures and other milestones, please see
 the `Course Calendar <calendar.html>`__.
@@ -134,8 +115,7 @@ During Weeks 2-3, the teams will work on a warmup exercise on software
 design. A design exercise will be assigned in Week 2 (due Week 3), and a
 follow-up exercise will be assigned in Week 3 (due Week 4). Teams will
 get feedback on their first exercise before the second one is due, and
-there will be a Zoom session in Week 3 dedicated to discussing the
-design exercise.
+we will be discussing the first design exercise in class during Week 3.
 
 Starting in Week 3, project planning will follow a Scrum-like process,
 with weeks 3-9 of the quarter being divided into several sprints.
@@ -146,21 +126,6 @@ through GitHub issues, with grading primarily based on their performance
 on these tasks.
 
 More details on the project can be found on the `Project <project/index.html>`__ page.
-
-Lecture Quizzes
-~~~~~~~~~~~~~~~
-
-The pre-recorded lectures will include very simple quizzes that should
-be trivial to pass if you pay attention to the videos. The goal of these
-quizzes is to reward students who watch the pre-recorded lectures in a
-timely manner, and who pay attention while watching the videos.
-
-To earn the points for a quiz, you must complete the quiz no later than
-one week after the lecture is posted. Furthermore, if your total score
-on the quizzes (for the entire quarter) is above 75%, you will get 100%
-of the points allocated to the lecture quizzes on your final grade. If
-your total score on the quizzes is below below 75%, you will be awarded
-a proportional amount of the points.
 
 Books
 -----
@@ -178,119 +143,44 @@ in this class.
 Grading
 -------
 
-Grading is based on the following:
+.. note::
 
--  25% Homework Assignments (each homework weighed equally)
--  5% Lecture Quizzes
--  70% Project, divided into:
+   We are currently updating the grading scheme for this class. Full details will be available during
+   the first week of the quarter. That said, the coursework that will have an impact on your final
+   grade will be the following:
 
-   -  5% Team Design Exercise
-   -  35% Individual Evaluation
-   -  15% Team Evaluation
-   -  5% Peer Feedback
-   -  10% Final Presentation
+   -  Homework Assignments
+   -  Project, divided into:
 
-See the `Project Policies <project/policies.html>`__ page for more details
-on how the project scores are determined.
-
-Additionally, there are 2 points of extra credit that are unlocked by
-completing a final goal in the course project (this goal is such that it
-can only be reached if all teams have substantially completed and
-integrated their work for the project). If these extra points are
-unlocked, they are awarded to everyone in the class.
-
-Grades are not curved in this class or, at least, not in the traditional
-sense. We use a standard set of grade boundaries:
-
--  95-100: A
--  90-95: A-
--  85-90: B+
--  80-85: B
--  75-80: B-
--  70-75: C+
--  < 70: Dealt on a case-by-case basis
-
-We curve only to the extent that we may lower the boundaries for one or
-more letter grades, depending on the distribution of the raw scores.
-
-Late submissions
-~~~~~~~~~~~~~~~~
-
-You are allowed to make **at most two** late submissions on the homeworks.
-Late submissions will be accepted up to 48 hours after the deadline.
-
-**No credit will be given** for late submissions after you have used up your two allowed
-late submissions.
-
-**No credit will be given** for *any* submission made 48 hours after the deadline.
-
-Please note that, while Gradescope does enforce the 48-hour limit on late submissions and will clearly flag
-late submissions with a red "LATE" label, it does not enforce our specific limit
-of two late submissions. **It is your responsibility to keep track of how many late submissions
-you have made so far, and to ensure you don't make more than two late submissions.**
-
-If extraordinary circumstances (illness,
-family emergency, etc.) prevent a student from meeting a deadline, we may
-grant additional extensions on a case-by-case basis. Whenever possible, the
-student must inform their instructor of these extraordinary circumstances
-*before* the deadline.
-
-Please note that having a heavy workload in a given
-week does not qualify as an extraordinary circumstance. The purpose of the
-two extensions is precisely to give you some flexibility in weeks when you
-are busier than usual.
-
-Homework Regrades
-~~~~~~~~~~~~~~~~~
-
-We sometimes make mistakes, and are happy to review any incorrect grading decision.
-
-However, please note that we will only consider regrade requests where a grader made an
-actual mistake (e.g., they took points off claiming you didn't do something,
-when you actually did do it and the grader maybe missed that when reading over
-your submission). We will not consider regrade requests that ask for point
-penalties to be reduced, or try to argue that we should not be taking points off
-for a given issue in your code.
-
-For example, suppose you receive a penalty that says
-"-2 points: Function X did not check that parameter Y is greater than zero".
-If function X in your code *did* perform this check, and the grader
-missed this fact (and erroneously applied that penalty), you can submit
-a regrade request asking us to review this decision. We ask that you keep
-these requests brief and to the point: no more than 1-2 paragraphs identifying
-the exact penalty and the reasons you believe it was applied erroneously, including
-references to specific parts of your code (e.g., "I did check the value of the
-parameter in line 107"). Focus on laying out the facts, and nothing else.
-
-On the other hand, let's say you received the "Function X did not check that
-parameter Y is greater than zero" penalty, and function X in your code did *not* perform this check. In this case, you cannot submit
-a regrade request arguing that this is not something for which we should deduct
-points, or that the point deduction should be lower. Please note that all penalties
-are explicitly approved by an instructor (graders have no discretion to come up with
-penalties on their own and, if they took points off for something, it is because they
-were directed to do so by an instructor).
-
-Please note that, while you may request a regrade for a specific issue,
-an instructor may do a full regrade of your submission if they feel there
-are other issues with the grading of your submission. This can result in you
-ending up with a lower score on the assignment.
-
-Finally, it is also your responsibility to make
-these requests in a timely manner. Requests for regrades must be submitted
-no later than **one week** after a graded piece of work is returned to you.
-After that time, we will not consider any requests for regrades,
-*regardless of whether the regrade request is reasonable and justified*.
+      -  Team Design Exercise
+      -  Individual work on issues/tasks
+      -  Peer Feedback
+      -  Final Presentation
 
 
+   Please see the `Project Policies <project/policies.html>`__ page for more details
+   on the coursework involved in the project, but please bear in mind that we are
+   in the process of updating that page too.
 
 Policies
 --------
+
+Code of Conduct for Course Staff
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This class has a `Code of Conduct for Course Staff <code-of-conduct.html>`__.
+We share this code of conduct with you (the students) so you know the
+expectations we have set for our staff and, while we expect and hope they
+will scrupulously follow this code of conduct, you should let us know if
+you witness or experience a code of conduct violation. This will allow us
+to continue to improve the student experience in this class, and to prevent
+any issues from reocurring.
 
 Policy on academic honesty
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We take academic honesty very seriously in this class. Please make sure to
-read our `Academic Honesty <academic_honesty.html>`__ page. Please note that
+read our `Academic Honesty <academic-honesty.html>`__ page. Please note that
 this policy applies primarily to the homework assignments,
 which must be completed individually.
 
@@ -322,30 +212,13 @@ academically dishonest in the project:
 - Having someone outside the class do your assigned tasks in the project (as opposed to
   just getting assistance from them)
 - Taking credit for work that someone else in the class did. Please note that there are many situations
-  where students will legitimately *share* credit for a piece of work, and jointly earn points for it;
+  where students will legitimately *share* credit for a piece of work;
   what would be unacceptable would be to falsely take sole credit for work you did not do,
-  as a way to earn extra points for that work.
+  as a way to improve your score in the class.
 
 If you are ever concerned that you may be doing something that could be considered academically
 dishonest, please don't hesitate to ask us for clarification. We are always happy to answer
 these kind of questions.
-
-
-TA/Grader Code of Conduct
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This class has an explicit `code of conduct <code_of_conduct.html>`__ that TAs and graders must abide by.
-
-This code of conduct exists not because we expect bad behavior from our staff, but because we believe a clear code of conduct is an important piece in creating inclusive spaces, particularly in CS. We share this code of conduct with you (the students) so you know the expectations we have set for our TAs and graders.
-
-Zoom guidelines
-~~~~~~~~~~~~~~~
-
-We will be using Zoom in this class. We expect your interactions via Zoom to be consistent with an in-person class experience. Respect the people you’re working with. Enter the Zoom meetings muted if possible (unfortunately, it will not be possible if you’re calling in), and unmute to speak. Raise your hand if you’d like to speak. [There’s a “Raise Hand” button on the participant page.] If your background is unusually noisy, use the chat channel instead of unmuting. We strongly encourage you to have your camera on during our Zoom sessions, but we'll understand if some of you prefer to keep your video off.
-
-Note that you can set your name in your Zoom profile, so you don’t have to go with whatever was assigned. We encourage you to include your pronouns in your name (if so, please include them after your last name).
-
-Our Zoom class meetings will be recorded and saved to the cloud to allow students in this class to review the discussion, and especially to allow students who can’t participate the opportunity to benefit from class. We will not make these recordings available to anyone but class participants, we will not make them available after the quarter, and students will not be allowed to save copies. However, we have no way to guarantee that students will follow this policy. If you have FERPA concerns, please mask yourself accordingly, e.g., by turning off video and using an alias.
 
 Diversity statement
 ~~~~~~~~~~~~~~~~~~~
@@ -377,57 +250,4 @@ requesting accommodations.
 
 Phone: (773) 702-6000
 Email: disabilities@uchicago.edu
-
-COVID-19 Policies
------------------
-
-UChicago Health Pact
-~~~~~~~~~~~~~~~~~~~~
-
-This class does not include any in-person components. Nonetheless, if you do come on campus
-at any point, all students are required to adhere to the guidelines in the UChicago Health
-Pact in order to promote a safe environment in the classroom.
-
-- Secure face coverings must be worn appropriately at all times while in University buildings
-- Maintain a distance of 6 feet from others
-- Do not attend an in-person class if you feel unwell or are experiencing COVID-19 related symptoms
-
-The complete text of the UChicago Health Pact along with additional information about
-COVID-19 protocols can be found `here <https://goforward.uchicago.edu/health-requirements/#healthpact>`__.
-
-Reporting COVID-19 Related Concerns
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Any concerns over inappropriate PPE usage, physical distancing, cleaning/disinfection, or
-other COVID-19 related public health concerns should be directed to `UCAIR <https://ehs-prd-01.uchicago.edu/ehsa-ucair/InjuryIllnessIndexUOFC-IT.html>`__.
-
-If there is an emergency, call 773-702-8181 or dial 123 on any campus phone.
-
-Reporting COVID-19 Exposure or a Confirmed Case
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If you were potentially exposed to COVID-19 or your COVID-19 test results come back
-positive, reach out immediately to C19HealthReport@uchicago.edu.
-
-Recording and Deletion Policies for Academic Year 2020-21
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Recording and Deletion Policies for the current academic year can be found in the
-Student Manual under `Petitions, Audio & Video Recording on Campus <https://studentmanual.uchicago.edu/administrative-policies/additional-administrative-regulations/petitions-audio-video-recording-on-campus/>`__.
-
-- Do not record, share, or disseminate any course sessions, videos, transcripts, audio, or chats.
-- Do not share links for the course to those not currently enrolled.
-- Any Zoom cloud recordings will be automatically deleted 90 days after the completion of the recording.
-
-Attendance
-~~~~~~~~~~
-
-Absent any extraordinary circumstances, we expect students to attend all lectures. That said, we do not keep track of attendance in this class and no part of your final grade is computed based on your attendance to lectures.
-
-Students who have been exposed to or who are experiencing symptoms of COVID-19
-should contact `UChicago Student Wellness <https://wellness.uchicago.edu/>`__ immediately to be tested, and reach out to their
-area Dean of Students to request accommodations for classes until:
-
-- At least 10 days have passed since symptoms first appeared and;
-- At least 3 days (72 hours) have passed since recovery- defined as resolution of fever without the use of fever-reducing medications and improvement in respiratory symptoms (e.g., cough, shortness of breath).
 
