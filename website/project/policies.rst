@@ -1,6 +1,13 @@
 Project Policies
 ================
 
+.. note::
+
+   We are currently updating the grading scheme for this class, which will result in a number
+   of updates to the project policies. That said, we expect the project's coursework
+   to remain largely the same (what will change is the way in which that coursework
+   is graded, and how your final grade is computed based on that work)
+
 Project Organization
 --------------------
 

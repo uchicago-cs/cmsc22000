@@ -22,3 +22,13 @@ project:
 Additionally, the course project also involves two warm-up exercises
 that you will do with your teams, and which revolve around software
 design.
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+
+   chiventure.rst
+   features.rst
+   policies.rst
+   presentation.rst
+   warmup.rst

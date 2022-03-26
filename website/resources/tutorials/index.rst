@@ -6,3 +6,8 @@ Tutorials
 +------------------------------------------------------------------+
 
 
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+
+   code-reviews.rst

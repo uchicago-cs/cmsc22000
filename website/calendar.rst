@@ -1,6 +1,10 @@
 Calendar
 ========
 
+.. note::
+
+   This calendar is tentative and subject to change.
+
 Homeworks are released on Wednesdays, and are due the following Wednesday at 8pm CDT.
 
 +------+----------+-----+----------------------------------+-------------------+-------------------+
@@ -30,7 +34,7 @@ Homeworks are released on Wednesdays, and are due the following Wednesday at 8pm
 |      +----------+-----+----------------------------------+                   |                   |
 |      | April 22 | F   | Guest Lecture                    |                   |                   |
 +------+----------+-----+----------------------------------+-------------------+-------------------+
-| 5    | April 25 | M   | Project all-hands meeting        | Testing           | Spring #2         |
+| 5    | April 25 | M   | Project all-hands meeting        | Testing           | Sprint #2         |
 |      +----------+-----+----------------------------------+                   |                   |
 |      | April 27 | W   | Testing                          |                   |                   |
 |      +----------+-----+----------------------------------+                   |                   |

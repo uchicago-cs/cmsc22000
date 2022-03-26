@@ -68,14 +68,18 @@ that you still need assistance with that question.
 You can read more about Slack threads
 `here <https://slack.com/help/articles/115000769927-Use-threads-to-organize-discussions->`__.
 
-Zoom Office Hours
-~~~~~~~~~~~~~~~~~
+Office Hours
+~~~~~~~~~~~~
 
-You can also obtain one-on-one help via Zoom during scheduled office
-hours. To “attend” office hours, you must go into the
+You can also obtain one-on-one help during scheduled office
+hours. If you are attending in-person office hours, you can show
+up at any time during the advertised time  (the times for office
+hours will be posted in a pinned message on the ``#course-office-hours``
+channel on Slack).
+
+If you are attending Zoom-based office hours, you must go into the
 ``#course-office-hours`` channel on Slack whenever office hours are in
-session (the times for office hours will be posted in a pinned message
-on that channel). Once you’re in the channel, post a message with a
+session. Once you’re in the channel, post a message with a
 brief description of your issue, and a Zoom meeting ID (this can be your
 personal meeting ID, or one created specifically for office hours). The
 instructor or TA running office hours will go through these messages,
