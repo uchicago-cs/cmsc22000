@@ -66,18 +66,13 @@ How to complete this homework
 
 This homework is divided into three parts. The first two parts provide
 a tutorial-style introduction to various aspects of Git. All you need
-to do is follow the instructions, and you will earn points simply for completing the
-steps described in those instructions
+to do is follow the instructions
 (we will be able to tell whether you followed our instructions by
 looking at your repository). That said, please make sure you understand
 what is accomplished in each step and, if you have any questions, please
 don't hesitate to `ask for help <help.html>`__.
 
-The first part is worth 50 points, and the second part is worth 25 points.
-You will get partial credit if you complete some, but not all, of the steps
-described in each of these parts.
-
-The third part of the homework is worth 25 points and it involves a series of exercises
+The third part of the homework involves a series of exercises
 that require you to find a new Git command (or series
 of Git commands) on your own. This will involve explaining how you solved
 a given exercise, and you will submit your answers on
@@ -91,6 +86,9 @@ enter any answers there, since those will be based
 on the graders’ inspection of your GitHub repository (but we still need
 to include those tasks on Gradescope so we can grade them as part of
 this homework).
+
+To see how this homework assignment will be graded, please see the
+`Homework 1 Rubric <hw1_rubric.html>`__
 
 Creating your homework repository
 ---------------------------------
@@ -718,12 +716,13 @@ refer to as your *temp* repository.
 
 Now, switch to the window that is open to your home repository, add a
 line to ``test.txt`` with the text ``One more change!``. Create a
-commit for that change and push it to GitHub (you should know how to
+commit for that change::
+
+    git commit -m"Adding one more change"
+
+And push it to GitHub (you should know how to
 do this by now, but make sure to ask for help if
-you’re unsure of how to proceed). Also, you don't have to use any
-specific commit message (unlike previous steps where we gave you the
-exact message), but make sure your commit message is descriptive and
-to the point.
+you’re unsure of how to proceed).
 
 Next, switch to the window that is open to your temp repository, check
 if that change appears in the ``test.txt`` file. It will not, because
@@ -851,8 +850,11 @@ Now, ``git status`` will show the following:
         modified:   test.txt
 
 
-Go ahead and run ``git commit``. The commit will now include only
-``README.md``.
+Go ahead and commit this change::
+
+   git commit -m"Our last change?"
+
+The commit will now include only ``README.md``.
 
 We're nearing the end of the first part of the homework so, before
 continuing to the second part of the homework, let's make sure all
