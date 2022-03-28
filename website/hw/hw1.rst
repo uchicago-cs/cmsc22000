@@ -117,9 +117,14 @@ You will start by initializing your repository. Your
 repository is hosted on GitHub, but you can create a local copy in your
 home directory (we will refer to this as your *local repository*).
 
-Log into https://github.com/. Your homework repository,
+First, make sure you are logged into the GitHub website, and go to
+https://github.com/uchicago-cmsc22000-2022 (you may want to bookmark this
+page, as you'll likely be accessing it a lot throughout the quarter).
+Your homework repository,
 ``uchicago-cmsc22000-2022/hwN-GITHUB_USERNAME`` should appear under
-“Repositories”. This will take you to a page where you can browse your
+“Repositories”.
+
+Click on the link for your repository. This will take you to a page where you can browse your
 repository through GitHub’s web interface. However, you haven’t
 initialized your repository yet, so GitHub will provide you with the
 instructions to initialize your repository.
@@ -287,7 +292,9 @@ Do the following:
    create one, and then will create a ``hw1`` directory inside it)
 
 -  Inside that folder, create a file called ``README.md`` and add your
-   full name to the file.
+   full name to the file. Remember you can create an empty file by
+   running the command ``touch README.md`` and then opening that file
+   with your editor of choice.
 
 -  On your repository’s GitHub page (on the GitHub website), right
    under “Quick setup — if you’ve done this kind of thing before”

@@ -4,8 +4,8 @@ Homework 1 Rubric
 The grading of this project follows a specifications grading approach. If you have not already
 done so, make sure to read our `Grading <../grading.html>`__ page for more details.
 
-When grading your work, we will be checking for completeness (i.e., how much of the
-homework you completed) and for quality (whether you completed the exercises in
+When grading your work, you will receive a single ESNU score based on completeness (i.e., how much of the
+homework you completed) and quality (whether you completed the exercises in
 the homework correctly).
 
 Completeness
@@ -47,7 +47,9 @@ of commits with the expected titles)
 
 The graders will also check whether you've provided answers for the exercises in Part III.
 
-You will earn, at least, the following ESNU score depending on how much work you completed:
+The completeness of your submission will get you to, at most, a Satisfactory score (earning an
+Excellent score will depend on the quality of your submission). More specifically, you will earn,
+at least, the following ESNU score depending on how much work you completed:
 
 - Satisfactory: Followed the instructions for Parts I and II mostly correctly, and submitted work for Part III
   (regardless of whether that work is correct, as long as it constitutes a good-faith effort to complete
@@ -59,7 +61,7 @@ You will earn, at least, the following ESNU score depending on how much work you
 Quality
 -------
 
-Amswering most of the Part III exercises correctly will bump you from an N to an S,
+Answering most of the Part III exercises correctly will bump you from an N to an S,
 or from an S to an E. To do this, your submission can only have at most three of the following issues in Part III:
 
 - Exercise 1: Did not identify the correct git command
