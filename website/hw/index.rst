@@ -1,11 +1,6 @@
 Homework
 ========
 
-.. note::
-
-   No homeworks have been posted yet. The first homework will be posted on the
-   first day of the quarter.
-
 +---+------------------------------------------+--------------------------------+--------------------+
 | # | Homework                                 | Rubric                         | Due Date           |
 +===+==========================================+================================+====================+
