@@ -23,6 +23,7 @@ Please see the `syllabus <syllabus.html>`__ for more details.
    :hidden:
 
    syllabus.rst
+   grading.rst
    academic-honesty.rst
    calendar.rst
    code-of-conduct.rst

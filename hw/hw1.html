@@ -17,7 +17,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework 2: Software Design" href="hw2.html" />
+    <link rel="next" title="Homework 1 Rubric" href="hw1_rubric.html" />
     <link rel="prev" title="Homework" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -136,13 +136,6 @@
       
   <div class="section" id="homework-1-git">
 <h1>Homework 1: Git<a class="headerlink" href="#homework-1-git" title="Permalink to this headline">¶</a></h1>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-If you are currently taking this class, you’re welcome to take a look at the homework below,
-but bear in mind that it could change substantially. Do not start working on the homework
-until instructed to do so.</p>
-</div>
 <p><strong>Due:</strong> Wednesday, April 6th, 8pm CDT</p>
 <p>In some of your previous CS courses, you may have become familiar with
 using either Subversion (SVN) or Git to store a copy of your code
@@ -201,16 +194,12 @@ work, including working locally on your own computer.</p>
 <h2>How to complete this homework<a class="headerlink" href="#how-to-complete-this-homework" title="Permalink to this headline">¶</a></h2>
 <p>This homework is divided into three parts. The first two parts provide
 a tutorial-style introduction to various aspects of Git. All you need
-to do is follow the instructions, and you will earn points simply for completing the
-steps described in those instructions
+to do is follow the instructions
 (we will be able to tell whether you followed our instructions by
 looking at your repository). That said, please make sure you understand
 what is accomplished in each step and, if you have any questions, please
 don’t hesitate to <a class="reference external" href="help.html">ask for help</a>.</p>
-<p>The first part is worth 50 points, and the second part is worth 25 points.
-You will get partial credit if you complete some, but not all, of the steps
-described in each of these parts.</p>
-<p>The third part of the homework is worth 25 points and it involves a series of exercises
+<p>The third part of the homework involves a series of exercises
 that require you to find a new Git command (or series
 of Git commands) on your own. This will involve explaining how you solved
 a given exercise, and you will submit your answers on
@@ -223,6 +212,8 @@ enter any answers there, since those will be based
 on the graders’ inspection of your GitHub repository (but we still need
 to include those tasks on Gradescope so we can grade them as part of
 this homework).</p>
+<p>To see how this homework assignment will be graded, please see the
+<a class="reference external" href="hw1_rubric.html">Homework 1 Rubric</a></p>
 </div>
 <div class="section" id="creating-your-homework-repository">
 <h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
@@ -247,9 +238,13 @@ course staff.</p>
 <p>You will start by initializing your repository. Your
 repository is hosted on GitHub, but you can create a local copy in your
 home directory (we will refer to this as your <em>local repository</em>).</p>
-<p>Log into <a class="reference external" href="https://github.com/">https://github.com/</a>. Your homework repository,
+<p>First, make sure you are logged into the GitHub website, and go to
+<a class="reference external" href="https://github.com/uchicago-cmsc22000-2022">https://github.com/uchicago-cmsc22000-2022</a> (you may want to bookmark this
+page, as you’ll likely be accessing it a lot throughout the quarter).
+Your homework repository,
 <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000-2022/hwN-GITHUB_USERNAME</span></code> should appear under
-“Repositories”. This will take you to a page where you can browse your
+“Repositories”.</p>
+<p>Click on the link for your repository. This will take you to a page where you can browse your
 repository through GitHub’s web interface. However, you haven’t
 initialized your repository yet, so GitHub will provide you with the
 instructions to initialize your repository.</p>
@@ -402,7 +397,9 @@ needed; i.e., if you don’t already have a <code class="docutils literal notran
 create one, and then will create a <code class="docutils literal notranslate"><span class="pre">hw1</span></code> directory inside it)</p>
 </li>
 <li><p>Inside that folder, create a file called <code class="docutils literal notranslate"><span class="pre">README.md</span></code> and add your
-full name to the file.</p></li>
+full name to the file. Remember you can create an empty file by
+running the command <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">README.md</span></code> and then opening that file
+with your editor of choice.</p></li>
 <li><p>On your repository’s GitHub page (on the GitHub website), right
 under “Quick setup — if you’ve done this kind of thing before”
 there is a URL field with two buttons: HTTPS and SSH.
@@ -757,12 +754,13 @@ directory (<code class="docutils literal notranslate"><span class="pre">/home/US
 refer to as your <em>temp</em> repository.</p>
 <p>Now, switch to the window that is open to your home repository, add a
 line to <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> with the text <code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">more</span> <span class="pre">change!</span></code>. Create a
-commit for that change and push it to GitHub (you should know how to
+commit for that change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span><span class="s2">&quot;Adding one more change&quot;</span>
+</pre></div>
+</div>
+<p>And push it to GitHub (you should know how to
 do this by now, but make sure to ask for help if
-you’re unsure of how to proceed). Also, you don’t have to use any
-specific commit message (unlike previous steps where we gave you the
-exact message), but make sure your commit message is descriptive and
-to the point.</p>
+you’re unsure of how to proceed).</p>
 <p>Next, switch to the window that is open to your temp repository, check
 if that change appears in the <code class="docutils literal notranslate"><span class="pre">test.txt</span></code> file. It will not, because
 you have not yet downloaded the latest commits from the
@@ -869,8 +867,11 @@ In that case, run this command instead:</p>
     <span class="n">modified</span><span class="p">:</span>   <span class="n">test</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>Go ahead and run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>. The commit will now include only
-<code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p>
+<p>Go ahead and commit this change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span><span class="s2">&quot;Our last change?&quot;</span>
+</pre></div>
+</div>
+<p>The commit will now include only <code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p>
 <p>We’re nearing the end of the first part of the homework so, before
 continuing to the second part of the homework, let’s make sure all
 our changes have been committed and pushed:</p>

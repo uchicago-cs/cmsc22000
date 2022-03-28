@@ -1,14 +1,6 @@
 Homework 1: Git
 ===============
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
-
 **Due:** Wednesday, April 6th, 8pm CDT
 
 In some of your previous CS courses, you may have become familiar with
@@ -74,18 +66,13 @@ How to complete this homework
 
 This homework is divided into three parts. The first two parts provide
 a tutorial-style introduction to various aspects of Git. All you need
-to do is follow the instructions, and you will earn points simply for completing the
-steps described in those instructions
+to do is follow the instructions
 (we will be able to tell whether you followed our instructions by
 looking at your repository). That said, please make sure you understand
 what is accomplished in each step and, if you have any questions, please
 don't hesitate to `ask for help <help.html>`__.
 
-The first part is worth 50 points, and the second part is worth 25 points.
-You will get partial credit if you complete some, but not all, of the steps
-described in each of these parts.
-
-The third part of the homework is worth 25 points and it involves a series of exercises
+The third part of the homework involves a series of exercises
 that require you to find a new Git command (or series
 of Git commands) on your own. This will involve explaining how you solved
 a given exercise, and you will submit your answers on
@@ -99,6 +86,9 @@ enter any answers there, since those will be based
 on the graders’ inspection of your GitHub repository (but we still need
 to include those tasks on Gradescope so we can grade them as part of
 this homework).
+
+To see how this homework assignment will be graded, please see the
+`Homework 1 Rubric <hw1_rubric.html>`__
 
 Creating your homework repository
 ---------------------------------
@@ -127,9 +117,14 @@ You will start by initializing your repository. Your
 repository is hosted on GitHub, but you can create a local copy in your
 home directory (we will refer to this as your *local repository*).
 
-Log into https://github.com/. Your homework repository,
+First, make sure you are logged into the GitHub website, and go to
+https://github.com/uchicago-cmsc22000-2022 (you may want to bookmark this
+page, as you'll likely be accessing it a lot throughout the quarter).
+Your homework repository,
 ``uchicago-cmsc22000-2022/hwN-GITHUB_USERNAME`` should appear under
-“Repositories”. This will take you to a page where you can browse your
+“Repositories”.
+
+Click on the link for your repository. This will take you to a page where you can browse your
 repository through GitHub’s web interface. However, you haven’t
 initialized your repository yet, so GitHub will provide you with the
 instructions to initialize your repository.
@@ -297,7 +292,9 @@ Do the following:
    create one, and then will create a ``hw1`` directory inside it)
 
 -  Inside that folder, create a file called ``README.md`` and add your
-   full name to the file.
+   full name to the file. Remember you can create an empty file by
+   running the command ``touch README.md`` and then opening that file
+   with your editor of choice.
 
 -  On your repository’s GitHub page (on the GitHub website), right
    under “Quick setup — if you’ve done this kind of thing before”
@@ -726,12 +723,13 @@ refer to as your *temp* repository.
 
 Now, switch to the window that is open to your home repository, add a
 line to ``test.txt`` with the text ``One more change!``. Create a
-commit for that change and push it to GitHub (you should know how to
+commit for that change::
+
+    git commit -m"Adding one more change"
+
+And push it to GitHub (you should know how to
 do this by now, but make sure to ask for help if
-you’re unsure of how to proceed). Also, you don't have to use any
-specific commit message (unlike previous steps where we gave you the
-exact message), but make sure your commit message is descriptive and
-to the point.
+you’re unsure of how to proceed).
 
 Next, switch to the window that is open to your temp repository, check
 if that change appears in the ``test.txt`` file. It will not, because
@@ -859,8 +857,11 @@ Now, ``git status`` will show the following:
         modified:   test.txt
 
 
-Go ahead and run ``git commit``. The commit will now include only
-``README.md``.
+Go ahead and commit this change::
+
+   git commit -m"Our last change?"
+
+The commit will now include only ``README.md``.
 
 We're nearing the end of the first part of the homework so, before
 continuing to the second part of the homework, let's make sure all

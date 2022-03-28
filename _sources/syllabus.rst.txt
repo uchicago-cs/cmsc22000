@@ -143,24 +143,7 @@ in this class.
 Grading
 -------
 
-.. note::
-
-   We are currently updating the grading scheme for this class. Full details will be available during
-   the first week of the quarter. That said, the coursework that will have an impact on your final
-   grade will be the following:
-
-   -  Homework Assignments
-   -  Project, divided into:
-
-      -  Team Design Exercise
-      -  Individual work on issues/tasks
-      -  Peer Feedback
-      -  Final Presentation
-
-
-   Please see the `Project Policies <project/policies.html>`__ page for more details
-   on the coursework involved in the project, but please bear in mind that we are
-   in the process of updating that page too.
+Please see our `Grading <grading.html>`__ page.
 
 Policies
 --------
