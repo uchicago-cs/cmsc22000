@@ -1,13 +1,6 @@
 Homework 2: Software Design
 ===========================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
 **Due:** Wednesday, April 13, 8pm CDT
 
 In this homework, you will carry out some basic software design tasks. This
@@ -25,8 +18,8 @@ used in the previous homework (in general, GitHub will create a new
 repository for each assignment). Like the previous homework, we will provide
 you with an *invitation URL* that will allow you sign up for the homework
 assignment on GitHub, and which will result in the creation of a
-repository called ``2021-hw2-GITHUB_USERNAME`` inside our
-``uchicago-cmsc22000`` organization on GitHub.
+repository called ``hw2-GITHUB_USERNAME`` inside our
+``uchicago-cmsc22000-2022`` organization on GitHub.
 
 One thing that will be different in this homework is that your homework repository
 will be seeded with some code. So, once you’ve signed up for the homework
