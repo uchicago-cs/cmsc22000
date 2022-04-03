@@ -37,6 +37,7 @@ If you need any help on the homework assignments, please see our `Getting help o
    hw1.rst
    hw1_rubric.rst
    hw2.rst
+   hw2_rubric.rst
    hw3.rst
    hw4.rst
    hw5.rst

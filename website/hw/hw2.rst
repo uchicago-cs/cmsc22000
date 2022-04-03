@@ -94,35 +94,54 @@ However, as we continue to develop libgeometry, we realize that we need
 to perform segment operations in a variety of other places. So, it now
 makes sense to refactor our code to add a Segment module.
 
+You will do
+so by performing the tasks below but, as you do, remember that you
+are just *refactoring* the code. Most notably, we are going to change
+its decomposition and organization, but not its internal logic.
+This means that you do not need to understand how
+segment intersections are actually computed (in fact, no part
+of this assignment hinges on knowing how the intersections are
+actually computed).
+
 You must do the following:
 
--  **Task 1** (30 points) Add ``segment.c`` / ``segment.h`` files with
+-  **Task 1** Add ``segment.c`` / ``segment.h`` files with
    the implementation and interface of a new Segment data type. Make
    sure to include new/init/free functions (like the ones for Point and
    Polygon). You will also need to update the Makefile to make sure this
    new file is compiled and included in the libgeometry library. Just
    update the ``SRCS`` variable in the Makefile to include your new
    ``segment.c`` file.
--  **Task 2** (20 points) Take ``segment_intersect`` (and associated
-   helper functions) out of ``point.c`` / ``point.h`` and make them a
-   part of the Segment module. Take into account that this will involve
-   changing the parameters of the function, since it now has to operate
+-  **Task 2** Take ``segment_intersect`` and ``on_segment``
+   out of ``point.c`` / ``point.h`` and make them a part of the Segment module.
+   Take into account that this will involve
+   changing the parameters of the functions, since they now have to operate
    on Segments, not on Points.
--  **Task 3** (20 points) Update the Polygon implementation so it uses
+
+   Careful: ``segment_intersect`` depends on the ``orientation`` function,
+   which is staying in ``point.c``. While that function was previously an
+   internal function of the Point module, we will now want to "publish"
+   that function through the ``point.h`` header file (while we're at it,
+   let's change its name to ``point_orientation``)
+-  **Task 3** Update the Polygon implementation so it uses
    this updated ``segment_intersect`` function. At this point, you
    should be able to build the entire library by running ``make``
--  **Task 4** (30 points) Uh oh, the libgeometry library may build
+-  **Task 4** Uh oh, the libgeometry library may build
    correctly, but not the tests! (try this by running ``make tests``)
    This is because they still depend on the old version of the
    ``segment_intersect`` function. This is an example of how things can
    break if dependencies are not properly managed.
 
-   In the ``test_point.c`` file, update the intersection tests to make
-   sure they use the new version of the file (you don’t need to know
-   exactly how these tests work, and you can keep these tests inside the
-   ``test_point.c``; in a future homework, we will see a cleaner way of
-   updating the tests). Once you have fixed this, you should be able to
+   In the ``test_point.c`` file, update the call to ``segment_intersect``
+   that appears inside the ``segment_check`` function.
+   You **do not** need to write new tests, nor do you need to create
+   a new ``test_segment.c`` file. For now, it is enough to fix the
+   one call to ``segment_intersect`` that appears in the ``segment_check`` function;
+   in a future homework, we will see a cleaner way of updating these tests).
+
+   Once you have fixed the call to ``segment_intersect``, you should be able to
    run ``make tests`` followed by ``tests/test-libgeometry``.
+
 
 Submitting your homework
 ------------------------
@@ -133,11 +152,8 @@ unlike the previous homework, we need you to submit the code that is in your
 repository (as opposed to filling in some text fields).
 
 When submitting through Gradescope, you will be given the option of
-manually uploading files, or of uploading a GitHub repository (we
-recommend the latter, as this ensures you are uploading exactly the
-files that are in your repository). If you upload your repository, make
-sure you select your ``2021-hw2-GITHUB_USERNAME`` repository, with
-“main” as the branch. Please note that you can submit as many times as
+uploading a GitHub repository. Make sure you select your ``hw2-GITHUB_USERNAME``
+repository, with “main” as the branch. Please note that you can submit as many times as
 you want before the deadline.
 
 Once you submit your files, an “autograder” will run. This won’t
