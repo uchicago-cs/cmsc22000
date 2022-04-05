@@ -258,12 +258,6 @@ Grading
 
 Unlike the homeworks, the grading for the design warm-up exercise is more subjective,
 as there are many valid designs one could come up with that meet the above requirements.
-Fortunately, you will have multiple opportunities to address any feedback we give you.
-Most notably, after you get your graded Design Warm-up #2 exercise back, you will be given
-a concrete list of issues that would need to be changed/improved. You will be allowed to
-make a resubmission and, at that point, your score will be based on how many of those
-issues you address in your resubmission.
-
 That said, there will be a few guiding principles when determining your score in Design
 Warm-up #1 and #2:
 
@@ -278,7 +272,16 @@ Warm-up #1 and #2:
   - Your design involves fewer than three modules.
   - In general, if your design has major issues that would require a substantial refactoring.
 
+Additionally, you will have multiple opportunities to address any feedback we give you: you
+will get feedback on Design Warm-up #1 before Design Warm-up #2 is due and, after you get
+your graded Design Warm-up #2 back, you will be given a concrete list of issues that
+would need to be changed/improved, and will be allowed to make a resubmission to
+address those issues.
 
+Please note that, for the purposes of your final grade, the Design Warm-up only
+contributes one ESNU score: the score you get for Design Warm-up #2 (which, optionally,
+you can improve with a resubmission). Any feedback you receive after Design Warm-up #1
+is just informational.
 
 ..
     Design Warm-up #2: Boardmaster 3000 (Part II)

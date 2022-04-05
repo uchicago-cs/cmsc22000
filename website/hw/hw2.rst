@@ -112,6 +112,10 @@ You must do the following:
    new file is compiled and included in the libgeometry library. Just
    update the ``SRCS`` variable in the Makefile to include your new
    ``segment.c`` file.
+
+   If you encounter any issues when re-building your code with the
+   new ``segment.c`` / ``segment.h``, try running ``make clean`` before
+   running ``make``.
 -  **Task 2** Take ``segment_intersect`` and ``on_segment``
    out of ``point.c`` / ``point.h`` and make them a part of the Segment module.
    Take into account that this will involve
