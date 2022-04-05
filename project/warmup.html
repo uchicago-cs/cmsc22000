@@ -253,19 +253,19 @@ are provided by that module, and the C file should contain empty
 implementations of those functions. Each function in the header file
 must include code comments explaining the purpose of the function.</p>
 <p>For example:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="w"></span>
 
-    <span class="cm">/* This function adds two numbers */</span>
-    <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* This function adds two numbers */</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">math</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span>
+<span class="n">math</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="w"></span>
 
-    <span class="cm">/* See math.h*/</span>
-    <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="cm">/* TODO */</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="cm">/* See math.h*/</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="cm">/* TODO */</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>You must also provide struct definitions for any data structures you
@@ -277,34 +277,34 @@ can include a forward declaration in lieu of an actual data structure
 (i.e., you do not need to design a linked list module or find an
 existing one).</p>
 <p>For example:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printer</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printer</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="w"></span>
 
-    <span class="cm">/* Forward declaration */</span>
-    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">list</span> <span class="n">list_t</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* Forward declaration */</span><span class="w"></span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">list</span><span class="w"> </span><span class="n">list_t</span><span class="p">;</span><span class="w"></span>
 
-    <span class="cm">/* This struct represent a single print job. A print</span>
-<span class="cm">       job includes some text that needs to be printed out */</span>
-    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">printjob</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">identifier</span><span class="p">;</span>
-        <span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">;</span>
-    <span class="p">}</span> <span class="n">printjob_t</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* This struct represent a single print job. A print</span>
+<span class="cm">       job includes some text that needs to be printed out */</span><span class="w"></span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">printjob</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">identifier</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">text</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">printjob_t</span><span class="p">;</span><span class="w"></span>
 
-    <span class="cm">/*</span>
+<span class="w">    </span><span class="cm">/*</span>
 <span class="cm">    typedef struct printer</span>
 <span class="cm">    {</span>
 <span class="cm">        char *name;</span>
 
-<span class="cm">        /* Duplex printing: true if printer can do two-sided printing */</span>
-        <span class="kt">bool</span> <span class="n">duplex</span><span class="p">;</span>
+<span class="cm">        /* Duplex printing: true if printer can do two-sided printing */</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">duplex</span><span class="p">;</span><span class="w"></span>
 
-        <span class="cm">/* Print job that is currently being printed (NULL if none) */</span>
-        <span class="n">printjob_t</span> <span class="o">*</span><span class="n">current_job</span><span class="p">;</span>
+<span class="w">        </span><span class="cm">/* Print job that is currently being printed (NULL if none) */</span><span class="w"></span>
+<span class="w">        </span><span class="n">printjob_t</span><span class="w"> </span><span class="o">*</span><span class="n">current_job</span><span class="p">;</span><span class="w"></span>
 
-        <span class="cm">/* List of printjob_t structs. Represents the jobs that</span>
-<span class="cm">           are waiting to be printed */</span>
-        <span class="n">list_t</span> <span class="o">*</span><span class="n">jobs</span><span class="p">;</span>
-    <span class="p">}</span> <span class="n">printer_t</span><span class="p">;</span>
+<span class="w">        </span><span class="cm">/* List of printjob_t structs. Represents the jobs that</span>
+<span class="cm">           are waiting to be printed */</span><span class="w"></span>
+<span class="w">        </span><span class="n">list_t</span><span class="w"> </span><span class="o">*</span><span class="n">jobs</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">printer_t</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>We encourage you to follow <a class="reference external" href="https://uchicago-cs.github.io/dev-guide/style_guide.html">this style
@@ -590,7 +590,7 @@ the deadline.</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
     </p>
   </div>
 </footer>
