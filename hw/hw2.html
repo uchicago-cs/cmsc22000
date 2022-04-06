@@ -17,7 +17,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework 3: Make" href="hw3.html" />
+    <link rel="next" title="Homework 2 Rubric" href="hw2_rubric.html" />
     <link rel="prev" title="Homework 1 Rubric" href="hw1_rubric.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -98,13 +98,6 @@
       
   <div class="section" id="homework-2-software-design">
 <h1>Homework 2: Software Design<a class="headerlink" href="#homework-2-software-design" title="Permalink to this headline">¶</a></h1>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-If you are currently taking this class, you’re welcome to take a look at the homework below,
-but bear in mind that it could change substantially. Do not start working on the homework
-until instructed to do so.</p>
-</div>
 <p><strong>Due:</strong> Wednesday, April 13, 8pm CDT</p>
 <p>In this homework, you will carry out some basic software design tasks. This
 homework will be shorter than other homeworks, because you will also be working
@@ -119,8 +112,8 @@ used in the previous homework (in general, GitHub will create a new
 repository for each assignment). Like the previous homework, we will provide
 you with an <em>invitation URL</em> that will allow you sign up for the homework
 assignment on GitHub, and which will result in the creation of a
-repository called <code class="docutils literal notranslate"><span class="pre">2021-hw2-GITHUB_USERNAME</span></code> inside our
-<code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization on GitHub.</p>
+repository called <code class="docutils literal notranslate"><span class="pre">hw2-GITHUB_USERNAME</span></code> inside our
+<code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000-2022</span></code> organization on GitHub.</p>
 <p>One thing that will be different in this homework is that your homework repository
 will be seeded with some code. So, once you’ve signed up for the homework
 assignment on GitHub, you will just need to clone the repository to
@@ -179,33 +172,53 @@ time to define a Segment module just to compute segment intersections.</p>
 <p>However, as we continue to develop libgeometry, we realize that we need
 to perform segment operations in a variety of other places. So, it now
 makes sense to refactor our code to add a Segment module.</p>
+<p>You will do
+so by performing the tasks below but, as you do, remember that you
+are just <em>refactoring</em> the code. Most notably, we are going to change
+its decomposition and organization, but not its internal logic.
+This means that you do not need to understand how
+segment intersections are actually computed (in fact, no part
+of this assignment hinges on knowing how the intersections are
+actually computed).</p>
 <p>You must do the following:</p>
 <ul>
-<li><p><strong>Task 1</strong> (30 points) Add <code class="docutils literal notranslate"><span class="pre">segment.c</span></code> / <code class="docutils literal notranslate"><span class="pre">segment.h</span></code> files with
+<li><p><strong>Task 1</strong> Add <code class="docutils literal notranslate"><span class="pre">segment.c</span></code> / <code class="docutils literal notranslate"><span class="pre">segment.h</span></code> files with
 the implementation and interface of a new Segment data type. Make
 sure to include new/init/free functions (like the ones for Point and
 Polygon). You will also need to update the Makefile to make sure this
 new file is compiled and included in the libgeometry library. Just
 update the <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> variable in the Makefile to include your new
-<code class="docutils literal notranslate"><span class="pre">segment.c</span></code> file.</p></li>
-<li><p><strong>Task 2</strong> (20 points) Take <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> (and associated
-helper functions) out of <code class="docutils literal notranslate"><span class="pre">point.c</span></code> / <code class="docutils literal notranslate"><span class="pre">point.h</span></code> and make them a
-part of the Segment module. Take into account that this will involve
-changing the parameters of the function, since it now has to operate
-on Segments, not on Points.</p></li>
-<li><p><strong>Task 3</strong> (20 points) Update the Polygon implementation so it uses
+<code class="docutils literal notranslate"><span class="pre">segment.c</span></code> file.</p>
+<p>If you encounter any issues when re-building your code with the
+new <code class="docutils literal notranslate"><span class="pre">segment.c</span></code> / <code class="docutils literal notranslate"><span class="pre">segment.h</span></code>, try running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> before
+running <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
+</li>
+<li><p><strong>Task 2</strong> Take <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> and <code class="docutils literal notranslate"><span class="pre">on_segment</span></code>
+out of <code class="docutils literal notranslate"><span class="pre">point.c</span></code> / <code class="docutils literal notranslate"><span class="pre">point.h</span></code> and make them a part of the Segment module.
+Take into account that this will involve
+changing the parameters of the functions, since they now have to operate
+on Segments, not on Points.</p>
+<p>Careful: <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> depends on the <code class="docutils literal notranslate"><span class="pre">orientation</span></code> function,
+which is staying in <code class="docutils literal notranslate"><span class="pre">point.c</span></code>. While that function was previously an
+internal function of the Point module, we will now want to “publish”
+that function through the <code class="docutils literal notranslate"><span class="pre">point.h</span></code> header file (while we’re at it,
+let’s change its name to <code class="docutils literal notranslate"><span class="pre">point_orientation</span></code>)</p>
+</li>
+<li><p><strong>Task 3</strong> Update the Polygon implementation so it uses
 this updated <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> function. At this point, you
 should be able to build the entire library by running <code class="docutils literal notranslate"><span class="pre">make</span></code></p></li>
-<li><p><strong>Task 4</strong> (30 points) Uh oh, the libgeometry library may build
+<li><p><strong>Task 4</strong> Uh oh, the libgeometry library may build
 correctly, but not the tests! (try this by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">tests</span></code>)
 This is because they still depend on the old version of the
 <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> function. This is an example of how things can
 break if dependencies are not properly managed.</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">test_point.c</span></code> file, update the intersection tests to make
-sure they use the new version of the file (you don’t need to know
-exactly how these tests work, and you can keep these tests inside the
-<code class="docutils literal notranslate"><span class="pre">test_point.c</span></code>; in a future homework, we will see a cleaner way of
-updating the tests). Once you have fixed this, you should be able to
+<p>In the <code class="docutils literal notranslate"><span class="pre">test_point.c</span></code> file, update the call to <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code>
+that appears inside the <code class="docutils literal notranslate"><span class="pre">segment_check</span></code> function.
+You <strong>do not</strong> need to write new tests, nor do you need to create
+a new <code class="docutils literal notranslate"><span class="pre">test_segment.c</span></code> file. For now, it is enough to fix the
+one call to <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> that appears in the <code class="docutils literal notranslate"><span class="pre">segment_check</span></code> function;
+in a future homework, we will see a cleaner way of updating these tests).</p>
+<p>Once you have fixed the call to <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code>, you should be able to
 run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">tests</span></code> followed by <code class="docutils literal notranslate"><span class="pre">tests/test-libgeometry</span></code>.</p>
 </li>
 </ul>
@@ -217,11 +230,8 @@ your code to GitHub. You will submit your code through Gradescope but,
 unlike the previous homework, we need you to submit the code that is in your
 repository (as opposed to filling in some text fields).</p>
 <p>When submitting through Gradescope, you will be given the option of
-manually uploading files, or of uploading a GitHub repository (we
-recommend the latter, as this ensures you are uploading exactly the
-files that are in your repository). If you upload your repository, make
-sure you select your <code class="docutils literal notranslate"><span class="pre">2021-hw2-GITHUB_USERNAME</span></code> repository, with
-“main” as the branch. Please note that you can submit as many times as
+uploading a GitHub repository. Make sure you select your <code class="docutils literal notranslate"><span class="pre">hw2-GITHUB_USERNAME</span></code>
+repository, with “main” as the branch. Please note that you can submit as many times as
 you want before the deadline.</p>
 <p>Once you submit your files, an “autograder” will run. This won’t
 actually be doing any grading, but it will try to build your code, to
