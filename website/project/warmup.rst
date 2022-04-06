@@ -246,9 +246,8 @@ your code to GitHub.
 
 You will submit your code through Gradescope. Please note that only one
 team member needs to make the submission (that team member will be given
-the option to specify who else is in their team). When submitting, you
-uploading a GitHub repository (we recommend the latter, as this ensures you are
-uploading exactly the files that are in your repository). Make sure you select your
+the option to specify who else is in their team). When submitting,
+you will be given the option of uploading a GitHub repository. Make sure you select your
 ``design1-team-X`` repository, with “main” as the
 branch. Please note that you can submit as many times as you want before
 the deadline.
