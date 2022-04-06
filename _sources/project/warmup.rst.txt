@@ -281,7 +281,8 @@ address those issues.
 Please note that, for the purposes of your final grade, the Design Warm-up only
 contributes one ESNU score: the score you get for Design Warm-up #2 (which, optionally,
 you can improve with a resubmission). Any feedback you receive after Design Warm-up #1
-is just informational.
+is just informational. If you are not sure what this means, now may be a good time to
+review our `Grading <../grading.html>`__ page.
 
 ..
     Design Warm-up #2: Boardmaster 3000 (Part II)
