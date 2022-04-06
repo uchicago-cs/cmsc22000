@@ -267,6 +267,7 @@ Warm-up #1 and #2:
 - In general, you will receive a Satisfactory score if we can identify a small
   number of issues with your design that should only require a few hours to address.
 - You will receive a Needs Improvement score if one of the following applies:
+
   - Your design does not support all of the functionality described in "Your Task".
   - Your design involves fewer than three modules.
   - In general, if your design has major issues that would require a substantial refactoring.
