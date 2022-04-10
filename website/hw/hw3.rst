@@ -33,7 +33,7 @@ Creating your homework repository
 Like previous homeworks, we will provide you with an *invitation URL* that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``hw3-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw3-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
 on GitHub. Like Homework #2, your repository will be seeded with some files
 for the homework.
 
@@ -48,7 +48,7 @@ In the ``polygon-area`` directory, you will see the following files:
 - Polygon Area program: ``polygon-area.c``
 
 All the files, except ``polygon-area.c``, are taken directly from
-the ``libgeometry`` files from Homework #2. Later in this homework
+the ``libgeometry`` example from Homework #2. Later in this homework
 we will explain why ``libgeometry`` has a more elaborate directory
 structure but, for the purposes of this homework, it'll be simpler
 to start with all the files in the same directory.
@@ -68,7 +68,7 @@ Notice how we can't compile the ``polygon-area.c`` file by itself:
     /usr/bin/ld: polygon-area.c:(.text+0x10c): undefined reference to `polygon_area'
     collect2: error: ld returned 1 exit status
 
-Notice how these are *linker errors* (not compiler errors). There is nothing wrong
+This results in a bunch of *linker errors* (not compiler errors). There is nothing wrong
 with ``polygon-area.c`` itself, but it depends on functions like ``polygon_area``,
 which are defined in a different C file (``polygon.c``). We need to compile that
 file, as well as ``point.c`` (which the polygon module depends on), to be able
@@ -304,7 +304,7 @@ only object files, ``gcc`` knows that no further compilation is required,
 and that all it has to do is to link them together (and with the math
 library, specified with the ``-lm`` parameter).
 
-.. note:: What happens if we omit the ``-c`` option?
+.. admonition:: What happens if we omit the ``-c`` option?
 
    Let's see what happens if we omit the ``-c`` option when
    compiling the object files:
@@ -322,20 +322,20 @@ library, specified with the ``-lm`` parameter).
       polygon.c:(.text+0x64f): undefined reference to `point_distance'
       collect2: error: ld returned 1 exit status
 
-    If we run the compiler like this, it will perform both a compilation and linking
-    step. This means that, since ``polygon.c`` includes calls to function like
-    ``point_init`` and ``segment_intersect``, it will attempt to link those calls
-    to their implementation (but that implementation is nowhere to be found in ``polygon.c``).
-    If we only perform the compilation step (by using the ``-c`` option) those calls
-    are left unlinked in the object file, so they don't cause any errors.
+   If we run the compiler like this, it will perform both a compilation and linking
+   step. This means that, since ``polygon.c`` includes calls to function like
+   ``point_init`` and ``segment_intersect``, it will attempt to link those calls
+   to their implementation (but that implementation is nowhere to be found in ``polygon.c``).
+   If we only perform the compilation step (by using the ``-c`` option) those calls
+   are left unlinked in the object file, so they don't cause any errors.
 
-    Notice how we also get this error::
+   Notice how we also get this error::
 
-        (.text+0x24): undefined reference to `main'
+       (.text+0x24): undefined reference to `main'
 
    This is because, by default, the compiler will try to produce an executable file,
-   which means there has to be a ``main()`` function that specifies what that
-   executable will do.
+   which means it will look for a ``main()`` function that specifies what that
+   executable will do (and will produce a linker error if no such function is found)
 
 Now that we've separated the compiling and linking steps, we can avoid
 re-compiling all the C files every time. For example, if we modify only
@@ -380,11 +380,11 @@ Notice how the ``polygon-area`` rule now depends on the object files,
 not on the C files.
 
 Let's give this a try, but lets first make sure that we're starting
-from scratch. Run the following to delete any files we may have built::
+from scratch. Run the following to delete any files we may have built:
 
 .. code-block:: shell
 
-    $ rm -f point.o polygon.o polygon-area.o polygon-area
+   $ rm -f point.o polygon.o polygon-area.o polygon-area
 
 Now, let's run ``make``:
 
@@ -437,7 +437,7 @@ Phony rules
 So far, we've defined a couple of rules whose goal is to
 produce specific files (either the object files or the ``polygon-area``
 executable). However, it is also possible to write so-called
-*phony* rules that don't produce any files, but to perform
+*phony* rules that don't produce any files, and which instead just perform
 some action.
 
 For example, we've previously run the following command
@@ -456,7 +456,7 @@ We can create a ``clean`` rule that performs this action:
 
 And which we can run like this:
 
- .. code-block:: shell
+.. code-block:: shell
 
     $ make clean
     rm -f point.o polygon.o polygon-area.o polygon-area
@@ -484,10 +484,10 @@ in your ``Makefile``, specifying how to "clean up" all the files
 generated by the compiler.
 
 Before we see another common phony rule, try running ``make`` without
-any parameters (make sure you've run ``make clean`` as show above before
+any parameters (make sure you've run ``make clean`` as shown above before
 doing this):
 
- .. code-block:: shell
+.. code-block:: shell
 
     $ make
     gcc point.c -c -o point.o
@@ -541,7 +541,7 @@ To recap, our full Makefile should now look like this:
 
 Let's try running ``make clean`` followed by ``make``:
 
- .. code-block:: shell
+.. code-block:: shell
 
     $ make clean
     rm -f point.o polygon.o polygon-area.o polygon-area
@@ -563,7 +563,7 @@ Besides defining rules, Make also allows us to define variables,
 which can help keep our Makefile tidy. Two variables you'll
 often see in Makefiles are ``CC``, to specify the compiler
 we want to use, and ``CFLAGS``, to specify the parameters
-we want to pass to the parameter.
+we want to pass to the compiler.
 
 For example, let's add this at the top of our ``Makefile``:
 
@@ -654,7 +654,7 @@ would be to update the variables at the top of the file.
 
 Before moving on, let's make sure this works as expected:
 
- .. code-block:: shell
+.. code-block:: shell
 
     $ make clean
     rm point.o polygon.o polygon-area.o polygon-area
@@ -728,7 +728,7 @@ In this rule, ``%.o`` will match any file ending with ``.o``, and will
 set its prerequisite to the same file, but replacing ``.o`` with ``.c``.
 
 While this can be a useful rule, it is a bit too broad for our purposes,
-since have a specific list of object files we want to compile. We can
+since we have a specific list of object files we want to compile. We can
 instead write the rule like this:
 
 .. code-block:: makefile
@@ -739,8 +739,8 @@ instead write the rule like this:
 This has the same effect as the previous (more general) rule, but
 limiting the list of targets only to the files in the ``OBJS`` variable.
 
-It is also possible to peform pattern substitutions with variable so,
-for example, we could redefine our ``OBJS`` variable like this:
+It is also possible to peform pattern substitutions on variables.
+For example, we could redefine our ``OBJS`` variable like this:
 
 .. code-block:: makefile
 
@@ -841,13 +841,12 @@ Submitting your homework
 ------------------------
 
 Before submitting, make sure you’ve added, committed, and pushed all
-your code to GitHub. Like the previous homework, you will submit your code
-through Gradescope,
-
-When submitting through Gradescope, you will be given the option of
-manually uploading files, or of uploading a GitHub repository (we
-recommend the latter, as this ensures you are uploading exactly the
-files that are in your repository). If you upload your repository, make
-sure you select your ``2021-hw3-GITHUB_USERNAME`` repository, with
-“main” as the branch. Please note that you can submit as many times as
+your work to GitHub. When submitting through Gradescope, you will be given the option of
+uploading a GitHub repository. Make sure you select your ``hw3-GITHUB_USERNAME``
+repository, with “main” as the branch. Please note that you can submit as many times as
 you want before the deadline.
+
+Once you submit your files, an “autograder” will run. This won’t
+actually be doing any grading, but it will try to build your code, to
+make sure you don’t have any compiler errors, etc. If you do, make sure
+to fix them and re-submit again.
