@@ -852,50 +852,263 @@ Let's make sure it works correctly:
 Task 1: Makefile for the micro editor
 -------------------------------------
 
-TODO: Given the code for the micro editor, write a Makefile for it.
+We have included a ``micro-editor`` directory in your repository with
+the code for a very simple terminal-based editor
+called ``micro``. This is our version of the ``kilo`` editor, a simple
+but functional text editor that can be implemented in about 1,000 lines of C
+code; if you're interested, you can see a step-by-step guide to writing this
+editor here: https://viewsourcecode.org/snaptoken/kilo/ (please note that you
+do not have to read this to complete this homework; however, if you're interested
+in the inner workings of a text editor, you may find that guide interesting).
 
+``micro`` largely follows the same structure as the ``kilo`` code, except we
+divided it into multiple modules and documented the code following our style guide.
+
+You can compile and run the editor like this:
+
+.. code-block:: shell
+
+    $ gcc src/*.c -o micro
+    $ ./micro
+
+This will open the editor with a "blank file". You can start typing to edit
+the file, and you'll notice that you can move around with the arrow keys, use
+the Backspace key, and the Delete key. You should be able to quit the editor
+by pressing Ctrl-Q (if you modified the file, you'll have to press it three
+times to confirm you want to exit without saving).
+
+Your task is simple: write a Makefile that will build the ``micro``
+executable. Take into account that, while we were able to compile
+the executable just by running ``gcc src/*.c -o micro``, your Makefile
+should follow the same approach as the Makefile for ``polygon-area``:
+you must build each object file separately, and link them together
+into a ``micro`` executable. You must also use variables and patterns
+to avoid repeated code in your Makefile.
+
+.. admonition:: The ``CMakeLists.txt`` file
+
+    You'll notice there is also a ``CMakeLists.txt`` file in the
+    ``micro-editor`` directory. You can ignore that file for now;
+    we will come back to it later in the homework.
 
 Building a library
 ------------------
 
-TODO: Show how to build a library
+So far, we've written a Makefile whose ultimate purpose is to build
+a ``polygon-area`` executable. However, let's say that we now
+wanted to build an additional executable, ``point-distance``, that
+relied on the Point module. Go ahead and create a file called
+``point-distance.c`` with the following code:
+
+.. code-block:: c
+
+    #include <stdio.h>
+    #include "point.h"
+
+    int main()
+    {
+        point_t p1, p2;
+
+        printf("[Point 1] Please enter a value for x: ");
+        scanf("%lf", &p1.x);
+
+        printf("[Point 1] Please enter a value for y: ");
+        scanf("%lf", &p1.y);
+
+        printf("[Point 2] Please enter a value for x: ");
+        scanf("%lf", &p2.x);
+
+        printf("[Point 2] Please enter a value for y: ");
+        scanf("%lf", &p2.y);
+
+        printf("The distance between (%.2lf, %.2lf) and "
+               "(%.2lf, %.2lf) is %.2lf\n", p1.x, p1.y, p2.x, p2.y,
+               point_distance(&p1, &p2));
+    }
+
+We *could* create another Makefile where the ``BIN`` variable is set
+to ``point-distance``, or we could even edit our existing Makefile
+with an additional rule to build ``point-distance``. However,
+this would result in ``polygon-area`` and ``point-distance``
+being *statically linked* with the Point and Polygon modules,
+meaning that the ``polygon-area`` and ``point-distance`` executables
+will contain the compiled binary code for any Point or Polygon functions they
+use. If we have a lot of executables like this, that could mean
+a lot of repeated binary code across all the executables.
+
+Instead, it would be preferable to build the Point and Polygon modules
+into a *shared library* that can be *dynamically linked* with the
+``polygon-area`` and ``point-distance`` executables. More specifically,
+we will build a ``libgeometry.so`` file containing the binary code
+of the Point and Polygon modules.
+
+For example, the compiled binary code for the ``point_distance``
+function would be contained in ``libgeometry.so``, and the ``point-distance``
+executable would just include a reference to that function
+(that would be linked to the actual ``point_distance`` code in ``libgeometry.so``
+when the ``point-distance`` executable is run).
+
+To build the library, we would just need to run this:
+
+.. code-block:: shell
+
+    $ gcc -fPIC -c point.c -o point.o
+    $ gcc -fPIC -c polygon.c -o polygon.o
+    $ gcc -shared -o libgeometry.so point.o polygon.o
+
+Notice how we're compiling the Point and Polygon modules as we did
+before, but we are now using the ``-fPIC`` option. This flag tells
+gcc to enable *position-independent code*. Position-independence
+is beyond the scope of this homework, but it’s necessary for
+building shared libraries.
+
+Then, we simply link the ``point.o`` and ``polygon.o`` object files
+like we did before except, instead of producing an executable,
+we produce the ``libgeometry.so`` file (the ``-shared`` option
+instructs the linker to produce a library instead of an executable)
+
+Then, to build the ``point-distance`` executable, we do the following:
+
+.. code-block:: shell
+
+    gcc point-distance.c -o point-distance -L. -lgeometry -lm
+
+Notice how we now include an ``-lgeometry`` option to tell the
+linker to link with the ``libgeometry.so`` library (by default,
+passing *NAME* to the ``-l`` option will result in the linker
+searching for a file called ``libNAME.so``). We additionally
+pass the ``-L.`` option to tell the linker to look for
+libraries in the current directory.
+
+.. admonition:: What about ``-lm``?
+
+   We've used the ``-lm`` option previously to link
+   our executables to the standard math library, but
+   we've just said that using an option like ``-lm``
+   would result in linking with with a library called
+   ``libm.so``. So, where is that file?
+
+   Since the math library is a standard library,
+   it is located in a system directory that the
+   linker will also be looking at when trying
+   to find library files. In most Linux systems,
+   this file can be found here::
+
+      /usr/lib/x86_64-linux-gnu/libm.so
+
+If you run the commands above, the result should be
+a ``point-distance`` executable. However, there is
+one final wrinkle when we try to run it:
+
+.. code-block:: shell
+
+    $ ./point-distance
+    ./point-distance: error while loading shared libraries: libgeometry.so: cannot open shared object file: No such file or directory
+
+We also need to tell the *shell* where to look for library
+files when running executables. We can do this by setting
+the ``LD_LIBRARY_PATH`` environment variable:
+
+.. code-block:: shell
+
+    $ export LD_LIBRARY_PATH=.
+    $ ./point-distance
+    [Point 1] Please enter a value for x: 0.0
+    [Point 1] Please enter a value for y: 1.0
+    [Point 2] Please enter a value for x: 1.0
+    [Point 2] Please enter a value for y: 0.0
+    The distance between (0.00, 1.00) and (1.00, 0.00) is 1.41
+
+Note: Setting the ``LD_LIBRARY_PATH`` environment variable only needs to be done once
+each time you start a new terminal. You do not need to run it every time you want
+to run the executable.
+
+Our updated Makefile will now look like this:
 
 .. code-block:: makefile
 
     CC = clang
-    CFLAGS = -g -O2 -Wall -Wextra
-    LDLIBS = -lm
+    CFLAGS = -fPIC -g -O2 -Wall -Wextra
+    LDFLAGS = -L.
+    LDLIBS = -lgeometry -lm
 
     SRCS = point.c polygon.c
     OBJS = $(SRCS:.c=.o)
     LIB = libgeometry.so
 
-    BINS = polygon-area
+    BINS = polygon-area point-distance
 
     all: $(LIB) $(BINS)
 
     .PHONY: clean all
 
     $(OBJS): %.o:%.c
-        $(CC) -fPIC $(CFLAGS) -c -o $@ $<
+        $(CC) $(CFLAGS) $< -c -o $@
 
     $(LIB): $(OBJS)
-        $(CC) -shared -o $@ $^ $(LDLIBS)
+        $(CC) -shared -o $@ $^
 
     $(BINS): %:%.c $(LIB)
-        $(CC) $< -o $@ $(LDLIBS) -L. -lgeometry
+        $(CC) $< -o $@ $(LDFLAGS) $(LDLIBS)
 
     clean:
         rm -f $(OBJS) $(LIB) $(BINS)
 
-Explain how libgeometry (from HW 2 is different)
+At this point, it should be possible for you to understand the
+changes we've made to the Makefile. Pay special attention to the
+new ``$(LIB)`` target, and the new ``BINS`` variable (which now
+specifies multiple executables), as well as how we're using patterns in the
+``$(BINS)`` pattern to build those executables.
+
+.. admonition:: The directory structure in Homework #2's libgeometry
+
+    TODO
 
 Task 2: The libgraph library
 ----------------------------
 
-TODO: Given the code for a new libgraph library, write a Makefile for it
+We have included in your repository a ``libgraph`` directory that contains
+the code for a graph library (in the ``src/libgraph`` directory),
+as well as a few executables that use that library (in the ``src/tools``
+directory). You do not need to understand the graph code itself but,
+if you're curious, it provides a series of data structures and functions
+to manipulate graphs, as well as a few common graph algorithms.
 
+Your task is to write a Makefile that will build a ``libgraph.so`` library,
+along with the ``best-first`` and ``toposort`` executables, which will
+use that library. Notice how the directory structure is
+different from the ``polygon-area`` example, where all the files
+were in a single directory. Instead, the files are organized
+similar to the ``libgeometry`` example from Homework #2.
 
+You are not allowed to move any of
+the files in the ``libgraph/`` directory, and must instead account
+for this directory structure in your Makefile. One particular aspect
+you'll have to figure out (which we have not explained) is how to
+tell the compiler to look for header files in a different directory
+(notice how several of the header files are in a separate ``include/``
+directory).
+
+If you are successful, you should be able to run the executables as follows:
+
+.. code-block:: shell
+
+    $ ./best-first -g examples/cities.graph -s SanFrancisco -f NewYork
+    SanFrancisco -> LosAngeles -> LasVegas -> Phoenix -> SaltLakeCity -> Denver -> KansasCity -> Minneapolis -> Chicago -> Cleveland -> NewYork
+    Total weight: 4365.00
+
+.. code-block:: shell
+
+    $ ./toposort -g examples/flow.graph
+    START R1 R2 R3 R4 R5 R6 END
+
+The first executable does a `best-first search <https://en.wikipedia.org/wiki/Best-first_search>`__
+on the graph, while the second executable does a `topological sort <https://en.wikipedia.org/wiki/Topological_sorting>`__.
+
+CMake
+-----
+
+TODO
 
 Submitting your homework
 ------------------------
