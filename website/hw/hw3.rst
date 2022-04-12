@@ -611,19 +611,30 @@ For example, let's add this at the top of our ``Makefile``:
     CFLAGS = -g -O2 -Wall -Wextra
 
 To use a variable, we just write it's name between ``$(`` and ``)``.
-For example, this rule:
+For example, our previous rule for the ``point.o`` file:
 
 .. code-block:: makefile
 
     point.o: point.c
         gcc point.c -c -o point.o
 
-Would become this:
+Will now look like this:
 
 .. code-block:: makefile
 
     point.o: point.c
         $(CC) $(CFLAGS) point.c -c -o point.o
+
+Notice how this is not a direct translation of the previous rule:
+we've generalized it so that we can use whatever compiler is
+specified the ``CC`` variable (which is different from the
+one we were previously using), and are now able to easily
+specify additional compiler options in the ``CFLAGS`` variable
+(we didn't include these options in our previous rules to keep
+them simple). The options we've included are common options that
+enable debugging symbols (``-g``, we'll learn more about this
+in the next homework), enable optimizations (``-O2``), and tells
+the compiler to enable more warning messages (``-Wall -Wextra``).
 
 Next, when writing a Makefile that compiles multiple object files
 and then links them together, it is common to have an ``OBJS`` variable
