@@ -37,8 +37,19 @@ result in the creation of a repository called
 on GitHub. Like Homework #2, your repository will be seeded with some files
 for the homework.
 
+Writing Makefiles
+-----------------
+
+Before we get to the actual tasks in this homework, you will work through
+a tutorial-style explanation of Makefiles. This will involve editing
+a Makefile in your repository; make sure to commit your changes as
+you complete them, as we will be checking whether you followed the steps
+described in this tutorial (it is ok if you don't commit every single
+change as you make it, but it should be apparent from your commit log
+that you worked through these steps).
+
 Compiling a program with multiple C files
------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the ``polygon-area`` directory, you will see the following files:
 
@@ -117,7 +128,7 @@ At this point, you can try running the program. For example::
     The area is 4.00
 
 Writing a basic ``Makefile``
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 At this point, compiling our program involves running the following:
 
@@ -222,7 +233,7 @@ for now, we'll stick to explicitly specifying our *build target* when calling
        .RECIPEPREFIX +=
 
 Make rules
-----------
+~~~~~~~~~~
 
 We've seen earlier that, assuming the ``polygon-area`` file
 doesn't exist, running ``make`` will run the ``gcc`` command
@@ -304,7 +315,7 @@ arbitrary commands.
 
 
 Separating the compilation and linking steps
---------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There is still an issue with our Makefile: any time any of the
 pre-requisite files change, all the files are re-compiled from
@@ -470,7 +481,7 @@ with the existing object files:
 
 
 Phony rules
------------
+~~~~~~~~~~~
 
 So far, we've defined a couple of rules whose goal is to
 produce specific files (either the object files or the ``polygon-area``
@@ -595,7 +606,7 @@ prerequisite, ``polygon-area``, so it will perform the steps needed to
 build that file.
 
 Variables
----------
+~~~~~~~~~
 
 Besides defining rules, Make also allows us to define variables,
 which can help keep our Makefile tidy. Two variables you'll
@@ -717,7 +728,7 @@ Notice how ``make`` is now using ``clang`` as the compiler, and is including
 the specified compiler parameters when compiling the object files.
 
 Automatic Variables and Patterns
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Our Makefile is looking pretty good, but notice how the following
 rules all follow the same pattern: an object file that depends on a
