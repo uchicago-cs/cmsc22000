@@ -926,6 +926,8 @@ relied on the Point module. Go ahead and create a file called
                point_distance(&p1, &p2));
     }
 
+Make sure to add/commit/push this file to your repository.
+
 We *could* create another Makefile where the ``BIN`` variable is set
 to ``point-distance``, or we could even edit our existing Makefile
 with an additional rule to build ``point-distance``. However,
@@ -1186,6 +1188,10 @@ repository, with “main” as the branch. Please note that you can submit as ma
 you want before the deadline.
 
 Once you submit your files, an “autograder” will run. This won’t
-actually be doing any grading, but it will try to build your code, to
-make sure you don’t have any compiler errors, etc. If you do, make sure
-to fix them and re-submit again.
+actually be doing any grading, but it will try to build the code in
+the ``polygon-area``, ``micro-editor``, and ``libgraph`` directories
+(using the ``Makefiles`` in each directory). If the autograder shows
+any errors, that is a sign there could be issues with your Makefiles.
+
+Note: you may see a compiler warning referring to a "buf" variable
+in the ``micro-editor`` code. You can safely ignore this warning.
