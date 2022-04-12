@@ -47,6 +47,13 @@ In the ``polygon-area`` directory, you will see the following files:
 - Auxiliary files: ``common.h`` and ``utils.h``
 - Polygon Area program: ``polygon-area.c``
 
+Before proceeding, make sure you're inside the ``polygon-area/``
+directory:
+
+.. code-block:: shell
+
+    $ cd polygon-area
+
 All the files, except ``polygon-area.c``, are taken directly from
 the ``libgeometry`` example from Homework #2. Later in this homework
 we will explain why ``libgeometry`` has a more elaborate directory
@@ -126,8 +133,11 @@ of the program, but also optimize it (by avoiding un-necessary
 compilation steps).
 
 To use ``make``, we will need to create a file called ``Makefile``
-that specifies what we want to build. Let's start by creating
-this very simple ``Makefile``:
+that specifies what we want to build. A ``Makefile`` is just a
+regular text file, so you are welcome to use your editor of choice
+to create and edit Makefiles.
+
+Let's start by creating this very simple ``Makefile``:
 
 .. code-block:: makefile
 
@@ -137,7 +147,14 @@ this very simple ``Makefile``:
 The above code specifies a single **make rule**, that basically
 says "To produce the file ``polygon-area`` run the command ``gcc point.c polygon.c ...``".
 
-You can now run this ``Makefile`` by running the following:
+Before trying out our ``Makefile``, we're going to remove the
+``polygon-area`` executable we previously compiled manually:
+
+.. code-block:: shell
+
+    $ rm polygon-area
+
+You can now run the ``Makefile`` by running the following:
 
 .. code-block:: shell
 
@@ -153,10 +170,25 @@ In this case, it will run the ``gcc`` command we specified in the ``polygon-area
     $ make polygon-area
     gcc point.c polygon.c polygon-area.c -o polygon-area -lm
 
-You may notice that you can also just run ``make`` without any parameters:
+If we run this again, we'll get a different output:
 
 .. code-block:: shell
 
+    $ make polygon-area
+    make: 'polygon-area' is up to date.
+
+This is because ``make`` will skip producing the ``polygon-area`` file
+if it already exists (later on, we'll see how we can affect this behaviour,
+since there will be situations where we *do* want ``polygon-area`` to be
+compiled again, e.g., if we make a change to ``point.c``).
+
+You may notice that you can also just run ``make`` without any parameters
+(notice how we first remove ``polygon-area``, so we don't get the "up to date"
+message):
+
+.. code-block:: shell
+
+    $ rm polygon-area
     $ make
     gcc point.c polygon.c polygon-area.c -o polygon-area -lm
 
@@ -192,22 +224,28 @@ for now, we'll stick to explicitly specifying our *build target* when calling
 Make rules
 ----------
 
-If you run ``make`` multiple times, you'll see that it runs the ``gcc``
-command every time:
+We've seen earlier that, assuming the ``polygon-area`` file
+doesn't exist, running ``make`` will run the ``gcc`` command
+to compile it, and subsequent calls to ``make`` will just tell
+us that the file is "up to date":
 
 .. code-block:: shell
 
     $ make polygon-area
     gcc point.c polygon.c polygon-area.c -o polygon-area -lm
     $ make polygon-area
-    gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+    make: 'polygon-area' is up to date.
     $ make polygon-area
-    gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+    make: 'polygon-area' is up to date.
 
 So, ``make`` is definitely saving us from having to remember the full
-command we want to type, but it can actually do a lot more than that.
-In particular, we can let ``make`` know what files ``polygon-area``
-depends on, so it will only build ``polygon-area`` if any of
+command we want to type, and will also ensure we're not needlessly
+re-compiling the file if it already exists.
+
+However, what if we make a change to one of the C files? In that
+situation, we *do* want ``polygon-area`` to be recompiled.
+``make`` can also help us here: we can tell ``make`` what files ``polygon-area``
+depends on, so it will re-build ``polygon-area`` if any of
 those files change.
 
 We can do this by adding a list of dependencies or *prerequisites*
