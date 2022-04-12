@@ -1062,7 +1062,32 @@ specifies multiple executables), as well as how we're using patterns in the
 
 .. admonition:: The directory structure in Homework #2's libgeometry
 
-    TODO
+   If you look at the libgeometry code from Homework #2, you'll
+   see that, instead of having all the .c and .h files in one directory
+   (as we've seen in the ``polygon-area`` example), it follows a
+   specific directory structure:
+
+   - ``src/``: Contains the source code for the library.
+   - ``include/``: Contains any "public" header files, meaning any header
+     files that we would allow other module or programs to include. Take
+     into account that this means we don't just place all the header
+     files in the ``include/`` directory. For example, there is a ``utils.h``
+     file in ``src/`` that is only meant to be used by the C files in that
+     directory, and which we would not want other modules or programs to
+     include.
+   - ``samples/``: Contains a sample program that uses the libgeometry library.
+   - ``tests/``: Contains all test-related code.
+
+   The ``Makefile`` is also different because it will produce both a dynamic
+   library (``libgeometry.so``) and a static library (``libgeometry.a``). It
+   also produces a series of *dependency files* (``.d`` files) that allow
+   make to keep track of dependencies between header files (you do not
+   need to worry about how this mechanism works).
+
+   Additionally, there are also Makefiles inside the ``tests/`` and
+   ``samples/`` directory. This is a common way to refactor Makefiles,
+   which allows the top-level Makefile to define targets like the ``tests``
+   target which just say "run the ``Makefile`` in directory ``tests/``"
 
 Task 2: The libgraph library
 ----------------------------
@@ -1108,7 +1133,48 @@ on the graph, while the second executable does a `topological sort <https://en.w
 CMake
 -----
 
-TODO
+You may have noticed that both the ``micro-editor`` directory and the ``libgraph``
+directory contain a ``CMakeLists.txt`` file. This file is used by a build system
+called `CMake <https://cmake.org/>`__ that provides a simpler file format
+for specifying builds (internally, CMake actually uses regular ``make`` to actually
+build the code). In fact, this is the build system we use in the course project.
+
+We are not going to get into the full syntax of the ``CMakeLists.txt`` file but a
+quick glance at ``libgraph/CMakeLists.txt`` can give you a sense of how much simpler
+it is than regular ``Makefiles``. For example, this command specifies how
+to build the libgraph library:
+
+.. code-block:: cmake
+
+    add_library(graph SHARED
+            src/libgraph/graph.c
+            src/libgraph/vlist.c
+            src/libgraph/algorithms.c)
+
+And these two commands specify how to build the ``best-first`` executable (including
+the fact that it needs to be linked to the libgraph library):
+
+.. code-block:: cmake
+
+    add_executable(best-first
+            src/tools/best-first.c)
+
+    target_link_libraries(best-first graph)
+
+To build the code with CMake, we would run the following:
+
+.. code-block:: shell
+
+    $ cmake -B build/
+
+This will create a *build directory* that will contain all the files related
+to building the code (e.g., all the intermediate object files will be
+created here).
+
+After we've run that command, we can ``cd`` into the ``build/`` directory
+and run ``make`` as usual. This will produce the ``libgraph.so`` file
+along with the ``best-first`` and ``toposort`` executables. If you try to
+run them, they should behave exactly as described earlier.
 
 Submitting your homework
 ------------------------
