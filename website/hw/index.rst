@@ -8,7 +8,7 @@ Homework
 +---+------------------------------------------+--------------------------------+--------------------+
 | 2 | `Software Design <hw2.html>`__           | `Rubric <hw2_rubric.html>`__   | April 13, 8pm CDT  |
 +---+------------------------------------------+--------------------------------+--------------------+
-| 3 | Make                                     |                                | April 20, 8pm CDT  |
+| 3 | `Make <hw3.html>`__                      | `Rubric <hw3_rubric.html>`__   | April 20, 8pm CDT  |
 +---+------------------------------------------+--------------------------------+--------------------+
 | 4 | Debugging                                |                                | April 27, 8pm CDT  |
 +---+------------------------------------------+--------------------------------+--------------------+
@@ -34,6 +34,7 @@ If you need any help on the homework assignments, please see our `Getting help o
    hw2.rst
    hw2_rubric.rst
    hw3.rst
+   hw3_rubric.rst
    hw4.rst
    hw5.rst
    hw6.rst

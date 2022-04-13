@@ -1,20 +1,13 @@
 Homework 3: Make
 ================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
 **Due:** Wednesday, April 20st, 8pm CDT
 
 In the class project, you will likely produce dozens of C files that
 will ultimately produce a single executable. When dealing with multiple
 source files, specially when there are dependencies between them, it is
 common to use a *build system* instead of manually compiling and linking
-all the files. in this homework, we’ll explore the ways a program can be
+all the files. In this homework, we’ll explore the ways a program can be
 “built”–that is, the way that source code is turned into binary code so
 that a computer can execute it. In some cases, “building” may refer to
 compiling a single file, but usually it refers to the whole process of
@@ -23,36 +16,9 @@ and running tests. We’ll look at testing in later homeworks, and for this home
 we’ll focus on the ``make`` command as a way to compile and build
 projects.
 
-.. warning::
-
-    For some of these tasks, you may be tempted to
-    look at the Makefiles included with libgeometry, and copy-paste parts of
-    them into your Makefiles. There are two important reasons not to do
-    this:
-
-    1. It is important that you understand what you’re doing in each of the
-       tasks in this homework. If you get stuck and you’re not sure how to
-       proceed, please make sure to ask for help. If you just copy-paste
-       from one of our Makefiles, you won’t understand how those parts of
-       the Makefile work.
-    2. The tasks in this homework actually ask you to modify a Makefile in ways
-       that are different from how the libgeometry Makefile is written. If
-       you just copy-paste from our Makefile, it is almost certain we will
-       be able to tell that you did so.
-
-    That said, by the end of this homework you should be able to understand
-    almost everything that is contained in the libgeometry Makefiles.
-    However, it is important that you perform all the intermediate tasks
-    before you get to that point.
-
-Finally, for your reference, you may find the following resources
-helpful:
-
--  The GNU ``make`` documentation, available in full
-   `here <https://www.gnu.org/software/make/manual/html_node/index.html>`__;
-   and
--  The ``make`` and ``gcc`` man pages, available in your terminal
-   through ``man make`` and ``man gcc``.
+Similar to Homework #1, this homework involves following some tutorial-style
+instructions to familiarize yourself with ``make``, and will also include
+some exercises where you can apply what you've learned about ``make``.
 
 Project Team Exercise: Design Warm-up (Part II)
 -----------------------------------------------
@@ -65,86 +31,181 @@ Creating your homework repository
 ---------------------------------
 
 Like previous homeworks, we will provide you with an *invitation URL* that
-will allow you sign up for the homework assignment on GitHub, and which will
+will allow you to sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2021-hw3-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw3-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
 on GitHub. Like Homework #2, your repository will be seeded with some files
-for the homework, which will be contained in four ``task`` directories inside
-the repository.
+for the homework.
 
-Task 1: A simple ``Makefile``
------------------------------
+Writing Makefiles
+-----------------
 
-(15 points)
+Before we get to the actual tasks in this homework, you will work through
+a tutorial-style explanation of Makefiles. This will involve editing
+a Makefile in your repository; make sure to commit your changes as
+you complete them, as we will be checking whether you followed the steps
+described in this tutorial (it is ok if you don't commit every single
+change as you make it, but it should be apparent from your commit log
+that you worked through these steps).
 
-In the ``task1`` directory, you’ll see a simple program (``greet.c``)
-that prints “Hello there” to the screen and exits. As you’ve done in
-previous courses, you can compile and run the program like so:
+Compiling a program with multiple C files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: shell
+In the ``polygon-area`` directory, you will see the following files:
 
-    $ gcc -o greet greet.c
-    $ ./greet
-    Hello there
+- Point module: ``point.c`` and ``point.h``
+- Polygon module: ``polygon.c`` and ``polygon.h``
+- Auxiliary files: ``common.h`` and ``utils.h``
+- Polygon Area program: ``polygon-area.c``
 
-And when you’re done, you can always remove the executable (also called
-the binary) to prevent adding it to version control like so:
-
-.. code-block:: shell
-
-    $ rm -f greet
-
-Now, let’s say you want to change your program so that instead of
-printing “Hello there”, it prints “General Kenobi!” You either have to
-hit the up arrow on your keyboard a million times, or remember
-``gcc -o greet greet.c``. And perhaps you want to enable optimizations,
-enable all the warnings, and enable debugging symbols (so you can use
-``gdb``):
+Before proceeding, make sure you're inside the ``polygon-area/``
+directory:
 
 .. code-block:: shell
 
-    $ gcc -O2 -Wall -Wextra -g -o greet greet.c
+    $ cd polygon-area
 
-Yuck! Who likes typing all that every time? Let’s simplify this process
-using ``make``. ``make`` is a simple tool that does one and only one
-thing: it looks for a file in the current directory called ``Makefile``,
-and executes commands according to **rules** specified in the
-``Makefile``. A rule looks something like this:
+All the files, except ``polygon-area.c``, are taken directly from
+the ``libgeometry`` example from Homework #2. Later in this homework
+we will explain why ``libgeometry`` has a more elaborate directory
+structure but, for the purposes of this homework, it'll be simpler
+to start with all the files in the same directory.
+
+The ``polygon-area.c`` file contains a ``main()`` function that relies
+on the point and polygon modules to compute the area of a polygon
+(after asking the user to provide the points in the polygon).
+
+Notice how we can't compile the ``polygon-area.c`` file by itself:
+
+.. code-block:: shell
+
+    $ gcc polygon-area.c -o polygon-area
+    /usr/bin/ld: /tmp/ccmgP8wg.o: in function `main':
+    polygon-area.c:(.text+0x21): undefined reference to `polygon_new'
+    /usr/bin/ld: polygon-area.c:(.text+0x95): undefined reference to `polygon_add_xy'
+    /usr/bin/ld: polygon-area.c:(.text+0x10c): undefined reference to `polygon_area'
+    collect2: error: ld returned 1 exit status
+
+This results in a bunch of *linker errors* (not compiler errors). There is nothing wrong
+with ``polygon-area.c`` itself, but it depends on functions like ``polygon_area``,
+which are defined in a different C file (``polygon.c``). We need to compile that
+file, as well as ``point.c`` (which the polygon module depends on), to be able
+to produce the ``polygon-area`` executable.
+
+The simplest way to accomplish this is to simply pass all those files to the compiler:
+
+.. code-block:: shell
+
+   $ gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+
+Remember that, internally, this is divided into two separate steps:
+
+- Compiling: The compiler will compile each C file into an object file.
+- Linking: The compiler will link together all those files together into a single executable
+  (``polygon-area``). Here, we also link to the math library, since
+  the point module relies on a couple of functions from that library (if you try re-running
+  the above command without the ``-lm`` option, you will see linker errors that refer
+  to math functions).
+
+Because we're making a single call to the compiler, it doesn't actually save the
+object files anywhere, but that step is still happening internally.
+
+At this point, you can try running the program. For example::
+
+    $ ./polygon-area
+    Please enter a value for x: 0
+    Please enter a value for y: 0
+    Would you like to enter another point? (y/n) y
+    Please enter a value for x: 0
+    Please enter a value for y: 2
+    Would you like to enter another point? (y/n) y
+    Please enter a value for x: 2
+    Please enter a value for y: 2
+    Would you like to enter another point? (y/n) y
+    Please enter a value for x: 2
+    Please enter a value for y: 0
+    Would you like to enter another point? (y/n) n
+    The area is 4.00
+
+Writing a basic ``Makefile``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+At this point, compiling our program involves running the following:
+
+.. code-block:: shell
+
+   $ gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+
+This involves writing a relatively long command (which will only get longer
+if we need to add more C files) that always involves re-compiling
+every C file from scratch (and then linking them together).
+Instead, we can use ``make`` to not just automate the building
+of the program, but also optimize it (by avoiding un-necessary
+compilation steps).
+
+To use ``make``, we will need to create a file called ``Makefile``
+that specifies what we want to build. A ``Makefile`` is just a
+regular text file, so you are welcome to use your editor of choice
+to create and edit Makefiles.
+
+Let's start by creating this very simple ``Makefile``:
 
 .. code-block:: makefile
 
-   rule-name: prerequisite
-       command
+   polygon-area:
+    	gcc point.c polygon.c polygon-area.c -o polygon-area -lm
 
-In general, rules can have any number of (or zero) prerequisites
-(separated by spaces), and any number of (or zero) commands (separated
-by newlines). It’s important to note that while ``make`` is probably
-most often used with C programs, ``make`` is a generic tool supporting
-arbitrary commands. Here’s a simple “hello world” ``Makefile``, that
-uses the shell command “echo” (which does exactly what you think it
-does):
+The above code specifies a single **make rule**, that basically
+says "To produce the file ``polygon-area`` run the command ``gcc point.c polygon.c ...``".
 
-.. code-block:: makefile
-
-   hello:
-       echo "Hello"
-
-   world: hello
-       echo "World!"
-
-We can use this ``Makefile`` like so:
+Before trying out our ``Makefile``, we're going to remove the
+``polygon-area`` executable we previously compiled manually:
 
 .. code-block:: shell
 
-    $ make hello
-    echo "Hello"
-    Hello
-    $ make world
-    echo "Hello"
-    Hello
-    echo "World!"
-    World!
+    $ rm polygon-area
 
+You can now run the ``Makefile`` by running the following:
+
+.. code-block:: shell
+
+    $ make polygon-area
+
+By calling ``make`` like this, we are telling ``make`` "I need you to produce file ``polygon-area``"
+``make`` will check the list of rules (by default, it will always look at the ``Makefile`` in the
+same directory you are running ``make``) and, if it finds a matching rule, it will run it.
+In this case, it will run the ``gcc`` command we specified in the ``polygon-area`` rule:
+
+.. code-block:: shell
+
+    $ make polygon-area
+    gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+
+If we run this again, we'll get a different output:
+
+.. code-block:: shell
+
+    $ make polygon-area
+    make: 'polygon-area' is up to date.
+
+This is because ``make`` will skip producing the ``polygon-area`` file
+if it already exists (later on, we'll see how we can affect this behaviour,
+since there will be situations where we *do* want ``polygon-area`` to be
+compiled again, e.g., if we make a change to ``point.c``).
+
+You may notice that you can also just run ``make`` without any parameters
+(notice how we first remove ``polygon-area``, so we don't get the "up to date"
+message):
+
+.. code-block:: shell
+
+    $ rm polygon-area
+    $ make
+    gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+
+There is a reason why this works as well, and we'll explain it later on but,
+for now, we'll stick to explicitly specifying our *build target* when calling
+``make``.
 
 .. warning::
 
@@ -171,73 +232,75 @@ We can use this ``Makefile`` like so:
 
        .RECIPEPREFIX +=
 
+Make rules
+~~~~~~~~~~
 
-First, notice how ``make hello`` prints both the command that is run by
-that rule, as well as the result of running that command. Next, notice
-how since the ``world`` rule depends on the ``hello`` rule, the
-``hello`` rule is executed first when we run ``make world``. It’s
-important to note that the topmost rule in a file (that is, the rule
-defined the earliest in the file) is the **default rule**, which means
-that it will be executed when calling ``make`` with no arguments. In the
-case above, ``make`` and ``make hello`` will produce identical output.
-
-One more thing to note is that since ``make`` was designed to work with
-C, it also has a number of *implicit rules*. For example, run the
-following to delete the ``greet`` program we created earlier:
-
+We've seen earlier that, assuming the ``polygon-area`` file
+doesn't exist, running ``make`` will run the ``gcc`` command
+to compile it, and subsequent calls to ``make`` will just tell
+us that the file is "up to date":
 
 .. code-block:: shell
 
-    $ rm -f greet
+    $ make polygon-area
+    gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+    $ make polygon-area
+    make: 'polygon-area' is up to date.
+    $ make polygon-area
+    make: 'polygon-area' is up to date.
 
-Now, run this:
+So, ``make`` is definitely saving us from having to remember the full
+command we want to type, and will also ensure we're not needlessly
+re-compiling the file if it already exists.
 
-.. code-block:: shell
+However, what if we make a change to one of the C files? In that
+situation, we *do* want ``polygon-area`` to be recompiled.
+``make`` can also help us here: we can tell ``make`` what files ``polygon-area``
+depends on, so it will re-build ``polygon-area`` if any of
+those files change.
 
-    $ make greet
-
-Our Makefile doesn’t have a ``greet`` rule and, yet, because there is a
-``greet.c`` file, ``make`` interprets that as “I should generate a
-``greet`` executable from ``greet.c``”. Similarly, if you run this:
-
-.. code-block:: shell
-
-    $ make greet.o
-
-``make`` will generate an object file from ``greet.c`` (but won’t
-generate an executable).
-
-The problem here is that if we have a rule called ``clean``, we can’t
-ever create a file called ``clean.c`` in the current directory, or
-``make`` will get confused as to whether it’s supposed to use our rule
-or apply an implicit rule. Poor design, sure, but it can be mitigated by
-adding the following to your ``Makefile``:
+We can do this by adding a list of dependencies or *prerequisites*
+after the colon in the rule:
 
 .. code-block:: makefile
 
-   .PHONY: rule1 rule2 ...etc
+   polygon-area: point.c polygon.c polygon-area.c
+    	gcc point.c polygon.c polygon-area.c -o polygon-area -lm
 
-Where ``rule1`` and ``rule2`` and so on are the names of the rules
-you’ve defined in your ``Makefile``.
+Now, let's run ``make`` again:
 
-For this task, create a file called ``Makefile`` in the ``task1``
-directory with two rules:
+.. code-block:: shell
 
-1. A rule called ``all`` that compiles the program using ``gcc``; and
-2. A rule called ``clean`` that removes the binary produced by ``all``.
+    $ make polygon-area
+    make: 'polygon-area' is up to date.
 
-You can run the rules in your ``Makefile`` by running ``make all`` and
-``make clean``.
+Given that we haven't made any changes to ``point.c``, ``polygon.c``,
+or ``polygon-area.c`` since the last time we produced the
+``polygon-area`` executable, ``make`` can tell that there is
+no need to re-build ``polygon-area``.
 
-The order in which you specify the rules is not significant *except*
-that the first rule in the file will be the *default* rule, meaning that
-it will be selected whenever you run ``make`` without any parameters. If
-you want to run any other rule, you have to specify the rule name when
-running ``make`` (e.g., ``make clean``). So, it is common to call the
-default rule ``all``, and to have that rule build our entire
-program.
+Now, try editing ``polygon-area.c`` (any trivial edit is enough,
+e.g., add a newline at the bottom of the file). If we run
+``make`` again, it will detect that one of the prerequisite
+files has changed, and it will re-build ``polygon-area``:
 
-Once you’re done, add your ``Makefile`` to git, commit it, and push.
+.. code-block:: shell
+
+   $ make polygon-area
+   gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+
+In general, Make rules have the following structure:
+
+.. code-block:: makefile
+
+   rule-name: prerequisite
+       command
+
+Rules can have any number of (or zero) prerequisites
+(separated by spaces), and any number of (or zero) commands (separated
+by newlines). It’s important to note that while ``make`` is probably
+most often used with C programs, ``make`` is a generic tool supporting
+arbitrary commands.
 
 .. note::
 
@@ -250,315 +313,896 @@ Once you’re done, add your ``Makefile`` to git, commit it, and push.
     practice to have such a file in any repository you create, to make sure
     you never add binary files to your repository.
 
-Task 2: Let’s generalize!
--------------------------
 
-(15 points)
+Separating the compilation and linking steps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-What happens if we want to change the name of the binary to ``shblah``?
-We’d have to go into our ``Makefile`` and replace every occurrence of
-``hello`` with ``shblah``. That might be fine for now, but when our
-``Makefile``\ s have more rules and are being used to compile lots of
-different C files, that simply won’t do. Fortunately, ``make`` includes
-a notion of **variables** that we can use here. Working with the example
-from task 1, they work like so:
+There is still an issue with our Makefile: any time any of the
+pre-requisite files change, all the files are re-compiled from
+scratch. So, in the example above, we only changed ``polygon-area.c``,
+but that resulted in running this command::
+
+   gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+
+Which tells ``gcc`` to compile all three files.
+
+Ideally, if we only modified ``polygon-area.c``, we would like to only
+re-compile that file. However, to do this, we have to separately
+produce the object files for each of the C files. From the command-line,
+we would do so like this:
+
+.. code-block:: shell
+
+    $ gcc point.c -c -o point.o
+    $ gcc polygon.c -c -o polygon.o
+    $ gcc polygon-area.c -c -o polygon-area.o
+
+Notice how we use the ``-c`` parameter to the compiler: this tells
+the compiler to only compile the specified file, and to not attempt
+to link it. This produces an *object* file with the compiled version
+of the code in that C file (and that C file alone).
+
+To link those object files together, we call the compiler like this:
+
+.. code-block:: shell
+
+    $ gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+
+Notice how we're not passing any C files to the compiler: by passing
+only object files, ``gcc`` knows that no further compilation is required,
+and that all it has to do is to link them together (and with the math
+library, specified with the ``-lm`` parameter).
+
+.. admonition:: What happens if we omit the ``-c`` option?
+
+   Let's see what happens if we omit the ``-c`` option when
+   compiling the object files:
+
+   .. code-block:: shell
+
+      $ gcc polygon.c -o polygon.o
+      /usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+      (.text+0x24): undefined reference to `main'
+      /usr/bin/ld: /tmp/cc5mU0L8.o: in function `polygon_add_xy':
+      polygon.c:(.text+0x212): undefined reference to `point_init'
+      /usr/bin/ld: /tmp/cc5mU0L8.o: in function `polygon_add_point':
+      polygon.c:(.text+0x3e5): undefined reference to `segment_intersect'
+      /usr/bin/ld: /tmp/cc5mU0L8.o: in function `polygon_perimeter':
+      polygon.c:(.text+0x64f): undefined reference to `point_distance'
+      collect2: error: ld returned 1 exit status
+
+   If we run the compiler like this, it will perform both a compilation and linking
+   step. This means that, since ``polygon.c`` includes calls to function like
+   ``point_init`` and ``segment_intersect``, it will attempt to link those calls
+   to their implementation (but that implementation is nowhere to be found in ``polygon.c``).
+   If we only perform the compilation step (by using the ``-c`` option) those calls
+   are left unlinked in the object file, so they don't cause any errors.
+
+   Notice how we also get this error::
+
+       (.text+0x24): undefined reference to `main'
+
+   This is because, by default, the compiler will try to produce an executable file,
+   which means it will look for a ``main()`` function that specifies what that
+   executable will do (and will produce a linker error if no such function is found)
+
+Now that we've separated the compiling and linking steps, we can avoid
+re-compiling all the C files every time. For example, if we modify only
+the ``point.c`` file, producing an updated ``polygon-area`` executable
+would just require running the following:
+
+.. code-block:: shell
+
+    $ gcc point.c -c -o point.o
+    $ gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+
+To automate this with ``make``, we need to specify separate
+rules for the object files. For example, this is what the rule
+for producing the ``point.o`` object file would look like.
 
 .. code-block:: makefile
 
-   COMMAND = echo
+    point.o: point.c
+        gcc point.c -c -o point.o
 
-   hello:
-       $(COMMAND) "Hello"
+Remember that this is basically saying "To produce file ``point.o``, run
+``gcc point.c ...``, but only if ``point.c`` has changed since the last
+time we built ``point.o``".
 
-   world: hello
-       $(COMMAND) "World!"
+Our full ``Makefile`` would now look like this:
 
-This ``Makefile`` works the same as it did above, but now if we ever
-want to change ``echo`` to a different command, we need only change it
-in one place. In general, variables are used to avoid repeating code
-between rules. If we have multiple rules specified for compiling
-different C files, and the only flag they don’t share is the output
-flag, we wouldn’t want to type out
-``gcc -g -O2 -Wall -Wextra -g -o hello hello.c``. We’d rather type
-``gcc $(CFLAGS) -o hello hello.c``. That way, if we then want to change
-the optimization level or add a warning flag, we need only change the
-``CFLAGS`` variable.
+.. code-block:: makefile
 
-For task 2, copy your ``Makefile`` from task 1 into the ``task2``
-directory, and add the following four variables:
+    point.o: point.c
+        gcc point.c -c -o point.o
 
-1. A variable called ``BIN`` that is used for passing the name of the
-   binary to ``gcc`` and ``rm``; and
-2. A variable called ``CC`` that specifies the C compiler to be used (in
-   our case this is just gcc, but it’s important to have this as an
-   option; for example, we may want to use a different C compiler, like
-   ``clang``); and
-3. A variable called ``CFLAGS`` (a very common practice) that holds the
-   common extra options passed into ``gcc`` (you should include the
-   optimization, warning, and debug flags in the example from task 1);
-   and
-4. A variable called ``RM`` that specifies the ``rm`` command along with
-   its options.
+    polygon.o: polygon.c
+        gcc polygon.c -c -o polygon.o
 
-Then, update your rules to use the newly-defined variables (that is,
-replace instances of ``gcc`` with ``$(CC)``, and so on). You should make
-a commit at this point.
+    polygon-area.o: polygon-area.c
+        gcc polygon-area.c -c -o polygon-area.o
 
-Task 3: Building a (somewhat) realistic library
------------------------------------------------
+    polygon-area: point.o polygon.o polygon-area.o
+        gcc point.o polygon.o polygon-area.o -o polygon-area -lm
 
-(15 + 20 points)
+Notice how the ``polygon-area`` rule now depends on the object files,
+not on the C files.
 
-This task is split into two phases: the first will help you familiarize
-yourself with the structure of a project with multiple files, and the
-second will actually have you build the project as a library.
-
-In the task 3 directory, you’ll see a new program structure. We have two
-header files in the ``include`` directory, and three C files in the
-``src`` directory. Basically, we have ``obi_wan.c`` and ``obi_wan.h``,
-which define a function called ``hello_there``, that prints
-``Hello there`` to the screen. Similarly, we have ``grievous.c`` and
-``grievous.h``, which define ``general_kenobi``, which prints
-``General Kenobi!`` to the screen. ``main.c`` defines a ``main``
-function that calls ``hello_there`` and ``general_kenobi``. To compile
-these files together, recall from 152 / 162 that you have to pass them
-to ``gcc`` like so:
+Let's give this a try, but lets first make sure that we're starting
+from scratch. Run the following to delete any files we may have built:
 
 .. code-block:: shell
 
-    $ gcc -g -O2 -Wall -Wextra -g src/main.c src/obi_wan.c src/grievous.c -o hello
+   $ rm -f point.o polygon.o polygon-area.o polygon-area
 
-There’s a problem with this: how does ``gcc`` know where to find the
-header files? For this we use the ``-I`` flag:
-
-.. code-block:: shell
-
-    $ gcc -g -O2 -Wall -Wextra -g -I ./include/ src/main.c src/obi_wan.c src/grievous.c -o hello
-
-Yuck! Let’s streamline this. Copy your ``Makefile`` from the previous
-task and add a new variable, ``SRCS``, that defines the list of source
-files to pass to ``gcc``. Furthermore, you’ll need to modify your
-``CFLAGS`` variable to add the new ``-I ./include/`` option, so that
-``make`` knows where to find our header files. You should make a commit
-at this point.
-
-Now on to phase 2. Due to overwhelming demand from your userbase, you’re
-going to package these files up as a **library** that other people can
-include in their projects. This means that instead of producing an
-executable file (that we can run like ``./hello``), you’re going to
-produce a dynamically-linked library, like the ones we described in
-class.
-
-First, remove the ``main.c`` file - we don’t want ``main`` in a library.
-From inside the ``task3`` directory:
+Now, let's run ``make``:
 
 .. code-block:: shell
 
-    $ git rm src/main.c
+    $ make polygon-area
+    gcc point.c -c -o point.o
+    gcc polygon.c -c -o polygon.o
+    gcc polygon-area.c -c -o polygon-area.o
+    gcc point.o polygon.o polygon-area.o -o polygon-area -lm
 
-Note that the ``git rm`` command both removes the file from the
-filesystem, *and* removes it from version control. You should now make a
-commit with the message “Starting task 3 phase 2”.
+Notice how ``make`` was able to sort out all the dependencies, and figure out
+that, to produce ``polygon-area``, it first needed to produce the object files
+listed in its prerequisites.
 
-First things first: we’re no longer building a binary called ``hello``,
-we’re building a **shared object file** called ``libstarwars.so``. For
-starters, go ahead and change your ``BIN`` variable to be called
-``LIB``, and have it specify ``libstarwars.so``. At this point, we need
-to radically change the compilation structure of our project. Up till
-now, we’ve been basically asking ``gcc`` to compile our set of C files,
-take the resultant machine code, and mash it together into a single file
-that we can run. Instead, to build a library, we’re going to invoke
-``gcc`` *individually*, once per file that’s part of the compilation,
-and ask it to produce an **object** file. Then, we’ll invoke ``gcc`` one
-more time, asking it to mash all the object files together into one
-large **shared object** file.
-
-To compile a file ``hello.c`` into an object file ``hello.o``:
+If we try to run ``make`` again, it will correctly realize that nothing has
+changed, and that we don't need to re-build anything:
 
 .. code-block:: shell
 
-   $ gcc -Wall -Wextra -O2 -g -fPIC -c -o hello.o hello.c
+    $ make polygon-area
+    make: 'polygon-area' is up to date.
 
-Note the presence of the new ``gcc`` flag ``-fPIC``. This flag tells
-``gcc`` to enable position-independent code. Position-independence is
-beyond the scope of this homework, but it’s necessary for building shared
-libraries. Accordingly, you’ll need to add ``-fPIC`` to your ``CFLAGS``.
-
-To build one or several object files into a shared library, we would do
-this:
+Now, let's see what happens if we edit one of the files except, instead of
+editing the file, we will use the ``touch`` command:
 
 .. code-block:: shell
 
-    $ gcc -shared -o libhello.so hello.o
+    $ touch polygon.c
 
-The ``-shared`` option, unsurprisingly, tells ``gcc`` to output a shared
-object file.
+The ``touch`` command is a handy command that will simply update the
+"last modified" date on a file, without actually changing its contents.
+(that timestamp is actually what ``make`` is looking at when determining
+whether a file has changed since the last time it was compiled).
 
-Add a rule to your ``Makefile`` for ``obi_wan.o`` and ``grievous.o``,
-specifying how to compile them, using your previously-defined variables.
-Then, make the ``all`` rule depend on each of those new object rules.
-Finally, change the ``all`` rule to compile those two ``.o`` files into
-a shared library. You’ll likely want an ``OBJS`` variable, which defines
-``.o`` files for each ``.c`` file in the ``SRCS`` variable. You should
-make a commit at this point.
+If we run ``make`` again, we'll see that it correctly figures out that
+it only needs to re-build the ``polygon.o`` file, and then re-link it
+with the existing object files:
 
-Task 4: Maximum modularity and elegance
----------------------------------------
+.. code-block:: shell
 
-(15 points)
+    $ make polygon-area
+    gcc polygon.c -c -o polygon.o
+    gcc point.o polygon.o polygon-area.o -o polygon-area -lm
 
-In task 3, you defined separate, explicit rules for each object file in
-the project. This has a number of disadvantages: you repeat a lot of
-code, and if you want to, say, change the name of a variable or update
-the structure of the compilation command, you have to make those changes
-in multiple places. To combat this problem, ``make`` includes many
-built-in variables and functions to aid in writing concise, elegant
-``Makefile``\ s. Here are some of the more useful variables and
-functions:
 
--  ``$@`` is the name of the current rule
+Phony rules
+~~~~~~~~~~~
+
+So far, we've defined a couple of rules whose goal is to
+produce specific files (either the object files or the ``polygon-area``
+executable). However, it is also possible to write so-called
+*phony* rules that don't produce any files, and which instead just perform
+some action.
+
+For example, we've previously run the following command
+to delete all the generated files:
+
+.. code-block:: shell
+
+    $ rm -f point.o polygon.o polygon-area.o polygon-area
+
+We can create a ``clean`` rule that performs this action:
+
+.. code-block:: makefile
+
+    clean:
+    	rm -f point.o polygon.o polygon-area.o polygon-area
+
+And which we can run like this:
+
+.. code-block:: shell
+
+    $ make clean
+    rm -f point.o polygon.o polygon-area.o polygon-area
+
+However, notice how running the ``rm`` command doesn't
+produce a file called ``clean`` (like our previous rules did,
+where the effect of the rule's command was to generate a file
+matching the target of the rule).
+
+So, while the rule will work as-is, we will want to label it
+as a "phony" rule, by adding this to our ``Makefile``:
+
+.. code-block:: makefile
+
+    .PHONY: clean
+
+This lets ``make`` know that it should not expect the ``clean``
+rule to actually produce a file called ``clean``. This means that,
+in the unlikely event that we actually need to create a file called
+``clean`` for some other purpose, ``make`` won't take that file
+into account when deciding to run the ``clean`` rule.
+
+In general, it is good practice to always include a ``clean`` rule
+in your ``Makefile``, specifying how to "clean up" all the files
+generated by the compiler.
+
+Before we see another common phony rule, try running ``make`` without
+any parameters (make sure you've run ``make clean`` as shown above before
+doing this):
+
+.. code-block:: shell
+
+    $ make
+    gcc point.c -c -o point.o
+
+This seems wrong: if I run ``make clean`` and then run ``make`` again,
+I would expect ``polygon-area`` to be built again, instead of just
+the ``point.o`` object file. The reason this is happening is that
+*if you run make without any parameters, it will run the first rule
+in the file* (which, in our case, happens to be rule for building
+the ``point.o`` file).
+
+While we could move the ``polygon-area`` rule to the top of the file,
+a more common practice is to create a phony ``all`` rule that specifies
+what the ``Makefile`` should build, and which appears before all other
+rules.
+
+In our case, this rule would look like this:
+
+.. code-block:: makefile
+
+   all: polygon-area
+
+And let's make sure we add it to the list of phony rules:
+
+.. code-block:: makefile
+
+   .PHONY: clean all
+
+To recap, our full Makefile should now look like this:
+
+.. code-block:: makefile
+
+    all: polygon-area
+
+    .PHONY: clean all
+
+    point.o: point.c
+        gcc point.c -c -o point.o
+
+    polygon.o: polygon.c
+        gcc polygon.c -c -o polygon.o
+
+    polygon-area.o: polygon-area.c
+        gcc polygon-area.c -c -o polygon-area.o
+
+    polygon-area: point.o polygon.o polygon-area.o
+        gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+
+    clean:
+        rm -f point.o polygon.o polygon-area.o polygon-area
+
+Let's try running ``make clean`` followed by ``make``:
+
+.. code-block:: shell
+
+    $ make clean
+    rm -f point.o polygon.o polygon-area.o polygon-area
+    $ make
+    gcc point.c -c -o point.o
+    gcc polygon.c -c -o polygon.o
+    gcc polygon-area.c -c -o polygon-area.o
+    gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+
+Now, when we call ``make`` (without any parameters), Make will try to build
+the first rule in the file. That rule is the ``all`` rule, which has one
+prerequisite, ``polygon-area``, so it will perform the steps needed to
+build that file.
+
+Variables
+~~~~~~~~~
+
+Besides defining rules, Make also allows us to define variables,
+which can help keep our Makefile tidy. Two variables you'll
+often see in Makefiles are ``CC``, to specify the compiler
+we want to use, and ``CFLAGS``, to specify the parameters
+we want to pass to the compiler.
+
+For example, let's add this at the top of our ``Makefile``:
+
+.. code-block:: makefile
+
+    CC = clang
+    CFLAGS = -g -O2 -Wall -Wextra
+
+To use a variable, we just write it's name between ``$(`` and ``)``.
+For example, our previous rule for the ``point.o`` file:
+
+.. code-block:: makefile
+
+    point.o: point.c
+        gcc point.c -c -o point.o
+
+Will now look like this:
+
+.. code-block:: makefile
+
+    point.o: point.c
+        $(CC) $(CFLAGS) point.c -c -o point.o
+
+Notice how this is not a direct translation of the previous rule:
+we've generalized it so that we can use whatever compiler is
+specified the ``CC`` variable (which is different from the
+one we were previously using), and are now able to easily
+specify additional compiler options in the ``CFLAGS`` variable
+(we didn't include these options in our previous rules to keep
+them simple). The options we've included are common options that
+enable debugging symbols (``-g``, we'll learn more about this
+in the next homework), enable optimizations (``-O2``), and tells
+the compiler to enable more warning messages (``-Wall -Wextra``).
+
+Next, when writing a Makefile that compiles multiple object files
+and then links them together, it is common to have an ``OBJS`` variable
+to specify the list of object files, and a ``BIN`` variable to
+specify the executable we are generating (an executable is sometimes
+referred to as a "binary"). It is also common to define a
+``LDLIBS`` variable to specify any additional libraries we
+are going to link with.
+
+So, let's add this at the top of our Makefile:
+
+.. code-block:: makefile
+
+    LDLIBS = -lm
+    OBJS = point.o polygon.o polygon-area.o
+    BIN = polygon-area
+
+Then, this rule:
+
+.. code-block:: makefile
+
+    polygon-area: point.o polygon.o polygon-area.o
+        gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+
+Would become this:
+
+.. code-block:: makefile
+
+    $(BIN): $(OBJS)
+        $(CC) $(OBJS) -o $(BIN) $(LDLIBS)
+
+After updating all the rules, our Makefile would look like this:
+
+.. code-block:: makefile
+
+    CC = clang
+    CFLAGS = -g -O2 -Wall -Wextra
+    LDLIBS = -lm
+
+    OBJS = point.o polygon.o polygon-area.o
+    BIN = polygon-area
+
+    all: $(BIN)
+
+    .PHONY: clean all
+
+    point.o: point.c
+        $(CC) $(CFLAGS) point.c -c -o point.o
+
+    polygon.o: polygon.c
+        $(CC) $(CFLAGS) polygon.c -c -o polygon.o
+
+    polygon-area.o: polygon-area.c
+        $(CC) $(CFLAGS) polygon-area.c -c -o polygon-area.o
+
+    $(BIN): $(OBJS)
+        $(CC) $(OBJS) -o $(BIN) $(LDLIBS)
+
+    clean:
+        rm -f $(OBJS) $(BIN)
+
+Notice how this makes it much easier for us to update something like the
+compiler flags, or the name of the executable we are generating, without
+having to muck around with the rules themselves. All that would be required
+would be to update the variables at the top of the file.
+
+Before moving on, let's make sure this works as expected:
+
+.. code-block:: shell
+
+    $ make clean
+    rm point.o polygon.o polygon-area.o polygon-area
+    $ make
+    clang -g -O2 -Wall -Wextra point.c -c -o point.o
+    clang -g -O2 -Wall -Wextra polygon.c -c -o polygon.o
+    clang -g -O2 -Wall -Wextra polygon-area.c -c -o polygon-area.o
+    clang point.o polygon.o polygon-area.o -o polygon-area -lm
+
+Notice how ``make`` is now using ``clang`` as the compiler, and is including
+the specified compiler parameters when compiling the object files.
+
+Automatic Variables and Patterns
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Our Makefile is looking pretty good, but notice how the following
+rules all follow the same pattern: an object file that depends on a
+C file, where the command to build the object file is identical
+across all the rules (except for the files involved).
+
+.. code-block:: makefile
+
+    point.o: point.c
+        $(CC) $(CFLAGS) point.c -c -o point.o
+
+    polygon.o: polygon.c
+        $(CC) $(CFLAGS) polygon.c -c -o polygon.o
+
+    polygon-area.o: polygon-area.c
+        $(CC) $(CFLAGS) polygon-area.c -c -o polygon-area.o
+
+Fortunately, Make provides a number of mechanism that can allow us
+to build more general rules, instead of having to write a single
+rule per object file.
+
+First, we have *automatic variables* that allow us to access
+information about a rule. The ones we'll need to use are the
+following:
+
+-  ``$@`` refers to the target of the rule
 -  ``$^`` is the names of all the prerequisites, separated by spaces
 -  ``$<`` is the name of the first prerequisite
--  There are three different patterns for substituting text:
 
-   -  In a prerequisite, you can do substitution like so: ``%.o:%.c``.
-      This means: “take a file and substitute the extension ``.o`` for
-      the extension ``.c``”.
-   -  In a variable, you can do substitution like so:
-      ``FOO = $(BAR:.txt=.pdf)``. This means: “take the ``BAR``
-      variable, substitute the ``.txt`` extension for ``.pdf`` in all
-      files in ``BAR``, and then save the result in ``FOO``.”
+So, for example, it would be possible to rewrite this rule:
 
--  Inside a rule, you can use the ``patsubst`` function like so:
-   ``gcc $(patsubst %.o,%.d,$@)``. This means: “take the name of the
-   current rule, substitute the extension ``.o`` for ``.d``, and pass
-   that file to gcc”.
+.. code-block:: makefile
+
+    point.o: point.c
+        $(CC) $(CFLAGS) point.c -c -o point.o
+
+Like this:
+
+.. code-block:: makefile
+
+    point.o: point.c
+        $(CC) $(CFLAGS) $< -c -o $@
+
+This makes the rule a bit less error-prone, as it ensures that we're using the
+correct values in the command, but we would still need to write a separate
+rule for each object file.
+
+To write a single general rule for all the object files, we will need to use
+*patterns*. For example, we could write a pattern rule like this:
+
+.. code-block:: makefile
+
+    %.o: %.c
+        $(CC) $(CFLAGS) $< -c -o $@
+
+In this rule, ``%.o`` will match any file ending with ``.o``, and will
+set its prerequisite to the same file, but replacing ``.o`` with ``.c``.
+
+While this can be a useful rule, it is a bit too broad for our purposes,
+since we have a specific list of object files we want to compile. We can
+instead write the rule like this:
+
+.. code-block:: makefile
+
+    $(OBJS): %.o:%.c
+        $(CC) $(CFLAGS) $< -c -o $@
+
+This has the same effect as the previous (more general) rule, but
+limiting the list of targets only to the files in the ``OBJS`` variable.
+
+It is also possible to peform pattern substitutions on variables.
+For example, we could redefine our ``OBJS`` variable like this:
+
+.. code-block:: makefile
+
+    SRCS = point.c polygon.c polygon-area.c
+    OBJS = $(SRCS:.c=.o)
+
+We first define a ``SRCS`` variable with our source files,
+and then define ``OBJS`` to be ``$(SRCS:.c=.o)``, which just means
+"take the ``SRCS`` variable, and substitute the ``.c`` extension for ``.o``
+in all files".
+
+To recap, our Makefile should now look like this:
+
+.. code-block:: makefile
+
+    CC = clang
+    CFLAGS = -g -O2 -Wall -Wextra
+    LDLIBS = -lm
+
+    SRCS = point.c polygon.c polygon-area.c
+    OBJS = $(SRCS:.c=.o)
+    BIN = polygon-area
+
+    all: $(BIN)
+
+    .PHONY: clean all
+
+    $(OBJS): %.o:%.c
+        $(CC) $(CFLAGS) $< -c -o $@
+
+    $(BIN): $(OBJS)
+        $(CC) $(OBJS) -o $(BIN) $(LDLIBS)
+
+    clean:
+        rm -f $(OBJS) $(BIN)
+
+Let's make sure it works correctly:
+
+.. code-block:: shell
+
+    $ make clean
+    rm -f point.o polygon.o polygon-area.o polygon-area
+    $ make
+    clang -g -O2 -Wall -Wextra -c -o point.o point.c
+    clang -g -O2 -Wall -Wextra -c -o polygon.o polygon.c
+    clang -g -O2 -Wall -Wextra -c -o polygon-area.o polygon-area.c
+    clang point.o polygon.o polygon-area.o -o polygon-area -lm
+
+Task 1: Makefile for the micro editor
+-------------------------------------
+
+We have included a ``micro-editor`` directory in your repository with
+the code for a very simple terminal-based editor
+called ``micro``. This is our version of the ``kilo`` editor, a simple
+but functional text editor that can be implemented in about 1,000 lines of C
+code; if you're interested, you can see a step-by-step guide to writing this
+editor here: https://viewsourcecode.org/snaptoken/kilo/ (please note that you
+do not have to read this to complete this homework; however, if you're interested
+in the inner workings of a text editor, you may find that guide interesting).
+
+``micro`` largely follows the same structure as the ``kilo`` code, except we
+divided it into multiple modules and documented the code following our style guide.
+
+You can compile and run the editor like this:
+
+.. code-block:: shell
+
+    $ gcc src/*.c -o micro
+    $ ./micro
+
+This will open the editor with a "blank file". You can start typing to edit
+the file, and you'll notice that you can move around with the arrow keys, use
+the Backspace key, and the Delete key. You should be able to quit the editor
+by pressing Ctrl-Q (if you modified the file, you'll have to press it three
+times to confirm you want to exit without saving).
 
 .. note::
 
-    ``.d`` files (aka, “dependency files”), which you will
-    encounter in libgeometry and in other projects, are special files that
-    list out all the header files that the project depends on. This is
-    because by default, ``make`` does not track changes to .h files, while
-    it does track changes to .c files. So, we use a special flag in gcc (the
-    ``-MM`` flag which you can read more about in ``man gcc``) which
-    compiles a list of header files that the code depends on. ``make`` can
-    then use that ``.d`` file to figure out when a header file has been
-    modified and recompile the code accordingly.
+   If you run ``micro`` inside a code editor's terminal (e.g., inside Visual
+   Studio Code's terminal), make sure that you click on the terminal
+   before pressing Ctrl-Q, to ensure the Ctrl-Q is processed by the terminal
+   and not by the editor (which might use Ctrl-Q for something different)
 
-    Please note that you do not need to worry about ``.d`` files in this
-    homework.
+Your task is simple: write a Makefile that will build the ``micro``
+executable. Take into account that, while we were able to compile
+the executable just by running ``gcc src/*.c -o micro``, your Makefile
+should follow the same approach as the Makefile for ``polygon-area``:
+you must build each object file separately, and link them together
+into a ``micro`` executable. You must also use variables and patterns
+to avoid repeated code in your Makefile.
 
-Finally, rules can have variable names: if you want to parameterize a
-rule so that it works for any files in a list of files, you could name a
-rule ``$(SRCS)``. Consider the following rule:
+.. admonition:: The ``CMakeLists.txt`` file
+
+    You'll notice there is also a ``CMakeLists.txt`` file in the
+    ``micro-editor`` directory. You can ignore that file for now;
+    we will come back to it later in the homework.
+
+Building a library
+------------------
+
+For this part of the homework, we will return to the ``polygon-area``
+example. Make sure you are in that directory, and not the ``micro-editor``
+directory.
+
+So far, we've written a Makefile whose ultimate purpose is to build
+a ``polygon-area`` executable. However, let's say that we now
+wanted to build an additional executable, ``point-distance``, that
+relied on the Point module. Go ahead and create a file called
+``point-distance.c`` with the following code:
+
+.. code-block:: c
+
+    #include <stdio.h>
+    #include "point.h"
+
+    int main()
+    {
+        point_t p1, p2;
+
+        printf("[Point 1] Please enter a value for x: ");
+        scanf("%lf", &p1.x);
+
+        printf("[Point 1] Please enter a value for y: ");
+        scanf("%lf", &p1.y);
+
+        printf("[Point 2] Please enter a value for x: ");
+        scanf("%lf", &p2.x);
+
+        printf("[Point 2] Please enter a value for y: ");
+        scanf("%lf", &p2.y);
+
+        printf("The distance between (%.2lf, %.2lf) and "
+               "(%.2lf, %.2lf) is %.2lf\n", p1.x, p1.y, p2.x, p2.y,
+               point_distance(&p1, &p2));
+    }
+
+Make sure to add/commit/push this file to your repository.
+
+We *could* create another Makefile where the ``BIN`` variable is set
+to ``point-distance``, or we could even edit our existing Makefile
+with an additional rule to build ``point-distance``. However,
+this would result in ``polygon-area`` and ``point-distance``
+being *statically linked* with the Point and Polygon modules,
+meaning that the ``polygon-area`` and ``point-distance`` executables
+will contain the compiled binary code for any Point or Polygon functions they
+use. If we have a lot of executables like this, that could mean
+a lot of repeated binary code across all the executables.
+
+Instead, it would be preferable to build the Point and Polygon modules
+into a *shared library* that can be *dynamically linked* with the
+``polygon-area`` and ``point-distance`` executables. More specifically,
+we will build a ``libgeometry.so`` file containing the binary code
+of the Point and Polygon modules.
+
+For example, the compiled binary code for the ``point_distance``
+function would be contained in ``libgeometry.so``, and the ``point-distance``
+executable would just include a reference to that function
+(that would be linked to the actual ``point_distance`` code in ``libgeometry.so``
+when the ``point-distance`` executable is run).
+
+To build the library, we would just need to run this:
+
+.. code-block:: shell
+
+    $ gcc -fPIC -c point.c -o point.o
+    $ gcc -fPIC -c polygon.c -o polygon.o
+    $ gcc -shared -o libgeometry.so point.o polygon.o
+
+Notice how we're compiling the Point and Polygon modules as we did
+before, but we are now using the ``-fPIC`` option. This flag tells
+gcc to enable *position-independent code*. Position-independence
+is beyond the scope of this homework, but it’s necessary for
+building shared libraries.
+
+Then, we simply link the ``point.o`` and ``polygon.o`` object files
+like we did before except, instead of producing an executable,
+we produce the ``libgeometry.so`` file (the ``-shared`` option
+instructs the linker to produce a library instead of an executable).
+
+Then, to build the ``point-distance`` executable, we do the following:
+
+.. code-block:: shell
+
+    gcc point-distance.c -o point-distance -L. -lgeometry -lm
+
+Notice how we now include an ``-lgeometry`` option to tell the
+linker to link with the ``libgeometry.so`` library (by default,
+passing *NAME* to the ``-l`` option will result in the linker
+searching for a file called ``libNAME.so``). We additionally
+pass the ``-L.`` option to tell the linker to look for
+libraries in the current directory.
+
+.. admonition:: What about ``-lm``?
+
+   We've used the ``-lm`` option previously to link
+   our executables to the standard math library, but
+   we've just said that using an option like ``-lm``
+   would result in linking with with a library called
+   ``libm.so``. So, where is that file?
+
+   Since the math library is a standard library,
+   it is located in a system directory that the
+   linker will also be looking at when trying
+   to find library files. In most Linux systems,
+   this file can be found here::
+
+      /usr/lib/x86_64-linux-gnu/libm.so
+
+If you run the commands above, the result should be
+a ``point-distance`` executable. However, there is
+one final wrinkle when we try to run it:
+
+.. code-block:: shell
+
+    $ ./point-distance
+    ./point-distance: error while loading shared libraries: libgeometry.so: cannot open shared object file: No such file or directory
+
+We also need to tell the *shell* where to look for library
+files when running executables. We can do this by setting
+the ``LD_LIBRARY_PATH`` environment variable:
+
+.. code-block:: shell
+
+    $ export LD_LIBRARY_PATH=.
+    $ ./point-distance
+    [Point 1] Please enter a value for x: 0.0
+    [Point 1] Please enter a value for y: 1.0
+    [Point 2] Please enter a value for x: 1.0
+    [Point 2] Please enter a value for y: 0.0
+    The distance between (0.00, 1.00) and (1.00, 0.00) is 1.41
+
+Note: Setting the ``LD_LIBRARY_PATH`` environment variable only needs to be done once
+each time you start a new terminal. You do not need to run it every time you want
+to run the executable.
+
+Our updated Makefile will now look like this:
 
 .. code-block:: makefile
 
-   $(OBJS): %.o:%.c
-     $(CC) $(CFLAGS) -c -o $@ $(patsubst %.o, %.c, $@)
+    CC = clang
+    CFLAGS = -fPIC -g -O2 -Wall -Wextra
+    LDFLAGS = -L.
+    LDLIBS = -lgeometry -lm
 
-There’s a lot going on here, so let’s unpack it all. Naming the rule
-``$(OBJS)`` means that any filename in ``$(OBJS)`` will match this rule.
-That is, if ``$(OBJS)`` is ``OBJS = src/obi_wan.o src/grievous.o``, and
-we call ``make src/grievous.o``, it will run this command. Next, since
-the rule name is a parameter, it’s not really clear what ``$@``
-represents. In the case of a parameterized rule, ``$@`` is the value of
-the parameter that triggered the rule. So if we call
-``make src/grievous.o``, then ``$@`` will be ``src/grievous.o``.
-Similarly, if we call ``make src/obi_wan.o``, then ``$@`` will be
-``src/obi_wan.o``. Finally, the ``%.o:%.c`` part marks all ``.c`` files
-corresponding to the ``.o`` files in ``OBJS`` as prerequisites. Marking
-a ``.c`` file as a prerequisite means that when you run any rule that
-depends on that file, ``make`` will first check if that file has been
-changed since the last time was run, and if it was changed, will run any
-other prerequisites first (to ensure your whole project is up-to-date).
+    SRCS = point.c polygon.c
+    OBJS = $(SRCS:.c=.o)
+    LIB = libgeometry.so
 
-Given this information, take your ``Makefile`` from task 3, copy it to
-the task 4 directory, and modularize it: you should have no hardcoded
-rules or values, except for flags/filenames/etc that only apply to one
-specific rule. Note that there are possibly many correct ways to do
-this. You should make a commit at this point.
+    BINS = polygon-area point-distance
 
-Task 5: Linking with your library
----------------------------------
+    all: $(LIB) $(BINS)
 
-(20 points)
+    .PHONY: clean all
 
-At this point, you have a Makefile that produces a ``libstarwars.so``
-library. For this final task, you must create a ``task5`` directory, and
-write a C file in it that uses the ``libstarwars.so`` library, and a
-Makefile that correctly builds and runs your program. We have not
-explicitly explained some of the steps that will be required to do this,
-but you may use the ``Makefile`` from the ``samples/`` directory in
-`libgeometry <https://github.com/uchicago-cs/cmsc22000/tree/master/examples/libgeometry>`__
-as a guide. However, it is not enough for you to copy-paste parts of
-that ``Makefile``: your ``Makefile`` for this task must be annotated
-with comments (comments in Makefiles begin with ``#``). These comments
-must explain what each rule does, and you must explain any detail or
-feature that was not explicitly explained earlier in the homework.
+    $(OBJS): %.o:%.c
+        $(CC) $(CFLAGS) $< -c -o $@
 
-You must also include a ``readme.txt`` file with instructions on how to
-build and run your program. Remember that, by default, programs running
-on a Linux system will look for shared libraries in specific locations,
-so you must tell us how we must run your program so that it can
-correctly find the ``libstarwars.so`` library when it runs.
+    $(LIB): $(OBJS)
+        $(CC) -shared -o $@ $^
+
+    $(BINS): %:%.c $(LIB)
+        $(CC) $< -o $@ $(LDFLAGS) $(LDLIBS)
+
+    clean:
+        rm -f $(OBJS) $(LIB) $(BINS)
+
+At this point, it should be possible for you to understand the
+changes we've made to the Makefile. Pay special attention to the
+new ``$(LIB)`` target, and the new ``BINS`` variable (which now
+specifies multiple executables), as well as how we're using patterns in the
+``$(BINS)`` pattern to build those executables.
+
+.. admonition:: The directory structure in Homework #2's libgeometry
+
+   If you look at the libgeometry code from Homework #2, you'll
+   see that, instead of having all the .c and .h files in one directory
+   (as we've seen in the ``polygon-area`` example), it follows a
+   specific directory structure:
+
+   - ``src/``: Contains the source code for the library.
+   - ``include/``: Contains any "public" header files, meaning any header
+     files that we would allow other module or programs to include. Take
+     into account that this means we don't just place all the header
+     files in the ``include/`` directory. For example, there is a ``utils.h``
+     file in ``src/`` that is only meant to be used by the C files in that
+     directory, and which we would not want other modules or programs to
+     include.
+   - ``samples/``: Contains a sample program that uses the libgeometry library.
+   - ``tests/``: Contains all test-related code.
+
+   The ``Makefile`` is also different because it will produce both a dynamic
+   library (``libgeometry.so``) and a static library (``libgeometry.a``). It
+   also produces a series of *dependency files* (``.d`` files) that allow
+   make to keep track of dependencies between header files (you do not
+   need to worry about how this mechanism works).
+
+   Additionally, there are also Makefiles inside the ``tests/`` and
+   ``samples/`` directory. This is a common way to refactor Makefiles,
+   which allows the top-level Makefile to define targets like the ``tests``
+   target which just say "run the ``Makefile`` in directory ``tests/``"
+
+Task 2: The libgraph library
+----------------------------
+
+We have included in your repository a ``libgraph`` directory that contains
+the code for a graph library (in the ``src/libgraph`` directory),
+as well as a few executables that use that library (in the ``src/tools``
+directory). You do not need to understand the graph code itself but,
+if you're curious, it provides a series of data structures and functions
+to manipulate graphs, as well as a few common graph algorithms.
+
+Your task is to write a Makefile that will build a ``libgraph.so`` library,
+along with the ``best-first`` and ``toposort`` executables, which will
+use that library. Notice how the directory structure is
+different from the ``polygon-area`` example, where all the files
+were in a single directory. Instead, the files are organized
+similar to the ``libgeometry`` example from Homework #2.
+
+You are not allowed to move any of
+the files in the ``libgraph/`` directory, and must instead account
+for this directory structure in your Makefile. One particular aspect
+you'll have to figure out (which we have not explained) is how to
+tell the compiler to look for header files in a different directory
+(notice how several of the header files are in a separate ``include/``
+directory).
+
+If you are successful, you should be able to run the executables as follows:
+
+.. code-block:: shell
+
+    $ ./best-first -g examples/cities.graph -s SanFrancisco -f NewYork
+    SanFrancisco -> LosAngeles -> LasVegas -> Phoenix -> SaltLakeCity -> Denver -> KansasCity -> Minneapolis -> Chicago -> Cleveland -> NewYork
+    Total weight: 4365.00
+
+.. code-block:: shell
+
+    $ ./toposort -g examples/flow.graph
+    START R1 R2 R3 R4 R5 R6 END
+
+The first executable does a `best-first search <https://en.wikipedia.org/wiki/Best-first_search>`__
+on the graph, while the second executable does a `topological sort <https://en.wikipedia.org/wiki/Topological_sorting>`__.
 
 CMake
 -----
 
-While you have learned about Make in this homework, the course project uses a
-more advanced build system called `CMake <https://cmake.org/>`__, which
-actually provides a layer of abstraction over Make. For example, this is
-was a simple CMake file for building a library looks like:
+You may have noticed that both the ``micro-editor`` directory and the ``libgraph``
+directory contain a ``CMakeLists.txt`` file. This file is used by a build system
+called `CMake <https://cmake.org/>`__ that provides a simpler file format
+for specifying builds (internally, CMake actually uses regular ``make`` to actually
+build the code). In fact, this is the build system we use in the course project.
+
+We are not going to get into the full syntax of the ``CMakeLists.txt`` file but a
+quick glance at ``libgraph/CMakeLists.txt`` can give you a sense of how much simpler
+it is than regular ``Makefiles``. For example, this command specifies how
+to build the libgraph library:
 
 .. code-block:: cmake
 
-   cmake_minimum_required(VERSION 3.5.1)
-   project(libstarwars C)
+    add_library(graph SHARED
+            src/libgraph/graph.c
+            src/libgraph/vlist.c
+            src/libgraph/algorithms.c)
 
-   set(CMAKE_C_STANDARD 11)
+And these two commands specify how to build the ``best-first`` executable (including
+the fact that it needs to be linked to the libgraph library):
 
-   include_directories(include/)
+.. code-block:: cmake
 
-   add_library(starwars SHARED
-               src/obi_wan.c
-               src/grievous.c)
+    add_executable(best-first
+            src/tools/best-first.c)
 
-You can try this CMake build file by saving it as ``CMakeLists.txt``
-inside the ``task4`` directory. Then, run the following commands:
+    target_link_libraries(best-first graph)
+
+To build the code with CMake, we would run the following:
 
 .. code-block:: shell
 
     $ cmake -B build/
 
-This creates a separate ``build`` directory where all the build files
-(including intermediate object files) will be created. This keeps your
-directory structure cleaner by separating your source files from your
-build files. CMake will actually generate a ``Makefile`` inside the ``build``
-directory, and running ``make`` in that directory will result in a ``libstarwars.so`` library being built
-inside the ``build`` directory.
+This will create a *build directory* that will contain all the files related
+to building the code (e.g., all the intermediate object files will be
+created here).
 
-While it may seem odd that we went through several Make exercises, to
-then reveal we’re not using Make in the course project, it’s hard to
-understand how CMake works if you don’t first understand how the
-underlying Make system works (and not just that, there are lots of projects
-out there that use Make exclusively). We’re not covering CMake in detail
-here because, as you can see above (and as you’ll see in the course
-project), the CMake syntax is pretty intuitive and easy to pick up
-on your own once you understand the basics of build systems.
+After we've run that command, we can ``cd`` into the ``build/`` directory
+and run ``make`` as usual. This will produce the ``libgraph.so`` file
+along with the ``best-first`` and ``toposort`` executables. If you try to
+run them, they should behave exactly as described earlier.
 
 Submitting your homework
 ------------------------
 
 Before submitting, make sure you’ve added, committed, and pushed all
-your code to GitHub. Like the previous homework, you will submit your code
-through Gradescope,
-
-When submitting through Gradescope, you will be given the option of
-manually uploading files, or of uploading a GitHub repository (we
-recommend the latter, as this ensures you are uploading exactly the
-files that are in your repository). If you upload your repository, make
-sure you select your ``2021-hw3-GITHUB_USERNAME`` repository, with
-“main” as the branch. Please note that you can submit as many times as
+your work to GitHub. When submitting through Gradescope, you will be given the option of
+uploading a GitHub repository. Make sure you select your ``hw3-GITHUB_USERNAME``
+repository, with “main” as the branch. Please note that you can submit as many times as
 you want before the deadline.
+
+Once you submit your files, an “autograder” will run. This won’t
+actually be doing any grading, but it will try to build the code in
+the ``polygon-area``, ``micro-editor``, and ``libgraph`` directories
+(using the ``Makefiles`` in each directory). If the autograder shows
+any errors, that is a sign there could be issues with your Makefiles.
+
+Note: you may see a compiler warning referring to a "buf" variable
+in the ``micro-editor`` code. You can safely ignore this warning.
