@@ -24,8 +24,8 @@ Task 1: Makefile for the micro editor
 - Not using variables (``CC``, ``CFLAGS``, etc.)
 - Makefile does not correctly produce a ``micro`` executable.
 
-Task 2: Makefile for the micro editor
--------------------------------------
+Task 2: Makefile for the libgraph editor
+----------------------------------------
 
 - [Major] Not adding a ``Makefile`` in ``libgraph/``
 - Having individual rules for each object file

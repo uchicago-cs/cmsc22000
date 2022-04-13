@@ -7,7 +7,7 @@ In the class project, you will likely produce dozens of C files that
 will ultimately produce a single executable. When dealing with multiple
 source files, specially when there are dependencies between them, it is
 common to use a *build system* instead of manually compiling and linking
-all the files. in this homework, we’ll explore the ways a program can be
+all the files. In this homework, we’ll explore the ways a program can be
 “built”–that is, the way that source code is turned into binary code so
 that a computer can execute it. In some cases, “building” may refer to
 compiling a single file, but usually it refers to the whole process of
@@ -31,7 +31,7 @@ Creating your homework repository
 ---------------------------------
 
 Like previous homeworks, we will provide you with an *invitation URL* that
-will allow you sign up for the homework assignment on GitHub, and which will
+will allow you to sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
 ``hw3-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
 on GitHub. Like Homework #2, your repository will be seeded with some files
@@ -103,7 +103,7 @@ Remember that, internally, this is divided into two separate steps:
 - Compiling: The compiler will compile each C file into an object file.
 - Linking: The compiler will link together all those files together into a single executable
   (``polygon-area``). Here, we also link to the math library, since
-  the point module relies a couple of functions from that library (if you try re-running
+  the point module relies on a couple of functions from that library (if you try re-running
   the above command without the ``-lm`` option, you will see linker errors that refer
   to math functions).
 
@@ -877,6 +877,13 @@ the Backspace key, and the Delete key. You should be able to quit the editor
 by pressing Ctrl-Q (if you modified the file, you'll have to press it three
 times to confirm you want to exit without saving).
 
+.. note::
+
+   If you run ``micro`` inside a code editor's terminal (e.g., inside Visual
+   Studio Code's terminal), make sure that you click on the terminal
+   before pressing Ctrl-Q, to ensure the Ctrl-Q is processed by the terminal
+   and not by the editor (which might use Ctrl-Q for something different)
+
 Your task is simple: write a Makefile that will build the ``micro``
 executable. Take into account that, while we were able to compile
 the executable just by running ``gcc src/*.c -o micro``, your Makefile
@@ -893,6 +900,10 @@ to avoid repeated code in your Makefile.
 
 Building a library
 ------------------
+
+For this part of the homework, we will return to the ``polygon-area``
+example. Make sure you are in that directory, and not the ``micro-editor``
+directory.
 
 So far, we've written a Makefile whose ultimate purpose is to build
 a ``polygon-area`` executable. However, let's say that we now
@@ -967,7 +978,7 @@ building shared libraries.
 Then, we simply link the ``point.o`` and ``polygon.o`` object files
 like we did before except, instead of producing an executable,
 we produce the ``libgeometry.so`` file (the ``-shared`` option
-instructs the linker to produce a library instead of an executable)
+instructs the linker to produce a library instead of an executable).
 
 Then, to build the ``point-distance`` executable, we do the following:
 
