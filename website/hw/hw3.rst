@@ -24,7 +24,7 @@ Project Team Exercise: Design Warm-up (Part II)
 -----------------------------------------------
 
 Along with this week’s homework, we are also assigning the second part of the
-design warm-up exercise, which you can find `here <../project/design.html>`__.
+design warm-up exercise, which you can find `here <../project/warmup.html>`__.
 Please note that the second part of the design exercise is due at the same time as this homework.
 
 Creating your homework repository
