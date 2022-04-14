@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Homework &#8212; CMSC 22000 - Introduction to Software Development</title>
+<title>Homework 3 Rubric &#8212; CMSC 22000 - Introduction to Software Development</title>
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
@@ -17,8 +17,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework 1: Git" href="hw1.html" />
-    <link rel="prev" title="Code of Conduct for Course Staff" href="../code-of-conduct.html" />
+    <link rel="next" title="Homework 4: Debugging" href="hw4.html" />
+    <link rel="prev" title="Homework 3: Make" href="hw3.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -62,7 +62,7 @@
         <li><a href="../code-of-conduct.html">Code of Conduct for Course Staff</a></li>
     </ul>
 </li>
-<li><a href="#">Homework</a></li>
+<li><a href="index.html">Homework</a></li>
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
     <ul class="dropdown-menu">
@@ -96,72 +96,51 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="homework">
-<h1>Homework<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h1>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 3%" />
-<col style="width: 43%" />
-<col style="width: 33%" />
-<col style="width: 21%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>#</p></th>
-<th class="head"><p>Homework</p></th>
-<th class="head"><p>Rubric</p></th>
-<th class="head"><p>Due Date</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td><p><a class="reference external" href="hw1.html">Git</a></p></td>
-<td><p><a class="reference external" href="hw1_rubric.html">Rubric</a></p></td>
-<td><p>April 6, 8pm CDT</p></td>
-</tr>
-<tr class="row-odd"><td><p>2</p></td>
-<td><p><a class="reference external" href="hw2.html">Software Design</a></p></td>
-<td><p><a class="reference external" href="hw2_rubric.html">Rubric</a></p></td>
-<td><p>April 13, 8pm CDT</p></td>
-</tr>
-<tr class="row-even"><td><p>3</p></td>
-<td><p><a class="reference external" href="hw3.html">Make</a></p></td>
-<td><p><a class="reference external" href="hw3_rubric.html">Rubric</a></p></td>
-<td><p>April 20, 8pm CDT</p></td>
-</tr>
-<tr class="row-odd"><td><p>4</p></td>
-<td><p>Debugging</p></td>
-<td></td>
-<td><p>April 27, 8pm CDT</p></td>
-</tr>
-<tr class="row-even"><td><p>5</p></td>
-<td><p>Testing</p></td>
-<td></td>
-<td><p>May 4, 8pm CDT</p></td>
-</tr>
-<tr class="row-odd"><td><p>6</p></td>
-<td><p>Continuous Integration</p></td>
-<td></td>
-<td><p>May 11, 8pm CDT</p></td>
-</tr>
-<tr class="row-even"><td><p>7</p></td>
-<td><p>Deployment</p></td>
-<td></td>
-<td><p>May 18, 8pm CDT</p></td>
-</tr>
-<tr class="row-odd"><td><p>8</p></td>
-<td><p>More CI and Deployment</p></td>
-<td></td>
-<td><p>May 25, 8pm CDT</p></td>
-</tr>
-<tr class="row-even"><td><p>9</p></td>
-<td><p>Documentation and Logging</p></td>
-<td></td>
-<td><p>Optional</p></td>
-</tr>
-</tbody>
-</table>
-<p>If you need any help on the homework assignments, please see our <a class="reference external" href="help.html">Getting help on the homework assignments</a> page.</p>
-<div class="toctree-wrapper compound">
+  <div class="section" id="homework-3-rubric">
+<h1>Homework 3 Rubric<a class="headerlink" href="#homework-3-rubric" title="Permalink to this headline">¶</a></h1>
+<p>The grading of this project follows a specifications grading approach. If you have not already
+done so, make sure to read our <a class="reference external" href="../grading.html">Grading</a> page for more details.</p>
+<p>When grading your work, the graders will be checking for the following issues in your code. Please
+note that some of the issues are labelled as “[Major]” (these will have a greater effect on your score
+for the homework)</p>
+<div class="section" id="writing-makefiles-building-a-library">
+<h2>Writing Makefiles + Building a library<a class="headerlink" href="#writing-makefiles-building-a-library" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>[Major] Not adding a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code></p></li>
+<li><p>Adding the final (complete) <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in a single commit. You should try
+to make a few intermediate commits as you create the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> described
+in this section.</p></li>
+</ul>
+</div>
+<div class="section" id="task-1-makefile-for-the-micro-editor">
+<h2>Task 1: Makefile for the micro editor<a class="headerlink" href="#task-1-makefile-for-the-micro-editor" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>[Major] Not adding a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in <code class="docutils literal notranslate"><span class="pre">micro-editor/</span></code></p></li>
+<li><p>Having individual rules for each object file</p></li>
+<li><p>Not using variables (<code class="docutils literal notranslate"><span class="pre">CC</span></code>, <code class="docutils literal notranslate"><span class="pre">CFLAGS</span></code>, etc.)</p></li>
+<li><p>Makefile does not correctly produce a <code class="docutils literal notranslate"><span class="pre">micro</span></code> executable.</p></li>
+</ul>
+</div>
+<div class="section" id="task-2-makefile-for-the-libgraph-editor">
+<h2>Task 2: Makefile for the libgraph editor<a class="headerlink" href="#task-2-makefile-for-the-libgraph-editor" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>[Major] Not adding a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in <code class="docutils literal notranslate"><span class="pre">libgraph/</span></code></p></li>
+<li><p>Having individual rules for each object file</p></li>
+<li><p>Having individual rules for each executable</p></li>
+<li><p>Not using variables (<code class="docutils literal notranslate"><span class="pre">CC</span></code>, <code class="docutils literal notranslate"><span class="pre">CFLAGS</span></code>, etc.)</p></li>
+<li><p>Makefile does not correctly produce a <code class="docutils literal notranslate"><span class="pre">libgraph.so</span></code> library.</p></li>
+<li><p>Makefile does not correctly produce a <code class="docutils literal notranslate"><span class="pre">best-first</span></code> or <code class="docutils literal notranslate"><span class="pre">toposort</span></code> executable.</p></li>
+</ul>
+</div>
+<div class="section" id="esnu-score">
+<h2>ESNU Score<a class="headerlink" href="#esnu-score" title="Permalink to this headline">¶</a></h2>
+<p>The ESNU score will be determined as follows:</p>
+<ul class="simple">
+<li><p>Excellent: No major issues, and at most one other issue.</p></li>
+<li><p>Satisfactory: No major issues, and at most three other issues.</p></li>
+<li><p>Needs Improvement: At least one major issue, or five other issues.</p></li>
+<li><p>Ungradable: Two or more major issues.</p></li>
+</ul>
 </div>
 </div>
 
