@@ -21,7 +21,7 @@ review by another student and by your team's senior developer.
 
 To do this we will use the following repository:
 
-https://github.com/uchicago-cmsc22000/2021-pr-tutorial
+https://github.com/uchicago-cmsc22000-2022/pr-tutorial
 
 This repository has a single ``README.md`` file, and the goal of this tutorial
 will be to add your name to that file by using a pull request. Take into
@@ -59,7 +59,7 @@ from `Homework #1 <../hw/hw1.html>`__)
    welcome to use that direct URL in the future.
 
 Now, go to the repository on GitHub
-(https://github.com/uchicago-cmsc22000/2021-pr-tutorial). It should actually show
+(https://github.com/uchicago-cmsc22000-2022/pr-tutorial). It should actually show
 that you’ve pushed a branch recently, and there will be a green “Compare
 & pull request” button. Click on this button to create a pull request.
 If you don’t see a “Compare & pull request” button, you can also click
