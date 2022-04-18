@@ -1,14 +1,6 @@
 Homework 4: Debugging
 =====================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
-
 **Due:** Wednesday, April 27th, 8pm CDT
 
 In this homework, you will get some practice debugging a few programs and, in
@@ -28,7 +20,7 @@ Creating your homework repository
 Like previous homeworks, we will provide you with an *invitation URL* that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2021-hw4-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw4-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
 on GitHub. Like Homework #3, your repository will be seeded with some files
 for the homework.
 
@@ -41,8 +33,6 @@ your changes to your repository, in case we need to look at your code.
 
 Task 1: Compiler/Linker Error Debugging
 ---------------------------------------
-
-(15 + 15 points)
 
 Read the `Debugging
 Guide <https://uchicago-cs.github.io/debugging-guide/>`__ up to (and including)
@@ -267,16 +257,10 @@ The Micro Editor
 ----------------
 
 We've seen how GDB works with some simple examples, but now it's time to debug
-a more complex piece of software. We will be using a very simple terminal-based
-editor called ``micro``. This is our version of the ``kilo`` editor, a simple
-but functional text editor that can be implemented in about 1,000 lines of C
-code; if you're interested, you can see a step-by-step guide to writing this
-editor here: https://viewsourcecode.org/snaptoken/kilo/ (please note that you
-do not have to read this to complete this homework; however, if you're interested
-in the inner workings of a text editor, you may find that guide interesting).
-
-``micro`` largely follows the same structure as the ``kilo`` code, except we
-divided it into multiple modules and documented the code following our style guide.
+a more complex piece of software. We will be using the ``micro`` editor from
+Homework #3. As a reminder, this is our version of the `kilo <https://viewsourcecode.org/snaptoken/kilo/>`__
+editor, a simple but functional text editor that can be implemented in about 1,000 lines of C
+code.
 
 You can build the ``micro`` editor by going into the ``micro/`` directory in
 your repository and running the following::
@@ -517,6 +501,59 @@ breakpoints you specify.
 commands to figure out what is causing the segfault. You will find
 the answer at the bottom of this homework.
 
+Memory Debugging with Valgrind
+------------------------------
+
+Another useful tool for debugging runtime errors is `Valgrind <https://valgrind.org/>`__,
+a memory debugger that can alert you to incorrect memory accesses in your code. For example,
+take a look at the ``examples/buffer-overflow.c`` file. In this program, we are intentionally
+causing a *buffer overflow*: we allocated 13 bytes of memory for a string, but are then writing
+14 bytes into it (the string ``"Hello, world!"`` only has 13 characters in it, but remember we
+need an extra byte for the null terminator ``\0``!)
+
+Running the program doesn't actually result in a segfault or any kind of error::
+
+    $ gcc -g buffer-overflow.c -o buffer-overflow
+    $ ./buffer-overflow
+    Hello, world!
+
+But these kind of incorrect memory accesses (where we're writing into unallocated memory)
+could result in a segfault or other error further down road, including in a completely
+unrelated portion of our code. So, if you can't debug an issue with GDB, it's always
+worth running Valgrind to check that there aren't any inappropriate memory access
+in your code.
+
+To run Valgrind, simply run ``valgrind`` followed by the executable you want to debug::
+
+    $ valgrind ./buffer-overflow
+
+If you do this, you will see messages referring to an ``Invalid write`` when
+``strcpy`` is called, and to an ``Invalid read`` when ``printf`` is called.
+These refer to lines of your code where unallocated memory is being accessed.
+
+To fix the issue, change this line::
+
+    s = malloc(13 * sizeof(char));
+
+To this::
+
+    s = malloc(14 * sizeof(char));
+
+If you recompile the program and running with Valgrind, it should now report no issues.
+
+Valgrind is also useful for detecting *memory leaks*: points in your program where
+allocated memory isn't being freed. For example, try commenting out this line::
+
+    free(s);
+
+If you recompile and run the program with Valgrind, you will now see Valgrind
+print a ``LEAK SUMMARY`` at the end, alerting you to the fact that 14 bytes were
+``definitely lost``.
+
+Finally, take into account that it is also a good idea to simply run Valgrind periodically,
+even if nothing is visibly wrong with your code, as this may allow you to preemptively correct
+incorrect memory accesses and memory leaks.
+
 Task 3: Fixing Runtime Errors in the Micro Editor
 -------------------------------------------------
 
@@ -527,8 +564,6 @@ This is where a debugger can make your life much easier!
 
 Bug #1
 ~~~~~~
-
-(20 points)
 
 The editor will crash if you try to save any file by pressing Ctrl-S.
 That said, if you have trouble reproducing this issue, you can try
@@ -546,6 +581,7 @@ any modifications to the file).
 Use GDB to track down the source of the segfault, and to fix it. Provide
 the following information on Gradescope:
 
+- The full and unabridged gdb session you used to track down the segfault
 - Copy-paste the line where the segfault is happening.
 - Explain why the segfault is happening.
 - The before and after version of any lines of code you changed to
@@ -595,14 +631,11 @@ see if you can spot anything wrong.
 
 For this task, you must provide the following information on Gradescope:
 
+- The full and unabridged gdb session you used to track down the crash
 - Copy-paste the line that where the crash is happening.
 - Identify the programming error that leads to that crash happening.
 - The before and after version of any lines of code you changed to
   fix the bug.
-
-**NOTE:** This is a particularly challenging bug. We will give partial credit
-if you describe how you attempted to track down the bug but, for full credit,
-you must actually fix the bug.
 
 Submitting your homework
 ------------------------
