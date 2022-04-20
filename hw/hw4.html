@@ -17,8 +17,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework 5: Testing" href="hw5.html" />
-    <link rel="prev" title="Homework 3: Make" href="hw3.html" />
+    <link rel="next" title="Homework 4 Rubric" href="hw4_rubric.html" />
+    <link rel="prev" title="Homework 3 Rubric" href="hw3_rubric.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -103,6 +103,7 @@
 <li><a class="reference internal" href="#the-micro-editor">The Micro Editor</a></li>
 <li><a class="reference internal" href="#task-2-stepping-through-the-micro-editor-code">Task 2: Stepping Through the Micro Editor Code</a></li>
 <li><a class="reference internal" href="#runtime-error-debugging">Runtime Error Debugging</a></li>
+<li><a class="reference internal" href="#memory-debugging-with-valgrind">Memory Debugging with Valgrind</a></li>
 <li><a class="reference internal" href="#task-3-fixing-runtime-errors-in-the-micro-editor">Task 3: Fixing Runtime Errors in the Micro Editor</a><ul>
 <li><a class="reference internal" href="#bug-1">Bug #1</a></li>
 <li><a class="reference internal" href="#bug-2">Bug #2</a></li>
@@ -120,13 +121,6 @@
       
   <div class="section" id="homework-4-debugging">
 <h1>Homework 4: Debugging<a class="headerlink" href="#homework-4-debugging" title="Permalink to this headline">¶</a></h1>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-If you are currently taking this class, you’re welcome to take a look at the homework below,
-but bear in mind that it could change substantially. Do not start working on the homework
-until instructed to do so.</p>
-</div>
 <p><strong>Due:</strong> Wednesday, April 27th, 8pm CDT</p>
 <p>In this homework, you will get some practice debugging a few programs and, in
 particular, will resolve some of the errors we described in class. In
@@ -142,7 +136,7 @@ the guide before starting the homework, or read through the pertinent sections a
 <p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-<code class="docutils literal notranslate"><span class="pre">2021-hw4-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization
+<code class="docutils literal notranslate"><span class="pre">hw4-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000-2022</span></code> organization
 on GitHub. Like Homework #3, your repository will be seeded with some files
 for the homework.</p>
 <p>Please note that, while you will be modifying some of the files we give
@@ -152,7 +146,6 @@ your changes to your repository, in case we need to look at your code.</p>
 </div>
 <div class="section" id="task-1-compiler-linker-error-debugging">
 <h2>Task 1: Compiler/Linker Error Debugging<a class="headerlink" href="#task-1-compiler-linker-error-debugging" title="Permalink to this headline">¶</a></h2>
-<p>(15 + 15 points)</p>
 <p>Read the <a class="reference external" href="https://uchicago-cs.github.io/debugging-guide/">Debugging
 Guide</a> up to (and including)
 the “Build Errors” section (i.e., stop when you get to “Runtime Errors”).</p>
@@ -343,15 +336,10 @@ then print the value of variable <code class="docutils literal notranslate"><spa
 <div class="section" id="the-micro-editor">
 <h2>The Micro Editor<a class="headerlink" href="#the-micro-editor" title="Permalink to this headline">¶</a></h2>
 <p>We’ve seen how GDB works with some simple examples, but now it’s time to debug
-a more complex piece of software. We will be using a very simple terminal-based
-editor called <code class="docutils literal notranslate"><span class="pre">micro</span></code>. This is our version of the <code class="docutils literal notranslate"><span class="pre">kilo</span></code> editor, a simple
-but functional text editor that can be implemented in about 1,000 lines of C
-code; if you’re interested, you can see a step-by-step guide to writing this
-editor here: <a class="reference external" href="https://viewsourcecode.org/snaptoken/kilo/">https://viewsourcecode.org/snaptoken/kilo/</a> (please note that you
-do not have to read this to complete this homework; however, if you’re interested
-in the inner workings of a text editor, you may find that guide interesting).</p>
-<p><code class="docutils literal notranslate"><span class="pre">micro</span></code> largely follows the same structure as the <code class="docutils literal notranslate"><span class="pre">kilo</span></code> code, except we
-divided it into multiple modules and documented the code following our style guide.</p>
+a more complex piece of software. We will be using the <code class="docutils literal notranslate"><span class="pre">micro</span></code> editor from
+Homework #3. As a reminder, this is our version of the <a class="reference external" href="https://viewsourcecode.org/snaptoken/kilo/">kilo</a>
+editor, a simple but functional text editor that can be implemented in about 1,000 lines of C
+code.</p>
 <p>You can build the <code class="docutils literal notranslate"><span class="pre">micro</span></code> editor by going into the <code class="docutils literal notranslate"><span class="pre">micro/</span></code> directory in
 your repository and running the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">-</span><span class="n">B</span> <span class="n">build</span><span class="o">/</span>
@@ -574,6 +562,53 @@ breakpoints you specify.</p>
 commands to figure out what is causing the segfault. You will find
 the answer at the bottom of this homework.</p>
 </div>
+<div class="section" id="memory-debugging-with-valgrind">
+<h2>Memory Debugging with Valgrind<a class="headerlink" href="#memory-debugging-with-valgrind" title="Permalink to this headline">¶</a></h2>
+<p>Another useful tool for debugging runtime errors is <a class="reference external" href="https://valgrind.org/">Valgrind</a>,
+a memory debugger that can alert you to incorrect memory accesses in your code. For example,
+take a look at the <code class="docutils literal notranslate"><span class="pre">examples/buffer-overflow.c</span></code> file. In this program, we are intentionally
+causing a <em>buffer overflow</em>: we allocated 13 bytes of memory for a string, but are then writing
+14 bytes into it (the string <code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code> only has 13 characters in it, but remember we
+need an extra byte for the null terminator <code class="docutils literal notranslate"><span class="pre">\0</span></code>!)</p>
+<p>Running the program doesn’t actually result in a segfault or any kind of error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gcc -g buffer-overflow.c -o buffer-overflow
+$ ./buffer-overflow
+Hello, world!
+</pre></div>
+</div>
+<p>But these kind of incorrect memory accesses (where we’re writing into unallocated memory)
+could result in a segfault or other error further down road, including in a completely
+unrelated portion of our code. So, if you can’t debug an issue with GDB, it’s always
+worth running Valgrind to check that there aren’t any inappropriate memory access
+in your code.</p>
+<p>To run Valgrind, simply run <code class="docutils literal notranslate"><span class="pre">valgrind</span></code> followed by the executable you want to debug:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ valgrind ./buffer-overflow
+</pre></div>
+</div>
+<p>If you do this, you will see messages referring to an <code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">write</span></code> when
+<code class="docutils literal notranslate"><span class="pre">strcpy</span></code> is called, and to an <code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">read</span></code> when <code class="docutils literal notranslate"><span class="pre">printf</span></code> is called.
+These refer to lines of your code where unallocated memory is being accessed.</p>
+<p>To fix the issue, change this line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">13</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">char</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>To this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">14</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">char</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>If you recompile the program and running with Valgrind, it should now report no issues.</p>
+<p>Valgrind is also useful for detecting <em>memory leaks</em>: points in your program where
+allocated memory isn’t being freed. For example, try commenting out this line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">free</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you recompile and run the program with Valgrind, you will now see Valgrind
+print a <code class="docutils literal notranslate"><span class="pre">LEAK</span> <span class="pre">SUMMARY</span></code> at the end, alerting you to the fact that 14 bytes were
+<code class="docutils literal notranslate"><span class="pre">definitely</span> <span class="pre">lost</span></code>.</p>
+<p>Finally, take into account that it is also a good idea to simply run Valgrind periodically,
+even if nothing is visibly wrong with your code, as this may allow you to preemptively correct
+incorrect memory accesses and memory leaks.</p>
+</div>
 <div class="section" id="task-3-fixing-runtime-errors-in-the-micro-editor">
 <h2>Task 3: Fixing Runtime Errors in the Micro Editor<a class="headerlink" href="#task-3-fixing-runtime-errors-in-the-micro-editor" title="Permalink to this headline">¶</a></h2>
 <p>We have inserted two bugs in the Micro code that will cause the editor to
@@ -582,7 +617,6 @@ just by code inspection, given the amount of code you’d have to read through.
 This is where a debugger can make your life much easier!</p>
 <div class="section" id="bug-1">
 <h3>Bug #1<a class="headerlink" href="#bug-1" title="Permalink to this headline">¶</a></h3>
-<p>(20 points)</p>
 <p>The editor will crash if you try to save any file by pressing Ctrl-S.
 That said, if you have trouble reproducing this issue, you can try
 opening the provided <code class="docutils literal notranslate"><span class="pre">micro/samples/lorem-ipsum.txt</span></code> file. If you immediately
@@ -598,6 +632,7 @@ the terminal.</p>
 <p>Use GDB to track down the source of the segfault, and to fix it. Provide
 the following information on Gradescope:</p>
 <ul class="simple">
+<li><p>The full and unabridged gdb session you used to track down the segfault</p></li>
 <li><p>Copy-paste the line where the segfault is happening.</p></li>
 <li><p>Explain why the segfault is happening.</p></li>
 <li><p>The before and after version of any lines of code you changed to
@@ -642,14 +677,12 @@ the line that causes the crash (including prior functions in the backtrace) to
 see if you can spot anything wrong.</p>
 <p>For this task, you must provide the following information on Gradescope:</p>
 <ul class="simple">
+<li><p>The full and unabridged gdb session you used to track down the crash</p></li>
 <li><p>Copy-paste the line that where the crash is happening.</p></li>
 <li><p>Identify the programming error that leads to that crash happening.</p></li>
 <li><p>The before and after version of any lines of code you changed to
 fix the bug.</p></li>
 </ul>
-<p><strong>NOTE:</strong> This is a particularly challenging bug. We will give partial credit
-if you describe how you attempted to track down the bug but, for full credit,
-you must actually fix the bug.</p>
 </div>
 </div>
 <div class="section" id="submitting-your-homework">
