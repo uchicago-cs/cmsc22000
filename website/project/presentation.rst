@@ -1,6 +1,13 @@
 Final Presentations
 ===================
 
+.. warning::
+
+   We are currently re-designing the requirements for the final
+   presentations. This page contains last years requirements,
+   which you are welcome to read, but please bear in mind that
+   they may change.
+
 The final component of this course will be a series of final
 presentations, where each team will present the work they have done
 throughout the quarter. This presentation will be divided into two
