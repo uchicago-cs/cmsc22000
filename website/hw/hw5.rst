@@ -1,14 +1,6 @@
 Homework 5: Testing
 ===================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
-
 **Due:** Wednesday, May 4th, 8pm CDT
 
 By this point in your CS studies, you’ve probably experienced the
@@ -53,14 +45,13 @@ Creating your homework repository
 Like previous homeworks, we will provide you with an *invitation URL* that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2021-hw5-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw5-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
 on GitHub.
 
 Your repository will be seeded with some files for the homework
 and, more specifically, will contain a ``libgeometry`` directory with an
 updated version of ``libgeometry`` with the refactored ``segment``
-module we asked you to implement in Homework #5.
-
+module we asked you to implement in Homework #2.
 
 
 Task 0: A bit about ``criterion``
@@ -366,12 +357,10 @@ Submitting your homework
 Before submitting, make sure you’ve added, committed, and pushed all
 your code to GitHub. *Don’t forget to "git add" any new files.*
 
-When submitting through Gradescope, you will be given the option of
-manually uploading files, or of uploading a GitHub repository (we
-recommend the latter, as this ensures you are uploading exactly the
-files that are in your repository). If you upload your repository, make
-sure you select your ``2021-hw5-GITHUB_USERNAME`` repository, with
-“main” as the branch. Please note that you can submit as many times as
+Before submitting, make sure you’ve added, committed, and pushed all
+your work to GitHub. When submitting through Gradescope, you will be given the option of
+uploading a GitHub repository. Make sure you select your ``hw5-GITHUB_USERNAME``
+repository, with “main” as the branch. Please note that you can submit as many times as
 you want before the deadline.
 
 Once you submit your files, an “autograder” will run. This won’t
