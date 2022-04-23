@@ -64,7 +64,7 @@ already installed on the CS machines. Let’s learn a little bit about
 this testing framework before we get to the actual tasks for this homework.
 Consider the following sample tests:
 
-.. code:: c
+.. code::
 
    Test(foo, add)
    {
@@ -217,24 +217,60 @@ the following:
    ``segment_init``, ``segment_free``. You may find it helpful to look
    at similar tests in ``test_point.c`` and ``test_polygon.c``.
 -  We already had some tests for ``segment_intersect`` in
-   ``test_point.c``. *Refactor* them into ``test_segment.c``, and make
-   sure they’re in the correct test suite!
+   ``test_point.c``. Move those tests into ``test_segment.c``, and make
+   sure they’re in the correct test suite! Please note that you don't need to
+   update or change the tests themselves; they simply need to be moved
+   to the correct file. This will complete the refactoring
+   we started in Homework #2.
 -  Write test cases for ``on_segment`` and ``point_orientation``
    (previously known as ``orientation``). For these test cases, remember
    that you should have as much *coverage* as possible: your test cases
    should cover as many outcomes (and as many flows of execution through
-   the individual function) as possible. You should be able to
-   accomplish this by writing 3-4 tests for each function, but please
-   note we won’t be grading you on the number of tests your write, but
-   on how much coverage they provide.
+   the individual function) as possible.
 
-   Note: Remember that, in Homework #2, you had the option of moving these
-   functions to ``segment.c``, or to keep them in ``point.c`` (and
-   exposing them through ``point.h``). In the code we’ve provided,
-   ``on_segment`` has been moved to the segment module, and
-   ``orientation`` has been renamed to ``point_orientation`` and
-   kept in the point module (and both have been
-   added to their respective module’s header file).
+When it comes to thinking about coverage, you should take two (complementary)
+approaches:
+
+- **Black-box testing**: You treat the function being tested as a "black box"
+  that takes some inputs and produces some outputs (and base your tests
+  only on those inputs and outputs). In functions like
+  ``on_segment`` and ``point_orientation`` that have a limited set of
+  outputs, it would be good to write a test for every possible return value.
+  For example, when testing ``on_segment``, we would want to come up
+  with a test where a point is in the segment, and another where the point
+  is not in the segment.
+- **White-box testing**: You treat the function as a "white box", in the sense
+  of being able to see "inside" the box, and basing your tests on how the
+  function is implemented internally.
+
+  For example, the ``on_segment`` function checks whether a point is
+  on a segment by first checking whether the segment points and the point
+  are colinear. If they are colinear (i.e., if the three points fall on
+  the same line), we need to also check whether the point is actually
+  located between the two segment points. So, it would be good to
+  have a test that checks whether a point that is *not* on the segment
+  (but is still colinear to the segment) is correctly identified as such.
+
+  Notice how, if we tested the "not on the segment" case with points
+  that are *not* colinear, our tests would not *cover* the code below
+  these lines::
+
+      /* If segment and point are not colinear, the
+       * point can't be on the segment */
+      if (point_orientation(p, r, q) != 0)
+          return false;
+
+  By designing our tests with knowledge of how the function is implemented,
+  we can ensure that our test cover as many paths through our code as possible.
+
+
+You should be able to provide enough coverage by writing 3-4 tests for
+each function, but please note we won’t be grading you on the number
+of tests your write, but on how much coverage they provide. You should
+aim to include black-box tests for every possible return value of
+``on_segment`` and ``point_orientation`` and at least two white-box
+tests for ``on_segment`` (``point_orientation`` is simple enough that
+the black-box tests will be enough).
 
 For each of the tests (except the ``segment_intersect`` ones refactored
 from ``test_point.c``), the test must include a header comment
@@ -249,6 +285,9 @@ explaining the test. For example:
                        2, 10, 4, 10,
                        false);
    }
+
+For the ``on_segment`` white-box tests, your comment should elaborate
+on what aspect of the function's internal implementation is being tested.
 
 Task 2: Test-Driven Development
 ===============================
