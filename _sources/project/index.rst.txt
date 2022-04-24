@@ -30,5 +30,6 @@ design.
    chiventure.rst
    features.rst
    policies.rst
+   issue-pr-grading.rst
    presentation.rst
    warmup.rst

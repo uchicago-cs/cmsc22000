@@ -18,7 +18,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Homework 6: Continuous Integration" href="hw6.html" />
-    <link rel="prev" title="Homework 4: Debugging" href="hw4.html" />
+    <link rel="prev" title="Homework 4 Rubric" href="hw4_rubric.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -69,6 +69,7 @@
         <li><a href="../project/index.html">Introduction</a></li>
         <li><a href="../project/chiventure.html">chiventure</a></li>
         <li><a href="../project/policies.html">Policies</a></li>
+        <li><a href="../project/issue-pr-grading.html">Issue/PR Grading</a></li>
         <li><a href="../project/features.html">Features</a></li>
     </ul>
 </li>
@@ -259,11 +260,11 @@ proper tests for the segment datatype.</p>
 <p>Create a new file in the <code class="docutils literal notranslate"><span class="pre">libgeometry/tests/</span></code> directory called
 <code class="docutils literal notranslate"><span class="pre">test_segment.c</span></code>. You’ll need a few <code class="docutils literal notranslate"><span class="pre">#include</span></code> statements to get
 started:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;criterion/criterion.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;point.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;segment.h&quot;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;criterion/criterion.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;point.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;segment.h&quot;</span><span class="cp"></span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -319,13 +320,13 @@ added to their respective module’s header file).</p>
 <p>For each of the tests (except the <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> ones refactored
 from <code class="docutils literal notranslate"><span class="pre">test_point.c</span></code>), the test must include a header comment
 explaining the test. For example:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Checks that two parallel segments do not intersect */</span><span class="w"></span>
-<span class="n">Test</span><span class="p">(</span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="n">no_intersection_parallel</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">check_intersect</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">                    </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"></span>
-<span class="w">                    </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Checks that two parallel segments do not intersect */</span>
+<span class="n">Test</span><span class="p">(</span><span class="n">segment</span><span class="p">,</span> <span class="n">no_intersection_parallel</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">check_intersect</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
+                    <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>
+                    <span class="nb">false</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -409,8 +410,8 @@ function <code class="docutils literal notranslate"><span class="pre">cr_assert_
 arithmetic on computers is not 100% accurate; <code class="docutils literal notranslate"><span class="pre">cr_assert_float_eq</span></code>
 allows you to check that the first value you supply to it is within some
 range of the second value. For example:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">circle_t</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle_new</span><span class="p">(</span><span class="n">point_new</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="n">cr_assert_float_eq</span><span class="p">(</span><span class="n">circle_area</span><span class="p">(</span><span class="n">c</span><span class="p">),</span><span class="w"> </span><span class="mf">3.14159</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">10E-4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Circle area wasn’t correct!&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">circle_t</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="n">circle_new</span><span class="p">(</span><span class="n">point_new</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">cr_assert_float_eq</span><span class="p">(</span><span class="n">circle_area</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="mf">3.14159</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="mf">10E-4</span><span class="p">,</span> <span class="s">&quot;Circle area wasn’t correct!&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This checks whether or not our <code class="docutils literal notranslate"><span class="pre">circle_area</span></code> function is within 10-4
@@ -453,7 +454,7 @@ re-submit again.</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
     </p>
   </div>
 </footer>
