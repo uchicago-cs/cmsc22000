@@ -122,6 +122,7 @@ todo_include_todos = False
 html_sidebars = {'*': None,
                  'syllabus': ['localtoc.html'],
                  'project/policies': ['localtoc.html'],
+                 'project/issue-pr-grading': ['localtoc.html'],
                  'project/warmup': ['localtoc.html'],
                  'project/presentation': ['localtoc.html'],
                  'hw/hw1': ['localtoc.html'],
@@ -143,6 +144,7 @@ html_context = {"web_navbar": [("Course Information", [
                                      ("Introduction", "project/index", False),
                                      ("chiventure", "project/chiventure", False),
                                      ("Policies", "project/policies", False),
+                                     ("Issue/PR Grading", "project/issue-pr-grading", False),
                                      ("Features", "project/features", False),
                                      #("Design Warm-Up Exercise", "project/warmup", False)
                                  ]),
