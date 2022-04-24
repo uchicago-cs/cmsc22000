@@ -5,7 +5,7 @@ The "Project Points" component of your `grade <../grading.html>`__
 will be based on how well
 you perform certain tasks that you will do throughout the project (and
 which you would encounter in any real software project). More specifically,
-aach issue and pull request will be scored using the ESNU scale and you will accrue
+each issue and pull request will be scored using the ESNU scale and you will accrue
 a certain number of points for a completed issue or pull request
 as long as you earn, at least, an S.
 
@@ -283,11 +283,9 @@ Like a task, a pull request should have a descriptive title, a
 descriptive summary, updates on the progress of the pull request
 (especially since changes may need to be done based on the code
 reviews), and a closing statement. The assignees for the pull request
-must be everyone who contributed to the code that is being merged. If a
-pull request is approved, all assignees and reviewers will receive the
-points for that pull request.
+must be everyone who contributed to the code that is being merged.
 
-Before a pull request is approved, the marge being merged must be
+Before a pull request is approved, the merge being merged must be
 "up to date" with ``dev``, meaning that any changes that happened
 in ``dev`` while the pull request was being reviewed must be merged
 into the pull request's branch. It is sometimes not uncommon for
@@ -327,8 +325,35 @@ for a completed issue or pull request:
 +---+---------+-------+---------+-------+
 
 Please note that earning an N or U does not accrue points.
-Additionally, if an issue/PR has four or more people assigned
-to it, you will only receive 70% of the points stated above.
+
+On an issue, all assignees will receive the same amount of points
+for a completed issue. If a pull request is approved, all assignees
+*and* reviewers will receive the points for that pull request.
+
+That said, if an issue/PR has four or more people assigned
+to it, you will only receive 70% of the points stated above
+(please note that reviewers on a PR do not count towards this
+
+Regular vs Minor issues
+~~~~~~~~~~~~~~~~~~~~~~~
+
+When deciding whether to categorize an issue/PR as being a "minor" issue/PR, the senior developer will base their determination
+on the amount of effort that the issue/PR likely involved. These are examples of issues/PRs that would be categorized as "minor":
+
+- Small bug fixes
+- Trivial changes, even if they affect a large number of lines (e.g., adding a new parameter in all calls to a function)
+- Minor documentation changes (typos, etc.)
+
+Please note that it is possible for an issue to be categorized as a regular issue, but have an associated pull request that is categorized as "minor". For example, an issue could relate to a bug in the code, and it may be clear from the status updates that tracking down
+that bug required a fair amount of effort. However, if the actual fix just involves changing one line of code (e.g., because
+you forgot to ``malloc`` memory somewhere), the pull request would be categorized as "minor".
+
+If you are ever concerned that an issue or PR you are working on could be categorized as "minor", please check with your senior
+developer. The intent is that only issues/PRs that truly involved a minor effort on the part of the student will be
+categorized as "minor".
+
+Delaying/Splitting Tasks
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 As you will find out throughout the project, estimating the time a task
 will require can be challenging. You could commit to doing a task
@@ -338,7 +363,8 @@ a 10-15 hour task. So, you are allowed to do the following:
 -  For tasks that you committed to doing, you are allowed to reassign a
    task to a future sprint, or place it back into the backlog.
    However, if a task gets delayed before it is completed, it may
-   affect your score on that task.
+   affect your score on that task (we elaborate on this in the
+   rubric below)
 -  | For any task, if you realize that it will take longer than you
      anticipated, you are allowed to close the task and spawn smaller
      tasks in its place. The closed task will then not contribute to
@@ -355,7 +381,6 @@ a 10-15 hour task. So, you are allowed to do the following:
    doing, you must commit to doing at least one of the subtasks; the
    remaining subtasks can go on the backlog (and you could commit to
    doing them in a subsequent sprint).
-
 
 Rubric
 ------
@@ -387,36 +412,21 @@ When reading the rubric items below, bear in mind that they can all apply to eit
 - [Major] **No status updates**: Your issue did not include any status updates between the opening of the issue and the closing of the issue (and this issue was not small enough to justify having no status updates at all). If you make any intermediate progress before finishing the task, then it should be documented on the GitHub issue via a comment.
 - **Too few status updates (for a large task)**: For a task of this size, we would've expected to see more status updates and/or status updates that were more detailed.
 - **Updates refer to intangible work**: Status updates on an issue should have something tangible to share.
+- **One or more updates are unrelated to the issue**: Make sure not to "hijack" an issue with an unrelated issue. This is often the sign that a new issue needs to be created (or, at least, that the conversation has to be moved elsewhere)
 - **Update refers to meetings or discussions, but the outcome of those meetings are not documented.**: If, as part of an issue, you have a meeting or conversation with other developers, make sure to include a summary of that conversation, with an emphasis on any decisions that were made in that conversation. It is not enough to just state that you talked with someone.
 - **No closing statement**: When an issue is done, you should include a final comment summarizing what was done, and why the issue is being closed.
 - **Did not include assignees**: Make sure to add anyone who is working on this issue as an Assignee
 - **Did not include a milestone**: Make sure to assign new issues to the sprint they are worked on (by selecting the appropriate sprint under "Milestone")
-- **Did no select a team label**: Make sure to select your team's identifier under "Labels"
+- **Did not select a team label**: Make sure to select your team's identifier under "Labels"
 - **Scrum board card was converted to an issue too late**: Remember that Scrum board cards should be converted to issues shortly after the Sprint meeting. Think of the Scrum board card as a rough outline of the issue, which you then need to flesh out with a more descriptive title and summary when converting it to an issue.
 - **Issue includes links to Google Docs (or other inaccesible documentation)**: While using Google Docs to sketch out some of the documentation, you should avoid posting links to those Google Docs from an issue, as it may cause confusion as to whether that document (or some future update to the wiki) is the most up-to-date version of that documentation. You should instead transfer the contents of the document to the wiki, and then link to the wiki when updating the issue.
 - **Issue was closed prematurely**: The issue was closed before it was actually done.
 - **Issue spanned two sprints**: The issue was started in one sprint, but was not completed until the next one.
 - [Major] **Issue spanned three or more sprints**: The issue was started in one sprint, but was reassigned to a new sprint more than once.
+- [Major] **Issue was assigned at the start of the sprint, and was split without the senior developer's approval**: Remember that, if you committed to an issue at the start of the sprint, you need your senior developer's approval to split it into smaller issues.
 - [Major] **The student reviewer did not provide any feedback and simply rubberstamped the PR.**: The reviewer for this PR approved the PR without comment. In the rare cases where there truly isn't anything to improve in the PR, make sure to leave a comment confirming that you reviewed the code and don't have any changes to suggest.
 - **The student reviewer indicated there was nothing to improve in the PR, but the senior developer identified multiple issues that the student reviewer should have been able to pick up on**: Please make sure that you do a thorough code review and, in the future, make sure to look out for the kind of issues the senior developer pointed out.
 - **The PR was created before it was ready for review (the student kept pushing commits after creating the PR, before it had been reviewed)**: When you create a PR, you are requesting a review of the code in the branch you want to merge. As such, you should not push any commits to the branch right after creating the PR; you should only do so in response to a code review. Make sure that, when you create a PR, the code is ready for review and passes all the tests.
 - [Major] **The PR contains a hodgepodge of different changes, instead of merging a branch that contains a clearly-specified and self-contained feature/change to the code.**: A branch should represent work on a concrete feature that is being added to the mainline branch, instead of a collection of many different changes.
 - [Major] **The PR is either clearly too large (1,000's of lines) or simply could've been broken up into smaller PRs, providing an opportunity to integrate more continuously.**: This PR represents a large amount of work that could've been integrated into ``dev`` through smaller PRs earlier in the quarter. Remember that you should not treat PRs as a singular event to merge all or most of your work into ``dev``. Integrating incrementally can help identify integration issues early, as well as ensure that you are not rushing to merge all your code towards the end of a sprint.
 
-Regular vs Minor issues
-~~~~~~~~~~~~~~~~~~~~~~~
-
-When deciding whether to categorize an issue/PR as being a "minor" issue/PR, the senior developer will base their determination
-on the amount of effort that the issue/PR likely involved. These are examples of issues/PRs that would be categorized as "minor":
-
-- Small bug fixes
-- Trivial changes, even if they affect a large number of lines (e.g., adding a new parameter in all calls to a function)
-- Minor documentation changes (typos, etc.)
-
-Please note that it is possible for an issue to be categorized as a regular issue, but have an associated pull request that is categorized as "minor". For example, an issue could relate to a bug in the code, and it may be clear from the status updates that tracking down
-that bug required a fair amount of effort. However, if the actual fix just involves changing one line of code (e.g., because
-you forgot to ``malloc`` memory somewhere), the pull request would be categorized as "minor".
-
-If you are ever concerned that an issue or PR you are working on could be categorized as "minor", please check with your senior
-developer. The intent is that only issues/PRs that truly involved a minor effort on the part of the student will be
-categorized as "minor".
