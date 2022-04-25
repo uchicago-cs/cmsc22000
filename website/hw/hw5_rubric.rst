@@ -48,3 +48,12 @@ General
 - Some of the tests are missing header comments
 - [Major] None of the tests have header comments
 
+ESNU Score
+----------
+
+The ESNU score will be determined as follows:
+
+- Excellent: No major issues, and at most one other issue.
+- Satisfactory: No major issues, and at most three other issues.
+- Needs Improvement: At least one major issue, or five other issues.
+- Ungradable: Two or more major issues.
