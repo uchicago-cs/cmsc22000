@@ -53,6 +53,18 @@ and, more specifically, will contain a ``libgeometry`` directory with an
 updated version of ``libgeometry`` with the refactored ``segment``
 module we asked you to implement in Homework #2.
 
+.. note::
+
+    Because this homework depends on the
+    ``criterion`` library, you should make sure to compile and test your
+    work on a CS environment, which will has the ``criterion`` library
+    properly set up and ready to go. You can find instructions on how to
+    access a CS environment (including options that will allow you to work
+    on your computer, and just compile/run your code in a CS environment) in
+    our `developer
+    guide <https://uchicago-cs.github.io/dev-guide/environment.html>`__.
+    While it is possible to install ``criterion`` on an unsupported machine,
+    we may not be able to provide support for that setup.
 
 Task 0: A bit about ``criterion``
 =================================
@@ -184,19 +196,6 @@ started:
    #include <stdbool.h>
    #include "point.h"
    #include "segment.h"
-
-.. note::
-
-    Because this homework depends on the
-    ``criterion`` library, you should make sure to compile and test your
-    work on a CS environment, which will has the ``criterion`` library
-    properly set up and ready to go. You can find instructions on how to
-    access a CS environment (including options that will allow you to work
-    on your computer, and just compile/run your code in a CS environment) in
-    our `developer
-    guide <https://uchicago-cs.github.io/dev-guide/environment.html>`__.
-    While it is possible to install ``criterion`` on an unsupported machine,
-    we may not be able to provide support for that setup.
 
 You will also need to modify the ``Makefile`` in the ``tests/``
 directory to add your new file.
@@ -379,7 +378,7 @@ range of the second value. For example:
    circle_t *c = circle_new(point_new(0, 0), 5);
    cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, "Circle area wasn’t correct!");
 
-This checks whether or not our ``circle_area`` function is within 10-4
+This checks whether or not our ``circle_area`` function is within 10\ :sup:`-4`
 (0.0001) of the expected value.
 
 As above, you should use the TDD workflow when implementing these new
