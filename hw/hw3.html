@@ -189,7 +189,7 @@ on the point and polygon modules to compute the area of a polygon
 (after asking the user to provide the points in the polygon).</p>
 <p>Notice how we can’t compile the <code class="docutils literal notranslate"><span class="pre">polygon-area.c</span></code> file by itself:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc polygon-area.c -o polygon-area
-/usr/bin/ld: /tmp/ccmgP8wg.o: <span class="k">in</span> <span class="k">function</span> <span class="sb">`</span>main<span class="s1">&#39;:</span>
+/usr/bin/ld: /tmp/ccmgP8wg.o: in <span class="k">function</span> <span class="sb">`</span>main<span class="s1">&#39;:</span>
 <span class="s1">polygon-area.c:(.text+0x21): undefined reference to `polygon_new&#39;</span>
 /usr/bin/ld: polygon-area.c:<span class="o">(</span>.text+0x95<span class="o">)</span>: undefined reference to <span class="sb">`</span>polygon_add_xy<span class="s1">&#39;</span>
 <span class="s1">/usr/bin/ld: polygon-area.c:(.text+0x10c): undefined reference to `polygon_area&#39;</span>
@@ -418,13 +418,13 @@ library, specified with the <code class="docutils literal notranslate"><span cla
 <p>Let’s see what happens if we omit the <code class="docutils literal notranslate"><span class="pre">-c</span></code> option when
 compiling the object files:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc polygon.c -o polygon.o
-/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: <span class="k">in</span> <span class="k">function</span> <span class="sb">`</span>_start<span class="s1">&#39;:</span>
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: in <span class="k">function</span> <span class="sb">`</span>_start<span class="s1">&#39;:</span>
 <span class="s1">(.text+0x24): undefined reference to `main&#39;</span>
-/usr/bin/ld: /tmp/cc5mU0L8.o: <span class="k">in</span> <span class="k">function</span> <span class="sb">`</span>polygon_add_xy<span class="s1">&#39;:</span>
+/usr/bin/ld: /tmp/cc5mU0L8.o: in <span class="k">function</span> <span class="sb">`</span>polygon_add_xy<span class="s1">&#39;:</span>
 <span class="s1">polygon.c:(.text+0x212): undefined reference to `point_init&#39;</span>
-/usr/bin/ld: /tmp/cc5mU0L8.o: <span class="k">in</span> <span class="k">function</span> <span class="sb">`</span>polygon_add_point<span class="s1">&#39;:</span>
+/usr/bin/ld: /tmp/cc5mU0L8.o: in <span class="k">function</span> <span class="sb">`</span>polygon_add_point<span class="s1">&#39;:</span>
 <span class="s1">polygon.c:(.text+0x3e5): undefined reference to `segment_intersect&#39;</span>
-/usr/bin/ld: /tmp/cc5mU0L8.o: <span class="k">in</span> <span class="k">function</span> <span class="sb">`</span>polygon_perimeter<span class="s1">&#39;:</span>
+/usr/bin/ld: /tmp/cc5mU0L8.o: in <span class="k">function</span> <span class="sb">`</span>polygon_perimeter<span class="s1">&#39;:</span>
 <span class="s1">polygon.c:(.text+0x64f): undefined reference to `point_distance&#39;</span>
 collect2: error: ld returned <span class="m">1</span> <span class="nb">exit</span> status
 </pre></div>
@@ -873,29 +873,29 @@ a <code class="docutils literal notranslate"><span class="pre">polygon-area</spa
 wanted to build an additional executable, <code class="docutils literal notranslate"><span class="pre">point-distance</span></code>, that
 relied on the Point module. Go ahead and create a file called
 <code class="docutils literal notranslate"><span class="pre">point-distance.c</span></code> with the following code:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;point.h&quot;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;point.h&quot;</span><span class="cp"></span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">point_t</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">point_t</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 1] Please enter a value for x: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p1</span><span class="p">.</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 1] Please enter a value for x: &quot;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p1</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 1] Please enter a value for y: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p1</span><span class="p">.</span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 1] Please enter a value for y: &quot;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p1</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 2] Please enter a value for x: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 2] Please enter a value for x: &quot;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 2] Please enter a value for y: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 2] Please enter a value for y: &quot;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;The distance between (%.2lf, %.2lf) and &quot;</span><span class="w"></span>
-<span class="w">           </span><span class="s">&quot;(%.2lf, %.2lf) is %.2lf</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="n">point_distance</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p2</span><span class="p">));</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;The distance between (%.2lf, %.2lf) and &quot;</span>
+           <span class="s">&quot;(%.2lf, %.2lf) is %.2lf</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+           <span class="n">point_distance</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">));</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Make sure to add/commit/push this file to your repository.</p>
@@ -1145,7 +1145,7 @@ in the <code class="docutils literal notranslate"><span class="pre">micro-editor
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
     </p>
   </div>
 </footer>
