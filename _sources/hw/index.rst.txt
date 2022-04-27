@@ -12,7 +12,7 @@ Homework
 +---+------------------------------------------+--------------------------------+--------------------+
 | 4 | `Debugging <hw4.html>`__                 | `Rubric <hw4_rubric.html>`__   | April 27, 8pm CDT  |
 +---+------------------------------------------+--------------------------------+--------------------+
-| 5 | Testing                                  |                                | May 4, 8pm CDT     |
+| 5 | `Testing <hw5.html>`__                   | `Rubric <hw5_rubric.html>`__   | May 4, 8pm CDT     |
 +---+------------------------------------------+--------------------------------+--------------------+
 | 6 | Continuous Integration                   |                                | May 11, 8pm CDT    |
 +---+------------------------------------------+--------------------------------+--------------------+
@@ -38,6 +38,7 @@ If you need any help on the homework assignments, please see our `Getting help o
    hw4.rst
    hw4_rubric.rst
    hw5.rst
+   hw5_rubric.rst
    hw6.rst
    hw7.rst
    hw8.rst

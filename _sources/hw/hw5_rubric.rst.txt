@@ -1,0 +1,59 @@
+Homework 5 Rubric
+=================
+
+The grading of this project follows a specifications grading approach. If you have not already
+done so, make sure to read our `Grading <../grading.html>`__ page for more details.
+
+When grading your work, the graders will be checking for the following issues in your code. Please
+note that some of the issues are labelled as "[Major]" (these will have a greater effect on your score
+for the homework)
+
+Task 1
+------
+
+- Did not write tests for ``segment_new``, ``segment_init``, or ``segment_free``
+- Did not move the ``segment_intersect`` tests into test_segment.c
+- Moved the ``segment_intersect`` tests into ``test_segment.c`` but did not update the test suite.
+- Moved the ``segment_intersect`` tests into ``test_segment.c`` but didn't remove
+  them from ``test_point.c`` (so they are unnecessarily being run twice)
+- [Major] Did not write tests for ``on_segment`` or ``point_orientation``
+- Wrote tests for ``on_segment``, but the black-box tests don't cover every possible return value
+- Wrote tests for ``on_segment``, there are not at least two distinct white-box tests (covering
+  two distinct aspects of the internal implementation of the function)
+- Wrote tests for ``point_orientation``, but the black-box tests don't cover every possible return value.
+
+Task 2
+------
+- [Major] Did not follow TDD at all (it is not apparent from the commit log that the tests were written
+  before the functions' implementation; e.g., if there is a single commit that contains all the tests
+  and the implementation of the respective functions)
+- Did not follow TDD in some functions. If you are implementing each function one at a time, take care
+  to commit the tests before you start implementing the function.
+- Did not write tests for ``circle_new``, ``circle_init``, or ``circle_free``.
+- Did not write tests for ``circle_diameter``, ``circle_circumference``, or ``circle_area``.
+  You must write at least one test for each of these functions.
+- ``circle_overlap`` tests have insufficient coverage. They must cover, at least, the following
+  cases:
+
+  - Non-overlapping circles
+  - Circles that overlap at a singular point
+  - Circles where the overlap area is non-zero
+- [Major] Did not implement ``circle_overlap`` or any of its tests.
+
+General
+-------
+
+- [Major] Any of the tests fail when run
+- [Major] The tests fail to build
+- Some of the tests are missing header comments
+- [Major] None of the tests have header comments
+
+ESNU Score
+----------
+
+The ESNU score will be determined as follows:
+
+- Excellent: No major issues, and at most one other issue.
+- Satisfactory: No major issues, and at most three other issues.
+- Needs Improvement: At least one major issue, or five other issues.
+- Ungradable: Two or more major issues.
