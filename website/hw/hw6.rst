@@ -1,14 +1,6 @@
 Homework 6: Continuous Integration
 ==================================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
-
 **Due:** Wednesday, May 11, 8pm CDT
 
 Continuous Integration, or CI, is the practice of frequently merging
@@ -32,7 +24,7 @@ Creating your homework repository
 Like previous homeworks, we will provide you with an *invitation URL* that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2021-hw6-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw6-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
 on GitHub.
 
 Your repository will be seeded with some files for the homework
@@ -276,7 +268,7 @@ Make a note of the URL of this page, which should look something like this:
 
 ::
 
-   https://github.com/uchicago-cmsc22000/2021-hw6-GITHUB_USERNAME/actions/runs/XXXXXXXXXX
+   https://github.com/uchicago-cmsc22000-2022/hw6-GITHUB_USERNAME/actions/runs/XXXXXXXXXX
 
 Where ``XXXXXXXXXX`` will be a number. Later in the homework, we will be asking you
 to provide this URL, as well as the
@@ -317,16 +309,16 @@ more details about that particular run.
 
 Now, do the following:
 
--  [10 points] Take the URL of the run you just produced, and paste it
+-  Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 1.1: Successful run”)
 
--  [10 points] Make a change to the libgeometry code that will prevent
+-  Make a change to the libgeometry code that will prevent
    it from compiling. Commit and push that change; your run should
    eventually fail (make sure to double-check that the "Build libgeometry"
    step is failing). Paste the URL of the failed run on Gradescope
    (under “Task 1.2: Failed run (compiling)”)
 
--  [10 points] Fix the change you made, and make another change that
+-  Fix the change you made, and make another change that
    will make the tests fail. Commit and push that change; your run
    should eventually fail (make sure to double-check that the "Run tests"
    step is failing). Paste the URL of the failed run on
@@ -381,7 +373,7 @@ With this::
 Each run will use the appropriate operating system. Make the above
 change and commit/push the change to give it a try.
 
--  [10 points] Take the URL of the run you just produced, and paste it
+-  Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 2.1: Multiple operating systems”).
 
 However, our builds are still using GCC in every job. Unfortunately,
@@ -427,7 +419,7 @@ documentation `here <https://docs.github.com/en/actions/reference/workflow-synta
 and that you're welcome to look for the answer through external
 sources, as long as you cite your sources.
 
--  [20 points] Modify the Makefile as described above, and update
+-  Modify the Makefile as described above, and update
    your workflow file so that the libgeometry code and the tests
    are built with the right compiler. Take the URL of the run
    you just produced, and paste it
@@ -486,7 +478,7 @@ documentation `here <https://docs.github.com/en/actions/reference/workflow-synta
 and that you're welcome to look for the answer through external
 sources, as long as you cite your sources.
 
--  [20 points] Take the URL of the run you just produced, and paste it
+-  Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 3: Supporting Different Environments”).
 
 Task 4: Tweaking the Matrix
@@ -522,11 +514,11 @@ Also, take into account that, depending on
 how you solved Task 3, you may have to further tweak your
 Task 3 solution to get it to work with all these configurations.
 
--  [20 points] Take the URL of the run you just produced, and paste it
+-  Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 4: Tweaking the Matrix”).
 
 Submitting your homework
-========================
+------------------------
 
 Please note that you will not be submitting your code through
 Gradescope. Instead, make sure that you have provided the URLs to your
