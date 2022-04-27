@@ -1,14 +1,6 @@
 Homework 5: Testing
 ===================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
-
 **Due:** Wednesday, May 4th, 8pm CDT
 
 By this point in your CS studies, you’ve probably experienced the
@@ -53,15 +45,26 @@ Creating your homework repository
 Like previous homeworks, we will provide you with an *invitation URL* that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2021-hw5-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw5-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
 on GitHub.
 
 Your repository will be seeded with some files for the homework
 and, more specifically, will contain a ``libgeometry`` directory with an
 updated version of ``libgeometry`` with the refactored ``segment``
-module we asked you to implement in Homework #5.
+module we asked you to implement in Homework #2.
 
+.. note::
 
+    Because this homework depends on the
+    ``criterion`` library, you should make sure to compile and test your
+    work on a CS environment, which will has the ``criterion`` library
+    properly set up and ready to go. You can find instructions on how to
+    access a CS environment (including options that will allow you to work
+    on your computer, and just compile/run your code in a CS environment) in
+    our `developer
+    guide <https://uchicago-cs.github.io/dev-guide/environment.html>`__.
+    While it is possible to install ``criterion`` on an unsupported machine,
+    we may not be able to provide support for that setup.
 
 Task 0: A bit about ``criterion``
 =================================
@@ -73,7 +76,7 @@ already installed on the CS machines. Let’s learn a little bit about
 this testing framework before we get to the actual tasks for this homework.
 Consider the following sample tests:
 
-.. code:: c
+.. code::
 
    Test(foo, add)
    {
@@ -194,19 +197,6 @@ started:
    #include "point.h"
    #include "segment.h"
 
-.. note::
-
-    Because this homework depends on the
-    ``criterion`` library, you should make sure to compile and test your
-    work on a CS environment, which will has the ``criterion`` library
-    properly set up and ready to go. You can find instructions on how to
-    access a CS environment (including options that will allow you to work
-    on your computer, and just compile/run your code in a CS environment) in
-    our `developer
-    guide <https://uchicago-cs.github.io/dev-guide/environment.html>`__.
-    While it is possible to install ``criterion`` on an unsupported machine,
-    we may not be able to provide support for that setup.
-
 You will also need to modify the ``Makefile`` in the ``tests/``
 directory to add your new file.
 
@@ -226,24 +216,60 @@ the following:
    ``segment_init``, ``segment_free``. You may find it helpful to look
    at similar tests in ``test_point.c`` and ``test_polygon.c``.
 -  We already had some tests for ``segment_intersect`` in
-   ``test_point.c``. *Refactor* them into ``test_segment.c``, and make
-   sure they’re in the correct test suite!
+   ``test_point.c``. Move those tests into ``test_segment.c``, and make
+   sure they’re in the correct test suite! Please note that you don't need to
+   update or change the tests themselves; they simply need to be moved
+   to the correct file. This will complete the refactoring
+   we started in Homework #2.
 -  Write test cases for ``on_segment`` and ``point_orientation``
    (previously known as ``orientation``). For these test cases, remember
    that you should have as much *coverage* as possible: your test cases
    should cover as many outcomes (and as many flows of execution through
-   the individual function) as possible. You should be able to
-   accomplish this by writing 3-4 tests for each function, but please
-   note we won’t be grading you on the number of tests your write, but
-   on how much coverage they provide.
+   the individual function) as possible.
 
-   Note: Remember that, in Homework #2, you had the option of moving these
-   functions to ``segment.c``, or to keep them in ``point.c`` (and
-   exposing them through ``point.h``). In the code we’ve provided,
-   ``on_segment`` has been moved to the segment module, and
-   ``orientation`` has been renamed to ``point_orientation`` and
-   kept in the point module (and both have been
-   added to their respective module’s header file).
+When it comes to thinking about coverage, you should take two (complementary)
+approaches:
+
+- **Black-box testing**: You treat the function being tested as a "black box"
+  that takes some inputs and produces some outputs (and base your tests
+  only on those inputs and outputs). In functions like
+  ``on_segment`` and ``point_orientation`` that have a limited set of
+  outputs, it would be good to write a test for every possible return value.
+  For example, when testing ``on_segment``, we would want to come up
+  with a test where a point is in the segment, and another where the point
+  is not in the segment.
+- **White-box testing**: You treat the function as a "white box", in the sense
+  of being able to see "inside" the box, and basing your tests on how the
+  function is implemented internally.
+
+  For example, the ``on_segment`` function checks whether a point is
+  on a segment by first checking whether the segment points and the point
+  are colinear. If they are colinear (i.e., if the three points fall on
+  the same line), we need to also check whether the point is actually
+  located between the two segment points. So, it would be good to
+  have a test that checks whether a point that is *not* on the segment
+  (but is still colinear to the segment) is correctly identified as such.
+
+  Notice how, if we tested the "not on the segment" case with points
+  that are *not* colinear, our tests would not *cover* the code below
+  these lines::
+
+      /* If segment and point are not colinear, the
+       * point can't be on the segment */
+      if (point_orientation(p, r, q) != 0)
+          return false;
+
+  By designing our tests with knowledge of how the function is implemented,
+  we can ensure that our test cover as many paths through our code as possible.
+
+
+You should be able to provide enough coverage by writing 3-4 tests for
+each function, but please note we won’t be grading you on the number
+of tests your write, but on how much coverage they provide. You should
+aim to include black-box tests for every possible return value of
+``on_segment`` and ``point_orientation`` and at least two white-box
+tests for ``on_segment`` (``point_orientation`` is simple enough that
+the black-box tests will be enough).
 
 For each of the tests (except the ``segment_intersect`` ones refactored
 from ``test_point.c``), the test must include a header comment
@@ -258,6 +284,9 @@ explaining the test. For example:
                        2, 10, 4, 10,
                        false);
    }
+
+For the ``on_segment`` white-box tests, your comment should elaborate
+on what aspect of the function's internal implementation is being tested.
 
 Task 2: Test-Driven Development
 ===============================
@@ -349,7 +378,7 @@ range of the second value. For example:
    circle_t *c = circle_new(point_new(0, 0), 5);
    cr_assert_float_eq(circle_area(c), 3.14159*5*5, 10E-4, "Circle area wasn’t correct!");
 
-This checks whether or not our ``circle_area`` function is within 10-4
+This checks whether or not our ``circle_area`` function is within 10\ :sup:`-4`
 (0.0001) of the expected value.
 
 As above, you should use the TDD workflow when implementing these new
@@ -366,12 +395,10 @@ Submitting your homework
 Before submitting, make sure you’ve added, committed, and pushed all
 your code to GitHub. *Don’t forget to "git add" any new files.*
 
-When submitting through Gradescope, you will be given the option of
-manually uploading files, or of uploading a GitHub repository (we
-recommend the latter, as this ensures you are uploading exactly the
-files that are in your repository). If you upload your repository, make
-sure you select your ``2021-hw5-GITHUB_USERNAME`` repository, with
-“main” as the branch. Please note that you can submit as many times as
+Before submitting, make sure you’ve added, committed, and pushed all
+your work to GitHub. When submitting through Gradescope, you will be given the option of
+uploading a GitHub repository. Make sure you select your ``hw5-GITHUB_USERNAME``
+repository, with “main” as the branch. Please note that you can submit as many times as
 you want before the deadline.
 
 Once you submit your files, an “autograder” will run. This won’t
