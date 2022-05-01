@@ -66,10 +66,10 @@ We’ll start by looking at a simple GitHub Actions workflow file:
     jobs:
       build-and-test:
 
-        runs-on: ubuntu-16.04
+        runs-on: ubuntu-18.04
 
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v3
 
         - name: Install Criterion
           run: |
@@ -118,8 +118,8 @@ After that, we have a ``jobs:`` option where we can specify the jobs
 that make up this workflow. In this workflow, we are only specifying
 a single job called ``build-and-test``.
 
-The first option of the job (``runs-on: ubuntu-16.04``) specifies
-that the job should be run on an Ubuntu 16.04 environment. We can't specify
+The first option of the job (``runs-on: ubuntu-18.04``) specifies
+that the job should be run on an Ubuntu 18.04 environment. We can't specify
 arbitrary environments here, though; a CI system will typically
 have a limited set of environments they support (for GitHub Actions,
 you can see the list of supported environments
@@ -137,7 +137,7 @@ specifies the directory the commands have to be run from.
 The first step is different. GitHub Actions actually allows developers to
 publish actions that other developers
 can re-use in their workflows, and we are reusing an action provided
-by GitHub: the ``actions/checkout@v2`` action. This action simply
+by GitHub: the ``actions/checkout@v3`` action. This action simply
 clones our repository before running the rest of the commands
 in the job.
 
@@ -203,10 +203,10 @@ Take into account that we could’ve also run all the commands inside a single
     jobs:
       build-and-test:
 
-        runs-on: ubuntu-16.04
+        runs-on: ubuntu-18.04
 
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v3
 
         - name: Build and Test
           working-directory: libgeometry/
@@ -332,31 +332,36 @@ Task 2: Multiple jobs
 
 In the previous task we saw that GitHub Actions can build our code and run
 the tests, and alert us to any issues when doing so. However, our job
-was running specifically in an Ubuntu 16.04 environment. What if our
+was running specifically in an Ubuntu 18.04 environment. What if our
 code doesn’t compile in other environments? CI systems can also help us
 with this, as they often provide mechanisms to easily build our code in
-multiple environments. For example, we may want to build our code in
-multiple Ubuntu versions, or using different compilers.
+multiple environments. In fact, the build commands we've specified
+will *not* work on an Ubuntu 20.04 environment! This is something
+we could like to catch early, instead of by having a user report
+that they were unable to run our code in their environment.
 
-In GitHub Actions, we can do this by specifying a *matrix* of job
-configurations. For example, add this option to your ``build-and-test``
+In GitHub Actions, we can build our code in multiple environments by specifying
+a *matrix* of job configurations. For example, add this option to your ``build-and-test``
 job:
 
 ::
 
     strategy:
       matrix:
-        os: [ubuntu-16.04, ubuntu-18.04]
+        os: [ubuntu-18.04, ubuntu-20.04]
         compiler: [gcc, clang]
 
+Notice how, besides specifying two operating systems (Ubuntu 18.04 and 20.04),
+we are also going to use two different compilers: GCC and Clang.
+
 Commit and push this change. You'll notice that your workflow now
-produces four jobs, corresponding to every combination of the ``os``
+produces *four* jobs, corresponding to every combination of the ``os``
 and ``compiler`` values shown above.
 
 However, the ``matrix`` option above doesn't actually affect the
 running environment or compiler used in the jobs (for example,
-if you click through the details of the Ubuntu 18.04 clang job,
-you'll see that Ubuntu 16.04 still appears in the "Set up job"
+if you click through the details of the Ubuntu 20.04 clang job,
+you'll see that Ubuntu 18.04 still appears in the "Set up job"
 step, under "Operating System", and that the build steps still use GCC).
 
 The ``matrix`` option simply defines variables we can use in our
@@ -364,20 +369,32 @@ workflow file, and which get substituted for each individual job.
 In this case, the variables are ``${{ matrix.os }}`` and ``${{ matrix.compiler }}``.
 So, if we replace this::
 
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
 
 With this::
 
     runs-on: ${{ matrix.os }}
 
 Each run will use the appropriate operating system. Make the above
-change and commit/push the change to give it a try.
+change and commit/push the change to give it a try. You'll now see
+how the Ubuntu 20.04 jobs fail.
 
 -  Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 2.1: Multiple operating systems”).
 
-However, our builds are still using GCC in every job. Unfortunately,
-the workflow file doesn't have a convenient "tell Make to use this compiler"
+We will be fixing the issue with Ubuntu 20.04 in the next task so,
+for now, change the matrix to this:
+
+::
+
+    strategy:
+      matrix:
+        os: [ubuntu-18.04]
+        compiler: [gcc, clang]
+
+For now, we will focus on ensuring that each job uses the appropriate
+compiler. Unfortunately, unlike setting the operating system with
+the ``runs-on`` option, the workflow file doesn't have a convenient "tell Make to use this compiler"
 option, so this requires a bit more work.
 
 First of all, we will need to modify our Makefile. Notice how the
@@ -419,6 +436,11 @@ documentation `here <https://docs.github.com/en/actions/reference/workflow-synta
 and that you're welcome to look for the answer through external
 sources, as long as you cite your sources.
 
+Please note that you *must* find a way of specifying the environment
+variable using a job option specifically intended for that purpose.
+You are not allowed to solve
+this task by modifying the contents of the ``run`` options.
+
 -  Modify the Makefile as described above, and update
    your workflow file so that the libgeometry code and the tests
    are built with the right compiler. Take the URL of the run
@@ -428,22 +450,22 @@ sources, as long as you cite your sources.
 Task 3: Supporting Different Environments
 -----------------------------------------
 
-You may have noticed that Ubuntu 20.04 (the latest "Long Term Support"
-version of Ubuntu) was conspicuously missing from the list of operating
-systems we were building libgeometry in. This is because the Criterion
+We are now going to get our build working on Ubuntu 20.04 so,
+before starting this task, make sure you update the matrix to this:
+
+::
+
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04]
+        compiler: [gcc, clang]
+
+Do not commit/push this change just yet.
+
+As we saw earlier, this caused the Ubuntu 20.04 builds to fail. This is because the Criterion
 library does not provide installable packages for Ubuntu 20.04, which
 means the "Install Criterion" step we defined (which uses Ubuntu's ``apt`` command to fetch
 and install the Criterion package) will fail on Ubuntu 20.04.
-
-You can give it a try by changing this::
-
-        os: [ubuntu-16.04, ubuntu-18.04]
-
-To this::
-
-        os: [ubuntu-16.04, ubuntu-20.04]
-
-You'll notice that the "Install Criterion" step fails for the Ubuntu 20.04 runs.
 
 Fortunately, we can just build Criterion from its source code.
 However, we'd like to do this *only* when building our code
@@ -454,24 +476,28 @@ the installable packages whenever possible).
 So, we're going to end up with two possible installation steps
 for Criterion::
 
-    - name: Install Criterion (Ubuntu < 20.04)
+    - name: Install Criterion (Ubuntu 18.04)
       run: |
        sudo add-apt-repository -y ppa:snaipewastaken/ppa
        sudo apt update -q
        sudo apt install -qy criterion criterion-dev
 
-    - name: Install Criterion (Ubuntu >= 20.04)
+    - name: Install Criterion (Ubuntu 20.04)
       run: |
         git clone --recursive https://github.com/Snaipe/Criterion
         cd Criterion
         git checkout master
-        cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -B build/
-        make -C build/
-        sudo make -C build/ install
+        sudo apt install -qy ninja-build
+        sudo pip3 install meson
+        meson build
+        ninja -C build
+        sudo ninja -C build install
+        sudo ldconfig
 
 Your task is to figure out how to ensure that the first step is only
-run if the operating system is ``ubuntu-16.04``, and the second
+run if the operating system is ``ubuntu-18.04``, and the second
 step is only run if the operating system is ``ubuntu-20.04``.
+
 Note: you must do this without modifying the ``run`` option.
 Like before, remember that you can find the workflow format
 documentation `here <https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions>`__
@@ -484,35 +510,29 @@ sources, as long as you cite your sources.
 Task 4: Tweaking the Matrix
 ---------------------------
 
-One of the advantages of specifying a matrix of configurations is that
-it can allow us to very easily verify that our code works across
-multiple combinations of different options. For example, let's
-say we defined the following matrix::
+As we've seen, specifying a matrix of configurations allows us
+to very easily verify that our code works across
+multiple combinations of different options. So far, our
+matrix looks like this::
 
     strategy:
       matrix:
-        os: [ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]
+        os: [ubuntu-18.04, ubuntu-20.04]
         compiler: [gcc, clang]
 
-This would run six different configurations. However, let's say
-we're only interested in testing our code with both GCC and clang
+However, let's say we're only interested in testing our code with both GCC and clang
 in the latest version of Ubuntu (for prior versions, we'll just
 test it with GCC). So, for avoidance of doubt, you would end
-up with four jobs:
+up with three jobs:
 
-- Ubuntu 16.04 with GCC
 - Ubuntu 18.04 with GCC
 - Ubuntu 20.04 with GCC
 - Ubuntu 20.04 with clang
 
 Figure out a way to run only the above jobs. For full credit,
 you must do so in a way that does not involve writing out the configuration
-for four separate jobs (either by writing four separate jobs, or by
-creating a matrix that specifies four distinct configurations). Instead, you
+for three separate jobs. Instead, you
 should look for a way to selectively add/remove jobs from an existing matrix.
-Also, take into account that, depending on
-how you solved Task 3, you may have to further tweak your
-Task 3 solution to get it to work with all these configurations.
 
 -  Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 4: Tweaking the Matrix”).
