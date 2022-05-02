@@ -434,7 +434,8 @@ Your task is to figure out how to specify environment variables as part
 of a workflow job. Remember that you can find the workflow format
 documentation `here <https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions>`__
 and that you're welcome to look for the answer through external
-sources, as long as you cite your sources.
+sources, as long as you cite your sources (if you consult online
+resources, it is enough to provide a URL).
 
 Please note that you *must* find a way of specifying the environment
 variable using a job option specifically intended for that purpose.
@@ -502,7 +503,8 @@ Note: you must do this without modifying the ``run`` option.
 Like before, remember that you can find the workflow format
 documentation `here <https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions>`__
 and that you're welcome to look for the answer through external
-sources, as long as you cite your sources.
+sources, as long as you cite your sources  (if you consult online
+resources, it is enough to provide a URL).
 
 -  Take the URL of the run you just produced, and paste it
    into Gradescope (under “Task 3: Supporting Different Environments”).

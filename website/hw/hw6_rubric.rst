@@ -44,5 +44,5 @@ The ESNU score will be determined as follows:
 
 - Excellent: No major issues, and at most one other issue.
 - Satisfactory: No major issues, and at most three other issues.
-- Needs Improvement: At least one major issue, or five other issues.
+- Needs Improvement: At least one major issue, or at least four other issues.
 - Ungradable: Two or more major issues.
