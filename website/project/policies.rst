@@ -174,6 +174,21 @@ following:
 We will provide submission instructions once we are closer to the peer
 feedback.
 
+You will receive a single SNU score for the peer feedbacks, based on
+whether your reports include the information requested above. In general,
+if you provide the information requested above in the first round of
+peer feedbacks, you will receive a Satisfactory. As long as you provide
+the same information, at roughly the same level of detail, at the second
+round of peer feedbacks, you will receive a Satisfactory overall for the
+peer feedbacks.
+
+On the other hand, if your first round of peer feedbacks is deficient in any way, you
+will receive a score of Needs Improvement, along with a list of
+things you will need to improve in the second round of peer feedbacks.
+If those issues are addressed in the second round, your score for the
+peer feedbacks will be a Satisfactory (otherwise, it will remain at
+Needs Improvement).
+
 Final Presentation
 ~~~~~~~~~~~~~~~~~~
 
