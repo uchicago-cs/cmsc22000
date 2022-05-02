@@ -543,7 +543,11 @@ Submitting your homework
 ------------------------
 
 Please note that you will not be submitting your code through
-Gradescope. Instead, make sure that you have provided the URLs to your
-runs through Gradescope. That said, we still need you to push your
+Gradescope. Instead, Gradescope will ask you to provide the URLs
+for the runs you produce. If you consulted any external resources
+for any particular task, please make sure to include it in the
+same text field where you specified the URL for that task's run.
+
+That said, we still need you to push your
 code in case we need to look at any of your code (but we will not be
 grading the code itself).
