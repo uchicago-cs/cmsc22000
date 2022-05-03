@@ -1,14 +1,6 @@
 Homework 7: Deployment
 ======================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
-
 **Due:** Wednesday, May 18th, 8pm CDT
 
 Last week, you learned about Continuous Integration, which deals with
@@ -40,7 +32,7 @@ Creating your homework repository
 Like previous homeworks, we will provide you with an *invitation URL* that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2021-hw7-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw7-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
 on GitHub.
 
 Your repository will be seeded with some files for the homework
@@ -48,8 +40,6 @@ and, more specifically, will contain the code for HelloApp.
 
 Task 1: Create a Heroku App
 ---------------------------
-
-[20 points]
 
 Heroku is a common service used to host web applications. For this task
 you’ll sign up for a (free) account and use it to deploy an app with an
@@ -77,10 +67,8 @@ Before continuing, enter the URL of your Heroku app on Gradescope.
 Task 2: Deploy using Heroku CLI
 -------------------------------
 
-[20 points]
-
 In class, we saw that we can deploy an app to Heroku simply by pushing
-to their Git repository. Your local ``2021-hw7-GITHUB_USERNAME``
+to their Git repository. Your local ``hw7-GITHUB_USERNAME``
 repository is currently configured to push only to GitHub, so we need to
 set it up to also push to Heroku. We can do this using a command-line
 tool provided by Heroku. This command-line tool is available on the CSIL machines
@@ -88,7 +76,7 @@ and the ``linux.cs`` servers.
 
 First, you’ll need to log into Heroku using one of the methods described
 below. Before doing this, make sure you've cloned your homework repository,
-and that you are *inside* your ``2021-hw7-GITHUB_USERNAME`` directory before
+and that you are *inside* your ``hw7-GITHUB_USERNAME`` directory before
 you run any of the commands below:
 
 * **If running on an SSH connection to a CS Linux server**:
@@ -99,7 +87,7 @@ you run any of the commands below:
 
   This will ask you for your Heroku username and password on the terminal.
 
-* **If running on a CS Virtual Desktop**:
+* **If running on a CSIL machine or a CS Virtual Desktop**:
 
   .. code:: sh
 
@@ -111,7 +99,7 @@ you run any of the commands below:
   Note: If you get an error about an "IP address mismatch", please
   try using the ``-i`` option as described above.
 
-* **If running on the CS VM**:
+* **If running on the CS Virtual Machine**:
 
   You will need to install Flask
   and the ``heroku`` command by running the following:
@@ -124,10 +112,8 @@ you run any of the commands below:
   Then, run ``heroku login`` as described above.
 
 
-The instructions for deploying using the CLI are located at
-``https://dashboard.heroku.com/apps/CNETID-cs220-hw7/deploy/heroku-git``
-(under “Deploy using Heroku Git”). We already have a git repository, so
-we’ll follow the instructions for *Existing Git Repository*.
+Next, we need to connect our local repository to Heroku's
+Git repository:
 
 .. code:: sh
 
@@ -263,17 +249,15 @@ task. You do not need to enter anything into Gradescope for this task.
 Task 3: Create GitHub Actions for HelloApp
 ------------------------------------------
 
-[40 points]
-
 As you may remember from our `previous homework <hw6.html>`__,
 we have a way to make sure our app passes all the tests every time we
 push.
 
 For this task, you should create a ``.github/workflows/test-app.yml`` file in your
-``2021-hw7-GITHUB_USERNAME`` repo. With Python, there’s no need to
+``hw7-GITHUB_USERNAME`` repo. With Python, there’s no need to
 build, so your job should only do the following:
 
-- Checkout the repository using the ``actions/checkout@v2`` action.
+- Checkout the repository using the ``actions/checkout@v3`` action.
 - Install the required Python libraries by running the following::
 
     sudo -H pip3 install pytest flask
@@ -295,7 +279,7 @@ tests are failing (you will need to inspect the job steps to see that
 run, and enter it in Gradescope. Remember that it will look something
 like this (where `XXXXXXXX`` will be a number) ::
 
-    https://github.com/uchicago-cmsc22000/2021-hw7-GITHUB_USERNAME/actions/runs/XXXXXXXX
+    https://github.com/uchicago-cmsc22000-2022/hw7-GITHUB_USERNAME/actions/runs/XXXXXXXX
 
 Now, go back and fix the app so that the tests pass again. Then, push your
 fixed app to both GitHub and to Heroku. Take the URL of the successful
@@ -303,8 +287,6 @@ run, and enter it in Gradescope.
 
 Task 4: Deploy using Github Integration
 ---------------------------------------
-
-[20 points]
 
 Wouldn’t it be convenient if we could deploy continuously, as soon as
 tests pass? You might think “well, what if we had a deploy job in our
@@ -315,9 +297,9 @@ in the “Deploy” tab, under “Deployment method”, select “GitHub - conne
 to GitHub” instead of “Heroku Git - Use Heroku CLI”.
 
 Then, you should be able to connect to your repo. To do this, you need
-to first select the ``uchicago-cmsc22000`` organization under “Search for a
+to first select the ``uchicago-cmsc22000-2022`` organization under “Search for a
 repository to connect to”, and then enter your repository’s name
-(``2021-hw7-GITHUB_USERNAME``) in the text field. Make sure to click
+(``hw7-GITHUB_USERNAME``) in the text field. Make sure to click
 the “Search” button so Heroku will search for your repository; your
 repository should then appear under the search field, with a "Connect"
 button next to it. Click on that button to connect your repository.
