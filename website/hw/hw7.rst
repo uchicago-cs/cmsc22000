@@ -56,6 +56,7 @@ Once you’ve created your account, you’re ready to create a Heroku app.
 3. Under “App name” title your app ``CNETID-cs220-hw7`` (where
    ``CNETID`` should be replaced with your CNetID). This means that the
    url for your app will be ``https://CNETID-cs220-hw7.herokuapp.com``
+4. Leave all other fields as-is. Click on "Create app"
 
 You’ve created your app! But navigate to
 ``https://CNETID-cs220-hw7.herokuapp.com``. As you can see, there’s
@@ -86,6 +87,19 @@ you run any of the commands below:
      $ heroku login -i
 
   This will ask you for your Heroku username and password on the terminal.
+
+  .. note::
+
+     If you get the following error::
+
+         ›   Error: Your account has MFA enabled; API requests using
+         ›   basic authentication with email and password are not supported.
+         ›   Please generate an authorization token for API access.
+
+     You will need to go into your `Heroku account settings <https://dashboard.heroku.com/account>`__,
+     scroll down to "API Key", click "Reveal", and use the key shown there instead of your
+     password when logging in from the command-line.
+
 
 * **If running on a CSIL machine or a CS Virtual Desktop**:
 
@@ -119,8 +133,8 @@ Git repository:
 
    $ heroku git:remote -a CNETID-cs220-hw7
 
-So, we’ve set up Heroku for this app, but we haven’t deployed it yet.
-Navigate to your app’s webpage, and you’ll see there is still nothing there.
+So, we’ve set up Heroku for this app, but we haven’t deployed it yet
+(if you navigate to your app’s webpage, and you’ll see there is still nothing there).
 
 In order to deploy, you need to run the following:
 
@@ -271,70 +285,85 @@ build, so your job should only do the following:
    For the above to work, you need to make sure your workflow runs on
    the ``ubuntu-latest`` environment.
 
-
 In the last task, you made the tests fail. Commit and push your
 workflow file and make sure the run fails specifically because the
 tests are failing (you will need to inspect the job steps to see that
 ``pytest`` is failing). Take the URL of the failed workflow
 run, and enter it in Gradescope. Remember that it will look something
-like this (where `XXXXXXXX`` will be a number) ::
+like this (where `XXXXXXXX`` will be a number)::
 
     https://github.com/uchicago-cmsc22000-2022/hw7-GITHUB_USERNAME/actions/runs/XXXXXXXX
 
-Now, go back and fix the app so that the tests pass again. Then, push your
-fixed app to both GitHub and to Heroku. Take the URL of the successful
-run, and enter it in Gradescope.
 
 Task 4: Deploy using Github Integration
 ---------------------------------------
 
 Wouldn’t it be convenient if we could deploy continuously, as soon as
-tests pass? You might think “well, what if we had a deploy job in our
-GitHub Actions workflow”? This is possible (see
-https://github.com/marketplace/actions/deploy-to-heroku), but it turns out
-Heroku makes it *even easier* than that. On your Heroku app dashboard,
-in the “Deploy” tab, under “Deployment method”, select “GitHub - connect
-to GitHub” instead of “Heroku Git - Use Heroku CLI”.
+tests pass? As it turns out, GitHub Actions provides an "action"
+for that: https://github.com/marketplace/actions/deploy-to-heroku. More
+generally, GitHub provides an entire `marketplace of different actions <https://github.com/marketplace?type=actions>`__
+that you can use in your CI workflow.
 
-Then, you should be able to connect to your repo. To do this, you need
-to first select the ``uchicago-cmsc22000-2022`` organization under “Search for a
-repository to connect to”, and then enter your repository’s name
-(``hw7-GITHUB_USERNAME``) in the text field. Make sure to click
-the “Search” button so Heroku will search for your repository; your
-repository should then appear under the search field, with a "Connect"
-button next to it. Click on that button to connect your repository.
+To use this action, add the following at the bottom of your ``.github/workflows/test-app.yml``
+file::
 
-Once you connect the repo, you should see a new section called “Automatic
-deploys” with a checkbox “Wait for CI to pass before deploy”. Make sure
-that checkbox is checked, and then click on “Enable Automatic Deploys”
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "CNETID-cs220-hw7"
+        heroku_email: "HEROKU_EMAIL"
 
-Make the tests fail again and push to GitHub with a simple ``git push``.
+Make sure to replace ``CNETID`` with your CNetID, and ``HEROKU_EMAIL`` with the
+e-mail you used to sign up for a Heroku account.
+
+Next, to be able to deploy your app, GitHub Actions needs to be
+able to use your Heroku account. Instead of giving GitHub your
+username and password, we are going to provide an *API key*.
+You can think of this as a separate password that other websites
+(like GitHub) can use to access your account on Heroku.
+
+To get your API key, you will need to go into your `Heroku account settings <https://dashboard.heroku.com/account>`__,
+scroll down to "API Key", click "Reveal", and then copy the key shown there.
+Ultimately, we need to assign that key to the ``heroku_api_key`` field,
+but you should never NEVER **NEVER**
+add your API key (or any sort of password) to a file on a code repository.
+This can be a huge security risk.
+
+Instead, we are telling GitHub actions to use a variable called ``secrets.HEROKU_API_KEY``.
+To assign a value to that variable, go to your repository on GitHub, and do the following:
+
+- Click on the *Settings* Tab
+- Then click on *Secrets* in the left sidebar. This will reveal a pull-down list;
+  click on *Actions*
+- Click on "New repository secret"
+    - In the "Name" field, enter: ``HEROKU_API_KEY``
+    - In the "Value" field, paste the API key you obtained earlier.
+
+Ok, we're almost ready to deploy from GitHub Actions. Before doing so,
+let's make sure we're deploying a correct version of the app.
+Fix the app so that the tests pass again and, once you're sure
+they're passing locally, commit all your changes (don't forget
+to also commit your changes to ``.github/workflows/test-app.yml``).
+Now, push them to your repository; if you go to your repository's Actions, you'll see a new workflow
+run that includes a "Deploy to Heroku" step (which should run successfully).
+Enter the URL of this successful workflow run into Gradescope.
+
+If you go to your app on Heroku, you'll see that it works as expected.
+Now, let's try to deploy a broken version. Make the tests fail again and
+push to GitHub with a simple ``git push``.
 *Do not* run ``git push heroku main``, as this will force a deployment
-of your (now broken) app. Instead, we want Heroku's automatic deployment
-mechanism to detect when we've pushed a new version to GitHub *and* only
+of your (now broken) app. Instead, we want GitHub Actions
+to detect when we've pushed a new version to GitHub *and* only
 deploy it if it passes all the CI tests.
 
-In this case, the CI tests should fail and, if you navigate to your app's URL, you’ll see
-that the broken version has not been deployed.
+If you go to your repository's Actions, you should now see a failed
+workflow run (and, specifically, one where the tests fail, which results
+in the "Deploy to Heroku" step not running). Take the URL of this workflow
+run, and enter it into Gradescope.
 
-Before continuing, fix the tests but don't push your changes just yet.
-We're going to make one more change that *doesn’t* make the tests fail, to
-verify the change is correctly deployed just by pushing to GitHub. If
-you look at the app, you’ll see that the main page shows the title “What
-is your name?” followed by a form with a field titled “Name”. That
-“Name” title seems a bit redundant, so we’re going to remove it. Edit
-``hello/templates/index.html`` and remove this line:
+If you navigate to your app's URL, you’ll see that the broken version has not been deployed.
 
-::
-
-       <label for="name">Name</label>
-
-Now, commit your changes and push to GitHub. Once the CI tests pass,
-your updated app should be available on Heroku shortly afterwards (you
-can also verify this on the “Activity” tab)
-
-For this task, you just need to make sure that you’ve pushed your code
-to GitHub as instructed above.
 
 Submitting your homework
 ------------------------
