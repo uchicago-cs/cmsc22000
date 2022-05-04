@@ -40,6 +40,7 @@ If you need any help on the homework assignments, please see our `Getting help o
    hw5.rst
    hw5_rubric.rst
    hw6.rst
+   hw6_rubric.rst
    hw7.rst
    hw7_rubric.rst
    hw8.rst
