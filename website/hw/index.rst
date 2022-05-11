@@ -16,7 +16,7 @@ Homework
 +---+------------------------------------------+--------------------------------+--------------------+
 | 6 | `Continuous Integration <hw6.html>`__    | `Rubric <hw6_rubric.html>`__   | May 11, 8pm CDT    |
 +---+------------------------------------------+--------------------------------+--------------------+
-| 7 | Deployment                               |                                | May 18, 8pm CDT    |
+| 7 | `Deployment <hw7.html>`__                | `Rubric <hw7_rubric.html>`__   | May 18, 8pm CDT    |
 +---+------------------------------------------+--------------------------------+--------------------+
 | 8 | More CI and Deployment                   |                                | May 25, 8pm CDT    |
 +---+------------------------------------------+--------------------------------+--------------------+
@@ -41,6 +41,7 @@ If you need any help on the homework assignments, please see our `Getting help o
    hw5_rubric.rst
    hw6.rst
    hw7.rst
+   hw7_rubric.rst
    hw8.rst
    hw9.rst
    help.rst
