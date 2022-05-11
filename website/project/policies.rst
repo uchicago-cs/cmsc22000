@@ -189,14 +189,10 @@ If those issues are addressed in the second round, your score for the
 peer feedbacks will be a Satisfactory (otherwise, it will remain at
 Needs Improvement).
 
-Final Presentation
-~~~~~~~~~~~~~~~~~~
+Final Report and Demo
+~~~~~~~~~~~~~~~~~~~~~
 
-.. note::
-
-   We are currently re-designing the requirements for the final
-   presentations. You can find last year's requirements `here <presentation.html>`__,
-   but bear in mind that they may change.
+Requirements for the final report and demo can be found `here <presentation.html>`__.
 
 Team Composition and Mobility
 -----------------------------

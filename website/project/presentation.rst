@@ -1,33 +1,18 @@
-Final Presentations
-===================
+Final Report and Demo
+=====================
 
-.. warning::
+The final component of this course will be a final report, where each
+team will summarize the work they have done throughout the quarter,
+as well as a live demo during the "final exam" slot for the class
+(Wednesday, June 1st, 10am-12pm).
 
-   We are currently re-designing the requirements for the final
-   presentations. This page contains last years requirements,
-   which you are welcome to read, but please bear in mind that
-   they may change.
+Final Report
+------------
 
-The final component of this course will be a series of final
-presentations, where each team will present the work they have done
-throughout the quarter. This presentation will be divided into two
-components:
-
--  A pre-recorded presentation due **Thursday, June 3rd at 8pm CDT**
--  A 5-10 minute Q&A session with the instructor and TAs during the
-   “final exam” slot for the class on **Friday, June 4th, 4pm-6pm CDT**
-
-Once all presentations have been submitted, they will be shared with the
-entire class, so that everyone in the class can learn about the work
-that all the teams have done (similar to how, in live presentations, you
-would be able to attend the presentations for all the teams).
-
-Presentation Contents
----------------------
-
-Each presentation must be divided into three portions: a high-level
-discussion of how you designed and implemented your component, a demo,
-and reflections.
+The report will be divided into three portions: a high-level
+discussion of how you designed and implemented your feature,
+a list of possible next steps in your feature,
+and a series of reflections.
 
 Design and Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,37 +22,58 @@ non-trivial implementation details (like the use of external libraries).
 You should also take care to explain the main dependencies your code has
 with the rest of chiventure.
 
-Please note that you should not need to show any of your code during
-your presentation: you should instead focus on describing at a high level
-the features you added or improved in chiventure, including any modules, data
-structures, etc. you implemented. That said, it can be
+Please note that this section of the report should **not** be a comprehensive description
+of every single file and function of your code. Instead, you should focus
+on describing **at a high level** the features you added or improved in chiventure,
+including any modules, data structures, etc. you implemented.
+
+A good way
+to think about this section is to imagine that it will be read
+by students in following years who will continue working on
+your feature. When writing this part of the report, ask yourself what information
+would be useful to future students, and assume that they have
+the technical skills to read through the code and fill in
+all the lower-level details of your work (but that they
+need a good sense of the "big picture" before doing so).
+
+For example, if you added a new data structure called
+``foo_t``, it would be appropriate to mention that you
+did so, and to describe the purpose of that data structure,
+as well as any dependencies related to that data structure.
+On the other hand, you would not include the full declaration
+of that data structure, nor would you describe each individual
+field. Instead, the goal is to convey that ``foo_t`` is a data
+structure relevant to your feature, and that anyone working
+on that feature in the future will need to familiarize themselves
+in it (and the assumption is that those students will just look
+at the code to learn more about the specifics of that data structure).
+
+Along those lines, you should not need to include any code
+in this section of the report, although it can be
 appropriate to show very short examples (3-4 lines) of how your code
 might be called from other components.
 
-Demo
-~~~~
+There is no specific length requirement for this section, but we
+expect any sufficiently-detailed section to be at least 2-3 pages long.
 
-You must run a demo of your work meeting the following requirements:
+Next Steps
+~~~~~~~~~~
 
--  You must show a program in execution.
--  The code you run *must* be in the ``dev`` branch of the repository.
-   You cannot demo code that is still in one of your branches and has
-   not gone through a code review.
+Again, imagine that this report will be read by students who will
+continue your work in following years. Describe at four
+tasks that those students could work on to continue the work
+you did this quarter. These can include the following
 
-We recommend that you think carefully about what you want to show
-in your demo, and that you plan ahead of time the exact steps you
-will take during the demo (as opposed to doing a more improvised demo).
+- Tasks that you started working on this quarter, but were unable
+  to finish.
+- Improvements or fixes you identified this quarter, but did
+  not work on.
+- General interesting directions that the feature could go in.
 
-Ideally, you should run the main ``chiventure`` executable, in a way
-that highlights the work you’ve done. However, if your feature is not
-yet accessible from the main executable, you are allowed to create an
-example program inside the ``examples/`` directory of your feature.
+Please note that you can complete this section of the report
+by simply pointing to specific GitHub issues (particularly Backlog issues)
+that future students may want to focus on.
 
-Please note that this is not “sandbox” code: this should be code that
-integrates, as much as possible, with the rest of chiventure. A good way
-to think about this is to write an example program that showcases the
-work you were able to do, and that future developers can look at as an
-example of how your code works.
 
 Reflections
 ~~~~~~~~~~~
@@ -84,175 +90,91 @@ simply working individually.
 You must also discuss at least one thing that you would’ve done
 differently with the benefit of hindsight.
 
-Presentation Format
--------------------
+Live Demo
+---------
 
-We do not expect your recorded presentation to be super-polished, with
-fancy editing, etc. Instead, we suggest you approach this in a manner
-similar to an in-person presentation: develop your slides and demo
-collaboratively, and then deliver your presentation using no more than
-15 minutes, but do so over Zoom (with one of you recording the meeting).
+During the final exam slot for the class, you must run a demo of your
+work meeting the following requirements:
 
-To reiterate: please do not spend time doing multiple retakes, editing
-your video (beyond trimming the start and end of the video), etc. If you
-would like to ensure that your presentation is minimally polished, we
-instead suggest you do the following:
+- You must show a program in execution.
+- The program *must* use code you have written this quarter.
+- The code you run *must* be in the ``dev`` branch of the repository.
+  You cannot demo code that is still in one of your branches and has
+  not gone through a code review.
+- To ensure there is enough time for all the teams to showcase their
+  work, your demo should be around 5 minutes long, and never more
+  than 10 minutes long.
 
-1. Do a very brief dry run (2-3 minutes) with one or two other team
-   members, where one of you is sharing their screen, etc. to verify
-   that you understand how to run the Zoom meeting and record it. We
-   suggest you follow the steps for creating a `local recording in
-   Zoom <https://support.zoom.us/hc/en-us/articles/201362473>`__, and
-   that you have everyone in the meeting say something to verify that
-   they are being correctly recorded. *You should do this well in
-   advance of the deadline* so we can sort out any technical issues
-   beforehand.
-2. Allocate 15 minutes to deliver your presentation, and ask students in
-   other teams whether they would be willing to attend the meeting. This
-   will make your presentation less awkward, because you’ll actually be
-   presenting to other people, and you will feel more obligated to stay
-   within the 15 minute limit (as opposed to getting into a “let’s do a
-   retake” mentality). Plus, the people from the other teams may give
-   you some valuable feedback at the end of the meeting (and will
-   themselves benefit from seeing how another team approaches giving a
-   presentation; you should also volunteer to attend other presentations
-   precisely for this reason!)
-3. If feasible, deliver the presentation again at a later time,
-   incorporating the feedback you received from the other students.
+We recommend that you think carefully about what you want to show
+in your demo, and that you plan ahead of time the exact steps you
+will take during the demo (as opposed to doing a more improvised demo).
 
-All that said, you are allowed to record your presentation in other ways
-if you feel that will work better for you. However, if you’ve never
-prepared a pre-recorded presentation before, we suggest you use Zoom as
-described above.
+Ideally, you should run the main ``chiventure`` executable, in a way
+that highlights the work you’ve done. However, if your feature is not
+yet accessible from the main executable, you are allowed to create an
+example program inside the ``examples/`` directory of your feature.
 
-We suggest you allocate roughly 5 minutes for each portion of the
-presentation. Please note that the design/implementation and demo
-portions can be interwoven together, as opposed to treating them as
-completely distinct portions.
+Please note that this is not “sandbox” code: this should be code that
+integrates, as much as possible, with the rest of chiventure. A good way
+to think about this is to write an example program that showcases the
+work you were able to do, and that future developers can look at as an
+example of how your code works.
 
-Take into account that the presentation itself doesn’t have to be
-delivered by all team members. In fact, for a 15 minute presentation,
-you probably want no more than 2-3 people speaking in total. If you feel
-comfortable doing so, please make sure your camera is turned on when you
-speak during the presentation.
 
 Submission Instructions
 -----------------------
 
-You will submit your presentation through Panopto. On the CMSC 22000 canvas
-site, go to "Panopto Video", and then into the folder "Final Presentations [Submission Folder]".
-To upload your video, click on the "Create" button (which appears to the right
-of the search bar), and select "Upload media". You will then be prompted
-to upload a file. Please make sure the video file includes the name of
-your team in it.
-
-Please note that this submission folder is set up so that only the person
-who uploads a video can see that video. Your teammates should not be alarmed
-if they go to this folder and do not see your team's video there.
+As in the project design warm-up, your team will get a repository
+shared by everyone in the team, and you must upload your report
+to this repository. We will provide a simple Markdown template
+for the report, but you are also welcome to use other formats
+as long as they are text-based (e.g., plain text or HTML are fine;
+PDF, Word, etc. are not acceptable)
 
 
-
-Q&A
----
-
-During the Q&A meeting, each team will get approximately 10 minutes for:
-
-1. A **brief** (less than 5 minutes) summary/demo of your team's work.
-2. Q&A by the instructor/TAs.
-
-The summary/demo *will not be graded*. The audience of this summary/demo
-is not the instructor/TAs (who will have already watched your pre-recorded
-presentation), but rather the other teams (who have not watched your
-pre-recorded presentation). This will be a chance for everyone in the class
-to hear more about what every team did this quarter.
-
-Please note that we will be on a tight schedule during the Q&A meeting so,
-if you are going to use slides or demo any running code, your presentation
-or demo must be ready to go the moment your team's turn is up.
-
-In the Q&A portion, you will be asked some questions based on your
-pre-recorded presentation. While the entire team does not have to be
-present for this Q&A, as many team members as possible should plan to
-attend. Take into account that you may be asked questions that one or
-two specific people in your team are best suited to answer
-(because they were more involved in the part of your code that a
-question relates to).
-
-Teams in a non-North American timezone who are unable to send a few team
-members to the Q&A meeting should contact the instructor in advance to
-schedule an alternate time for their Q&A.
 
 Scoring
 -------
 
-The presentation will be worth 10 points of your final grade, broken
-down as follows:
+Since you only have one shot at the report and demo, the scoring
+is largely based on the completeness of your final report and demo.
+i.e., we will be paying more attention to whether you put in a
+good-faith effort to provide the information requested in the report, regardless of
+whether there is room for improvement in the report's style,
+level of detail, etc. Similarly, we will be looking at whether
+you actually wrote a demo that meets the requirements listed above,
+regardless of whether the demo could've showcased more aspects
+of your work, etc.
 
--  5 points for content/structure of the presentation
--  3 points for the demo
--  2 points for the Q&A
+The following issues will have an effect on your score in the
+final report and demo:
 
-The instructor/TAs will use the following rubric, with discretion to
-add/subtract half a point.
+- Not completing any of the sections in the report, or not
+  providing the information requested for those sections.
+- Writing an excessively informal Design and Implementation
+  section (e.g., just providing a series of bullet points)
+- Not doing a live demo at all
+- Doing a live demo that does not fulfil the requirements listed
+  for the live demo.
 
-Content and structure
-~~~~~~~~~~~~~~~~~~~~~
+TODO: More concrete specs?
 
--  5 points: Perfectly structured, clear from beginning to end
--  4 points: Overall well structured. Only a few minor hiccups and/or
-   aspects that were not entirely clear.
--  2.5 points: Needs improvement. Presentation was poorly structured
-   with multiple aspects that were not clear.
--  1 point: Poorly structured. Presentation does not substantially
-   address the content we requested.
--  0: No presentation was delivered.
-
-For avoidance of doubt, this score is based solely on the content and
-structure of the presentation, and whether it addresses all the
-requirements described earlier. Producing a slick video with fancy
-editing (or not) has no bearing on this score.
-
-.. _demo-1:
-
-Demo
-~~~~
-
--  3 points: Flawless demo that highlights the team’s work.
--  2 points: Smooth demo with only a few small hiccups.
--  1.5 points: Needs improvement. Demo worked but with major issues.
--  1 point: Very incomplete demo. Demo hints at the work the team did,
-   but doesn’t directly showcase their work.
--  0: No demo was done.
-
-.. _qa-1:
-
-Q&A
-~~~
-
--  2 points: All questions were answered
--  1.5 points: Most questions were answered, but the team was stumped on
-   some of them.
--  1 points: The team was stumped on most of the questions they were
-   asked.
--  0.5 point: The team was stumped on all questions.
--  0 points: The team did not answer any of the questions they were
-   asked.
 
 Code Freezes
 ------------
 
-Please note that, leading up to the final presentations, there will
+Please note that, leading up to the demos, there will
 be two freezes on the ``dev`` branch. Remember that your demo **must**
 run code that is in the ``dev`` branch.
 
-- **Soft Freeze**: Friday, May 28th at 11:59pm CDT
+- **Soft Freeze**: Friday, May 27th at 11:59pm CDT
 
   - Only issues/PRs that are open at this time will be reviewed and graded.
-  - Issues/PRs can still be opened after the soft freeze (under a new milestone, “2021/Wrap-up”) but they will not be graded.
+  - Issues/PRs can still be opened after the soft freeze (under a new milestone, “2022/Wrap-up”) but they will not be graded.
   - We cannot guarantee that PRs opened after the soft freeze will be reviewed/merged.
   - In general, we will not approve PRs that introduce a completely new feature, or that modify the core data structures of chiventure.
 
-- **Code Freeze**: Wednesday, June 2nd at 8pm CDT
+- **Code Freeze**: Tuesday, May 31st at 8pm CDT
 
   - No code will be merged after this time.
   - Exceptions may be made for very minor bugfixes and documentation updates, but we cannot guarantee they will be reviewed in a timely fashion.
