@@ -1,14 +1,6 @@
 Homework 8: More CI and Deployment
 ==================================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
-
 **Due:** Wednesday, May 25th, 8pm CDT
 
 In this homework, we will continue to explore concepts related to Continuous
@@ -71,7 +63,7 @@ Creating your homework repository
 Like previous homeworks, we will provide you with an *invitation URL* that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2021-hw8-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw8-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
 on GitHub.
 
 Your repository will be seeded with some files for the homework
@@ -80,8 +72,6 @@ server to run correctly.
 
 Task 1: Git Submodules
 ~~~~~~~~~~~~~~~~~~~~~~
-
-[20 points]
 
 Before we setup our CI job to run a Redis server, we're going
 to explore a new Git concept: submodules.
@@ -206,8 +196,6 @@ repository. You do not need to enter anything on Gradescope.
 Task 2: Using a Container-ized Service in a GitHub Actions workflow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[30 points]
-
 Testing our program requires running Redis, so we will need to set up our
 GitHub Actions workflow to run a Redis server. We will do
 this by telling GitHub Actions to use a Docker container with Redis installed in
@@ -300,7 +288,7 @@ program.
 Now, fetch the URL of the workflow run, and paste it into Gradescope
 (under "Task 2: Using a Container-ized Service in a GitHub Actions workflow"). Remember it will look something like this::
 
-    https://github.com/uchicago-cmsc22000/2021-hw8-GITHUB_USERNAME/actions/runs/XXXXXXXXXX
+    https://github.com/uchicago-cmsc22000-2022/hw8-GITHUB_USERNAME/actions/runs/XXXXXXXXXX
 
 Where ``XXXXXXXXXX`` will be a number.
 
@@ -321,10 +309,8 @@ If the build fails or you do not see this output, make sure to ask for
 help.
 
 
-Task 3: Running Docker in the CS VM
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[0 Points]
+[OPTIONAL] Task 3: Running Docker in the CS VM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
 
@@ -556,8 +542,6 @@ You should now be able to run the test program:
 Task 4: Using a Custom Dockerfile in our Workflow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[10 points]
-
 Now that we've seen how to specify a custom container, let's try using it
 in our CI workflow. Please note that you don't need to complete this
 task on the CS VM. You can follow all the necessary steps while logged
@@ -652,10 +636,8 @@ have three stages:
 Task 1: Create a Pipeline
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[0 points]
-
 In this task, you’ll create a new Heroku Pipeline, using the
-``CNETID-cs220-hw7`` app(from last week’s homework) as the staging
+``CNETID-cs220-hw7`` app (from last week’s homework) as the staging
 app. Note that a common convention is for staging apps
 to have ``-staging`` as a suffix, but it won’t be necessary for you to
 rename your app in this homework.
@@ -680,8 +662,6 @@ pipeline before moving on to the next tasks.
 
 Task 2: Add a production app
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[10 points]
 
 In this task, you’ll add a production app to your pipeline.
 Unlike the app in staging, your production app won’t be associated with
@@ -718,13 +698,16 @@ Task 3: Promoting from staging to production
 First, let’s make a change to our HelloApp: it’s time to upgrade to
 HelloApp 2.0!
 
--  In your repository from Homework #7 (``2021-hw7-GITHUB_USERNAME``), edit
+-  In your repository from Homework #7 (``hw7-GITHUB_USERNAME``), edit
    ``hello/templates/base.html`` and change ``<h1>HelloApp</h1>`` to ``<h1>HelloApp 2.0</h1>``
+-  Remember that, at the end of Homework #7, we actually left the app
+   in a broken state (it would not pass the tests). Double-check that
+   line 10 in file ``hello/templates/index.html`` is ``Hello, {{name}}!``
+   (otherwise, the tests will fail).
 -  Commit and push this change with the message “Update to 2.0”
 -  Assuming you completed Homework #7 last week, your updated app will
-   automatically deploy. Remember this may take a few minutes (you can
-   check the progress of the deployment by going to the “Activity” tab
-   in your app)
+   automatically deploy (you can check the status of the deployment
+   by looking at the latest workflow run on the repository's Actions tab)
 
 Now, notice that if you navigate to your staging website
 (``CNETID-cs220-hw7.herokuapp.com``) you’ll see your change. But if you
@@ -755,7 +738,9 @@ On Gradescope, enter the URL of your production app.
 Task 4: Create Review Apps - HelloApp 3.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[20 points]
+**TODO**: We can't actually create Review Apps because the Heroku/GitHub integration
+is temporarily disables, so we should rewrite this to talk about how review
+apps can be useful (even if we can't create them right now.
 
 Currently, in order to make changes to staging, you have to directly
 modify the main branch of your repo. Can you imagine why this is a bad
