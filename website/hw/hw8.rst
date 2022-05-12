@@ -637,7 +637,12 @@ As we saw in the deployment lecture, a common pipeline is as follows:
    the staging app will be promoted to production when it is ready.
 
 In this homework, you’ll create a more complete Heroku pipeline for last
-week’s HelloApp. If you did not successfully complete Homework #7, please ask
+week’s HelloApp. Please note that you will not be answering question
+on Gradescope for each of the tasks; instead, you will have to provide
+two URLs for this entire part of the homework (we will tell you which
+URLs when we get to them)
+
+If you did not successfully complete Homework #7, please ask
 for help so we can ensure that you’re all set up for this week’s homework.
 
 Heroku already provides support for creating pipelines, and ours will
@@ -660,6 +665,10 @@ app. Note that a common convention is for staging apps
 to have ``-staging`` as a suffix, but it won’t be necessary for you to
 rename your app in this homework.
 
+On Gradescope, enter the URL of the HelloApp you deployed in Homework #7.
+While you will be adding it to a deployment pipeline, its URL will
+remain the same in this homework.
+
 To create the pipeline, log into Heroku, and select the app you created
 in Homework #7. Under the Deploy tab, click on “Choose a pipeline” (in the
 “Add this app to a pipeline” section) and then “Create new pipeline”.
@@ -673,10 +682,6 @@ able to access this page through your dashboard, which will now include
 a ``CNETID-pipeline`` pipeline). Notice how there is no production
 app in your pipeline. In the real world, this would mean that
 your end users don’t see anything!
-
-Please note that you do not need to enter anything into Gradescope for
-this task. While it is worth 0 points, you still need to create a
-pipeline before moving on to the next tasks.
 
 Task 2: Add a production app
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -705,8 +710,10 @@ your app on Heroku (just go to http://CNETID-cs220-prod.herokuapp.com/),
 you’ll just see a placeholder page, not HelloApp. That’s because we
 haven’t promoted our staging app to production yet.
 
-On Gradescope, enter the URL of your staging app (this will be the same
-URL as the HelloApp you deployed in Homework #7).
+On Gradescope, enter the URL of the production HelloApp you just created
+(don't worry about the fact that it's just showing a placeholder page;
+we will change this in the following task, and the URL of your app
+will remain the same).
 
 Task 3: Promoting from staging to production
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -749,14 +756,8 @@ in the staging app of your pipeline. Once you do this, your staging app
 (``CNETID-cs220-hw7.herokuapp.com``) and your production app
 (``CNETID-cs220-prod.herokuapp.com``) should look exactly the same.
 
-On Gradescope, enter the URL of your production app.
-
-Task 4: Create Review Apps - HelloApp 3.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**TODO**: We can't actually create Review Apps because the Heroku/GitHub integration
-is temporarily disables, so we should rewrite this to talk about how review
-apps can be useful (even if we can't create them right now.
+Addendum: Review Apps
+~~~~~~~~~~~~~~~~~~~~~
 
 Currently, in order to make changes to staging, you have to directly
 modify the main branch of your repo. Can you imagine why this is a bad
@@ -767,75 +768,21 @@ staging, which isn’t as bad as directly modifying production, but could
 be embarrassing if you’re trying to get a small change approved and then
 break everything for every other developer in your team!
 
-The last thing you’ll do is create a *review app* stage for your pipeline.
-This way, every pull request submitted to GitHub can be its own app.
-This lets developers see changes per-pull request.
+One way of addressing this is by adding a *review app* stage to the
+pipeline, which results in a new app being deployed for each
+new pull request submitted to GitHub.
+This lets developers see what the app would look like if the pull
+request were merged.
 
-To do this, we first need to connect the pipeline to GitHub:
+Unfortunately, while Heroku does support this feature, it is
+(as of May 2022) currently disabled because of a security incident
+between GitHub and Heroku, which resulted in certain integrations
+between GitHub and Heroku being disabled.
 
--  From the pipeline page on Heroku, click on “Connect to GitHub”
--  This will take you to a different page. Under “Search for a
-   repository to connect to”, select the “uchicago-cmsc22000” organization,
-   and then enter your repository’s name
-   (``2021-hw7-GITHUB_USERNAME``). Make sure to click on the “Search”
-   button.
--  Finally, click on the “Connect” button next to your repository’s
-   name.
-
-Now, from your pipeline’s page, do the following:
-
--  Click on “Enable Review Apps" in the "Review Apps” section. This will show you a form on the side
-   of the page.
--  Enable “Create new review apps for new pull requests automatically”
--  Do NOT enable “Wait for CI to pass” (this refers to Heroku’s own CI,
-   and we are already using GitHub Actions for CI)
--  Enable “Destroy stale review apps automatically”. This will allow you
-   to specify a number of days; you can leave the default value ("After 5 days") as-is.
--  Click on “Enable Review Apps”
-
-   Don’t worry about the “Review apps may incur dyno and add-on
-   charges.” that appears above the "Enable Review Apps" button.
-   We are using the free tier of Heroku, so we won’t
-   be charged for anything. If you want to be extra sure, go to
-   https://dashboard.heroku.com/account/billing and make sure there is
-   no credit card on file for your account, and that you have free hours
-   available under “Free Dyno Usage”.
-
-Now, you’ll create a pull request:
-
--  Create a new branch called ``create-version-3`` in your
-   ``2021-hw7-GITHUB_USERNAME`` repository.
--  Edit ``hello/templates/base.html`` and change ``<h1>HelloApp 2.0</h1>`` to ``<h1>HelloApp 3.0</h1>``
--  Commit and push the changes with the message “Update to 3.0”
--  Notice how the change won’t show up on
-   ``CNETID-cs220-hw7.herokuapp.com``, because we haven’t pushed the
-   changes to ``main``.
--  Now, on GitHub, create a new pull request. Make sure your pull
-   request is to merge the ``create-version-3`` branch to the ``main``
-   branch of your repository. You do not need to assign any reviewers to
-   this pull request, nor do you need to worry about writing a summary,
-   etc.
--  On your heroku Dashboard, you should see a new application under
-   “Review Apps” (with the name of the pull request: “Updated to 3.0”)
-
-Click on “Open app” to view the review app. This allows you to see what
-your app would look like if the changes in the pull request were
-deployed. The review app should show the title “HelloApp 3.0”, while
-both the staging (``CNETID-cs220-hw7.herokuapp.com``) and production
-(``CNETID-cs220-prod.herokuapp.com``) apps should still show “HelloApp
-2.0”
-
-If the review app correctly shows the title “HelloApp 3.0”, go ahead and
-merge your PR (remember, you don’t need to wait to get a review; just go
-ahead and merge the pull request). This should push the changes to
-staging, since you set up automatic deploys for your app (please note
-that it may take a few minutes for this to happen). Once this succeeds,
-go ahead and promote your final app to production.
-
-Please note that, once you merge the pull request, the review app will
-disappear. This is normal.
-
-On Gradescope, enter the URL of the pull request you created on GitHub.
+So, you will not be able to create a review app. All you need
+to know is that this is an additional stage we could potentially
+add to make it easier to review changes to an app before
+they're merged to the main branch.
 
 Submitting your homework
 ------------------------
