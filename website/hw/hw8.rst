@@ -231,7 +231,7 @@ file to your repository with the following contents:
               - 6379:6379
 
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v3
           with:
             submodules: 'recursive'
 
@@ -451,21 +451,30 @@ So far, we've been using pre-existing container images found on `Docker
 Hub <https://hub.docker.com/_/redis/>`__, but we also have the ability
 to define our own container images. Your homework repository includes
 a ``Dockerfile`` file that includes the specification of a custom Redis
-image. To give it a try, start by cloning your repository inside the VM
-(if you are still inside the `redis-stable` directory, make sure to `cd`
+image.
+
+To give it a try, we'll clone our "starter code" repository for this
+homework. This repository contains the same files that were added
+to your homework repository, and will be more straightforward to
+clone, since it is a public repository (you can also clone your
+homework repository, but you would need to either create SSH
+keys inside the VM, and upload them to GitHub, or obtain a
+Personal Access Token from GitHub).
+
+So, let's run the following (if you are still inside the `redis-stable` directory, make sure to `cd`
 back to your home directory before running the following command):
 
 .. code:: shell
 
-   $ git clone --recursive https://github.com/uchicago-cmsc22000/2021-hw8-GITHUB_USERNAME.git
+   $ git clone https://github.com/uchicago-cmsc22000/hw8-starter-code.git
 
 Then, go into the repository directory:
 
 .. code:: shell
 
-   $ cd 2021-hw8-GITHUB_USERNAME
+   $ cd hw8-starter-code
 
-Take a look at the ``Dockerfile`` file. This file instructs Docker
+Now, take a look at the ``Dockerfile`` file. This file instructs Docker
 on how to build a new container image. The first line
 tells Docker to use the ``gcc`` image on Docker Hub as a starting
 point (since we're building Redis from scratch, we need access to
@@ -493,7 +502,7 @@ Finally, we need to specify the command that will be run
 whenever we launch a container with this image::
 
     # Command to run when container is launched
-    CMD ["redis-server", "--bind", "0.0.0.0"]
+    CMD ["redis-server", "--protected-mode", "no", "--bind", "0.0.0.0"]
 
 To be clear, the ``RUN`` commands are run only once, when the container
 image is first built, not every time we launch the container.
@@ -522,7 +531,16 @@ scratch. Once it finishes building the image, you can run the container like thi
 
         sudo docker container stop redis-server
 
-In a separate terminal, build hiredis and the sample program:
+Before proceeding, let's make sure to add the hiredis submodule (yes,
+you did this earlier in the homework, but in your own repository;
+it is not a part of the "starter code" repository). In a separate
+terminal, run this:
+
+.. code:: shell
+
+   $ git submodule add https://github.com/redis/hiredis.git
+
+Now, build hiredis and the sample program:
 
 .. code:: shell
 
@@ -560,7 +578,7 @@ it will contain the following::
         runs-on: ubuntu-latest
 
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v3
           with:
             submodules: 'recursive'
 
@@ -692,8 +710,6 @@ URL as the HelloApp you deployed in Homework #7).
 
 Task 3: Promoting from staging to production
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[10 points]
 
 First, let’s make a change to our HelloApp: it’s time to upgrade to
 HelloApp 2.0!

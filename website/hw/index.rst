@@ -18,7 +18,7 @@ Homework
 +---+------------------------------------------+--------------------------------+--------------------+
 | 7 | `Deployment <hw7.html>`__                | `Rubric <hw7_rubric.html>`__   | May 18, 8pm CDT    |
 +---+------------------------------------------+--------------------------------+--------------------+
-| 8 | More CI and Deployment                   |                                | May 25, 8pm CDT    |
+| 8 | `More CI and Deployment <hw8.html>`__    | `Rubric <hw8_rubric.html>`__   | May 25, 8pm CDT    |
 +---+------------------------------------------+--------------------------------+--------------------+
 | 9 | Documentation and Logging                |                                | Optional           |
 +---+------------------------------------------+--------------------------------+--------------------+
@@ -44,5 +44,6 @@ If you need any help on the homework assignments, please see our `Getting help o
    hw7.rst
    hw7_rubric.rst
    hw8.rst
+   hw8_rubric.rst
    hw9.rst
    help.rst
