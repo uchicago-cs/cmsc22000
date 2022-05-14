@@ -54,13 +54,13 @@ appropriate to show very short examples (3-4 lines) of how your code
 might be called from other components.
 
 There is no specific length requirement for this section, but we
-expect any sufficiently-detailed section to be at least 2-3 pages long.
+expect any sufficiently-detailed section to be around 800-1200 words long.
 
 Next Steps
 ~~~~~~~~~~
 
 Again, imagine that this report will be read by students who will
-continue your work in following years. Describe at four
+continue your work in following years. Describe at lest four
 tasks that those students could work on to continue the work
 you did this quarter. These can include the following
 
@@ -72,7 +72,9 @@ you did this quarter. These can include the following
 
 Please note that you can complete this section of the report
 by simply pointing to specific GitHub issues (particularly Backlog issues)
-that future students may want to focus on.
+that future students may want to focus on. If you do so, make sure
+to include the issue number and issue title for each issue, along with
+a 2-3 sentence summary of the issue.
 
 
 Reflections
@@ -120,6 +122,9 @@ to think about this is to write an example program that showcases the
 work you were able to do, and that future developers can look at as an
 example of how your code works.
 
+Finally, time-permitting, we may ask you questions after your demo,
+but your answers to these questions will not factor into your score.
+
 
 Submission Instructions
 -----------------------
@@ -154,7 +159,7 @@ final report and demo:
 - Writing an excessively informal Design and Implementation
   section (e.g., just providing a series of bullet points)
 - Not doing a live demo at all
-- Doing a live demo that does not fulfil the requirements listed
+- Doing a live demo that does not fulfill the requirements listed
   for the live demo.
 
 TODO: More concrete specs?
