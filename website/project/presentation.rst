@@ -130,6 +130,35 @@ example of how your code works.
 Finally, time-permitting, we may ask you questions after your demo,
 but your answers to these questions will not factor into your score.
 
+Live Demo Tips
+~~~~~~~~~~~~~~
+
+Doing a live demo may feel like a daunting task, particularly
+because of the stress of something going wrong during the demo.
+Here are a few tips on preparing/delivering the demo that
+may be helpful:
+
+- Make sure you carefully plan what you're going to say and
+  show at the demo, and rehearse it carefully. A live demo
+  is not something you want to improvise on-the-fly.
+- When it's your time to demo, you should use a single laptop,
+  and that laptop must be ready to show the demo right away.
+  i.e., you must have a terminal open
+  that is ready to run your demo, and you should need to do
+  no setup other than connecting your laptop to the projector.
+- If you're unsure whether your laptop will work with the projector,
+  get to the room before 10am and do a quick test (we've checked,
+  and no one will be using the room before us)
+- Always have a contingency plan. Sometimes demos don't work and,
+  while that is not ideal, you will not cause a bad impression
+  if you fall back on a contingency plan. For example, you could have
+  screenshots ready to show if the demo doesn't work (note:
+  if that happens, we may ask you to show us the demo at a later
+  time so we can verify that it works)
+- If something does fail, do not try to fix it on the spot. Move on
+  with the rest of the demo and, if that is not possible, give up
+  on the demo gracefully (ideally by switching to your contingency plan)
+
 
 Submission Instructions
 -----------------------
