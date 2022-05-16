@@ -51,7 +51,11 @@ at the code to learn more about the specifics of that data structure).
 Along those lines, you should not need to include any code
 in this section of the report, although it can be
 appropriate to show very short examples (3-4 lines) of how your code
-might be called from other components.
+might be called from other components. It is also appropriate
+to link to specific parts of the chiventure code (e.g.,
+following the ``foo_t`` example above, you may want to specify
+the exact file where the struct is defined, ideally with a link
+to the file on GitHub).
 
 There is no specific length requirement for this section, but we
 expect any sufficiently-detailed section to be around 800-1200 words long.
