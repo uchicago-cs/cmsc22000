@@ -64,9 +64,9 @@ Next Steps
 ~~~~~~~~~~
 
 Again, imagine that this report will be read by students who will
-continue your work in following years. Describe at lest four
+continue your work in following years. Describe at least four
 tasks that those students could work on to continue the work
-you did this quarter. These can include the following
+you did this quarter. These can include the following:
 
 - Tasks that you started working on this quarter, but were unable
   to finish.
@@ -108,7 +108,7 @@ work meeting the following requirements:
   You cannot demo code that is still in one of your branches and has
   not gone through a code review. Note: The code doesn’t necessarily
   have to be in the head of the ``dev`` branch. If someone breaks
-  your code in ``dev``, you can “rewind” to a previous commit in dev
+  your code in ``dev``, you can “rewind” to a previous commit in ``dev``
   if you prefer.
 - To ensure there is enough time for all the teams to showcase their
   work, your demo should be around 5 minutes long, and never more
@@ -122,7 +122,7 @@ Ideally, you should run the main ``chiventure`` executable, in a way
 that highlights the work you’ve done. However, if your feature is not
 yet accessible from the main executable, you are allowed to create an
 example program inside the ``examples/`` directory of your feature.
-Remember that you are allowed to use `fakes and monkeypatching <https://github.com/uchicago-cs/chiventure/wiki/Writing-tests-and-demos-with-stubs,-fakes,-and-monkeypatches>`__,
+Remember that you are allowed to use `in-memory games and monkeypatching <https://github.com/uchicago-cs/chiventure/wiki/Writing-tests-and-demos-with-stubs,-fakes,-and-monkeypatches>`__,
 to build these kind of demos.
 
 Please note that this is not “sandbox” code: this should be code that
