@@ -192,14 +192,21 @@ final report and demo:
 
 - Not completing any of the sections in the report, or not
   providing the information requested for those sections.
-- Writing an excessively informal Design and Implementation
-  section (e.g., just providing a series of bullet points)
+- Writing a clearly low-quality/low-effort report. In other words,
+  you should worry less about whether you're writing an exceptional report
+  (although doing so never hurts), and more about making sure
+  you don't write a report that is too informal, not useful, etc.
+  Examples of this could include:
+
+  - Writing the Design and Implementation section as list
+    of bullet points.
+  - Pervasive lack of complete sentences, or pervasive bad
+    grammar.
+  - Leaving TODOs or other notes in your report.
+
 - Not doing a live demo at all
 - Doing a live demo that does not fulfill the requirements listed
   for the live demo.
-
-TODO: More concrete specs?
-
 
 Code Freezes
 ------------
