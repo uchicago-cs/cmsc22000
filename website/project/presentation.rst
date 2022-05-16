@@ -175,6 +175,8 @@ PDF, Word, etc. are not acceptable)
 Scoring
 -------
 
+You will receive a single ESNU score for the final report
+and demo (i.e., not one score for each, but one score overall).
 Since you only have one shot at the report and demo, the scoring
 is largely based on the completeness of your final report and demo.
 i.e., we will be paying more attention to whether you put in a
