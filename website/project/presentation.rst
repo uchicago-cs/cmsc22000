@@ -208,6 +208,10 @@ final report and demo:
 - Doing a live demo that does not fulfill the requirements listed
   for the live demo.
 
+Note: Having your demo fail during the live demo will not necessarily
+affect your score. If you are able to deal with that failure gracefully
+(see the Live Demo Tips above), this will not affect your score.
+
 Code Freezes
 ------------
 
