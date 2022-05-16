@@ -102,7 +102,10 @@ work meeting the following requirements:
 - The program *must* use code you have written this quarter.
 - The code you run *must* be in the ``dev`` branch of the repository.
   You cannot demo code that is still in one of your branches and has
-  not gone through a code review.
+  not gone through a code review. Note: The code doesn’t necessarily
+  have to be in the head of the ``dev`` branch. If someone breaks
+  your code in ``dev``, you can “rewind” to a previous commit in dev
+  if you prefer.
 - To ensure there is enough time for all the teams to showcase their
   work, your demo should be around 5 minutes long, and never more
   than 10 minutes long.
@@ -115,6 +118,8 @@ Ideally, you should run the main ``chiventure`` executable, in a way
 that highlights the work you’ve done. However, if your feature is not
 yet accessible from the main executable, you are allowed to create an
 example program inside the ``examples/`` directory of your feature.
+Remember that you are allowed to use `fakes and monkeypatching <https://github.com/uchicago-cs/chiventure/wiki/Writing-tests-and-demos-with-stubs,-fakes,-and-monkeypatches>`__,
+to build these kind of demos.
 
 Please note that this is not “sandbox” code: this should be code that
 integrates, as much as possible, with the rest of chiventure. A good way
@@ -179,7 +184,7 @@ run code that is in the ``dev`` branch.
   - We cannot guarantee that PRs opened after the soft freeze will be reviewed/merged.
   - In general, we will not approve PRs that introduce a completely new feature, or that modify the core data structures of chiventure.
 
-- **Code Freeze**: Tuesday, May 31st at 8pm CDT
+- **Code Freeze**: Tuesday, May 31st at 5pm CDT
 
   - No code will be merged after this time.
   - Exceptions may be made for very minor bugfixes and documentation updates, but we cannot guarantee they will be reviewed in a timely fashion.
