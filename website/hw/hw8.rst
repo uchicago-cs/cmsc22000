@@ -1,14 +1,6 @@
 Homework 8: More CI and Deployment
 ==================================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
-
 **Due:** Wednesday, May 25th, 8pm CDT
 
 In this homework, we will continue to explore concepts related to Continuous
@@ -71,7 +63,7 @@ Creating your homework repository
 Like previous homeworks, we will provide you with an *invitation URL* that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2021-hw8-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw8-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
 on GitHub.
 
 Your repository will be seeded with some files for the homework
@@ -80,8 +72,6 @@ server to run correctly.
 
 Task 1: Git Submodules
 ~~~~~~~~~~~~~~~~~~~~~~
-
-[20 points]
 
 Before we setup our CI job to run a Redis server, we're going
 to explore a new Git concept: submodules.
@@ -206,8 +196,6 @@ repository. You do not need to enter anything on Gradescope.
 Task 2: Using a Container-ized Service in a GitHub Actions workflow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[30 points]
-
 Testing our program requires running Redis, so we will need to set up our
 GitHub Actions workflow to run a Redis server. We will do
 this by telling GitHub Actions to use a Docker container with Redis installed in
@@ -243,7 +231,7 @@ file to your repository with the following contents:
               - 6379:6379
 
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v3
           with:
             submodules: 'recursive'
 
@@ -300,7 +288,7 @@ program.
 Now, fetch the URL of the workflow run, and paste it into Gradescope
 (under "Task 2: Using a Container-ized Service in a GitHub Actions workflow"). Remember it will look something like this::
 
-    https://github.com/uchicago-cmsc22000/2021-hw8-GITHUB_USERNAME/actions/runs/XXXXXXXXXX
+    https://github.com/uchicago-cmsc22000-2022/hw8-GITHUB_USERNAME/actions/runs/XXXXXXXXXX
 
 Where ``XXXXXXXXXX`` will be a number.
 
@@ -321,10 +309,8 @@ If the build fails or you do not see this output, make sure to ask for
 help.
 
 
-Task 3: Running Docker in the CS VM
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[0 Points]
+[OPTIONAL] Task 3: Running Docker in the CS VM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
 
@@ -343,7 +329,7 @@ the ability to run commands with root privileges.
 
 Completing this task requires running the VM on your own machine,
 so this task is optional and ungraded, but strongly
-recommended, specially if you’ve already installed the UChicago CS VM.
+recommended, particularly if you’ve already installed the UChicago CS VM.
 
 Once you’ve started the UChicago CS VM, open a terminal. We will first
 need to install Redis and Docker on the virtual machine. You can install
@@ -465,21 +451,30 @@ So far, we've been using pre-existing container images found on `Docker
 Hub <https://hub.docker.com/_/redis/>`__, but we also have the ability
 to define our own container images. Your homework repository includes
 a ``Dockerfile`` file that includes the specification of a custom Redis
-image. To give it a try, start by cloning your repository inside the VM
-(if you are still inside the `redis-stable` directory, make sure to `cd`
+image.
+
+To give it a try, we'll clone our "starter code" repository for this
+homework. This repository contains the same files that were added
+to your homework repository, and will be more straightforward to
+clone, since it is a public repository (you can also clone your
+homework repository, but you would need to either create SSH
+keys inside the VM, and upload them to GitHub, or obtain a
+Personal Access Token from GitHub).
+
+So, let's run the following (if you are still inside the `redis-stable` directory, make sure to `cd`
 back to your home directory before running the following command):
 
 .. code:: shell
 
-   $ git clone --recursive https://github.com/uchicago-cmsc22000/2021-hw8-GITHUB_USERNAME.git
+   $ git clone https://github.com/uchicago-cmsc22000/hw8-starter-code.git
 
 Then, go into the repository directory:
 
 .. code:: shell
 
-   $ cd 2021-hw8-GITHUB_USERNAME
+   $ cd hw8-starter-code
 
-Take a look at the ``Dockerfile`` file. This file instructs Docker
+Now, take a look at the ``Dockerfile`` file. This file instructs Docker
 on how to build a new container image. The first line
 tells Docker to use the ``gcc`` image on Docker Hub as a starting
 point (since we're building Redis from scratch, we need access to
@@ -507,7 +502,7 @@ Finally, we need to specify the command that will be run
 whenever we launch a container with this image::
 
     # Command to run when container is launched
-    CMD ["redis-server", "--bind", "0.0.0.0"]
+    CMD ["redis-server", "--protected-mode", "no", "--bind", "0.0.0.0"]
 
 To be clear, the ``RUN`` commands are run only once, when the container
 image is first built, not every time we launch the container.
@@ -536,7 +531,16 @@ scratch. Once it finishes building the image, you can run the container like thi
 
         sudo docker container stop redis-server
 
-In a separate terminal, build hiredis and the sample program:
+Before proceeding, let's make sure to add the hiredis submodule (yes,
+you did this earlier in the homework, but in your own repository;
+it is not a part of the "starter code" repository). In a separate
+terminal, run this:
+
+.. code:: shell
+
+   $ git submodule add https://github.com/redis/hiredis.git
+
+Now, build hiredis and the sample program:
 
 .. code:: shell
 
@@ -556,8 +560,6 @@ You should now be able to run the test program:
 Task 4: Using a Custom Dockerfile in our Workflow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[10 points]
-
 Now that we've seen how to specify a custom container, let's try using it
 in our CI workflow. Please note that you don't need to complete this
 task on the CS VM. You can follow all the necessary steps while logged
@@ -576,7 +578,7 @@ it will contain the following::
         runs-on: ubuntu-latest
 
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v3
           with:
             submodules: 'recursive'
 
@@ -635,7 +637,12 @@ As we saw in the deployment lecture, a common pipeline is as follows:
    the staging app will be promoted to production when it is ready.
 
 In this homework, you’ll create a more complete Heroku pipeline for last
-week’s HelloApp. If you did not successfully complete Homework #7, please ask
+week’s HelloApp. Please note that you will not be answering question
+on Gradescope for each of the tasks; instead, you will have to provide
+two URLs for this entire part of the homework (we will tell you which
+URLs when we get to them)
+
+If you did not successfully complete Homework #7, please ask
 for help so we can ensure that you’re all set up for this week’s homework.
 
 Heroku already provides support for creating pipelines, and ours will
@@ -652,13 +659,15 @@ have three stages:
 Task 1: Create a Pipeline
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[0 points]
-
 In this task, you’ll create a new Heroku Pipeline, using the
-``CNETID-cs220-hw7`` app(from last week’s homework) as the staging
+``CNETID-cs220-hw7`` app (from last week’s homework) as the staging
 app. Note that a common convention is for staging apps
 to have ``-staging`` as a suffix, but it won’t be necessary for you to
 rename your app in this homework.
+
+On Gradescope, enter the URL of the HelloApp you deployed in Homework #7.
+While you will be adding it to a deployment pipeline, its URL will
+remain the same in this homework.
 
 To create the pipeline, log into Heroku, and select the app you created
 in Homework #7. Under the Deploy tab, click on “Choose a pipeline” (in the
@@ -674,14 +683,8 @@ a ``CNETID-pipeline`` pipeline). Notice how there is no production
 app in your pipeline. In the real world, this would mean that
 your end users don’t see anything!
 
-Please note that you do not need to enter anything into Gradescope for
-this task. While it is worth 0 points, you still need to create a
-pipeline before moving on to the next tasks.
-
 Task 2: Add a production app
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[10 points]
 
 In this task, you’ll add a production app to your pipeline.
 Unlike the app in staging, your production app won’t be associated with
@@ -707,24 +710,27 @@ your app on Heroku (just go to http://CNETID-cs220-prod.herokuapp.com/),
 you’ll just see a placeholder page, not HelloApp. That’s because we
 haven’t promoted our staging app to production yet.
 
-On Gradescope, enter the URL of your staging app (this will be the same
-URL as the HelloApp you deployed in Homework #7).
+On Gradescope, enter the URL of the production HelloApp you just created
+(don't worry about the fact that it's just showing a placeholder page;
+we will change this in the following task, and the URL of your app
+will remain the same).
 
 Task 3: Promoting from staging to production
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[10 points]
-
 First, let’s make a change to our HelloApp: it’s time to upgrade to
 HelloApp 2.0!
 
--  In your repository from Homework #7 (``2021-hw7-GITHUB_USERNAME``), edit
+-  In your repository from Homework #7 (``hw7-GITHUB_USERNAME``), edit
    ``hello/templates/base.html`` and change ``<h1>HelloApp</h1>`` to ``<h1>HelloApp 2.0</h1>``
+-  Remember that, at the end of Homework #7, we actually left the app
+   in a broken state (it would not pass the tests). Double-check that
+   line 10 in file ``hello/templates/index.html`` is ``Hello, {{name}}!``
+   (otherwise, the tests will fail).
 -  Commit and push this change with the message “Update to 2.0”
 -  Assuming you completed Homework #7 last week, your updated app will
-   automatically deploy. Remember this may take a few minutes (you can
-   check the progress of the deployment by going to the “Activity” tab
-   in your app)
+   automatically deploy (you can check the status of the deployment
+   by looking at the latest workflow run on the repository's Actions tab)
 
 Now, notice that if you navigate to your staging website
 (``CNETID-cs220-hw7.herokuapp.com``) you’ll see your change. But if you
@@ -750,12 +756,8 @@ in the staging app of your pipeline. Once you do this, your staging app
 (``CNETID-cs220-hw7.herokuapp.com``) and your production app
 (``CNETID-cs220-prod.herokuapp.com``) should look exactly the same.
 
-On Gradescope, enter the URL of your production app.
-
-Task 4: Create Review Apps - HelloApp 3.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[20 points]
+Addendum: Review Apps
+~~~~~~~~~~~~~~~~~~~~~
 
 Currently, in order to make changes to staging, you have to directly
 modify the main branch of your repo. Can you imagine why this is a bad
@@ -766,75 +768,21 @@ staging, which isn’t as bad as directly modifying production, but could
 be embarrassing if you’re trying to get a small change approved and then
 break everything for every other developer in your team!
 
-The last thing you’ll do is create a *review app* stage for your pipeline.
-This way, every pull request submitted to GitHub can be its own app.
-This lets developers see changes per-pull request.
+One way of addressing this is by adding a *review app* stage to the
+pipeline, which results in a new app being deployed for each
+new pull request submitted to GitHub.
+This lets developers see what the app would look like if the pull
+request were merged.
 
-To do this, we first need to connect the pipeline to GitHub:
+Unfortunately, while Heroku does support this feature, it is
+(as of May 2022) currently disabled because of a security incident
+between GitHub and Heroku, which resulted in certain integrations
+between GitHub and Heroku being disabled.
 
--  From the pipeline page on Heroku, click on “Connect to GitHub”
--  This will take you to a different page. Under “Search for a
-   repository to connect to”, select the “uchicago-cmsc22000” organization,
-   and then enter your repository’s name
-   (``2021-hw7-GITHUB_USERNAME``). Make sure to click on the “Search”
-   button.
--  Finally, click on the “Connect” button next to your repository’s
-   name.
-
-Now, from your pipeline’s page, do the following:
-
--  Click on “Enable Review Apps" in the "Review Apps” section. This will show you a form on the side
-   of the page.
--  Enable “Create new review apps for new pull requests automatically”
--  Do NOT enable “Wait for CI to pass” (this refers to Heroku’s own CI,
-   and we are already using GitHub Actions for CI)
--  Enable “Destroy stale review apps automatically”. This will allow you
-   to specify a number of days; you can leave the default value ("After 5 days") as-is.
--  Click on “Enable Review Apps”
-
-   Don’t worry about the “Review apps may incur dyno and add-on
-   charges.” that appears above the "Enable Review Apps" button.
-   We are using the free tier of Heroku, so we won’t
-   be charged for anything. If you want to be extra sure, go to
-   https://dashboard.heroku.com/account/billing and make sure there is
-   no credit card on file for your account, and that you have free hours
-   available under “Free Dyno Usage”.
-
-Now, you’ll create a pull request:
-
--  Create a new branch called ``create-version-3`` in your
-   ``2021-hw7-GITHUB_USERNAME`` repository.
--  Edit ``hello/templates/base.html`` and change ``<h1>HelloApp 2.0</h1>`` to ``<h1>HelloApp 3.0</h1>``
--  Commit and push the changes with the message “Update to 3.0”
--  Notice how the change won’t show up on
-   ``CNETID-cs220-hw7.herokuapp.com``, because we haven’t pushed the
-   changes to ``main``.
--  Now, on GitHub, create a new pull request. Make sure your pull
-   request is to merge the ``create-version-3`` branch to the ``main``
-   branch of your repository. You do not need to assign any reviewers to
-   this pull request, nor do you need to worry about writing a summary,
-   etc.
--  On your heroku Dashboard, you should see a new application under
-   “Review Apps” (with the name of the pull request: “Updated to 3.0”)
-
-Click on “Open app” to view the review app. This allows you to see what
-your app would look like if the changes in the pull request were
-deployed. The review app should show the title “HelloApp 3.0”, while
-both the staging (``CNETID-cs220-hw7.herokuapp.com``) and production
-(``CNETID-cs220-prod.herokuapp.com``) apps should still show “HelloApp
-2.0”
-
-If the review app correctly shows the title “HelloApp 3.0”, go ahead and
-merge your PR (remember, you don’t need to wait to get a review; just go
-ahead and merge the pull request). This should push the changes to
-staging, since you set up automatic deploys for your app (please note
-that it may take a few minutes for this to happen). Once this succeeds,
-go ahead and promote your final app to production.
-
-Please note that, once you merge the pull request, the review app will
-disappear. This is normal.
-
-On Gradescope, enter the URL of the pull request you created on GitHub.
+So, you will not be able to create a review app. All you need
+to know is that this is an additional stage we could potentially
+add to make it easier to review changes to an app before
+they're merged to the main branch.
 
 Submitting your homework
 ------------------------
