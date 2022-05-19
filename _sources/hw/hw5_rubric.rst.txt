@@ -29,8 +29,9 @@ Task 2
   and the implementation of the respective functions)
 - Did not follow TDD in some functions. If you are implementing each function one at a time, take care
   to commit the tests before you start implementing the function.
-- Did not write tests for ``circle_new``, ``circle_init``, or ``circle_free``
-- Did not write tests for ``circle_diameter``, ``circle_circumference``, or ``circle_area``
+- Did not write tests for ``circle_new``, ``circle_init``, or ``circle_free``.
+- Did not write tests for ``circle_diameter``, ``circle_circumference``, or ``circle_area``.
+  You must write at least one test for each of these functions.
 - ``circle_overlap`` tests have insufficient coverage. They must cover, at least, the following
   cases:
 
@@ -47,3 +48,12 @@ General
 - Some of the tests are missing header comments
 - [Major] None of the tests have header comments
 
+ESNU Score
+----------
+
+The ESNU score will be determined as follows:
+
+- Excellent: No major issues, and at most one other issue.
+- Satisfactory: No major issues, and at most three other issues.
+- Needs Improvement: At least one major issue, or five other issues.
+- Ungradable: Two or more major issues.

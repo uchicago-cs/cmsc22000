@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Final Presentations &#8212; CMSC 22000 - Introduction to Software Development</title>
+<title>Final Report and Demo &#8212; CMSC 22000 - Introduction to Software Development</title>
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
@@ -97,22 +97,19 @@
   <div class="row">
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">Final Presentations</a><ul>
-<li><a class="reference internal" href="#presentation-contents">Presentation Contents</a><ul>
+<li><a class="reference internal" href="#">Final Report and Demo</a><ul>
+<li><a class="reference internal" href="#final-report">Final Report</a><ul>
 <li><a class="reference internal" href="#design-and-implementation">Design and Implementation</a></li>
-<li><a class="reference internal" href="#demo">Demo</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
 <li><a class="reference internal" href="#reflections">Reflections</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#presentation-format">Presentation Format</a></li>
-<li><a class="reference internal" href="#submission-instructions">Submission Instructions</a></li>
-<li><a class="reference internal" href="#q-a">Q&amp;A</a></li>
-<li><a class="reference internal" href="#scoring">Scoring</a><ul>
-<li><a class="reference internal" href="#content-and-structure">Content and structure</a></li>
-<li><a class="reference internal" href="#demo-1">Demo</a></li>
-<li><a class="reference internal" href="#qa-1">Q&amp;A</a></li>
+<li><a class="reference internal" href="#live-demo">Live Demo</a><ul>
+<li><a class="reference internal" href="#live-demo-tips">Live Demo Tips</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#submission-instructions">Submission Instructions</a></li>
+<li><a class="reference internal" href="#scoring">Scoring</a></li>
 <li><a class="reference internal" href="#code-freezes">Code Freezes</a></li>
 </ul>
 </li>
@@ -122,67 +119,76 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="final-presentations">
-<h1>Final Presentations<a class="headerlink" href="#final-presentations" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>We are currently re-designing the requirements for the final
-presentations. This page contains last years requirements,
-which you are welcome to read, but please bear in mind that
-they may change.</p>
-</div>
-<p>The final component of this course will be a series of final
-presentations, where each team will present the work they have done
-throughout the quarter. This presentation will be divided into two
-components:</p>
-<ul class="simple">
-<li><p>A pre-recorded presentation due <strong>Thursday, June 3rd at 8pm CDT</strong></p></li>
-<li><p>A 5-10 minute Q&amp;A session with the instructor and TAs during the
-“final exam” slot for the class on <strong>Friday, June 4th, 4pm-6pm CDT</strong></p></li>
-</ul>
-<p>Once all presentations have been submitted, they will be shared with the
-entire class, so that everyone in the class can learn about the work
-that all the teams have done (similar to how, in live presentations, you
-would be able to attend the presentations for all the teams).</p>
-<div class="section" id="presentation-contents">
-<h2>Presentation Contents<a class="headerlink" href="#presentation-contents" title="Permalink to this headline">¶</a></h2>
-<p>Each presentation must be divided into three portions: a high-level
-discussion of how you designed and implemented your component, a demo,
-and reflections.</p>
+  <div class="section" id="final-report-and-demo">
+<h1>Final Report and Demo<a class="headerlink" href="#final-report-and-demo" title="Permalink to this headline">¶</a></h1>
+<p>The final component of this course will be a final report, where each
+team will summarize the work they have done throughout the quarter,
+as well as a live demo during the “final exam” slot for the class
+(Wednesday, June 1st, 10am-12pm).</p>
+<div class="section" id="final-report">
+<h2>Final Report<a class="headerlink" href="#final-report" title="Permalink to this headline">¶</a></h2>
+<p>The report will be divided into three portions: a high-level
+discussion of how you designed and implemented your feature,
+a list of possible next steps in your feature,
+and a series of reflections.</p>
 <div class="section" id="design-and-implementation">
 <h3>Design and Implementation<a class="headerlink" href="#design-and-implementation" title="Permalink to this headline">¶</a></h3>
 <p>You must explain, at a high-level, the design of your component, and any
 non-trivial implementation details (like the use of external libraries).
 You should also take care to explain the main dependencies your code has
 with the rest of chiventure.</p>
-<p>Please note that you should not need to show any of your code during
-your presentation: you should instead focus on describing at a high level
-the features you added or improved in chiventure, including any modules, data
-structures, etc. you implemented. That said, it can be
+<p>Please note that this section of the report should <strong>not</strong> be a comprehensive description
+of every single file and function of your code. Instead, you should focus
+on describing <strong>at a high level</strong> the features you added or improved in chiventure,
+including any modules, data structures, etc. you implemented.</p>
+<p>A good way
+to think about this section is to imagine that it will be read
+by students in following years who will continue working on
+your feature. When writing this part of the report, ask yourself what information
+would be useful to future students, and assume that they have
+the technical skills to read through the code and fill in
+all the lower-level details of your work (but that they
+need a good sense of the “big picture” before doing so).</p>
+<p>For example, if you added a new data structure called
+<code class="docutils literal notranslate"><span class="pre">foo_t</span></code>, it would be appropriate to mention that you
+did so, and to describe the purpose of that data structure,
+as well as any dependencies related to that data structure.
+On the other hand, you would not include the full declaration
+of that data structure, nor would you describe each individual
+field. Instead, the goal is to convey that <code class="docutils literal notranslate"><span class="pre">foo_t</span></code> is a data
+structure relevant to your feature, and that anyone working
+on that feature in the future will need to familiarize themselves
+in it (and the assumption is that those students will just look
+at the code to learn more about the specifics of that data structure).</p>
+<p>Along those lines, you should not need to include any code
+in this section of the report, although it can be
 appropriate to show very short examples (3-4 lines) of how your code
-might be called from other components.</p>
+might be called from other components. It is also appropriate
+to link to specific parts of the chiventure code (e.g.,
+following the <code class="docutils literal notranslate"><span class="pre">foo_t</span></code> example above, you may want to specify
+the exact file where the struct is defined, ideally with a link
+to the file on GitHub).</p>
+<p>There is no specific length requirement for this section, but we
+expect any sufficiently-detailed section to be around 800-1200 words long.</p>
 </div>
-<div class="section" id="demo">
-<h3>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h3>
-<p>You must run a demo of your work meeting the following requirements:</p>
+<div class="section" id="next-steps">
+<h3>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h3>
+<p>Again, imagine that this report will be read by students who will
+continue your work in following years. Describe at least four
+tasks that those students could work on to continue the work
+you did this quarter. These can include the following:</p>
 <ul class="simple">
-<li><p>You must show a program in execution.</p></li>
-<li><p>The code you run <em>must</em> be in the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch of the repository.
-You cannot demo code that is still in one of your branches and has
-not gone through a code review.</p></li>
+<li><p>Tasks that you started working on this quarter, but were unable
+to finish.</p></li>
+<li><p>Improvements or fixes you identified this quarter, but did
+not work on.</p></li>
+<li><p>General interesting directions that the feature could go in.</p></li>
 </ul>
-<p>We recommend that you think carefully about what you want to show
-in your demo, and that you plan ahead of time the exact steps you
-will take during the demo (as opposed to doing a more improvised demo).</p>
-<p>Ideally, you should run the main <code class="docutils literal notranslate"><span class="pre">chiventure</span></code> executable, in a way
-that highlights the work you’ve done. However, if your feature is not
-yet accessible from the main executable, you are allowed to create an
-example program inside the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory of your feature.</p>
-<p>Please note that this is not “sandbox” code: this should be code that
-integrates, as much as possible, with the rest of chiventure. A good way
-to think about this is to write an example program that showcases the
-work you were able to do, and that future developers can look at as an
-example of how your code works.</p>
+<p>Please note that you can complete this section of the report
+by simply pointing to specific GitHub issues (particularly Backlog issues)
+that future students may want to focus on. If you do so, make sure
+to include the issue number and issue title for each issue, along with
+a 2-3 sentence summary of the issue.</p>
 </div>
 <div class="section" id="reflections">
 <h3>Reflections<a class="headerlink" href="#reflections" title="Permalink to this headline">¶</a></h3>
@@ -198,160 +204,132 @@ simply working individually.</p>
 differently with the benefit of hindsight.</p>
 </div>
 </div>
-<div class="section" id="presentation-format">
-<h2>Presentation Format<a class="headerlink" href="#presentation-format" title="Permalink to this headline">¶</a></h2>
-<p>We do not expect your recorded presentation to be super-polished, with
-fancy editing, etc. Instead, we suggest you approach this in a manner
-similar to an in-person presentation: develop your slides and demo
-collaboratively, and then deliver your presentation using no more than
-15 minutes, but do so over Zoom (with one of you recording the meeting).</p>
-<p>To reiterate: please do not spend time doing multiple retakes, editing
-your video (beyond trimming the start and end of the video), etc. If you
-would like to ensure that your presentation is minimally polished, we
-instead suggest you do the following:</p>
-<ol class="arabic simple">
-<li><p>Do a very brief dry run (2-3 minutes) with one or two other team
-members, where one of you is sharing their screen, etc. to verify
-that you understand how to run the Zoom meeting and record it. We
-suggest you follow the steps for creating a <a class="reference external" href="https://support.zoom.us/hc/en-us/articles/201362473">local recording in
-Zoom</a>, and
-that you have everyone in the meeting say something to verify that
-they are being correctly recorded. <em>You should do this well in
-advance of the deadline</em> so we can sort out any technical issues
-beforehand.</p></li>
-<li><p>Allocate 15 minutes to deliver your presentation, and ask students in
-other teams whether they would be willing to attend the meeting. This
-will make your presentation less awkward, because you’ll actually be
-presenting to other people, and you will feel more obligated to stay
-within the 15 minute limit (as opposed to getting into a “let’s do a
-retake” mentality). Plus, the people from the other teams may give
-you some valuable feedback at the end of the meeting (and will
-themselves benefit from seeing how another team approaches giving a
-presentation; you should also volunteer to attend other presentations
-precisely for this reason!)</p></li>
-<li><p>If feasible, deliver the presentation again at a later time,
-incorporating the feedback you received from the other students.</p></li>
-</ol>
-<p>All that said, you are allowed to record your presentation in other ways
-if you feel that will work better for you. However, if you’ve never
-prepared a pre-recorded presentation before, we suggest you use Zoom as
-described above.</p>
-<p>We suggest you allocate roughly 5 minutes for each portion of the
-presentation. Please note that the design/implementation and demo
-portions can be interwoven together, as opposed to treating them as
-completely distinct portions.</p>
-<p>Take into account that the presentation itself doesn’t have to be
-delivered by all team members. In fact, for a 15 minute presentation,
-you probably want no more than 2-3 people speaking in total. If you feel
-comfortable doing so, please make sure your camera is turned on when you
-speak during the presentation.</p>
+<div class="section" id="live-demo">
+<h2>Live Demo<a class="headerlink" href="#live-demo" title="Permalink to this headline">¶</a></h2>
+<p>During the final exam slot for the class, you must run a demo of your
+work meeting the following requirements:</p>
+<ul class="simple">
+<li><p>You must show a program in execution.</p></li>
+<li><p>The program <em>must</em> use code you have written this quarter.</p></li>
+<li><p>The code you run <em>must</em> be in the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch of the repository.
+You cannot demo code that is still in one of your branches and has
+not gone through a code review. Note: The code doesn’t necessarily
+have to be in the head of the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch. If someone breaks
+your code in <code class="docutils literal notranslate"><span class="pre">dev</span></code>, you can “rewind” to a previous commit in <code class="docutils literal notranslate"><span class="pre">dev</span></code>
+if you prefer.</p></li>
+<li><p>To ensure there is enough time for all the teams to showcase their
+work, your demo should be around 5 minutes long, and never more
+than 10 minutes long.</p></li>
+</ul>
+<p>We recommend that you think carefully about what you want to show
+in your demo, and that you plan ahead of time the exact steps you
+will take during the demo (as opposed to doing a more improvised demo).</p>
+<p>Ideally, you should run the main <code class="docutils literal notranslate"><span class="pre">chiventure</span></code> executable, in a way
+that highlights the work you’ve done. However, if your feature is not
+yet accessible from the main executable, you are allowed to create an
+example program inside the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory of your feature.
+Remember that you are allowed to use <a class="reference external" href="https://github.com/uchicago-cs/chiventure/wiki/Writing-tests-and-demos-with-stubs,-fakes,-and-monkeypatches">in-memory games and monkeypatching</a>,
+to build these kind of demos.</p>
+<p>Please note that this is not “sandbox” code: this should be code that
+integrates, as much as possible, with the rest of chiventure. A good way
+to think about this is to write an example program that showcases the
+work you were able to do, and that future developers can look at as an
+example of how your code works.</p>
+<p>Finally, time-permitting, we may ask you questions after your demo,
+but your answers to these questions will not factor into your score.</p>
+<div class="section" id="live-demo-tips">
+<h3>Live Demo Tips<a class="headerlink" href="#live-demo-tips" title="Permalink to this headline">¶</a></h3>
+<p>Doing a live demo may feel like a daunting task, particularly
+because of the stress of something going wrong during the demo.
+Here are a few tips on preparing/delivering the demo that
+may be helpful:</p>
+<ul class="simple">
+<li><p>Make sure you carefully plan what you’re going to say and
+show at the demo, and rehearse it carefully. A live demo
+is not something you want to improvise on-the-fly.</p></li>
+<li><p>When it’s your time to demo, you should use a single laptop,
+and that laptop must be ready to show the demo right away.
+i.e., you must have a terminal open
+that is ready to run your demo, and you should need to do
+no setup other than connecting your laptop to the projector.</p></li>
+<li><p>If you’re unsure whether your laptop will work with the projector,
+get to the room before 10am and do a quick test (we’ve checked,
+and no one will be using the room before us)</p></li>
+<li><p>Always have a contingency plan. Sometimes demos don’t work and,
+while that is not ideal, you will not cause a bad impression
+if you fall back on a contingency plan. For example, you could have
+screenshots ready to show if the demo doesn’t work (note:
+if that happens, we may ask you to show us the demo at a later
+time so we can verify that it works)</p></li>
+<li><p>If something does fail, do not try to fix it on the spot. Move on
+with the rest of the demo and, if that is not possible, give up
+on the demo gracefully (ideally by switching to your contingency plan)</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="submission-instructions">
 <h2>Submission Instructions<a class="headerlink" href="#submission-instructions" title="Permalink to this headline">¶</a></h2>
-<p>You will submit your presentation through Panopto. On the CMSC 22000 canvas
-site, go to “Panopto Video”, and then into the folder “Final Presentations [Submission Folder]”.
-To upload your video, click on the “Create” button (which appears to the right
-of the search bar), and select “Upload media”. You will then be prompted
-to upload a file. Please make sure the video file includes the name of
-your team in it.</p>
-<p>Please note that this submission folder is set up so that only the person
-who uploads a video can see that video. Your teammates should not be alarmed
-if they go to this folder and do not see your team’s video there.</p>
-</div>
-<div class="section" id="q-a">
-<h2>Q&amp;A<a class="headerlink" href="#q-a" title="Permalink to this headline">¶</a></h2>
-<p>During the Q&amp;A meeting, each team will get approximately 10 minutes for:</p>
-<ol class="arabic simple">
-<li><p>A <strong>brief</strong> (less than 5 minutes) summary/demo of your team’s work.</p></li>
-<li><p>Q&amp;A by the instructor/TAs.</p></li>
-</ol>
-<p>The summary/demo <em>will not be graded</em>. The audience of this summary/demo
-is not the instructor/TAs (who will have already watched your pre-recorded
-presentation), but rather the other teams (who have not watched your
-pre-recorded presentation). This will be a chance for everyone in the class
-to hear more about what every team did this quarter.</p>
-<p>Please note that we will be on a tight schedule during the Q&amp;A meeting so,
-if you are going to use slides or demo any running code, your presentation
-or demo must be ready to go the moment your team’s turn is up.</p>
-<p>In the Q&amp;A portion, you will be asked some questions based on your
-pre-recorded presentation. While the entire team does not have to be
-present for this Q&amp;A, as many team members as possible should plan to
-attend. Take into account that you may be asked questions that one or
-two specific people in your team are best suited to answer
-(because they were more involved in the part of your code that a
-question relates to).</p>
-<p>Teams in a non-North American timezone who are unable to send a few team
-members to the Q&amp;A meeting should contact the instructor in advance to
-schedule an alternate time for their Q&amp;A.</p>
+<p>As in the project design warm-up, your team will get a repository
+shared by everyone in the team, and you must upload your report
+to this repository. We will provide a simple Markdown template
+for the report, but you are also welcome to use other formats
+as long as they are text-based (e.g., plain text or HTML are fine;
+PDF, Word, etc. are not acceptable)</p>
 </div>
 <div class="section" id="scoring">
 <h2>Scoring<a class="headerlink" href="#scoring" title="Permalink to this headline">¶</a></h2>
-<p>The presentation will be worth 10 points of your final grade, broken
-down as follows:</p>
+<p>You will receive a single ESNU score for the final report
+and demo (i.e., not one score for each, but one score overall).
+Since you only have one shot at the report and demo, the scoring
+is largely based on the completeness of your final report and demo.
+i.e., we will be paying more attention to whether you put in a
+good-faith effort to provide the information requested in the report, regardless of
+whether there is room for improvement in the report’s style,
+level of detail, etc. Similarly, we will be looking at whether
+you actually wrote a demo that meets the requirements listed above,
+regardless of whether the demo could’ve showcased more aspects
+of your work, etc.</p>
+<p>The following issues will have an effect on your score in the
+final report and demo:</p>
 <ul class="simple">
-<li><p>5 points for content/structure of the presentation</p></li>
-<li><p>3 points for the demo</p></li>
-<li><p>2 points for the Q&amp;A</p></li>
+<li><p>Not completing any of the sections in the report, or not
+providing the information requested for those sections.</p></li>
+<li><p>Writing a clearly low-quality/low-effort report. In other words,
+you should worry less about whether you’re writing an exceptional report
+(although doing so never hurts), and more about making sure
+you don’t write a report that is too informal, not useful, etc.
+Examples of this could include:</p>
+<ul>
+<li><p>Writing the Design and Implementation section as list
+of bullet points.</p></li>
+<li><p>Pervasive lack of complete sentences, or pervasive bad
+grammar.</p></li>
+<li><p>Leaving TODOs or other notes in your report.</p></li>
 </ul>
-<p>The instructor/TAs will use the following rubric, with discretion to
-add/subtract half a point.</p>
-<div class="section" id="content-and-structure">
-<h3>Content and structure<a class="headerlink" href="#content-and-structure" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>5 points: Perfectly structured, clear from beginning to end</p></li>
-<li><p>4 points: Overall well structured. Only a few minor hiccups and/or
-aspects that were not entirely clear.</p></li>
-<li><p>2.5 points: Needs improvement. Presentation was poorly structured
-with multiple aspects that were not clear.</p></li>
-<li><p>1 point: Poorly structured. Presentation does not substantially
-address the content we requested.</p></li>
-<li><p>0: No presentation was delivered.</p></li>
+</li>
+<li><p>Not doing a live demo at all</p></li>
+<li><p>Doing a live demo that does not fulfill the requirements listed
+for the live demo.</p></li>
 </ul>
-<p>For avoidance of doubt, this score is based solely on the content and
-structure of the presentation, and whether it addresses all the
-requirements described earlier. Producing a slick video with fancy
-editing (or not) has no bearing on this score.</p>
-</div>
-<div class="section" id="demo-1">
-<span id="id1"></span><h3>Demo<a class="headerlink" href="#demo-1" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>3 points: Flawless demo that highlights the team’s work.</p></li>
-<li><p>2 points: Smooth demo with only a few small hiccups.</p></li>
-<li><p>1.5 points: Needs improvement. Demo worked but with major issues.</p></li>
-<li><p>1 point: Very incomplete demo. Demo hints at the work the team did,
-but doesn’t directly showcase their work.</p></li>
-<li><p>0: No demo was done.</p></li>
-</ul>
-</div>
-<div class="section" id="qa-1">
-<span id="id2"></span><h3>Q&amp;A<a class="headerlink" href="#qa-1" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>2 points: All questions were answered</p></li>
-<li><p>1.5 points: Most questions were answered, but the team was stumped on
-some of them.</p></li>
-<li><p>1 points: The team was stumped on most of the questions they were
-asked.</p></li>
-<li><p>0.5 point: The team was stumped on all questions.</p></li>
-<li><p>0 points: The team did not answer any of the questions they were
-asked.</p></li>
-</ul>
-</div>
+<p>Note: Having your demo fail during the live demo will not necessarily
+affect your score. If you are able to deal with that failure gracefully
+(see the Live Demo Tips above), this will not affect your score.</p>
 </div>
 <div class="section" id="code-freezes">
 <h2>Code Freezes<a class="headerlink" href="#code-freezes" title="Permalink to this headline">¶</a></h2>
-<p>Please note that, leading up to the final presentations, there will
+<p>Please note that, leading up to the demos, there will
 be two freezes on the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch. Remember that your demo <strong>must</strong>
 run code that is in the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch.</p>
 <ul class="simple">
-<li><p><strong>Soft Freeze</strong>: Friday, May 28th at 11:59pm CDT</p>
+<li><p><strong>Soft Freeze</strong>: Friday, May 27th at 11:59pm CDT</p>
 <ul>
 <li><p>Only issues/PRs that are open at this time will be reviewed and graded.</p></li>
-<li><p>Issues/PRs can still be opened after the soft freeze (under a new milestone, “2021/Wrap-up”) but they will not be graded.</p></li>
+<li><p>Issues/PRs can still be opened after the soft freeze (under a new milestone, “2022/Wrap-up”) but they will not be graded.</p></li>
 <li><p>We cannot guarantee that PRs opened after the soft freeze will be reviewed/merged.</p></li>
 <li><p>In general, we will not approve PRs that introduce a completely new feature, or that modify the core data structures of chiventure.</p></li>
 </ul>
 </li>
-<li><p><strong>Code Freeze</strong>: Wednesday, June 2nd at 8pm CDT</p>
+<li><p><strong>Code Freeze</strong>: Tuesday, May 31st at 5pm CDT</p>
 <ul>
 <li><p>No code will be merged after this time.</p></li>
 <li><p>Exceptions may be made for very minor bugfixes and documentation updates, but we cannot guarantee they will be reviewed in a timely fashion.</p></li>

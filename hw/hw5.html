@@ -17,7 +17,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework 6: Continuous Integration" href="hw6.html" />
+    <link rel="next" title="Homework 5 Rubric" href="hw5_rubric.html" />
     <link rel="prev" title="Homework 4 Rubric" href="hw4_rubric.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -99,13 +99,6 @@
       
   <div class="section" id="homework-5-testing">
 <h1>Homework 5: Testing<a class="headerlink" href="#homework-5-testing" title="Permalink to this headline">¶</a></h1>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-If you are currently taking this class, you’re welcome to take a look at the homework below,
-but bear in mind that it could change substantially. Do not start working on the homework
-until instructed to do so.</p>
-</div>
 <p><strong>Due:</strong> Wednesday, May 4th, 8pm CDT</p>
 <p>By this point in your CS studies, you’ve probably experienced the
 following at least once:</p>
@@ -145,12 +138,25 @@ Development</em> to develop new code.</p>
 <p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-<code class="docutils literal notranslate"><span class="pre">2021-hw5-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization
+<code class="docutils literal notranslate"><span class="pre">hw5-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000</span></code> organization
 on GitHub.</p>
 <p>Your repository will be seeded with some files for the homework
 and, more specifically, will contain a <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> directory with an
 updated version of <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> with the refactored <code class="docutils literal notranslate"><span class="pre">segment</span></code>
-module we asked you to implement in Homework #5.</p>
+module we asked you to implement in Homework #2.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because this homework depends on the
+<code class="docutils literal notranslate"><span class="pre">criterion</span></code> library, you should make sure to compile and test your
+work on a CS environment, which will has the <code class="docutils literal notranslate"><span class="pre">criterion</span></code> library
+properly set up and ready to go. You can find instructions on how to
+access a CS environment (including options that will allow you to work
+on your computer, and just compile/run your code in a CS environment) in
+our <a class="reference external" href="https://uchicago-cs.github.io/dev-guide/environment.html">developer
+guide</a>.
+While it is possible to install <code class="docutils literal notranslate"><span class="pre">criterion</span></code> on an unsupported machine,
+we may not be able to provide support for that setup.</p>
+</div>
 </div>
 </div>
 <div class="section" id="task-0-a-bit-about-criterion">
@@ -161,7 +167,7 @@ use a testing framework called
 already installed on the CS machines. Let’s learn a little bit about
 this testing framework before we get to the actual tasks for this homework.
 Consider the following sample tests:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>Test(foo, add)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Test(foo, add)
 {
     int x, y;
 
@@ -267,19 +273,6 @@ started:</p>
 <span class="cp">#include</span> <span class="cpf">&quot;segment.h&quot;</span><span class="cp"></span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Because this homework depends on the
-<code class="docutils literal notranslate"><span class="pre">criterion</span></code> library, you should make sure to compile and test your
-work on a CS environment, which will has the <code class="docutils literal notranslate"><span class="pre">criterion</span></code> library
-properly set up and ready to go. You can find instructions on how to
-access a CS environment (including options that will allow you to work
-on your computer, and just compile/run your code in a CS environment) in
-our <a class="reference external" href="https://uchicago-cs.github.io/dev-guide/environment.html">developer
-guide</a>.
-While it is possible to install <code class="docutils literal notranslate"><span class="pre">criterion</span></code> on an unsupported machine,
-we may not be able to provide support for that setup.</p>
-</div>
 <p>You will also need to modify the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in the <code class="docutils literal notranslate"><span class="pre">tests/</span></code>
 directory to add your new file.</p>
 <div class="admonition warning">
@@ -293,30 +286,63 @@ specifically for building test files. You should only modify this last
 </div>
 <p>It’s time to write your first tests! In your <code class="docutils literal notranslate"><span class="pre">test_segment.c</span></code> file, do
 the following:</p>
-<ul>
+<ul class="simple">
 <li><p>Write at least one test case for each of <code class="docutils literal notranslate"><span class="pre">segment_new</span></code>,
 <code class="docutils literal notranslate"><span class="pre">segment_init</span></code>, <code class="docutils literal notranslate"><span class="pre">segment_free</span></code>. You may find it helpful to look
 at similar tests in <code class="docutils literal notranslate"><span class="pre">test_point.c</span></code> and <code class="docutils literal notranslate"><span class="pre">test_polygon.c</span></code>.</p></li>
 <li><p>We already had some tests for <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> in
-<code class="docutils literal notranslate"><span class="pre">test_point.c</span></code>. <em>Refactor</em> them into <code class="docutils literal notranslate"><span class="pre">test_segment.c</span></code>, and make
-sure they’re in the correct test suite!</p></li>
+<code class="docutils literal notranslate"><span class="pre">test_point.c</span></code>. Move those tests into <code class="docutils literal notranslate"><span class="pre">test_segment.c</span></code>, and make
+sure they’re in the correct test suite! Please note that you don’t need to
+update or change the tests themselves; they simply need to be moved
+to the correct file. This will complete the refactoring
+we started in Homework #2.</p></li>
 <li><p>Write test cases for <code class="docutils literal notranslate"><span class="pre">on_segment</span></code> and <code class="docutils literal notranslate"><span class="pre">point_orientation</span></code>
 (previously known as <code class="docutils literal notranslate"><span class="pre">orientation</span></code>). For these test cases, remember
 that you should have as much <em>coverage</em> as possible: your test cases
 should cover as many outcomes (and as many flows of execution through
-the individual function) as possible. You should be able to
-accomplish this by writing 3-4 tests for each function, but please
-note we won’t be grading you on the number of tests your write, but
-on how much coverage they provide.</p>
-<p>Note: Remember that, in Homework #2, you had the option of moving these
-functions to <code class="docutils literal notranslate"><span class="pre">segment.c</span></code>, or to keep them in <code class="docutils literal notranslate"><span class="pre">point.c</span></code> (and
-exposing them through <code class="docutils literal notranslate"><span class="pre">point.h</span></code>). In the code we’ve provided,
-<code class="docutils literal notranslate"><span class="pre">on_segment</span></code> has been moved to the segment module, and
-<code class="docutils literal notranslate"><span class="pre">orientation</span></code> has been renamed to <code class="docutils literal notranslate"><span class="pre">point_orientation</span></code> and
-kept in the point module (and both have been
-added to their respective module’s header file).</p>
+the individual function) as possible.</p></li>
+</ul>
+<p>When it comes to thinking about coverage, you should take two (complementary)
+approaches:</p>
+<ul>
+<li><p><strong>Black-box testing</strong>: You treat the function being tested as a “black box”
+that takes some inputs and produces some outputs (and base your tests
+only on those inputs and outputs). In functions like
+<code class="docutils literal notranslate"><span class="pre">on_segment</span></code> and <code class="docutils literal notranslate"><span class="pre">point_orientation</span></code> that have a limited set of
+outputs, it would be good to write a test for every possible return value.
+For example, when testing <code class="docutils literal notranslate"><span class="pre">on_segment</span></code>, we would want to come up
+with a test where a point is in the segment, and another where the point
+is not in the segment.</p></li>
+<li><p><strong>White-box testing</strong>: You treat the function as a “white box”, in the sense
+of being able to see “inside” the box, and basing your tests on how the
+function is implemented internally.</p>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">on_segment</span></code> function checks whether a point is
+on a segment by first checking whether the segment points and the point
+are colinear. If they are colinear (i.e., if the three points fall on
+the same line), we need to also check whether the point is actually
+located between the two segment points. So, it would be good to
+have a test that checks whether a point that is <em>not</em> on the segment
+(but is still colinear to the segment) is correctly identified as such.</p>
+<p>Notice how, if we tested the “not on the segment” case with points
+that are <em>not</em> colinear, our tests would not <em>cover</em> the code below
+these lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">If</span> <span class="n">segment</span> <span class="ow">and</span> <span class="n">point</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">colinear</span><span class="p">,</span> <span class="n">the</span>
+ <span class="o">*</span> <span class="n">point</span> <span class="n">can</span><span class="s1">&#39;t be on the segment */</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">point_orientation</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">false</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>By designing our tests with knowledge of how the function is implemented,
+we can ensure that our test cover as many paths through our code as possible.</p>
 </li>
 </ul>
+<p>You should be able to provide enough coverage by writing 3-4 tests for
+each function, but please note we won’t be grading you on the number
+of tests your write, but on how much coverage they provide. You should
+aim to include black-box tests for every possible return value of
+<code class="docutils literal notranslate"><span class="pre">on_segment</span></code> and <code class="docutils literal notranslate"><span class="pre">point_orientation</span></code> and at least two white-box
+tests for <code class="docutils literal notranslate"><span class="pre">on_segment</span></code> (<code class="docutils literal notranslate"><span class="pre">point_orientation</span></code> is simple enough that
+the black-box tests will be enough).</p>
 <p>For each of the tests (except the <code class="docutils literal notranslate"><span class="pre">segment_intersect</span></code> ones refactored
 from <code class="docutils literal notranslate"><span class="pre">test_point.c</span></code>), the test must include a header comment
 explaining the test. For example:</p>
@@ -329,6 +355,8 @@ explaining the test. For example:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>For the <code class="docutils literal notranslate"><span class="pre">on_segment</span></code> white-box tests, your comment should elaborate
+on what aspect of the function’s internal implementation is being tested.</p>
 </div>
 <div class="section" id="task-2-test-driven-development">
 <h1>Task 2: Test-Driven Development<a class="headerlink" href="#task-2-test-driven-development" title="Permalink to this headline">¶</a></h1>
@@ -414,7 +442,7 @@ range of the second value. For example:</p>
 <span class="n">cr_assert_float_eq</span><span class="p">(</span><span class="n">circle_area</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="mf">3.14159</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="mf">10E-4</span><span class="p">,</span> <span class="s">&quot;Circle area wasn’t correct!&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This checks whether or not our <code class="docutils literal notranslate"><span class="pre">circle_area</span></code> function is within 10-4
+<p>This checks whether or not our <code class="docutils literal notranslate"><span class="pre">circle_area</span></code> function is within 10<sup>-4</sup>
 (0.0001) of the expected value.</p>
 <p>As above, you should use the TDD workflow when implementing these new
 functions: write the tests first, make a commit indicating you’ve
@@ -426,12 +454,10 @@ you write.</p>
 <h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h2>
 <p>Before submitting, make sure you’ve added, committed, and pushed all
 your code to GitHub. <em>Don’t forget to “git add” any new files.</em></p>
-<p>When submitting through Gradescope, you will be given the option of
-manually uploading files, or of uploading a GitHub repository (we
-recommend the latter, as this ensures you are uploading exactly the
-files that are in your repository). If you upload your repository, make
-sure you select your <code class="docutils literal notranslate"><span class="pre">2021-hw5-GITHUB_USERNAME</span></code> repository, with
-“main” as the branch. Please note that you can submit as many times as
+<p>Before submitting, make sure you’ve added, committed, and pushed all
+your work to GitHub. When submitting through Gradescope, you will be given the option of
+uploading a GitHub repository. Make sure you select your <code class="docutils literal notranslate"><span class="pre">hw5-GITHUB_USERNAME</span></code>
+repository, with “main” as the branch. Please note that you can submit as many times as
 you want before the deadline.</p>
 <p>Once you submit your files, an “autograder” will run. This won’t
 actually be doing any grading, but it will try to build your code and
