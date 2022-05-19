@@ -329,7 +329,7 @@ the ability to run commands with root privileges.
 
 Completing this task requires running the VM on your own machine,
 so this task is optional and ungraded, but strongly
-recommended, specially if you’ve already installed the UChicago CS VM.
+recommended, particularly if you’ve already installed the UChicago CS VM.
 
 Once you’ve started the UChicago CS VM, open a terminal. We will first
 need to install Redis and Docker on the virtual machine. You can install
