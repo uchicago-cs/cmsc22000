@@ -1,14 +1,6 @@
 Homework 9: Documentation and Logging
 =====================================
 
-.. danger::
-
-   This homework has not yet been updated for the Spring 2022 edition of CMSC 22000.
-   If you are currently taking this class, you're welcome to take a look at the homework below,
-   but bear in mind that it could change substantially. Do not start working on the homework
-   until instructed to do so.
-
-
 .. note::
 
     This is an **OPTIONAL** homework. You do not have to submit
@@ -27,7 +19,7 @@ Creating your homework repository
 Like previous homeworks, we will provide you with an *invitation URL* that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
-``2021-hw9-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000`` organization
+``hw9-GITHUB_USERNAME`` inside our ``uchicago-cmsc22000-2022`` organization
 on GitHub. Your repository will be seeded with the files you need
 to complete this homework.
 
