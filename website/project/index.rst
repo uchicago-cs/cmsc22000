@@ -1,6 +1,15 @@
 Project
 =======
 
+.. warning::
+
+
+    This website currently reflects the Spring 2022 offering of CMSC 22000. We are in
+    the process of updating this page for the Autumn 2023 offering of CMSC 22000,
+    which will include several major changes to the class. Most notably, the class
+    will now be taught in Python (instead of C) and will revolve around the development
+    of a Python-based web application.
+
 In the course project, you will be divided into teams of five students,
 and will work collaboratively (both within your team and between teams)
 to create a complex software system that will involve designing and

@@ -3,7 +3,14 @@
 Grading
 =======
 
+.. warning::
 
+
+    This website currently reflects the Spring 2022 offering of CMSC 22000. We are in
+    the process of updating this page for the Autumn 2023 offering of CMSC 22000,
+    which will include several major changes to the class. Most notably, the class
+    will now be taught in Python (instead of C) and will revolve around the development
+    of a Python-based web application.
 
 This year (2022), we have overhauled the grading scheme in CMSC 22000, and are following a *specifications grading* approach. Many of you have likely not encountered specifications grading before, so we encourage you to carefully read this page to make sure you understand how it works.
 
