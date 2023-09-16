@@ -1,15 +1,6 @@
 CMSC 22000 - Introduction to Software Development
 =================================================
 
-.. warning::
-
-
-    This website currently reflects the Spring 2022 offering of CMSC 22000. We are in
-    the process of updating this page for the Autumn 2023 offering of CMSC 22000,
-    which will include several major changes to the class. Most notably, the class
-    will now be taught in Python (instead of C) and will revolve around the development
-    of a Python-based web application.
-
 Course Staff
 ~~~~~~~~~~~~
 
@@ -21,25 +12,38 @@ Course Staff
 Course Description
 ~~~~~~~~~~~~~~~~~~
 
-Developing a software system (e.g., an application, a web server, an operating system, etc.) requires much more than just knowing how to program. Software development encompasses multiple activities, such as systems design, implementation, testing, debugging, deployment, documentation, and maintenance, all weaved together by following a specific methodology. Not just that, software development is a highly collaborative activity, where certain skills, like effective communication and the ability to give/receive feedback, can be key to the success of a software project.
+This class expands on the software development topics introduced
+in CMSC 14200 Introduction to Computer Science 2, and uses the
+development of web-based applications as a vehicle to explore
+several concepts that reoccur frequently in modern software development, such
+as client/server software, databases, data modeling, APIs, software
+deployment, and software observability. This class also emphasizes
+how software development is a highly
+collaborative activity, where certain skills, like effective
+communication and the ability to give/receive feedback, can be key to
+the success of a software project.
 
-This class bridges the gap between knowing how to program and knowing how to develop software: it is intended for students who have recently completed CMSC 15200 Introduction to Computer Science 2 or CMSC 16200 Honors Introduction to Computer Science 2, and will cover fundamental concepts and skills in software development, providing a solid foundation before students move on to majors-level classes that require developing complex software systems. The class will cover foundational topics in software development in lectures, but will also include hands-on homeworks, guest lectures from industry speakers, and a collaborative quarter-long project, where the entire class, divided into teams with specific responsibilities, will work on developing new features for an existing software system.
+The class covers foundational topics in software development in
+lectures, and will involve the development of a deployable web application
+throughout a series of homeworks. The course also features a
+collaborative quarter-long project, where the entire class, divided into
+teams with specific responsibilities, will work on developing new
+features for an existing software system.
 
 Please see the `syllabus <syllabus.html>`__ for more details.
+
+If you are registered for CMSC 22000, coursework for this class can be
+accessed through our Canvas site. This is a public-facing website for
+students and others interested in learning more about the class.
 
 .. toctree::
    :maxdepth: 2
    :hidden:
 
    syllabus.rst
-   grading.rst
    academic-honesty.rst
    calendar.rst
    code-of-conduct.rst
-   hw/index.rst
-   project/index.rst
-   resources/faq.rst
-   resources/other.rst
-   resources/tutorials/index.rst
+   project.rst
 
 

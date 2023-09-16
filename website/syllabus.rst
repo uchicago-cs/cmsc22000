@@ -1,6 +1,11 @@
 Syllabus
 ========
 
+.. note::
+
+    If you are registered for CMSC 22000, please bear in mind that all
+    the latest course materials can be found in the course's Canvas site.
+
 Course Description
 ------------------
 
@@ -55,14 +60,14 @@ The class meets in-person three times a week for lectures (MWF 1:30pm - 2:20pm i
 
 The content covered in the lectures is divided into two blocks:
 
-- Weeks 1-4: **Software Design and Implementation**
+- **Weeks 1-4: Software Design and Implementation**
 
   These lectures will focus on covering several foundational concepts related to the design
   and implementation of web applications, including client/server software, databases,
   data design, and APIs. Bear in mind that, while we will be focusing on web applications,
   these are concepts that show up in many other contexts.
 
-- Weeks 5-9: **Software Validation, Deployment, and Evolution**
+- **Weeks 5-9: Software Validation, Deployment, and Evolution**
 
   In CMSC 14200, we dealt with applications that ran on a single machine. Now,
   we will deal with applications that run on a server, and may involve invoking
@@ -152,8 +157,7 @@ notes for the content covered in lectures.
 We recommend the following two books for anyone who would like to learn
 more about software engineering specifically:
 
-- `A Philosophy of Software Design <https://www.amazon.com/Philosophy-Software-Design-2nd/dp/173210221X>`__,
-   John Ousterhout
+- `A Philosophy of Software Design <https://www.amazon.com/Philosophy-Software-Design-2nd/dp/173210221X>`__, John Ousterhout
 - `Software Engineering <http://iansommerville.com/software-engineering-book/>`__, Ian Sommerville
 
 
@@ -228,7 +232,7 @@ Policy on Generative AI
 Software developers are not only allowed but often encouraged to use Generative AI systems
 (ChatGPT, Bard, GitHub Copilot) as a productivity tool. As such, we will have a fairly
 permissive policy on the use of Generative AI systems. In general, the following uses
-of Generative AI systems (GenAI) systems is allowed throughout the quarter:
+of Generative AI systems (GenAI) systems is allowed across all coursework:
 
 - **Reference**: You can use GenAI to answer specific reference questions,
   in the same way you would use Google, Stack Overflow, etc. For example, it would be

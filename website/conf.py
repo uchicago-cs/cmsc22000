@@ -61,7 +61,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'CMSC 22000 - Introduction to Software Development'
-copyright = u'2011-2021, The University of Chicago'
+copyright = u'2011-2023, The University of Chicago'
 author = 'Borja Sotomayor'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -121,42 +121,13 @@ todo_include_todos = False
 # -- Options for HTML output ----------------------------------------------
 
 html_sidebars = {'*': None,
-                 'syllabus': ['localtoc.html'],
-                 'project/policies': ['localtoc.html'],
-                 'project/issue-pr-grading': ['localtoc.html'],
-                 'project/warmup': ['localtoc.html'],
-                 'project/presentation': ['localtoc.html'],
-                 'hw/hw1': ['localtoc.html'],
-                 'hw/hw3': ['localtoc.html'],
-                 'hw/hw4': ['localtoc.html'],
-                 'hw/hw6': ['localtoc.html'],
-                 'hw/hw7': ['localtoc.html'],
-                 'hw/hw8': ['localtoc.html'],
-                 'hw/hw9': ['localtoc.html']
+                 'syllabus': ['localtoc.html']
                  }
 
-html_context = {"web_navbar": [("Course Information", [
-                                    ("Syllabus", "syllabus", False),
-                                    ("Calendar", "calendar", False),
-                                    ("Code of Conduct for Course Staff", "code-of-conduct", False)
-                                 ]),
-                                 ("Homework", "hw/index", False),
-                                 ("Project", [
-                                     ("Introduction", "project/index", False),
-                                     ("chiventure", "project/chiventure", False),
-                                     ("Policies", "project/policies", False),
-                                     ("Issue/PR Grading", "project/issue-pr-grading", False),
-                                     ("Features", "project/features", False),
-                                     #("Design Warm-Up Exercise", "project/warmup", False)
-                                 ]),
-                                 ("Resources", [
-                                     ("CS 220 FAQs", "resources/faq", False),
-                                     ("Tutorials", "resources/tutorials/index", False),
-                                     ("UChicago CS Developer's Guide", "https://uchicago-cs.github.io/dev-guide/", True),
-                                     ("The Debugging Guide", "https://uchicago-cs.github.io/debugging-guide", True),
-                                     ("Other Resources", "resources/other", False),
-                                 ])
-                                 ]}
+html_context = {"web_navbar": [("Syllabus", "syllabus", False),
+                               ("Calendar", "calendar", False),
+                               ("Project", "project", False),
+                               ("FAQ", "faq", False)]}
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
