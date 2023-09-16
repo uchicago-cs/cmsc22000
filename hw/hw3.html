@@ -1,20 +1,22 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
 <title>Homework 3: Make &#8212; CMSC 22000 - Introduction to Software Development</title>
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=0bf093e7" />
+    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css?v=4e80c602" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Homework 3 Rubric" href="hw3_rubric.html" />
@@ -23,10 +25,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
   </head><body>
 
@@ -123,8 +125,8 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="homework-3-make">
-<h1>Homework 3: Make<a class="headerlink" href="#homework-3-make" title="Permalink to this headline">¶</a></h1>
+  <section id="homework-3-make">
+<h1>Homework 3: Make<a class="headerlink" href="#homework-3-make" title="Link to this heading">¶</a></h1>
 <p><strong>Due:</strong> Wednesday, April 20st, 8pm CDT</p>
 <p>In the class project, you will likely produce dozens of C files that
 will ultimately produce a single executable. When dealing with multiple
@@ -141,23 +143,23 @@ projects.</p>
 <p>Similar to Homework #1, this homework involves following some tutorial-style
 instructions to familiarize yourself with <code class="docutils literal notranslate"><span class="pre">make</span></code>, and will also include
 some exercises where you can apply what you’ve learned about <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
-<div class="section" id="project-team-exercise-design-warm-up-part-ii">
-<h2>Project Team Exercise: Design Warm-up (Part II)<a class="headerlink" href="#project-team-exercise-design-warm-up-part-ii" title="Permalink to this headline">¶</a></h2>
+<section id="project-team-exercise-design-warm-up-part-ii">
+<h2>Project Team Exercise: Design Warm-up (Part II)<a class="headerlink" href="#project-team-exercise-design-warm-up-part-ii" title="Link to this heading">¶</a></h2>
 <p>Along with this week’s homework, we are also assigning the second part of the
 design warm-up exercise, which you can find <a class="reference external" href="../project/warmup.html">here</a>.
 Please note that the second part of the design exercise is due at the same time as this homework.</p>
-</div>
-<div class="section" id="creating-your-homework-repository">
-<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Link to this heading">¶</a></h2>
 <p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
 will allow you to sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
 <code class="docutils literal notranslate"><span class="pre">hw3-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000-2022</span></code> organization
 on GitHub. Like Homework #2, your repository will be seeded with some files
 for the homework.</p>
-</div>
-<div class="section" id="writing-makefiles">
-<h2>Writing Makefiles<a class="headerlink" href="#writing-makefiles" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="writing-makefiles">
+<h2>Writing Makefiles<a class="headerlink" href="#writing-makefiles" title="Link to this heading">¶</a></h2>
 <p>Before we get to the actual tasks in this homework, you will work through
 a tutorial-style explanation of Makefiles. This will involve editing
 a Makefile in your repository; make sure to commit your changes as
@@ -165,8 +167,8 @@ you complete them, as we will be checking whether you followed the steps
 described in this tutorial (it is ok if you don’t commit every single
 change as you make it, but it should be apparent from your commit log
 that you worked through these steps).</p>
-<div class="section" id="compiling-a-program-with-multiple-c-files">
-<h3>Compiling a program with multiple C files<a class="headerlink" href="#compiling-a-program-with-multiple-c-files" title="Permalink to this headline">¶</a></h3>
+<section id="compiling-a-program-with-multiple-c-files">
+<h3>Compiling a program with multiple C files<a class="headerlink" href="#compiling-a-program-with-multiple-c-files" title="Link to this heading">¶</a></h3>
 <p>In the <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code> directory, you will see the following files:</p>
 <ul class="simple">
 <li><p>Point module: <code class="docutils literal notranslate"><span class="pre">point.c</span></code> and <code class="docutils literal notranslate"><span class="pre">point.h</span></code></p></li>
@@ -176,7 +178,7 @@ that you worked through these steps).</p>
 </ul>
 <p>Before proceeding, make sure you’re inside the <code class="docutils literal notranslate"><span class="pre">polygon-area/</span></code>
 directory:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> polygon-area
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>polygon-area
 </pre></div>
 </div>
 <p>All the files, except <code class="docutils literal notranslate"><span class="pre">polygon-area.c</span></code>, are taken directly from
@@ -188,12 +190,12 @@ to start with all the files in the same directory.</p>
 on the point and polygon modules to compute the area of a polygon
 (after asking the user to provide the points in the polygon).</p>
 <p>Notice how we can’t compile the <code class="docutils literal notranslate"><span class="pre">polygon-area.c</span></code> file by itself:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc polygon-area.c -o polygon-area
-/usr/bin/ld: /tmp/ccmgP8wg.o: in <span class="k">function</span> <span class="sb">`</span>main<span class="s1">&#39;:</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gcc<span class="w"> </span>polygon-area.c<span class="w"> </span>-o<span class="w"> </span>polygon-area
+/usr/bin/ld:<span class="w"> </span>/tmp/ccmgP8wg.o:<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>main<span class="s1">&#39;:</span>
 <span class="s1">polygon-area.c:(.text+0x21): undefined reference to `polygon_new&#39;</span>
-/usr/bin/ld: polygon-area.c:<span class="o">(</span>.text+0x95<span class="o">)</span>: undefined reference to <span class="sb">`</span>polygon_add_xy<span class="s1">&#39;</span>
+/usr/bin/ld:<span class="w"> </span>polygon-area.c:<span class="o">(</span>.text+0x95<span class="o">)</span>:<span class="w"> </span>undefined<span class="w"> </span>reference<span class="w"> </span>to<span class="w"> </span><span class="sb">`</span>polygon_add_xy<span class="s1">&#39;</span>
 <span class="s1">/usr/bin/ld: polygon-area.c:(.text+0x10c): undefined reference to `polygon_area&#39;</span>
-collect2: error: ld returned <span class="m">1</span> <span class="nb">exit</span> status
+collect2:<span class="w"> </span>error:<span class="w"> </span>ld<span class="w"> </span>returned<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span>status
 </pre></div>
 </div>
 <p>This results in a bunch of <em>linker errors</em> (not compiler errors). There is nothing wrong
@@ -202,7 +204,7 @@ which are defined in a different C file (<code class="docutils literal notransla
 file, as well as <code class="docutils literal notranslate"><span class="pre">point.c</span></code> (which the polygon module depends on), to be able
 to produce the <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code> executable.</p>
 <p>The simplest way to accomplish this is to simply pass all those files to the compiler:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gcc<span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>Remember that, internally, this is divided into two separate steps:</p>
@@ -233,11 +235,11 @@ Would you like to enter another point? (y/n) n
 The area is 4.00
 </pre></div>
 </div>
-</div>
-<div class="section" id="writing-a-basic-makefile">
-<h3>Writing a basic <code class="docutils literal notranslate"><span class="pre">Makefile</span></code><a class="headerlink" href="#writing-a-basic-makefile" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="writing-a-basic-makefile">
+<h3>Writing a basic <code class="docutils literal notranslate"><span class="pre">Makefile</span></code><a class="headerlink" href="#writing-a-basic-makefile" title="Link to this heading">¶</a></h3>
 <p>At this point, compiling our program involves running the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gcc<span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>This involves writing a relatively long command (which will only get longer
@@ -252,31 +254,31 @@ regular text file, so you are welcome to use your editor of choice
 to create and edit Makefiles.</p>
 <p>Let’s start by creating this very simple <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
 <div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">polygon-area</span><span class="o">:</span>
-     gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+<span class="w">     </span>gcc<span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>The above code specifies a single <strong>make rule</strong>, that basically
 says “To produce the file <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code> run the command <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">point.c</span> <span class="pre">polygon.c</span> <span class="pre">...</span></code>”.</p>
 <p>Before trying out our <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, we’re going to remove the
 <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code> executable we previously compiled manually:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ rm polygon-area
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>polygon-area
 </pre></div>
 </div>
 <p>You can now run the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> by running the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make polygon-area
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>polygon-area
 </pre></div>
 </div>
 <p>By calling <code class="docutils literal notranslate"><span class="pre">make</span></code> like this, we are telling <code class="docutils literal notranslate"><span class="pre">make</span></code> “I need you to produce file <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code>”
 <code class="docutils literal notranslate"><span class="pre">make</span></code> will check the list of rules (by default, it will always look at the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in the
 same directory you are running <code class="docutils literal notranslate"><span class="pre">make</span></code>) and, if it finds a matching rule, it will run it.
 In this case, it will run the <code class="docutils literal notranslate"><span class="pre">gcc</span></code> command we specified in the <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code> rule:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make polygon-area
-gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>polygon-area
+gcc<span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>If we run this again, we’ll get a different output:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make polygon-area
-make: <span class="s1">&#39;polygon-area&#39;</span> is up to date.
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>polygon-area
+make:<span class="w"> </span><span class="s1">&#39;polygon-area&#39;</span><span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>date.
 </pre></div>
 </div>
 <p>This is because <code class="docutils literal notranslate"><span class="pre">make</span></code> will skip producing the <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code> file
@@ -286,9 +288,9 @@ compiled again, e.g., if we make a change to <code class="docutils literal notra
 <p>You may notice that you can also just run <code class="docutils literal notranslate"><span class="pre">make</span></code> without any parameters
 (notice how we first remove <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code>, so we don’t get the “up to date”
 message):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ rm polygon-area
-$ make
-gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>polygon-area
+$<span class="w"> </span>make
+gcc<span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>There is a reason why this works as well, and we’ll explain it later on but,
@@ -314,19 +316,19 @@ by adding the following at the top of your Makefile:</p>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="make-rules">
-<h3>Make rules<a class="headerlink" href="#make-rules" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="make-rules">
+<h3>Make rules<a class="headerlink" href="#make-rules" title="Link to this heading">¶</a></h3>
 <p>We’ve seen earlier that, assuming the <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code> file
 doesn’t exist, running <code class="docutils literal notranslate"><span class="pre">make</span></code> will run the <code class="docutils literal notranslate"><span class="pre">gcc</span></code> command
 to compile it, and subsequent calls to <code class="docutils literal notranslate"><span class="pre">make</span></code> will just tell
 us that the file is “up to date”:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make polygon-area
-gcc point.c polygon.c polygon-area.c -o polygon-area -lm
-$ make polygon-area
-make: <span class="s1">&#39;polygon-area&#39;</span> is up to date.
-$ make polygon-area
-make: <span class="s1">&#39;polygon-area&#39;</span> is up to date.
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>polygon-area
+gcc<span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
+$<span class="w"> </span>make<span class="w"> </span>polygon-area
+make:<span class="w"> </span><span class="s1">&#39;polygon-area&#39;</span><span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>date.
+$<span class="w"> </span>make<span class="w"> </span>polygon-area
+make:<span class="w"> </span><span class="s1">&#39;polygon-area&#39;</span><span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>date.
 </pre></div>
 </div>
 <p>So, <code class="docutils literal notranslate"><span class="pre">make</span></code> is definitely saving us from having to remember the full
@@ -339,13 +341,13 @@ depends on, so it will re-build <code class="docutils literal notranslate"><span
 those files change.</p>
 <p>We can do this by adding a list of dependencies or <em>prerequisites</em>
 after the colon in the rule:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">polygon-area</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span> <span class="n">polygon</span>.<span class="n">c</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
-     gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">polygon-area</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span> <span class="n">polygon</span>.<span class="n">c</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
+<span class="w">     </span>gcc<span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>Now, let’s run <code class="docutils literal notranslate"><span class="pre">make</span></code> again:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make polygon-area
-make: <span class="s1">&#39;polygon-area&#39;</span> is up to date.
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>polygon-area
+make:<span class="w"> </span><span class="s1">&#39;polygon-area&#39;</span><span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>date.
 </pre></div>
 </div>
 <p>Given that we haven’t made any changes to <code class="docutils literal notranslate"><span class="pre">point.c</span></code>, <code class="docutils literal notranslate"><span class="pre">polygon.c</span></code>,
@@ -356,13 +358,13 @@ no need to re-build <code class="docutils literal notranslate"><span class="pre"
 e.g., add a newline at the bottom of the file). If we run
 <code class="docutils literal notranslate"><span class="pre">make</span></code> again, it will detect that one of the prerequisite
 files has changed, and it will re-build <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make polygon-area
-gcc point.c polygon.c polygon-area.c -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>polygon-area
+gcc<span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>In general, Make rules have the following structure:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">rule-name</span><span class="o">:</span> <span class="n">prerequisite</span>
-    <span class="nb">command</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">rule-name</span><span class="o">:</span><span class="w"> </span><span class="n">prerequisite</span>
+<span class="w">    </span><span class="nb">command</span>
 </pre></div>
 </div>
 <p>Rules can have any number of (or zero) prerequisites
@@ -381,9 +383,9 @@ the root of your repository with a list of files that Git should ignore
 practice to have such a file in any repository you create, to make sure
 you never add binary files to your repository.</p>
 </div>
-</div>
-<div class="section" id="separating-the-compilation-and-linking-steps">
-<h3>Separating the compilation and linking steps<a class="headerlink" href="#separating-the-compilation-and-linking-steps" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="separating-the-compilation-and-linking-steps">
+<h3>Separating the compilation and linking steps<a class="headerlink" href="#separating-the-compilation-and-linking-steps" title="Link to this heading">¶</a></h3>
 <p>There is still an issue with our Makefile: any time any of the
 pre-requisite files change, all the files are re-compiled from
 scratch. So, in the example above, we only changed <code class="docutils literal notranslate"><span class="pre">polygon-area.c</span></code>,
@@ -396,9 +398,9 @@ but that resulted in running this command:</p>
 re-compile that file. However, to do this, we have to separately
 produce the object files for each of the C files. From the command-line,
 we would do so like this:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc point.c -c -o point.o
-$ gcc polygon.c -c -o polygon.o
-$ gcc polygon-area.c -c -o polygon-area.o
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gcc<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
+$<span class="w"> </span>gcc<span class="w"> </span>polygon.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o
+$<span class="w"> </span>gcc<span class="w"> </span>polygon-area.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon-area.o
 </pre></div>
 </div>
 <p>Notice how we use the <code class="docutils literal notranslate"><span class="pre">-c</span></code> parameter to the compiler: this tells
@@ -406,7 +408,7 @@ the compiler to only compile the specified file, and to not attempt
 to link it. This produces an <em>object</em> file with the compiled version
 of the code in that C file (and that C file alone).</p>
 <p>To link those object files together, we call the compiler like this:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gcc<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>Notice how we’re not passing any C files to the compiler: by passing
@@ -417,16 +419,16 @@ library, specified with the <code class="docutils literal notranslate"><span cla
 <p class="admonition-title">What happens if we omit the <code class="docutils literal notranslate"><span class="pre">-c</span></code> option?</p>
 <p>Let’s see what happens if we omit the <code class="docutils literal notranslate"><span class="pre">-c</span></code> option when
 compiling the object files:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc polygon.c -o polygon.o
-/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: in <span class="k">function</span> <span class="sb">`</span>_start<span class="s1">&#39;:</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gcc<span class="w"> </span>polygon.c<span class="w"> </span>-o<span class="w"> </span>polygon.o
+/usr/bin/ld:<span class="w"> </span>/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o:<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>_start<span class="s1">&#39;:</span>
 <span class="s1">(.text+0x24): undefined reference to `main&#39;</span>
-/usr/bin/ld: /tmp/cc5mU0L8.o: in <span class="k">function</span> <span class="sb">`</span>polygon_add_xy<span class="s1">&#39;:</span>
+/usr/bin/ld:<span class="w"> </span>/tmp/cc5mU0L8.o:<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>polygon_add_xy<span class="s1">&#39;:</span>
 <span class="s1">polygon.c:(.text+0x212): undefined reference to `point_init&#39;</span>
-/usr/bin/ld: /tmp/cc5mU0L8.o: in <span class="k">function</span> <span class="sb">`</span>polygon_add_point<span class="s1">&#39;:</span>
+/usr/bin/ld:<span class="w"> </span>/tmp/cc5mU0L8.o:<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>polygon_add_point<span class="s1">&#39;:</span>
 <span class="s1">polygon.c:(.text+0x3e5): undefined reference to `segment_intersect&#39;</span>
-/usr/bin/ld: /tmp/cc5mU0L8.o: in <span class="k">function</span> <span class="sb">`</span>polygon_perimeter<span class="s1">&#39;:</span>
+/usr/bin/ld:<span class="w"> </span>/tmp/cc5mU0L8.o:<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>polygon_perimeter<span class="s1">&#39;:</span>
 <span class="s1">polygon.c:(.text+0x64f): undefined reference to `point_distance&#39;</span>
-collect2: error: ld returned <span class="m">1</span> <span class="nb">exit</span> status
+collect2:<span class="w"> </span>error:<span class="w"> </span>ld<span class="w"> </span>returned<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span>status
 </pre></div>
 </div>
 <p>If we run the compiler like this, it will perform both a compilation and linking
@@ -447,47 +449,47 @@ executable will do (and will produce a linker error if no such function is found
 re-compiling all the C files every time. For example, if we modify only
 the <code class="docutils literal notranslate"><span class="pre">point.c</span></code> file, producing an updated <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code> executable
 would just require running the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc point.c -c -o point.o
-$ gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gcc<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
+$<span class="w"> </span>gcc<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>To automate this with <code class="docutils literal notranslate"><span class="pre">make</span></code>, we need to specify separate
 rules for the object files. For example, this is what the rule
 for producing the <code class="docutils literal notranslate"><span class="pre">point.o</span></code> object file would look like.</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span>
-    gcc point.c -c -o point.o
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
 </pre></div>
 </div>
 <p>Remember that this is basically saying “To produce file <code class="docutils literal notranslate"><span class="pre">point.o</span></code>, run
 <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">point.c</span> <span class="pre">...</span></code>, but only if <code class="docutils literal notranslate"><span class="pre">point.c</span></code> has changed since the last
 time we built <code class="docutils literal notranslate"><span class="pre">point.o</span></code>”.</p>
 <p>Our full <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> would now look like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span>
-    gcc point.c -c -o point.o
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
 
-<span class="nf">polygon.o</span><span class="o">:</span> <span class="n">polygon</span>.<span class="n">c</span>
-    gcc polygon.c -c -o polygon.o
+<span class="nf">polygon.o</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>polygon.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o
 
-<span class="nf">polygon-area.o</span><span class="o">:</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
-    gcc polygon-area.c -c -o polygon-area.o
+<span class="nf">polygon-area.o</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>polygon-area.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon-area.o
 
-<span class="nf">polygon-area</span><span class="o">:</span> <span class="n">point</span>.<span class="n">o</span> <span class="n">polygon</span>.<span class="n">o</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">o</span>
-    gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+<span class="nf">polygon-area</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">o</span> <span class="n">polygon</span>.<span class="n">o</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">o</span>
+<span class="w">    </span>gcc<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>Notice how the <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code> rule now depends on the object files,
 not on the C files.</p>
 <p>Let’s give this a try, but lets first make sure that we’re starting
 from scratch. Run the following to delete any files we may have built:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ rm -f point.o polygon.o polygon-area.o polygon-area
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>polygon-area
 </pre></div>
 </div>
 <p>Now, let’s run <code class="docutils literal notranslate"><span class="pre">make</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make polygon-area
-gcc point.c -c -o point.o
-gcc polygon.c -c -o polygon.o
-gcc polygon-area.c -c -o polygon-area.o
-gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>polygon-area
+gcc<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
+gcc<span class="w"> </span>polygon.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o
+gcc<span class="w"> </span>polygon-area.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon-area.o
+gcc<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>Notice how <code class="docutils literal notranslate"><span class="pre">make</span></code> was able to sort out all the dependencies, and figure out
@@ -495,13 +497,13 @@ that, to produce <code class="docutils literal notranslate"><span class="pre">po
 listed in its prerequisites.</p>
 <p>If we try to run <code class="docutils literal notranslate"><span class="pre">make</span></code> again, it will correctly realize that nothing has
 changed, and that we don’t need to re-build anything:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make polygon-area
-make: <span class="s1">&#39;polygon-area&#39;</span> is up to date.
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>polygon-area
+make:<span class="w"> </span><span class="s1">&#39;polygon-area&#39;</span><span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>date.
 </pre></div>
 </div>
 <p>Now, let’s see what happens if we edit one of the files except, instead of
 editing the file, we will use the <code class="docutils literal notranslate"><span class="pre">touch</span></code> command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ touch polygon.c
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>touch<span class="w"> </span>polygon.c
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">touch</span></code> command is a handy command that will simply update the
@@ -511,14 +513,14 @@ whether a file has changed since the last time it was compiled).</p>
 <p>If we run <code class="docutils literal notranslate"><span class="pre">make</span></code> again, we’ll see that it correctly figures out that
 it only needs to re-build the <code class="docutils literal notranslate"><span class="pre">polygon.o</span></code> file, and then re-link it
 with the existing object files:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make polygon-area
-gcc polygon.c -c -o polygon.o
-gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>polygon-area
+gcc<span class="w"> </span>polygon.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o
+gcc<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
-</div>
-<div class="section" id="phony-rules">
-<h3>Phony rules<a class="headerlink" href="#phony-rules" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="phony-rules">
+<h3>Phony rules<a class="headerlink" href="#phony-rules" title="Link to this heading">¶</a></h3>
 <p>So far, we’ve defined a couple of rules whose goal is to
 produce specific files (either the object files or the <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code>
 executable). However, it is also possible to write so-called
@@ -526,17 +528,17 @@ executable). However, it is also possible to write so-called
 some action.</p>
 <p>For example, we’ve previously run the following command
 to delete all the generated files:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ rm -f point.o polygon.o polygon-area.o polygon-area
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>polygon-area
 </pre></div>
 </div>
 <p>We can create a <code class="docutils literal notranslate"><span class="pre">clean</span></code> rule that performs this action:</p>
 <div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">clean</span><span class="o">:</span>
-    rm -f point.o polygon.o polygon-area.o polygon-area
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>polygon-area
 </pre></div>
 </div>
 <p>And which we can run like this:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make clean
-rm -f point.o polygon.o polygon-area.o polygon-area
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>clean
+rm<span class="w"> </span>-f<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>polygon-area
 </pre></div>
 </div>
 <p>However, notice how running the <code class="docutils literal notranslate"><span class="pre">rm</span></code> command doesn’t
@@ -545,7 +547,7 @@ where the effect of the rule’s command was to generate a file
 matching the target of the rule).</p>
 <p>So, while the rule will work as-is, we will want to label it
 as a “phony” rule, by adding this to our <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">clean</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">clean</span>
 </pre></div>
 </div>
 <p>This lets <code class="docutils literal notranslate"><span class="pre">make</span></code> know that it should not expect the <code class="docutils literal notranslate"><span class="pre">clean</span></code>
@@ -559,8 +561,8 @@ generated by the compiler.</p>
 <p>Before we see another common phony rule, try running <code class="docutils literal notranslate"><span class="pre">make</span></code> without
 any parameters (make sure you’ve run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> as shown above before
 doing this):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make
-gcc point.c -c -o point.o
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make
+gcc<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
 </pre></div>
 </div>
 <p>This seems wrong: if I run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> and then run <code class="docutils literal notranslate"><span class="pre">make</span></code> again,
@@ -574,70 +576,70 @@ a more common practice is to create a phony <code class="docutils literal notran
 what the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> should build, and which appears before all other
 rules.</p>
 <p>In our case, this rule would look like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span> <span class="n">polygon</span>-<span class="n">area</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>-<span class="n">area</span>
 </pre></div>
 </div>
 <p>And let’s make sure we add it to the list of phony rules:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">clean</span> <span class="n">all</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">clean</span> <span class="n">all</span>
 </pre></div>
 </div>
 <p>To recap, our full Makefile should now look like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span> <span class="n">polygon</span>-<span class="n">area</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>-<span class="n">area</span>
 
-<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">clean</span> <span class="n">all</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">clean</span> <span class="n">all</span>
 
-<span class="nf">point.o</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span>
-    gcc point.c -c -o point.o
+<span class="nf">point.o</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
 
-<span class="nf">polygon.o</span><span class="o">:</span> <span class="n">polygon</span>.<span class="n">c</span>
-    gcc polygon.c -c -o polygon.o
+<span class="nf">polygon.o</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>polygon.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o
 
-<span class="nf">polygon-area.o</span><span class="o">:</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
-    gcc polygon-area.c -c -o polygon-area.o
+<span class="nf">polygon-area.o</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>polygon-area.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon-area.o
 
-<span class="nf">polygon-area</span><span class="o">:</span> <span class="n">point</span>.<span class="n">o</span> <span class="n">polygon</span>.<span class="n">o</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">o</span>
-    gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+<span class="nf">polygon-area</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">o</span> <span class="n">polygon</span>.<span class="n">o</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">o</span>
+<span class="w">    </span>gcc<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 
 <span class="nf">clean</span><span class="o">:</span>
-    rm -f point.o polygon.o polygon-area.o polygon-area
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>polygon-area
 </pre></div>
 </div>
 <p>Let’s try running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> followed by <code class="docutils literal notranslate"><span class="pre">make</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make clean
-rm -f point.o polygon.o polygon-area.o polygon-area
-$ make
-gcc point.c -c -o point.o
-gcc polygon.c -c -o polygon.o
-gcc polygon-area.c -c -o polygon-area.o
-gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>clean
+rm<span class="w"> </span>-f<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>polygon-area
+$<span class="w"> </span>make
+gcc<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
+gcc<span class="w"> </span>polygon.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o
+gcc<span class="w"> </span>polygon-area.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon-area.o
+gcc<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>Now, when we call <code class="docutils literal notranslate"><span class="pre">make</span></code> (without any parameters), Make will try to build
 the first rule in the file. That rule is the <code class="docutils literal notranslate"><span class="pre">all</span></code> rule, which has one
 prerequisite, <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code>, so it will perform the steps needed to
 build that file.</p>
-</div>
-<div class="section" id="variables">
-<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Link to this heading">¶</a></h3>
 <p>Besides defining rules, Make also allows us to define variables,
 which can help keep our Makefile tidy. Two variables you’ll
 often see in Makefiles are <code class="docutils literal notranslate"><span class="pre">CC</span></code>, to specify the compiler
 we want to use, and <code class="docutils literal notranslate"><span class="pre">CFLAGS</span></code>, to specify the parameters
 we want to pass to the compiler.</p>
 <p>For example, let’s add this at the top of our <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span> <span class="o">=</span> clang
-<span class="nv">CFLAGS</span> <span class="o">=</span> -g -O2 -Wall -Wextra
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>clang
+<span class="nv">CFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra
 </pre></div>
 </div>
 <p>To use a variable, we just write it’s name between <code class="docutils literal notranslate"><span class="pre">$(</span></code> and <code class="docutils literal notranslate"><span class="pre">)</span></code>.
 For example, our previous rule for the <code class="docutils literal notranslate"><span class="pre">point.o</span></code> file:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span>
-    gcc point.c -c -o point.o
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
 </pre></div>
 </div>
 <p>Will now look like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> point.c -c -o point.o
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
 </pre></div>
 </div>
 <p>Notice how this is not a direct translation of the previous rule:
@@ -658,47 +660,47 @@ referred to as a “binary”). It is also common to define a
 <code class="docutils literal notranslate"><span class="pre">LDLIBS</span></code> variable to specify any additional libraries we
 are going to link with.</p>
 <p>So, let’s add this at the top of our Makefile:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">LDLIBS</span> <span class="o">=</span> -lm
-<span class="nv">OBJS</span> <span class="o">=</span> point.o polygon.o polygon-area.o
-<span class="nv">BIN</span> <span class="o">=</span> polygon-area
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">LDLIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-lm
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o
+<span class="nv">BIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>polygon-area
 </pre></div>
 </div>
 <p>Then, this rule:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">polygon-area</span><span class="o">:</span> <span class="n">point</span>.<span class="n">o</span> <span class="n">polygon</span>.<span class="n">o</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">o</span>
-    gcc point.o polygon.o polygon-area.o -o polygon-area -lm
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">polygon-area</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">o</span> <span class="n">polygon</span>.<span class="n">o</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">o</span>
+<span class="w">    </span>gcc<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>Would become this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">$(BIN)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>OBJS<span class="k">)</span> -o <span class="k">$(</span>BIN<span class="k">)</span> <span class="k">$(</span>LDLIBS<span class="k">)</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">$(BIN)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>BIN<span class="k">)</span><span class="w"> </span><span class="k">$(</span>LDLIBS<span class="k">)</span>
 </pre></div>
 </div>
 <p>After updating all the rules, our Makefile would look like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span> <span class="o">=</span> clang
-<span class="nv">CFLAGS</span> <span class="o">=</span> -g -O2 -Wall -Wextra
-<span class="nv">LDLIBS</span> <span class="o">=</span> -lm
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>clang
+<span class="nv">CFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra
+<span class="nv">LDLIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-lm
 
-<span class="nv">OBJS</span> <span class="o">=</span> point.o polygon.o polygon-area.o
-<span class="nv">BIN</span> <span class="o">=</span> polygon-area
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o
+<span class="nv">BIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>polygon-area
 
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">BIN</span><span class="k">)</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">BIN</span><span class="k">)</span>
 
-<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">clean</span> <span class="n">all</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">clean</span> <span class="n">all</span>
 
-<span class="nf">point.o</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> point.c -c -o point.o
+<span class="nf">point.o</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
 
-<span class="nf">polygon.o</span><span class="o">:</span> <span class="n">polygon</span>.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> polygon.c -c -o polygon.o
+<span class="nf">polygon.o</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>polygon.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o
 
-<span class="nf">polygon-area.o</span><span class="o">:</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> polygon-area.c -c -o polygon-area.o
+<span class="nf">polygon-area.o</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>polygon-area.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon-area.o
 
-<span class="nf">$(BIN)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>OBJS<span class="k">)</span> -o <span class="k">$(</span>BIN<span class="k">)</span> <span class="k">$(</span>LDLIBS<span class="k">)</span>
+<span class="nf">$(BIN)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>BIN<span class="k">)</span><span class="w"> </span><span class="k">$(</span>LDLIBS<span class="k">)</span>
 
 <span class="nf">clean</span><span class="o">:</span>
-    rm -f <span class="k">$(</span>OBJS<span class="k">)</span> <span class="k">$(</span>BIN<span class="k">)</span>
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>BIN<span class="k">)</span>
 </pre></div>
 </div>
 <p>Notice how this makes it much easier for us to update something like the
@@ -706,32 +708,32 @@ compiler flags, or the name of the executable we are generating, without
 having to muck around with the rules themselves. All that would be required
 would be to update the variables at the top of the file.</p>
 <p>Before moving on, let’s make sure this works as expected:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make clean
-rm point.o polygon.o polygon-area.o polygon-area
-$ make
-clang -g -O2 -Wall -Wextra point.c -c -o point.o
-clang -g -O2 -Wall -Wextra polygon.c -c -o polygon.o
-clang -g -O2 -Wall -Wextra polygon-area.c -c -o polygon-area.o
-clang point.o polygon.o polygon-area.o -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>clean
+rm<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>polygon-area
+$<span class="w"> </span>make
+clang<span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
+clang<span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>polygon.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o
+clang<span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>polygon-area.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon-area.o
+clang<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>Notice how <code class="docutils literal notranslate"><span class="pre">make</span></code> is now using <code class="docutils literal notranslate"><span class="pre">clang</span></code> as the compiler, and is including
 the specified compiler parameters when compiling the object files.</p>
-</div>
-<div class="section" id="automatic-variables-and-patterns">
-<h3>Automatic Variables and Patterns<a class="headerlink" href="#automatic-variables-and-patterns" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="automatic-variables-and-patterns">
+<h3>Automatic Variables and Patterns<a class="headerlink" href="#automatic-variables-and-patterns" title="Link to this heading">¶</a></h3>
 <p>Our Makefile is looking pretty good, but notice how the following
 rules all follow the same pattern: an object file that depends on a
 C file, where the command to build the object file is identical
 across all the rules (except for the files involved).</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> point.c -c -o point.o
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
 
-<span class="nf">polygon.o</span><span class="o">:</span> <span class="n">polygon</span>.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> polygon.c -c -o polygon.o
+<span class="nf">polygon.o</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>polygon.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o
 
-<span class="nf">polygon-area.o</span><span class="o">:</span> <span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> polygon-area.c -c -o polygon-area.o
+<span class="nf">polygon-area.o</span><span class="o">:</span><span class="w"> </span><span class="n">polygon</span>-<span class="n">area</span>.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>polygon-area.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon-area.o
 </pre></div>
 </div>
 <p>Fortunately, Make provides a number of mechanism that can allow us
@@ -746,13 +748,13 @@ following:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">$&lt;</span></code> is the name of the first prerequisite</p></li>
 </ul>
 <p>So, for example, it would be possible to rewrite this rule:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> point.c -c -o point.o
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>point.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o
 </pre></div>
 </div>
 <p>Like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span> <span class="n">point</span>.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt; -c -o <span class="nv">$@</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">point.o</span><span class="o">:</span><span class="w"> </span><span class="n">point</span>.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>$&lt;<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
 </pre></div>
 </div>
 <p>This makes the rule a bit less error-prone, as it ensures that we’re using the
@@ -760,8 +762,8 @@ correct values in the command, but we would still need to write a separate
 rule for each object file.</p>
 <p>To write a single general rule for all the object files, we will need to use
 <em>patterns</em>. For example, we could write a pattern rule like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">%.o</span><span class="o">:</span> %.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt; -c -o <span class="nv">$@</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">%.o</span><span class="o">:</span><span class="w"> </span>%.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>$&lt;<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
 </pre></div>
 </div>
 <p>In this rule, <code class="docutils literal notranslate"><span class="pre">%.o</span></code> will match any file ending with <code class="docutils literal notranslate"><span class="pre">.o</span></code>, and will
@@ -769,16 +771,16 @@ set its prerequisite to the same file, but replacing <code class="docutils liter
 <p>While this can be a useful rule, it is a bit too broad for our purposes,
 since we have a specific list of object files we want to compile. We can
 instead write the rule like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">$(OBJS)</span><span class="o">:</span> %.<span class="n">o</span>:%.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt; -c -o <span class="nv">$@</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">$(OBJS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>:%.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>$&lt;<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
 </pre></div>
 </div>
 <p>This has the same effect as the previous (more general) rule, but
 limiting the list of targets only to the files in the <code class="docutils literal notranslate"><span class="pre">OBJS</span></code> variable.</p>
 <p>It is also possible to peform pattern substitutions on variables.
 For example, we could redefine our <code class="docutils literal notranslate"><span class="pre">OBJS</span></code> variable like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">SRCS</span> <span class="o">=</span> point.c polygon.c polygon-area.c
-<span class="nv">OBJS</span> <span class="o">=</span> <span class="k">$(</span>SRCS:.c<span class="o">=</span>.o<span class="k">)</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">SRCS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>SRCS:.c<span class="o">=</span>.o<span class="k">)</span>
 </pre></div>
 </div>
 <p>We first define a <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> variable with our source files,
@@ -786,42 +788,42 @@ and then define <code class="docutils literal notranslate"><span class="pre">OBJ
 “take the <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> variable, and substitute the <code class="docutils literal notranslate"><span class="pre">.c</span></code> extension for <code class="docutils literal notranslate"><span class="pre">.o</span></code>
 in all files”.</p>
 <p>To recap, our Makefile should now look like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span> <span class="o">=</span> clang
-<span class="nv">CFLAGS</span> <span class="o">=</span> -g -O2 -Wall -Wextra
-<span class="nv">LDLIBS</span> <span class="o">=</span> -lm
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>clang
+<span class="nv">CFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra
+<span class="nv">LDLIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-lm
 
-<span class="nv">SRCS</span> <span class="o">=</span> point.c polygon.c polygon-area.c
-<span class="nv">OBJS</span> <span class="o">=</span> <span class="k">$(</span>SRCS:.c<span class="o">=</span>.o<span class="k">)</span>
-<span class="nv">BIN</span> <span class="o">=</span> polygon-area
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>point.c<span class="w"> </span>polygon.c<span class="w"> </span>polygon-area.c
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>SRCS:.c<span class="o">=</span>.o<span class="k">)</span>
+<span class="nv">BIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>polygon-area
 
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">BIN</span><span class="k">)</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">BIN</span><span class="k">)</span>
 
-<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">clean</span> <span class="n">all</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">clean</span> <span class="n">all</span>
 
-<span class="nf">$(OBJS)</span><span class="o">:</span> %.<span class="n">o</span>:%.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt; -c -o <span class="nv">$@</span>
+<span class="nf">$(OBJS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>:%.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>$&lt;<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
 
-<span class="nf">$(BIN)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>OBJS<span class="k">)</span> -o <span class="k">$(</span>BIN<span class="k">)</span> <span class="k">$(</span>LDLIBS<span class="k">)</span>
+<span class="nf">$(BIN)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>BIN<span class="k">)</span><span class="w"> </span><span class="k">$(</span>LDLIBS<span class="k">)</span>
 
 <span class="nf">clean</span><span class="o">:</span>
-    rm -f <span class="k">$(</span>OBJS<span class="k">)</span> <span class="k">$(</span>BIN<span class="k">)</span>
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>BIN<span class="k">)</span>
 </pre></div>
 </div>
 <p>Let’s make sure it works correctly:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make clean
-rm -f point.o polygon.o polygon-area.o polygon-area
-$ make
-clang -g -O2 -Wall -Wextra -c -o point.o point.c
-clang -g -O2 -Wall -Wextra -c -o polygon.o polygon.c
-clang -g -O2 -Wall -Wextra -c -o polygon-area.o polygon-area.c
-clang point.o polygon.o polygon-area.o -o polygon-area -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>clean
+rm<span class="w"> </span>-f<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>polygon-area
+$<span class="w"> </span>make
+clang<span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>point.o<span class="w"> </span>point.c
+clang<span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon.o<span class="w"> </span>polygon.c
+clang<span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>polygon-area.o<span class="w"> </span>polygon-area.c
+clang<span class="w"> </span>point.o<span class="w"> </span>polygon.o<span class="w"> </span>polygon-area.o<span class="w"> </span>-o<span class="w"> </span>polygon-area<span class="w"> </span>-lm
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="task-1-makefile-for-the-micro-editor">
-<h2>Task 1: Makefile for the micro editor<a class="headerlink" href="#task-1-makefile-for-the-micro-editor" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="task-1-makefile-for-the-micro-editor">
+<h2>Task 1: Makefile for the micro editor<a class="headerlink" href="#task-1-makefile-for-the-micro-editor" title="Link to this heading">¶</a></h2>
 <p>We have included a <code class="docutils literal notranslate"><span class="pre">micro-editor</span></code> directory in your repository with
 the code for a very simple terminal-based editor
 called <code class="docutils literal notranslate"><span class="pre">micro</span></code>. This is our version of the <code class="docutils literal notranslate"><span class="pre">kilo</span></code> editor, a simple
@@ -833,8 +835,8 @@ in the inner workings of a text editor, you may find that guide interesting).</p
 <p><code class="docutils literal notranslate"><span class="pre">micro</span></code> largely follows the same structure as the <code class="docutils literal notranslate"><span class="pre">kilo</span></code> code, except we
 divided it into multiple modules and documented the code following our style guide.</p>
 <p>You can compile and run the editor like this:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc src/*.c -o micro
-$ ./micro
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gcc<span class="w"> </span>src/*.c<span class="w"> </span>-o<span class="w"> </span>micro
+$<span class="w"> </span>./micro
 </pre></div>
 </div>
 <p>This will open the editor with a “blank file”. You can start typing to edit
@@ -862,9 +864,9 @@ to avoid repeated code in your Makefile.</p>
 <code class="docutils literal notranslate"><span class="pre">micro-editor</span></code> directory. You can ignore that file for now;
 we will come back to it later in the homework.</p>
 </div>
-</div>
-<div class="section" id="building-a-library">
-<h2>Building a library<a class="headerlink" href="#building-a-library" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="building-a-library">
+<h2>Building a library<a class="headerlink" href="#building-a-library" title="Link to this heading">¶</a></h2>
 <p>For this part of the homework, we will return to the <code class="docutils literal notranslate"><span class="pre">polygon-area</span></code>
 example. Make sure you are in that directory, and not the <code class="docutils literal notranslate"><span class="pre">micro-editor</span></code>
 directory.</p>
@@ -873,28 +875,28 @@ a <code class="docutils literal notranslate"><span class="pre">polygon-area</spa
 wanted to build an additional executable, <code class="docutils literal notranslate"><span class="pre">point-distance</span></code>, that
 relied on the Point module. Go ahead and create a file called
 <code class="docutils literal notranslate"><span class="pre">point-distance.c</span></code> with the following code:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;point.h&quot;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;point.h&quot;</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="n">point_t</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">point_t</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">;</span>
 
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 1] Please enter a value for x: &quot;</span><span class="p">);</span>
-    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p1</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 1] Please enter a value for x: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p1</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
 
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 1] Please enter a value for y: &quot;</span><span class="p">);</span>
-    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p1</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 1] Please enter a value for y: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p1</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
 
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 2] Please enter a value for x: &quot;</span><span class="p">);</span>
-    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 2] Please enter a value for x: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
 
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 2] Please enter a value for y: &quot;</span><span class="p">);</span>
-    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Point 2] Please enter a value for y: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
 
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;The distance between (%.2lf, %.2lf) and &quot;</span>
-           <span class="s">&quot;(%.2lf, %.2lf) is %.2lf</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
-           <span class="n">point_distance</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;The distance between (%.2lf, %.2lf) and &quot;</span>
+<span class="w">           </span><span class="s">&quot;(%.2lf, %.2lf) is %.2lf</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+<span class="w">           </span><span class="n">point_distance</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p2</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -919,9 +921,9 @@ executable would just include a reference to that function
 (that would be linked to the actual <code class="docutils literal notranslate"><span class="pre">point_distance</span></code> code in <code class="docutils literal notranslate"><span class="pre">libgeometry.so</span></code>
 when the <code class="docutils literal notranslate"><span class="pre">point-distance</span></code> executable is run).</p>
 <p>To build the library, we would just need to run this:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gcc -fPIC -c point.c -o point.o
-$ gcc -fPIC -c polygon.c -o polygon.o
-$ gcc -shared -o libgeometry.so point.o polygon.o
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gcc<span class="w"> </span>-fPIC<span class="w"> </span>-c<span class="w"> </span>point.c<span class="w"> </span>-o<span class="w"> </span>point.o
+$<span class="w"> </span>gcc<span class="w"> </span>-fPIC<span class="w"> </span>-c<span class="w"> </span>polygon.c<span class="w"> </span>-o<span class="w"> </span>polygon.o
+$<span class="w"> </span>gcc<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>libgeometry.so<span class="w"> </span>point.o<span class="w"> </span>polygon.o
 </pre></div>
 </div>
 <p>Notice how we’re compiling the Point and Polygon modules as we did
@@ -934,7 +936,7 @@ like we did before except, instead of producing an executable,
 we produce the <code class="docutils literal notranslate"><span class="pre">libgeometry.so</span></code> file (the <code class="docutils literal notranslate"><span class="pre">-shared</span></code> option
 instructs the linker to produce a library instead of an executable).</p>
 <p>Then, to build the <code class="docutils literal notranslate"><span class="pre">point-distance</span></code> executable, we do the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcc point-distance.c -o point-distance -L. -lgeometry -lm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>point-distance.c<span class="w"> </span>-o<span class="w"> </span>point-distance<span class="w"> </span>-L.<span class="w"> </span>-lgeometry<span class="w"> </span>-lm
 </pre></div>
 </div>
 <p>Notice how we now include an <code class="docutils literal notranslate"><span class="pre">-lgeometry</span></code> option to tell the
@@ -962,52 +964,52 @@ this file can be found here:</p>
 <p>If you run the commands above, the result should be
 a <code class="docutils literal notranslate"><span class="pre">point-distance</span></code> executable. However, there is
 one final wrinkle when we try to run it:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ./point-distance
-./point-distance: error <span class="k">while</span> loading shared libraries: libgeometry.so: cannot open shared object file: No such file or directory
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./point-distance
+./point-distance:<span class="w"> </span>error<span class="w"> </span><span class="k">while</span><span class="w"> </span>loading<span class="w"> </span>shared<span class="w"> </span>libraries:<span class="w"> </span>libgeometry.so:<span class="w"> </span>cannot<span class="w"> </span>open<span class="w"> </span>shared<span class="w"> </span>object<span class="w"> </span>file:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
 </pre></div>
 </div>
 <p>We also need to tell the <em>shell</em> where to look for library
 files when running executables. We can do this by setting
 the <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.
-$ ./point-distance
-<span class="o">[</span>Point <span class="m">1</span><span class="o">]</span> Please enter a value <span class="k">for</span> x: <span class="m">0</span>.0
-<span class="o">[</span>Point <span class="m">1</span><span class="o">]</span> Please enter a value <span class="k">for</span> y: <span class="m">1</span>.0
-<span class="o">[</span>Point <span class="m">2</span><span class="o">]</span> Please enter a value <span class="k">for</span> x: <span class="m">1</span>.0
-<span class="o">[</span>Point <span class="m">2</span><span class="o">]</span> Please enter a value <span class="k">for</span> y: <span class="m">0</span>.0
-The distance between <span class="o">(</span><span class="m">0</span>.00, <span class="m">1</span>.00<span class="o">)</span> and <span class="o">(</span><span class="m">1</span>.00, <span class="m">0</span>.00<span class="o">)</span> is <span class="m">1</span>.41
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.
+$<span class="w"> </span>./point-distance
+<span class="o">[</span>Point<span class="w"> </span><span class="m">1</span><span class="o">]</span><span class="w"> </span>Please<span class="w"> </span>enter<span class="w"> </span>a<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>x:<span class="w"> </span><span class="m">0</span>.0
+<span class="o">[</span>Point<span class="w"> </span><span class="m">1</span><span class="o">]</span><span class="w"> </span>Please<span class="w"> </span>enter<span class="w"> </span>a<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>y:<span class="w"> </span><span class="m">1</span>.0
+<span class="o">[</span>Point<span class="w"> </span><span class="m">2</span><span class="o">]</span><span class="w"> </span>Please<span class="w"> </span>enter<span class="w"> </span>a<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>x:<span class="w"> </span><span class="m">1</span>.0
+<span class="o">[</span>Point<span class="w"> </span><span class="m">2</span><span class="o">]</span><span class="w"> </span>Please<span class="w"> </span>enter<span class="w"> </span>a<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>y:<span class="w"> </span><span class="m">0</span>.0
+The<span class="w"> </span>distance<span class="w"> </span>between<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00,<span class="w"> </span><span class="m">1</span>.00<span class="o">)</span><span class="w"> </span>and<span class="w"> </span><span class="o">(</span><span class="m">1</span>.00,<span class="w"> </span><span class="m">0</span>.00<span class="o">)</span><span class="w"> </span>is<span class="w"> </span><span class="m">1</span>.41
 </pre></div>
 </div>
 <p>Note: Setting the <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable only needs to be done once
 each time you start a new terminal. You do not need to run it every time you want
 to run the executable.</p>
 <p>Our updated Makefile will now look like this:</p>
-<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span> <span class="o">=</span> clang
-<span class="nv">CFLAGS</span> <span class="o">=</span> -fPIC -g -O2 -Wall -Wextra
-<span class="nv">LDFLAGS</span> <span class="o">=</span> -L.
-<span class="nv">LDLIBS</span> <span class="o">=</span> -lgeometry -lm
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>clang
+<span class="nv">CFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-fPIC<span class="w"> </span>-g<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-Wextra
+<span class="nv">LDFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-L.
+<span class="nv">LDLIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-lgeometry<span class="w"> </span>-lm
 
-<span class="nv">SRCS</span> <span class="o">=</span> point.c polygon.c
-<span class="nv">OBJS</span> <span class="o">=</span> <span class="k">$(</span>SRCS:.c<span class="o">=</span>.o<span class="k">)</span>
-<span class="nv">LIB</span> <span class="o">=</span> libgeometry.so
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>point.c<span class="w"> </span>polygon.c
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>SRCS:.c<span class="o">=</span>.o<span class="k">)</span>
+<span class="nv">LIB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>libgeometry.so
 
-<span class="nv">BINS</span> <span class="o">=</span> polygon-area point-distance
+<span class="nv">BINS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>polygon-area<span class="w"> </span>point-distance
 
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span> <span class="k">$(</span><span class="nv">BINS</span><span class="k">)</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span> <span class="k">$(</span><span class="nv">BINS</span><span class="k">)</span>
 
-<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">clean</span> <span class="n">all</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">clean</span> <span class="n">all</span>
 
-<span class="nf">$(OBJS)</span><span class="o">:</span> %.<span class="n">o</span>:%.<span class="n">c</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt; -c -o <span class="nv">$@</span>
+<span class="nf">$(OBJS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>:%.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>$&lt;<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
 
-<span class="nf">$(LIB)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-    <span class="k">$(</span>CC<span class="k">)</span> -shared -o <span class="nv">$@</span> $^
+<span class="nf">$(LIB)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
 
-<span class="nf">$(BINS)</span><span class="o">:</span> %:%.<span class="n">c</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span>
-    <span class="k">$(</span>CC<span class="k">)</span> $&lt; -o <span class="nv">$@</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> <span class="k">$(</span>LDLIBS<span class="k">)</span>
+<span class="nf">$(BINS)</span><span class="o">:</span><span class="w"> </span>%:%.<span class="n">c</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span>$&lt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span><span class="k">$(</span>LDFLAGS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>LDLIBS<span class="k">)</span>
 
 <span class="nf">clean</span><span class="o">:</span>
-    rm -f <span class="k">$(</span>OBJS<span class="k">)</span> <span class="k">$(</span>LIB<span class="k">)</span> <span class="k">$(</span>BINS<span class="k">)</span>
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>LIB<span class="k">)</span><span class="w"> </span><span class="k">$(</span>BINS<span class="k">)</span>
 </pre></div>
 </div>
 <p>At this point, it should be possible for you to understand the
@@ -1043,9 +1045,9 @@ need to worry about how this mechanism works).</p>
 which allows the top-level Makefile to define targets like the <code class="docutils literal notranslate"><span class="pre">tests</span></code>
 target which just say “run the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in directory <code class="docutils literal notranslate"><span class="pre">tests/</span></code>”</p>
 </div>
-</div>
-<div class="section" id="task-2-the-libgraph-library">
-<h2>Task 2: The libgraph library<a class="headerlink" href="#task-2-the-libgraph-library" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-2-the-libgraph-library">
+<h2>Task 2: The libgraph library<a class="headerlink" href="#task-2-the-libgraph-library" title="Link to this heading">¶</a></h2>
 <p>We have included in your repository a <code class="docutils literal notranslate"><span class="pre">libgraph</span></code> directory that contains
 the code for a graph library (in the <code class="docutils literal notranslate"><span class="pre">src/libgraph</span></code> directory),
 as well as a few executables that use that library (in the <code class="docutils literal notranslate"><span class="pre">src/tools</span></code>
@@ -1066,20 +1068,20 @@ tell the compiler to look for header files in a different directory
 (notice how several of the header files are in a separate <code class="docutils literal notranslate"><span class="pre">include/</span></code>
 directory).</p>
 <p>If you are successful, you should be able to run the executables as follows:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ./best-first -g examples/cities.graph -s SanFrancisco -f NewYork
-SanFrancisco -&gt; LosAngeles -&gt; LasVegas -&gt; Phoenix -&gt; SaltLakeCity -&gt; Denver -&gt; KansasCity -&gt; Minneapolis -&gt; Chicago -&gt; Cleveland -&gt; NewYork
-Total weight: <span class="m">4365</span>.00
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./best-first<span class="w"> </span>-g<span class="w"> </span>examples/cities.graph<span class="w"> </span>-s<span class="w"> </span>SanFrancisco<span class="w"> </span>-f<span class="w"> </span>NewYork
+SanFrancisco<span class="w"> </span>-&gt;<span class="w"> </span>LosAngeles<span class="w"> </span>-&gt;<span class="w"> </span>LasVegas<span class="w"> </span>-&gt;<span class="w"> </span>Phoenix<span class="w"> </span>-&gt;<span class="w"> </span>SaltLakeCity<span class="w"> </span>-&gt;<span class="w"> </span>Denver<span class="w"> </span>-&gt;<span class="w"> </span>KansasCity<span class="w"> </span>-&gt;<span class="w"> </span>Minneapolis<span class="w"> </span>-&gt;<span class="w"> </span>Chicago<span class="w"> </span>-&gt;<span class="w"> </span>Cleveland<span class="w"> </span>-&gt;<span class="w"> </span>NewYork
+Total<span class="w"> </span>weight:<span class="w"> </span><span class="m">4365</span>.00
 </pre></div>
 </div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ./toposort -g examples/flow.graph
-START R1 R2 R3 R4 R5 R6 END
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./toposort<span class="w"> </span>-g<span class="w"> </span>examples/flow.graph
+START<span class="w"> </span>R1<span class="w"> </span>R2<span class="w"> </span>R3<span class="w"> </span>R4<span class="w"> </span>R5<span class="w"> </span>R6<span class="w"> </span>END
 </pre></div>
 </div>
 <p>The first executable does a <a class="reference external" href="https://en.wikipedia.org/wiki/Best-first_search">best-first search</a>
 on the graph, while the second executable does a <a class="reference external" href="https://en.wikipedia.org/wiki/Topological_sorting">topological sort</a>.</p>
-</div>
-<div class="section" id="cmake">
-<h2>CMake<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="cmake">
+<h2>CMake<a class="headerlink" href="#cmake" title="Link to this heading">¶</a></h2>
 <p>You may have noticed that both the <code class="docutils literal notranslate"><span class="pre">micro-editor</span></code> directory and the <code class="docutils literal notranslate"><span class="pre">libgraph</span></code>
 directory contain a <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file. This file is used by a build system
 called <a class="reference external" href="https://cmake.org/">CMake</a> that provides a simpler file format
@@ -1089,22 +1091,22 @@ build the code). In fact, this is the build system we use in the course project.
 quick glance at <code class="docutils literal notranslate"><span class="pre">libgraph/CMakeLists.txt</span></code> can give you a sense of how much simpler
 it is than regular <code class="docutils literal notranslate"><span class="pre">Makefiles</span></code>. For example, this command specifies how
 to build the libgraph library:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">graph</span> <span class="s">SHARED</span>
-        <span class="s">src/libgraph/graph.c</span>
-        <span class="s">src/libgraph/vlist.c</span>
-        <span class="s">src/libgraph/algorithms.c</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">graph</span><span class="w"> </span><span class="s">SHARED</span>
+<span class="w">        </span><span class="s">src/libgraph/graph.c</span>
+<span class="w">        </span><span class="s">src/libgraph/vlist.c</span>
+<span class="w">        </span><span class="s">src/libgraph/algorithms.c</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And these two commands specify how to build the <code class="docutils literal notranslate"><span class="pre">best-first</span></code> executable (including
 the fact that it needs to be linked to the libgraph library):</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">best-first</span>
-        <span class="s">src/tools/best-first.c</span><span class="p">)</span>
+<span class="w">        </span><span class="s">src/tools/best-first.c</span><span class="p">)</span>
 
-<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">best-first</span> <span class="s">graph</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">best-first</span><span class="w"> </span><span class="s">graph</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To build the code with CMake, we would run the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ cmake -B build/
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build/
 </pre></div>
 </div>
 <p>This will create a <em>build directory</em> that will contain all the files related
@@ -1114,9 +1116,9 @@ created here).</p>
 and run <code class="docutils literal notranslate"><span class="pre">make</span></code> as usual. This will produce the <code class="docutils literal notranslate"><span class="pre">libgraph.so</span></code> file
 along with the <code class="docutils literal notranslate"><span class="pre">best-first</span></code> and <code class="docutils literal notranslate"><span class="pre">toposort</span></code> executables. If you try to
 run them, they should behave exactly as described earlier.</p>
-</div>
-<div class="section" id="submitting-your-homework">
-<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="submitting-your-homework">
+<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Link to this heading">¶</a></h2>
 <p>Before submitting, make sure you’ve added, committed, and pushed all
 your work to GitHub. When submitting through Gradescope, you will be given the option of
 uploading a GitHub repository. Make sure you select your <code class="docutils literal notranslate"><span class="pre">hw3-GITHUB_USERNAME</span></code>
@@ -1129,8 +1131,8 @@ the <code class="docutils literal notranslate"><span class="pre">polygon-area</s
 any errors, that is a sign there could be issues with your Makefiles.</p>
 <p>Note: you may see a compiler warning referring to a “buf” variable
 in the <code class="docutils literal notranslate"><span class="pre">micro-editor</span></code> code. You can safely ignore this warning.</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -1145,7 +1147,7 @@ in the <code class="docutils literal notranslate"><span class="pre">micro-editor
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

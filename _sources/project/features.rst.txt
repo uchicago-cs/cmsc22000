@@ -1,6 +1,15 @@
 Project Features
 ================
 
+.. warning::
+
+
+    This website currently reflects the Spring 2022 offering of CMSC 22000. We are in
+    the process of updating this page for the Autumn 2023 offering of CMSC 22000,
+    which will include several major changes to the class. Most notably, the class
+    will now be taught in Python (instead of C) and will revolve around the development
+    of a Python-based web application.
+
 Each team will be assigned to work on a specific feature of chiventure.
 Each team will have a chance to express a preference, and we will aim to
 assign each team to a feature they have expressed very high interest in.

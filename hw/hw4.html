@@ -1,20 +1,22 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
 <title>Homework 4: Debugging &#8212; CMSC 22000 - Introduction to Software Development</title>
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=0bf093e7" />
+    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css?v=4e80c602" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Homework 4 Rubric" href="hw4_rubric.html" />
@@ -23,10 +25,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
   </head><body>
 
@@ -120,8 +122,8 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="homework-4-debugging">
-<h1>Homework 4: Debugging<a class="headerlink" href="#homework-4-debugging" title="Permalink to this headline">¶</a></h1>
+  <section id="homework-4-debugging">
+<h1>Homework 4: Debugging<a class="headerlink" href="#homework-4-debugging" title="Link to this heading">¶</a></h1>
 <p><strong>Due:</strong> Wednesday, April 27th, 8pm CDT</p>
 <p>In this homework, you will get some practice debugging a few programs and, in
 particular, will resolve some of the errors we described in class. In
@@ -132,8 +134,8 @@ Guide</a>, which covers
 (and expands on) many of the topics we covered in class. You can either read through
 the guide before starting the homework, or read through the pertinent sections as needed
 (we will point which ones you need to read throughout the homework).</p>
-<div class="section" id="creating-your-homework-repository">
-<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+<section id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Link to this heading">¶</a></h2>
 <p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
@@ -144,9 +146,9 @@ for the homework.</p>
 you, in this homework we will mostly be looking at the answers you provide to
 a number of questions on Gradescope. Nonetheless, you should still push
 your changes to your repository, in case we need to look at your code.</p>
-</div>
-<div class="section" id="task-1-compiler-linker-error-debugging">
-<h2>Task 1: Compiler/Linker Error Debugging<a class="headerlink" href="#task-1-compiler-linker-error-debugging" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-1-compiler-linker-error-debugging">
+<h2>Task 1: Compiler/Linker Error Debugging<a class="headerlink" href="#task-1-compiler-linker-error-debugging" title="Link to this heading">¶</a></h2>
 <p>Read the <a class="reference external" href="https://uchicago-cs.github.io/debugging-guide/">Debugging
 Guide</a> up to (and including)
 the “Build Errors” section (i.e., stop when you get to “Runtime Errors”).</p>
@@ -169,9 +171,9 @@ by the compiler may not be the one responsible for the error/warning!</p></li>
 </ul>
 <p>Make sure to actually fix the errors in the C file (and make sure to commit
 and push this fix to your repository).</p>
-</div>
-<div class="section" id="gdb-warmup">
-<h2>GDB Warmup<a class="headerlink" href="#gdb-warmup" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="gdb-warmup">
+<h2>GDB Warmup<a class="headerlink" href="#gdb-warmup" title="Link to this heading">¶</a></h2>
 <p>Read up to, and including, the “Using a debugger” section of the <a class="reference external" href="https://uchicago-cs.github.io/debugging-guide/">Debugging
 Guide</a> (i.e., stop when you
 get to “Preemptive Techniques”). The guide
@@ -333,9 +335,9 @@ then print the value of variable <code class="docutils literal notranslate"><spa
 <li><p><strong>Practice Question D</strong>: What is the return value of the function <code class="docutils literal notranslate"><span class="pre">num()</span></code> in hexadecimal?</p></li>
 </ul>
 <p>You can find the answers to these questions at the end of this homework.</p>
-</div>
-<div class="section" id="the-micro-editor">
-<h2>The Micro Editor<a class="headerlink" href="#the-micro-editor" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-micro-editor">
+<h2>The Micro Editor<a class="headerlink" href="#the-micro-editor" title="Link to this heading">¶</a></h2>
 <p>We’ve seen how GDB works with some simple examples, but now it’s time to debug
 a more complex piece of software. We will be using the <code class="docutils literal notranslate"><span class="pre">micro</span></code> editor from
 Homework #3. As a reminder, this is our version of the <a class="reference external" href="https://viewsourcecode.org/snaptoken/kilo/">kilo</a>
@@ -433,7 +435,7 @@ and not the <code class="docutils literal notranslate"><span class="pre">run</sp
 GDB will show something like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="k">continue</span>
 <span class="n">Continuing</span><span class="o">.</span>
-<span class="n">Reading</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
+<span class="n">Reading</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
 <span class="n">Reading</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="mf">2.31</span><span class="o">.</span><span class="n">so</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
 <span class="n">Reading</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/.</span><span class="n">debug</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="mf">2.31</span><span class="o">.</span><span class="n">so</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
 <span class="n">Reading</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">debug</span><span class="o">//</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="mf">2.31</span><span class="o">.</span><span class="n">so</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">target</span><span class="o">...</span>
@@ -450,9 +452,9 @@ program by pressing Ctrl-C in GDB, followed by Ctrl-D. Please note that this
 may leave the first terminal in an unstable state (in the same way as described
 above in the case of the editor crashing). If that happens, simply perform
 the steps described earlier.</p>
-</div>
-<div class="section" id="task-2-stepping-through-the-micro-editor-code">
-<h2>Task 2: Stepping Through the Micro Editor Code<a class="headerlink" href="#task-2-stepping-through-the-micro-editor-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-2-stepping-through-the-micro-editor-code">
+<h2>Task 2: Stepping Through the Micro Editor Code<a class="headerlink" href="#task-2-stepping-through-the-micro-editor-code" title="Link to this heading">¶</a></h2>
 <p>(20 + 20 points)</p>
 <p>As you can see in the <code class="docutils literal notranslate"><span class="pre">micro/src/main.c</span></code> file, the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function of our
 editor is actually pretty simple and brief (in large part, thanks to the
@@ -522,9 +524,9 @@ While we encourage you to read through the editor code to figure out what it doe
 (this is a very valuable skill!) you’re also welcome to ask us any questions you want
 about the editor code itself.</p>
 </div>
-</div>
-<div class="section" id="runtime-error-debugging">
-<h2>Runtime Error Debugging<a class="headerlink" href="#runtime-error-debugging" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="runtime-error-debugging">
+<h2>Runtime Error Debugging<a class="headerlink" href="#runtime-error-debugging" title="Link to this heading">¶</a></h2>
 <p>Runtime errors make the program crash while it is running, and sometimes
 they are hard to find because the compiler doesn’t always give
 particularly informative error messages.</p>
@@ -562,9 +564,9 @@ breakpoints you specify.</p>
 <p><strong>Practice Question E</strong>: Try running the <code class="docutils literal notranslate"><span class="pre">segfault</span></code> program with gdb and using the above
 commands to figure out what is causing the segfault. You will find
 the answer at the bottom of this homework.</p>
-</div>
-<div class="section" id="memory-debugging-with-valgrind">
-<h2>Memory Debugging with Valgrind<a class="headerlink" href="#memory-debugging-with-valgrind" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="memory-debugging-with-valgrind">
+<h2>Memory Debugging with Valgrind<a class="headerlink" href="#memory-debugging-with-valgrind" title="Link to this heading">¶</a></h2>
 <p>Another useful tool for debugging runtime errors is <a class="reference external" href="https://valgrind.org/">Valgrind</a>,
 a memory debugger that can alert you to incorrect memory accesses in your code. For example,
 take a look at the <code class="docutils literal notranslate"><span class="pre">examples/buffer-overflow.c</span></code> file. In this program, we are intentionally
@@ -609,15 +611,15 @@ print a <code class="docutils literal notranslate"><span class="pre">LEAK</span>
 <p>Finally, take into account that it is also a good idea to simply run Valgrind periodically,
 even if nothing is visibly wrong with your code, as this may allow you to preemptively correct
 incorrect memory accesses and memory leaks.</p>
-</div>
-<div class="section" id="task-3-fixing-runtime-errors-in-the-micro-editor">
-<h2>Task 3: Fixing Runtime Errors in the Micro Editor<a class="headerlink" href="#task-3-fixing-runtime-errors-in-the-micro-editor" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-3-fixing-runtime-errors-in-the-micro-editor">
+<h2>Task 3: Fixing Runtime Errors in the Micro Editor<a class="headerlink" href="#task-3-fixing-runtime-errors-in-the-micro-editor" title="Link to this heading">¶</a></h2>
 <p>We have inserted two bugs in the Micro code that will cause the editor to
 crash, and which would be challenging to spot
 just by code inspection, given the amount of code you’d have to read through.
 This is where a debugger can make your life much easier!</p>
-<div class="section" id="bug-1">
-<h3>Bug #1<a class="headerlink" href="#bug-1" title="Permalink to this headline">¶</a></h3>
+<section id="bug-1">
+<h3>Bug #1<a class="headerlink" href="#bug-1" title="Link to this heading">¶</a></h3>
 <p>The editor will crash if you try to save any file by pressing Ctrl-S.
 That said, if you have trouble reproducing this issue, you can try
 opening the provided <code class="docutils literal notranslate"><span class="pre">micro/samples/lorem-ipsum.txt</span></code> file. If you immediately
@@ -640,9 +642,9 @@ the following information on Gradescope:</p>
 fix the bug. Remember: the line where the segfault happens may not
 be the line you have to edit to fix the bug.</p></li>
 </ul>
-</div>
-<div class="section" id="bug-2">
-<h3>Bug #2<a class="headerlink" href="#bug-2" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="bug-2">
+<h3>Bug #2<a class="headerlink" href="#bug-2" title="Link to this heading">¶</a></h3>
 <p>(10 points)</p>
 <p>If you place the cursor at the start of a line (other than the first line
 of the file) and press the “Backspace” key, this will move the contents
@@ -684,18 +686,18 @@ see if you can spot anything wrong.</p>
 <li><p>The before and after version of any lines of code you changed to
 fix the bug.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="submitting-your-homework">
-<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="submitting-your-homework">
+<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Link to this heading">¶</a></h2>
 <p>Please note that you will not be submitting your code through
 Gradescope. Instead, make sure that the questions posed in each task are
 answered on Gradescope. That said, we still need you to push your code
 in case we need to look at any of your code (but we will not be grading
 the code itself).</p>
-</div>
-<div class="section" id="answers-to-practice-questions">
-<h2>Answers to Practice Questions<a class="headerlink" href="#answers-to-practice-questions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="answers-to-practice-questions">
+<h2>Answers to Practice Questions<a class="headerlink" href="#answers-to-practice-questions" title="Link to this heading">¶</a></h2>
 <p><strong>Practice Question A</strong></p>
 <p>Variable <code class="docutils literal notranslate"><span class="pre">c</span></code> changes at lines 34, 36, 44, 47, 53, 55, 56.</p>
 <p>Notice how GDB will break in the line <em>after</em> the variable changes:</p>
@@ -844,8 +846,8 @@ $1 = 0x0
 </pre></div>
 </div>
 <p>It looks like <code class="docutils literal notranslate"><span class="pre">p</span></code> was not initialized! (it is a null pointer) To fix this, we would need to <code class="docutils literal notranslate"><span class="pre">malloc</span></code> memory for <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -860,7 +862,7 @@ $1 = 0x0
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

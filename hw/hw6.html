@@ -1,20 +1,22 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
 <title>Homework 6: Continuous Integration &#8212; CMSC 22000 - Introduction to Software Development</title>
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=0bf093e7" />
+    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css?v=4e80c602" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Homework 6 Rubric" href="hw6_rubric.html" />
@@ -23,10 +25,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
   </head><body>
 
@@ -112,8 +114,8 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="homework-6-continuous-integration">
-<h1>Homework 6: Continuous Integration<a class="headerlink" href="#homework-6-continuous-integration" title="Permalink to this headline">¶</a></h1>
+  <section id="homework-6-continuous-integration">
+<h1>Homework 6: Continuous Integration<a class="headerlink" href="#homework-6-continuous-integration" title="Link to this heading">¶</a></h1>
 <p><strong>Due:</strong> Wednesday, May 11, 8pm CDT</p>
 <p>Continuous Integration, or CI, is the practice of frequently merging
 developers’ work into a mainline branch in a version control system like
@@ -128,8 +130,8 @@ repository.</p>
 provided by GitHub that allows you to run a series of actions whenever you push new
 code to your repository, and which can be used to implement continuous integration
 in a repository.</p>
-<div class="section" id="creating-your-homework-repository">
-<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+<section id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Link to this heading">¶</a></h2>
 <p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
@@ -138,9 +140,9 @@ on GitHub.</p>
 <p>Your repository will be seeded with some files for the homework
 and, more specifically, will contain the same files we provided for Homework
 #5 (an implementation of libgeometry).</p>
-</div>
-<div class="section" id="task-1-building-your-code-with-ci">
-<h2>Task 1: Building your code with CI<a class="headerlink" href="#task-1-building-your-code-with-ci" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-1-building-your-code-with-ci">
+<h2>Task 1: Building your code with CI<a class="headerlink" href="#task-1-building-your-code-with-ci" title="Link to this heading">¶</a></h2>
 <p>In most CI systems, we will want to specify a series of actions that
 need to happen automatically whenever any commits are pushed to the
 repository. For example, we may need to build the code in our
@@ -318,13 +320,13 @@ detect that your repository has a workflow file and
 will run the job specified in that workflow.
 You can see the status of the workflow by clicking on the
 Actions tab of your repository:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="Actions tab in GitHub" src="../_images/hw6-github-actions-tab.png" />
-</div>
+</figure>
 <p>You should see something like this:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="GitHub Actions workflows" src="../_images/hw6-workflows.png" />
-</div>
+</figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you see a yellow icon next to your workflow, that means the workflow is still running.
@@ -335,9 +337,9 @@ that triggered that run). As you push more commits
 to your repository, you’ll see more entries in this table.</p>
 <p>If you click on the commit name, you’ll see more details about the workflow’s
 jobs (in this case, we only have one job, <code class="docutils literal notranslate"><span class="pre">build-and-test</span></code>):</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="GitHub Actions workflow jobs" src="../_images/hw6-workflow-jobs.png" />
-</div>
+</figure>
 <p>Make a note of the URL of this page, which should look something like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uchicago</span><span class="o">-</span><span class="n">cmsc22000</span><span class="o">-</span><span class="mi">2022</span><span class="o">/</span><span class="n">hw6</span><span class="o">-</span><span class="n">GITHUB_USERNAME</span><span class="o">/</span><span class="n">actions</span><span class="o">/</span><span class="n">runs</span><span class="o">/</span><span class="n">XXXXXXXXXX</span>
 </pre></div>
@@ -348,14 +350,14 @@ URLs of future runs. To double-check that you’re providing the right URL, make
 that it looks like the one above.</p>
 <p>If we click on the <code class="docutils literal notranslate"><span class="pre">build-and-test</span></code> job, we can see more details on that job,
 including the list of steps that were run in that job:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="GitHub Actions workflow job details" src="../_images/hw6-workflow-job.png" />
-</div>
+</figure>
 <p>And, if we click on an individual step, we can see the output of any commands
 run in that step.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="GitHub Actions step details" src="../_images/hw6-workflow-job-steps.png" />
-</div>
+</figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If a workflow is running (and not completed), you can still navigate to these
@@ -368,9 +370,9 @@ small icon (a green check mark for a successful run, a yellow circle
 for a run in progress, and a red X for a failed run) in the top
 right of your list of files. If you click on it, it will show more
 information about the run:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="Build status on GitHub" src="../_images/hw6-build-status.png" />
-</div>
+</figure>
 <p>If you click on “Details”, it will take you directly to the page with
 more details about that particular run.</p>
 <p>Now, do the following:</p>
@@ -390,9 +392,9 @@ Gradescope (under “Task 1.3: Failed run (tests)”)</p></li>
 </ul>
 <p>Before moving on to the next task, make sure to fix the change you just
 made. Your build should succeed before moving on to the next tasks.</p>
-</div>
-<div class="section" id="task-2-multiple-jobs">
-<h2>Task 2: Multiple jobs<a class="headerlink" href="#task-2-multiple-jobs" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-2-multiple-jobs">
+<h2>Task 2: Multiple jobs<a class="headerlink" href="#task-2-multiple-jobs" title="Link to this heading">¶</a></h2>
 <p>In the previous task we saw that GitHub Actions can build our code and run
 the tests, and alert us to any issues when doing so. However, our job
 was running specifically in an Ubuntu 18.04 environment. What if our
@@ -498,9 +500,9 @@ are built with the right compiler. Take the URL of the run
 you just produced, and paste it
 into Gradescope (under “Task 2.2: Multiple compilers”).</p></li>
 </ul>
-</div>
-<div class="section" id="task-3-supporting-different-environments">
-<h2>Task 3: Supporting Different Environments<a class="headerlink" href="#task-3-supporting-different-environments" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-3-supporting-different-environments">
+<h2>Task 3: Supporting Different Environments<a class="headerlink" href="#task-3-supporting-different-environments" title="Link to this heading">¶</a></h2>
 <p>We are now going to get our build working on Ubuntu 20.04 so,
 before starting this task, make sure you update the matrix to this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">strategy</span><span class="p">:</span>
@@ -553,9 +555,9 @@ resources, it is enough to provide a URL).</p>
 <li><p>Take the URL of the run you just produced, and paste it
 into Gradescope (under “Task 3: Supporting Different Environments”).</p></li>
 </ul>
-</div>
-<div class="section" id="task-4-tweaking-the-matrix">
-<h2>Task 4: Tweaking the Matrix<a class="headerlink" href="#task-4-tweaking-the-matrix" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-4-tweaking-the-matrix">
+<h2>Task 4: Tweaking the Matrix<a class="headerlink" href="#task-4-tweaking-the-matrix" title="Link to this heading">¶</a></h2>
 <p>As we’ve seen, specifying a matrix of configurations allows us
 to very easily verify that our code works across
 multiple combinations of different options. So far, our
@@ -583,9 +585,9 @@ should look for a way to selectively add/remove jobs from an existing matrix.</p
 <li><p>Take the URL of the run you just produced, and paste it
 into Gradescope (under “Task 4: Tweaking the Matrix”).</p></li>
 </ul>
-</div>
-<div class="section" id="submitting-your-homework">
-<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="submitting-your-homework">
+<h2>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Link to this heading">¶</a></h2>
 <p>Please note that you will not be submitting your code through
 Gradescope. Instead, Gradescope will ask you to provide the URLs
 for the runs you produce. If you consulted any external resources
@@ -594,8 +596,8 @@ same text field where you specified the URL for that task’s run.</p>
 <p>That said, we still need you to push your
 code in case we need to look at any of your code (but we will not be
 grading the code itself).</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -610,7 +612,7 @@ grading the code itself).</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

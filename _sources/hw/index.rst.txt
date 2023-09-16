@@ -1,6 +1,15 @@
 Homework
 ========
 
+.. warning::
+
+
+    This website currently reflects the Spring 2022 offering of CMSC 22000. We are in
+    the process of updating this page for the Autumn 2023 offering of CMSC 22000,
+    which will include several major changes to the class. Most notably, the class
+    will now be taught in Python (instead of C) and will revolve around the development
+    of a Python-based web application.
+
 +---+------------------------------------------+--------------------------------+--------------------+
 | # | Homework                                 | Rubric                         | Due Date           |
 +===+==========================================+================================+====================+

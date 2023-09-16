@@ -1,20 +1,22 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
 <title>Homework 9: Documentation and Logging &#8212; CMSC 22000 - Introduction to Software Development</title>
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=0bf093e7" />
+    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css?v=4e80c602" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Getting Help on the Homework Assignments" href="help.html" />
@@ -23,10 +25,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
   </head><body>
 
@@ -120,8 +122,8 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="homework-9-documentation-and-logging">
-<h1>Homework 9: Documentation and Logging<a class="headerlink" href="#homework-9-documentation-and-logging" title="Permalink to this headline">¶</a></h1>
+  <section id="homework-9-documentation-and-logging">
+<h1>Homework 9: Documentation and Logging<a class="headerlink" href="#homework-9-documentation-and-logging" title="Link to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is an <strong>OPTIONAL</strong> homework. You do not have to submit
@@ -133,18 +135,18 @@ will automatically generate documentation for libgeometry and, in the
 second one, we will provide you with a program that simulates playing
 Tic-Tac-Toe under several different strategies, and you will add logging
 code to better track the progress of the simulation.</p>
-<div class="section" id="creating-your-homework-repository">
-<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Permalink to this headline">¶</a></h2>
+<section id="creating-your-homework-repository">
+<h2>Creating your homework repository<a class="headerlink" href="#creating-your-homework-repository" title="Link to this heading">¶</a></h2>
 <p>Like previous homeworks, we will provide you with an <em>invitation URL</em> that
 will allow you sign up for the homework assignment on GitHub, and which will
 result in the creation of a repository called
 <code class="docutils literal notranslate"><span class="pre">hw9-GITHUB_USERNAME</span></code> inside our <code class="docutils literal notranslate"><span class="pre">uchicago-cmsc22000-2022</span></code> organization
 on GitHub. Your repository will be seeded with the files you need
 to complete this homework.</p>
-</div>
-</div>
-<div class="section" id="part-i-documentation">
-<h1>Part I: Documentation<a class="headerlink" href="#part-i-documentation" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="part-i-documentation">
+<h1>Part I: Documentation<a class="headerlink" href="#part-i-documentation" title="Link to this heading">¶</a></h1>
 <p>As we saw in class, there are many different ways of producing
 documentation, from adding a simple README file to your project, to
 writing more comprehensive documentation. There are many frameworks for
@@ -186,8 +188,8 @@ source code in a variety of languages.</p>
 specially useful when we annotate the code wth comments that Doxygen can
 parse and then include in the generated documentation. In this homework, we
 will do this with the libgeometry code.</p>
-<div class="section" id="task-1-creating-the-doxygen-configuration-file">
-<h2>Task 1: Creating the Doxygen configuration file<a class="headerlink" href="#task-1-creating-the-doxygen-configuration-file" title="Permalink to this headline">¶</a></h2>
+<section id="task-1-creating-the-doxygen-configuration-file">
+<h2>Task 1: Creating the Doxygen configuration file<a class="headerlink" href="#task-1-creating-the-doxygen-configuration-file" title="Link to this heading">¶</a></h2>
 <p>Doxygen stores all its configuration information in a configuration
 file, typically named <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code>. While you can create the file
 manually, you can also create a configuration template using the
@@ -195,9 +197,9 @@ manually, you can also create a configuration template using the
 directory inside our <code class="docutils literal notranslate"><span class="pre">libgeometry</span></code> directory. Make sure to run the
 following commands inside the same directory that contains the
 <code class="docutils literal notranslate"><span class="pre">include</span></code> and <code class="docutils literal notranslate"><span class="pre">src</span></code> directories:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ mkdir docs/
-$ <span class="nb">cd</span> docs/
-$ doxygen -g
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>docs/
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>docs/
+$<span class="w"> </span>doxygen<span class="w"> </span>-g
 </pre></div>
 </div>
 <p>That last command will generate a <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> file. If you open it, you
@@ -215,7 +217,7 @@ tags. The value for a tag is specified like this:</p>
 <p>Try running Doxygen inside the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory (by default, it will
 read its configuration from the <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> file in the same
 directory):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ doxygen
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>doxygen
 </pre></div>
 </div>
 <p>Note: this command may take a while to run.</p>
@@ -225,13 +227,13 @@ documentation for “My Project” (or rather, it contains <em>no</em>
 documentation for that project). We need to edit the <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> to
 tell Doxygen where to look for our code. We will do this in the next
 task; before continuing make sure you add the <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> to Git:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git add Doxyfile
-$ git commit -m<span class="s2">&quot;Added basic Doxyfile&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>Doxyfile
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="s2">&quot;Added basic Doxyfile&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="task-2-customizing-the-doxygen-configuration">
-<h2>Task 2: Customizing the Doxygen configuration<a class="headerlink" href="#task-2-customizing-the-doxygen-configuration" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-2-customizing-the-doxygen-configuration">
+<h2>Task 2: Customizing the Doxygen configuration<a class="headerlink" href="#task-2-customizing-the-doxygen-configuration" title="Link to this heading">¶</a></h2>
 <p>Let’s go ahead and change the following tags in the file (make sure to
 find them and set them to the values shown below):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROJECT_NAME</span>           <span class="o">=</span> <span class="s2">&quot;libgeometry&quot;</span>
@@ -254,7 +256,7 @@ you can specify how the file is generated. A list of all the tags can be
 found in the <a class="reference external" href="http://www.doxygen.nl/manual/config.html">Doxygen
 documentation</a></p>
 <p>Go ahead and re-run doxygen:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ doxygen
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>doxygen
 </pre></div>
 </div>
 <p>And, in your web browser, re-load the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file inside the
@@ -290,13 +292,13 @@ documentation, you’ll see that it shows the same information we
 specified in the above comment. In the next task we’ll learn more about
 this comment syntax, and will document a few functions of our own.
 Before continuing, make sure you commit the changes tp <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git add Doxyfile
-$ git commit -m<span class="s2">&quot;Updated Doxyfile&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>Doxyfile
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="s2">&quot;Updated Doxyfile&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="task-3-documenting-your-code">
-<h2>Task 3: Documenting your code<a class="headerlink" href="#task-3-documenting-your-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-3-documenting-your-code">
+<h2>Task 3: Documenting your code<a class="headerlink" href="#task-3-documenting-your-code" title="Link to this heading">¶</a></h2>
 <p>If you click on <code class="docutils literal notranslate"><span class="pre">segment_t</span></code> in the Class List page of the generated
 documentation, you’ll notice the page contains much less documentation
 than <code class="docutils literal notranslate"><span class="pre">point_t</span></code> and <code class="docutils literal notranslate"><span class="pre">polygon_t</span></code>. This is because we have not yet
@@ -361,7 +363,7 @@ function comment should include the following:</p>
 </ul>
 <p>Once you have added the comment blocks, re-generate the documentation by
 running this:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ doxygen
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>doxygen
 </pre></div>
 </div>
 <p>Reload the documentation in your browser. The <code class="docutils literal notranslate"><span class="pre">segment_t</span></code> page (linked
@@ -374,10 +376,10 @@ and <code class="docutils literal notranslate"><span class="pre">docs/latex/</sp
 <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file that will prevent you from doing this but, in
 general, it’s useful to remember that automatically-generated files
 should not be committed to a source code repository.</p>
-</div>
-</div>
-<div class="section" id="part-ii-logging">
-<h1>Part II: Logging<a class="headerlink" href="#part-ii-logging" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="part-ii-logging">
+<h1>Part II: Logging<a class="headerlink" href="#part-ii-logging" title="Link to this heading">¶</a></h1>
 <p>Over the course of the project, many of you have come across the desire
 to pepper your code with <code class="docutils literal notranslate"><span class="pre">printf</span></code> statements to see a “trace” of your
 program running. This is a <a class="reference external" href="https://uchicago-cs.github.io/debugging-guide/#print-debugging">valuable debugging
@@ -387,8 +389,8 @@ debugging statements (which you then need to manually comment out before
 releasing your software). In this part of the homework, we’re going to
 explore a more methodical way of printing messages that inform you of
 the state of your program.</p>
-<div class="section" id="what-is-logging">
-<h2>What is logging?<a class="headerlink" href="#what-is-logging" title="Permalink to this headline">¶</a></h2>
+<section id="what-is-logging">
+<h2>What is logging?<a class="headerlink" href="#what-is-logging" title="Link to this heading">¶</a></h2>
 <p>Logging is, in essence, nothing more than controlled <code class="docutils literal notranslate"><span class="pre">printf</span></code>s,
 separated into <em>log levels</em>. A typical logging library will provide
 several standard log levels:</p>
@@ -421,15 +423,15 @@ games and add logging so we can see the progress of the simulation. The
 program is in the <code class="docutils literal notranslate"><span class="pre">tictactoe</span></code> directory in your repository. Before continuing,
 take a moment to read the README file in that directory. Make sure you
 can build the program, and run it as described in the README file.</p>
-</div>
-<div class="section" id="task-4-setup">
-<h2>Task 4: Setup<a class="headerlink" href="#task-4-setup" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-4-setup">
+<h2>Task 4: Setup<a class="headerlink" href="#task-4-setup" title="Link to this heading">¶</a></h2>
 <p>In order to actually use the logging library, we need to import it into
 our repository. We could copy the files in, but that’s a pretty
 inelegant solution. We will instead use git submodules, like we did in
 the previous homework. Run the following command from the root of your
 repository:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git submodule add https://github.com/rxi/log.c tictactoe/lib/log.c
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/rxi/log.c<span class="w"> </span>tictactoe/lib/log.c
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -438,9 +440,9 @@ repository:</p>
 <code class="docutils literal notranslate"><span class="pre">log.c</span></code>, <em>not</em> a file. The name of the whole library is <code class="docutils literal notranslate"><span class="pre">log.c</span></code>,
 which is really confusing because it sounds like a filename.</p>
 </div>
-</div>
-<div class="section" id="task-5-up-and-running-with-log-c">
-<h2>Task 5: Up and running with <code class="docutils literal notranslate"><span class="pre">log.c</span></code><a class="headerlink" href="#task-5-up-and-running-with-log-c" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="task-5-up-and-running-with-log-c">
+<h2>Task 5: Up and running with <code class="docutils literal notranslate"><span class="pre">log.c</span></code><a class="headerlink" href="#task-5-up-and-running-with-log-c" title="Link to this heading">¶</a></h2>
 <p>Your task is simple: read the code and figure out what it does, and then
 add logging statements at the appropriate log levels throughout the
 code. You can <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;log.c/src/log.h&quot;</span></code> (again - confusing library
@@ -495,14 +497,14 @@ self in mind (e.g., if you wanted to implement a new strategy and wanted
 to use logging to see how it unfolds step by step). When testing those
 use cases, make sure you set the <code class="docutils literal notranslate"><span class="pre">-n</span></code> option to a low value, to avoid
 overwhelming your terminal with output.</p>
-</div>
-</div>
-<div class="section" id="submitting-your-homework">
-<h1>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="submitting-your-homework">
+<h1>Submitting your homework<a class="headerlink" href="#submitting-your-homework" title="Link to this heading">¶</a></h1>
 <p>This is an optional, ungraded homework. You do not need to submit anything
 but, if you need any help with this homework, please make sure you push your
 latest code before asking for help.</p>
-</div>
+</section>
 
 
     </div>
@@ -517,7 +519,7 @@ latest code before asking for help.</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

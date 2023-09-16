@@ -1,20 +1,22 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
 <title>Design Warm-up #1: Boardmaster 3000 &#8212; CMSC 22000 - Introduction to Software Development</title>
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=0bf093e7" />
+    <link rel="stylesheet" type="text/css" href="../_static/chiweb.css?v=4e80c602" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CS 220 FAQs" href="../resources/faq.html" />
@@ -23,10 +25,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
 
   </head><body>
 
@@ -127,8 +129,16 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="design-warm-up-1-boardmaster-3000">
-<h1>Design Warm-up #1: Boardmaster 3000<a class="headerlink" href="#design-warm-up-1-boardmaster-3000" title="Permalink to this headline">¶</a></h1>
+  <section id="design-warm-up-1-boardmaster-3000">
+<h1>Design Warm-up #1: Boardmaster 3000<a class="headerlink" href="#design-warm-up-1-boardmaster-3000" title="Link to this heading">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This website currently reflects the Spring 2022 offering of CMSC 22000. We are in
+the process of updating this page for the Autumn 2023 offering of CMSC 22000,
+which will include several major changes to the class. Most notably, the class
+will now be taught in Python (instead of C) and will revolve around the development
+of a Python-based web application.</p>
+</div>
 <p><strong>Due:</strong> Wednesday, April 13th, 8pm</p>
 <p>You have recently joined a software company that is developing an
 exciting new game: The Boardmaster 3000! This game will allow users to
@@ -151,18 +161,20 @@ Boardcoin, and sell screenshots of your games as NFTs!</p>
 company. Your team will be focusing on a different task: loading/saving
 games from/to disk, and providing an API for manipulating the state of
 the game.</p>
-<div class="section" id="the-cbf-format">
-<h2>The CBF Format<a class="headerlink" href="#the-cbf-format" title="Permalink to this headline">¶</a></h2>
+<section id="the-cbf-format">
+<h2>The CBF Format<a class="headerlink" href="#the-cbf-format" title="Link to this heading">¶</a></h2>
 <p>The Boardmaster 3000 will need to be able to save games to disk (e.g.,
 if we want to stop playing, and then resume the game at a later time),
 and then load those saved games from disk (additionally, a user may want
 to load a famous chess match). We will be using a simple file format
 called CBF (ChessBoard File), where the chessboard is represented with
 text characters. For example, this chessboard:</p>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <img alt="Chess game. Source: https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6" src="../_images/chess.png" />
-<p class="caption"><span class="caption-text">Source: <a class="reference external" href="https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6">https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6</a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Source: <a class="reference external" href="https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6">https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6</a></span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Would be represented like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R_BK_B_R</span>
 <span class="n">PP_NQ_P_</span>
@@ -186,18 +198,18 @@ letters:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">q</span></code>/<code class="docutils literal notranslate"><span class="pre">Q</span></code>: Queen</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">k</span></code>/<code class="docutils literal notranslate"><span class="pre">K</span></code>: King</p></li>
 </ul>
-</div>
-<div class="section" id="chess-rules">
-<h2>Chess rules<a class="headerlink" href="#chess-rules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="chess-rules">
+<h2>Chess rules<a class="headerlink" href="#chess-rules" title="Link to this heading">¶</a></h2>
 <p>Our first version of the Boardmaster 3000 will only have to support a
 subset of the rules of chess. In particular, we will only support the
 moves specified in the “Basic moves” section of the <a class="reference external" href="https://en.wikipedia.org/wiki/Rules_of_chess#Basic_moves">Rules of
 chess</a>
 Wikipedia article. This means we do not yet support castling, <em>en
 passant</em>, or pawn promotion.</p>
-</div>
-<div class="section" id="your-task">
-<h2>Your task<a class="headerlink" href="#your-task" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="your-task">
+<h2>Your task<a class="headerlink" href="#your-task" title="Link to this heading">¶</a></h2>
 <p>Broadly speaking, you will be responsible for designing modules for
 loading, manipulating, and saving the state of a single game. While this
 may not seem terribly exciting in isolation, your modules will be used
@@ -235,9 +247,9 @@ an illegal move.</p></li>
 </ul>
 <p>Hint: A big part of this design will be to figure out how to represent
 the state of the game using C structs.</p>
-</div>
-<div class="section" id="deliverables">
-<span id="warmup-deliverables"></span><h2>Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="deliverables">
+<span id="warmup-deliverables"></span><h2>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">¶</a></h2>
 <p>Instead of preparing a formal document, you will be specifying your
 design in C code. For each module you design, you must provide a header
 file and a C file. The header file should contain all the functions that
@@ -245,19 +257,19 @@ are provided by that module, and the C file should contain empty
 implementations of those functions. Each function in the header file
 must include code comments explaining the purpose of the function.</p>
 <p>For example:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="p">.</span><span class="n">h</span><span class="o">:</span>
 
-    <span class="cm">/* This function adds two numbers */</span>
-    <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* This function adds two numbers */</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
 
-<span class="n">math</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span>
+<span class="n">math</span><span class="p">.</span><span class="n">c</span><span class="o">:</span>
 
-    <span class="cm">/* See math.h*/</span>
-    <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="cm">/* TODO */</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="cm">/* See math.h*/</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/* TODO */</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>You must also provide struct definitions for any data structures you
@@ -269,34 +281,34 @@ can include a forward declaration in lieu of an actual data structure
 (i.e., you do not need to design a linked list module or find an
 existing one).</p>
 <p>For example:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printer</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printer</span><span class="p">.</span><span class="n">h</span><span class="o">:</span>
 
-    <span class="cm">/* Forward declaration */</span>
-    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">list</span> <span class="n">list_t</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* Forward declaration */</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">list</span><span class="w"> </span><span class="n">list_t</span><span class="p">;</span>
 
-    <span class="cm">/* This struct represent a single print job. A print</span>
+<span class="w">    </span><span class="cm">/* This struct represent a single print job. A print</span>
 <span class="cm">       job includes some text that needs to be printed out */</span>
-    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">printjob</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">identifier</span><span class="p">;</span>
-        <span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">;</span>
-    <span class="p">}</span> <span class="n">printjob_t</span><span class="p">;</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">printjob</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">identifier</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">text</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">printjob_t</span><span class="p">;</span>
 
-    <span class="cm">/*</span>
+<span class="w">    </span><span class="cm">/*</span>
 <span class="cm">    typedef struct printer</span>
 <span class="cm">    {</span>
 <span class="cm">        char *name;</span>
 
 <span class="cm">        /* Duplex printing: true if printer can do two-sided printing */</span>
-        <span class="kt">bool</span> <span class="n">duplex</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">duplex</span><span class="p">;</span>
 
-        <span class="cm">/* Print job that is currently being printed (NULL if none) */</span>
-        <span class="n">printjob_t</span> <span class="o">*</span><span class="n">current_job</span><span class="p">;</span>
+<span class="w">        </span><span class="cm">/* Print job that is currently being printed (NULL if none) */</span>
+<span class="w">        </span><span class="n">printjob_t</span><span class="w"> </span><span class="o">*</span><span class="n">current_job</span><span class="p">;</span>
 
-        <span class="cm">/* List of printjob_t structs. Represents the jobs that</span>
+<span class="w">        </span><span class="cm">/* List of printjob_t structs. Represents the jobs that</span>
 <span class="cm">           are waiting to be printed */</span>
-        <span class="n">list_t</span> <span class="o">*</span><span class="n">jobs</span><span class="p">;</span>
-    <span class="p">}</span> <span class="n">printer_t</span><span class="p">;</span>
+<span class="w">        </span><span class="n">list_t</span><span class="w"> </span><span class="o">*</span><span class="n">jobs</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">printer_t</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>We encourage you to follow <a class="reference external" href="https://uchicago-cs.github.io/dev-guide/style_guide_c.html">this style
@@ -326,9 +338,9 @@ approached the same design problem, which can be very useful in honing
 your own design skills. However, this also means you have to make sure
 your code and documentation will be easy to read and understand by
 others.</p>
-</div>
-<div class="section" id="creating-your-shared-team-repository">
-<h2>Creating your shared team repository<a class="headerlink" href="#creating-your-shared-team-repository" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="creating-your-shared-team-repository">
+<h2>Creating your shared team repository<a class="headerlink" href="#creating-your-shared-team-repository" title="Link to this heading">¶</a></h2>
 <p>Similar to the homework assignments, you will have to follow an <em>invitation
 URL</em> to create a repository. However, you will now be given a repository
 that everyone in your team will have access to. Once you follow the
@@ -339,9 +351,9 @@ accept the invitation. Simply specify your team’s name under “OR Create
 a new team” and click “+ Create team”. Make sure to use a name like “Team A”, “Team B”, etc.</p>
 <p>If you join the wrong team, or mistakenly create a duplicate team,
 please notify an instructor/TA.</p>
-</div>
-<div class="section" id="submission-instructions">
-<h2>Submission Instructions<a class="headerlink" href="#submission-instructions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="submission-instructions">
+<h2>Submission Instructions<a class="headerlink" href="#submission-instructions" title="Link to this heading">¶</a></h2>
 <p>Before submitting, make sure you’ve added, committed, and pushed all
 your code to GitHub.</p>
 <p>You will submit your code through Gradescope. Please note that only one
@@ -351,10 +363,10 @@ you will be given the option of uploading a GitHub repository. Make sure you sel
 <code class="docutils literal notranslate"><span class="pre">design1-team-X</span></code> repository, with “main” as the
 branch. Please note that you can submit as many times as you want before
 the deadline.</p>
-</div>
-</div>
-<div class="section" id="design-warm-up-2-boardmaster-3000-part-ii">
-<h1>Design Warm-up #2: Boardmaster 3000 (Part II)<a class="headerlink" href="#design-warm-up-2-boardmaster-3000-part-ii" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="design-warm-up-2-boardmaster-3000-part-ii">
+<h1>Design Warm-up #2: Boardmaster 3000 (Part II)<a class="headerlink" href="#design-warm-up-2-boardmaster-3000-part-ii" title="Link to this heading">¶</a></h1>
 <p><strong>Due:</strong> Wednesday, April 20th, 8pm CDT</p>
 <p>Good news, everyone! The first version of the Boardmaster 3000 has been
 a resounding success! We got a lot of quality feedback from users, which
@@ -376,8 +388,8 @@ chessboard-based games</p></li>
 </ul>
 <p>In this design exercise, you will revise your previous design to
 accommodate these additional features.</p>
-<div class="section" id="additional-games">
-<h2>Additional games<a class="headerlink" href="#additional-games" title="Permalink to this headline">¶</a></h2>
+<section id="additional-games">
+<h2>Additional games<a class="headerlink" href="#additional-games" title="Link to this heading">¶</a></h2>
 <p>The Boardmaster 3000 must now support
 <a class="reference external" href="https://en.wikipedia.org/wiki/Draughts">checkers</a> (and,
 specifically, <a class="reference external" href="https://en.wikipedia.org/wiki/International_draughts">International
@@ -390,8 +402,8 @@ Chess, and should be easily extensible to support other games played on
 a square chessboard. For example, it’s likely we will want to support
 <a class="reference external" href="https://en.wikipedia.org/wiki/Capablanca_Chess">Capablanca Chess</a> in
 the near future.</p>
-<div class="section" id="international-checkers">
-<h3>International Checkers<a class="headerlink" href="#international-checkers" title="Permalink to this headline">¶</a></h3>
+<section id="international-checkers">
+<h3>International Checkers<a class="headerlink" href="#international-checkers" title="Link to this heading">¶</a></h3>
 <p>We will follow the rules described in the <a class="reference external" href="https://en.wikipedia.org/wiki/International_draughts">International
 draughts</a>
 Wikipedia article. However, it is not our goal to support every possible
@@ -402,33 +414,33 @@ into account this means you don’t have to support capturing multiple
 pieces in successive jumps.</p>
 <p>Take into account that checkers is played on a 10x10 board, an
 additional requirement that is described further below.</p>
-</div>
-<div class="section" id="almost-chess">
-<h3>Almost Chess<a class="headerlink" href="#almost-chess" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="almost-chess">
+<h3>Almost Chess<a class="headerlink" href="#almost-chess" title="Link to this heading">¶</a></h3>
 <p>In <a class="reference external" href="https://en.wikipedia.org/wiki/Almost_Chess">Almost Chess</a>, the
 queen piece is replaced with a
 <a class="reference external" href="https://en.wikipedia.org/wiki/Empress_(chess)">chancellor</a> piece,
 which can move like a rook or a knight. Other than that, there are no
 other changes to the rules.</p>
-</div>
-</div>
-<div class="section" id="larger-chessboards">
-<h2>Larger Chessboards<a class="headerlink" href="#larger-chessboards" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="larger-chessboards">
+<h2>Larger Chessboards<a class="headerlink" href="#larger-chessboards" title="Link to this heading">¶</a></h2>
 <p>In part due to supporting checkers, we now have to be able to support
 chessboards larger than 8x8. Besides the 10x10 chessboard, we may want
 to also allow for chess to be played in chessboards larger than 8x8. You
 may assume that, when using a larger chessboard, the game still starts
 with 32 pieces, and that the exact initial arrangement will be an
 implementation detail.</p>
-</div>
-<div class="section" id="pawn-promotion">
-<h2>Pawn Promotion<a class="headerlink" href="#pawn-promotion" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pawn-promotion">
+<h2>Pawn Promotion<a class="headerlink" href="#pawn-promotion" title="Link to this heading">¶</a></h2>
 <p>We will now support pawn promotion in chess: when a pawn reaches the
 other end of the board, it can be promoted to a queen, rook, bishop, or
 knight. We will continue to <em>not</em> support castling or <em>en passant</em>.</p>
-</div>
-<div class="section" id="support-for-cbfv2">
-<h2>Support for CBFv2<a class="headerlink" href="#support-for-cbfv2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="support-for-cbfv2">
+<h2>Support for CBFv2<a class="headerlink" href="#support-for-cbfv2" title="Link to this heading">¶</a></h2>
 <p>The CBF format we used in the first design is insufficient to support
 the new features being introduced in this new version of the Boardmaster
 3000. Fortunately, there is a more advanced format, CBFv2, we can use.
@@ -475,9 +487,9 @@ the first move in the game.</p></li>
 <li><p>In almost chess, a chancellor is represented with <code class="docutils literal notranslate"><span class="pre">c</span></code>/<code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
 <li><p>In checkers, a crowned piece is represented with <code class="docutils literal notranslate"><span class="pre">k</span></code>/<code class="docutils literal notranslate"><span class="pre">K</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="id1">
-<h2>Your task<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2>Your task<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>You must modify the design you produced in the first design exercise to
 support these additional requirements, possibly adding additional
 modules. The number of changes required will depend on how
@@ -536,18 +548,18 @@ design to accommodate the additional requirements?</p></li>
 your original design that would’ve made it easier to add support for
 these additional requirements?</p></li>
 </ul>
-</div>
-<div class="section" id="id2">
-<h2>Creating your shared team repository<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2>Creating your shared team repository<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>Like the previous design exercise, you will have to follow an
 <em>invitation URL</em> to create a repository. However, since the teams were
 already created in the previous design exercise, the invitation URL will
 show you all the existing teams, and all you need to do is select yours.</p>
 <p>If you join the wrong team, or mistakenly create a duplicate team,
 please notify an instructor/TA.</p>
-</div>
-<div class="section" id="id3">
-<h2>Submission Instructions<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2>Submission Instructions<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>Before submitting, make sure you’ve added, committed, and pushed all
 your code to GitHub.</p>
 <p>You will submit your code through Gradescope. Please note that only one
@@ -557,10 +569,10 @@ you will be given the option of uploading a GitHub repository. Make sure you sel
 <code class="docutils literal notranslate"><span class="pre">design2-team-X</span></code> repository, with “main” as the
 branch. Please note that you can submit as many times as you want before
 the deadline.</p>
-</div>
-</div>
-<div class="section" id="grading">
-<h1>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="grading">
+<h1>Grading<a class="headerlink" href="#grading" title="Link to this heading">¶</a></h1>
 <p>Unlike the homeworks, the grading for the design warm-up exercise is more subjective,
 as there are many valid designs one could come up with that meet the above requirements.
 That said, there will be a few guiding principles when determining your score in Design
@@ -590,7 +602,7 @@ contributes one ESNU score: the score you get for Design Warm-up #2 (which, opti
 you can improve with a resubmission). Any feedback you receive after Design Warm-up #1
 is just informational. If you are not sure what this means, now may be a good time to
 review our <a class="reference external" href="../grading.html">Grading</a> page.</p>
-</div>
+</section>
 
 
     </div>
@@ -605,7 +617,7 @@ review our <a class="reference external" href="../grading.html">Grading</a> page
     </p>
     <p>
         &copy; Copyright 2011-2021, The University of Chicago.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>
