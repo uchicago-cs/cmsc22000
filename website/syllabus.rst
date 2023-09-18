@@ -3,7 +3,7 @@ Syllabus
 
 .. warning::
 
-    CMSC 22000 is undergoing a major redesign in Autumn 2023, and this syllabus is subject to change.
+    CMSC 22000 is undergoing a major redesign in Autumn 2023. The syllabus below already reflects all the changes done for the Autumn 2023 offering, but is still subject to change.
 
 ..
     .. note::
