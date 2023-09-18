@@ -19,7 +19,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Grading" href="grading.html" />
+    <link rel="next" title="Academic Honesty" href="academic-honesty.html" />
     <link rel="prev" title="CMSC 22000 - Introduction to Software Development" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -56,35 +56,10 @@
             
             
             
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course Information <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-        <li><a href="#">Syllabus</a></li>
-        <li><a href="calendar.html">Calendar</a></li>
-        <li><a href="code-of-conduct.html">Code of Conduct for Course Staff</a></li>
-    </ul>
-</li>
-<li><a href="hw/index.html">Homework</a></li>
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-        <li><a href="project/index.html">Introduction</a></li>
-        <li><a href="project/chiventure.html">chiventure</a></li>
-        <li><a href="project/policies.html">Policies</a></li>
-        <li><a href="project/issue-pr-grading.html">Issue/PR Grading</a></li>
-        <li><a href="project/features.html">Features</a></li>
-    </ul>
-</li>
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-        <li><a href="resources/faq.html">CS 220 FAQs</a></li>
-        <li><a href="resources/tutorials/index.html">Tutorials</a></li>
-        <li><a href="https://uchicago-cs.github.io/dev-guide/" target="_blank">UChicago CS Developer's Guide <i class="fa fa-external-link"></i></a></li>
-        <li><a href="https://uchicago-cs.github.io/debugging-guide" target="_blank">The Debugging Guide <i class="fa fa-external-link"></i></a></li>
-        <li><a href="resources/other.html">Other Resources</a></li>
-    </ul>
-</li>
+<li><a href="#">Syllabus</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="project.html">Project</a></li>
+<li><a href="faq.html">FAQ</a></li>
 
             
           </ul>
@@ -114,6 +89,7 @@
 <li><a class="reference internal" href="#policies">Policies</a><ul>
 <li><a class="reference internal" href="#code-of-conduct-for-course-staff">Code of Conduct for Course Staff</a></li>
 <li><a class="reference internal" href="#policy-on-academic-honesty">Policy on academic honesty</a></li>
+<li><a class="reference internal" href="#policy-on-generative-ai">Policy on Generative AI</a></li>
 <li><a class="reference internal" href="#diversity-statement">Diversity statement</a></li>
 <li><a class="reference internal" href="#accessibility-statement">Accessibility statement</a></li>
 </ul>
@@ -130,68 +106,74 @@
 <h1>Syllabus<a class="headerlink" href="#syllabus" title="Link to this heading">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This website currently reflects the Spring 2022 offering of CMSC 22000. We are in
-the process of updating this page for the Autumn 2023 offering of CMSC 22000,
-which will include several major changes to the class. Most notably, the class
-will now be taught in Python (instead of C) and will revolve around the development
-of a Python-based web application.</p>
+<p>CMSC 22000 is undergoing a major redesign in Autumn 2023. The syllabus below already reflects all the changes done for the Autumn 2023 offering, but is still subject to change.</p>
 </div>
 <section id="course-description">
 <h2>Course Description<a class="headerlink" href="#course-description" title="Link to this heading">¶</a></h2>
-<p>Developing a software system (e.g., an application, a web server, an
-operating system, etc.) requires much more than just knowing how to
-program. Software development encompasses multiple activities, such as
-systems design, implementation, testing, debugging, deployment,
-documentation, and maintenance, all weaved together by following a
-specific methodology. Not just that, software development is a highly
+<p>This class expands on the software development topics introduced
+in CMSC 14200 Introduction to Computer Science 2, and uses the
+development of web-based applications as a vehicle to explore
+several concepts that reoccur frequently in modern software development, such
+as client/server software, databases, data modeling, APIs, software
+deployment, and software observability. This class also emphasizes
+how software development is a highly
 collaborative activity, where certain skills, like effective
 communication and the ability to give/receive feedback, can be key to
 the success of a software project.</p>
-<p>This class bridges the gap between knowing how to program and knowing
-how to develop software: it is intended for students who have recently
-completed CMSC 15200 Introduction to Computer Science 2 or CMSC 16200
-Honors Introduction to Computer Science 2, and will cover fundamental
-concepts and skills in software development, providing a solid
-foundation before students move on to majors-level classes that require
-developing complex software systems. The class will cover foundational
-topics in software development in lectures, but will also include
-hands-on homeworks, guest lectures from industry speakers, and a
+<p>More specifically, in this course, students will learn how to…</p>
+<ul class="simple">
+<li><p>… implement and deploy web applications with a database-driven backend.</p></li>
+<li><p>… understand basic foundational concepts in databases and computer
+networking that are relevant in many modern software systems, including
+the design of object-relational schemas.</p></li>
+<li><p>… follow a software development process/methodology to manage the life
+cycle of a software system, and use tools that support the software
+development process (e.g., testing frameworks, debuggers, linters/formatters,
+logging frameworks, etc.)</p></li>
+<li><p>… develop software collaboratively through (a) the use of tools, systems,
+and best practices available to facilitate that collaboration (e.g.,
+version control systems, code reviews, task tracking, etc.), and (b)
+exercising collaborative skills (communication, giving/accepting feedback, etc.)</p></li>
+</ul>
+<p>The class will cover foundational topics in software development in
+lectures, and will involve the development of a deployable web application
+throughout a series of homeworks. The course also features a
 collaborative quarter-long project, where the entire class, divided into
 teams with specific responsibilities, will work on developing new
 features for an existing software system.</p>
-<p>In this course, students will learn how to…</p>
-<ul class="simple">
-<li><p>… follow a software development process/methodology to manage the
-life cycle of a software system.</p></li>
-<li><p>… use tools that support the software development process (e.g.,
-build systems, testing frameworks, debuggers, etc.)</p></li>
-<li><p>… develop software collaboratively through (a) the use of tools,
-systems, and best practices available to facilitate that
-collaboration (e.g., version control systems, code reviews, task
-tracking, etc.), and (b) exercising collaborative skills
-(communication, giving/accepting feedback, etc.)</p></li>
-</ul>
 <section id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h3>
-<p>Students must have taken CMSC 15200 or CMSC 16200.</p>
-<p>In Spring 2022, students will have to apply to participate in this
-class, and only students who took CMSC 15200 or CMSC 16200 in Spring
-2021, Summer 2021, Autumn 2021, or Winter 2022 will be invited to apply
-(<em>absolutely no exceptions will be made</em>).</p>
-<p>Please note that CMSC 15400 is <em>not</em> a prerequisite for this class.
-Students who are taking CMSC 15200/16200 in Winter 2022, and who end up
-taking CMSC 22000, are strongly encouraged to defer CMSC 15400 until the
-Fall, instead of taking CMSC 22000 and CMSC 15400 concurrently.</p>
+<p>Students must have taken CMSC 14200. We recommend taking the class within
+a year of completing CMSC 14200.</p>
+<p>Space permitting, in Autumn 2023 we may allow students who took CMSC 15200
+or CMSC 16200 to take the class, with the understanding that they may need
+to do a large amount of self-guided study to cover the topics we assume
+from students coming out of CMSC 14200, including fluency in Python.</p>
 </section>
 </section>
 <section id="course-organization">
 <h2>Course Organization<a class="headerlink" href="#course-organization" title="Link to this heading">¶</a></h2>
-<p>The class meets in-person three times a week for lectures (MWF 2:30pm - 3:20pm in Ryerson 251).
-Additionally, we have time reserved on Mondays 4:30pm-5:50pm for project
-teams meetings (this is listed as a “lab” on the Registrar’s site, but
-please note that it is not a traditional lab session). These project team
-meetings will start on Week 3, but we will also be scheduling other
-activities during the Week 1 and Week 2 lab slots.</p>
+<p>The class meets in-person three times a week for lectures (MWF 1:30pm - 2:20pm in Ryerson 277).</p>
+<p>The content covered in the lectures is divided into two blocks:</p>
+<ul>
+<li><p><strong>Weeks 1-4: Software Design and Implementation</strong></p>
+<p>These lectures will focus on covering several foundational concepts related to the design
+and implementation of web applications, including client/server software, databases,
+data design, and APIs. Bear in mind that, while we will be focusing on web applications,
+these are concepts that show up in many other contexts.</p>
+</li>
+<li><p><strong>Weeks 5-9: Software Validation, Deployment, and Evolution</strong></p>
+<p>In CMSC 14200, we dealt with applications that ran on a single machine. Now,
+we will deal with applications that run on a server, and may involve invoking
+multiple external APIs. We will cover integration testing in more depth,
+how these kind of applications are deployed to users, and how to monitor
+and maintain such applications.</p>
+</li>
+</ul>
+<p>Additionally, we have time reserved on Mondays 4:30pm-5:50pm for project
+teams meetings (this is listed as a “discussion” on the Registrar’s site, but
+please note that it is not a traditional discussion session). These project team
+meetings will start on Week 3.</p>
 <p>A large part of the class will revolve around the development of a
 software project where students will be able to apply many of the
 concepts covered in the lectures (this project is described in more
@@ -203,23 +185,23 @@ the project. In each team, a TA will act as the senior developer in the
 team. Students will be assessed both on their performance as a team, as
 well as on their performance on individual tasks assigned to them in
 their teams.</p>
-<p>During the first two weeks of the quarter, the class will focus on
-covering core concepts regarding the software development process.
-Starting in week 3, the focus of the class will shift towards the
-development of the course project, and the lecture sessions
-will switch to the following:</p>
-<ul class="simple">
-<li><p><strong>Mondays</strong>: Sprint reviews and all-hands meetings</p></li>
-<li><p><strong>Wednesdays</strong>: Traditional lecture (supplemented with some pre-recorded lectures)</p></li>
-<li><p><strong>Friday</strong>: Guest lecture / Panel discussion with outside speakers</p></li>
-</ul>
-<p>For a complete schedule of lectures and other milestones, please see
-the <a class="reference external" href="calendar.html">Course Calendar</a>.</p>
+<p>Starting in week 4, the Monday lecture will be used to hold an all-hands
+meeting for the project, where we will cover some content related to
+software project management, and will also ask each team to deliver an
+update on their work so far.</p>
+<p>Please see the <a class="reference external" href="calendar.html">Course Calendar</a> for more details.</p>
 <section id="homework">
 <h3>Homework<a class="headerlink" href="#homework" title="Link to this heading">¶</a></h3>
-<p>Weekly homework assignments will supplement the material covered in lectures, and
-will allow students to learn and practice skills that will be necessary
-in the course project. These assignments must be completed individually.</p>
+<p>Throughout the quarter, students will individually build a small web
+application through a series of weekly homeworks. These homeworks will
+allow students to get hands-on exposure to many of the concepts
+covered in lectures, and will provide preparation for the course project.</p>
+<p>While the homeworks will be done individually, the data design for the
+web application will be done collaboratively in the same teams as
+the course project.</p>
+<p>By the end of the quarter, each student with have a deployable web application
+that they are welcome to deploy publicly on a cloud provider, so they can demonstrate
+the application to friends, colleagues, prospective employers, etc.</p>
 </section>
 <section id="project">
 <h3>Project<a class="headerlink" href="#project" title="Link to this heading">¶</a></h3>
@@ -233,35 +215,38 @@ undergraduate TA acting as a “senior developer” in each of these teams
 (TAs will be students who have previously taken CMSC 22000 and/or who
 have prior industry experience via internships). Teams will be arranged
 by the instructor/TAs (they will not be self-selecting).</p>
-<p>During Weeks 2-3, the teams will work on a warmup exercise on software
-design. A design exercise will be assigned in Week 2 (due Week 3), and a
-follow-up exercise will be assigned in Week 3 (due Week 4). Teams will
-get feedback on their first exercise before the second one is due, and
-we will be discussing the first design exercise in class during Week 3.</p>
-<p>Starting in Week 3, project planning will follow a Scrum-like process,
-with weeks 3-9 of the quarter being divided into several sprints.
+<p>During Weeks 2-4, the teams will work on two warm-up exercises:</p>
+<ul class="simple">
+<li><p><strong>Warm-up #1: Using Git Collaboratively</strong>. In this exercise, the team
+will create a team repository, and will gain experience with using
+Git collaboratively, as well as using GitHub Issues and Pull Requests,
+which will be an important part of the project.</p></li>
+<li><p><strong>Warm-up #2: Homework Data Design</strong>. The team will work together on
+the data design for the web application developed in the homeworks.</p></li>
+</ul>
+<p>Starting in Week 5, project planning will follow a Scrum-like process,
+with weeks 5-9 of the quarter being divided into several sprints.
 Starting on Week 3, all teams have an all-hands meeting during Monday
 class hours, and each team will have an additional team meeting during
-the lab section of the class. Teams will keep track of their tasks
-through GitHub issues, with grading primarily based on their performance
+the discussion section of the class. Teams will keep track of their tasks
+through GitHub Issues, with grading primarily based on their performance
 on these tasks.</p>
-<p>More details on the project can be found on the <a class="reference external" href="project/index.html">Project</a> page.</p>
 </section>
 </section>
 <section id="books">
 <h2>Books<a class="headerlink" href="#books" title="Link to this heading">¶</a></h2>
-<p>While this class does not have a required textbook, most of the Software
-Engineering content draws heavily from Ian Sommerville’s book, <a class="reference external" href="http://iansommerville.com/software-engineering-book/">Software
-Engineering</a>.
-The Software Design content also draws heavily from John Ousterhout’s
-<a class="reference external" href="https://www.amazon.com/Philosophy-Software-Design-John-Ousterhout/dp/1732102201">A Philosophy of Software Design</a>.</p>
-<p>Please see the <a class="reference external" href="resources/other.html">Other Resources</a> page for a
-number of other books and online resources covering much of the material
-in this class.</p>
+<p>This class does not have a required textbook, and we will provide lecture
+notes for the content covered in lectures.</p>
+<p>We recommend the following two books for anyone who would like to learn
+more about software engineering specifically:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.amazon.com/Philosophy-Software-Design-2nd/dp/173210221X">A Philosophy of Software Design</a>, John Ousterhout</p></li>
+<li><p><a class="reference external" href="http://iansommerville.com/software-engineering-book/">Software Engineering</a>, Ian Sommerville</p></li>
+</ul>
 </section>
 <section id="grading">
 <h2>Grading<a class="headerlink" href="#grading" title="Link to this heading">¶</a></h2>
-<p>Please see our <a class="reference external" href="grading.html">Grading</a> page.</p>
+<p>We are still updating our grading policies for the Autumn 2023 offering of CMSC 22000. Please check back later.</p>
 </section>
 <section id="policies">
 <h2>Policies<a class="headerlink" href="#policies" title="Link to this heading">¶</a></h2>
@@ -280,7 +265,8 @@ any issues from reocurring.</p>
 <p>We take academic honesty very seriously in this class. Please make sure to
 read our <a class="reference external" href="academic-honesty.html">Academic Honesty</a> page. Please note that
 this policy applies primarily to the homework assignments,
-which must be completed individually.</p>
+which must be completed individually. We also have a specific policy on
+the use of Generative AI systems, which you can find below.</p>
 <p>On the other hand, the project is structured
 in such a way that you can collaborate and share code with anyone in the class,
 and even use code you find on the Internet. However,
@@ -297,6 +283,7 @@ them somewhere.</p></li>
 <li><p>Posting on online forums for help with figuring out a issue with your code (we would prefer
 that you ask those questions directly to us but, to be clear, using external forums in this way
 is not forbidden).</p></li>
+<li><p>Using Generative AI systems (we expand on this in the section below)</p></li>
 </ul>
 <p>In general, we will not be policing the attribution of small-scale contributions by outside
 sources, but it is still important that you include those attributions from a documentation
@@ -314,6 +301,48 @@ as a way to improve your score in the class.</p></li>
 <p>If you are ever concerned that you may be doing something that could be considered academically
 dishonest, please don’t hesitate to ask us for clarification. We are always happy to answer
 these kind of questions.</p>
+</section>
+<section id="policy-on-generative-ai">
+<h3>Policy on Generative AI<a class="headerlink" href="#policy-on-generative-ai" title="Link to this heading">¶</a></h3>
+<p>Software developers are not only allowed but often encouraged to use Generative AI systems
+(ChatGPT, Bard, GitHub Copilot) as a productivity tool. As such, we will have a fairly
+permissive policy on the use of Generative AI systems. In general, the following uses
+of Generative AI systems (GenAI) systems is allowed across all coursework:</p>
+<ul class="simple">
+<li><p><strong>Reference</strong>: You can use GenAI to answer specific reference questions,
+in the same way you would use Google, Stack Overflow, etc. For example, it would be
+perfectly fine to ask something like “In Django, how do I model a field that can only
+take a limited set of values?”</p></li>
+<li><p><strong>Debugging</strong>: You can use GenAI to make sense of error messages that you are struggling
+with, or to ask GenAI if it can figure out what might be wrong with a specific piece
+of code. This is similar to asking for help on an online forum like Canvas, Ed Discussion, etc.</p></li>
+<li><p><strong>Self-Study</strong>: You can use GenAI to explore topics in more detail, or to ask for
+additional practice problems. For example, it would be acceptable to ask questions like
+“In class, we’ve focused mostly on web applications with Django. Given that I am mostly
+familiar with Python, can you give me a brief summary of how mobile development differs
+from web development? Would I be able to do it in Python?” or “I think I need more practice
+coming up with Django data models. Could you suggest a few exercises?”</p></li>
+</ul>
+<p>When using GenAI systems, don’t forget that these systems <strong>have no sense
+of what is true or not</strong>, and will sometimes provide incorrect answers. It is important that you
+look at answers from GenAI with a critical eye.</p>
+<p>Finally, while GenAI can enhance your work and supplement your learning, it can also hinder
+your learning in some cases, or lead to academic honesty concerns. We will provide more specific
+guidance in the coursework regarding what activities are not allowed, as certain things that
+would be permissible in the project may not be permissible in the homeworks.</p>
+<p>Please bear in mind that there will be situations where will ask you to work on a task by yourself
+without any assistance from GenAI, because we feel you will learn more effectively that way.
+For example, when coming up with the data design for the homeworks, GenAI could certainly suggest
+many different designs to choose from, but it will be challenging for you to look at those designs
+critically, and assess whether they meet your requirements, if you don’t have any experience
+coming up with data designs yourselves. Additionally, the goal in that exercise is also for you
+to work collaboratively in a team to arrive at a design you are all happy with.</p>
+<p>If you are concerned about academic honesty issues, a good heuristic to use in order to figure
+out what is or isn’t appropriate is to imagine GenAI systems as a <strong>helpful but fallible classmate</strong>.
+For example, it is generally appropriate to review lecture notes with a classmate and ask questions
+about concepts you didn’t fully understand. So, asking GenAI about this is likely fine. On the other
+hand, it is never fine to ask a classmate to write a homework for you. So, unless you’ve been told
+it is ok to do this with GenAI, then this would be an inappropriate use of GenAI.</p>
 </section>
 <section id="diversity-statement">
 <h3>Diversity statement<a class="headerlink" href="#diversity-statement" title="Link to this heading">¶</a></h3>
@@ -357,7 +386,7 @@ Email: <a class="reference external" href="mailto:disabilities&#37;&#52;&#48;uch
       
     </p>
     <p>
-        &copy; Copyright 2011-2021, The University of Chicago.<br/>
+        &copy; Copyright 2011-2023, The University of Chicago.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
