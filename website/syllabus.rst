@@ -1,10 +1,15 @@
 Syllabus
 ========
 
-.. note::
+.. warning::
 
-    If you are registered for CMSC 22000, please bear in mind that all
-    the latest course materials can be found in the course's Canvas site.
+    CMSC 22000 is undergoing a major redesign in Autumn 2023, and this syllabus is subject to change.
+
+..
+    .. note::
+
+        If you are registered for CMSC 22000, please bear in mind that all
+        the latest course materials can be found in the course's Canvas site.
 
 Course Description
 ------------------
@@ -97,7 +102,7 @@ meeting for the project, where we will cover some content related to
 software project management, and will also ask each team to deliver an
 update on their work so far.
 
-A detailed course calendar will be available soon.
+Please see the `Course Calendar <calendar.html>`__ for more details.
 
 Homework
 ~~~~~~~~
