@@ -3,63 +3,158 @@
 Grading
 =======
 
-.. warning::
+Like CMSC 14200, we will be using a form of grading known as *specifications grading*.
+The goal of specifications grading is to help students focus on their mastery of the
+material and to identify areas for improvement as the quarter progresses. You will
+get the most out of this scheme if you focus on *skills*, not on scores.
 
+All work in this course will be evaluated using a E/S/N/U scale:
 
-    This website currently reflects the Spring 2022 offering of CMSC 22000. We are in
-    the process of updating this page for the Autumn 2023 offering of CMSC 22000,
-    which will include several major changes to the class. Most notably, the class
-    will now be taught in Python (instead of C) and will revolve around the development
-    of a Python-based web application.
+- **Excellent** (E): The work is either perfect, or has only very minor flaws. In some coursework,
+  achieving an E will require completing extra work above and beyond what is required to earn an S.
+- **Satisfactory** (S): The student has put in a good-faith effort to complete all the work
+  and demonstrated sufficient mastery of the material.
+- **Needs Improvement** (N): The student has put in a good-faith effort to complete the work,
+  but revealed a lack of mastery in the material that can be addressed via concrete feedback.
+  The work could become Satisfactory, or even Excellent, with revisions.
+- **Unsatisfactory** (U): The student did not make a good-faith effort to complete the work.
+  For example, they submitted no work at all, or some token amount of work. *Some coursework
+  may specify a specific minimum amount of work to complete to avoid a U.*
 
-This year (2022), we have overhauled the grading scheme in CMSC 22000, and are following a *specifications grading* approach. Many of you have likely not encountered specifications grading before, so we encourage you to carefully read this page to make sure you understand how it works.
+This is often referred to as the ESNU scale. All assigned work will include a more precise
+specification of what is required for an E, S, N, or U in that particular piece of work.
 
-Coursework Grading Scale
-------------------------
+Coursework
+----------
 
-Specifications grading is a learning-focused approach that prioritizes student learning over scores or grades. A key aspect of specifications grading is to provide opportunities for students to learn from their mistakes and demonstrate growth and
-improvement throughout the quarter.
+Your final grade will be determined based on the ESNU scores you will earn in the following
+coursework:
 
-However, the traditional 0-100 grading scale makes it challenging for a student to understand
-if their work needs improvement (and how much improvement). For example, getting 85 points out of 100 on a project could be considered an excellent
-performance in one class, but a dismal score in a different class. Providing medians and quartiles may not be helpful,
-as it only tells you how you performed relative to the rest of the class; again, 85 points might be an excellent score
-in an absolute sense, but may lead you to believe it's a poor score because everyone else in the class happened to
-do much better than you.
+- Homeworks
+- Project
 
-So, this year, coursework in this class will be scored according to the following scale:
+  - Individual Project Tasks
+  - Project Warm-up Exercises
+  - Peer Feedback Exercises
+  - Final Project Presentation
 
-- **Excellent** (E): The work is either perfect, or has only very minor flaws.
-- **Satisfactory** (S): While the work has some room for improvement, the student has put in a good-faith effort to complete all the work and demonstrated sufficient mastery of the material. Only minor revisions would be needed for the work to be Excellent.
-- **Needs Improvement** (N): The student has put in a good-faith effort to complete the work, but revealed a lack of mastery in the material that can be addressed via concrete feedback. The work could become Satisfactory or Excellent with some major revisions.
-- **Ungradable** (U): The student did not make a good-faith effort to complete the work. This includes not submitting the work at all, but also situations like submitting only placeholder code, work that barely passes any tests, etc.
+Homeworks
+~~~~~~~~~
 
-This is often referred to as the ESNU scale. It is important that you avoid thinking of these scores in terms of how they map to an A, B, C, etc. (the manner in which we compute your final grade is described below). The ESNU scale is intended to help you understand your mastery of the material, so you can identify areas for improvement as the quarter progresses. All assigned work will include a more precise specification of what is required for an E, S, N, or U in that particular piece of work.
+There are seven homeworks (HW #0 - HW #6), with each homework building on the previous one.
+You will receive one ESNU score per homework, *except* in Homeworks #0 and #1, where the highest
+score will be an S.
 
-Resubmissions
--------------
+If you receive an N in a homework, you will be able to address the issues with that homework
+(to get your score up to an S or E) no later than two homeworks afterwards. For example,
+suppose you receive an N in HW #2. You will be given specific feedback on what needs to be
+improved, and will be able to address it in your HW #4 submission.
 
-Another key aspect of specifications grading is lowering the stakes of any individual assignment. In other words,
-a poor performance in one assignment should not tank your grade for the entire quarter, and (as noted earlier)
-there should be an opportunity for you to demonstrate you've learned from those mistakes and are able to
-improve your work.
+Please note that, for homeworks #5 and #6, there will be a special homework deadline (the
+"Final Homework Submission") where you will be able to address any remaining issues in those homeworks.
 
-One way of accomplishing this is by allowing students to submit a revised version of their work after
-they've gotten feedback from the graders. In this class, you will be allowed to resubmit your work as follows:
+Homeworks #2 - #6 will include a series of additional tasks that you will need to complete
+to earn an E in those homeworks. As we'll describe below, these E's will be necessary to
+earn certain grades.
 
-- **Homeworks**: You are allowed to resubmit **at most two** homeworks. Once a homework is returned to you,
-  you will typically have one week to submit a revised version that addresses any feedback you received
-  from the graders.
-- **Individual Project Tasks**: While you will not be able to resubmit tasks themselves, the project is
-  structured in such a way that there are multiple (and potentially unbound) opportunities to earn scores
-  via the project tasks.
-- **Project Design Warm-up**: The Design Warm-up is divided into two parts. You will receive feedback on
-  the first part before the second part is due, but you will also have a chance to submit a revised version
-  after the second part is returned to you.
-- **Peer Feedback**: There are two rounds of peer feedback, and only the second round will affect your
-  final grade. If there are any concerns with the quality of your first round of feedback, you will get
-  the highest score possible in the second round as long as those concerns are addressed.
+Individual Project Tasks
+~~~~~~~~~~~~~~~~~~~~~~~~
 
+In the course project, you will be largely assessed on how well you follow a software
+development process, based on how you manage issues and pull requests in the project.
+Each time you complete an issue or a pull request, you will earn an ESNU score and,
+depending on the score and the type of task, you will accrue a certain number of points
+(the exact scheme will be available once we publish the details of the project).
+
+While these tasks cannot be resubmitted, there are effectively unbound opportunities
+to complete tasks and accrue points. So, a poor performance in one task can be made up
+by completing a different task.
+
+The number of points you accrue (i.e., the number of tasks you complete that are of,
+at least, a certain quality) will factor into your final grade.
+
+Project Warm-Up Exercises
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The project has two warm-up exercises, each of which contribute a SNU score to your final grade.
+These exercises are done as a team, and the entire team receives the same SNU score based on
+the work submitted by the team.
+
+For the first warm-up exercise (coming up with the data design for the homeworks), there will be
+an explicit resubmission deadline later in the quarter for any designs that do not earn an S.
+
+For the second warm-up exercise (building familiarity with using GitHub collaboratively), teams
+that do not earn an S will be given specific goals to accomplish during Sprint #1 of the project
+to demonstrate that they understand how to use GitHub in the context of the project. As long
+as those goals are met, the score will be changed to an S.
+
+Peer Feedback Exercises
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The peer feedback exercises contribute a single SNU score to your final grade.
+
+There are two rounds of peer feedback, where you will be assessed on the quality
+of the feedback you deliver to your peers (you will *not* be assessed based on
+the feedback others give you).
+
+If there are any concerns with the quality of
+your first round of feedback, you will be told exactly what needs to improve in
+the second round of feedback. As long as those issues are addressed,
+you will receive an S in your peer feedback.
+
+Final Project Presentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+During exam week, each team will deliver a final presentation on the work
+they did on the project. Your final presentation will contribute a single ESNU
+score to your final grade (you will be given a concrete rubric for how
+that ESNU score will be determined).
+
+Final Grade
+-----------
+
+Your final grade will be computed based on the following scores:
+
+- 7 ESNU scores from the homeworks (of which, at most five will be E's)
+- 2 SNU scores from the Project Warm-up Exercises
+- 1 SNU score from the Peer Feedback
+- 1 ESNU score from the Final Presentation
+- The "Project Points" you accrue in the course project.
+
+In other words, there are 11 ESNU scores (of which, at most 6 can be an E).
+
+You should avoid thinking of these scores as making up some percent of your grade.
+For example, the fact that there are 7 scores for the homeworks, and 4 scores related
+to the project, does not mean that the homeworks are worth 63% of your grade.
+
+Instead, your grade will be determined based on the table below, where each row
+specifies the minimum number of scores that you must achieve to earn that grade. You
+will earn the highest grade for which you meet *all* requirements.
+
+.. cssclass:: table-bordered
+
++----+----------------+-------+-----+---+
+|    | Project Points | N+S+E | S+E | E |
++====+================+=======+=====+===+
+| A  | 300+           | 11    | 10  | 5 |
++----+----------------+-------+-----+---+
+| A- | 250+           | 11    | 10  | 3 |
++----+----------------+-------+-----+---+
+| B+ | 200+           | 11    | 8   | 0 |
++----+----------------+-------+-----+---+
+| B  | < 200          | 9     | 7   | 0 |
++----+                +-------+-----+---+
+| B- |                | 9     | 5   | 0 |
++----+----------------+-------+-----+---+
+
+In this table, the project columns represent the following:
+
+- **Project Points**: The points you can accrue in the course project by completing issues and pull requests.
+- **N + S + E**: The minimum number of non-Unsatisfactory scores (i.e., N's, S's, and E's) achieved by the student. This represents the amount of work the student has done in good faith.
+- **S + E**: The minimum number of scores that are, at least, Satisfactory. This represents the amount of work that the student has done in good faith, and which is at least satisfactory.
+- **E**: The minimum number of Excellent scores. This represents the amount of work done by the student that is of superior quality.
+
+Please note that anyone below the B- requirements will be dealt with on a case-by-case basis.
 
 Late Submissions
 ----------------
@@ -72,53 +167,6 @@ That said, to be clear: **if you encounter some sort of emergency (medical, fami
 
 In other words, our late submission policy applies to *ordinary* circumstances: if you are having a busy week, if your RSO has an event that overlaps with a deadline, etc., then you should rely on the resubmission policy to give you some extra flexibility: instead of trying to argue for a few extra days to work on an assignment, you should just submit the work you have completed by the deadline, so you can get feedback on that work and use that feedback to improve your work.
 
-
-Final Grade
------------
-
-Your final grade will be computed based on the following scores:
-
-- 8 ESNU scores from the homeworks.
-- 1 ESNU score from the Project Design Warm-up
-- 1 SNU score from the Peer Feedback
-- 1 ESNU score from the Final Presentation
-- The "Project Points" you accrue in the course project.
-
-In other words, there are 11 ESNU scores (of which, at most 10 can be an E).
-
-You should avoid thinking of these scores as making up some percent of your grade.
-For example, the fact that there are 8 scores for the homeworks, and 3 scores related
-to the project, does not mean that the homeworks are worth 72% of your grade.
-
-Instead, your grade will be determined based on the table below, where each row
-specifies the minimum number of scores that you must achieve to earn that grade. You
-will earn the highest grade for which you meet *all* requirements.
-
-.. cssclass:: table-bordered
-
-+----+----------------+-------+-----+---+
-|    | Project Points | N+S+E | S+E | E |
-+====+================+=======+=====+===+
-| A  | 200+           | 11    | 10  | 8 |
-+----+----------------+-------+-----+---+
-| A- | 150+           | 11    | 10  | 5 |
-+----+----------------+-------+-----+---+
-| B+ | 100+           | 11    | 8   | 0 |
-+----+----------------+-------+-----+---+
-| B  | < 100          | 9     | 7   | 0 |
-+----+                +-------+-----+---+
-| B- |                | 9     | 5   | 0 |
-+----+----------------+-------+-----+---+
-
-In this table, the project columns represent the following:
-
-- **Project Points**: The points you can accrue in the course project by completing issues and pull requests.
-  Please see the `Project Policies <project/policies.html>`__ page for more details on this.
-- **N + S + E**: The minimum number of non-Ungradeable scores (i.e., N's, S's, and E's) achieved by the student. This represents the amount of work the student has done in good faith.
-- **S + E**: The minimum number of scores that are, at least, Satisfactory. This represents the amount of work that the student has done in good faith, and which has room for only moderate/minor improvement.
-- **E**: The minimum number of Excellent scores. This represents the amount of work done by the student that is of superior quality.
-
-Please note that anyone below the B- requirements will be dealt with on a case-by-case basis.
 
 Grading Disputes
 ----------------

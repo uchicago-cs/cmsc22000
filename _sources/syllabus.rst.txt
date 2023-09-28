@@ -169,7 +169,8 @@ more about software engineering specifically:
 Grading
 -------
 
-We are still updating our grading policies for the Autumn 2023 offering of CMSC 22000. Please check back later.
+Please see our `Grading <grading.html>`__ page.
+
 
 Policies
 --------
