@@ -6,7 +6,7 @@ Grading
 Like CMSC 14200, we will be using a form of grading known as *specifications grading*.
 The goal of specifications grading is to help students focus on their mastery of the
 material and to identify areas for improvement as the quarter progresses. You will
-get the most out of this scheme if you focus on skills, not on scores.
+get the most out of this scheme if you focus on *skills*, not on scores.
 
 All work in this course will be evaluated using a E/S/N/U scale:
 
@@ -18,8 +18,8 @@ All work in this course will be evaluated using a E/S/N/U scale:
   but revealed a lack of mastery in the material that can be addressed via concrete feedback.
   The work could become Satisfactory, or even Excellent, with revisions.
 - **Unsatisfactory** (U): The student did not make a good-faith effort to complete the work.
-  For example, they submitted no work at all, or some token amount of work. Some coursework
-  specify a specific minimum amount of work to complete to avoid a U.
+  For example, they submitted no work at all, or some token amount of work. *Some coursework
+  may specify a specific minimum amount of work to complete to avoid a U.*
 
 This is often referred to as the ESNU scale. All assigned work will include a more precise
 specification of what is required for an E, S, N, or U in that particular piece of work.
@@ -32,6 +32,7 @@ coursework:
 
 - Homeworks
 - Project
+
   - Individual Project Tasks
   - Project Warm-up Exercises
   - Peer Feedback Exercises
@@ -83,7 +84,7 @@ For the first warm-up exercise (coming up with the data design for the homeworks
 an explicit resubmission deadline later in the quarter for any designs that do not earn an S.
 
 For the second warm-up exercise (building familiarity with using GitHub collaboratively), teams
-that do not earn an S will be given specific goals to accomplish during Spring #1 of the project
+that do not earn an S will be given specific goals to accomplish during Sprint #1 of the project
 to demonstrate that they understand how to use GitHub in the context of the project. As long
 as those goals are met, the score will be changed to an S.
 
