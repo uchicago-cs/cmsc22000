@@ -1,15 +1,6 @@
 Issue/PR Grading
 =================
 
-.. warning::
-
-
-    This website currently reflects the Spring 2022 offering of CMSC 22000. We are in
-    the process of updating this page for the Autumn 2023 offering of CMSC 22000,
-    which will include several major changes to the class. Most notably, the class
-    will now be taught in Python (instead of C) and will revolve around the development
-    of a Python-based web application.
-
 The "Project Points" component of your `grade <../grading.html>`__
 will be based on how well
 you perform certain tasks that you will do throughout the project (and
@@ -438,4 +429,3 @@ When reading the rubric items below, bear in mind that they can all apply to eit
 - **The PR was created before it was ready for review (the student kept pushing commits after creating the PR, before it had been reviewed)**: When you create a PR, you are requesting a review of the code in the branch you want to merge. As such, you should not push any commits to the branch right after creating the PR; you should only do so in response to a code review. Make sure that, when you create a PR, the code is ready for review and passes all the tests.
 - [Major] **The PR contains a hodgepodge of different changes, instead of merging a branch that contains a clearly-specified and self-contained feature/change to the code.**: A branch should represent work on a concrete feature that is being added to the mainline branch, instead of a collection of many different changes.
 - [Major] **The PR is either clearly too large (1,000's of lines) or simply could've been broken up into smaller PRs, providing an opportunity to integrate more continuously.**: This PR represents a large amount of work that could've been integrated into ``dev`` through smaller PRs earlier in the quarter. Remember that you should not treat PRs as a singular event to merge all or most of your work into ``dev``. Integrating incrementally can help identify integration issues early, as well as ensure that you are not rushing to merge all your code towards the end of a sprint.
-
