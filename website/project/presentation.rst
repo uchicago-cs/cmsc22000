@@ -102,7 +102,7 @@ work meeting the following requirements:
   your code in ``dev``, you can “rewind” to a previous commit in ``dev``
   if you prefer.
 - To ensure there is enough time for all the teams to showcase their
-  work, your demo should be no more than ~10 minutes long.
+  work, your demo should be no more than ~15 minutes long.
 
 We recommend that you think carefully about what you want to show
 in your demo, and that you plan ahead of time the exact steps you

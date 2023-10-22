@@ -318,8 +318,11 @@ On an issue, all assignees will receive the same amount of points
 for a completed issue. If a pull request is approved, all assignees
 *and* reviewers will receive the points for that pull request.
 
-That said, if an issue/PR has four or more people assigned
+That said, if an issue/PR has more than three people assigned
 to it (not including PR reviewers), you will only receive 70% of the points stated above.
+
+Please note that, if you create an issue that results in a pull request,
+you will receive points for both the issue and the pull request.
 
 Regular vs Minor issues
 ~~~~~~~~~~~~~~~~~~~~~~~
