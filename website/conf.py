@@ -126,7 +126,7 @@ html_sidebars = {'*': None,
 
 html_context = {"web_navbar": [("Syllabus", "syllabus", False),
                                ("Calendar", "calendar", False),
-                               ("Project", "project", False),
+                               ("Project", "project/index", False),
                                ("FAQ", "faq", False)]}
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
