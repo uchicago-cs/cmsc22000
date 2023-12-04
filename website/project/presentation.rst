@@ -144,10 +144,59 @@ Submission Instructions
 -----------------------
 
 You will be uploading your report to the same repository you used for the
-project warm-up exercises. We will provide a simple Markdown template
-for the report, but you are also welcome to use other formats
-as long as they are text-based (e.g., plain text or HTML are fine;
+project warm-up exercises. We suggest you use [Markdown](https://en.wikipedia.org/wiki/Markdown)
+to write the report. If so, you can start from the following template:
+
+.. code-block:: markdown
+
+    # CMSC 22000 Final report
+
+    **Team name**: <Your team name>
+
+    **Team members**:
+    - Team Member 1
+    - Team Member 2
+    - Team Member 3
+    - Team Member 4
+    - Team Member 5
+
+    ## Design and Implementation
+
+    <Write the Design and Implementation section here>
+
+    ## Next Steps
+
+    <Write the Next Steps section here>
+
+    ## Reflections
+
+    <Write the Reflections section here>
+
+
+That said, you are welcome to use other formats as long
+as they are text-based (e.g., plain text or HTML are fine;
 PDF, Word, etc. are not acceptable)
+
+You will submit your report through Gradescope, via the team
+repository you used for the warm-up exercises. All your files
+for the report must be inside a `report/` directory in the
+repository, and the filename for the report itself must be
+``REPORT`` with the appropriate extension (e.g., ``REPORT.md``,
+``REPORT.txt``, etc.)
+
+As in the project warm-up, **only one of the students in the team
+needs to make a submission** on Gradescope, in assignment
+“Final Report”. When submitting, make sure to select your
+team repository (``uchicago-cmsc22000-2023/warmup-TEAM_NAME``),
+and not your homework repository.
+
+After submitting, Gradescope will allow you to add a “team member”
+to your submission. Make sure you remember to add all your team
+members at this point.
+
+Please note that if you submit again before the deadline, Gradescope
+will not remember that you added a team member to your previous
+submission. You will need to add your project partners.
 
 
 Scoring
