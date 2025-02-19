@@ -144,7 +144,8 @@ Submission Instructions
 -----------------------
 
 You will be uploading your report to the same repository you used for the
-project warm-up exercises. We suggest you use [Markdown](https://en.wikipedia.org/wiki/Markdown)
+project warm-up exercises. We suggest you use
+`Markdown <https://en.wikipedia.org/wiki/Markdown>`__
 to write the report. If so, you can start from the following template:
 
 .. code-block:: markdown
