@@ -6,7 +6,7 @@ Project Organization
 
 In this project, you will be divided into teams of five students, and
 will work collaboratively (both within your team and between teams) on a
-complex software system, `chiventure <chiventure.html>`__, that will
+complex software system, `ChiGame <https://github.com/uchicago-cs/chigame>`__, that will
 involve improving existing code as well as designing and
 implementing new functionality. You will be using several tools to
 support the collaborative aspects of this project and, indeed, your
@@ -15,7 +15,7 @@ successful in this project. The project will follow an agile process
 that resembles (but does not exactly follow)
 `Scrum <https://en.wikipedia.org/wiki/Scrum_(software_development)>`__.
 
-Each team will be assigned to work on `an existing or new feature of chiventure <features.html>`__ (teams will have a
+Each team will be assigned to work on `a ChiGame feature <https://github.com/uchicago-cs/chigame/wiki/Feature-Wishlist>`__ (teams will have a
 chance to express a preference, although we can’t guarantee we’ll be
 able to assign each team to their preferred feature). In each team, a TA
 will act as Senior Developer.
@@ -23,18 +23,17 @@ will act as Senior Developer.
 Project Timeline
 ----------------
 
-The project will span seven weeks (Weeks 3 - 9), with a final review and
-team presentations taking place during Finals Week. The seven weeks of
-the project will be divided into a project kick-off and four sprints,
+The project will span six weeks (Weeks 4 - 9), with a final report and
+demo taking place during Finals Week. The six weeks of
+the project will be divided into a project kick-off and three sprints,
 with sprint reviews happening on Mondays.
 
--  Week 3: Project kick-off. This week will be primarily used for you to
+-  Week 4: Project kick-off. This week will be primarily used for you to
    familiarize yourself with project and the exact work your team will
    do.
--  Week 4: Sprint 1
--  Week 5: Sprint 2.
--  Weeks 6-7: Sprint 3
--  Weeks 8-9: Sprint 4
+-  Week 5: Sprint 1
+-  Weeks 6-7: Sprint 2
+-  Weeks 8-9: Sprint 3
 
 Project Evaluation
 ------------------
@@ -44,9 +43,9 @@ our `Grading <../grading.html>`__ page for details on how these scores
 are used to compute your final grade):
 
 - The "Project Points" you accrue by completing issues and pull requests.
-- 1 ESNU score from the Project Design Warm-up
+- 2 SNU scores from the Project Warm-up Exercises
 - 1 SNU score from the Peer Feedback
-- 1 ESNU score from the Final Presentation
+- 1 ESNU score from the Final Report and Demo
 
 Unlike a traditional programming assignment or project, the exact final
 outcome of the project is not known in advance. Of course, we will set
@@ -77,13 +76,13 @@ as long as you earn, at least, an S.
 You can find a detailed description of this aspect of the project
 in the `Issue/PR Grading <issue-pr-grading.html>`__ page.
 
-Design Warm-up
-~~~~~~~~~~~~~~
+Warm-up Exercises
+~~~~~~~~~~~~~~~~~
 
-Before you start working on the project itself, you will work on a
-design warm-up exercise that will allow you to practice some basic
-software design skills. More details on this component of the
-project can be found in the `Design Warm-Up <warmup.html>`__ page.
+Before you start working on the project itself, you will work on two
+warm-up exercises that will allows you to work as a team before
+the project starts, and will also give you some practice creating
+issues and pull requests.
 
 Peer feedback
 ~~~~~~~~~~~~~
@@ -96,16 +95,16 @@ grade (whereas in a real project, these evaluations/reviews could affect
 whether you get a raise, a promotion, etc.). Instead, we will be
 assessing the feedback you provide to others.
 
-At the end of Sprints 2 and 3, you will be assigned two peers who will
+Halfway through Sprints 2 and 3, you will be assigned two peers who will
 be providing you with feedback (you will know each other’s identities).
 Before they provide you with feedback, you must think about what you
-would like to receive feedback on. At the end of Sprint 2, you should
+would like to receive feedback on. Halfway through Sprint 2, you should
 think about the following:
 
    *What is something I’d like to improve or do better in the next
    sprints?*
 
-After Sprint 3 (i.e., during the final Sprint 4), you should think about
+Halfway through Sprint 3, you should think about
 the following:
 
    *What is something I’d like to improve or do better the next time I
@@ -192,7 +191,7 @@ Needs Improvement).
 Final Report and Demo
 ~~~~~~~~~~~~~~~~~~~~~
 
-Requirements for the final report and demo can be found `here <presentation.html>`__.
+Details about the final report and demo can be found `here <presentation.html>`__.
 
 Team Composition and Mobility
 -----------------------------

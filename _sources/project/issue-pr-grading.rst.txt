@@ -65,7 +65,7 @@ this task.
 
 For example:
 
-1. “Design and implement a ‘circle’ module”
+1. “Design and implement a `Circle` class”
 2. “Add support for higher-dimensional points”
 3. “Research libraries for drawing simple geometric shapes”
 4. “Fix bug in segment intersection when segments overlap perfectly”
@@ -75,8 +75,8 @@ we will refer to them as “Task #1”, “Task #2”, etc.
 
 For example, here are less-descriptive titles for the above four tasks:
 
--  Task #1: “Work on circle module” (what work is being done on the
-   module?)
+-  Task #1: “Work on `Circle` class” (what work is being done on the
+   class?)
 -  Task #2: “Higher-dimensional points” (not a complete sentence, not
    clear what you’ll be doing)
 -  Task #3: “We need drawing libraries” (that’s true, but what is being
@@ -103,25 +103,24 @@ Here are some examples of descriptive summaries:
 **Task #1**
 
    libgeometry currently lacks a way to work with circles. We need to
-   design and implement a module that supports, at least, creating
-   circles, computing their area and diameter, and computing
-   intersections between circles.
+   design and implement a `Circle` class with methods to compute
+   the circle's area and diameter, as well as intersections between circles.
 
 **Task #2**
 
    libgeometry only supports points in two-dimensional space. We should
    generalize this design to support points in any dimensions, by having
-   the ``point_t`` type look like this:
+   the ``Point`` class look like this:
 
    ::
 
-      typedef struct {
-         double *vals;
-         unsigned int ndims;
-      } point_t;
+      class Point:
+          def __init__(self, vals: List[float]):
+              self._ndims = len(vals)
+              self._vals = vals[:]
 
-   The segment and polygon modules will need to be updated to use this
-   new type, and their tests will need to be updated. We also need to
+   The `Segment` and `Polygon` classes will need to be updated to use this
+   new class, and their tests will need to be updated. We also need to
    add additional tests for segments and polygons in, at least,
    three-dimensional space.
 
@@ -137,45 +136,35 @@ Here are some examples of descriptive summaries:
 **Task #4**
 
    Computing the intersection of identical segments makes
-   ``segment_intersects`` crash. You can reproduce this by running this
-   program:
+   ``Segment.intersects`` return None, instead of True or False.
+   You can reproduce this by running this code:
 
    ::
 
-      #include "segment.h"
+      p1 = Point([2.0, 3.0])
+      p2 = Point([5.0, 7.0])
 
-      int main()
-      {
-          segment_t s1, s2;
-          point_t p1, p2;
+      s1 = Segment(p1, p2)
+      s2 = Segment(p1, p2)
 
-          point_init(&p1, 2.0, 3.0);
-          point_init(&p2, 5.0, 7.0);
-
-          segment_init(&s1, &p1, &p2);
-          segment_init(&s2, &p1, &p2);
-
-          segment_intersects(&s1, &s2);
-      }
-
-   This program immediately segfaults without any other output.
+      print(s1.intersects(s2))
 
 And here are example of summaries that would be less helpful:
 
 **Task #1**
 
-   I’m going to add a circle module
+   I’m going to add a circle class
 
 It’s not clear why we’re doing this, or how we’ll know when this task is
 done.
 
 **Task #2**
 
-   Turn x, y in point_t to an array. Make sure it doesn’t break any
+   Turn x, y in Point into a list. Make sure it doesn’t break any
    other code.
 
 While this describes what will be done in the task and how we’ll know
-when it’s done (when any code we break by the update to point_t is
+when it’s done (when any code we break by the update to `Point` is
 fixed), this needs to be more concrete.
 
 **Task #3**
@@ -189,13 +178,13 @@ writing styles can distract from this.
 
 **Task #4**
 
-   If I create two identical segments and check if they intersect, my
-   program crashes.
+   If I create two identical segments and check if they intersect, I
+   get the wrong return value.
 
 While this provides some indication of what needs to happen for the bug
 to manifest itself, the summary should provide concise instructions on
-how to reproduce the issue. At the very least, the code for the crashing
-program should be included in the task description.
+how to reproduce the issue. At the very least, the code for reproducing
+the problem should be included in the issue.
 
 Updates on the progress of the task
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -204,9 +193,8 @@ If you make any intermediate progress before finishing the task,
 specially if you have pushed any code related to this task, then it
 should be documented on the GitHub issue. For example:
 
--  In Task #1, suppose you implement a struct to represent circles, as
-   well as the new/init/free functions, but have not yet started working
-   on area, perimeter, and intersection. You could commit and push that
+-  In Task #1, suppose you implement a barebones `Circle` class with
+   a constructor but no other methods. You could commit and push that
    code, and post a comment in the issue.
 -  In Task #3, you could post a comment every time you finish reviewing
    an individual library (instead of just posting everything together at
@@ -226,17 +214,17 @@ Closing statement
 When a task is done, you should close the corresponding GitHub issue,
 and you should include a comment explaining why this task is done. In
 some cases, this is as simple as stating that the work has been done.
-For example, in Task #1 you could simply state “Implemented the circle
-module, including the area, perimeter, and intersection functions”.
+For example, in Task #1 you could simply state “Implemented the `Circle`
+class, including the area, perimeter, and intersection methods”.
 
 This may seem redundant, but take into account that closing an issue may
 not necessarily mean that the task is done. For example, the following
 could also be valid closing statements for Task #1:
 
--  “We ultimately decided we don’t need a circle module after all. I’m
+-  “We ultimately decided we don’t need a `Circle` class after all. I’m
    closing this issue, but will reopen if we decide to revisit this”
--  “The circle module has been implemented, except for the intersection
-   function, which turned out to be more complex than anticipated. I am
+-  “The `Circle` class has been implemented, except for the intersection
+   method, which turned out to be more complex than anticipated. I am
    closing this issue, and have created a separate task (#5) for
    implementing circle intersections”
 
@@ -247,21 +235,21 @@ developer
 Requirements for Pull Requests
 ------------------------------
 
-Like in many software projects, the ``master`` branch of our Git
+As in many software projects, the ``main`` branch of our Git
 repository should only contain stable code that compiles, runs, and
-passes all tests. This is enforced by making the master branch a
+passes all tests. This is enforced by making the main branch a
 *protected* branch, meaning that only the instructors and TAs have the
 ability to directly push to that branch.
 
 On top of that, there is an additional ``dev`` (short for “development”)
-branch that acts as a “pre-master” branch. The ``dev`` branch is also
+branch that acts as a “pre-main” branch. The ``dev`` branch is also
 protected, and should only contain stable code, but it is used as a
 staging area to integrate code (and uncover potential integration
-issues) before publishing code to ``master``.
+issues) before publishing code to ``main``.
 
-This means that, to get code into chiventure, you must make pull request
+This means that, to get code into ChiGame, you must make pull request
 to get code merged into the ``dev`` branch (and the instructor and TAs
-will decide when to merge that code into ``master``).
+will decide when to merge that code into ``main``).
 
 Because the ``dev`` branch should contain stable code, pull requests to
 ``dev`` must be carefully reviewed before they are approved. If you want
@@ -330,9 +318,11 @@ On an issue, all assignees will receive the same amount of points
 for a completed issue. If a pull request is approved, all assignees
 *and* reviewers will receive the points for that pull request.
 
-That said, if an issue/PR has four or more people assigned
-to it, you will only receive 70% of the points stated above
-(please note that reviewers on a PR do not count towards this
+That said, if an issue/PR has more than three people assigned
+to it (not including PR reviewers), you will only receive 70% of the points stated above.
+
+Please note that, if you create an issue that results in a pull request,
+you will receive points for both the issue and the pull request.
 
 Regular vs Minor issues
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -357,8 +347,8 @@ Delaying/Splitting Tasks
 
 As you will find out throughout the project, estimating the time a task
 will require can be challenging. You could commit to doing a task
-thinking it will only take 2-3 hours, and then find that it is actually
-a 10-15 hour task. So, you are allowed to do the following:
+thinking it will only take 1-2 hours, and then find that it is actually
+a 3-5 hour task. So, you are allowed to do the following:
 
 -  For tasks that you committed to doing, you are allowed to reassign a
    task to a future sprint, or place it back into the backlog.
@@ -394,7 +384,7 @@ will be determined as follows:
 - **Satisfactory**: At most three minor issues or, alternatively, at most
   one major issue with at most one minor issue.
 - **Needs Improvement**: Does not meet the requirements for an E or S.
-- **Ungradable**: This score is reserved for issues/PRs that are effectively
+- **Unsatisfactory**: This score is reserved for issues/PRs that are effectively
   blank, or that need to be excluded from grading for some reason (e.g.,
   if the issue was created in error)
 
@@ -404,7 +394,7 @@ Rubric items
 When reading the rubric items below, bear in mind that they can all apply to either an issue or a pull request
 (except when the rubric item clearly refers to a PR-specific aspect).
 
-- **Title does not convey a clear and tangible goal**: The title of an issue has to convey what the issue will be producing. In the future, try using simple titles with a "Verb-Object" structure that clearly states what you will be doing in the issue (e.g., “Design and implement a ‘circle’ module”, “Research libraries for drawing simple geometric shapes”, etc.)
+- **Title does not convey a clear and tangible goal**: The title of an issue has to convey what the issue will be producing. In the future, try using simple titles with a "Verb-Object" structure that clearly states what you will be doing in the issue (e.g., “Design and implement a ‘Circle’ class”, “Research libraries for drawing simple geometric shapes”, etc.)
 - **The title is too generic and could relate to other teams**: Even though you can add labels to issues to categorize them, you should avoid titles that could plausibly apply to multiple teams
 - **There is no summary, or it is just a "Name:" and "Team:" from a Scrum board card.**: The issue did not include a descriptive summary (see `Descriptive Summary <#descriptive-summary>`__ above for more details and concrete examples)
 - **The summary is too terse, and likely wasn't fleshed out from what was written on the Scrum board card.**: The summary for this issue is too terse. A good rule of thumb is that you should be writing at least one full paragraph in your summary (see `Descriptive Summary <#descriptive-summary>`__ above for examples). If this issue was generated from a Scrum board card, please remember that the summary you write in the Sprint meeting is meant to be a quick draft; it needs to be fleshed out when you convert the card to an issue.

@@ -4,11 +4,11 @@
 <html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Issue/PR Grading &#8212; CMSC 22000 - Introduction to Software Development</title>
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=0bf093e7" />
     <link rel="stylesheet" type="text/css" href="../_static/chiweb.css?v=4e80c602" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -120,7 +120,7 @@ Scrum Board”.</p></li>
 <p>For example, this is what the labels, projects, and milestones field
 could look like:</p>
 <figure class="align-default" id="id1">
-<img alt="GitHub Issue" src="project/issue.png" />
+<img alt="GitHub Issue" src="../_images/issue.png" />
 <figcaption>
 <p><span class="caption-text">GitHub Issue</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -131,7 +131,7 @@ could look like:</p>
 this task.</p>
 <p>For example:</p>
 <ol class="arabic simple">
-<li><p>“Design and implement a ‘circle’ module”</p></li>
+<li><p>“Design and implement a <cite>Circle</cite> class”</p></li>
 <li><p>“Add support for higher-dimensional points”</p></li>
 <li><p>“Research libraries for drawing simple geometric shapes”</p></li>
 <li><p>“Fix bug in segment intersection when segments overlap perfectly”</p></li>
@@ -140,8 +140,8 @@ this task.</p>
 we will refer to them as “Task #1”, “Task #2”, etc.</p>
 <p>For example, here are less-descriptive titles for the above four tasks:</p>
 <ul class="simple">
-<li><p>Task #1: “Work on circle module” (what work is being done on the
-module?)</p></li>
+<li><p>Task #1: “Work on <cite>Circle</cite> class” (what work is being done on the
+class?)</p></li>
 <li><p>Task #2: “Higher-dimensional points” (not a complete sentence, not
 clear what you’ll be doing)</p></li>
 <li><p>Task #3: “We need drawing libraries” (that’s true, but what is being
@@ -165,23 +165,22 @@ output of the steps that lead to the bug manifesting itself.</p>
 <p><strong>Task #1</strong></p>
 <blockquote>
 <div><p>libgeometry currently lacks a way to work with circles. We need to
-design and implement a module that supports, at least, creating
-circles, computing their area and diameter, and computing
-intersections between circles.</p>
+design and implement a <cite>Circle</cite> class with methods to compute
+the circle’s area and diameter, as well as intersections between circles.</p>
 </div></blockquote>
 <p><strong>Task #2</strong></p>
 <blockquote>
 <div><p>libgeometry only supports points in two-dimensional space. We should
 generalize this design to support points in any dimensions, by having
-the <code class="docutils literal notranslate"><span class="pre">point_t</span></code> type look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">struct</span> <span class="p">{</span>
-   <span class="n">double</span> <span class="o">*</span><span class="n">vals</span><span class="p">;</span>
-   <span class="n">unsigned</span> <span class="nb">int</span> <span class="n">ndims</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">point_t</span><span class="p">;</span>
+the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vals</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ndims</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vals</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[:]</span>
 </pre></div>
 </div>
-<p>The segment and polygon modules will need to be updated to use this
-new type, and their tests will need to be updated. We also need to
+<p>The <cite>Segment</cite> and <cite>Polygon</cite> classes will need to be updated to use this
+new class, and their tests will need to be updated. We also need to
 add additional tests for segments and polygons in, at least,
 three-dimensional space.</p>
 </div></blockquote>
@@ -197,41 +196,32 @@ as well as (if possible) a link to code samples for that library.</p>
 <p><strong>Task #4</strong></p>
 <blockquote>
 <div><p>Computing the intersection of identical segments makes
-<code class="docutils literal notranslate"><span class="pre">segment_intersects</span></code> crash. You can reproduce this by running this
-program:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &quot;segment.h&quot;</span>
+<code class="docutils literal notranslate"><span class="pre">Segment.intersects</span></code> return None, instead of True or False.
+You can reproduce this by running this code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">])</span>
 
-<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">segment_t</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">;</span>
-    <span class="n">point_t</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">Segment</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">Segment</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
 
-    <span class="n">point_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">);</span>
-    <span class="n">point_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p2</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">);</span>
-
-    <span class="n">segment_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">);</span>
-    <span class="n">segment_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">);</span>
-
-    <span class="n">segment_intersects</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s2</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>This program immediately segfaults without any other output.</p>
 </div></blockquote>
 <p>And here are example of summaries that would be less helpful:</p>
 <p><strong>Task #1</strong></p>
 <blockquote>
-<div><p>I’m going to add a circle module</p>
+<div><p>I’m going to add a circle class</p>
 </div></blockquote>
 <p>It’s not clear why we’re doing this, or how we’ll know when this task is
 done.</p>
 <p><strong>Task #2</strong></p>
 <blockquote>
-<div><p>Turn x, y in point_t to an array. Make sure it doesn’t break any
+<div><p>Turn x, y in Point into a list. Make sure it doesn’t break any
 other code.</p>
 </div></blockquote>
 <p>While this describes what will be done in the task and how we’ll know
-when it’s done (when any code we break by the update to point_t is
+when it’s done (when any code we break by the update to <cite>Point</cite> is
 fixed), this needs to be more concrete.</p>
 <p><strong>Task #3</strong></p>
 <blockquote>
@@ -243,13 +233,13 @@ This? Maybe someone can look them up? 🤔</p>
 writing styles can distract from this.</p>
 <p><strong>Task #4</strong></p>
 <blockquote>
-<div><p>If I create two identical segments and check if they intersect, my
-program crashes.</p>
+<div><p>If I create two identical segments and check if they intersect, I
+get the wrong return value.</p>
 </div></blockquote>
 <p>While this provides some indication of what needs to happen for the bug
 to manifest itself, the summary should provide concise instructions on
-how to reproduce the issue. At the very least, the code for the crashing
-program should be included in the task description.</p>
+how to reproduce the issue. At the very least, the code for reproducing
+the problem should be included in the issue.</p>
 </section>
 <section id="updates-on-the-progress-of-the-task">
 <h3>Updates on the progress of the task<a class="headerlink" href="#updates-on-the-progress-of-the-task" title="Link to this heading">¶</a></h3>
@@ -257,9 +247,8 @@ program should be included in the task description.</p>
 specially if you have pushed any code related to this task, then it
 should be documented on the GitHub issue. For example:</p>
 <ul class="simple">
-<li><p>In Task #1, suppose you implement a struct to represent circles, as
-well as the new/init/free functions, but have not yet started working
-on area, perimeter, and intersection. You could commit and push that
+<li><p>In Task #1, suppose you implement a barebones <cite>Circle</cite> class with
+a constructor but no other methods. You could commit and push that
 code, and post a comment in the issue.</p></li>
 <li><p>In Task #3, you could post a comment every time you finish reviewing
 an individual library (instead of just posting everything together at
@@ -277,16 +266,16 @@ next) would be enough.</p>
 <p>When a task is done, you should close the corresponding GitHub issue,
 and you should include a comment explaining why this task is done. In
 some cases, this is as simple as stating that the work has been done.
-For example, in Task #1 you could simply state “Implemented the circle
-module, including the area, perimeter, and intersection functions”.</p>
+For example, in Task #1 you could simply state “Implemented the <cite>Circle</cite>
+class, including the area, perimeter, and intersection methods”.</p>
 <p>This may seem redundant, but take into account that closing an issue may
 not necessarily mean that the task is done. For example, the following
 could also be valid closing statements for Task #1:</p>
 <ul class="simple">
-<li><p>“We ultimately decided we don’t need a circle module after all. I’m
+<li><p>“We ultimately decided we don’t need a <cite>Circle</cite> class after all. I’m
 closing this issue, but will reopen if we decide to revisit this”</p></li>
-<li><p>“The circle module has been implemented, except for the intersection
-function, which turned out to be more complex than anticipated. I am
+<li><p>“The <cite>Circle</cite> class has been implemented, except for the intersection
+method, which turned out to be more complex than anticipated. I am
 closing this issue, and have created a separate task (#5) for
 implementing circle intersections”</p></li>
 </ul>
@@ -297,19 +286,19 @@ developer</p>
 </section>
 <section id="requirements-for-pull-requests">
 <h2>Requirements for Pull Requests<a class="headerlink" href="#requirements-for-pull-requests" title="Link to this heading">¶</a></h2>
-<p>Like in many software projects, the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch of our Git
+<p>As in many software projects, the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch of our Git
 repository should only contain stable code that compiles, runs, and
-passes all tests. This is enforced by making the master branch a
+passes all tests. This is enforced by making the main branch a
 <em>protected</em> branch, meaning that only the instructors and TAs have the
 ability to directly push to that branch.</p>
 <p>On top of that, there is an additional <code class="docutils literal notranslate"><span class="pre">dev</span></code> (short for “development”)
-branch that acts as a “pre-master” branch. The <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch is also
+branch that acts as a “pre-main” branch. The <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch is also
 protected, and should only contain stable code, but it is used as a
 staging area to integrate code (and uncover potential integration
-issues) before publishing code to <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
-<p>This means that, to get code into chiventure, you must make pull request
+issues) before publishing code to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+<p>This means that, to get code into ChiGame, you must make pull request
 to get code merged into the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch (and the instructor and TAs
-will decide when to merge that code into <code class="docutils literal notranslate"><span class="pre">master</span></code>).</p>
+will decide when to merge that code into <code class="docutils literal notranslate"><span class="pre">main</span></code>).</p>
 <p>Because the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch should contain stable code, pull requests to
 <code class="docutils literal notranslate"><span class="pre">dev</span></code> must be carefully reviewed before they are approved. If you want
 to merge code into <code class="docutils literal notranslate"><span class="pre">dev</span></code>, your code must be reviewed by (1) someone in
@@ -382,9 +371,10 @@ for a completed issue or pull request:</p>
 <p>On an issue, all assignees will receive the same amount of points
 for a completed issue. If a pull request is approved, all assignees
 <em>and</em> reviewers will receive the points for that pull request.</p>
-<p>That said, if an issue/PR has four or more people assigned
-to it, you will only receive 70% of the points stated above
-(please note that reviewers on a PR do not count towards this</p>
+<p>That said, if an issue/PR has more than three people assigned
+to it (not including PR reviewers), you will only receive 70% of the points stated above.</p>
+<p>Please note that, if you create an issue that results in a pull request,
+you will receive points for both the issue and the pull request.</p>
 <section id="regular-vs-minor-issues">
 <h3>Regular vs Minor issues<a class="headerlink" href="#regular-vs-minor-issues" title="Link to this heading">¶</a></h3>
 <p>When deciding whether to categorize an issue/PR as being a “minor” issue/PR, the senior developer will base their determination
@@ -405,8 +395,8 @@ categorized as “minor”.</p>
 <h3>Delaying/Splitting Tasks<a class="headerlink" href="#delaying-splitting-tasks" title="Link to this heading">¶</a></h3>
 <p>As you will find out throughout the project, estimating the time a task
 will require can be challenging. You could commit to doing a task
-thinking it will only take 2-3 hours, and then find that it is actually
-a 10-15 hour task. So, you are allowed to do the following:</p>
+thinking it will only take 1-2 hours, and then find that it is actually
+a 3-5 hour task. So, you are allowed to do the following:</p>
 <ul>
 <li><p>For tasks that you committed to doing, you are allowed to reassign a
 task to a future sprint, or place it back into the backlog.
@@ -445,7 +435,7 @@ will be determined as follows:</p>
 <li><p><strong>Satisfactory</strong>: At most three minor issues or, alternatively, at most
 one major issue with at most one minor issue.</p></li>
 <li><p><strong>Needs Improvement</strong>: Does not meet the requirements for an E or S.</p></li>
-<li><p><strong>Ungradable</strong>: This score is reserved for issues/PRs that are effectively
+<li><p><strong>Unsatisfactory</strong>: This score is reserved for issues/PRs that are effectively
 blank, or that need to be excluded from grading for some reason (e.g.,
 if the issue was created in error)</p></li>
 </ul>
@@ -454,7 +444,7 @@ if the issue was created in error)</p></li>
 <p>When reading the rubric items below, bear in mind that they can all apply to either an issue or a pull request
 (except when the rubric item clearly refers to a PR-specific aspect).</p>
 <ul class="simple">
-<li><p><strong>Title does not convey a clear and tangible goal</strong>: The title of an issue has to convey what the issue will be producing. In the future, try using simple titles with a “Verb-Object” structure that clearly states what you will be doing in the issue (e.g., “Design and implement a ‘circle’ module”, “Research libraries for drawing simple geometric shapes”, etc.)</p></li>
+<li><p><strong>Title does not convey a clear and tangible goal</strong>: The title of an issue has to convey what the issue will be producing. In the future, try using simple titles with a “Verb-Object” structure that clearly states what you will be doing in the issue (e.g., “Design and implement a ‘Circle’ class”, “Research libraries for drawing simple geometric shapes”, etc.)</p></li>
 <li><p><strong>The title is too generic and could relate to other teams</strong>: Even though you can add labels to issues to categorize them, you should avoid titles that could plausibly apply to multiple teams</p></li>
 <li><p><strong>There is no summary, or it is just a “Name:” and “Team:” from a Scrum board card.</strong>: The issue did not include a descriptive summary (see <a class="reference external" href="#descriptive-summary">Descriptive Summary</a> above for more details and concrete examples)</p></li>
 <li><p><strong>The summary is too terse, and likely wasn’t fleshed out from what was written on the Scrum board card.</strong>: The summary for this issue is too terse. A good rule of thumb is that you should be writing at least one full paragraph in your summary (see <a class="reference external" href="#descriptive-summary">Descriptive Summary</a> above for examples). If this issue was generated from a Scrum board card, please remember that the summary you write in the Sprint meeting is meant to be a quick draft; it needs to be fleshed out when you convert the card to an issue.</p></li>
