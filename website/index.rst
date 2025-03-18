@@ -1,3 +1,5 @@
+:html_theme.sidebar_secondary.remove:
+
 CMSC 22000 - Introduction to Software Development
 =================================================
 
@@ -41,9 +43,6 @@ students and others interested in learning more about the class.
    :hidden:
 
    syllabus.rst
-   academic-honesty.rst
    calendar.rst
-   code-of-conduct.rst
-   project.rst
-
-
+   project/index.rst
+   faq.rst

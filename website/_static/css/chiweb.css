@@ -1,0 +1,13 @@
+/* TODO: Update this so it will only affect light mode */
+
+.bd-header {
+    background-color: maroon !important;
+}
+
+.nav-link {
+    color: #ffffff !important;
+}
+
+.title {
+    color: #ffffff !important;
+}
