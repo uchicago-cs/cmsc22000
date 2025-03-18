@@ -1,13 +1,11 @@
-/* TODO: Update this so it will only affect light mode */
-
-.bd-header {
+html[data-theme="light"] .bd-header {
     background-color: maroon !important;
 }
 
-.nav-link {
+html[data-theme="light"] .bd-header .nav-link {
     color: #ffffff !important;
 }
 
-.title {
+html[data-theme="light"] .bd-header .title {
     color: #ffffff !important;
 }
