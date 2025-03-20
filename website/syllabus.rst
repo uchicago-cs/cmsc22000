@@ -46,8 +46,8 @@ features for an existing software system.
 Prerequisites
 ~~~~~~~~~~~~~
 
-Students must have taken CMSC 14200. We recommend taking the class within
-a year of completing CMSC 14200.
+Students must have taken CMSC 14200. We recommend taking CMSC 22000 no later than
+a year after completing CMSC 14200.
 
 Space permitting, in Spring 2025 we may allow students who took CMSC 15200
 or CMSC 16200 to take the class, with the understanding that they may need
@@ -107,7 +107,7 @@ series of supplementary lectures/discussions with the entire class.
 - **Monday, March 31st**: *Data Modelling Exercise*. Project teams will be formed by this date, and you will work as a team on designing a data model, followed by an all-class discussion on the data model.
 - **Monday, April 7th**: *Project Kick-off*. This session will serve to introduce the course project, with time allocated for each team to discuss what components they are most interested in developing.
 
-Starting in Week 4, the discusison session will be used for project team
+Starting in Week 4, the discussion session will be used for project team
 meetings. In these meetings, each team will meet with their TA to plan their work for the week, and review progress so far.
 
 
@@ -155,7 +155,7 @@ While the homeworks will be done individually, the data design for the
 web application will be done collaboratively in the same teams as
 the course project.
 
-By the end of the quarter, each student with have a deployable web application
+By the end of the quarter, each student will have a deployable web application
 that they are welcome to deploy publicly on a cloud provider, so they can demonstrate
 the application to friends, colleagues, prospective employers, etc.
 
@@ -306,13 +306,15 @@ will earn the highest grade for which you meet *all* requirements.
 +====+================+=======+=====+===+
 | A  | 400+           | 12    | 12  | 4 |
 +----+----------------+-------+-----+---+
-| A- | 300+           | 12    | 10  | 2 |
+| A- | 300 ≤ x < 400  | 12    | 10  | 2 |
 +----+----------------+-------+-----+---+
-| B+ | 200+           | 12    | 10  | 0 |
+| B+ | 200 ≤ x < 300  | 10    | 10  | 0 |
 +----+----------------+-------+-----+---+
-| B  | < 200          | 12    | 10  | 0 |
-+----+                +-------+-----+---+
-| B- |                | 10    | 10  | 0 |
+| B  | 100 ≤ x < 200  | 10    | 10  | 0 |
++----+----------------+-------+-----+---+
+| B- | 100 ≤ x < 200  | 10    | 8   | 0 |
++----+----------------+-------+-----+---+
+| C+ | 50 ≤ x < 100   | 8     | 8   | 0 |
 +----+----------------+-------+-----+---+
 
 In this table, the project columns represent the following:
@@ -322,7 +324,7 @@ In this table, the project columns represent the following:
 - **S + E**: The minimum number of scores that are, at least, Satisfactory. This represents the amount of work that the student has done in good faith, and which is at least satisfactory.
 - **E**: The minimum number of Excellent scores. This represents the amount of work done by the student that is of superior quality.
 
-Please note that anyone below the B- requirements will be dealt with on a case-by-case basis.
+Please note that anyone below the C+ requirements will be dealt with on a case-by-case basis.
 
 
 Policies
