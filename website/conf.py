@@ -35,6 +35,7 @@ html_theme_options = {
     },
     "show_prev_next": False,
     "secondary_sidebar_items": ["page-toc"],
+    "show_toc_level": 2
 }
 
 html_sidebars = {
