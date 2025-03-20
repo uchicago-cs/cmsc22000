@@ -100,8 +100,8 @@ Discussion Sessions
 ~~~~~~~~~~~~~~~~~~~
 
 The class has a discussion session on Mondays 4:30pm-5:50pm. During weeks 1-3,
-this discussion session will be used to hold a series of supplementary lectures/discussions
-with the entire class (room TBD):
+this discussion session will be held in Stuart 101, and will be used to hold a
+series of supplementary lectures/discussions with the entire class.
 
 - **Monday, March 24th**: *Using AI as a Software Developer*
 - **Monday, March 31st**: *Data Modelling Exercise*. Project teams will be formed by this date, and you will work as a team on designing a data model, followed by an all-class discussion on the data model.
