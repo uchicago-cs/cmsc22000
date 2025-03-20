@@ -279,7 +279,7 @@ The final component of this course will be a final report, where each team will 
 The final report and demo each contribute one SNU score to your final grade.
 
 Final Grade
-~~~~~~~~~~
+~~~~~~~~~~~
 
 Your final grade will be computed based on the following scores:
 
