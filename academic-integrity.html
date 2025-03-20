@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Academic Integrity in CMSC 22000 &#8212; CMSC 22000 - Introduction to Software Development 2025-spring documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/css/chiweb.css?v=32772b30" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=2fcac15b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'academic-integrity';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Calendar" href="calendar.html" />
+    <link rel="prev" title="Code of Conduct for Course Staff" href="code-of-conduct.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CMSC 22000</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="syllabus.html">
+    Syllabus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="calendar.html">
+    Calendar
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="project/index.html">
+    Project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="faq.html">
+    FAQ
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="syllabus.html">
+    Syllabus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="calendar.html">
+    Calendar
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="project/index.html">
+    Project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="faq.html">
+    FAQ
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="syllabus.html" class="nav-link">Syllabus</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Academic Integrity in CMSC 22000</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="academic-integrity-in-cmsc-22000">
+<h1>Academic Integrity in CMSC 22000<a class="headerlink" href="#academic-integrity-in-cmsc-22000" title="Link to this heading">#</a></h1>
+<p><strong>(or, how to get the most out of CMSC 22000)</strong></p>
+<p>In this class, we assume that you are an intellectually curious
+individual who has an earnest desire to learn. We believe you care about
+your education and are committed to getting the most out of this course.
+More specifically, our goal is for you to learn how to:</p>
+<ul class="simple">
+<li><p>… implement and deploy web applications with a database-driven backend.</p></li>
+<li><p>… understand basic foundational concepts in databases and computer
+networking that are relevant in many modern software systems, including
+the design of object-relational schemas.</p></li>
+<li><p>… follow a software development process/methodology to manage the life
+cycle of a software system, and use tools that support the software
+development process (e.g., testing frameworks, debuggers, linters/formatters,
+logging frameworks, etc.)</p></li>
+<li><p>… develop software collaboratively through (a) the use of tools, systems,
+and best practices available to facilitate that collaboration (e.g.,
+version control systems, code reviews, task tracking, etc.), and (b)
+exercising collaborative skills (communication, giving/accepting feedback, etc.)</p></li>
+</ul>
+<p>We trust that you are excited to learn all this and, to that end, we
+have designed coursework and policies that will support your learning.</p>
+<p>Most notably, because software is often developed in teams, the course
+project will involve working in teams of 4-5 students (with teams often
+having to collaborate across teams). Similarly, you will have a lot of
+latitude to use external resources, including AI tools, because software
+developers often depend on these resources/tools to do their job.</p>
+<p>That said, there will be situations where we may ask you to limit
+your reliance on other resources, because it will be important for
+you to first learn a new skill on your own. This will be particularly
+important in the homeworks, which must be completed individually.</p>
+<p>To that end, this document provides guidance on what activities are
+allowed because they will benefit your learning, and which ones will not
+be allowed because they will be detrimental to your learning (and, in
+some cases, even morally reprehensible). As you read through the rest of
+this document, we encourage you to reflect on how your actions in this
+course will contribute to your learning, instead of treating these
+guidelines as rules to follow “just because the professor said so”.</p>
+<section id="what-is-allowed">
+<h2>What is Allowed<a class="headerlink" href="#what-is-allowed" title="Link to this heading">#</a></h2>
+<p>This section describes a number of activities that we allow in this
+class, because they align with the learning objectives of this class.
+When reading through them, take into account that some of them come with
+caveats, and may require providing some sort of citation in your code.</p>
+<section id="acceptable-forms-of-collaboration">
+<h3>Acceptable Forms of Collaboration<a class="headerlink" href="#acceptable-forms-of-collaboration" title="Link to this heading">#</a></h3>
+<p><strong>Course Project</strong></p>
+<p>In the course project, all students will work on the same code
+repository, which means everyone will be able to see each other’s
+code. As such, there are no academic integrity concerns with
+showing or discussing the project code with other students
+in the class.</p>
+<p>You are also allowed to collaborate with other students on any
+given task, including working on the same code together, but you must
+always disclose what students worked on that task (there will be
+a specific mechanism for doing this in the course project)</p>
+<p><strong>Homework</strong></p>
+<p>In the homeworks, you will be practicing new skills that are taught
+in this class. As such, to make sure you gain sufficient practice
+on these topics before relying on other resources, we require you
+to complete the homeworks individually, without collaborating
+with other students.</p>
+<p>That said, you <em>are</em> allowed to have <em>high-level</em> discussions with other
+students in the class, as long as you don’t discuss implementation
+details or share any code (except when discussing code we provide to
+you). For example, the following would be acceptable questions to ask
+other students in the class:</p>
+<ul class="simple">
+<li><p><em>“I am unclear on how to add a new view to a Django project.
+Can we walk through an example together?”</em></p></li>
+<li><p><em>“I am not sure how the homework web application is supposed to behave
+in this particular page. Do you know what it is supposed to do?”</em></p></li>
+<li><p><em>“I’m still getting the hang of using virtual environments;
+Do I need to activate it every time I use it?”</em></p></li>
+</ul>
+<p>Don’t forget that the course staff are also happy to answer these kinds
+of questions on Slack or at office hours. That said, if you do
+have these kinds of high-level discussions with a classmate, you must
+list their name(s) at the top of any relevant homework files.</p>
+</section>
+<section id="acceptable-uses-of-generative-ai">
+<h3>Acceptable Uses of Generative AI<a class="headerlink" href="#acceptable-uses-of-generative-ai" title="Link to this heading">#</a></h3>
+<p>Generative AI (GenAI) tools are becoming an increasingly common part of
+a software developer’s toolkit, but you should remember that they are
+ultimately just <em>productivity tools</em>. They are meant to facilitate and
+speed up your work, not replace it entirely.</p>
+<p>When talking with developers in industry, we have consistently heard
+that these tools are most useful for routine or boilerplate tasks, where
+they can significantly speed up work. Even then, developers stress the
+importance of carefully reviewing the generated code to catch bugs or
+issues that could arise later. A common caveat is that over-reliance on
+these tools often results in errors creeping into a codebase, because
+developers become too complacent with the GenAI’s output. Thus, many
+developers avoid using generative AI for large or complex tasks, where
+it’s beneficial for them to think through each line of code.</p>
+<p>In this class, you are assumed to have two quarters worth of
+programming experience (141 and 142). We assume your programming
+foundations are fairly solid,
+and that you have reached a point where certain aspects of programming
+may start to feel routine and mechanical. We will allow you to use
+Generative AI to deal with these kinds of tasks, but not with more
+complex tasks.</p>
+<p>More specifically, you are allowed to use GenAI tools in the following ways:</p>
+<ul class="simple">
+<li><p>You can use autocomplete tools like Github Copilot to complete
+individual lines of code, as long as you understand exactly what that
+line of code is producing. You should exercise caution when
+repeatedly using this functionality (i.e., generating several lines
+one after the other)</p></li>
+<li><p>You can use prompt-based tools to generate the code for small utility
+functions, or small self-contained blocks of code.</p></li>
+<li><p>You can take a piece of code we’ve provided to you, and ask a GenAI
+questions about that code.</p></li>
+<li><p>You can provide a piece of code you’ve written to a prompt-based
+tool, and ask for feedback or for help with refactoring or
+documenting that code.</p></li>
+<li><p>When writing testing code, you must design the tests yourself,
+but can rely on GenAI to generate the actual implementation of the test.</p></li>
+</ul>
+<p>You are also broadly allowed to use GenAI tools for reference purposes,
+such as asking GenAI to explain how to perform certain tasks in Python
+or Django (e.g., “How can I validate an e-mail address in a Django web application?”), or
+to explain a concept from class in more detail (e.g., “In class, we’ve
+focused mostly on web applications with Django. Given that I am mostly
+familiar with Python, can you give me a brief summary of how mobile
+development differs from web development?”).</p>
+<p><strong>Important caveats about Generative AI</strong></p>
+<ul class="simple">
+<li><p>Don’t forget that GenAI systems <strong>have no sense of what is true or
+not</strong>, and will sometimes produce plausible-looking code that contains
+errors, or which may cause issues in the context of the codebase that
+code is being used in. <strong>Always double-check any code produced by
+GenAI</strong>, and make sure that you understand what it does exactly.</p></li>
+<li><p>Even when producing correct code, that code could contradict
+instructions/guidance we provide in this class. It is important that
+you always look at answers from GenAI with a critical eye, and that
+you remember that the content we provide in the class always takes
+precedence.</p></li>
+<li><p>Along these lines, there will be situations where will ask you
+to work on a task by yourself without any assistance from GenAI, because
+we feel you will learn more effectively that way. This will often be
+the case in the homeworks, where it is important that you learn
+the new skills you are applying in that homework, without relying
+on AI tools.</p></li>
+</ul>
+<p><strong>Citation Requirements</strong></p>
+<p>You do not need to include citations for using autocomplete-based tools
+(like GitHub Copilot) unless you used them to generate an entire function/method,
+or a substantial block of code. In that case, you must include a docstring
+or comment stating that the code was generated with an AI tool (naming the tool
+involved)</p>
+<p>Please note that, if the autocomplete-based tool generated some code that you
+then edited heavily to ensure it worked correctly, you are not required to
+include a citation.</p>
+<p>You must provide a citation for any code generated by a prompt-based tool
+(like ChatGPT or PhoenixAI). If you used these tools to produce a first
+draft of the code, which you then modified further, make sure to state
+this in the citation. If possible, you should include a link to the
+exact conversation with the AI tool. The citation can be included in a
+docstring (if it affects just one function/method) or as a comment at the
+top of the file.</p>
+</section>
+<section id="acceptable-uses-of-other-external-resources">
+<h3>Acceptable Uses of Other External Resources<a class="headerlink" href="#acceptable-uses-of-other-external-resources" title="Link to this heading">#</a></h3>
+<p>Software developers often rely on many external resources, including
+websites like Stack Overflow, that can help them better understand how
+to complete a certain task. You are allowed to use these external
+resources, with the following caveats:</p>
+<ul class="simple">
+<li><p>You must provide a citation for that external resource. If it
+affected a specific portion of your code, include a code comment with
+a link to that resource. If you consulted it more broadly, include it
+in the project’s documentation.</p></li>
+<li><p>Reference documentation, as well as Stack Overflow posts, often
+include short snippets of sample code. Exercise caution when relying
+on these snippets of code. Using 2-3 lines of example code is
+typically not problematic, but longer pieces of code could result in
+your work being flagged as plagiarized (e.g., if other students
+relied on that same external resource). Make sure to always include a
+citation in these cases.</p></li>
+</ul>
+<p>Software developers also often rely on third-party libraries to
+perform routine tasks, so they can focus on the primary purpose of the
+code they are writing. In the course project and homeworks,
+you can always use the Python Standard Library and the Django library.
+If you consult their official documentation, you do not need to
+provide any citations.</p>
+<p>If there are other libraries you would like to use, please ask us first. We
+will generally be fine with any library that does not provide
+any functionality we are asking you to implement yourself.</p>
+</section>
+</section>
+<section id="what-is-not-allowed">
+<h2>What is Not Allowed<a class="headerlink" href="#what-is-not-allowed" title="Link to this heading">#</a></h2>
+<p>While certain forms of collaboration and uses of Generative AI and
+external resources can supplement your learning, an over-reliance on
+them can be detrimental to your learning, because they prevent you from
+practicing and building the skills you should be taking away from this
+class.</p>
+<p>As such, we have to draw some lines in the sand:</p>
+<p><strong>Course Project</strong></p>
+<p>Although you have a lot of latitude to collaborate with other students
+in the class, you must never take credit for work that someone else in
+the class did. Please note that there are many situations
+where students will legitimately <em>share</em> credit for a piece of work;
+what would be unacceptable would be to falsely take sole credit for work you did not do,
+as a way to improve your score in the class.</p>
+<p>Additionally, you are not allowed to collaborate with anyone <strong>outside</strong> of
+the class. All your collaboration must be limited to students in the class.</p>
+<p><strong>Homeworks</strong></p>
+<p>Because the homeworks must be completed individually, you must be more
+careful about your reliance on other resources:</p>
+<ul class="simple">
+<li><p>Remember that you can only have high-level
+discussions with other students about the homeworks.</p></li>
+<li><p>Most of the homeworks will require that you limit your use of AI tools.
+You must make sure to follow those requirements carefully.</p></li>
+<li><p>In general, you <em>must not</em> rely on any sources that provide a complete
+(or nearly complete) solution to a given task, regardless of whether
+you provide a citation for that source.</p></li>
+</ul>
+<p>Additionally, until the quarter is over, you must <strong>not post your
+code in publicly-accessible websites</strong>, e.g., pastebin, a public GitHub
+repository, GitHub gists, etc. At the end of the quarter, we will
+provide more guidance on how you can make your code publicly available
+as part of a coding portfolio.</p>
+</section>
+<section id="academic-integrity-offenses">
+<h2>Academic Integrity Offenses<a class="headerlink" href="#academic-integrity-offenses" title="Link to this heading">#</a></h2>
+<p>If you run afoul of the above guidance, particularly if you actively
+plagiarize someone else’s homework code, your code could be flagged as an
+academic integrity offense. We take these incidents very seriously in
+this class, and will escalate any such cases to the <a class="reference external" href="https://college.uchicago.edu/student-services/office-college-community-standards">Office of College
+Community
+Standards</a>
+for further adjudication. Going through disciplinary proceedings is an
+unpleasant experience for everyone involved, and the outcome of these
+cases can have an impact on your grade. At minimum, your final course
+grade will drop one full step (letter). At maximum, you will receive an
+F in the course.</p>
+<p>We realize that sometimes students commit plagiarism out of desperation
+and as a measure of last resort. If you are in this situation, please
+just ask the instructors or other course staff for help. If you are
+having a hard time in the class, we will provide as much assistance as
+we can. Plus, a poor performance in one assignment is unlikely to wreck
+your grade for the class. Plagiarism is never worth it.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-allowed">What is Allowed</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptable-forms-of-collaboration">Acceptable Forms of Collaboration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptable-uses-of-generative-ai">Acceptable Uses of Generative AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptable-uses-of-other-external-resources">Acceptable Uses of Other External Resources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-not-allowed">What is Not Allowed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-integrity-offenses">Academic Integrity Offenses</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, University of Chicago.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

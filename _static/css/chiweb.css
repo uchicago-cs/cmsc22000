@@ -1,0 +1,11 @@
+html[data-theme="light"] .bd-header {
+    background-color: maroon !important;
+}
+
+html[data-theme="light"] .bd-header .nav-link {
+    color: #ffffff !important;
+}
+
+html[data-theme="light"] .bd-header .title {
+    color: #ffffff !important;
+}
