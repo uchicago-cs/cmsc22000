@@ -23,15 +23,15 @@ the success of a software project.
 
 More specifically, in this course, students will learn how to…
 
-- … implement and deploy web applications with a database-driven backend.
-- … understand basic foundational concepts in databases and computer
+- ... implement and deploy web applications with a database-driven backend.
+- ... understand basic foundational concepts in databases and computer
   networking that are relevant in many modern software systems, including
   the design of object-relational schemas.
-- … follow a software development process/methodology to manage the life
+- ... follow a software development process/methodology to manage the life
   cycle of a software system, and use tools that support the software
   development process (e.g., testing frameworks, debuggers, linters/formatters,
   logging frameworks, etc.)
-- … develop software collaboratively through (a) the use of tools, systems,
+- ... develop software collaboratively through (a) the use of tools, systems,
   and best practices available to facilitate that collaboration (e.g.,
   version control systems, code reviews, task tracking, etc.), and (b)
   exercising collaborative skills (communication, giving/accepting feedback, etc.)
@@ -427,3 +427,8 @@ requesting accommodations.
 Phone: (773) 702-6000
 Email: disabilities@uchicago.edu
 
+.. toctree::
+   :hidden:
+
+   code-of-conduct.rst
+   academic-integrity.rst
